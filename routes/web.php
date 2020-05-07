@@ -16,3 +16,5 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place_show']);
