@@ -13,8 +13,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/', 'MainController@map');
 
-$router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place_show']);
+$router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);

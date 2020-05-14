@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 class PlaceController extends Controller
 {
-    protected $dir = __DIR__.'/../../../storage/app/';
-
     /**
      * Create a new controller instance.
      *
@@ -17,7 +15,7 @@ class PlaceController extends Controller
 
     public function show($slug)
     {
-        $json = $this->dir.$slug.'.json';
+        $json = getenv('STORAGE_PATH').$slug.'.json';
         if (! file_exists($json)) {
             abort(404);
         }
