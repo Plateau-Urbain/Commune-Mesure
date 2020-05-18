@@ -1,5 +1,7 @@
 <html class="has-navbar-fixed-top">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name') }}</title>
         @section('head_css')
             <link rel="stylesheet" href="/css/bulma.min.css">
@@ -9,12 +11,9 @@
         <header>
             <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                    <div class="navbar-start">
-                        <a class="navbar-item"><strong>{{ config('app.name') }}</strong></a>
-                        <a class="navbar-item">About</a>
-                    </div>
+                    <a href="/" class="navbar-item"><strong>{{ config('app.name') }}</strong></a>
+                    <a class="navbar-item">About</a>
                 </div>
-                </ul>
             </nav>
         </header>
 
