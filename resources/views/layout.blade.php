@@ -2,7 +2,7 @@
     <head>
         <title>{{ config('app.name') }}</title>
         @section('head_css')
-            <link rel="stylesheet" src="css/{{ config('app.project') }}.css"/>
+
         @show
     </head>
     <body>
@@ -14,7 +14,7 @@
         </header>
 
         <div class="container">
-            @yield('content');
+            @yield('content')
         </div>
 
          @section('script_js')

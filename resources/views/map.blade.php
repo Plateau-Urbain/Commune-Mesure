@@ -14,7 +14,7 @@
     <script src="/js/map.js"></script>
     <script>
         @foreach ($coordinates as $name => $place)
-            L.marker([{{ $place['geo']->lat }}, {{ $place['geo']->lon}}]).bindPopup("{!! $place['popup'] !!}").addTo(map);
+            L.marker([{{ $place['geo']->lat }}, {{ $place['geo']->lon}}]).bindPopup("{!! $place['popup'] !!}").addTo(map)
         @endforeach
     </script>
 @endsection
