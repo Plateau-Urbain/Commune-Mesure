@@ -4,6 +4,11 @@
     "lon": 2.5443
   },
   "name": "Pouet",
+  "tags": [
+      "france",
+      "example",
+      "pu"
+  ],
   "photos": [
     "photo-1.jpg",
     "photo-2.jpg"
