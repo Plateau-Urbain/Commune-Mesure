@@ -22,5 +22,6 @@
         </div>
 
          @section('script_js')
+         @show
     </body>
 </html>

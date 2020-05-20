@@ -1,0 +1,40 @@
+body{
+	display: grid;
+	grid-template-rows:  1fr 14fr;
+	grid-template-areas: 'header' 'container';
+	height: 100%;
+	margin: auto;
+}
+.container{
+	grid-area: container;
+}
+header{
+	grid-area: header;
+}
+.grid-container{
+	display: grid;
+	grid-template-columns: auto auto auto;
+	height: 100%;
+
+}
+
+.side-left {
+  	grid-column-start: 1;
+  	grid-column-end: 3;
+  	margin-left: 2em;
+
+}
+
+.side-right{
+	grid-column-start: 3;
+  	grid-column-end: 4;
+}
+
+
+.container-pop{
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto auto auto;
+	width: 350px;
+	height: 400px;
+}

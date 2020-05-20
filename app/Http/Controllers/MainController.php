@@ -22,7 +22,9 @@ class MainController extends Controller
         foreach (glob($storage.'*.json') as $place) {
             $json = json_decode(file_get_contents($place));
             $name = basename($place, '.json');
-            $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name])->render());
+            $title = $json->name;
+            $photos = null;
+            $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name, 'title' => $title, "images" => $json->photos])->render());
 
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
         }

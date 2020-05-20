@@ -5,7 +5,7 @@
 
 #info-panel {
     position: absolute;
-    top: 0;
+    top: 3.25em;
     right: 0;
     background: white;
     display: none;
