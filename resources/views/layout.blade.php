@@ -1,23 +1,17 @@
-<html class="has-navbar-fixed-top">
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name') }}</title>
         @section('head_css')
             <link rel="stylesheet" href="/css/bulma.min.css">
+            <link rel="stylesheet" href="/css/style.css">
         @show
     </head>
     <body>
-        <header>
-            <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a href="/" class="navbar-item"><strong>{{ config('app.name') }}</strong></a>
-                    <a class="navbar-item">About</a>
-                </div>
-            </nav>
-        </header>
-
-        <div class="main">
+        @include("components.header")
+        <div class="main-container main">
             @yield('content')
         </div>
 

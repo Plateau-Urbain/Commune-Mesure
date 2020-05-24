@@ -1,40 +1,18 @@
-body{
-	display: grid;
-	grid-template-rows:  1fr 14fr;
-	grid-template-areas: 'header' 'container';
-	height: 100%;
-	margin: auto;
+@font-face {
+    font-family: blzee-font;
+    src: url(../fonts/blzee/blzee.ttf) format('truetype');
 }
-.container{
-	grid-area: container;
-}
-header{
-	grid-area: header;
-}
-.grid-container{
-	display: grid;
-	grid-template-columns: auto auto auto;
-	height: 100%;
-
+.main-container{
+    z-index: 0;
 }
 
-.side-left {
-  	grid-column-start: 1;
-  	grid-column-end: 3;
-  	margin-left: 2em;
-
+#federation, #balance, #process{
+    height: 20em;
+    margin: 1em;
 }
-
-.side-right{
-	grid-column-start: 3;
-  	grid-column-end: 4;
+.impacts >h1, .impacts >h2, .app-name > h1{
+    font-family: blzee-font;
 }
 
 
-.container-pop{
-	display: grid;
-	grid-template-columns: auto;
-	grid-template-rows: auto auto auto auto;
-	width: 350px;
-	height: 400px;
-}
+

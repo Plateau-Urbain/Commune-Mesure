@@ -13,7 +13,7 @@ class MainController extends Controller
     {
     }
 
-    public function map()
+    public function map($slug=null)
     {
         $storage = getenv('STORAGE_PATH');
 
@@ -28,7 +28,16 @@ class MainController extends Controller
 
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
         }
+        $place = null;
+        if(!is_null($slug)){
+            $json = getenv('STORAGE_PATH').$slug.'.json';
+            if (! file_exists($json)) {
+                abort(404);
+            }
 
-        return view('map', compact('coordinates'));
+            $place = json_decode(file_get_contents($json));
+        }
+
+        return view('map', compact('coordinates', 'place'));
     }
 }
