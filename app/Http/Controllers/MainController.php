@@ -19,6 +19,6 @@ class MainController extends Controller
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
         }
 
-        return view('map', compact('coordinates'));
+        return view('home', compact('coordinates'));
     }
 }
