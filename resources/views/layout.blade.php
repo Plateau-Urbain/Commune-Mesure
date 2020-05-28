@@ -6,11 +6,13 @@
         <title>{{ config('app.name') }}</title>
         @section('head_css')
             <link rel="stylesheet" href="/css/bulma.min.css">
-            <link rel="stylesheet" href="/css/style.css">
         @show
     </head>
     <body>
-        @include("components.header")
+        @section('header')
+            @include('components.header')
+        @show
+
         <div class="main-container main">
             @yield('content')
         </div>
