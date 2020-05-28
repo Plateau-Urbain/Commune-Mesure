@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('header.submenu')
+    @include('components.header-submenu')
+@endsection
+
 @section('content')
     <div class="container is-fluid">
         <h1 class="title is-1">{{ $place->name }}</h1>
