@@ -6,6 +6,7 @@
         <title>{{ config('app.name') }}</title>
         @section('head_css')
             <link rel="stylesheet" href="/css/bulma.min.css">
+            <link rel="stylesheet" href="/css/style.css">
         @show
     </head>
     <body>

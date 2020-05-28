@@ -40,6 +40,6 @@
     </div>
 
     @section('header.submenu')
-    @endsection
+    @show
 </div>
 </header>

@@ -1,14 +1,14 @@
 @section('header.submenu')
-<div class="hero-foot">
-    <nav class="tabs">
-        <div class="container">
-            <div class="navbar-menu" id="eval-process">
-                <a class="navbar-item" href="#presentation">Présentation du lieu</a>
-                <a class="navbar-item" href="#federation">Fédération</a>
-                <a class="navbar-item" href="#process">Collecte et analyse</a>
-                <a class="navbar-item" href="#balance">Bilan</a>
+    <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth">
+            <div class="container">
+                <ul>
+                    <li><a href="#presentation">Présentation du lieu</a></li>
+                    <li><a href="#federation">Fédération</a></li>
+                    <li><a href="#process">Collecte et analyse</a></li>
+                    <li><a href="#balance">Bilan</a></li>
+                </ul>
             </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>
 @endsection
