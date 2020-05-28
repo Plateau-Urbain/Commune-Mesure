@@ -38,6 +38,6 @@ class MainController extends Controller
             $place = json_decode(file_get_contents($json));
         }
 
-        return view('map', compact('coordinates', 'place'));
+        return view('home', compact('coordinates', 'place'));
     }
 }

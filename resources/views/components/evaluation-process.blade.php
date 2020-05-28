@@ -10,7 +10,6 @@
                         <h1 class="title">
                             Example of my best place
                         </h1>
-                        <h2 class="subtitle">
                             Saint-denis-sur-loire
                         </h2>
                         <div class="column description">
