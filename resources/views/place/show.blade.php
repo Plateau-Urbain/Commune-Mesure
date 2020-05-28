@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<section>
     <div class="container is-fluid">
         <h1 class="title is-1">{{ $place->name }}</h1>
         <h3 class="subtitle has-text-grey-light is-italic">Tags:
@@ -23,4 +24,5 @@
         @endforeach
         </div>
     </div>
+</section>
 @endsection
