@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="section">
+    <div class="section column is-four-fifths is-offset-1">
         <div class="hero ">
             <div class="hero-body">
                 <div class="container">
@@ -25,28 +25,33 @@
                             in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
                             recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             </p>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="hero is-dark" id="block-data-stat">
-            <div>
-                <div>
-                    <span>
-                        <img src="https://dummyimage.com/640x360/fff/aaa">
-                    </span>
-                </div>
-                <div>
 
-                </div>
+    <div class="hero is-dark" id="block-data-stat">
+        <div class="columns">
+            <div class="column">
+                <span>
+                    <img src="/images/visualization.svg" style="height: 25em">
+                </span>
+            </div>
+            <div class="column">
+                <span>
+                <img src="/images/visualization2.svg">
+                </span>
             </div>
         </div>
+    </div>
 
-        <div class="hero is-dark" id="block-map">
-            <div id="mapid"></div>
-        </div>
+    <div class="hero column is-four-fifths is-offset-1" id="block-map">
+        <div id="mapid"></div>
+
+    </div>
     </div>
 @endsection
 

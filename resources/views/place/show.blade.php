@@ -23,6 +23,20 @@
             </div>
         @endforeach
         </div>
+        <div class="hero is-dark" id="block-data-stat">
+            <div class="columns">
+                <div class="column">
+                <span>
+                    <img src="/images/visualization.svg" style="height: 25em">
+                </span>
+                </div>
+                <div class="column">
+                <span>
+                <img src="/images/visualization2.svg">
+                </span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 @endsection

@@ -1,6 +1,5 @@
 #mapid {
-    height:65em;
+    height:25em;
     width: 100%;
-    /*z-index: 1;*/
-    padding-right: 15em;
+    z-index: 0;
 }

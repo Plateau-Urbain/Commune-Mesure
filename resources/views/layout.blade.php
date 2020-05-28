@@ -21,4 +21,7 @@
          @section('script_js')
          @show
     </body>
+    <footer>
+        @include("footer")
+    </footer>
 </html>
