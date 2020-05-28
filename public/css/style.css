@@ -2,6 +2,19 @@
     font-family: blzee-font;
     src: url(../fonts/blzee/blzee.ttf) format('truetype');
 }
+
+/*
+Menu nav
+ */
+.navbar-dropdown {
+    background: #363636;
+}
+
+
+
+/*
+End Menu
+ */
 .main-container{
     z-index: 0;
 }
@@ -12,6 +25,7 @@
 }
 .impacts >h1, .impacts >h2, .app-name > h1{
     font-family: blzee-font;
+    font-size: 5em;
 }
 
 

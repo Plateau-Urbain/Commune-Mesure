@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero is-primary ">
+        <div class="hero ">
             <div class="hero-body">
                 <div class="container">
                     <span>
@@ -79,15 +79,15 @@
         </div>
     </div>
 
-    <div class="hero is-primary is-medium" id="federation">
+    <div class="hero is-dark" id="federation">
         2
     </div>
 
-    <div class="hero is-primary is-info" id="process">
+    <div class="hero is-dark" id="process">
         3
     </div>
 
-    <div class="hero is-primary is-sucess" id="balance">
+    <div class="hero is-dark" id="balance">
         4
     </div>
 </div>
