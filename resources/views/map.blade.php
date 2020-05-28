@@ -9,31 +9,26 @@
 
 @section('content')
     <div class="columns">
-            <div class="column">
-                <div class="hero">
-                        <div class="hero-body">
-                            <div id="mapid"></div>
-                    </div>
+        <div class="column">
+            <div class="hero">
+                <div class="hero-body">
+                    <div id="mapid"></div>
                 </div>
             </div>
-    @if(!is_null($place))
-            @include("components.popup-details")
+        </div>
     </div>
-            @include("components.evaluation-process")
-    @endif
-        </div>
-        <div class="hero is-dark is-fullheight">
-            <div class="hero-body">
-                <div class="container impacts">
-                    <h1 class="title">
-                        Impacts
-                    </h1>
-                    <h2 class="subtitle">
-                        Fullheight subtitle
-                    </h2>
-                </div>
+    <div class="hero is-dark is-fullheight">
+        <div class="hero-body">
+            <div class="container impacts">
+                <h1 class="title">
+                    Impacts
+                </h1>
+                <h2 class="subtitle">
+                    Fullheight subtitle
+                </h2>
             </div>
         </div>
+    </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 
