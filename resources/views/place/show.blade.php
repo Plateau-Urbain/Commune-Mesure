@@ -1,5 +1,21 @@
 @extends('layout')
 
+@section('head_css')
+    @parent
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+@endsection
+
+@section('script_js')
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="/js/map.js"></script>
+
+    <script>
+        L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(map)
+        map.panTo([{{ $place->geo->lat }}, {{ $place->geo->lon}}])
+    </script>
+@endsection
+
 @section('content')
 <div class="columns is-gapless">
     <div class="column is-2">
@@ -17,7 +33,7 @@
 
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">
-                        <img src="https://picsum.photos/500" alt="Photo" width=500 height=500/>
+                        <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
                     </div>
                     <div class="column content">{!! $place->description !!}</div>
                 </div>
