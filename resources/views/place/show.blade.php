@@ -6,8 +6,7 @@
         @include('components.place-menu')
     </div>
     <div class="column">
-        <div id="presentation"></div>
-        <div class="hero is-large is-light">
+        <div id="presentation" class="hero is-large is-light anchor">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">{{ $place->name }}</h1>
                 <h3 class="subtitle has-text-grey-light is-italic">Tags:
@@ -25,8 +24,7 @@
             </section>
         </div>
 
-        <div id="federation"></div>
-        <div class="hero is-medium is-dark">
+        <div id="federation" class="hero is-medium is-dark anchor">
             <section class="section">
                 <div class="columns is-multiline">
                 @foreach ($place->photos as $photo)
@@ -38,8 +36,7 @@
             </section>
         </div>
 
-        <div id="analyse"></div>
-        <div class="hero is-medium">
+        <div id="analyse" class="hero is-medium anchor">
             <section class="section">
                 <div class="level">
                     <div class="level-item has-text-centered">
@@ -66,8 +63,7 @@
             </section>
         </div>
 
-        <div id="bilan"></div>
-        <div class="hero is-light" id="block-data-stat">
+        <div id="bilan" class="hero is-light anchor">
             <section class="section">
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">
