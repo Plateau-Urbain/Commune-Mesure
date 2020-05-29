@@ -3,13 +3,6 @@
     src: url(../fonts/blzee/blzee.ttf) format('truetype');
 }
 
-/*
-End Menu
- */
-.main-container{
-    z-index: 0;
-}
-
 #federation, #balance, #process{
     height: 20em;
     margin: 1em;
@@ -17,4 +10,19 @@ End Menu
 .impacts >h1, .impacts >h2, .app-name > h1{
     font-family: blzee-font;
     font-size: 5em;
+}
+
+@media (min-height: 300px) {
+    #scrolling-menu {
+        position: sticky;
+        top: 0;
+    }
+
+    #scrolling-menu aside {
+        padding-top: 1rem;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
 }
