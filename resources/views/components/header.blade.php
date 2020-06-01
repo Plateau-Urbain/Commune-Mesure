@@ -8,17 +8,17 @@
         <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/">Accueil</a>
-                <a class="navbar-item">Les lieux</a>
+                <a class="navbar-item" href="/les-lieux">Les lieux</a>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Les données</a>
+                    <a class="navbar-link" href="/les-donnees">Les données</a>
                     <div class="navbar-dropdown is-boxed">
                         <a class="navbar-item">Mes précieuses données</a>
                         <a class="navbar-item">Statistiques</a>
                     </div>
                 </div>
-                <a class="navbar-item">Documentation</a>
+                <a class="navbar-item" href="/documentation">Documentation</a>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Les institutions</a>
+                    <a class="navbar-link" href="les-institutions">Les institutions</a>
                     <div class="navbar-dropdown is-boxed">
                         <a class="navbar-item">SNCF</a>
                         <a class="navbar-item">Plateau Urbain</a>

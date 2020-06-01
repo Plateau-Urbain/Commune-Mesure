@@ -15,4 +15,18 @@
 
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
-//$router->get('/place/{slug}/edit', ['uses' =>'PlaceController@edit', 'as' => 'place.edit']);
+$router->get('/documentation',  function () {
+    return view('documentation');
+});
+$router->get('/les-donnees',  function () {
+    return view('statistics');
+});
+$router->get('/les-institutions',  function () {
+    return view('institutions');
+});
+$router->get('/les-lieux',  function () {
+    return view('places');
+});
+
+
+

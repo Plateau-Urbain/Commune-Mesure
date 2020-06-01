@@ -1,5 +1,23 @@
 #mapid {
-    height:25em;
+    height:40em;
     width: 100%;
     z-index: 0;
+}
+.marker-icon-custum{
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 257;
+    opacity: 1;
+    background-color: rgba(100, 255, 100, 0.5);
+    border-radius: 25px;
+}
+.marker-icon-custum div {
+    background-color: rgba(100, 255, 100, 0.8);
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 25px;
+    padding-top: 0.5em;
 }

@@ -35,7 +35,10 @@
     <script src="/js/map.js"></script>
     <script>
         @foreach ($coordinates as $name => $place)
-            L.marker([{{ $place['geo']->lat }}, {{ $place['geo']->lon}}]).bindPopup("{!! $place['popup'] !!}").addTo(map)
+            var marker = L.marker([{{ $place['geo']->lat }}, {{ $place['geo']->lon}}]).bindPopup("{!! $place['popup'] !!}");
+            markersCluster.addLayer(marker);
         @endforeach
+            console.log(markersCluster);
+        map.addLayer(markersCluster);
     </script>
 @endsection
