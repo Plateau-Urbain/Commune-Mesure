@@ -3,23 +3,35 @@
     src: url(../fonts/blzee/blzee.ttf) format('truetype');
 }
 
-/*
-End Menu
- */
-.main-container{
-    z-index: 0;
-}
-
-#federation, #balance, #process{
+#balance, #process{
     height: 20em;
     margin: 1em;
 }
+
 .impacts >h1, .impacts >h2, .app-name > h1{
     font-family: blzee-font;
     font-size: 5em;
 }
 
-.block-data-stat{
+.block-data-stat {
     margin: 5em;
     height: 10em;
+}
+@media (min-height: 300px) {
+    #scrolling-menu {
+        position: sticky;
+        top: 0;
+    }
+
+    #scrolling-menu aside {
+        padding-top: 1rem;
+    }
+}
+
+.anchor {
+    scroll-margin-top: 2em;
+}
+
+html {
+    scroll-behavior: smooth;
 }
