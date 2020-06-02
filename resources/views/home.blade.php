@@ -40,13 +40,13 @@
                     <div class="level">
                         <div class="level-item has-background-dark has-text-centered block-data-stat">
                             <div>
-                                <p class="title has-text-white" id="animate-place">{{ count($coordinates) }}</p>
+                                <p class="title has-text-white animate-value" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
                                 <p class="heading has-text-white">Les lieux</p>
                             </div>
                         </div>
                         <div class="level-item has-background-dark has-text-centered block-data-stat">
                             <div>
-                                <p class="title has-text-white" id="animate-city">{{ count($cities)  }}</p>
+                                <p class="title has-text-white animate-value" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
                                 <p class="heading has-text-white">Les villes</p>
                             </div>
                         </div>
