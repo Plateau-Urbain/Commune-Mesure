@@ -25,12 +25,14 @@
         <div id="presentation" class="hero is-large is-light anchor">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">{{ $place->name }}</h1>
-                <h3 class="subtitle has-text-grey-light is-italic">Tags:
+                <div class="has-text-centered"><span class="has-text-grey-light">Tags :
                     @foreach ($place->tags as $tag)
-                        <a class="tag" href="/tag/{{ $tag }}" title="{{ $tag }}">{{ $tag }}</a>
+                        <a class="tag is-white" href="/tag/{{ $tag }}" title="{{ $tag }}">{{ $tag }}</a>
                     @endforeach
-                </h3>
-
+                    ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
+                </span></div>
+            </section>
+            <section class="section">
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">
                         <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
