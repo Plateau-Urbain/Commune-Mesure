@@ -1,6 +1,6 @@
 function animateValue(obj) {
     var end = parseInt(obj.innerHTML);
-    var start = 1;
+    var start = 0;
     var duration = 700;
     var range = end - start;
     var current = start;
