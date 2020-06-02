@@ -12,7 +12,7 @@
 
     <script>
         L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(map)
-        map.panTo([{{ $place->geo->lat }}, {{ $place->geo->lon}}])
+        map.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
     </script>
 @endsection
 

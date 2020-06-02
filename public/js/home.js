@@ -15,7 +15,7 @@ function animateValue(obj) {
     }, stepTime);
 }
 
-window.onload(
-    animateValue(document.getElementById("animate-place")),
-    animateValue(document.getElementById("animate-city")),
-);
+window.onload = (event) => {
+    animateValue(document.getElementById("animate-place"))
+    animateValue(document.getElementById("animate-city"))
+};

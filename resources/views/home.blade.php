@@ -74,7 +74,7 @@
         var markersCluster = new L.markerClusterGroup();
         var groupMarker = [];
         var markerIcon = L.divIcon({
-            className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive marker-icon-custum',
+            className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive marker-icon-custom',
             html: "<div><span>1</span></div>",
             iconSize: [40, 40],
         });

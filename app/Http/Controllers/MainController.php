@@ -19,7 +19,7 @@ class MainController extends Controller
 
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
 
-            if(property_exists($json, 'city')){
+            if (property_exists($json, 'city')){
                 $cities[strtoupper($json->city)] = $json->city;
             }
         }
