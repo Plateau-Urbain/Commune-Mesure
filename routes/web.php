@@ -24,9 +24,7 @@ $router->get('/les-donnees',  function () {
 $router->get('/les-institutions',  function () {
     return view('institutions');
 });
-$router->get('/les-lieux',  function () {
-    return view('places');
-});
+$router->get('/les-lieux', ['uses' => 'MainController@places', 'as' => 'places']);
 
 $router->get('/contact-us',  function () {
     return view('contact-us');

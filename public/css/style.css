@@ -5,7 +5,7 @@
 
 #balance, #process{
     height: 20em;
-    margin: 1em;
+    margin: 1%;
 }
 
 .impacts >h1, .impacts >h2, .app-name > h1{
@@ -13,8 +13,8 @@
     font-size: 5em;
 }
 
-.block-data-stat {
-    margin: 5em;
+.block-data-stat > div{
+    margin: 1em;
     height: 10em;
 }
 @media (min-height: 300px) {

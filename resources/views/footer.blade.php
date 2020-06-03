@@ -13,24 +13,10 @@
                     Les communes mesures
                 </p>
                 <ul class="menu-list ">
-                    <li><a href="/">Accueil</a></li>
                     <li><a href="/les-lieux">Les lieux</a></li>
-                    <li>
-                        <a href="/les-donnees">Les données</a>
-                        <ul>
-                            <li><a>Nos précises données</a></li>
-                            <li><a>Les statistiques</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/les-donnees">Les données</a></li>
                     <li><a href="/documentation">Documentation </a></li>
-                    <li>
-                        <a href="les-institutions">Les institutions</a>
-                        <ul>
-                            <li><a>SNCF</a></li>
-                            <li><a>Plateau ubrain</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/contact-us">Nous contacter </a></li>
+                    <li><a href="les-institutions">Les institutions</a></li>
                 </ul>
             </div>
 

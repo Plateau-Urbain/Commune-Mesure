@@ -2,10 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class MainController extends Controller
 {
     public function map()
     {
+        [$coordinates,$cities] = $this->getAllPlaces();
+
+        return view('home', compact('coordinates', 'cities'));
+    }
+
+    public function places(){
+        [$coordinates,$cities] = $this->getAllPlaces();
+        return view('places', compact('coordinates', 'cities'));
+    }
+
+    private function getAllPlaces(){
         $storage = getenv('STORAGE_PATH');
 
         // TODO: Cache into files (PSR-16)
@@ -22,10 +35,10 @@ class MainController extends Controller
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
 
             if ($city) {
-                $cities[strtoupper($city)] = $city;
+                $cities[$city][]= $name;
             }
         }
-
-        return view('home', compact('coordinates', 'cities'));
+        ksort($cities);
+        return [$coordinates, $cities];
     }
 }
