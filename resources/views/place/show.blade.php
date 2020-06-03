@@ -36,53 +36,51 @@
             <section class="section">
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">
-                        <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
+                        @foreach ($place->photos as $photo)
+                            <img src="/images/{{ $photo }}" {{ getimagesize("images/$photo")[3] }}/>
+                        @endforeach
                     </div>
                     <div class="column content">{!! $place->description !!}</div>
                 </div>
             </section>
         </div>
 
-        <div id="federation" class="hero is-medium is-dark anchor">
-            <section class="section">
-                <div class="columns is-multiline">
-                @foreach ($place->photos as $photo)
-                    <div class="column is-one-quarter has-text-centered">
-                        <img src="/images/{{ $photo }}" {{ getimagesize("images/$photo")[3] }}/>
-                    </div>
-                @endforeach
-                </div>
+        <div id="localisation" class="anchor">
+            <section class="has-background-warning section">
+                <h3 class="title is-3">Localisation</h3>
             </section>
+            <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
         </div>
 
-        <div id="analyse" class="hero is-medium anchor">
+        <div id="indicateurs" class="anchor">
+            <section class="has-background-primary section">
+                <h3 class="title is-3">Indicateurs</h3>
+            </section>
             <section class="section">
                 <div class="level">
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Entreprises</p>
-                            <p class="title animate-value" data-total="53" >53</p>
+                            <p class="title is-1 animate-value" data-total="53" >53</p>
                         </div>
                     </div>
 
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Années d'existence</p>
-                            <p class="title animate-value" data-total="3" >3</p>
+                            <p class="title is-1 animate-value" data-total="3" >3</p>
                         </div>
                     </div>
 
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Followers</p>
-                            <p class="title animate-value" data-total="1200" >1200</p>
+                            <p class="title is-1 animate-value" data-total="12000" >12000</p>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <div id="bilan" class="hero is-light anchor">
             <section class="section">
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">

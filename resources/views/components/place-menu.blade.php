@@ -3,9 +3,8 @@
         <p class="menu-label">Menu</p>
         <ul class="menu-list">
             <li><a href="#presentation">Présentation du lieu</a></li>
-            <li><a href="#federation">Fédération</a></li>
-            <li><a href="#analyse">Collecte et analyse</a></li>
-            <li><a href="#bilan">Bilan</a></li>
+            <li><a href="#localisation">Localisation</a></li>
+            <li><a href="#indicateurs">Indicateurs</a></li>
         </ul>
     </aside>
 </div>
