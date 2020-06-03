@@ -15,12 +15,14 @@ class MainController extends Controller
             $json = json_decode(file_get_contents($place));
             $name = basename($place, '.json');
             $title = $json->name;
-            $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name, 'title' => $title, "images" => $json->photos])->render());
+            $city = (property_exists($json, 'city')) ? $json->city : null;
+
+            $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name, 'title' => $title, 'city' => $city, "images" => $json->photos])->render());
 
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
 
-            if (property_exists($json, 'city')){
-                $cities[strtoupper($json->city)] = $json->city;
+            if ($city) {
+                $cities[strtoupper($city)] = $city;
             }
         }
 
