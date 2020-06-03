@@ -29,7 +29,7 @@
         </div>
     </div>
 </nav>
-<div class="hero is-dark is-medium">
+<div class="hero is-dark">
     <div class="hero-body">
         <div class="container has-text-centered app-name">
             <h1 class="title">{{ config('app.name') }}</h1>
