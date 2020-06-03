@@ -4,10 +4,12 @@
     @parent
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 @endsection
 
 @section('script_js')
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-gesture-handling"></script>
     <script src="/js/map.js"></script>
     <script src="/js/animate.js"></script>
 
@@ -75,7 +77,7 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Followers</p>
-                            <p class="title is-1 animate-value" data-total="12000" >12000</p>
+                            <p class="title is-1"><span class="animate-value" data-total="12">12</span>K</p>
                         </div>
                     </div>
                 </div>
@@ -87,17 +89,38 @@
                         <img src="/images/visualization.svg" alt="graphique"/>
                     </div>
                     <div class="column">
-                        <p>Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un picon bitte, s'il te plaît.
-                          Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p>
-                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au Christkindelsmärik en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                        <p>Yoo ch'ai lu dans les DNA que le Racing a encore perdu contre Oberschaeffolsheim. Verdammi et moi ch'avais donc parié deux knacks et une flammekueche. Ah so ? T'inquiète, ch'ai ramené du schpeck, du chambon, un kuglopf et du schnaps dans mon rucksack. Allez, s'guelt ! Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p>
-                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
+                        <table class="table is-fullwidth is-hoverable">
+                            <tr>
+                                <th>Entry Header 1</th>
+                                <th>Entry Header 2</th>
+                                <th>Entry Header 3</th>
+                                <th>Entry Header 4</th>
+                            </tr>
+                            <tr>
+                                <td>Entry First Line 1</td>
+                                <td>Entry First Line 2</td>
+                                <td>Entry First Line 3</td>
+                                <td>Entry First Line 4</td>
+                            </tr>
+                            <tr>
+                                <td>Entry Line 1</td>
+                                <td>Entry Line 2</td>
+                                <td>Entry Line 3</td>
+                                <td>Entry Line 4</td>
+                            </tr>
+                            <tr>
+                                <td>Entry Last Line 1</td>
+                                <td>Entry Last Line 2</td>
+                                <td>Entry Last Line 3</td>
+                                <td>Entry Last Line 4</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </section>
             <section class="section">
                 <div class="columns">
-                    <div class="column">
+                    <div class="column content">
                         <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
                         <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
                         <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
