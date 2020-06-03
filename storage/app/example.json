@@ -5,6 +5,7 @@
   },
   "name": "Pouet",
   "city": "Blois",
+  "link": "http://www.example.com",
   "tags": [
       "france",
       "example",
