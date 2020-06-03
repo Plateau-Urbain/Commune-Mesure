@@ -9,6 +9,7 @@
 @section('script_js')
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <script src="/js/map.js"></script>
+    <script src="/js/animate.js"></script>
 
     <script>
         L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(map)
@@ -60,21 +61,21 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Entreprises</p>
-                            <p class="title">53</p>
+                            <p class="title animate-value" data-total="53" >53</p>
                         </div>
                     </div>
 
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Années d'existence</p>
-                            <p class="title">3</p>
+                            <p class="title animate-value" data-total="3" >3</p>
                         </div>
                     </div>
 
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Followers</p>
-                            <p class="title">12K</p>
+                            <p class="title animate-value" data-total="1200" >1200</p>
                         </div>
                     </div>
                 </div>

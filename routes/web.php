@@ -28,5 +28,10 @@ $router->get('/les-lieux',  function () {
     return view('places');
 });
 
+$router->get('/contact-us',  function () {
+    return view('contact-us');
+});
+
+
 
 

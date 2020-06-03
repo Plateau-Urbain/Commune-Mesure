@@ -35,3 +35,14 @@
 html {
     scroll-behavior: smooth;
 }
+
+.write-us, .write-us+span, .social-network{
+    padding: 10%;
+}
+
+.menu.is-inverted > .menu-list a{
+    color: white;
+}
+.menu.is-inverted > .menu-list a:hover{
+    color: black;
+}

@@ -12,8 +12,8 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="/les-donnees">Les données</a>
                     <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item">Mes précieuses données</a>
-                        <a class="navbar-item">Statistiques</a>
+                        <a class="navbar-item">Nos précieuses données</a>
+                        <a class="navbar-item">Les statistiques</a>
                     </div>
                 </div>
                 <a class="navbar-item" href="/documentation">Documentation</a>
@@ -24,6 +24,7 @@
                         <a class="navbar-item">Plateau Urbain</a>
                     </div>
                 </div>
+                <a class="navbar-item" href="/contact-us">Nous contacter</a>
             </div>
         </div>
     </div>
