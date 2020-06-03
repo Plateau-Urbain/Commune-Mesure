@@ -77,7 +77,7 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Followers</p>
-                            <p class="title is-1 animate-value" data-total="12000" >12000</p>
+                            <p class="title is-1"><span class="animate-value" data-total="12">12</span>K</p>
                         </div>
                     </div>
                 </div>
