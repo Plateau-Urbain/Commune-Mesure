@@ -16,15 +16,15 @@
         </div>
         <div class="section">
             @foreach ($cities as $citie => $places)
-                <div class="box">
+                <div class="box content">
                     <div class="columns is-bordered places-block">
                         <div class="column">
                             <p class="title">{{ $citie  }}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                             <div>
                                 <ul>
-                                    @foreach($places as $name)
-                                        <li><a href="{{ route('place.show',['slug' => $name])  }}">{{ $name  }}</a></li>
+                                    @foreach($places as $place)
+                                        <li><a href="{{ route('place.show',['slug' => $place['name']])  }}">{{ $place['title']  }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>

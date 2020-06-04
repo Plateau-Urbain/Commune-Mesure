@@ -35,7 +35,7 @@ class MainController extends Controller
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
 
             if ($city) {
-                $cities[$city][]= $name;
+                $cities[$city][]= ["title" => $title, "name" => $name];
             }
         }
         ksort($cities);

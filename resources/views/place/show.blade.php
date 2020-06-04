@@ -48,14 +48,14 @@
         </div>
 
         <div id="localisation" class="anchor">
-            <section class="has-background-warning section">
+            <section class="section">
                 <h3 class="title is-3">Localisation</h3>
             </section>
             <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
         </div>
 
         <div id="indicateurs" class="anchor">
-            <section class="has-background-primary section">
+            <section class="section">
                 <h3 class="title is-3">Indicateurs</h3>
             </section>
             <section class="section">
