@@ -3,9 +3,24 @@
     "lat": 48.801148,
     "lon": 2.429443
   },
-  "name": "Pouet",
-  "city": "Blois",
-  "link": "http://www.example.com",
+  "name": "Association",
+  "status": "Coopérative",
+  "address": {
+      "city": "Blois",
+      "address": "4 rue du temple",
+      "postalcode": "41000"
+  },
+  "social": [
+      {"name": "web", "link": "http://www.example.com"},
+      {"name": "facebook", "link": "https://facebook.com/"},
+      {"name": "twitter", "link": "https://twitter.com"},
+      {"name": "instagram", "link": "https://instagram.com"},
+      {"name": "linkedin", "link": "https://linkedin.com"}
+  ],
+  "manager": [
+      "Aurore",
+      "Plateau Urbain"
+  ],
   "tags": [
       "france",
       "example",

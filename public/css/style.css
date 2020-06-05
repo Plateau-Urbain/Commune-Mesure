@@ -52,6 +52,9 @@ html {
     font-weight: 600;
     padding: 5px 0;
     text-align: center;
+    background-color: #00d1b2;
 }
-#info-box .info-box-content {}
+#info-box .info-box-content {padding: 5px 20px}
+#info-box .info-box-content .info-box-entry {font-weight: 500}
 #info-box .info-box-content .info-box-map {height: 200px;}
+#info-box dt {font-weight: 500;}
