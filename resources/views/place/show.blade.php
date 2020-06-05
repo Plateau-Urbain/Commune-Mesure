@@ -26,6 +26,7 @@
 <div class="columns is-gapless">
     <div class="column is-2">
         @include('components.place-menu')
+        @include('components.place.info-box')
     </div>
     <div class="column">
         <div id="presentation" class="hero is-large is-light anchor">

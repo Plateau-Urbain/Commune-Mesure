@@ -46,3 +46,12 @@ html {
 .menu.is-inverted > .menu-list a:hover{
     color: black;
 }
+
+#info-box {}
+#info-box .info-box-header {
+    font-weight: 600;
+    padding: 5px 0;
+    text-align: center;
+}
+#info-box .info-box-content {}
+#info-box .info-box-content .info-box-map {height: 200px;}
