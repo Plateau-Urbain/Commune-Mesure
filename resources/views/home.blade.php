@@ -108,6 +108,7 @@
     <script src="/js/map.js"></script>
     <script src="/js/animate.js"></script>
     <script>
+        var homemap = mapjs.create('mapid', {gestureHandling: true})
         var markersCluster = new L.markerClusterGroup();
         var groupMarker = [];
         var markerIcon = L.divIcon({
@@ -121,8 +122,8 @@
             groupMarker.push(marker);
             markersCluster.addLayer(marker);
         @endforeach
-        map.addLayer(markersCluster);
+        homemap.addLayer(markersCluster);
         var featureGroup = L.featureGroup(groupMarker);
-        map.fitBounds(featureGroup.getBounds());
+        homemap.fitBounds(featureGroup.getBounds());
     </script>
 @endsection

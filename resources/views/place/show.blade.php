@@ -12,10 +12,13 @@
     <script src="https://unpkg.com/leaflet-gesture-handling"></script>
     <script src="/js/map.js"></script>
     <script src="/js/animate.js"></script>
-
     <script>
-        L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(map)
-        map.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
+        var largemap = mapjs.create('mapid', {gestureHandling: true})
+        var smallmap = mapjs.create('info-box-map')
+        L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(largemap)
+        L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
+        largemap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
+        smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
     </script>
 @endsection
 
