@@ -40,6 +40,17 @@
             </div>
 
             <div class="column is-half">
+                <span class="info-box-entry">Partenaires</span>
+            </div>
+            <div class="column is-half">
+                <ul>
+                @foreach ($place->partners as $partner)
+                    <li>{{ $partner->name }} (<abbr title="{{ $partner->status }}">{{ $partner->short_status }}</abbr>)</li>
+                @endforeach
+                </ul>
+            </div>
+
+            <div class="column is-half">
                 <span class="info-box-entry">Status</span>
             </div>
             <div class="column is-half">

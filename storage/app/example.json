@@ -23,6 +23,14 @@
       "Aurore",
       "Plateau Urbain"
   ],
+  "partners": [
+      {
+          "name": "Commune de Plouhinec", "status": "Collectivité", "short_status": "C"
+      },
+      {
+          "name": "Communauté de Commune du Cap-Sizun Pointe du Raz", "status": "Établissement Public", "short_status": "EP"
+      }
+  ],
   "tags": [
       "france",
       "example",
