@@ -18,14 +18,14 @@
     height: 10em;
 }
 @media (min-height: 300px) {
-    #scrolling-menu {
+    .scrolling-menu {
         position: sticky;
-        top: 0;
+        top: 3.1rem;
     }
 
-    #scrolling-menu aside {
-        padding-top: 1rem;
-    }
+    /* .scrolling-menu aside { */
+    /*     padding-top: 1rem; */
+    /* } */
 }
 
 .anchor {
@@ -56,5 +56,5 @@ html {
 }
 #info-box .info-box-content {padding: 5px 20px}
 #info-box .info-box-content .info-box-entry {font-weight: 500}
-#info-box .info-box-content .info-box-map {height: 200px;}
+#info-box .info-box-content .info-box-map {height: 200px; z-index:0}
 #info-box dt {font-weight: 500;}

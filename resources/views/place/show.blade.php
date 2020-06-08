@@ -25,7 +25,7 @@
 @section('content')
 <div class="columns is-gapless">
     <div class="column is-2">
-        @include('components.place-menu')
+        {{-- @include('components.place-menu') --}}
         @include('components.place.info-box')
     </div>
     <div class="column">
