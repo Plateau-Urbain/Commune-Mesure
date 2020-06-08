@@ -39,6 +39,19 @@
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
             </section>
+
+            <section class="section">
+                <div class="columns is-centered">
+                    @foreach ($place->badges as $badge)
+                        <div class="column is-narrow">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" />
+                            </figure>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
             <section class="section">
                 <div class="columns">
                     <div class="column is-one-third has-text-centered">

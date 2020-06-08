@@ -31,6 +31,11 @@
           "name": "Communauté de Commune du Cap-Sizun Pointe du Raz", "status": "Établissement Public", "short_status": "EP"
       }
   ],
+  "badges": [
+    "cantine",
+    "hebergement-urgence",
+    "refugié"
+  ],
   "tags": [
       "france",
       "example",
