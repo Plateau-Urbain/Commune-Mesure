@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name') }}</title>
         @section('head_css')
-            <link rel="stylesheet" href="/css/bulma.min.css">
-            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/app.css">
         @show
     </head>
     <body>

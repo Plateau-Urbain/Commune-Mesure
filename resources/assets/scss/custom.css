@@ -1,0 +1,60 @@
+@font-face {
+    font-family: blzee-font;
+    src: url(../fonts/blzee/blzee.ttf) format('truetype');
+}
+
+#balance, #process{
+    height: 20em;
+    margin: 1%;
+}
+
+.impacts >h1, .impacts >h2, .app-name > h1{
+    font-family: blzee-font;
+    font-size: 5em;
+}
+
+.block-data-stat > div{
+    margin: 1em;
+    height: 10em;
+}
+@media (min-height: 300px) {
+    .scrolling-menu {
+        position: sticky;
+        top: 3.1rem;
+    }
+
+    /* .scrolling-menu aside { */
+    /*     padding-top: 1rem; */
+    /* } */
+}
+
+.anchor {
+    scroll-margin-top: 2em;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.write-us, .write-us+span, .social-network{
+    padding: 10%;
+}
+
+.menu.is-inverted > .menu-list a{
+    color: white;
+}
+.menu.is-inverted > .menu-list a:hover{
+    color: black;
+}
+
+#info-box {}
+#info-box .info-box-header {
+    font-weight: 600;
+    padding: 5px 0;
+    text-align: center;
+    background-color: #00d1b2;
+}
+#info-box .info-box-content {padding: 5px 20px}
+#info-box .info-box-content .info-box-entry {font-weight: 500}
+#info-box .info-box-content .info-box-map {height: 200px; z-index:0}
+#info-box dt {font-weight: 500;}

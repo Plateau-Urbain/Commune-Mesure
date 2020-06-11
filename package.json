@@ -1,0 +1,35 @@
+{
+  "name": "commune-mesure",
+  "version": "1.0.0",
+  "description": "Plan des espaces",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/24eme/Commune-Mesure.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/24eme/Commune-Mesure/issues"
+  },
+  "homepage": "https://github.com/24eme/Commune-Mesure#readme",
+  "devDependencies": {
+    "bulma": "^0.9.0",
+    "css-loader": "^3.5.3",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
