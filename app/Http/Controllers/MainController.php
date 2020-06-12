@@ -28,8 +28,16 @@ class MainController extends Controller
             $json = json_decode(file_get_contents($place));
             $name = basename($place, '.json');
             $title = $json->name;
-            $city = (property_exists($json, 'city')) ? $json->city : null;
-            $data_chart = (property_exists($json, 'data')) ? $json->data : null;
+            if(property_exists($json->address, 'city') === false){
+              throw new \LogicException("La ville n'existe pas.", 1);
+
+            }
+            $city = $json->address->city;
+            $data_chart = $json->data;
+            if(property_exists($json, 'data') === false){
+              throw new \LogicException("Les données sont inexistantes.", 1);
+
+            }
             $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name, 'title' => $title, 'city' => $city, "images" => $json->photos])->render());
 
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
