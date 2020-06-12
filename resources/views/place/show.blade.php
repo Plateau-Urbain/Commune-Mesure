@@ -2,6 +2,7 @@
 
 @section('head_css')
     @parent
+@endsection
 @section('script_js')
     @parent
     <script>
