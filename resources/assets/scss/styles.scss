@@ -2,8 +2,10 @@
 
 // Import fonts
 @import "_mixins";
-@include font-face("blzee-font", "../fonts/blzee/blzee");
+@include font-face("blzee-font", "./../fonts/blzee/blzee");
 
 @import "custom.css";
 
 @import "~bulma/bulma";
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet-gesture-handling/dist/leaflet-gesture-handling.css";

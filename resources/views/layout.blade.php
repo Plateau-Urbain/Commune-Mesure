@@ -18,6 +18,9 @@
         </div>
 
          @section('script_js')
+             <script src="/js/bundle.js"></script>
+             <script src="/js/map.js"></script>
+             <script src="/js/animate.js"></script>
          @show
     </body>
     <footer>
