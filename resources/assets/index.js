@@ -13,3 +13,9 @@ let DefaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
+
+import Chart from 'chart.js';
+import rough from 'roughjs';
+import ChartRough from 'chartjs-plugin-rough';
+
+Chart.plugins.register(ChartRough);

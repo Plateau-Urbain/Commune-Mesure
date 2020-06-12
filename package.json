@@ -35,8 +35,11 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "chart.js": "^2.9.3",
+    "chartjs-plugin-rough": "^0.2.0",
     "leaflet": "^1.6.0",
     "leaflet-gesture-handling": "^1.1.8",
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "^1.4.1",
+    "roughjs": "^4.3.1"
   }
 }
