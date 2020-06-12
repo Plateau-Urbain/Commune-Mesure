@@ -12,6 +12,37 @@
         L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
         largemap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
         smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
+
+        var ctxPop = document.getElementById('chart-pop');
+        var chartPop = new Chart(ctxPop, {
+            type: 'radar',
+            data: {
+                labels: [
+                    @foreach (array_keys($plots['male']) as $label)
+                        '{{ str_replace('_', ' - ', $label) }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'Hommes',
+                    data: [
+                        @foreach ($plots['male'] as $data)
+                            {{ $data }},
+                        @endforeach
+                    ],
+                    backgroundColor: 'rgba(255, 212, 59, 0.3)',
+                    borderColor: 'rgba(255, 212, 59, 1)'
+                }, {
+                    label: 'Femmes',
+                    data: [
+                        @foreach ($plots['female'] as $data)
+                            {{ $data }},
+                        @endforeach
+                    ],
+                    backgroundColor: 'rgba(105, 219, 124, 0.3)',
+                    borderColor: 'rgba(105, 219, 124, 1)'
+                }]
+            }
+        });
     </script>
 @endsection
 
@@ -95,8 +126,8 @@
 
             <section class="section">
                 <div class="columns">
-                    <div class="column is-one-third has-text-centered">
-                        <img src="/images/visualization.svg" alt="graphique"/>
+                    <div class="column is-half has-text-centered">
+                        <canvas id="chart-pop"></canvas>
                     </div>
                     <div class="column">
                         <table class="table is-fullwidth is-hoverable">

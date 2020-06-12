@@ -22,6 +22,16 @@ class PlaceController extends Controller
 
         $place = json_decode(file_get_contents($json));
 
-        return view('place.show', compact('place'));
+        $plots = [];
+        foreach ($place->data->population as $label => $value) {
+            $tranche = explode("_", $label, 2);
+            if (count($tranche) === 2) {
+                [$sex, $age] = $tranche;
+                $plots[$sex][$age] = $value;
+                ksort($plots[$sex]);
+            }
+        }
+
+        return view('place.show', compact('place', 'plots'));
     }
 }
