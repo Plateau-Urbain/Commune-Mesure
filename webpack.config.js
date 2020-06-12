@@ -31,7 +31,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/'
+            outputPath: '/fonts/'
           }
         }
         ]
@@ -41,9 +41,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            //https://github.com/webpack-contrib/file-loader#publicpath
-            publicPath: 'dist/images/',
-            outputPath: 'images'
+            outputPath: '/images'
           }
         }
       }
