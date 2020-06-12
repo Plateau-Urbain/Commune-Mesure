@@ -2,8 +2,6 @@
 
 @section('head_css')
     @parent
-@endsection
-
 @section('script_js')
     <script>
         var largemap = mapjs.create('mapid', {gestureHandling: true})
