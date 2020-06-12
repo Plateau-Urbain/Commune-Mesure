@@ -20,7 +20,7 @@
             </div>
 
             <div class="column is-half">
-                <span class="info-box-entry">Création</span>
+                <span class="info-box-entry">Ouverture</span>
             </div>
             <div class="column is-half">
                 <date datetime="{{ $place->ouverture }}">{{
