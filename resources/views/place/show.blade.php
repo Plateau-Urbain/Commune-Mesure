@@ -5,6 +5,7 @@
 @endsection
 
 @section('script_js')
+    @parent
     <script>
         var largemap = mapjs.create('mapid', {gestureHandling: true})
         var smallmap = mapjs.create('info-box-map')
