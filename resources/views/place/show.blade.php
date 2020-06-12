@@ -18,14 +18,14 @@
             type: 'radar',
             data: {
                 labels: [
-                    @foreach (array_keys($plots['male']) as $label)
+                    @foreach (array_keys($plots['population']['male']) as $label)
                         '{{ str_replace('_', ' - ', $label) }}',
                     @endforeach
                 ],
                 datasets: [{
                     label: 'Hommes',
                     data: [
-                        @foreach ($plots['male'] as $data)
+                        @foreach ($plots['population']['male'] as $data)
                             {{ $data }},
                         @endforeach
                     ],
@@ -34,7 +34,7 @@
                 }, {
                     label: 'Femmes',
                     data: [
-                        @foreach ($plots['female'] as $data)
+                        @foreach ($plots['population']['female'] as $data)
                             {{ $data }},
                         @endforeach
                     ],
@@ -43,6 +43,38 @@
                 }]
             }
         });
+
+        var ctxactivities = document.getElementById('chart-activities');
+        var chartPop = new Chart(ctxactivities, {
+            type: 'polarArea',
+            data: {
+                labels: [
+                    @foreach (array_keys($plots['activites']) as $label)
+                        '{{ str_replace('_', ' - ', $label) }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'activitiés',
+                    data: [
+                        @foreach ($plots['activites'] as $data)
+                            {{ $data }},
+                        @endforeach
+                    ],
+                    backgroundColor: [
+                      'rgba(255, 212, 59, 0.3)',
+                    'rgba(205, 212, 99, 0.3)',
+                    'rgba(175, 170, 20, 0.3)',
+                    'rgba(25, 17, 20, 0.3)',
+                    'rgba(5, 109, 89, 0.3)',
+                    'rgba(2, 107, 20, 0.3)',
+                    'rgba(0, 70, 26, 0.3)',
+                    'rgba(1, 10, 20, 0.3)',
+                  ],
+                    borderColor: 'rgba(255, 212, 59, 1)'
+                }]
+            }
+        });
+
     </script>
 @endsection
 
@@ -167,7 +199,7 @@
                         <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
                     </div>
                     <div class="column is-half has-text-centered">
-                        <img src="/images/visualization2.svg" alt="graphique">
+                        <canvas id="chart-activities"></canvas>
                     </div>
                 </div>
             </section>

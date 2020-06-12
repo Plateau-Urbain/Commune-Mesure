@@ -42,17 +42,11 @@
     },
     "activites": {
         "inactif": 401.213088575177,
-        "population": 2989.99113249386,
-        "city": "Aix-en-Provence",
         "chomeur": 242.832196662352,
         "taux_chomage": 9.38018603923154,
-        "iris": "130010907",
-        "census": 2015,
         "actif": 2588.77804391869,
-        "citycode": "13001",
         "etudiant": 179.741015363721,
         "retraite": 55.3882652914775,
-        "label": "Arbois partie ouest",
         "autre_inactif": 166.083807919979
     }
   },
