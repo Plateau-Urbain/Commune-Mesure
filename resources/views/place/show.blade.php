@@ -13,36 +13,12 @@
         largemap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
         smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
 
-        var ctxPop = document.getElementById('chart-pop');
-        var chartPop = new Chart(ctxPop, {
-            type: 'radar',
-            data: {
-                labels: [
-                    @foreach (array_keys($plots['population']['male']) as $label)
-                        '{{ str_replace('_', ' - ', $label) }}',
-                    @endforeach
-                ],
-                datasets: [{
-                    label: 'Hommes',
-                    data: [
-                        @foreach ($plots['population']['male'] as $data)
-                            {{ $data }},
-                        @endforeach
-                    ],
-                    backgroundColor: 'rgba(255, 212, 59, 0.3)',
-                    borderColor: 'rgba(255, 212, 59, 1)'
-                }, {
-                    label: 'Femmes',
-                    data: [
-                        @foreach ($plots['population']['female'] as $data)
-                            {{ $data }},
-                        @endforeach
-                    ],
-                    backgroundColor: 'rgba(105, 219, 124, 0.3)',
-                    borderColor: 'rgba(105, 219, 124, 1)'
-                }]
-            }
-        });
+        var chartPop = new charts.create(
+            '{{ $plots['population']->getId() }}',
+            '{{ $plots['population']->getType() }}',
+            @json($plots['population']->getLabels()),
+            @json($plots['population']->getDatasets())
+        );
 
         var ctxactivities = document.getElementById('chart-activities');
         var chartPop = new Chart(ctxactivities, {

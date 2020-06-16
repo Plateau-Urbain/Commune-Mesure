@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\PopulationChart;
+
 class PlaceController extends Controller
 {
     /**
@@ -22,15 +24,9 @@ class PlaceController extends Controller
 
         $place = json_decode(file_get_contents($json));
 
-        $plots = [];
-        foreach ($place->data->population as $label => $value) {
-            $tranche = explode("_", $label, 2);
-            if (count($tranche) === 2) {
-                [$sex, $age] = $tranche;
-                $plots["population"][$sex][$age] = $value;
-                ksort($plots["population"][$sex]);
-            }
-        }
+        $pop = new PopulationChart();
+        $pop->build((array) $place->data->population);
+        $plots['population'] = $pop;
 
         if(property_exists($place->data, 'activites') === false) {
             throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);

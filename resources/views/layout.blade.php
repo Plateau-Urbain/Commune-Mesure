@@ -21,6 +21,7 @@
              <script src="/js/bundle.js"></script>
              <script src="/js/map.js"></script>
              <script src="/js/animate.js"></script>
+             <script src="/js/charts.js"></script>
          @show
     </body>
     <footer>
