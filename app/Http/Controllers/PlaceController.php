@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charts\PopulationChart;
+use App\Charts\ActivitiesChart;
 
 class PlaceController extends Controller
 {
@@ -24,15 +25,17 @@ class PlaceController extends Controller
 
         $place = json_decode(file_get_contents($json));
 
-        $pop = new PopulationChart();
-        $pop->build((array) $place->data->population);
-        $plots['population'] = $pop;
+        $plots['population'] = (new PopulationChart())->build(
+            (array) $place->data->population
+        );
 
         if(property_exists($place->data, 'activites') === false) {
             throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);
         }
 
-        $plots["activites"] = get_object_vars($place->data->activites);
+        $plots["activites"] = (new ActivitiesChart())->build(
+            (array) $place->data->activites
+        );
 
         return view('place.show', compact('place', 'plots'));
     }

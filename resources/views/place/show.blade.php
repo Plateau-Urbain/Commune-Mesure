@@ -20,42 +20,12 @@
             @json($plots['population']->getDatasets())
         );
 
-        var ctxactivities = document.getElementById('chart-activities');
-        var chartPop = new Chart(ctxactivities, {
-            type: 'polarArea',
-            data: {
-                labels: [
-                    @foreach (array_keys($plots['activites']) as $label)
-                        '{{ str_replace('_', ' - ', $label) }}',
-                    @endforeach
-                ],
-                datasets: [{
-                    label: 'activitiés',
-                    data: [
-                        @foreach ($plots['activites'] as $data)
-                            {{ $data }},
-                        @endforeach
-                    ],
-                    backgroundColor: [
-                        'rgba(186, 200, 255, 0.3)',
-                        'rgba(77, 171, 247, 0.3)',
-                        'rgba(11, 114, 133, 0.3)',
-                        'rgba(64, 192, 87, 0.3)',
-                        'rgba(252, 196, 25, 0.3)',
-                        'rgba(217, 72, 15, 0.3)',
-                    ],
-                    borderColor: [
-                        'rgba(186, 200, 255, 1)',
-                        'rgba(77, 171, 247, 1)',
-                        'rgba(11, 114, 133, 1)',
-                        'rgba(64, 192, 87, 1)',
-                        'rgba(252, 196, 25, 1)',
-                        'rgba(217, 72, 15, 1)'
-                    ]
-                }]
-            }
-        });
-
+        var chartActivities = new charts.create(
+            '{{ $plots['activites']->getId() }}',
+            '{{ $plots['activites']->getType() }}',
+            @json($plots['activites']->getLabels()),
+            @json($plots['activites']->getDatasets())
+        );
     </script>
 @endsection
 

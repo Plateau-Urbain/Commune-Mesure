@@ -51,7 +51,7 @@ class PopulationChart implements ChartInterface
             sort($this->labels);
     }
 
-    public function build($data): void
+    public function build($data)
     {
         ksort($data);
 
@@ -80,5 +80,7 @@ class PopulationChart implements ChartInterface
         }
 
         $this->datasets = $datasets;
+
+        return $this;
     }
 }
