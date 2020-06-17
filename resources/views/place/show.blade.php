@@ -6,11 +6,8 @@
 @section('script_js')
     @parent
     <script>
-        var largemap = mapjs.create('mapid', {gestureHandling: true})
         var smallmap = mapjs.create('info-box-map')
-        L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(largemap)
         L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
-        largemap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
         smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
 
         var chartPop = new charts.create(
@@ -36,7 +33,7 @@
         @include('components.place.info-box')
     </div>
     <div class="column">
-        <div id="presentation" class="hero is-large is-light anchor">
+        <div id="presentation" class="hero is-large anchor">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">{{ $place->name }}</h1>
                 <div class="has-text-centered"><span class="has-text-grey-light">Tags :
@@ -69,13 +66,6 @@
                     <div class="column content">{!! $place->description !!}</div>
                 </div>
             </section>
-        </div>
-
-        <div id="localisation" class="anchor">
-            <section class="section">
-                <h3 class="title is-3">Localisation</h3>
-            </section>
-            <div id="mapid" style="height:500px; height:500px; z-index:0;"></div>
         </div>
 
         <div id="indicateurs" class="anchor">

@@ -1,10 +1,13 @@
+@font-face { font-family: "Renner Bold"; src: url("https://communemesure.com/wp-content/uploads/et-fonts/renner-bold.otf") format("opentype"); }
+
 #balance, #process{
     height: 20em;
     margin: 1%;
 }
 
 .impacts >h1, .impacts >h2, .app-name > h1{
-    font-family: blzee-font;
+    // font-family: blzee-font;
+    font-family: 'Renner Bold';
     font-size: 5em;
 }
 
@@ -36,10 +39,17 @@ html {
 }
 
 .menu.is-inverted > .menu-list a{
-    color: white;
+    color: $white;
 }
 .menu.is-inverted > .menu-list a:hover{
-    color: black;
+    color: $black;
+}
+
+.menu.is-inverted {
+    > .menu-label {
+        color: $primary;
+        font-weight: bold;
+    }
 }
 
 #info-box {}
@@ -47,9 +57,33 @@ html {
     font-weight: 600;
     padding: 5px 0;
     text-align: center;
-    background-color: #00d1b2;
+    background-color: $primary;
+    color: $white;
 }
 #info-box .info-box-content {padding: 5px 20px}
 #info-box .info-box-content .info-box-entry {font-weight: 500}
 #info-box .info-box-content .info-box-map {height: 200px; z-index:0}
 #info-box dt {font-weight: 500;}
+
+.title {
+    &:after {
+        content: '';
+        display: block;
+        width: 5%;
+        border-bottom: 10px #e85048 solid;
+        padding: 5px 0;
+        margin: auto;
+    }
+}
+
+.box {
+    .title {
+        &:after { display: none; }
+    }
+}
+
+header {
+    .title {
+        color: $primary;
+    }
+}

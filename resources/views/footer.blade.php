@@ -1,4 +1,4 @@
-<div class="hero is-dark is-medium footer">
+<div class="footer">
     <div class="columns">
         <div class="column">
             <div class="write-us">
@@ -31,5 +31,4 @@
 
         </div>
     </div>
-
 </div>

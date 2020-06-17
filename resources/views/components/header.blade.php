@@ -1,8 +1,8 @@
 <header>
-<nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">{{ config('app.name') }}</a>
+            <a class="navbar-item" href="/"><img src="{{ url('/images/logos/commune-mesure.png') }}" alt='logo'></a>
         </div>
 
         <div id="navbarMenuHeroA" class="navbar-menu">
@@ -29,7 +29,7 @@
         </div>
     </div>
 </nav>
-<div class="hero is-dark">
+<div class="hero">
     <div class="hero-body">
         <div class="container has-text-centered app-name">
             <h1 class="title">{{ config('app.name') }}</h1>
