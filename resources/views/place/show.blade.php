@@ -5,24 +5,92 @@
 @endsection
 @section('script_js')
     @parent
+    <script src="https://unpkg.com/rough-viz@1.0.5"></script>
     <script>
+      var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf",
+      "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
         var smallmap = mapjs.create('info-box-map')
         L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
         smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
 
-        var chartPop = new charts.create(
-            '{{ $plots['population']->getId() }}',
-            '{{ $plots['population']->getType() }}',
-            @json($plots['population']->getLabels()),
-            @json($plots['population']->getDatasets())
-        );
+        @foreach($plots as $plot)
+          var chartPop = new charts.create(
+              '{{ $plot->getId() }}',
+              '{{ $plot->getType() }}',
+              @json($plot->getLabels()),
+              @json($plot->getDatasets())
+          );
+        @endforeach
+        var dataLogement = [];
+        var labelsLogement = [];
+        @foreach($place->data->logement as $label => $data)
+                dataLogement.push({{ $data }});
+                labelsLogement.push('{{ $label }}');
+        @endforeach
 
-        var chartActivities = new charts.create(
-            '{{ $plots['activites']->getId() }}',
-            '{{ $plots['activites']->getType() }}',
-            @json($plots['activites']->getLabels()),
-            @json($plots['activites']->getDatasets())
-        );
+        var dataPopulation = [];
+        var labelsPopulation = [];
+        @foreach($place->data->population as $label => $data)
+                dataPopulation.push({{ $data }});
+                labelsPopulation.push('{{ $label }}');
+        @endforeach
+      // create Donut chart using defined data & customize plot options
+      new roughViz.Donut(
+      {
+      element: '#chart-rough-logement-barh',
+      data: {
+       labels: labelsLogement,
+       values: dataLogement
+      },
+      title: "Logements",
+      roughness: 3,
+      colors: colors,
+      stroke: 'black',
+      strokeWidth: 3,
+      fillStyle: 'cross-hatch',
+      fillWeight: 3.5,
+      }
+      );
+
+      new roughViz.BarH(
+      {
+      element: '#chart-rough-logement-doughnut',
+      data: {
+       labels: labelsLogement,
+       values: dataLogement
+      },
+      title: "Logements",
+      roughness: 3,
+      colors: colors,
+      stroke: 'black',
+      strokeWidth: 1,
+      fillStyle: 'zigzag-line',
+      fillWeight: 3.5,
+      }
+      );
+      new roughViz.Scatter(
+      {
+        element: '#chart-rough-logement-scatter',
+        data: 'https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv',
+      title: 'Les logements',
+      x: 'sepal_width',
+      y: 'petal_length',
+      colorVar: 'species',
+      highlightLabel: 'species',
+      fillWeight: 4,
+      fillStyle: 'cross-hatch',
+      radius: 12,
+      colors: ['pink', 'coral', 'skyblue'],
+      stroke: 'black',
+      strokeWidth: 0.4,
+      roughness: 0,
+      width: 600,
+      height: 450,
+      font: 0,
+      xLabel: 'sepal width',
+      yLabel: 'petal length',
+      curbZero: false,
+      });
     </script>
 @endsection
 
@@ -142,6 +210,57 @@
                     <div class="column is-half has-text-centered">
                         <canvas id="chart-activities"></canvas>
                     </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="columns">
+                  <div class="column is-half has-text-centered">
+                      <canvas id="chart-activities2"></canvas>
+                  </div>
+                  <div class="column content">
+                      <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
+                  </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="columns">
+                    <div class="column content">
+                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
+                        <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
+                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
+                    </div>
+                    <div class="column is-half has-text-centered">
+                        <canvas id="chart-logement-radar"></canvas>
+                    </div>
+                    <div class="column content">
+                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
+                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="columns">
+                  <div class="column has-text-centered">
+                    <div id="chart-rough-logement-barh"></div>
+                  </div>
+                  <div class="column has-text-centered">
+                    <div id="chart-rough-logement-doughnut"></div>
+                  </div>
+                </div>
+            </section>
+            <section class="section">
+                  <div class="column has-text-centered">
+                    <div id="chart-rough-logement-scatter"></div>
+                  </div>
+            </section>
+            <section class="section">
+                <div class="columns">
+                  <div class="column has-text-centered">
+                    <canvas id="chart-overlay"></canvas>
+                  </div>
+                  <div class="column has-text-centered">
+                    <canvas id="chart-pop-bar"></canvas>
+                  </div>
                 </div>
             </section>
         </div>

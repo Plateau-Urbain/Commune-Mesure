@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Charts\PopulationChart;
 use App\Charts\ActivitiesChart;
+use App\Charts\ActivitiesOverlayChart;
+use App\Charts\LogementChart;
 
 class PlaceController extends Controller
 {
@@ -25,7 +27,7 @@ class PlaceController extends Controller
 
         $place = json_decode(file_get_contents($json));
 
-        $plots['population'] = (new PopulationChart())->build(
+        $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
             (array) $place->data->population
         );
 
@@ -33,8 +35,22 @@ class PlaceController extends Controller
             throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);
         }
 
-        $plots["activites"] = (new ActivitiesChart())->build(
+        $plots[] = (new ActivitiesChart('chart-activities', 'polarArea'))->build(
             (array) $place->data->activites
+        );
+
+        $plots[] = (new ActivitiesChart('chart-activities2', 'doughnut'))->build(
+            (array) $place->data->activites
+        );
+
+        $plots[] = (new PopulationChart('chart-pop-bar', 'bar'))->build(
+           (array) $place->data->population
+        );
+        $plots[] = (new LogementChart('chart-logement-radar', 'doughnut'))->build(
+           (array) $place->data->logement
+        );
+        $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build(
+           (array) [$place->data->population, $place->data->population]
         );
 
         return view('place.show', compact('place', 'plots'));

@@ -18,9 +18,7 @@ $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.
 $router->get('/documentation',  function () {
     return view('documentation');
 });
-$router->get('/les-donnees',  function () {
-    return view('statistics');
-});
+$router->get('/les-donnees',  ['uses' => 'StatisticController@places', 'as' => 'places']);
 $router->get('/les-institutions',  function () {
     return view('institutions');
 });
@@ -29,7 +27,3 @@ $router->get('/les-lieux', ['uses' => 'MainController@places', 'as' => 'places']
 $router->get('/contact-us',  function () {
     return view('contact-us');
 });
-
-
-
-

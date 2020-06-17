@@ -2,7 +2,7 @@
 
 namespace App\Charts;
 
-class ActivitiesChart implements ChartInterface
+class ActivitiesOverlayChart implements ChartInterface
 {
     protected $type = '';
     protected $id = '';
@@ -11,11 +11,7 @@ class ActivitiesChart implements ChartInterface
 
     const colors = [
         'rgba(186, 200, 255, %s)',
-        'rgba(77, 171, 247, %s)',
-        'rgba(11, 114, 133, %s)',
-        'rgba(64, 192, 87, %s)',
-        'rgba(252, 196, 25, %s)',
-        'rgba(217, 72, 15, %s)'
+        'rgba(77, 171, 247, %s)'
     ];
 
 public function __construct(string $id, string $type) {
@@ -44,16 +40,25 @@ public function __construct(string $id, string $type) {
 
     public function build($data)
     {
-        $this->labels = str_replace('_', ' - ', array_keys($data));
-        $dataset['label'] = 'Activités';
-        $dataset['backgroundColor'] = array_map(function ($string) {
-            return sprintf($string, '0.3');
-        }, self::colors);
+        [$dataChart1, $dataChart2] = $data;
+        $dataChart1 = (array) $dataChart1;
+        $dataChart2 = (array) $dataChart2;
+        ksort($dataChart1);
+        ksort($dataChart2);
+        $this->labels = str_replace('_', ' - ', array_keys($dataChart1));
+        $dataset['label'] = 'Paris République';
+        $dataset['backgroundColor'] = sprintf(self::colors[0], '0.3');
         $dataset['borderColor'] = array_map(function ($string) {
             return sprintf($string, '1');
         }, self::colors);
-        $dataset['data'] = array_values($data);
-
+        $dataset['yAxisID'] = 'lieu-1';
+        $dataset['data'] = array_values($dataChart1);
+        $this->datasets[] = $dataset;
+        $dataset['data'] = array_values($dataChart2);
+        $dataset['type']= 'bar';
+        $dataset['label']= 'Paris Laffitte';
+        $dataset['yAxisID'] = 'lieu-2';
+        $dataset['backgroundColor'] = sprintf(self::colors[1], '0.3');
         $this->datasets[] = $dataset;
 
         return $this;
