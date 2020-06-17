@@ -29,11 +29,10 @@
         </div>
     </div>
 </nav>
-<div class="hero">
+<div class="banner hero">
     <div class="hero-body">
         <div class="container has-text-centered app-name">
-            <h1 class="title">{{ config('app.name') }}</h1>
-
+            <h1 class="title header-title">{{ config('app.name') }}</h1>
             <h2 class="subtitle">
                 Les lieux et leurs impacts
             </h2>

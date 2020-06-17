@@ -7,41 +7,81 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="hero ">
-            <div class="hero-body">
-                <div class="column">
-                    <div class="description">
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                            also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                            in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
+    <div class="container section">
+        <div class="content">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+                in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+    </div>
+    <div class="hero is-primary-light">
+        <div class="section">
+            <h1 class="title has-text-centered">Quelques chiffres</h1>
+            <div class="level block-data-stat">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
+                        <p class="heading title is-4">Lieux</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
+                        <p class="heading title is-4">Villes</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
+                        <p class="heading title is-4">Villes</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="hero">
-            <h1 class="title has-text-centered">Quelques chiffres</h1>
-            <div class="level block-data-stat">
-                <div class="level-item has-background-dark has-text-centered">
-                    <div>
-                        <p class="title has-text-white animate-value" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
-                        <p class="has-text-white">Lieux</p>
-                    </div>
-                </div>
-                <div class="level-item has-background-dark has-text-centered">
-                    <div>
-                        <p class="title has-text-white animate-value" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
-                        <p class=" has-text-white">Villes</p>
-                    </div>
-                </div>
+    </div>
+    <div class="container section">
+        <div class="columns">
+            <div class="column">
+                <h1 class="title is-2">Titre</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
             </div>
+            <div class="column">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="section" id="block-map">
+            <h1 class="title has-text-centered">L'ensemble des lieux</h1>
+            <div id="mapid"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section">
             <div class="columns">
                 <div class="column">
+                    <h1 class="title">
+                        Le projet
+                    </h1>
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                         the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of

@@ -65,7 +65,15 @@ html {
 #info-box .info-box-content .info-box-map {height: 200px; z-index:0}
 #info-box dt {font-weight: 500;}
 
-.title {
+.is-primary-light {
+    background-color: $light-primary;
+
+    .title, p {
+        color: $white;
+    }
+}
+
+.title:not(.header-title) {
     &:after {
         content: '';
         display: block;
@@ -74,9 +82,12 @@ html {
         padding: 5px 0;
         margin: auto;
     }
+    &:not(.has-text-centered):after {
+        margin: 0;
+    }
 }
 
-.box {
+.box, .level {
     .title {
         &:after { display: none; }
     }
@@ -85,5 +96,9 @@ html {
 header {
     .title {
         color: $primary;
+    }
+
+    .banner {
+        background-color: $light-blue;
     }
 }
