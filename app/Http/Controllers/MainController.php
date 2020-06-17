@@ -18,7 +18,7 @@ class MainController extends Controller
         return view('places', compact('coordinates', 'cities'));
     }
 
-    private function getAllPlaces(){
+    static function getAllPlaces(){
         $storage = getenv('STORAGE_PATH');
 
         // TODO: Cache into files (PSR-16)

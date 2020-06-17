@@ -4,8 +4,8 @@ namespace App\Charts;
 
 class PopulationChart implements ChartInterface
 {
-    protected $type = 'radar';
-    protected $id = 'chart-pop';
+    protected $type;
+    protected $id;
     protected $labels = [];
     protected $datasets = [];
 
@@ -18,6 +18,11 @@ class PopulationChart implements ChartInterface
         'male' => 'rgba(255, 212, 59, %s)',
         'female' => 'rgba(105, 219, 124, %s)'
     ];
+
+    public function __construct(string $id, string $type) {
+      $this->id = $id;
+      $this->type = $type;
+    }
 
     public function getId(): string
     {

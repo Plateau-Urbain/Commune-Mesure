@@ -36,7 +36,21 @@ var charts = (function () {
             data: {
                 labels: labels,
                 datasets: data
-            }
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'lieu-1',
+                        type: 'linear',
+                        position: 'left'
+                    }, {
+                        id: 'lieu-2',
+                        type: 'linear',
+                        position: 'right'
+                    }]
+                  }
+                }
+
         });
 
         charts.push(chart);

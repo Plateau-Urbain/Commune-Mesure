@@ -2,7 +2,7 @@
 
 namespace App\Charts;
 
-class ActivitiesChart implements ChartInterface
+class LogementChart implements ChartInterface
 {
     protected $type = '';
     protected $id = '';
@@ -44,8 +44,8 @@ public function __construct(string $id, string $type) {
 
     public function build($data)
     {
-        $this->labels = str_replace('_', ' - ', array_keys($data));
-        $dataset['label'] = 'Activités';
+        $this->labels = array_keys($data);
+        $dataset['label'] = 'Logement';
         $dataset['backgroundColor'] = array_map(function ($string) {
             return sprintf($string, '0.3');
         }, self::colors);
