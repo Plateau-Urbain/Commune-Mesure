@@ -55,6 +55,32 @@
           "etudiant": 179.741015363721,
           "retraite": 55.3882652914775,
           "autre_inactif": 166.083807919979
+      },
+      "resilience":{
+        "edutcation":{
+          "title": "Éducation",
+          "city": 10,
+          "Region": 3,
+          "total": 50
+        },
+        "health":{
+          "title": "Santé",
+          "city": 5,
+          "Region": 3,
+          "total": 50
+        },
+        "environnement":{
+          "title": "Environnement",
+          "city": 19,
+          "Region": 3,
+          "total": 50
+        },
+        "safety":{
+          "title": "Sécurité",
+          "city": 49,
+          "Region": 3,
+          "total": 50
+        }
       }
   },
   "partners": [

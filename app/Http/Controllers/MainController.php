@@ -24,6 +24,7 @@ class MainController extends Controller
         // TODO: Cache into files (PSR-16)
         $coordinates = [];
         $cities = [];
+        $places = [];
         foreach (glob($storage.'*.json') as $place) {
             $json = json_decode(file_get_contents($place));
             $name = basename($place, '.json');
@@ -39,7 +40,8 @@ class MainController extends Controller
 
             }
             $popup = str_replace(["\r\n", "\n", '  '], '', view('components/popup', ['name' => $name, 'title' => $title, 'city' => $city, "images" => $json->photos])->render());
-
+            $json->title = $name;
+            $places[] = $json;
             $coordinates[$name] = ['geo' => $json->geo, 'popup' => $popup];
 
             if ($city) {
@@ -47,6 +49,6 @@ class MainController extends Controller
             }
         }
         ksort($cities);
-        return [$coordinates, $cities];
+        return [$coordinates, $cities, $places];
     }
 }
