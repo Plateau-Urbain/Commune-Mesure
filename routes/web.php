@@ -18,7 +18,9 @@ $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.
 $router->get('/documentation',  function () {
     return view('documentation');
 });
-$router->get('/les-donnees',  ['uses' => 'StatisticController@places', 'as' => 'places']);
+$router->get('/les-donnees',  ['uses' => 'ImpactsController@datas', 'as' => 'impacts.datas']);
+$router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
+$router->get('/les-statistiques',  ['uses' => 'ImpactsController@statistics', 'as' => 'impacts.statistics']);
 $router->get('/les-institutions',  function () {
     return view('institutions');
 });

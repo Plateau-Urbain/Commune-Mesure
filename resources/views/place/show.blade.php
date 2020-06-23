@@ -7,6 +7,12 @@
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
     <script>
+      var dataIris = {x : [5,9,2,6,4,3.5,4.5,3.2,4.8],
+      y : [3.5,3.2,0.3,3.6,3.9,3.4,2.9,4.9,9.6],
+      "petal_length" : [1.2,1.3,1.5,1.5,0.3,0.5,1.9,1.4,1.1],
+      "petal_width" : [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.1],
+      "species" : ["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]};
+
       var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf",
       "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
         var smallmap = mapjs.create('info-box-map')
@@ -71,25 +77,21 @@
       new roughViz.Scatter(
       {
         element: '#chart-rough-logement-scatter',
-        data: 'https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv',
-      title: 'Les logements',
-      x: 'sepal_width',
-      y: 'petal_length',
-      colorVar: 'species',
-      highlightLabel: 'species',
-      fillWeight: 4,
-      fillStyle: 'cross-hatch',
-      radius: 12,
-      colors: ['pink', 'coral', 'skyblue'],
-      stroke: 'black',
-      strokeWidth: 0.4,
-      roughness: 0,
-      width: 600,
-      height: 450,
-      font: 0,
-      xLabel: 'sepal width',
-      yLabel: 'petal length',
-      curbZero: false,
+        data: dataIris,
+        title: 'Les logements',
+        colorVar: 'species',
+        highlightLabel: 'species',
+        fillWeight: 4,
+        radius: 12,
+        colors: colors,
+        stroke: 'black',
+        strokeWidth: 0.4,
+        roughness: 0.6,
+        width: window.innerWidth*0.7,
+        font: 0,
+        xLabel: 'sepal width',
+        yLabel: 'petal length',
+        curbZero: false,
       });
     </script>
 @endsection

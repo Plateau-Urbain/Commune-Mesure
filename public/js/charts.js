@@ -24,7 +24,7 @@ var charts = (function () {
         return 'undefined';
     }
 
-    function create(chart, type, labels, data) {
+    function create(chart, type, labels, data, ) {
         var ctx = _search(chart)
 
         if (typeof ctx === 'undefined') {
