@@ -30,7 +30,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]',
+            name: '[name].[ext]?[contenthash]',
             outputPath: '/fonts/'
           }
         }
@@ -41,6 +41,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
+            name: '[name].[ext]?[contenthash]',
             outputPath: '/images'
           }
         }

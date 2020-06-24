@@ -73,7 +73,7 @@ html {
     }
 }
 
-.title:not(.header-title) {
+.title:not(.header-title):not(.no-border) {
     &:after {
         content: '';
         display: block;
@@ -100,5 +100,21 @@ header {
 
     .banner {
         background-color: $light-blue;
+    }
+}
+svg {
+    &.small {
+        width: 10em;
+        height: 10em;
+    }
+    &.very-small {
+        width: 5em;
+        height: 5em;
+    }
+    &#female {
+        fill: $primary;
+    }
+    &#male {
+        fill: $black;
     }
 }
