@@ -8,14 +8,6 @@
   "rgb(198, 134, 66, 0.3)","rgb(210, 231, 255, 0.3)","rgb(255, 87, 51, 0.3)",
   "rgb(128, 229, 226, 0.3)","rgb(147, 128, 229, 0.3)","rgb(70, 41, 199, 0.3)", ];
 
-  @foreach($plots as $plot)
-    var chartPop = new charts.create(
-        '{{ $plot->getId() }}',
-        '{{ $plot->getType() }}',
-        @json($plot->getLabels()),
-        @json($plot->getDatasets())
-    );
-  @endforeach
   function getRandomColor(){
     return colors[getRandomInt(colors.length,0)];
   }

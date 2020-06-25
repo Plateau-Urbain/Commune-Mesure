@@ -32,8 +32,19 @@
           <div class="section">
               <h1 class="title is-2 has-text-centered">Population</h1>
               <div class="columns">
-
-                <div class="column has-text-centered">
+                <div class="column">
+                  <div class="field">
+                    <div class="control">
+                      <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
+                      <div class="select is-small is-success" style="margin-top:1em;">
+                        <select name="first" id="first-city-select" class="is-focused" onchange="createChartOverlay(this)">
+                            @foreach($places as $place)
+                              <option value="{{ $place->title }}">{{ $place->name }}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="box content">
                     <p class="title"><a href="{{ route('place.show',['slug' => $cities['Paris'][1]['name']])  }}">
                       {{ $cities['Paris'][1]['title'] }}</a></p>
@@ -43,9 +54,21 @@
                   </div>
                 </div>
                 <div class="column has-text-centered">
-                  <canvas id="chart-overlay"></canvas>
+                  <canvas id="chart-overlay-compare"></canvas>
                 </div>
-                <div class="column has-text-centered">
+                <div class="column">
+                  <div class="field">
+                    <div class="control">
+                      <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
+                      <div class="select is-small is-success" style="margin-top:1em;">
+                        <select name="second" id="second-city-select" class="is-focused" onchange="createChartOverlay(this)">
+                            @foreach($places as $place)
+                              <option value="{{ $place->title }}">{{ $place->name }}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="box content">
                     <p class="title"><a href="{{ route('place.show',['slug' => $cities['Paris'][0]['name']])  }}">
                       {{ $cities['Paris'][0]['title'] }}</a>

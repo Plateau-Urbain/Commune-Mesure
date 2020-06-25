@@ -37,6 +37,7 @@ class Place
             $title = $json->name;
             $city = $json->address->city;
             $data_chart = $json->data;
+            $json->title = $name;
 
             if ($this->withPopup) {
                 $popup = str_replace(["\r\n", "\n", '  '], '',

@@ -58,25 +58,31 @@
       },
       "resilience":{
         "edutcation":{
-          "title": "Éducation",
+          "title": "Modalités d'occupation",
           "city": 10,
           "Region": 3,
           "total": 50
         },
         "health":{
-          "title": "Santé",
+          "title": "Programmation du lieu",
           "city": 5,
           "Region": 3,
           "total": 50
         },
         "environnement":{
-          "title": "Environnement",
+          "title": "Montage du projet et gouvernance",
           "city": 19,
           "Region": 3,
           "total": 50
         },
+        "job":{
+          "title": "Emplois",
+          "city": 49,
+          "Region": 3,
+          "total": 50
+        },
         "safety":{
-          "title": "Sécurité",
+          "title": "Modèle économique",
           "city": 49,
           "Region": 3,
           "total": 50

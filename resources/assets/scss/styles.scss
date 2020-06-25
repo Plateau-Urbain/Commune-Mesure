@@ -5,10 +5,10 @@
 @include font-face("blzee-font", "./../fonts/blzee/blzee")
 
 @import "_variables";
-@import "custom";
 
 @import "~bulma/bulma.sass";
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 @import "~leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+@import "custom";
