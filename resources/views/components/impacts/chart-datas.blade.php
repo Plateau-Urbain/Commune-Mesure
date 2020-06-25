@@ -27,7 +27,6 @@
   }
 
   function createResilienceBar(select){
-    console.log(select);
     var resilience = select.value;
     var sectionResilienceBar = document.getElementById('sectionResilienceBar');
     sectionResilienceBar.textContent = null;

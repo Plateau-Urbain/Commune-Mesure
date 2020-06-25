@@ -53,8 +53,8 @@
     var dataPopulation = [];
     var labelsPopulation = [];
     @foreach($place->data->population as $label => $data)
-            dataPopulation.push({{ $data }});
-            labelsPopulation.push('{{ $label }}');
+        dataPopulation.push({{ $data }});
+        labelsPopulation.push('{{ $label }}');
     @endforeach
   // create Donut chart using defined data & customize plot options
   new roughViz.Donut(
