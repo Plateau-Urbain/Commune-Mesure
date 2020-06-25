@@ -52,7 +52,6 @@ class PlaceController extends Controller
         $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build(
            (array) [$place->data->population, $place->data->population]
         );
-
         return view('place.show', compact('place', 'plots'));
     }
 }

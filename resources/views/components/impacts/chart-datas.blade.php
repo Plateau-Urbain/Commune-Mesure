@@ -1,4 +1,6 @@
 <script>
+
+  //TODO move that function because is used also in other page
   var i = 0;
   var values;
 
@@ -24,12 +26,62 @@
     }
   }
 
-  window.onload = (event) => {
+  function createResilienceBar(select){
+    console.log(select);
+    var resilience = select.value;
+    var sectionResilienceBar = document.getElementById('sectionResilienceBar');
+    sectionResilienceBar.textContent = null;
+    @foreach($places as $place)
+      @foreach($place->data->resilience as $type_resilience =>$resilience)
+        if("{{ $type_resilience }}" == resilience){
+          var divColumnsResilience = document.createElement('div');
+          var divColumnBar = document.createElement('div');
+          var divColumnDetail = document.createElement('div');
+          var divProgress = document.createElement('div');
+          var divBar = document.createElement('div');
+          var pTitle = document.createElement('p');
+          var pDetail = document.createElement('p');
+          var a = document.createElement('a');
 
-      values = document.querySelectorAll(".myBar")
-      values.forEach(function (v) {
-          move(v)
-          i=0;
-      })
+          a.setAttribute('href',"{{ route('place.show',['slug' => $place->title])  }}");
+          a.textContent = "{{ $place->name }}";
+          pTitle.appendChild(a);
+          pTitle.setAttribute('class', 'title is-4 no-border');
+          divColumnDetail.appendChild(pTitle);
+          divColumnDetail.setAttribute('class', 'column');
+          pDetail.textContent = "Les données permettent de ressortir";
+          divColumnDetail.appendChild(pDetail);
+
+
+          divProgress.setAttribute('id', 'myProgress');
+          divBar.setAttribute('class', 'myBar');
+          divBar.setAttribute('data-fill', "{{ $resilience->city }}");
+          divBar.setAttribute('data-full', "{{ $resilience->total }}");
+          divBar.textContent = "10%";
+
+          divProgress.appendChild(divBar);
+
+          divColumnBar.setAttribute('class', 'column');
+          divColumnBar.appendChild(divProgress);
+
+
+
+          divColumnsResilience.setAttribute('class', 'columns');
+          divColumnsResilience.appendChild(divColumnDetail)
+          divColumnsResilience.appendChild(divColumnBar);
+          sectionResilienceBar.appendChild(divColumnsResilience);
+        }
+
+      @endforeach
+    @endforeach
+    values = document.querySelectorAll(".myBar")
+    values.forEach(function (v) {
+        move(v)
+        i=0;
+    })
+  }
+
+  window.onload = (event) => {
+      createResilienceBar(document.getElementById("resilience-select"));
   }
 </script>

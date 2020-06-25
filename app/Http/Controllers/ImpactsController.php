@@ -18,10 +18,8 @@ class ImpactsController extends Controller
 
   public function statistics(){
       [$coordinates,$cities, $places] = MainController::getAllPlaces();
-      $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build(
-         (array) [$cities['Paris'][0]['data_chart']->population, $cities['Paris'][1]['data_chart']->population]
-      );
-      return view('impacts.statistics', compact('coordinates', 'cities', 'plots', 'places'));
+      
+      return view('impacts.statistics', compact('coordinates', 'cities', 'places'));
   }
 
   public function datas(){
