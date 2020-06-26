@@ -32,5 +32,22 @@
             </div>
         </div>
     </section>
-    @svg('assets/images/body.svg', 'small')
+
+    <section class="section">
+        <div class="columns is-vcentered">
+            <div class="column is-2 has-text-centered is-offset-3">
+                <h2 class="title is-2 no-border">84%</h2>
+                <h4 class="subtitle is-4">d'emploi</h4>
+            </div>
+            <div class="column is-2 has-text-centered is-narrow">
+                <div class="column">
+                    @svg('assets/images/body.svg', 'small')
+                </div>
+            </div>
+            <div class="column is-2 has-text-centered">
+                <h2 class="title is-2 no-border">91%</h2>
+                <h4 class="subtitle is-4">d'emploi</h4>
+            </div>
+        </div>
+    </section>
 @endsection
