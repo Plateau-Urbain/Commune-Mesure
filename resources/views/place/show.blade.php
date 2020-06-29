@@ -82,9 +82,34 @@
 
             <section class="section">
                 <div class="columns">
-                    <div class="column is-half has-text-centered">
-                        <canvas id="chart-pop"></canvas>
-                    </div>
+                    <div class="column is-half ">
+
+                      <div class="tabs is-small" data-tab-group="population">
+                        <ul>
+                          <li class="is-active">
+                            <a href="#charts">
+                              <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                              <span>Graphiques</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#raw">
+                              <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
+                              <span>Données</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="tabs-content" data-tab-group="population">
+                        <div class="tab is-active" data-tab="charts">
+                          <canvas id="chart-pop" height=380 width=760></canvas>
+                        </div>
+                        <div class="tab" data-tab="raw">
+                          <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
+                        </div>
+                      </div>
+                    </div> {{-- column --}}
                     <div class="column">
                       <table class="table is-fullwidth is-hoverable">
                           <tr>
@@ -117,29 +142,26 @@
                     </div>
                 </div>
             </section>
+
             <section class="section">
-              <div class="tabs is-small">
+              <div class="tabs is-small" data-tab-group="resilience">
                 <ul>
                   <li class="is-active">
                     <a href="#charts">
                       <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                      <span>
-                          Graphiques
-                      </span>
+                      <span>Graphiques</span>
                     </a>
                   </li>
                   <li>
                     <a href="#raw">
                       <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                      <span>
-                          Données
-                      </span>
+                      <span>Données</span>
                     </a>
                   </li>
                 </ul>
               </div>
 
-              <div class="tabs-content">
+              <div class="tabs-content" data-tab-group="resilience">
                 <div class="tab is-active" data-tab="charts">
                   @foreach($place->data->resilience as $resilience)
                       <p>{{ $resilience->title }} : {{ ($resilience->city / $resilience->total)*100 }}%</p>
@@ -167,13 +189,12 @@
                             @endforeach
                         </tr>
                       @endforeach
-                  </tbody>
-                </table>
-
+                    </tbody>
+                  </table>
                 </div>
               </div>
-
             </section>
+
             <section class="section">
                 <div class="columns">
                     <div class="column content">
