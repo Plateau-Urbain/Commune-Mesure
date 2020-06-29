@@ -1,8 +1,10 @@
-@font-face { font-family: "Renner Bold"; src: url("https://communemesure.com/wp-content/uploads/et-fonts/renner-bold.otf") format("opentype"); }
-
 #balance, #process{
     height: 20em;
     margin: 1%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Renner Bold';
 }
 
 .impacts >h1, .impacts >h2, .app-name > h1{
@@ -12,7 +14,7 @@
 }
 
 #sectionResilienceBar{
-  padding-top: 0 !important; 
+  padding-top: 0 !important;
 }
 #resilience-div{
   margin: 2em;
@@ -97,7 +99,12 @@ html {
     }
 }
 
-.title:not(.header-title):not(.no-border) {
+h1.title:not(.header-title):not(.no-border),
+h2.title:not(.header-title):not(.no-border),
+h3.title:not(.header-title):not(.no-border),
+h4.title:not(.header-title):not(.no-border),
+h5.title:not(.header-title):not(.no-border),
+h6.title:not(.header-title):not(.no-border) {
     &:after {
         content: '';
         display: block;
