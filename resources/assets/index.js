@@ -15,3 +15,4 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 import Chart from 'chart.js';
+import './js/tabs.js';

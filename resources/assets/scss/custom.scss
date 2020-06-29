@@ -149,3 +149,13 @@ svg {
         fill: $black;
     }
 }
+
+// Tabs
+.tabs-content {
+    .tab {
+        display: none;
+    }
+    .tab.is-active {
+        display: block;
+    }
+}

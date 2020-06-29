@@ -118,8 +118,36 @@
                 </div>
             </section>
             <section class="section">
-              <div class="columns">
-                <div class="column">
+              <div class="tabs is-small">
+                <ul>
+                  <li class="is-active">
+                    <a href="#charts">
+                      <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                      <span>
+                          Graphiques
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#raw">
+                      <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
+                      <span>
+                          Données
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tabs-content">
+                <div class="tab is-active" data-tab="charts">
+                  @foreach($place->data->resilience as $resilience)
+                      <p>{{ $resilience->title }} : {{ ($resilience->city / $resilience->total)*100 }}%</p>
+                      <progress class="progress is-primary" value="{{ $resilience->city }}" max="{{ $resilience->total }}">{{ ($resilience->city / $resilience->total)*100 }}%</progress>
+                  @endforeach
+                </div>
+
+                <div class="tab" data-tab="raw">
                   <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                      <thead>
                       <tr>
@@ -141,18 +169,10 @@
                       @endforeach
                   </tbody>
                 </table>
+
                 </div>
-                <div class="column">
-                  <div class="is-2">
-                    @foreach($place->data->resilience as $resilience)
-                      <p class="is-1">{{ $resilience->title }}</p>
-                      <div id="myProgress">
-                        <div class="myBar" data-fill="{{ $resilience->city }}" data-full="{{ $resilience->total }}">10%</div>
-                      </div>
-                      @endforeach
-                  </div>
-                </div>
-              <div>
+              </div>
+
             </section>
             <section class="section">
                 <div class="columns">
