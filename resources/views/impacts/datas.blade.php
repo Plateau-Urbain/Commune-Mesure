@@ -36,7 +36,7 @@
             <div class="field">
               <div class="control">
                 <div class="select is-small is-success">
-                  <select name="resilience" id="resilience-select" class="is-focused" onchange="createResilienceBar(this)">
+                  <select name="resilience" id="resilience-select" class="is-focused">
                       @foreach($places[0]->data->resilience as $type_resilience => $resilience)
                         <option value="{{ $type_resilience }}">{{ $resilience->title }}</option>
                       @endforeach

@@ -81,6 +81,11 @@
   }
 
   window.onload = (event) => {
-      createResilienceBar(document.getElementById("resilience-select"));
+    var select = document.getElementById("resilience-select")
+    createResilienceBar(select);
+
+    select.onchange = (event) => {
+      createResilienceBar(select)
+    }
   }
 </script>
