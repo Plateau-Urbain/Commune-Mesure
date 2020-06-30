@@ -1,7 +1,13 @@
 @extends('layout')
 
-@section('head_css')
-    @parent
+@section('script_js')
+    <script>
+        document.getElementById('stop1-male').setAttribute('offset', (100-91)+'%')
+        document.getElementById('stop2-male').setAttribute('offset', (100-91)+'%')
+
+        document.getElementById('stop1-female').setAttribute('offset', (100-84)+'%')
+        document.getElementById('stop2-female').setAttribute('offset', (100-84)+'%')
+    </script>
 @endsection
 
 @section('content')
