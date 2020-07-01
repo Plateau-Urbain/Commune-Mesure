@@ -133,6 +133,8 @@ header {
         background-color: $light-blue;
     }
 }
+
+// graph
 svg {
     &.small {
         width: 10em;
@@ -147,6 +149,17 @@ svg {
     }
     &#male {
         fill: $black;
+    }
+}
+
+.squared {
+    display: inline-block;
+    border: 2px solid $black;
+    padding: 10px;
+    background-color: transparent;
+
+    &.filled {
+        background-color: $primary;
     }
 }
 

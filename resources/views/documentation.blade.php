@@ -79,4 +79,21 @@
             </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="columns is-vcentered has-text-centered">
+            <div class="column is-half is-offset-3">
+                @for($i = 0; $i < 100; $i++)
+                    @for($j = 1; $j <= 10; $j++ && $i++)
+                        <div class="squared
+                        @if($i > 36)
+                            filled
+                        @endif
+                        "></div>
+                    @endfor
+                    <br>
+                @endfor
+            </div>
+        </div>
+    </section>
 @endsection
