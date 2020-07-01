@@ -87,6 +87,25 @@
           "Region": 3,
           "total": 50
         }
+      },
+      "survey":{
+        "Groups":{
+          "Group":{
+            "title": "Modalités d'occupation",
+            "Q1":{
+                "answer": "non"
+            },
+            "Q2":{
+                "answer": "oui"
+            },
+            "Q3":{
+                "answer": "oui"
+            },
+            "Q4":{
+                "answer": "3ans"
+            }
+          }
+        }
       }
   },
   "partners": [

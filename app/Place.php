@@ -12,7 +12,7 @@ class Place
 
     public function __construct()
     {
-        $this->storage = getenv('STORAGE_PATH');
+        $this->storage = getenv('STORAGE_PATH').'places/';
     }
 
     public function all()

@@ -13,6 +13,29 @@
 @section('content')
     <h1 class="section title is-1 has-text-centered">Questionnaire</h1>
     <section class="section">
+      <div class="field">
+        <div class="control">
+          <div class="columns">
+            <div class="column is-one-fifth">
+              <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
+            </div>
+            <div class="column">
+              <div class="select is-small is-success">
+                <select name="2" id="second-city-select" class="is-focused" onchange="comparePopulationPlaces(this)">
+                    @foreach($places as $place)
+                      <option value="{{ $place->title }}">{{ $place->name }}</option>
+                    @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @include('components.documentation.survey')
+    </section>
+
+
+    <section class="section">
         <div class="columns is-vcentered">
             <div class="column has-text-centered">
                 <h2 class="title is-2 no-border">39%</h2>
