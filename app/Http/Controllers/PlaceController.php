@@ -20,7 +20,7 @@ class PlaceController extends Controller
 
     public function show($slug)
     {
-        $json = getenv('STORAGE_PATH').$slug.'.json';
+        $json = getenv('STORAGE_PATH').'places/'.$slug.'.json';
         if (! file_exists($json)) {
             abort(404);
         }
