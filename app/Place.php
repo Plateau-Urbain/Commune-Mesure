@@ -59,6 +59,10 @@ class Place
     {
         $json = json_decode(file_get_contents($place));
 
+        if ($json === null) {
+            throw new \LogicException("Invalid json : $place", 1);
+        }
+
         if (property_exists($json->address, 'city') === false){
             throw new \LogicException("'La ville n'existe pas' in $place", 1);
         }
