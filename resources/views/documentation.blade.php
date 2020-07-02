@@ -1,12 +1,48 @@
 @extends('layout')
 
 @section('script_js')
+    @parent
     <script>
         document.getElementById('stop1-male').setAttribute('offset', (100-91)+'%')
         document.getElementById('stop2-male').setAttribute('offset', (100-91)+'%')
 
         document.getElementById('stop1-female').setAttribute('offset', (100-84)+'%')
         document.getElementById('stop2-female').setAttribute('offset', (100-84)+'%')
+
+        var financementctx = document.getElementById('financement-doughnut')
+        var financementchart = new Chart(financementctx, {
+            type: 'doughnut',
+            options: {
+                title: {
+                    display: true,
+                    text: 'Financement du projet',
+                    fontFamily: "'Renner Bold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    fontSize: 16,
+                    padding: 5
+                },
+                cutoutPercentage: 90,
+                legend: {
+                    position: 'right',
+                    labels: {
+                        boxWidth: 20
+                    }
+                }
+            },
+            data: {
+                datasets: [{
+                    data:[57, 34, 16, 4],
+                    backgroundColor: [
+                        '#e85048', '#deebee', '#ee7969', '#262631'
+                    ]
+                }],
+                labels: [
+                    'Région',
+                    'Ville',
+                    'Taxes',
+                    'Donations'
+                ]
+            }
+        })
     </script>
 @endsection
 
@@ -82,7 +118,7 @@
 
     <section class="section">
         <div class="columns is-vcentered has-text-centered">
-            <div class="column is-3 is-offset-3">
+            <div class="column is-3 is-offset-2">
                 @for($i = 100; $i > 0;)
                     @for($j = 1; $j <= 10; $j++ && $i--)
                         <div class="squared
@@ -93,10 +129,11 @@
                     @endfor
                     <br>
                 @endfor
-            </div>
-            <div class="column is-3">
                 <h2 class="title is-2 no-border">48%</h2>
                 <h4 class="subtitle is-4">de réinsertion</h4>
+            </div>
+            <div class="column is-3 is-offset-2">
+                <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
             </div>
         </div>
     </section>
