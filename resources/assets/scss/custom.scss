@@ -109,7 +109,7 @@ h6.title:not(.header-title):not(.no-border) {
         content: '';
         display: block;
         width: 5%;
-        border-bottom: 10px #e85048 solid;
+        border-bottom: 10px $primary solid;
         padding: 5px 0;
         margin: auto;
     }
