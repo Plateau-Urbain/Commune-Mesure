@@ -82,17 +82,21 @@
 
     <section class="section">
         <div class="columns is-vcentered has-text-centered">
-            <div class="column is-half is-offset-3">
-                @for($i = 0; $i < 100; $i++)
-                    @for($j = 1; $j <= 10; $j++ && $i++)
+            <div class="column is-3 is-offset-3">
+                @for($i = 100; $i > 0;)
+                    @for($j = 1; $j <= 10; $j++ && $i--)
                         <div class="squared
-                        @if($i > 36)
+                        @if($i <= 48)
                             filled
                         @endif
                         "></div>
                     @endfor
                     <br>
                 @endfor
+            </div>
+            <div class="column is-3">
+                <h2 class="title is-2 no-border">48%</h2>
+                <h4 class="subtitle is-4">de réinsertion</h4>
             </div>
         </div>
     </section>
