@@ -57,7 +57,7 @@
             </div>
             <div class="column">
               <div class="select is-small is-success">
-                <select name="2" id="second-city-select" class="is-focused" onchange="comparePopulationPlaces(this)">
+                <select name="survey-place-select" id="survey-select" class="is-focused" onchange="surveyPlace(this)">
                     @foreach($places as $place)
                       <option value="{{ $place->title }}">{{ $place->name }}</option>
                     @endforeach

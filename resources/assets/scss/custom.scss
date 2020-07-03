@@ -13,6 +13,97 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 5em;
 }
 
+.location-home,
+.budget,
+#budget-fund-illustration,
+#budget-value-illustration {
+  position: relative;
+}
+
+#owner,
+#contract,
+#budget-year,
+#budget-total,
+#budget-fund,
+#budget-fund-illustration-detail,
+#budget-value-illustration-detail
+{
+  position: absolute;
+  background-color: white;
+  height: auto;
+  width: auto;
+}
+#owner,
+#contract,
+#budget-year,
+#budget-total,
+#budget-fund{
+  border: 1px #e85048 solid;
+  padding: 5px;
+}
+#owner:hover,
+#budget-year:hover,
+#budget-total:hover,
+#contract:hover,
+#budget-fund:hover{
+  animation: blinker 1.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+  background-color: #e85048
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.is5em{
+  height: auto;
+  width: 5em;
+  vertical-align: top;
+}
+
+.is20em{
+  height: auto;
+  width: 20em;
+  vertical-align: top;
+}
+
+#budget-year{
+  top: 0em;
+  left: -2em;
+}
+
+#budget-total{
+  top: 5em;
+  right: 1em;
+}
+
+#owner {
+  bottom: 14em;
+  left: 8em;
+}
+
+#budget-fund{
+  top: -2em;
+  right: 1em;
+}
+
+#contract {
+  bottom: 14em;
+  left: 23.6em;
+
+}
+#budget-fund-illustration-detail{
+  top: 15em;
+  right: 14em;
+}
+#budget-value-illustration-detail{
+  top: 12em;
+  left: 17em;
+  width: 20em;
+}
+
+
+
 #sectionResilienceBar{
   padding-top: 0 !important;
 }
