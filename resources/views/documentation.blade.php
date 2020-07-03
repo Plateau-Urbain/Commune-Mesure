@@ -43,6 +43,44 @@
                 ]
             }
         })
+
+        function surveyPlace(select){
+
+        }
+
+        function flashingBox(id){
+          var illustrationContract = document.getElementById(id);
+          illustrationContract.style.border = 'solid 1em  #e85048';
+          illustrationContract.style.padding = '5px';
+          illustrationContract.style.transition = 'border-width 0.6s linear';
+
+          illustrationContract.style.animation = 'blinker 2s cubic-bezier(.5, 0, 1, 1) infinite alternate';
+        }
+
+        function flashingOffBox(id){
+          var illustrationContract = document.getElementById(id);
+          illustrationContract.style.border = null;
+          illustrationContract.style.animation = null;
+        }
+
+        window.onload = (event) => {
+          console.log("Ifi");
+          var contract = document.getElementById("contract");
+          contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
+          contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
+
+          var budgetYear = document.getElementById("budget-year");
+          budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
+          budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
+
+          var budgetTotal = document.getElementById("budget-total");
+          budgetTotal.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
+          budgetTotal.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
+
+          var budgetFund = document.getElementById("budget-fund");
+          budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
+          budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
+        }
     </script>
 @endsection
 

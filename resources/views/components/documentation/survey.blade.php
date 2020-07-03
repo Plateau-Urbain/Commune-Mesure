@@ -6,7 +6,7 @@
      <div class="" id="contract">Contrat</div>
     </div>
   </div>
-  <!-- Loop on places //TODO use place selected from survey select-->
+  <!-- Loop on places TODO use place selected from survey select-->
   @php ($place = $places[12])
   <div class="column">
     <div class="" id="illustration-contract">
@@ -77,40 +77,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-  function flashingBox(id){
-    let illustrationContract = document.getElementById(id);
-    illustrationContract.style.border = 'solid 1em  #e85048';
-    illustrationContract.style.transition = 'border-width 0.6s linear';
-
-    illustrationContract.style.animation = 'blinker 2s cubic-bezier(.5, 0, 1, 1) infinite alternate';
-  }
-  function flashingOffBox(id){
-    let illustrationContract = document.getElementById(id);
-    illustrationContract.style.border = null;
-    illustrationContract.style.animation = null;
-  }
-
-  window.onload = (event) => {
-    let contract = document.getElementById("contract");
-    contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
-    contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
-
-    let budgetYear = document.getElementById("budget-year");
-    budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-    budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-    let budgetTotal = document.getElementById("budget-total");
-    budgetTotal.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-    budgetTotal.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-    let budgetFund = document.getElementById("budget-fund");
-    budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
-    budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
-
-
-
-  }
-</script>
