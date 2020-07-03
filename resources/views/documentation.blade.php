@@ -64,10 +64,13 @@
         }
 
         window.onload = (event) => {
-          console.log("Ifi");
           var contract = document.getElementById("contract");
           contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
           contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
+
+          var owner = document.getElementById("owner");
+          owner.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
+          owner.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
 
           var budgetYear = document.getElementById("budget-year");
           budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));

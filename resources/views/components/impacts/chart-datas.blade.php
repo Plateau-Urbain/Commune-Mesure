@@ -31,8 +31,8 @@
     var sectionResilienceBar = document.getElementById('sectionResilienceBar');
     sectionResilienceBar.textContent = null;
     @foreach($places as $place)
-      @foreach($place->data->resilience as $type_resilience =>$resilience)
-        if("{{ $type_resilience }}" == resilience){
+      @foreach($place->data->resilience as $type_resilience => $resilience)
+        if("{{ $type_resilience }}" == resilience && "{{ $type_resilience }}" != "survey"){
           var divColumnsResilience = document.createElement('div');
           var divColumnBar = document.createElement('div');
           var divColumnDetail = document.createElement('div');
@@ -54,8 +54,8 @@
 
           divProgress.setAttribute('id', 'myProgress');
           divBar.setAttribute('class', 'myBar');
-          divBar.setAttribute('data-fill', "{{ $resilience->city }}");
-          divBar.setAttribute('data-full', "{{ $resilience->total }}");
+          divBar.setAttribute('data-fill', "50");
+          divBar.setAttribute('data-full', "56");
           divBar.textContent = "10%";
 
           divProgress.appendChild(divBar);
