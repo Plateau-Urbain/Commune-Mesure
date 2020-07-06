@@ -84,6 +84,34 @@
           budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
           budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
         }
+
+        // Changement images questionnaire
+        var imgLeft = document.getElementById('img-left');
+        var imgRight = document.getElementById('img-right');
+        var radio = document.getElementById('radio-listener');
+
+        function chgImg(el) {
+            if (el.type != 'radio') {
+                return false
+            }
+
+            img = imgRight;
+            if (el.name == 'left') {img = imgLeft;}
+
+            img.src = '/images/questionnaire/'+el.dataset.img+'.svg'
+            img.nextElementSibling.textContent = el.dataset.txt
+        }
+
+        window.onload = (event) => {
+            radio.onchange = (event) => {
+                for (var target = event.target; target && target != this; target = target.parentNode) {
+                    if (target.matches('input[type=radio]')) {
+                        chgImg(target)
+                        break
+                    }
+                }
+            }
+        }
     </script>
 @endsection
 
@@ -182,23 +210,39 @@
     <section class="section">
         <div class="columns is-vcentered has-text-centered">
             <div class="column is-2 is-offset-3">
-                <img src="/images/goal.svg">
+                <img id="img-left" src="/images/questionnaire/goal.svg">
                 <p style="font-family: 'Renner Bold'">Occupant.e.s du site</p>
             </div>
             <div class="column is-2">
                 <div>
-                    <img src="/images/arrow.svg">
+                    <img src="/images/questionnaire/arrow.svg">
                 </div>
                 <div>
                     <p class="is-size-3" style="font-family: 'Renner Bold'">Conseils</p>
                 </div>
                 <div>
-                    <img src="/images/arrow.svg" style="transform: scaleY(-1) scaleX(-1);">
+                    <img src="/images/questionnaire/arrow.svg" style="transform: scaleY(-1) scaleX(-1);">
                 </div>
             </div>
             <div class="column is-2">
-                <img src="/images/new-start.svg">
+                <img id="img-right" src="/images/questionnaire/new-start.svg">
                 <p style="font-family: 'Renner Bold'">Chercheurs d'emplois</p>
+            </div>
+        </div>
+
+        <div id="radio-listener" class="columns is-vcentered has-text-centered">
+            <div class="column is-2 is-offset-3">
+                <div class="control mt-2">
+                    <label class="radio"><input id="check-left" type="radio" name="left" checked data-img="goal" data-txt="Occupant.e.s du site">Occupant.e.s</label>
+                    <label class="radio"><input id="check-left" type="radio" name="left" data-img="acteurs" data-txt="Acteurs locaux">Acteurs</label>
+                </div>
+            </div>
+            <div class="column is-2"></div>
+            <div class="column is-2">
+                <div class="control mt-2">
+                    <label class="radio"><input type="radio" name="right" checked data-img="new-start" data-txt="Chercheurs d'emplois">Chercheurs d'emplois</label>
+                    <label class="radio"><input type="radio" name="right" data-img="difficulties" data-txt="Public en difficultés">Publics en difficultés</label>
+                </div>
             </div>
         </div>
     </section>
