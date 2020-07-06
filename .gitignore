@@ -10,3 +10,5 @@ Homestead.yaml
 /public/fonts/*
 /resources/*.xlsx
 /public/css/app.css
+
+!/storage/app/places/example.json
