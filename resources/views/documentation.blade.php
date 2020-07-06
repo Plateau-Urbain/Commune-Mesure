@@ -178,4 +178,28 @@
             </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="columns is-vcentered has-text-centered">
+            <div class="column is-2 is-offset-3">
+                <img src="/images/goal.svg">
+                <p style="font-family: 'Renner Bold'">Occupant.e.s du site</p>
+            </div>
+            <div class="column is-2">
+                <div>
+                    <img src="/images/arrow.svg">
+                </div>
+                <div>
+                    <p class="is-size-3" style="font-family: 'Renner Bold'">Conseils</p>
+                </div>
+                <div>
+                    <img src="/images/arrow.svg" style="transform: scaleY(-1) scaleX(-1);">
+                </div>
+            </div>
+            <div class="column is-2">
+                <img src="/images/new-start.svg">
+                <p style="font-family: 'Renner Bold'">Chercheurs d'emplois</p>
+            </div>
+        </div>
+    </section>
 @endsection
