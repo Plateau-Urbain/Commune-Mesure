@@ -1,0 +1,65 @@
+{
+  "groups":{
+    "group":{
+      "title": "Modalités d'occupation",
+      "q1":
+        {
+          "question": "La structure gestionnaire est-elle propriétaire du lieu occupé ?",
+          "answer":
+          {
+            "oui": {
+              "string":"%s est le propriétaire du lieu occupé. ",
+              "illustration": "owner.svg"
+            },
+            "non": {
+              "string":"%s n'est propriétaire du lieu.",
+              "illustration": "not_owner.svg"
+            }
+          }
+      },
+      "q2":
+      {
+        "question": "Avez-vous signé un contrat d'occupation ?",
+        "answer":
+        {
+          "oui": {
+            "string":"Il possède un contrat d'occupation",
+            "illustration": "home.svg"
+          },
+          "non": {
+            "string":"",
+            "illustration": "contract.svg"
+          }
+        }
+      },
+      "q3":
+      {
+        "question": "Si oui, quel est le type de ce contrat ?",
+        "answer":
+        {
+          "oui": {
+            "string":" de type Convention d'occupation précaire.",
+            "illustration": "contract.svg"
+          },
+          "non": {
+            "string":"",
+            "illustration": "contract.svg"
+          }
+        }
+      },
+      "q4":
+      {
+        "question": "Si vous avez signé un bail, quelle en est la durée ?",
+        "answer":
+        {
+          "oui": {
+            "string":"La durée du contrat est de 3ans.",
+            "illustration": "calendar.svg"
+          }
+
+        }
+      }
+    }
+  }
+
+}
