@@ -3,6 +3,7 @@
 @section('head_css')
     @parent
 @endsection
+
 @section('script_js')
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
@@ -12,8 +13,8 @@
 @section('content')
 <div class="columns is-gapless">
     <div class="column is-2">
-        {{-- @include('components.place-menu') --}}
-        @include('components.place.info-box')
+        @include('components.place-menu')
+        {{-- @include('components.place.info-box') --}}
     </div>
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
@@ -80,70 +81,9 @@
                 </div>
             </section>
 
-            <section class="section">
-                <div class="columns">
-                    <div class="column is-half ">
-
-                      <div class="tabs is-small" data-tab-group="population">
-                        <ul>
-                          <li class="is-active">
-                            <a href="#charts">
-                              <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                              <span>Graphiques</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#raw">
-                              <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                              <span>Données</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div class="tabs-content" data-tab-group="population">
-                        <div class="tab is-active" data-tab="charts">
-                          <canvas id="chart-pop" height=380 width=760></canvas>
-                        </div>
-                        <div class="tab" data-tab="raw">
-                          <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
-                        </div>
-                      </div>
-                    </div> {{-- column --}}
-                    <div class="column">
-                      <table class="table is-fullwidth is-hoverable">
-                          <tr>
-                              <th>Entry Header 1</th>
-                              <th>Entry Header 2</th>
-                              <th>Entry Header 3</th>
-                              <th>Entry Header 4</th>
-                          </tr>
-                          <tr>
-                              <td>Entry First Line 1</td>
-                              <td>Entry First Line 2</td>
-                              <td>Entry First Line 3</td>
-                              <td>Entry First Line 4</td>
-                          </tr>
-                          <tr>
-                              <td>Entry Line 1</td>
-                              <td>Entry Line 2</td>
-                              <td>Entry Line 3</td>
-                              <td>Entry Line 4</td>
-                          </tr>
-                          <tr>
-                              <td>Entry Last Line 1</td>
-                              <td>Entry Last Line 2</td>
-                              <td>Entry Last Line 3</td>
-                              <td>Entry Last Line 4</td>
-                          </tr>
-                      </table>
-
-
-                    </div>
-                </div>
-            </section>
 
             <section class="section">
+              <h5 class="title is-5 has-text-centered">Indicateurs sociaux</h5>
               <div class="tabs is-small" data-tab-group="resilience">
                 <ul>
                   <li class="is-active">
@@ -194,71 +134,73 @@
                 </div>
               </div>
             </section>
-
-            <section class="section">
-                <div class="columns">
-                    <div class="column content">
-                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                        <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
-                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-                    </div>
-                    <div class="column is-half has-text-centered">
-                        <canvas id="chart-activities"></canvas>
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="columns">
-                  <div class="column is-half has-text-centered">
-                      <canvas id="chart-activities2"></canvas>
-                  </div>
-                  <div class="column content">
-                      <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
-                  </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="columns">
-                    <div class="column content">
-                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                        <blockquote><p>Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p></blockquote>
-                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-                    </div>
-                    <div class="column is-half has-text-centered">
-                        <canvas id="chart-logement-radar"></canvas>
-                    </div>
-                    <div class="column content">
-                        <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                        <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="columns">
-                  <div class="column has-text-centered">
-                    <div id="chart-rough-logement-barh"></div>
-                  </div>
-                  <div class="column has-text-centered">
-                    <div id="chart-rough-logement-doughnut"></div>
-                  </div>
-                </div>
-            </section>
-            <section class="section">
-                  <div class="column has-text-centered">
-                    <div id="chart-rough-logement-scatter"></div>
-                  </div>
-            </section>
-            <section class="section">
-                <div class="columns">
-                  <div class="column has-text-centered">
-                    <canvas id="chart-overlay"></canvas>
-                  </div>
-                  <div class="column has-text-centered">
-                    <canvas id="chart-pop-bar"></canvas>
-                  </div>
-                </div>
-            </section>
         </div>
+        <section class="section anchor" id="donnees-insee">
+          <h3 class="title is-3">Les données INSEE</h3>
+          <h5 class="title is-5 has-text-centered">Répartition H/F</h5>
+          <div class="tabs is-small" data-tab-group="population">
+            <ul>
+              <li class="is-active">
+                <a href="#charts">
+                  <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                  <span>Graphiques</span>
+                </a>
+              </li>
+              <li>
+                <a href="#raw">
+                  <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
+                  <span>Données</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="columns is-multiline">
+            <div class="column is-half ">
+              <div class="tabs-content" data-tab-group="population">
+                <div class="tab is-active" data-tab="charts">
+                  <canvas id="chart-pop" height=380 width=760></canvas>
+                </div>
+                <div class="tab" data-tab="raw">
+                  <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
+                </div>
+              </div>
+            </div> {{-- Repartition H/F --}}
+            <div class="column is-half">
+              <canvas id="chart-pop-bar"></canvas>
+            </div>
+            <div class="column is-12"><h5 class="title is-5 has-text-centered">Répartition des actifs</h5></div>
+            <div class="column is-half">
+              <canvas id="chart-activities"></canvas>
+            </div>
+            <div class="column is-half">
+              <canvas id="chart-activities2"></canvas>
+            </div>
+            <div class="column is-12"><h5 class="title is-5 has-text-centered">Logements</h5></div>
+            <div class="column is-4 is-offset-4">
+                <canvas id="chart-logement-radar"></canvas>
+            </div>
+          </div>
+        </section>
+
+
+
+        <section class="section">
+          <h3 class="title is-3">Exemples de graph</h3>
+          <div class="columns">
+            <div class="column has-text-centered">
+              <div id="chart-rough-logement-barh"></div>
+            </div>
+            <div class="column has-text-centered">
+              <div id="chart-rough-logement-doughnut"></div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="column has-text-centered">
+            <div id="chart-rough-logement-scatter"></div>
+          </div>
+        </section>
     </div>
 </div>
 @endsection
