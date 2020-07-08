@@ -109,7 +109,7 @@
     yLabel: 'petal length',
     curbZero: false,
   });
-  window.onload = (event) => {
+  window.onload = (event) => {//TODO move in index.js
 
       values = document.querySelectorAll(".myBar")
       values.forEach(function (v) {

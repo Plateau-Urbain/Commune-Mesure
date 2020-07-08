@@ -29,7 +29,7 @@
   var dataPopFirst = {'name':null, 'position':1, 'data': null, 'id':null};
   var dataPopSecond = {'name':null, 'position':2, 'data': null, 'id':null};
 
-  window.onload= function(){
+  window.onload= function(){//TODO move in index.js
     yAxe = xAxe = "total";
     dataPopFirst.data = getDataPopPlace("La-Ferme-du-Bonheur-Nanterre", dataPopFirst.position);
     dataPopSecond.data = getDataPopPlace("Coco-Velten-Marseille", dataPopSecond.position);

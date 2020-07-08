@@ -54,8 +54,9 @@
 
           divProgress.setAttribute('id', 'myProgress');
           divBar.setAttribute('class', 'myBar');
-          divBar.setAttribute('data-fill', "50");
-          divBar.setAttribute('data-full', "56");
+          let resilience = JSON.parse("{{ json_encode($resilience) }}".replace(/&quot;/g,'"'));
+          divBar.setAttribute('data-fill', resilience.city);
+          divBar.setAttribute('data-full', resilience.total);
           divBar.textContent = "10%";
 
           divProgress.appendChild(divBar);
@@ -80,7 +81,7 @@
     })
   }
 
-  window.onload = (event) => {
+  window.onload = (event) => {//TODO move in index.js
     var select = document.getElementById("resilience-select")
     createResilienceBar(select);
 

@@ -63,27 +63,7 @@
           illustrationContract.style.animation = null;
         }
 
-        window.onload = (event) => {
-          var contract = document.getElementById("contract");
-          contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
-          contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
 
-          var owner = document.getElementById("owner");
-          owner.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
-          owner.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
-
-          var budgetYear = document.getElementById("budget-year");
-          budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-          budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-          var budgetTotal = document.getElementById("budget-total");
-          budgetTotal.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-          budgetTotal.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-          var budgetFund = document.getElementById("budget-fund");
-          budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
-          budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
-        }
 
         // Changement images questionnaire
         var imgLeft = document.getElementById('img-left');
@@ -102,7 +82,7 @@
             img.nextElementSibling.textContent = el.dataset.txt
         }
 
-        window.onload = (event) => {
+        window.onload = (event) => {//TODO move in index.js
             radio.onchange = (event) => {
                 for (var target = event.target; target && target != this; target = target.parentNode) {
                     if (target.matches('input[type=radio]')) {
@@ -111,6 +91,25 @@
                     }
                 }
             }
+            var contract = document.getElementById("contract");
+            contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
+            contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
+
+            var owner = document.getElementById("owner");
+            owner.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
+            owner.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
+
+            var budgetYear = document.getElementById("budget-year");
+            budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
+            budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
+
+            var budgetTotal = document.getElementById("budget-total");
+            budgetTotal.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
+            budgetTotal.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
+
+            var budgetFund = document.getElementById("budget-fund");
+            budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
+            budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
         }
     </script>
 @endsection
