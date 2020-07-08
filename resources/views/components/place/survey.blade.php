@@ -1,7 +1,7 @@
 <br/>
 <h2 class="title">{{ "Modalités d'occupation" }}</h2>
 <div class="columns is-flex is-vcentered is-centered">
-  <div class="column">
+  <div class="column is-one-third">
     <div class="location-home">
       @svg('../public/images/location_home.svg')
      <div class="" id="owner">Propriétaire</div>
@@ -20,15 +20,16 @@
           @php ($answer = $place->data->survey->groups->{"$key"}->{"$keygroup"}->answer)
             @if(!empty($question->answer->{$answer}->illustration))
               @php ($string =$string.' '.$question->answer->{$answer}->string)
-              @if($nb > 2 && $nb != count((array)$group))
+              @if($nb > 2 && $nb <= count((array)$group))
                 <figure class=" is-inline-block image is5em">
                     <img  src="{{ url('/images/arrow.svg') }}" >
                 </figure>
               @endif
-              <figure class=" is-inline-block image is-64x64" title="{{ $question->question }}">
+              @php ($nb +=1)
+              <figure class=" is-inline-block image is-128x128" title="{{ $question->question }}">
                   <img  src="{{ url('/images/'.$question->answer->{$answer}->illustration) }}" >
               </figure>
-              @php ($nb = $nb + 1)
+
             @endif
           @endif
         @endforeach
