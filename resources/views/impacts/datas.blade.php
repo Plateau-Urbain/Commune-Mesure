@@ -4,7 +4,7 @@
             <div class="column">
                 <h1 class="title is-1 has-text-centered">Les données</h1>
                 <figure class="image is-128x128">
-                    <img src="{{ url('/images/datas.svg') }}" >
+                    <img src="/images/datas.svg" >
                 </figure>
             </div>
 
