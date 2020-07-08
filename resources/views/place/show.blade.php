@@ -54,6 +54,7 @@
         <div id="indicateurs" class="anchor">
             <section class="section">
                 <h3 class="title is-3">Indicateurs</h3>
+                @include('components.place.survey')
             </section>
             <section class="section">
                 <div class="level">
@@ -261,4 +262,5 @@
         </div>
     </div>
 </div>
+@include('components.place.survey-js')
 @endsection

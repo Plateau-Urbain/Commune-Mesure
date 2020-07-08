@@ -29,9 +29,16 @@ h1, h2, h3, h4, h5, h6 {
 #budget-value-illustration-detail
 {
   position: absolute;
-  background-color: white;
   height: auto;
   width: auto;
+}
+
+#owner,
+#contract,
+#budget-year,
+#budget-total,
+#budget-fund{
+  background-color: white;
 }
 #owner,
 #contract,
@@ -67,6 +74,13 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: top;
 }
 
+.fontSize1em{
+  font-size: 1em;
+}
+.fontSize1em{
+  font-size: 1.5em;
+}
+
 #budget-year{
   top: 0em;
   left: -2em;
@@ -94,12 +108,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 #budget-fund-illustration-detail{
   top: 15em;
-  right: 14em;
+  right: 10em;
 }
+
 #budget-value-illustration-detail{
   top: 12em;
-  left: 17em;
-  width: 20em;
+  left: 14em;
+  width: 17em;
 }
 
 
