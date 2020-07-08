@@ -12,7 +12,7 @@
               "illustration": "owner.svg"
             },
             "non": {
-              "string":"%s n'est propriétaire du lieu.",
+              "string":"%s n'est pas propriétaire du lieu.",
               "illustration": "not_owner.svg"
             }
           }
@@ -27,8 +27,8 @@
             "illustration": "home.svg"
           },
           "non": {
-            "string":"",
-            "illustration": "contract.svg"
+            "string":"Il ne possède pas un contrat d'occupation.",
+            "illustration": "not_contract.svg"
           }
         }
       },
@@ -43,7 +43,7 @@
           },
           "non": {
             "string":"",
-            "illustration": "contract.svg"
+            "illustration": ""
           }
         }
       },
@@ -55,6 +55,10 @@
           "oui": {
             "string":"La durée du contrat est de 3ans.",
             "illustration": "calendar.svg"
+          },
+          "non": {
+            "string":"",
+            "illustration": ""
           }
 
         }
