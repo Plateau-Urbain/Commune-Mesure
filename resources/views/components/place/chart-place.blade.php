@@ -32,6 +32,10 @@
   var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf",
   "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
 
+    var smallmap = mapjs.create('info-box-map')
+    L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
+    smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
+
     @foreach($plots as $plot)
       var chartPop = new charts.create(
           '{{ $plot->getId() }}',
