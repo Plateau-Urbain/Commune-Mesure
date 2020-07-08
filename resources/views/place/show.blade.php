@@ -40,17 +40,6 @@
                     @endforeach
                 </div>
             </section>
-
-            <section class="section">
-                <div class="columns">
-                    <div class="column is-one-third has-text-centered">
-                        @foreach ($place->photos as $photo)
-                            <img src="/images/{{ $photo }}" {{ getimagesize("images/$photo")[3] }}/>
-                        @endforeach
-                    </div>
-                    <div class="column content">{!! $place->description !!}</div>
-                </div>
-            </section>
         </div>
         <section class="section">
             <div class="level">
