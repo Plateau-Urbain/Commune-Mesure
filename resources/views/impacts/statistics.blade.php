@@ -96,7 +96,7 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column is-10">
+          <div class="column is-9">
             <canvas id="chart-bubble-pop" ></canvas>
           </div>
           <div class="column mt-3">
@@ -111,7 +111,11 @@
                       <div class="select">
                         <select id="abscisse" name="xAxe" onchange="populationAxesChart()">
                           @foreach ($places[0]->data->population as $key => $value)
-                            <option value="{{ $value }}">{{ $key }}</option>
+                            @unless($key === 'total')
+                              <option value="{{ $value }}">
+                                {{ str_replace(['female_', 'male_', '_'], ['Femmes de ', 'Hommes de ', ' à '], $key) }} ans
+                              </option>
+                            @endunless
                           @endforeach
                         </select>
                       </div>
@@ -130,7 +134,11 @@
                       <div class="select">
                         <select id="ordonnee" name="yAxe" onchange="populationAxesChart()">
                           @foreach ($places[0]->data->population as $key => $value)
-                            <option value="{{ $value }}">{{ $key }}</option>
+                            @unless($key === 'total')
+                              <option value="{{ $value }}">
+                                {{ str_replace(['female_', 'male_', '_'], ['Femmes de ', 'Hommes de ', ' à '], $key) }} ans
+                              </option>
+                            @endunless
                           @endforeach
                         </select>
                       </div>
