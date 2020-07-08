@@ -81,12 +81,4 @@
     })
   }
 
-  window.onload = (event) => {//TODO move in index.js
-    var select = document.getElementById("resilience-select")
-    createResilienceBar(select);
-
-    select.onchange = (event) => {
-      createResilienceBar(select)
-    }
-  }
 </script>

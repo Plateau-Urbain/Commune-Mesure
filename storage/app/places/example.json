@@ -59,9 +59,9 @@
         "resilience":{
             "edutcation":{
                 "title": "Modalités d'occupation",
-                "city": 40,
+                "city": 50,
                 "Region": 3,
-                "total": 50
+                "total": 60
             },
             "health":{
                 "title": "Programmation du lieu",

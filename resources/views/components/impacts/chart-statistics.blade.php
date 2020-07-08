@@ -29,15 +29,6 @@
   var dataPopFirst = {'name':null, 'position':1, 'data': null, 'id':null};
   var dataPopSecond = {'name':null, 'position':2, 'data': null, 'id':null};
 
-  window.onload= function(){//TODO move in index.js
-    yAxe = xAxe = "total";
-    dataPopFirst.data = getDataPopPlace("La-Ferme-du-Bonheur-Nanterre", dataPopFirst.position);
-    dataPopSecond.data = getDataPopPlace("Coco-Velten-Marseille", dataPopSecond.position);
-
-    populationAxesChart(null, null);
-    comparePopulationPlaces();
-  }
-
   function getDataPopPlace(placeName, position){
     var dataPop = [];
     @foreach($places as $place)

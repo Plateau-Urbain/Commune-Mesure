@@ -1,14 +1,4 @@
-@extends('layout')
-@section('head_css')
-    @parent
-@endsection
-@section('script_js')
-    @parent
-    <script src="https://unpkg.com/rough-viz@1.0.5"></script>
-    @include('components.impacts.chart-datas')
-@endsection
-@section('content')
-  <div class="container">
+<div class="container"  id="descriptionData">
       <div class="section">
         <div class="columns">
             <div class="column">
@@ -27,7 +17,7 @@
         </div>
       </div>
 
-      <div class="section">
+      <div class="section" id="resilienceData">
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label for="resilience-select" class="label">Choisissez un indicateur:</label>
@@ -76,4 +66,3 @@
         </div>
       </div>
   </div>
-@endsection

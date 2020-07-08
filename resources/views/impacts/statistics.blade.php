@@ -1,24 +1,14 @@
-@extends('layout')
-@section('head_css')
-  @parent
-@endsection
-@section('script_js')
-  @parent
-  <script src="https://unpkg.com/rough-viz@1.0.5"></script>
-  @include('components.impacts.chart-statistics')
-@endsection
-@section('content')
-  <div class="content">
+<div class="content">
     <div class="hero is-large is-light">
       <div class="section container is-fullhd">
         <div class="columns">
-          <div class="column">
+          <div class="column" id="descriptionStatistic">
             <div class="columns">
               <figure class="image is-128x128">
                 <img src="{{ url('/images/statistics.svg') }}" >
               </figure>
 
-                <h1 class="title is-1 has-text-centered">Les données</h1>
+                <h1 class="title is-1 has-text-centered">Les statistiques</h1>
             </div>
 
           </div>
@@ -32,13 +22,16 @@
       </div>
       <div class="hero is-large is-light">
         <div class="section">
-          <h1 class="title is-2 has-text-centered">Occupation des lieux</h1>
-          <div class="columns">
+          <h1 class="title is-2 has-text-centered">Comparer deux lieux</h1>
+          <br/>
+          <p class="subtitle is-5 has-text-centered">Sur la base de la population iris</p>
+          <br/><br/>
+          <div class="columns" id="compareStatistic">
             <div class="column">
               <div class="field">
                 <div class="control">
                   <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
-                  <div class="select is-small is-success" style="margin-top:1em;">
+                  <div class="select is-small is-success">
                     <select name="1" id="first-city-select" class="is-focused" onchange="comparePopulationPlaces(this)">
                       @foreach($places as $place)
                         <option value="{{ $place->title }}">{{ $place->name }}</option>
@@ -62,7 +55,7 @@
               <div class="field">
                 <div class="control">
                   <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
-                  <div class="select is-small is-success" style="margin-top:1em;">
+                  <div class="select is-small is-success">
                     <select name="2" id="second-city-select" class="is-focused" onchange="comparePopulationPlaces(this)">
                       @foreach($places as $place)
                         <option value="{{ $place->title }}">{{ $place->name }}</option>
@@ -86,7 +79,7 @@
     <div class="hero is-large is-light">
       <div class="section">
         <div class="box content">
-          <div class="columns is-bordered places-block">
+          <div class="columns is-bordered places-block" id="graphStatistic">
             <div class="column">
               <p class="title">Population des lieux</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -152,4 +145,3 @@
       </div>
     </div>
   </div>
-@endsection

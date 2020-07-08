@@ -9,13 +9,7 @@
             <div class="navbar-end">
                 <a class="navbar-item" href="/">Accueil</a>
                 <a class="navbar-item" href="/les-lieux">Les lieux</a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item" href="/les-donnees">Nos précieuses données</a>
-                        <a class="navbar-item" href="/les-statistiques">Les statistiques</a>
-                    </div>
-                </div>
+                <a class="navbar-item" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
                 <a class="navbar-item" href="/documentation">Documentation</a>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="les-institutions">Les institutions</a>
