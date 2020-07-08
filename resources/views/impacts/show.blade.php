@@ -5,44 +5,58 @@
 @section('script_js')
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
+    @include('components.impacts.chart-statistics')
+    @include('components.impacts.chart-datas')
+    <script>
+    window.onload = (event) => {//TODO move in index.js
+      var select = document.getElementById("resilience-select")
+      createResilienceBar(select);
+
+      select.onchange = (event) => {
+        createResilienceBar(select)
+      }
+      yAxe = xAxe = "total";
+      dataPopFirst.data = getDataPopPlace("La-Ferme-du-Bonheur-Nanterre", dataPopFirst.position);
+      dataPopSecond.data = getDataPopPlace("Coco-Velten-Marseille", dataPopSecond.position);
+
+      populationAxesChart(null, null);
+      comparePopulationPlaces();
+    }
+    </script>
 @endsection
 @section('content')
-  <div class="container">
-      <div class="hero is-large is-light">
-          <div class="section">
-              <div class="columns">
-                  <div class="column content">
-                    <h1 class="title is-1 has-text-centered">Les données et statistiques des lieux</h1>
-                    <div class="is-half has-text-centered">
-                      <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias</p>
-                      <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci</p>
-                    </div>
-
-                  </div>
-
-              </div>
-          </div>
-        </div>
-        <div class="section">
-          <div class="columns">
-            <div class="column">
-              <div class="box content">
-                <p class="title"><a href="{{ route('impacts.datas')  }}">Ces données précieuses</a></p>
-                <p>Lorem Salu bissame ! Wie geht's les sa dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                <p>Yoo ch'ai lu dans les DNA que le Racing a encore perdu contre</p>
-                <p>Oberschaeffolsheim. Verdammi et moi ch'avais donc parié deux </p>
-              </div>
-            </div>
-            <div class="column">
-              <div class="box content">
-                <p class="title"><a href="{{ route('impacts.statistics')  }}">Des statistiques pour comprendre les lieux</a>
-                </p>
-                  <p>knacks et une flammekueche. Ah so ? T'inquiète, ch'ai ramené du schpeck, du chambon, un kuglopf et du schnaps dans mon rucksack.</p>
-                  <p> Allez, s'guelt ! Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="columns is-gapless">
+    <div class="column is-2">
+    <div class="section scrolling-menu">
+      <aside class="menu">
+        <p class="menu-label">
+          statistiques
+        </p>
+        <ul class="menu-list">
+          <li>
+            <ul>
+              <li><a href="#descriptionStatistic">Description</a></li>
+              <li><a href="#compareStatistic">Comparer deux lieux</a></li>
+              <li><a href="#graphStatistic">Graphique de la population</a></li>
+            </ul>
+          </li>
+        </ul>
+        <p class="menu-label">
+          Données
+        </p>
+        <ul class="menu-list">
+          <li>
+            <ul>
+              <li><a href="#descriptionData">Description</a></li>
+              <li><a href="#resilienceData">Les données sur la résiliences</a></li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  <div class="column">
+    @include('impacts.statistics')
+    @include('impacts.datas')
   </div>
 @endsection
