@@ -96,34 +96,46 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column">
+          <div class="column is-10">
             <canvas id="chart-bubble-pop" ></canvas>
           </div>
           <div class="column mt-3">
             <div class="box content is-bordered">
-              <div class=" columns">
-                <div class="control">
-
-                  <div class="column">
-                    <p class="is-1">Abscisse</p>
-                    @foreach ($places[0]->data->population as $key => $value)
-                      <label class="radio">
-                        <input type="radio" name="xAxe" onchange="populationAxesChart('{{ $key }}', this)">
-                        {{ $key }}
-                      </label>
-                    @endforeach
+              <div class="field is-horizontal">
+                <div class="field-label">
+                  <label for="abscisse" class="label">Abscisse</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select">
+                        <select id="abscisse" name="xAxe" onchange="populationAxesChart()">
+                          @foreach ($places[0]->data->population as $key => $value)
+                            <option value="{{ $value }}">{{ $key }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
                   </div>
+                </div>
+              </div>
 
-                  <div class="column">
-                    <p class="is-1">Ordonnée</p>
-                    @foreach ($places[0]->data->population as $key => $value)
-                      <label class="radio">
-                        <input type="radio" name="yAxe" onchange="populationAxesChart('{{ $key }}', this)">
-                        {{ $key }}
-                      </label>
-                    @endforeach
+              <div class="field is-horizontal">
+                <div class="field-label">
+                  <label for="ordonnee" class="label">Ordonnée</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select">
+                        <select id="ordonnee" name="yAxe" onchange="populationAxesChart()">
+                          @foreach ($places[0]->data->population as $key => $value)
+                            <option value="{{ $value }}">{{ $key }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -131,6 +143,5 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 @endsection
