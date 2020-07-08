@@ -68,6 +68,11 @@
                 <div class="section" id="sectionResilienceBar">
                 </div>
             </div>
+            <div class="tab" data-tab="raw">
+                <div class="section">
+                    <pre>@json($places[0]->data->resilience, JSON_PRETTY_PRINT)</pre>
+                </div>
+            </div>
         </div>
       </div>
   </div>
