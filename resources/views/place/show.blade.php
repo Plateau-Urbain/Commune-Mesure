@@ -70,6 +70,28 @@
             </div>
         </section>
 
+        <section class="section has-text-centered ">
+            <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
+              <div class="is-2">
+                <div class="Progress">
+                  <div class="Progress-item is-inline-block" style="width:12em; background-color:#e34c26; border-radius: 1em 0 0 1em;"></div>
+                  <div class="Progress-item is-inline-block" style="width:10em; background-color:#4F5D95;"></div>
+                  <div class="Progress-item is-inline-block" style="width:4em; background-color:#563d7c;"></div>
+                  <div class="Progress-item is-inline-block" style="width:2em; background-color:#f1e05a; border-radius: 0 1em 1em 0;"></div>
+                </div>
+                <div class="column">
+                    <div class="Progress-label is-inline-block" style="background-color:#e34c26;"></div>
+                    <span>Startup <p class="heading is-inline-block">40%</p></span>
+                    <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
+                    <span>Associations <p class="heading is-inline-block">39%</p></span>
+                    <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
+                    <span>Artistes <p class="heading is-inline-block">15%</p></span>
+                    <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
+                    <span>Autres <p class="heading is-inline-block">6%</p></span>
+                </div>
+              </div>
+        </section>
+
         <div id="indicateurs" class="anchor">
             <section class="section" id="indicateurs-martin">
               <h3 class="title is-3">Les indicateurs de Martin</h3>

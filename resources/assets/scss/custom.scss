@@ -125,7 +125,19 @@ h1, h2, h3, h4, h5, h6 {
 #resilience-div{
   margin: 2em;
 }
-
+.Progress{
+  height: 2em;
+  width: auto;
+}
+.Progress-item{
+  height: 1.5em;
+}
+.Progress-label{
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  margin: 1em;
+}
 #myProgress {
   width: 80%;
   background-color:  $grey-lighter ;
