@@ -30,14 +30,18 @@
             </section>
 
             <section class="section">
+                <h5 class="title is-5 has-text-centered no-border">Badges</h5>
                 <div class="columns is-centered">
-                    @foreach ($place->badges as $badge)
-                        <div class="column is-narrow">
-                            <figure class="image is-128x128">
-                                <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" />
-                            </figure>
-                        </div>
-                    @endforeach
+                    <div class="tags are-large">
+                        @foreach ($place->badges as $badge)
+                            {{-- <div class="column is-narrow"> --}}
+                            {{--     <figure class="image is-128x128"> --}}
+                            {{--         <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" /> --}}
+                            {{--     </figure> --}}
+                            {{-- </div> --}}
+                            <span class="tag is-primary">{{ $badge }}</span>
+                        @endforeach
+                    </div>
                 </div>
             </section>
         </div>
