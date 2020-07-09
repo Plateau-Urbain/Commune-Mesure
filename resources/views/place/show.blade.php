@@ -248,7 +248,7 @@
                         @endif
                         @php ($nb +=1) @endphp
                         <figure class=" is-inline-block image is-128x128" title="{{ $question->question }}">
-                            <img  src="{{ '/images/'.$question->answer->{$answer}->illustration }}" >
+                            <img  src="{{ '/images/'.$question->answer->{$answer}->illustration) }}" >
                         </figure>
 
                       @endif
