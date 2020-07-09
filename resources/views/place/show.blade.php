@@ -243,12 +243,12 @@
                         @php ($string =$string.' '.$question->answer->{$answer}->string) @endphp
                         @if($nb > 2 && $nb <= count((array)$group))
                           <figure class=" is-inline-block image is5em">
-                              <img  src="/images/arrow.svg" >
+                              <img  src="{{ url('/images/arrow.svg') }}" >
                           </figure>
                         @endif
                         @php ($nb +=1) @endphp
                         <figure class=" is-inline-block image is-128x128" title="{{ $question->question }}">
-                            <img  src="{{ '/images/'.$question->answer->{$answer}->illustration) }}" >
+                            <img  src="{{ url('/images/'.$question->answer->{$answer}->illustration) }}" >
                         </figure>
 
                       @endif
@@ -266,7 +266,7 @@
             <div class="column">
               <div id="budget-value-illustration">
                 <figure class="image">
-                  <img  src="/images/budget_value.svg" >
+                  <img  src="{{ url('/images/budget_value.svg') }}" >
                 </figure>
                 <div class="" id="budget-value-illustration-detail">
                     <p class="fontSize1em"><strong>Un budget annuel de:</strong></p>
@@ -280,7 +280,7 @@
             <div class="column is-one-fifth has-text-centered">
               <div class="budget">
                 <figure class="image is20em">
-                  <img  src="/images/budget.svg" >
+                  <img  src="{{ url('/images/budget.svg') }}" >
                 </figure>
                 <div class="" id="budget-year">Budget annuel</div>
                 <div class="" id="budget-fund">Origines des fonds</div>
@@ -290,7 +290,7 @@
             <div class="column">
               <div id="budget-fund-illustration">
                 <figure class="image">
-                  <img  src="/images/budget_value.svg" >
+                  <img  src="{{ url('/images/budget_value.svg') }}" >
                 </figure>
                 <div class="" id="budget-fund-illustration-detail">
                   <ul class="menu-list">

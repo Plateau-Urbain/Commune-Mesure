@@ -3,7 +3,7 @@
     @if (count($images))
         <div class='card-image'>
             <figure class='image'>
-                <img src='{{ '/images/'.$images[0] }}' alt='Image lieu'>
+                <img src='{{ url('/images/'.$images[0]) }}' alt='Image lieu'>
             </figure>
         </div>
     @endif
