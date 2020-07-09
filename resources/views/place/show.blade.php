@@ -49,7 +49,7 @@
             <div class="level">
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Entreprises</p>
+                        <p class="heading">Structures hébergées</p>
                         <p class="title is-1 animate-value" data-total="53" >53</p>
                     </div>
                 </div>
