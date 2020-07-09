@@ -13,6 +13,18 @@
 |
 */
 
+// Reverse proxy workaround
+$proxy_url    = getenv('PROXY_URL');
+$proxy_schema = getenv('PROXY_SCHEMA');
+
+if (!empty($proxy_url)) {
+   URL::forceRootUrl($proxy_url);
+}
+
+if (!empty($proxy_schema)) {
+   URL::forceScheme($proxy_schema);
+}
+
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/documentation', ['uses' => 'SurveyController@show', 'as' => 'survey.show']);

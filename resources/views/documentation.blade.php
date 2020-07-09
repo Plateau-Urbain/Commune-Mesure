@@ -11,7 +11,7 @@
     <div class="columns">
       <div class="column">
         <figure class=" is-inline-block image">
-            <img  src="/images/survey_illustration.svg" >
+            <img  src="{{ url('/images/survey_illustration.svg') }}" >
         </figure>
       </div>
       <div class="column">
@@ -42,7 +42,7 @@
               </div>
               <div class="column">
                 <figure class="is-inline-block image is20em">
-                    <img  src="/images/survey_place_illustration.svg" >
+                    <img  src="{{ url('/images/survey_place_illustration.svg') }}" >
                 </figure>
               </div>
             </div>

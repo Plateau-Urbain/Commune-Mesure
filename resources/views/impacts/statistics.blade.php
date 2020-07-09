@@ -5,7 +5,7 @@
           <div class="column" id="descriptionStatistic">
             <div class="columns">
               <figure class="image is-128x128">
-                <img src="/images/statistics.svg" >
+                <img src="{{ url('/images/statistics.svg') }}" >
               </figure>
 
                 <h1 class="title is-1 has-text-centered">Les statistiques</h1>
