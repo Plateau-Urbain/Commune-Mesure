@@ -2,7 +2,7 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/"><img src="/images/logos/commune-mesure.png" alt='logo'></a>
+            <a class="navbar-item" href="/"><img src="{{ url('/images/logos/commune-mesure.png') }}" alt='logo'></a>
         </div>
 
         <div id="navbarMenuHeroA" class="navbar-menu">
