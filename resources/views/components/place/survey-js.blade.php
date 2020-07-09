@@ -99,12 +99,8 @@
         budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
         budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
 
-        var budgetTotal = document.getElementById("budget-total");
-        budgetTotal.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-        budgetTotal.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-        var budgetFund = document.getElementById("budget-fund");
-        budgetFund.addEventListener("mouseover", flashingBox.bind(null, "budget-fund-illustration-detail"));
-        budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "budget-fund-illustration-detail"));
+        var budgetFund = document.getElementById("actor");
+        budgetFund.addEventListener("mouseover", flashingBox.bind(null, "actor-illustration-detail"));
+        budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "actor-illustration-detail"));
     }
 </script>

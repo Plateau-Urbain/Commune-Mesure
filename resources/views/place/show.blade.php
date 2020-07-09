@@ -91,7 +91,68 @@
                 </div>
               </div>
         </section>
+        <section>
+          <h5 class="title is-5 has-text-centered">Modèle économique</h5>
+          <div class="columns is-flex is-vcentered is-centered">
+            <div class="column">
+              <div id="budget-value-illustration">
+                <figure class="image">
+                  <img  src="/images/budget_value.svg" >
+                </figure>
+                <div class="" id="description-illustration-detail">
+                    <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
+                    <p class="fontSize1em">{{ $place->description }}</p>
 
+                </div>
+              </div>
+            </div>
+            <div class="column is-one-fifth">
+              <div class="budget">
+                <figure class="image is20em">
+                  <img  src="/images/building.svg" >
+                </figure>
+                <div class="very-small" id="budget-year">Budget</div>
+                <div class="very-small font-color-theme" id="budget-value">
+                  <p>Annuel: {{ '100K ' }}€</p>
+                  <p>Total: {{ '150K' }} €</p>
+                </div>
+                <div class="" id="actor">Les acteurs</div>
+              </div>
+            </div>
+            <div class="column">
+              <div id="actor-illustration">
+                <figure class="image">
+                  <img  src="/images/budget_value.svg" >
+                </figure>
+                <div class="content" id="actor-illustration-detail">
+                  <ul>
+                    <li>
+                      <strong>Les acteurs publics</strong>
+                      <ul>
+                        <li>Marie de Paris</li>
+                        <li>Region IDF</li>
+                      </ul>
+                    </li>
+                    <br/>
+                    <li class="fontSize1em">
+                      <strong>Les acteurs privés</strong>
+                      <ul>
+                        <li>CIVA</li>
+                        <li>Renault</li>
+                      </ul>
+                    </li>
+                  <ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section class="section">
+            <div class="column is-3 ">
+                <h5 class="title is-5 has-text-centered">Financement</h5>
+                <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
+            </div>
+          </section>
+        </section>
         <div id="indicateurs" class="anchor">
             <section class="section" id="indicateurs-martin">
               <h3 class="title is-3">Les indicateurs de Martin</h3>
@@ -195,29 +256,6 @@
             </div>
         </section>
 
-        <section class="section">
-            <div class="columns is-vcentered has-text-centered">
-                <div class="column is-3 is-offset-2">
-                <h5 class="title is-5 has-text-centered">Taux de réinsertion au niveau local</h5>
-                    @for($i = 100; $i > 0;)
-                        @for($j = 1; $j <= 10; $j++ && $i--)
-                            <div class="squared
-                            @if($i <= 48)
-                                filled
-                            @endif
-                            "></div>
-                        @endfor
-                        <br>
-                    @endfor
-                    <h2 class="title is-2 no-border">48%</h2>
-                    <h4 class="subtitle is-4">de réinsertion</h4>
-                </div>
-                <div class="column is-3 is-offset-2">
-                    <h5 class="title is-5 has-text-centered">Financement</h5>
-                    <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
-                </div>
-            </div>
-        </section>
 
         <section class="section anchors" id="indicateurs-approche">
           <h3 class="title is-3">Les indicateurs d'Approche</h3>
@@ -260,50 +298,6 @@
               </div>
             </div>
           </div>
-
-          <h5 class="title is-5 has-text-centered">Modèle économique</h5>
-          <div class="columns is-flex is-vcentered is-centered">
-            <div class="column">
-              <div id="budget-value-illustration">
-                <figure class="image">
-                  <img  src="/images/budget_value.svg" >
-                </figure>
-                <div class="" id="budget-value-illustration-detail">
-                    <p class="fontSize1em"><strong>Un budget annuel de:</strong></p>
-                    <p class="fontSize1em"><strong>{{ "120K €" }}</strong></p>
-                    <br/>
-                    <p class="fontSize1em"><strong>Un budget total de:</strong></p>
-                    <p class="fontSize1em"><strong>{{ "150K €" }}</strong></p>
-                </div>
-              </div>
-            </div>
-            <div class="column is-one-fifth has-text-centered">
-              <div class="budget">
-                <figure class="image is20em">
-                  <img  src="/images/budget.svg" >
-                </figure>
-                <div class="" id="budget-year">Budget annuel</div>
-                <div class="" id="budget-fund">Origines des fonds</div>
-                <div class="" id="budget-total">Budget total</div>
-              </div>
-            </div>
-            <div class="column">
-              <div id="budget-fund-illustration">
-                <figure class="image">
-                  <img  src="/images/budget_value.svg" >
-                </figure>
-                <div class="" id="budget-fund-illustration-detail">
-                  <ul class="menu-list">
-                    <li class="fontSize1em"><strong>Fonds public</strong></li>
-                    <br/>
-                    <li class="fontSize1em"><strong>Fonds privé</strong></li>
-                  <ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
 
           <h5 class="title is-5 has-text-centered">Services</h5>
           <div class="columns is-vcentered has-text-centered">
