@@ -34,7 +34,6 @@
     @foreach($places as $place)
       if("{{ $place->title }}" == placeName){
 
-        console.log(placeName);
         if(position == 1){
           dataPopFirst.name = "{{ $place->name }}";
           let p = document.getElementById('title-left');

@@ -14,6 +14,7 @@ class ImpactsController extends Controller
     public function show(Place $place)
     {
         [$coordinates,$cities, $places] = $place->all();
+
         return view('impacts.show', compact('coordinates', 'cities', 'places'));
     }
 

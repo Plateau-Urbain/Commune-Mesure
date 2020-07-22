@@ -18,6 +18,16 @@
       </div>
 
       <div class="section" id="resilienceData">
+        <div class="column">
+          <div class="Progress-label is-inline-block" style="background-color:#e34c26;"></div>
+          <span>Startup</span>
+          <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
+          <span>Associations</span>
+          <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
+          <span>Artistes</span>
+          <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
+          <span>Autres</span>
+        </div>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label for="resilience-select" class="label">Choisissez un indicateur:</label>
@@ -27,8 +37,9 @@
               <div class="control">
                 <div class="select is-small is-success">
                   <select name="resilience" id="resilience-select" class="is-focused">
-                      @foreach($places[0]->data->resilience as $type_resilience => $resilience)
-                        <option value="{{ $type_resilience }}">{{ $resilience->title }}</option>
+                      @foreach($places[0]->data->resilience as $resilience)
+                        @continue(property_exists($resilience, 'key') == false)
+                        <option value="{{ $resilience->key }}">{{ $resilience->title }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -56,7 +67,35 @@
         <div class="tabs-content" data-tab-group="indicateurs">
             <div class="tab is-active" data-tab="charts">
                 <div class="section" id="sectionResilienceBar">
+
                 </div>
+                <template id="template-progress">
+                  <div class="is-2">
+                    <div class="Progress">
+                    </div>
+                  </div>
+                </template>
+                <template id="template-progress-item-start">
+                  <div class="Progress-item is-inline-block" data-tooltip="Santé" style="background-color:#e34c26; border-radius: 1em 0 0 1em;"></div>
+                </template>
+                <template id="template-progress-item-medium">
+                <div class="Progress-item is-inline-block" data-tooltip="Sécurité" style="background-color:#4F5D95;"></div>
+                </template>
+                <template id="template-progress-item-end">
+                  <div class="Progress-item is-inline-block" data-tooltip="Environnement" style="background-color:#f1e05a; border-radius: 0 1em 1em 0;"></div>
+                </template>
+                <template id="template-title-place">
+                  <p class="title is-4 no-border"></p>
+                </template>
+                <template id="template-link-place"><a href=""></a></template>
+                <template id="template-indicateur-column">
+                  <div class="column"></div>
+                </template>
+
+                <template id="template-indicateur-columns">
+                  <div class="columns">
+                  </div>
+                </template>
             </div>
             <div class="tab" data-tab="raw">
                 <div class="section">

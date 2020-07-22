@@ -52,8 +52,51 @@ class Place
             $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
         }
 
+        usort($this->places, function($a, $b)
+        {
+            if (strcasecmp($a->name, $b->name) === 0) {
+                return 0;
+            }
+            return (strcasecmp($a->name, $b->name) < 0) ? -1 : 1;
+        });
+
+        $this->sortResilience();
         ksort($this->cities);
     }
+
+    protected function assocResiliences($resiliences){
+      $resiliencesArray = [];
+      $total = 0;
+      foreach ($resiliences as $key => $value) {
+        $total = $total + $value->city;
+        $value->{'key'} = $key;
+        $resiliencesArray[] = $value;
+      }
+      $totalObj = new \stdClass;
+      $totalObj->{'total'} = $total;
+      $resiliencesArray[] = $totalObj;
+      return $resiliencesArray;
+    }
+
+    protected function sortResilience(){
+      $ar = [];
+      $resilience = $this->places;
+      foreach ($resilience as $key => $value) {
+        $ar = $this->assocResiliences($value->data->resilience);
+        usort($ar, function($a, $b)
+        {
+          if(property_exists($a, 'city') && property_exists($b, 'city')){
+            if ($a->city === $b->city) {
+                return 0;
+            }
+            return $a->city > $b->city ? -1 : 1;
+          }
+        });
+        $this->places[$key]->data->resilience = (object)$ar;
+      }
+    }
+
+
 
     protected function getJson($place)
     {

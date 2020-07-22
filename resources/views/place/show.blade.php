@@ -79,15 +79,52 @@
                   <div class="Progress-item is-inline-block" style="width:4em; background-color:#563d7c;"></div>
                   <div class="Progress-item is-inline-block" style="width:2em; background-color:#f1e05a; border-radius: 0 1em 1em 0;"></div>
                 </div>
-                <div class="column">
-                    <div class="Progress-label is-inline-block" style="background-color:#e34c26;"></div>
-                    <span>Startup <p class="heading is-inline-block">40%</p></span>
-                    <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
-                    <span>Associations <p class="heading is-inline-block">39%</p></span>
-                    <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
-                    <span>Artistes <p class="heading is-inline-block">15%</p></span>
-                    <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
-                    <span>Autres <p class="heading is-inline-block">6%</p></span>
+                <div class="section">
+                  <div class="columns">
+                    <div class="column">
+                      <div class="content is-inline-block">
+                        <figure class="image is-128x128">
+                          <img src="/images/startup_illustration.svg" />
+                        </figure>
+                      </div>
+                      <div class="content">
+                        <span class="Progress-label is-inline-block" style="background-color:#e34c26;"></span>
+                        <span>Startup <p class="heading is-inline-block">40%</p></span>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="content is-inline-block">
+                        <figure class="image is-128x128">
+                          <img src="/images/charity_illustration.svg" />
+                        </figure>
+                      </div>
+                      <div class="content">
+                        <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
+                        <span>Associations <p class="heading is-inline-block">39%</p></span>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="content is-inline-block">
+                        <figure class="image is-128x128">
+                          <img src="/images/artist_illustration.svg" />
+                        </figure>
+                      </div>
+                      <div class="content">
+                        <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
+                        <span>Artistes <p class="heading is-inline-block">15%</p></span>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="content is-inline-block">
+                        <figure class="image is-128x128">
+                          <img src="/images/other_illustration.svg" />
+                        </figure>
+                      </div>
+                      <div class="content">
+                        <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
+                        <span>Autres <p class="heading is-inline-block">6%</p></span>
+                      </div>
+                    </div>
                 </div>
               </div>
         </section>
