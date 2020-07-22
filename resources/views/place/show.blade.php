@@ -422,23 +422,6 @@
             </div>
           </div>
         </section>
-
-        <section class="section">
-          <h3 class="title is-3">Autres exemples de graph</h3>
-          <div class="columns">
-            <div class="column has-text-centered">
-              <div id="chart-rough-logement-barh"></div>
-            </div>
-            <div class="column has-text-centered">
-              <div id="chart-rough-logement-doughnut"></div>
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <div class="column has-text-centered">
-            <div id="chart-rough-logement-scatter"></div>
-          </div>
-        </section>
     </div>
 </div>
 @endsection
