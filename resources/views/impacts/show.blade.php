@@ -15,12 +15,7 @@
       select.onchange = (event) => {
         createResilienceBar(select)
       }
-      yAxe = xAxe = "total";
-      dataPopFirst.data = getDataPopPlace("La-Ferme-du-Bonheur-Nanterre", dataPopFirst.position);
-      dataPopSecond.data = getDataPopPlace("Coco-Velten-Marseille", dataPopSecond.position);
 
-      populationAxesChart(null, null);
-      comparePopulationPlaces();
     }
     </script>
 @endsection

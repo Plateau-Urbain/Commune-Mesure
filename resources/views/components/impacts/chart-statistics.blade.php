@@ -29,37 +29,6 @@
   var dataPopFirst = {'name':null, 'position':1, 'data': null, 'id':null};
   var dataPopSecond = {'name':null, 'position':2, 'data': null, 'id':null};
 
-  function getDataPopPlace(placeName, position){
-    var dataPop = [];
-    @foreach($places as $place)
-      if("{{ $place->title }}" == placeName){
-
-        if(position == 1){
-          dataPopFirst.name = "{{ $place->name }}";
-          let p = document.getElementById('title-left');
-          let a = p.firstChild;
-          a.setAttribute('href', "{{ route('place.show',['slug' => $place->title])  }}")
-          a.textContent = "{{ $place->name }}";
-        }else{
-          let p = document.getElementById('title-right');
-          let a = p.firstChild;
-          a.setAttribute('href', "{{ route('place.show',['slug' => $place->title])  }}")
-          a.textContent = "{{ $place->title }}";
-
-          dataPopSecond.name = "{{ $place->name }}";
-        }
-        dataPop.push(
-          @foreach ($place->data->population as $key => $value)
-            {{ $value }},
-          @endforeach
-        );
-        return dataPop;
-      }
-
-    @endforeach
-
-  }
-
   function getLabelsPopPlace(){
     var labelPop = [];
     @foreach($places as $place)
@@ -74,37 +43,7 @@
   }
 
   var mixedChart;
-  function comparePopulationPlaces(select){
-    if(mixedChart !== undefined){
-      mixedChart.destroy();
-      if(select.name == dataPopFirst.position){
-        dataPopFirst.data = getDataPopPlace(select.value, dataPopFirst.position);
-      }else{
-        dataPopSecond.data = getDataPopPlace(select.value, dataPopSecond.position);
-      }
 
-    }
-
-
-     mixedChart = new Chart(document.getElementById("chart-overlay-compare"), {
-      type: 'bar',
-      data: {
-        datasets: [{
-            label: dataPopFirst.name,
-            data: dataPopFirst.data,
-            borderColor: 'rgba(77, 171, 247, 1)',
-            backgroundColor: 'rgba(77, 171, 247, 0.3)'
-        }, {
-          label: dataPopSecond.name,
-          data: dataPopSecond.data,
-          type: 'bar',
-          backgroundColor: 'rgba(186, 200, 255, 0.3)',
-          borderColor: 'rgba(186, 200, 255, 1)',
-        }],
-        labels: getLabelsPopPlace()
-      }
-      });
-  }
   function populationAxesChart(axe, element){
     if(element != null){
       if(element.name == "xAxe"){

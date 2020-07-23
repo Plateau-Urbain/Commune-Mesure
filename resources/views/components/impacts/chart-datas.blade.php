@@ -73,12 +73,10 @@ function move(element) {
       divColumnsResilience.appendChild(divColumnDetail)
       var resiliences = JSON.parse("{{ json_encode($place->data->resilience) }}".replace(/&quot;/g,'"'));
       var total = resiliences[length].total
-      console.log(total);
       @foreach($place->data->resilience as $type_resilience => $resilience)
 
           @if(property_exists($resilience, 'key') !== false)
             var resilience = JSON.parse("{{ json_encode($resilience) }}".replace(/&quot;/g,'"'));
-            console.log(resilience)
             if(resilienceType == "{{ $resilience->key }}"){
                 progressItemStart = document.importNode(templateProgressItemStart.content, true).firstElementChild;
                 progressItemStart = progressBar(resilience, progressItemStart, total);
