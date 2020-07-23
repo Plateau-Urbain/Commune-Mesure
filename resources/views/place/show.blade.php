@@ -297,45 +297,6 @@
 
         <section class="section anchors" id="indicateurs-approche">
           <h3 class="title is-3">Les indicateurs d'Approche</h3>
-          <h5 class="title is-5 has-text-centered">Modalités d'occupation</h5>
-          <div class="columns is-flex is-vcentered is-centered">
-            <div class="column is-one-third">
-              <div class="location-home">
-                @svg('../public/images/location_home.svg')
-               <div class="" id="owner">Propriétaire</div>
-               <div class="" id="contract">Contrat</div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="" id="illustration-contract">
-                @foreach($sentences->groups as $key => $group)
-                  @php ($string = "") @endphp
-                  @php ($nb = 2) @endphp
-                  <div class="">
-                  @foreach($group as $keygroup => $question)
-                    @if($keygroup !== "title")
-                      @php ($answer = $place->data->survey->groups->{"$key"}->{"$keygroup"}->answer) @endphp
-                      @if(!empty($question->answer->{$answer}->illustration))
-                        @php ($string =$string.' '.$question->answer->{$answer}->string) @endphp
-                        @if($nb > 2 && $nb <= count((array)$group))
-                          <figure class=" is-inline-block image is5em">
-                              <img  src="{{ url('/images/arrow.svg') }}" >
-                          </figure>
-                        @endif
-                        @php ($nb +=1) @endphp
-                        <figure class=" is-inline-block image is-128x128" title="{{ $question->question }}">
-                            <img  src="{{ url('/images/'.$question->answer->{$answer}->illustration) }}" >
-                        </figure>
-
-                      @endif
-                    @endif
-                  @endforeach
-                  </div>
-                  <p class="subtitle">{{ sprintf($string, $place->name) }}</p>
-                @endforeach
-              </div>
-            </div>
-          </div>
           <h5 class="title is-5 has-text-centered">Services</h5>
           <div class="columns is-vcentered has-text-centered">
             <div class="column is-2 is-offset-3">
