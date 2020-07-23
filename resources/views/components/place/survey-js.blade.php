@@ -40,26 +40,6 @@
         }
     })
 
-    function surveyPlace(select){
-
-    }
-
-    function flashingBox(id){
-      var illustrationContract = document.getElementById(id);
-      illustrationContract.style.border = 'solid 1em  #e85048';
-      illustrationContract.style.padding = '5px';
-      illustrationContract.style.transition = 'border-width 0.6s linear';
-
-      illustrationContract.style.animation = 'blinker 2s cubic-bezier(.5, 0, 1, 1) infinite alternate';
-    }
-
-    function flashingOffBox(id){
-      var illustrationContract = document.getElementById(id);
-      illustrationContract.style.border = null;
-      illustrationContract.style.animation = null;
-    }
-
-
 
     // Changement images questionnaire
     var imgLeft = document.getElementById('img-left');
@@ -78,29 +58,5 @@
         img.nextElementSibling.textContent = el.dataset.txt
     }
 
-    window.onload = (event) => {//TODO move in index.js
-        radio.onchange = (event) => {
-            for (var target = event.target; target && target != this; target = target.parentNode) {
-                if (target.matches('input[type=radio]')) {
-                    chgImg(target)
-                    break
-                }
-            }
-        }
-        var contract = document.getElementById("contract");
-        contract.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
-        contract.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
 
-        var owner = document.getElementById("owner");
-        owner.addEventListener("mouseover", flashingBox.bind(null, "illustration-contract"));
-        owner.addEventListener("mouseout", flashingOffBox.bind(null, "illustration-contract"));
-
-        var budgetYear = document.getElementById("budget-year");
-        budgetYear.addEventListener("mouseover", flashingBox.bind(null, "budget-value-illustration-detail"));
-        budgetYear.addEventListener("mouseout", flashingOffBox.bind(null, "budget-value-illustration-detail"));
-
-        var budgetFund = document.getElementById("actor");
-        budgetFund.addEventListener("mouseover", flashingBox.bind(null, "actor-illustration-detail"));
-        budgetFund.addEventListener("mouseout", flashingOffBox.bind(null, "actor-illustration-detail"));
-    }
 </script>
