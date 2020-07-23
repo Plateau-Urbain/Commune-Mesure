@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
     @include('components.place.chart-place')
     @include('components.place.survey-js')
+    @include('components.place.map-insee-js')
 @endsection
 
 @section('content')
@@ -339,48 +340,67 @@
 
         <section class="section anchor" id="donnees-insee">
           <h3 class="title is-3">Les données INSEE</h3>
-          <h5 class="title is-5 has-text-centered">Répartition H/F</h5>
-          <div class="tabs is-small" data-tab-group="population">
-            <ul>
-              <li class="is-active">
-                <a href="#charts">
-                  <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                  <span>Graphiques</span>
-                </a>
-              </li>
-              <li>
-                <a href="#raw">
-                  <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                  <span>Données</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="columns is-multiline">
-            <div class="column is-half ">
-              <div class="tabs-content" data-tab-group="population">
-                <div class="tab is-active" data-tab="charts">
-                  <canvas id="chart-pop" height=380 width=760></canvas>
-                </div>
-                <div class="tab" data-tab="raw">
-                  <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
+          <div class="section">
+            <div class="columns">
+              <div class="column" style="width: 100%;height: 30em;">
+                <div id="map-insee"></div>
+              </div>
+              <div class="column is-one-fifth">
+                <div>
+                  <h4>Actifs</h4>
+                  <div style="height:2em; width:40%; background-color:grey;"></div>
+                  <h4>Chômeurs</h4>
+                  <div style="height:2em; width:25%; background-color:red;"></div>
+                  <h4>Autres</h4>
+                  <div style="height:2em; width:35%; background-color:cyan;"></div>
                 </div>
               </div>
-            </div> {{-- Repartition H/F --}}
-            <div class="column is-half">
-              <canvas id="chart-pop-bar"></canvas>
             </div>
-            <div class="column is-12"><h5 class="title is-5 has-text-centered">Répartition des actifs</h5></div>
-            <div class="column is-half">
-              <canvas id="chart-activities"></canvas>
+          </div>
+          <div>
+            <h5 class="title is-5 has-text-centered">Répartition H/F</h5>
+            <div class="tabs is-small" data-tab-group="population">
+              <ul>
+                <li class="is-active">
+                  <a href="#charts">
+                    <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                    <span>Graphiques</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#raw">
+                    <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
+                    <span>Données</span>
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div class="column is-half">
-              <canvas id="chart-activities2"></canvas>
-            </div>
-            <div class="column is-12"><h5 class="title is-5 has-text-centered">Logements</h5></div>
-            <div class="column is-4 is-offset-4">
-                <canvas id="chart-logement-radar"></canvas>
+
+            <div class="columns is-multiline">
+              <div class="column is-half ">
+                <div class="tabs-content" data-tab-group="population">
+                  <div class="tab is-active" data-tab="charts">
+                    <canvas id="chart-pop" height=380 width=760></canvas>
+                  </div>
+                  <div class="tab" data-tab="raw">
+                    <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
+                  </div>
+                </div>
+              </div> {{-- Repartition H/F --}}
+              <div class="column is-half">
+                <canvas id="chart-pop-bar"></canvas>
+              </div>
+              <div class="column is-12"><h5 class="title is-5 has-text-centered">Répartition des actifs</h5></div>
+              <div class="column is-half">
+                <canvas id="chart-activities"></canvas>
+              </div>
+              <div class="column is-half">
+                <canvas id="chart-activities2"></canvas>
+              </div>
+              <div class="column is-12"><h5 class="title is-5 has-text-centered">Logements</h5></div>
+              <div class="column is-4 is-offset-4">
+                  <canvas id="chart-logement-radar"></canvas>
+              </div>
             </div>
           </div>
         </section>
