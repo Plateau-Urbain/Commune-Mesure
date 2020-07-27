@@ -25,14 +25,6 @@ class PlaceController extends Controller
             abort(404);
         }
 
-        $file = getenv('STORAGE_PATH').'sentences.json';
-        $sentences = json_decode(file_get_contents($file));
-
-        if(get_class($sentences) !== "stdClass"){
-          throw new \Exception("Invalid json $file", 1);
-
-        }
-
         $place = json_decode(file_get_contents($json));
 
         $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
@@ -60,6 +52,6 @@ class PlaceController extends Controller
         $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build(
            (array) [$place->data->population, $place->data->population]
         );
-        return view('place.show', compact('place', 'plots', 'sentences'));
+        return view('place.show', compact('place', 'plots'));
     }
 }

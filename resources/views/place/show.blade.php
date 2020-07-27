@@ -8,7 +8,6 @@
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
     @include('components.place.chart-place')
-    @include('components.place.survey-js')
     @include('components.place.map-insee-js')
 @endsection
 
@@ -47,31 +46,7 @@
                 </div>
             </section>
         </div>
-        <section class="section">
-            <div class="level">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Structures hébergées</p>
-                        <p class="title is-1 animate-value" data-total="53" >53</p>
-                    </div>
-                </div>
-
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Années d'existence</p>
-                        <p class="title is-1 animate-value" data-total="3" >3</p>
-                    </div>
-                </div>
-
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Followers</p>
-                        <p class="title is-1"><span class="animate-value" data-total="12">12</span>K</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+      
         <section class="section has-text-centered ">
             <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
               <div class="is-2">
@@ -136,7 +111,7 @@
             <div class="column">
               <div id="budget-value-illustration">
                 <figure class="image">
-                  <img  src="/images/budget_value.svg" >
+                  <img  src="/images/bloc_note.svg" >
                 </figure>
                 <div class="" id="description-illustration-detail">
                     <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
@@ -161,7 +136,7 @@
             <div class="column">
               <div id="actor-illustration">
                 <figure class="image">
-                  <img  src="/images/budget_value.svg" >
+                  <img  src="/images/bloc_note.svg" >
                 </figure>
                 <div class="content" id="actor-illustration-detail">
                   <ul>
@@ -265,6 +240,43 @@
                     @for ($i = 0; $i < 6; $i++)
                         <div class="column is-one-fifth">
                             @svg('assets/images/male.svg', 'very-small')
+                        </div>
+                    @endfor
+                    </div>
+                </div>
+                <div class="column has-text-centered">
+                    <h2 class="title is-2 no-border">61%</h2>
+                    <h4 class="subtitle is-4">d'hommes</h4>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h5 class="title is-5 has-text-centered">Répartition de la population</h5>
+            <div class="columns is-vcentered">
+                <div class="column has-text-centered">
+                    <h2 class="title is-2 no-border">39%</h2>
+                    <h4 class="subtitle is-4">de femmes</h4>
+                </div>
+                <div class="column has-text-centered">
+                    <div class="columns is-multiline">
+                    @for ($i = 0; $i < 2; $i++)
+                        <div class="column is-one-fifth">
+                            @svg('assets/images/artist_illustration.svg', 'very-small')
+                        </div>
+                    @endfor
+                    @for ($i = 0; $i < 3; $i++)
+                        <div class="column is-one-fifth">
+                            @svg('assets/images/charity_illustration.svg', 'very-small')
+                        </div>
+                    @endfor
+                    @for ($i = 0; $i < 4; $i++)
+                        <div class="column is-one-fifth">
+                            @svg('assets/images/startup_illustration.svg', 'very-small')
+                        </div>
+                    @endfor
+                    @for ($i = 0; $i < 1; $i++)
+                        <div class="column is-one-fifth">
+                            @svg('assets/images/other_illustration.svg', 'very-small')
                         </div>
                     @endfor
                     </div>
