@@ -67,6 +67,11 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
   }
 }
+.is1em{
+  height: auto;
+  width: 1em;
+  vertical-align: top;
+}
 .is5em{
   height: auto;
   width: 5em;
@@ -83,6 +88,10 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
   width: 30em;
   vertical-align: top;
+}
+
+.height100percent{
+  height: 100%;
 }
 
 .fontSize1em{
@@ -261,6 +270,12 @@ header {
         background-color: $light-blue;
     }
 }
+
+.is-circle{
+  border-radius: 100%;
+}
+
+
 
 // graph
 svg {

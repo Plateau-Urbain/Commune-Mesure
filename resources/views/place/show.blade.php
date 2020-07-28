@@ -295,18 +295,31 @@
           <h3 class="title is-3">Les données INSEE</h3>
           <div class="section">
             <div class="columns">
+              <div class="column card is-rounded">
+                <div class="columns">
+                  <div class="column">
+                    <h4>Actifs</h4>
+                    <div style="height:2em; width:40%; background-color:#0392cf;"></div>
+                    <h4>Chômeurs</h4>
+                    <div style="height:2em; width:25%; background-color:#f37736;"></div>
+                    <h4>Autres</h4>
+                    <div style="height:2em; width:35%; background-color:#ee4035;"></div>
+                  </div>
+                  <div class="column is-one-fifth">
+                    <h4>Légende</h4>
+                    <div class="">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:#0392cf;"></div>
+                      <p class="is-inline-block">Actifs</p>
+                    </div>
+                    <div class="">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:#f37736;"></div>
+                      <p class="is-inline-block">Étudiants</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="column" style="width: 100%;height: 30em;">
                 <div id="map-insee"></div>
-              </div>
-              <div class="column is-one-fifth">
-                <div>
-                  <h4>Actifs</h4>
-                  <div style="height:2em; width:40%; background-color:grey;"></div>
-                  <h4>Chômeurs</h4>
-                  <div style="height:2em; width:25%; background-color:red;"></div>
-                  <h4>Autres</h4>
-                  <div style="height:2em; width:35%; background-color:cyan;"></div>
-                </div>
               </div>
             </div>
           </div>
