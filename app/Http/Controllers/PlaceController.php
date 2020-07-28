@@ -25,7 +25,9 @@ class PlaceController extends Controller
             abort(404);
         }
 
+
         $place = json_decode(file_get_contents($json));
+        $place->data->composition = $this->sortCompositon($place->data->composition);    
 
         $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
             (array) $place->data->population
@@ -53,5 +55,20 @@ class PlaceController extends Controller
            (array) [$place->data->population, $place->data->population]
         );
         return view('place.show', compact('place', 'plots'));
+    }
+
+    protected function sortCompositon($compostion){
+      $compositionArray = (array) $compostion;
+      $keys = array_keys($compositionArray);
+      usort($compositionArray, function($a, $b)
+      {
+        if ($a->nombre == $b->nombre) {
+            return 0;
+        }
+        return ($a->nombre > $b->nombre) ? -1 : 1;
+
+
+      });
+      return (object)$compositionArray;
     }
 }

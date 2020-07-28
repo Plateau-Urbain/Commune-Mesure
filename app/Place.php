@@ -80,9 +80,10 @@ class Place
 
     protected function sortResilience(){
       $ar = [];
-      $resilience = $this->places;
-      foreach ($resilience as $key => $value) {
-        $ar = $this->assocResiliences($value->data->resilience);
+      $places = $this->places;
+      foreach ($places as $key => $place) {
+
+        $ar = $this->assocResiliences($place->data->resilience);
         usort($ar, function($a, $b)
         {
           if(property_exists($a, 'city') && property_exists($b, 'city')){

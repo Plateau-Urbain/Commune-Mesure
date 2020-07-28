@@ -46,64 +46,43 @@
                 </div>
             </section>
         </div>
-      
+
         <section class="section has-text-centered ">
-            <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
-              <div class="is-2">
-                <div class="Progress">
-                  <div class="Progress-item is-inline-block" style="width:12em; background-color:#e34c26; border-radius: 1em 0 0 1em;"></div>
-                  <div class="Progress-item is-inline-block" style="width:10em; background-color:#4F5D95;"></div>
-                  <div class="Progress-item is-inline-block" style="width:4em; background-color:#563d7c;"></div>
-                  <div class="Progress-item is-inline-block" style="width:2em; background-color:#f1e05a; border-radius: 0 1em 1em 0;"></div>
+          <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
+            <section class="section">
+              <div class="has-text-centered">
+                <div class="">
+                  @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre)
+
+                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"></div>
+                  @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre)
+
+                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                  @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre)
+
+                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                  @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre)
+                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"></div>
                 </div>
-                <div class="section">
-                  <div class="columns">
-                    <div class="column">
-                      <div class="content is-inline-block">
-                        <figure class="image is-128x128">
-                          <img src="/images/startup_illustration.svg" />
-                        </figure>
-                      </div>
-                      <div class="content">
-                        <span class="Progress-label is-inline-block" style="background-color:#e34c26;"></span>
-                        <span>Startup <p class="heading is-inline-block">40%</p></span>
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="content is-inline-block">
-                        <figure class="image is-128x128">
-                          <img src="/images/charity_illustration.svg" />
-                        </figure>
-                      </div>
-                      <div class="content">
-                        <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
-                        <span>Associations <p class="heading is-inline-block">39%</p></span>
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="content is-inline-block">
-                        <figure class="image is-128x128">
-                          <img src="/images/artist_illustration.svg" />
-                        </figure>
-                      </div>
-                      <div class="content">
-                        <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
-                        <span>Artistes <p class="heading is-inline-block">15%</p></span>
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="content is-inline-block">
-                        <figure class="image is-128x128">
-                          <img src="/images/other_illustration.svg" />
-                        </figure>
-                      </div>
-                      <div class="content">
-                        <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
-                        <span>Autres <p class="heading is-inline-block">6%</p></span>
-                      </div>
+                <div class="columns">
+                  <div class="column is-half is-offset-one-quarter">
+                    <div class="columns is-multiline mt-6">
+                      @foreach($place->data->composition as $composition)
+                        @if(property_exists($composition, 'title'))
+                        @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1))
+                        @php ($percent= $quantity * 100)
+                          @for ($i = 0; $i < 10*($quantity); $i++)
+                            <div class="column is-one-fifth squared">
+                                <i class="fa {{ $composition->img }} fa-3x" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
+                            </div>
+                          @endfor
+                        @endif
+                      @endforeach
                     </div>
                 </div>
               </div>
+            </div>
+          </section>
         </section>
         <section>
           <h5 class="title is-5 has-text-centered">Modèle économique</h5>
@@ -240,43 +219,6 @@
                     @for ($i = 0; $i < 6; $i++)
                         <div class="column is-one-fifth">
                             @svg('assets/images/male.svg', 'very-small')
-                        </div>
-                    @endfor
-                    </div>
-                </div>
-                <div class="column has-text-centered">
-                    <h2 class="title is-2 no-border">61%</h2>
-                    <h4 class="subtitle is-4">d'hommes</h4>
-                </div>
-            </div>
-        </section>
-        <section class="section">
-            <h5 class="title is-5 has-text-centered">Répartition de la population</h5>
-            <div class="columns is-vcentered">
-                <div class="column has-text-centered">
-                    <h2 class="title is-2 no-border">39%</h2>
-                    <h4 class="subtitle is-4">de femmes</h4>
-                </div>
-                <div class="column has-text-centered">
-                    <div class="columns is-multiline">
-                    @for ($i = 0; $i < 2; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/artist_illustration.svg', 'very-small')
-                        </div>
-                    @endfor
-                    @for ($i = 0; $i < 3; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/charity_illustration.svg', 'very-small')
-                        </div>
-                    @endfor
-                    @for ($i = 0; $i < 4; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/startup_illustration.svg', 'very-small')
-                        </div>
-                    @endfor
-                    @for ($i = 0; $i < 1; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/other_illustration.svg', 'very-small')
                         </div>
                     @endfor
                     </div>
