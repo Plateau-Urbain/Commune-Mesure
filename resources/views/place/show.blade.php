@@ -101,15 +101,14 @@
             </div>
             <div class="column is-one-fifth">
               <div class="budget">
-                <figure class="image is20em">
-                  <img  src="/images/building.svg" >
+                <figure class="image is30em">
+                  <img  src="/images/building_detail.svg" >
                 </figure>
-                <div class="very-small" id="budget-year">Budget</div>
-                <div class="very-small font-color-theme" id="budget-value">
-                  <p>Annuel: {{ '100K ' }}€</p>
-                  <p>Total: {{ '150K' }} €</p>
+                <div class="very-small" id="occupant">{{ "150" }} occupants</div>
+                <div class="very-small" id="budget-value">
+
                 </div>
-                <div class="" id="actor">Les acteurs</div>
+                <div class="" id="actor">Gouvernance partagée</div>
               </div>
             </div>
             <div class="column">

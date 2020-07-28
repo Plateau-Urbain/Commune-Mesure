@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #owner,
 #contract,
-#budget-year,
+#occupant,
 #actor,
 #actor-illustration-detail,
 #description-illustration-detail,
@@ -39,21 +39,22 @@ h1, h2, h3, h4, h5, h6 {
 
 #owner,
 #contract,
-#budget-year,
+#occupant,
 #budget-total,
 #actor{
-  background-color: white;
+  //background-color: white;
+  color: white;
 }
 #owner,
 #contract,
-#budget-year,
+#occupant,
 #actor
 {
-  border: 1px #e85048 solid;
+  //border: 1px #e85048 solid;
   padding: 5px;
 }
 #owner:hover,
-#budget-year:hover,
+#occupant:hover,
 #budget-total:hover,
 #contract:hover,
 #actor:hover{
@@ -78,6 +79,12 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: top;
 }
 
+.is30em{
+  height: auto;
+  width: 30em;
+  vertical-align: top;
+}
+
 .fontSize1em{
   font-size: 1em;
 }
@@ -88,9 +95,9 @@ h1, h2, h3, h4, h5, h6 {
 #budget-value{
   top: 4em;
 }
-#budget-year{
-  top: -2em;
-  left: 0em;
+#occupant{
+  top: 37.5%;
+  left: 20%;
 }
 
 
@@ -100,8 +107,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #actor{
-  top: -2em;
-  right: 1em;
+  top: 22.5%;
+  right: 26%;
 }
 
 #contract {
@@ -115,8 +122,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #description-illustration-detail{
-  top: 8em;
-  left: 14em;
+  top: 9em;
+  left: 39%;
   width: 17em;
 }
 
