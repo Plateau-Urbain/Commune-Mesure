@@ -13,9 +13,14 @@ class ImpactsController extends Controller
 {
     public function show(Place $place)
     {
-        [$coordinates,$cities, $places] = $place->all();
+        $place->build();
+        $place->sortPlacesBy('name');
+        $resiliences = $place->getResiliences();
+        $places = $place->getPlaces();
 
-        return view('impacts.show', compact('coordinates', 'cities', 'places'));
+        //[$coordinates,$cities, $places] = $place->all();
+
+        return view('impacts.show', compact('places'));
     }
 
     public function statistics(Place $place)

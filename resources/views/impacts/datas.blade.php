@@ -37,9 +37,8 @@
               <div class="control">
                 <div class="select is-small is-success">
                   <select name="resilience" id="resilience-select" class="is-focused">
-                      @foreach($places[0]->data->resilience as $resilience)
-                        @continue(property_exists($resilience, 'key') == false)
-                        <option value="{{ $resilience->key }}">{{ $resilience->title }}</option>
+                      @foreach($places[0]->data->resilience->type as $key => $resilience)
+                        <option value="{{ $key }}">{{ $resilience->title }}</option>
                       @endforeach
                   </select>
                 </div>

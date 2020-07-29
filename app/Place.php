@@ -31,6 +31,25 @@ class Place
         return $this->getJson($json);
     }
 
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    public function getPlaces()
+    {
+        return $this->places;
+    }
+
+    public function getCoordinates()
+    {
+        return $this->coordinates;
+    }
+
+    public function getResiliences(bool $sorted = true)
+    {
+    }
+
     public function withPopup()
     {
         $this->withPopup = true;
@@ -61,17 +80,22 @@ class Place
                 : ['geo' => $json->geo];
             $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
         }
+    }
 
-        usort($this->places, function($a, $b)
-        {
-            if (strcasecmp($a->name, $b->name) === 0) {
+    public function sortCities()
+    {
+        ksort($this->cities);
+        return $this;
+    }
+
+    public function sortPlacesBy(string $what = 'name')
+    {
+        usort($this->places, function($a, $b) use ($what) {
+            if (strcasecmp($a->$what, $b->$what) === 0) {
                 return 0;
             }
-            return (strcasecmp($a->name, $b->name) < 0) ? -1 : 1;
+            return (strcasecmp($a->$what, $b->$what) < 0) ? -1 : 1;
         });
-
-        $this->sortResilience();
-        ksort($this->cities);
     }
 
     protected function assocResiliences($resiliences){
@@ -88,23 +112,24 @@ class Place
       return $resiliencesArray;
     }
 
-    protected function sortResilience(){
-      $ar = [];
-      $places = $this->places;
-      foreach ($places as $key => $place) {
+    protected function sortResilience()
+    {
+        $ar = [];
+        $places = $this->places;
+        foreach ($places as $key => $place) {
 
-        $ar = $this->assocResiliences($place->data->resilience);
-        usort($ar, function($a, $b)
-        {
-          if(property_exists($a, 'city') && property_exists($b, 'city')){
-            if ($a->city === $b->city) {
-                return 0;
-            }
-            return $a->city > $b->city ? -1 : 1;
-          }
-        });
-        $this->places[$key]->data->resilience = (object)$ar;
-      }
+            $ar = $this->assocResiliences($place->data->resilience);
+            usort($ar, function($a, $b)
+            {
+                if(property_exists($a, 'city') && property_exists($b, 'city')){
+                    if ($a->city === $b->city) {
+                        return 0;
+                    }
+                    return $a->city > $b->city ? -1 : 1;
+                }
+            });
+            $this->places[$key]->data->resilience = (object)$ar;
+        }
     }
 
     protected function getJson($place)

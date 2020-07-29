@@ -26,7 +26,7 @@ class PlaceController extends Controller
             abort(404);
         }
 
-        $place->data->composition = $this->sortCompositon($place->data->composition);
+        $place->data->composition = $this->sortComposition($place->data->composition);
 
         $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
             (array) $place->data->population
@@ -56,8 +56,8 @@ class PlaceController extends Controller
         return view('place.show', compact('place', 'plots'));
     }
 
-    protected function sortCompositon($compostion){
-      $compositionArray = (array) $compostion;
+    protected function sortComposition($composition){
+      $compositionArray = (array) $composition;
       $keys = array_keys($compositionArray);
       usort($compositionArray, function($a, $b)
       {

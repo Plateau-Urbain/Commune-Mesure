@@ -168,9 +168,9 @@
 
               <div class="tabs-content" data-tab-group="resilience">
                 <div class="tab is-active" data-tab="charts">
-                  @foreach($place->data->resilience as $resilience)
-                      <p>{{ $resilience->title }} : {{ ($resilience->city / $resilience->total)*100 }}%</p>
-                      <progress class="progress is-primary" value="{{ $resilience->city }}" max="{{ $resilience->total }}">{{ ($resilience->city / $resilience->total)*100 }}%</progress>
+                    @foreach($place->data->resilience->type as $resilience)
+                        <p>{{ $resilience->title }} : {{ ($resilience->total / $place->data->resilience->total)*100 }}%</p>
+                        <progress class="progress is-primary" value="{{ $resilience->total }}" max="{{ $place->data->resilience->total }}">%</progress>
                   @endforeach
                 </div>
 
@@ -178,13 +178,13 @@
                   <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                      <thead>
                       <tr>
-                        @foreach($place->data->resilience->job as $key => $value)
-                          <th>{{ $key }}</th>
+                          @foreach($place->data->resilience->type->art as $key => $value)
+                              <th>{{ $key }}</th>
                           @endforeach
                       </tr>
                     </thead>
                     </tbody>
-                      @foreach($place->data->resilience as $key => $resilience)
+                        @foreach($place->data->resilience->type as $key => $resilience)
                         <tr>
                             <th scope="row">{{ $resilience->title }}</th>
                             @foreach($resilience as $key => $value)

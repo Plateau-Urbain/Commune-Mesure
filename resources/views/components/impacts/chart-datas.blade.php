@@ -73,7 +73,7 @@ function move(element) {
       divColumnsResilience.appendChild(divColumnDetail)
       var resiliences = JSON.parse("{{ json_encode($place->data->resilience) }}".replace(/&quot;/g,'"'));
       var total = resiliences[length].total
-      @foreach($place->data->resilience as $type_resilience => $resilience)
+      @foreach($place->data->resilience->type as $type_resilience => $resilience)
 
           @if(property_exists($resilience, 'key') !== false)
             var resilience = JSON.parse("{{ json_encode($resilience) }}".replace(/&quot;/g,'"'));
