@@ -52,16 +52,16 @@
             <section class="section">
               <div class="has-text-centered">
                 <div class="">
-                  @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre)
+                    @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
 
                   <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"></div>
-                  @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre)
+                  @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre) @endphp
 
                   <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"></div>
-                  @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre)
+                  @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre) @endphp
 
                   <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"></div>
-                  @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre)
+                  @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre) @endphp
                   <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"></div>
                 </div>
                 <div class="columns">
@@ -69,8 +69,8 @@
                     <div class="columns is-multiline mt-6">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
-                        @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1))
-                        @php ($percent= $quantity * 100)
+                        @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1)) @endphp
+                        @php ($percent= $quantity * 100) @endphp
                           @for ($i = 0; $i < 10*($quantity); $i++)
                             <div class="column is-one-fifth squared">
                                 <i class="fa {{ $composition->img }} fa-3x" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
