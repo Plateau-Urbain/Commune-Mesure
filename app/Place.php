@@ -21,6 +21,16 @@ class Place
         return [$this->coordinates, $this->cities, $this->places];
     }
 
+    public function getOne($place)
+    {
+        $json = $this->storage.$place.'.json';
+        if (! file_exists($json)) {
+            return false;
+        }
+
+        return $this->getJson($json);
+    }
+
     public function withPopup()
     {
         $this->withPopup = true;
@@ -96,8 +106,6 @@ class Place
         $this->places[$key]->data->resilience = (object)$ar;
       }
     }
-
-
 
     protected function getJson($place)
     {

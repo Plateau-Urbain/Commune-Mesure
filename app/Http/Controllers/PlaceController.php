@@ -6,6 +6,7 @@ use App\Charts\PopulationChart;
 use App\Charts\ActivitiesChart;
 use App\Charts\ActivitiesOverlayChart;
 use App\Charts\LogementChart;
+use App\Place;
 
 class PlaceController extends Controller
 {
@@ -20,14 +21,12 @@ class PlaceController extends Controller
 
     public function show($slug)
     {
-        $json = getenv('STORAGE_PATH').'places/'.$slug.'.json';
-        if (! file_exists($json)) {
+        $place = (new Place())->getOne($slug);
+        if ($place === false) {
             abort(404);
         }
 
-
-        $place = json_decode(file_get_contents($json));
-        $place->data->composition = $this->sortCompositon($place->data->composition);    
+        $place->data->composition = $this->sortCompositon($place->data->composition);
 
         $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
             (array) $place->data->population
@@ -51,9 +50,9 @@ class PlaceController extends Controller
         $plots[] = (new LogementChart('chart-logement-radar', 'doughnut'))->build(
            (array) $place->data->logement
         );
-        $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build(
-           (array) [$place->data->population, $place->data->population]
-        );
+        /* $plots[] = (new ActivitiesOverlayChart('chart-overlay', 'bar'))->build( */
+        /*    (array) [$place->data->population, $place->data->population] */
+        /* ); */
         return view('place.show', compact('place', 'plots'));
     }
 
