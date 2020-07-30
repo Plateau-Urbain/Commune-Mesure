@@ -10,9 +10,9 @@
   mapnode.style.height = "100%";
 
   var zoomDefault = 20;
-  var zoomIris = 13;
-  var zoomCommune = 11;
-  var zoomDepartement = 9;
+  var zoomIris = 14;
+  var zoomCommune = 12;
+  var zoomDepartement = 10;
   var mygeojson;
   var marker;
   var chartMap;
@@ -101,9 +101,7 @@
           layer.setStyle(style());
 
           zone = layer.feature.properties.zone;
-          chartMap.data.labels = Object.keys(placeData.insee[zone].population);
-          chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
-          chartMap.update()
+
         }
       }
       if(mapInsee.getZoom() <= zoomIris && mapInsee.getZoom() >= zoomCommune){
@@ -113,15 +111,17 @@
           })
         }else{
           layer.setStyle(styleCommune());
+          zone = layer.feature.properties.zone;
         }
       }
       if(mapInsee.getZoom() <= zoomCommune && mapInsee.getZoom() >= zoomDepartement){
-        if(layer.feature.properties.zone !== "dept"){
+        if(layer.feature.properties.zone !== "departement"){
           layer.setStyle({
             fillColor: 'transparent'
           })
         }else{
           layer.setStyle(styleDepartement());
+          zone = layer.feature.properties.zone;
         }
       }
       if(mapInsee.getZoom() < zoomDepartement){
@@ -131,10 +131,17 @@
           })
         }else {
           layer.setStyle(styleRegion());
+          zone = layer.feature.properties.zone;
         }
       }
 
     })
+    //delete placeData.insee[zone].population.total;
+    chartMap.data.labels = Object.keys(placeData.insee[zone].population);
+    chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
+
+    chartMap.update()
+
   }
 
   /**
