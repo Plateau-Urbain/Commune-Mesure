@@ -48,6 +48,24 @@ class Place
 
     public function getResiliences(bool $sorted = true)
     {
+        $resiliences = [];
+        foreach ($this->places as $place) {
+            foreach ($place->data->resilience->type as $name => $resilience) {
+                if (array_key_exists($name, $resiliences) === false) {
+                    $resiliences[$name] = [];
+                }
+
+                $resiliences[$name][$place->name] = $resilience->total;
+            }
+        }
+
+        if ($sorted) {
+            foreach ($resiliences as &$resilience) {
+                arsort($resilience, SORT_NUMERIC);
+            }
+        }
+
+        return $resiliences;
     }
 
     public function withPopup()

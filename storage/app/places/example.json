@@ -139,27 +139,27 @@
             "type": {
                 "health": {
                     "title": "Santé",
-                    "total": 22
+                    "total": 12
                 },
                 "environment": {
                     "title": "Environnement",
-                    "total": 6
+                    "total": 17
                 },
                 "solidarity": {
                     "title": "Solidarité",
-                    "total": 27
+                    "total": 4
                 },
                 "education": {
                     "title": "Éducation",
-                    "total": 1
+                    "total": 39
                 },
                 "art": {
                     "title": "Art et création",
-                    "total": 18
+                    "total": 9
                 },
                 "activity": {
                     "title": "Activité",
-                    "total": 26
+                    "total": 15
                 }
             }
         }
