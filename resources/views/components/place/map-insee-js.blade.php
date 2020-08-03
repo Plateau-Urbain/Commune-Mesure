@@ -1,5 +1,6 @@
 <script>
   var geoDataPlace = JSON.parse("{{ json_encode($place->geo) }}".replace(/&quot;/g,'"'));
+  var placeData = JSON.parse("{{ json_encode($place->data) }}".replace(/&quot;/g,'"'));
   var geoJsonFeatures = geoDataPlace.geo_json;
   var markerPoint = [geoDataPlace.lat, geoDataPlace.lon];
 
@@ -8,9 +9,15 @@
   mapnode.style.width = "auto";
   mapnode.style.height = "100%";
 
-  var zoomDefault = 12;
+  var zoomDefault = 20;
+  var zoomIris = 14;
+  var zoomCommune = 12;
   var zoomDepartement = 10;
   var mygeojson;
+  var marker;
+  var chartMap;
+  var dataChartMap;
+  var zone;
 
   /**
   * Css style default
@@ -21,7 +28,7 @@
           weight: 0,
           opacity: 2,
           color: 'white',
-          fillOpacity: 0.7
+          fillOpacity: 0.3
       }
   }
 
@@ -36,6 +43,16 @@
           color: 'white',
           fillOpacity: 0.7
       }
+  }
+
+  function styleCommune(){
+    return {
+        fillColor: '#fdf498',
+        weight: 0,
+        opacity: 2,
+        color: 'white',
+        fillOpacity: 0.7
+    }
   }
 
   /**
@@ -57,10 +74,16 @@
   *
   **/
   function onEachFeature(feature, layer) {
-    if(mapInsee.getZoom() > zoomDefault && layer.feature.properties.zone !== "iris"){
+    if(mapInsee.getZoom() < zoomDefault){
       layer.setStyle({
         fillColor: 'transparent'
       })
+    }
+    if(marker === undefined){
+      marker = L.marker(markerPoint).addTo(mapInsee)
+          .bindPopup("<div><h3>Nom: {{ $place->name }}</h3>"
+          +"<h4>Quartier: "+layer.feature.properties.nom+"</h4><p>"+layer.feature.properties.citycode+"</p></div>")
+          .openPopup();
     }
   }
 
@@ -69,22 +92,36 @@
     var color = '#3d1e6d';
     var bounds;
     mygeojson.getLayers().forEach(function (layer) {
-      if(mapInsee.getZoom() > zoomDefault){
+      if(mapInsee.getZoom() > zoomIris && mapInsee.getZoom() < zoomDefault){
         if(layer.feature.properties.zone !== "iris"){
           layer.setStyle({
             fillColor: 'transparent'
           })
         }else{
           layer.setStyle(style());
+
+          zone = layer.feature.properties.zone;
+
         }
       }
-      if(mapInsee.getZoom() <= zoomDefault && mapInsee.getZoom() >= zoomDepartement){
-        if(layer.feature.properties.zone !== "dept"){
+      if(mapInsee.getZoom() <= zoomIris && mapInsee.getZoom() >= zoomCommune){
+        if(layer.feature.properties.zone !== "commune"){
+          layer.setStyle({
+            fillColor: 'transparent'
+          })
+        }else{
+          layer.setStyle(styleCommune());
+          zone = layer.feature.properties.zone;
+        }
+      }
+      if(mapInsee.getZoom() <= zoomCommune && mapInsee.getZoom() >= zoomDepartement){
+        if(layer.feature.properties.zone !== "departement"){
           layer.setStyle({
             fillColor: 'transparent'
           })
         }else{
           layer.setStyle(styleDepartement());
+          zone = layer.feature.properties.zone;
         }
       }
       if(mapInsee.getZoom() < zoomDepartement){
@@ -94,10 +131,17 @@
           })
         }else {
           layer.setStyle(styleRegion());
+          zone = layer.feature.properties.zone;
         }
       }
 
     })
+    //delete placeData.insee[zone].population.total;
+    chartMap.data.labels = Object.keys(placeData.insee[zone].population);
+    chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
+
+    chartMap.update()
+
   }
 
   /**
@@ -119,12 +163,30 @@
 
 
   var mapInsee = mapjs.create('map-insee', {gestureHandling: true})
-  mapInsee.setView(markerPoint, 13);
+  mapInsee.setView(markerPoint, zoomDefault);
 
   loadGeoJson();
   mapInsee.on("zoom", displayFeature);
 
-  L.marker(markerPoint).addTo(mapInsee)
-      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-      .openPopup();
+
+  chartMap = new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["Lieu-actif", "Iris-actif", "Lieu-logement", "Iris-logement", "Lieu-population", "Iris-population"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });
 </script>

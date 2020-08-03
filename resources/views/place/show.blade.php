@@ -296,6 +296,9 @@
           <div class="section">
             <div class="columns">
               <div class="column card is-rounded">
+                <div>
+                  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+                </div>
                 <div class="columns">
                   <div class="column">
                     <h4>Actifs</h4>
