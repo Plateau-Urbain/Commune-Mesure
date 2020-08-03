@@ -6,6 +6,32 @@ var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf",
 var i = 0;
 var values;
 
+var order = @json($resiliences['order']);
+var place = @json($resiliences['byPlace']);
+var section = document.getElementById('sectionResilienceBar')
+
+function createResilienceBar(select) {
+    var bars = []
+    var type = select.value
+
+    const keys = Object.keys(order[type])
+
+    keys.forEach(function (key) {
+        var list = ''
+        list += type + ': ' + order[type][key] + '|'
+        Object.keys(place[key]).forEach(function (k) {
+            if (k == type) {
+                return false
+            }
+            list += k + ': ' + place[key][k] + '|'
+        })
+        console.log(key + ': ' + list)
+    })
+}
+
+
+
+
 function move(element) {
   var width = 10;
   if (i == 0) {
