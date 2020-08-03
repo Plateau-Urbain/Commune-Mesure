@@ -20,7 +20,7 @@ class ImpactsController extends Controller
 
         //[$coordinates,$cities, $places] = $place->all();
 
-        return view('impacts.show', compact('places'));
+        return view('impacts.show', compact('places', 'resiliences'));
     }
 
     public function statistics(Place $place)

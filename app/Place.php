@@ -48,19 +48,30 @@ class Place
 
     public function getResiliences(bool $sorted = true)
     {
-        $resiliences = [];
+        $resiliences = [
+            'order' => [],
+            'byPlace' => []
+        ];
+
         foreach ($this->places as $place) {
             foreach ($place->data->resilience->type as $name => $resilience) {
-                if (array_key_exists($name, $resiliences) === false) {
-                    $resiliences[$name] = [];
+                if (array_key_exists($name, $resiliences['order']) === false) {
+                    $resiliences['order'][$name] = [];
                 }
 
-                $resiliences[$name][$place->name] = $resilience->total;
+                $resiliences['order'][$name][$place->name] = $resilience->total;
+
+                $resiliences['byPlace'][$place->name][$name] = $resilience->total;
             }
         }
 
         if ($sorted) {
-            foreach ($resiliences as &$resilience) {
+            foreach ($resiliences['order'] as &$resilience) {
+                arsort($resilience, SORT_NUMERIC);
+            }
+            unset($resilience);
+
+            foreach ($resiliences['byPlace'] as &$resilience) {
                 arsort($resilience, SORT_NUMERIC);
             }
         }
