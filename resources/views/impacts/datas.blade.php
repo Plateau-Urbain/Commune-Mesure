@@ -66,7 +66,7 @@
         <div class="tabs-content" data-tab-group="indicateurs">
             <div class="tab is-active" data-tab="charts">
                 <div class="section" id="sectionResilienceBar">
-
+                    {{-- Généré par le JS --}}
                 </div>
                 <template id="template-progress">
                   <div class="is-2">
