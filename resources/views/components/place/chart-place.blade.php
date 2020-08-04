@@ -10,7 +10,8 @@
       var id = setInterval(frame, 30);
       var fill = parseInt(element.dataset.fill);
       var full = parseInt(element.dataset.full);
-      var widthfill = (fill/full)*100;
+      var widthfill = fill;
+      element.setAttribute("data-tooltip", widthfill+"%")
       function frame() {
         if (width >= widthfill) {
           clearInterval(id);
@@ -42,9 +43,9 @@
     // @endforeach
 
 function animateBar(){
-  values = document.querySelectorAll(".myBar")
-  values.forEach(function (v) {
-      move(v)
+  elements = document.querySelectorAll(".myBar")
+  elements.forEach(function (element) {
+      move(element)
       i=0;
   })
 }
