@@ -136,11 +136,12 @@
       }
 
     })
+    animateBar();
     //delete placeData.insee[zone].population.total;
-    chartMap.data.labels = Object.keys(placeData.insee[zone].population);
-    chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
-
-    chartMap.update()
+    // chartMap.data.labels = Object.keys(placeData.insee[zone].population);
+    // chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
+    //
+    // chartMap.update()
 
   }
 
@@ -167,26 +168,4 @@
 
   loadGeoJson();
   mapInsee.on("zoom", displayFeature);
-
-
-  chartMap = new Chart(document.getElementById("bar-chart-horizontal"), {
-    type: 'horizontalBar',
-    data: {
-      labels: ["Lieu-actif", "Iris-actif", "Lieu-logement", "Iris-logement", "Lieu-population", "Iris-population"],
-      datasets: [
-        {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-          data: [2478,5267,734,784,433]
-        }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Predicted world population (millions) in 2050'
-      }
-    }
-  });
 </script>

@@ -7,7 +7,7 @@
     if (i == 0) {
       i = 1;
       var elem = element;
-      var id = setInterval(frame, 10);
+      var id = setInterval(frame, 30);
       var fill = parseInt(element.dataset.fill);
       var full = parseInt(element.dataset.full);
       var widthfill = (fill/full)*100;
@@ -31,21 +31,26 @@
     L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
     smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
 
-    @foreach($plots as $plot)
-      var chartPop = new charts.create(
-          '{{ $plot->getId() }}',
-          '{{ $plot->getType() }}',
-          @json($plot->getLabels()),
-          @json($plot->getDatasets())
-      );
-    @endforeach
+    //TODO if we wont use chart on place page delete next code
+    // @foreach($plots as $plot)
+    //   var chartPop = new charts.create(
+    //       '{{ $plot->getId() }}',
+    //       '{{ $plot->getType() }}',
+    //       @json($plot->getLabels()),
+    //       @json($plot->getDatasets())
+    //   );
+    // @endforeach
+
+function animateBar(){
+  values = document.querySelectorAll(".myBar")
+  values.forEach(function (v) {
+      move(v)
+      i=0;
+  })
+}
 
   window.onload = (event) => {//TODO move in index.js
+    animateBar();
 
-      values = document.querySelectorAll(".myBar")
-      values.forEach(function (v) {
-          move(v)
-          i=0;
-      })
   }
 </script>
