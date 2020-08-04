@@ -53,20 +53,7 @@ h1, h2, h3, h4, h5, h6 {
   //border: 1px #e85048 solid;
   padding: 5px;
 }
-#owner:hover,
-#occupant:hover,
-#budget-total:hover,
-#contract:hover,
-#actor:hover{
-  animation: blinker 1.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;
-  background-color: #e85048
-}
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
 .is1em{
   height: auto;
   width: 1em;
@@ -117,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #actor{
   top: 22.5%;
-  right: 26%;
+  right: 34%;
 }
 
 #contract {
@@ -126,8 +113,8 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 #actor-illustration-detail{
-  top: 8em;
-  right: 14em;
+  top: 20%;
+  right: 33%;
 }
 
 #description-illustration-detail{
