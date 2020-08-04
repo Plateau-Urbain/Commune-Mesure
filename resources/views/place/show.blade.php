@@ -71,9 +71,9 @@
                         @if(property_exists($composition, 'title'))
                         @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1))
                         @php ($percent= $quantity * 100)
-                          @for ($i = 0; $i < 10*($quantity); $i++)
-                            <div class="column is-one-fifth squared">
-                                <i class="fa {{ $composition->img }} fa-3x" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
+                          @for ($i = 0; $i < 30*($quantity); $i++)
+                            <div class="column is-one-fifth">
+                                <i class="fa {{ $composition->img }}" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
                             </div>
                           @endfor
                         @endif
