@@ -145,61 +145,6 @@
             </div>
           </section>
         </section>
-        <div id="indicateurs" class="anchor">
-            <section class="section" id="indicateurs-martin">
-              <h3 class="title is-3">Les indicateurs de Martin</h3>
-              <h5 class="title is-5 has-text-centered">Indicateurs sociaux</h5>
-              <div class="tabs is-small" data-tab-group="resilience">
-                <ul>
-                  <li class="is-active">
-                    <a href="#charts">
-                      <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                      <span>Graphiques</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#raw">
-                      <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                      <span>Données</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="tabs-content" data-tab-group="resilience">
-                <div class="tab is-active" data-tab="charts">
-                  @foreach($place->data->resilience as $resilience)
-                      <p>{{ $resilience->title }} : {{ ($resilience->city / $resilience->total)*100 }}%</p>
-                      <progress class="progress is-primary" value="{{ $resilience->city }}" max="{{ $resilience->total }}">{{ ($resilience->city / $resilience->total)*100 }}%</progress>
-                  @endforeach
-                </div>
-
-                <div class="tab" data-tab="raw">
-                  <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                     <thead>
-                      <tr>
-                        @foreach($place->data->resilience->job as $key => $value)
-                          <th>{{ $key }}</th>
-                          @endforeach
-                      </tr>
-                    </thead>
-                    </tbody>
-                      @foreach($place->data->resilience as $key => $resilience)
-                        <tr>
-                            <th scope="row">{{ $resilience->title }}</th>
-                            @foreach($resilience as $key => $value)
-                            @if($resilience->title !== $value)
-                              <td>{{ $value }}</td>
-                            @endif
-                            @endforeach
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-        </div>
 
         <section class="section anchor" id="donnees-insee">
           <h3 class="title is-3">Les données INSEE</h3>
