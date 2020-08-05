@@ -2189,7 +2189,7 @@
                   "nb":0
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "title":"Part des artisans, comm., chefs d’entreprise",
                   "nb":61
                 },
                 "cadre":{
@@ -2209,7 +2209,7 @@
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des ouvriers",
+                  "title":"Part des retraités ou préretraités",
                   "nb":543
                 },
                 "autre":{
@@ -2317,7 +2317,7 @@
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des ouvriers",
+                  "title":"Part des retraités ou préretraités",
                   "nb":543
                 },
                 "autre":{
@@ -2389,7 +2389,7 @@
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des ouvriers",
+                  "title":"Part des retraités ou préretraités",
                   "nb":543
                 },
                 "autre":{
@@ -2461,7 +2461,7 @@
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des ouvriers",
+                  "title":"Part des retraités ou préretraités",
                   "nb":543
                 },
                 "autre":{
@@ -2533,7 +2533,7 @@
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des ouvriers",
+                  "title":"Part des retraités ou préretraités",
                   "nb":543
                 },
                 "autre":{
