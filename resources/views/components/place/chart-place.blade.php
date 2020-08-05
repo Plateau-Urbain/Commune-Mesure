@@ -3,7 +3,7 @@
   var values;
 
   function move(element) {
-    var width = 10;
+    var width = 0;
     if (i == 0) {
       i = 1;
       var elem = element;
@@ -11,7 +11,6 @@
       var fill = parseInt(element.dataset.fill);
       var full = parseInt(element.dataset.full);
       var widthfill = fill;
-      element.setAttribute("data-tooltip", widthfill+"%")
       function frame() {
         if (width >= widthfill) {
           clearInterval(id);
@@ -50,7 +49,45 @@ function animateBar(){
   })
 }
 
+function setCaptionDataBar(currentDataZone, zone){
+
+  var totalActif = 0;
+  var totalCsp = 0;
+  var totalLogement = 0;
+  Object.values(placeData.insee.iris.activites).forEach(function(val){
+    totalActif += val.nb;
+  });
+  Object.values(placeData.insee.iris.logement).forEach(function(val){
+    totalLogement += val.nb;
+  });
+  Object.values(placeData.insee.iris.csp).forEach(function(val){
+    totalCsp += val.nb;
+  });
+  var actifBarElements = document.querySelectorAll(".actifBar")
+  actifBarElements.forEach(function (element, i) {
+    let data = Object.entries(placeData.insee.iris.activites)[i][1];
+    let percent = data.nb * 100 / totalActif;
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
+    element.setAttribute("data-fill", percent);
+  })
+  var cspBarElements = document.querySelectorAll(".cspBar")
+  cspBarElements.forEach(function (element, i) {
+    let data = Object.entries(placeData.insee.iris.csp)[i][1];
+     let percent = data.nb * 100 / totalCsp
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
+    element.setAttribute("data-fill", percent);
+  })
+  var logementBarElements = document.querySelectorAll(".logementBar")
+  logementBarElements.forEach(function (element, i) {
+    let data = Object.entries(placeData.insee.iris.logement)[i][1];
+    let percent = data.nb * 100 / totalLogement;
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
+    element.setAttribute("data-fill", percent);
+  })
+}
+
   window.onload = (event) => {//TODO move in index.js
+    setCaptionDataBar(placeData.insee.iris, "iris");
     animateBar();
 
   }

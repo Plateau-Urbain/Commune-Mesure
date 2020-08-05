@@ -169,14 +169,34 @@
                   <div class="column">
                     <h4>Actifs</h4>
                     <div class="" style="width:100%">
-                      <div class="myBar is-inline-block" data-fill="40" data-full="40" style="height:2em; background-color:#0392cf;">
-                      </div><div class="myBar is-inline-block" data-fill="60" data-full="60" style="height:2em; background-color:#0392cf;">
-                      </div>
+                      <div class="actifBar myBar is-inline-block" style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
+                       style="background-color:#0392cf;">
+                      </div><div class="actifBar myBar is-inline-block"
+                      style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
+                      style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
+                      style="background-color:#0392cf;"></div>
                     </div>
-                    <h4>Chômeurs</h4>
-                    <div class="myBar" data-fill="25" data-full="100" style="height:2em; width:25%; background-color:#f37736;"></div>
-                    <h4>Autres</h4>
-                    <div class="myBar" data-fill="35" data-full="100" style="height:2em; width:35%; background-color:#ee4035;"></div>
+                    <h4>Catégories socioprofessionnelle</h4>
+                    <div class="" style="width:100%">
+                      <div class="cspBar myBar is-inline-block"
+                      style="background-color: #f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;">
+                      </div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#f37736;"></div>
+                    </div>
+                    <h4>Immobilier</h4>
+                    <div class="" style="width:100%">
+                      <div class="logementBar myBar is-inline-block"
+                      style="background-color:#ee4035;"></div><div class="logementBar myBar is-inline-block"
+                      style="background-color:#ee4035;">
+                      </div><div class="logementBar myBar is-inline-block"
+                      style="background-color:#ee4035;"></div>
+                    </div>
                   </div>
                 </div>
               </div>

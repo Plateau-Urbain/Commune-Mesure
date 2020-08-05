@@ -75,56 +75,56 @@
     }
   }
 
-  function displayFeature(zoom) {
-
-    var color = '#3d1e6d';
-    var bounds;
-    mygeojson.remove();
-    if(mapInsee.getZoom() > zoomIris && mapInsee.getZoom() < zoomDefault){
-      mygeojson = L.geoJSON(
-        geoJsonFeatures.iris,
-        {
-          style: styleObjet.iris,
-          onEachFeature: onEachFeature
-        }
-      ).addTo(mapInsee);
-    }
-    if(mapInsee.getZoom() <= zoomIris && mapInsee.getZoom() >= zoomCommune){
-      mygeojson = L.geoJSON(
-        geoJsonFeatures.commune,
-        {
-          style: styleObjet.commune,
-          onEachFeature: onEachFeature
-        }
-      ).addTo(mapInsee);
-    }
-    if(mapInsee.getZoom() < zoomCommune && mapInsee.getZoom() >= zoomDepartement){
-      mygeojson = L.geoJSON(
-        geoJsonFeatures.commune,
-        {
-          style: styleObjet.departement,
-          onEachFeature: onEachFeature
-        }
-      ).addTo(mapInsee);
-    }
-    if(mapInsee.getZoom() < zoomDepartement){
-      mygeojson = L.geoJSON(
-        geoJsonFeatures.region,
-        {
-          style: styleObjet.region,
-          onEachFeature: onEachFeature
-        }
-      ).addTo(mapInsee);
-    }
-    //mapInsee.fitBounds(mygeojson.getBounds())
-    animateBar();
-    //delete placeData.insee[zone].population.total;
-    // chartMap.data.labels = Object.keys(placeData.insee[zone].population);
-    // chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
-    //
-    // chartMap.update()
-
-  }
+  // function displayFeature(zoom) {
+  //
+  //   var color = '#3d1e6d';
+  //   var bounds;
+  //   mygeojson.remove();
+  //   if(mapInsee.getZoom() > zoomIris && mapInsee.getZoom() < zoomDefault){
+  //     mygeojson = L.geoJSON(
+  //       geoJsonFeatures.iris,
+  //       {
+  //         style: styleObjet.iris,
+  //         onEachFeature: onEachFeature
+  //       }
+  //     ).addTo(mapInsee);
+  //   }
+  //   if(mapInsee.getZoom() <= zoomIris && mapInsee.getZoom() >= zoomCommune){
+  //     mygeojson = L.geoJSON(
+  //       geoJsonFeatures.commune,
+  //       {
+  //         style: styleObjet.commune,
+  //         onEachFeature: onEachFeature
+  //       }
+  //     ).addTo(mapInsee);
+  //   }
+  //   if(mapInsee.getZoom() < zoomCommune && mapInsee.getZoom() >= zoomDepartement){
+  //     mygeojson = L.geoJSON(
+  //       geoJsonFeatures.commune,
+  //       {
+  //         style: styleObjet.departement,
+  //         onEachFeature: onEachFeature
+  //       }
+  //     ).addTo(mapInsee);
+  //   }
+  //   if(mapInsee.getZoom() < zoomDepartement){
+  //     mygeojson = L.geoJSON(
+  //       geoJsonFeatures.region,
+  //       {
+  //         style: styleObjet.region,
+  //         onEachFeature: onEachFeature
+  //       }
+  //     ).addTo(mapInsee);
+  //   }
+  //   //mapInsee.fitBounds(mygeojson.getBounds())
+  //   animateBar();
+  //   //delete placeData.insee[zone].population.total;
+  //   // chartMap.data.labels = Object.keys(placeData.insee[zone].population);
+  //   // chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
+  //   //
+  //   // chartMap.update()
+  //
+  // }
 
   /**
   * Load data geoJson in function of zoom level
@@ -149,11 +149,14 @@
   mapInsee.setView(markerPoint, zoomDefault);
 
   loadGeoJson();
-  mapInsee.on("zoom", displayFeature);
+  //TODO other possibilities to make work displaying zoom
+  //mapInsee.on("zoom", displayFeature);
   var select = document.getElementById("selectGeo");
   select.addEventListener('change', function (event) {
     var zone = event.target.value;
-    //console.log(event.target.value);
+    var currentDataZone = placeData.insee[zone];
+    setCaptionDataBar(currentDataZone, zone);
+    // console.log(currentDataZone);
     mygeojson.remove();
     mygeojson = L.geoJSON(
       geoJsonFeatures[zone],
@@ -163,6 +166,8 @@
       }
     ).addTo(mapInsee);
     mapInsee.fitBounds(mygeojson.getBounds())
+    //Bar caption with new data
+    animateBar();
   }, false)
 
 

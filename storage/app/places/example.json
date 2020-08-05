@@ -2183,6 +2183,40 @@
     "data": {
         "insee":{
           "iris":{
+            "csp": {
+                "agriculteur":{
+                  "title":"Part des agriculteurs exploitants",
+                  "nb":0
+                },
+                "artisant":{
+                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "nb":61
+                },
+                "cadre":{
+                  "title":"Part des cadres, professions intellect. supérieures",
+                  "nb":230
+                },
+                "prof_int":{
+                  "title":"Part des professions interméd.",
+                  "nb":404
+                },
+                "employe":{
+                  "title":"Part des employés",
+                  "nb":543
+                },
+                "ouvrier":{
+                  "title":"Part des ouvriers",
+                  "nb":280
+                },
+                "retraite":{
+                  "title":"Part des ouvriers",
+                  "nb":543
+                },
+                "autre":{
+                  "title":"Autres",
+                  "nb":404
+                }
+              },
             "logement":{
               "house": {
                 "title":"Maison",
@@ -2218,41 +2252,7 @@
                 "title":"Autre inactif",
                 "nb":154
               }
-            },
-            "csp": {
-                "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
-                  "nb":0
-                },
-                "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
-                  "nb":61
-                },
-                "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":230
-                },
-                "prof_int":{
-                  "title":"Part des professions interméd.",
-                  "nb":404
-                },
-                "employe":{
-                  "title":"Part des employés",
-                  "nb":543
-                },
-                "ouvrier":{
-                  "title":"Part des ouvriers",
-                  "nb":280
-                },
-                "retraite":{
-                  "title":"Part des ouvriers",
-                  "nb":543
-                },
-                "autre":{
-                  "title":"Autres",
-                  "nb":404
-                }
-              }
+            }
           },
           "departement":{
             "logement":{
