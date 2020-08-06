@@ -29,6 +29,67 @@
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
             </section>
+            <section>
+              <h5 class="title is-5 has-text-centered">Modèle économique</h5>
+              <div class="columns is-flex is-vcentered is-centered">
+                <div class="column">
+                  <div id="budget-value-illustration">
+                    <figure class="image">
+                      <img  src="/images/bloc_note.svg" >
+                    </figure>
+                    <div class="" id="description-illustration-detail">
+                        <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
+                        <p class="fontSize1em">{{ $place->description }}</p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-one-fifth">
+                  <div class="budget">
+                    <figure class="image is30em">
+                      <img  src="/images/building_detail.svg" >
+                    </figure>
+                    <div class="very-small" id="occupant">{{ "150" }} occupants</div>
+                    <div class="very-small" id="budget-value">
+
+                    </div>
+                    <div class="" id="actor">Gouvernance partagée</div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="actor-illustration">
+                    <figure class="image">
+                      <img  src="/images/bloc_note.svg" >
+                    </figure>
+                    <div class="content" id="actor-illustration-detail">
+                      <ul>
+                        <li>
+                          <strong>Les acteurs publics</strong>
+                          <ul>
+                            <li>Marie de Paris</li>
+                            <li>Region IDF</li>
+                          </ul>
+                        </li>
+                        <br/>
+                        <li class="fontSize1em">
+                          <strong>Les acteurs privés</strong>
+                          <ul>
+                            <li>CIVA</li>
+                            <li>Renault</li>
+                          </ul>
+                        </li>
+                      <ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <section class="section">
+                <div class="column is-3 ">
+                    <h5 class="title is-5 has-text-centered">Financement</h5>
+                    <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
+                </div>
+              </section>
+            </section>
 
             <section class="section">
                 <h5 class="title is-5 has-text-centered no-border">Badges</h5>
@@ -115,67 +176,6 @@
             </div>
           </section>
         </section>
-        <section>
-          <h5 class="title is-5 has-text-centered">Modèle économique</h5>
-          <div class="columns is-flex is-vcentered is-centered">
-            <div class="column">
-              <div id="budget-value-illustration">
-                <figure class="image">
-                  <img  src="/images/bloc_note.svg" >
-                </figure>
-                <div class="" id="description-illustration-detail">
-                    <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
-                    <p class="fontSize1em">{{ $place->description }}</p>
-
-                </div>
-              </div>
-            </div>
-            <div class="column is-one-fifth">
-              <div class="budget">
-                <figure class="image is30em">
-                  <img  src="/images/building_detail.svg" >
-                </figure>
-                <div class="very-small" id="occupant">{{ "150" }} occupants</div>
-                <div class="very-small" id="budget-value">
-
-                </div>
-                <div class="" id="actor">Gouvernance partagée</div>
-              </div>
-            </div>
-            <div class="column">
-              <div id="actor-illustration">
-                <figure class="image">
-                  <img  src="/images/bloc_note.svg" >
-                </figure>
-                <div class="content" id="actor-illustration-detail">
-                  <ul>
-                    <li>
-                      <strong>Les acteurs publics</strong>
-                      <ul>
-                        <li>Marie de Paris</li>
-                        <li>Region IDF</li>
-                      </ul>
-                    </li>
-                    <br/>
-                    <li class="fontSize1em">
-                      <strong>Les acteurs privés</strong>
-                      <ul>
-                        <li>CIVA</li>
-                        <li>Renault</li>
-                      </ul>
-                    </li>
-                  <ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <section class="section">
-            <div class="column is-3 ">
-                <h5 class="title is-5 has-text-centered">Financement</h5>
-                <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
-            </div>
-          </section>
-        </section>
 
         <section class="section anchor" id="donnees-insee">
           <h3 class="title is-3">Les données INSEE</h3>
@@ -200,33 +200,32 @@
                   <div class="column">
                     <h4>Actifs</h4>
                     <div class="" style="width:100%">
-                      <div class="actifBar myBar is-inline-block" style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
-                       style="background-color:#0392cf;">
+                      <div class="actifBar myBar is-inline-block" style="background-color:#9be500;border-radius: 1em 0 0 1em;"></div><div class="actifBar myBar is-inline-block"
+                       style="background-color:#005476; border-radius:0;">
                       </div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#0392cf;"></div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#0392cf;"></div>
+                      style="background-color:#650065;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                      style="background-color:#0392cf;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                      style="background-color:#ffa500; border-radius: 0 1em 1em 0;"></div>
                     </div>
                     <h4>Catégories socioprofessionnelle</h4>
                     <div class="" style="width:100%">
                       <div class="cspBar myBar is-inline-block"
-                      style="background-color: #f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;">
-                      </div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#f37736;"></div>
+                      style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                      style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
                     </div>
                     <h4>Immobilier</h4>
                     <div class="" style="width:100%">
                       <div class="logementBar myBar is-inline-block"
-                      style="background-color:#ee4035;"></div><div class="logementBar myBar is-inline-block"
-                      style="background-color:#ee4035;">
+                      style="background-color:#2bdcb2;border-radius: 1em 0 0 1em;"></div><div class="logementBar myBar is-inline-block"
+                      style="background-color:#275843;border-radius:0;">
                       </div><div class="logementBar myBar is-inline-block"
-                      style="background-color:#ee4035;"></div>
+                      style="background-color:#0038ff;border-radius: 0 1em 1em 0;"></div>
                     </div>
                   </div>
                 </div>
