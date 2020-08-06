@@ -309,6 +309,9 @@
             </div>
           </div>
         </section>
+
+        <h2>Sigma interaction</h2>
+        <div id="sigma" style="width:50em; height:10em;"></div>
     </div>
 </div>
 @endsection
