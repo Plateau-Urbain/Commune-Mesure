@@ -53,26 +53,57 @@
               <div class="has-text-centered">
                 <div class="">
                   @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre)
+                  @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"
+                  data-tooltip="{{ $place->data->composition->{1}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre)
+                  @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"
+                  data-tooltip="{{ $place->data->composition->{2}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre)
+                  @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"
+                  data-tooltip="{{ $place->data->composition->{3}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre)
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"></div>
+                  @endphp
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
+                  data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                 </div>
                 <div class="columns">
-                  <div class="column is-half is-offset-one-quarter">
+                    <div class="column is-one-fifth">
+                      <div class="caption-block">
+                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
+                        <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
+                      </div>
+                      <div class="caption-block">
+                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                        <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
+                      </div>
+                      <div class="caption-block">
+                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                        <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
+                      </div>
+                      <div class="caption-block">
+                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
+                        <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
+                      </div>
+                    </div>
+                  <div class="column is-7">
                     <div class="columns is-multiline mt-6">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
-                        @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1))
-                        @php ($percent= $quantity * 100)
-                          @for ($i = 0; $i < 30*($quantity); $i++)
-                            <div class="column is-one-fifth">
+                        @php $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
+                        $percent= $quantity * 100;
+                        @endphp
+                          @for ($i = 0; $i < 500*($quantity); $i++)
+                            <div class="">
                                 <i class="fa {{ $composition->img }}" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
                             </div>
                           @endfor

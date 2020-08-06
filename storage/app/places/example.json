@@ -2584,13 +2584,13 @@
           "association":{
             "title":"Associations",
             "img":"fa-hand-holding-heart",
-            "color":"#4F5D95",
+            "color":"#000000",
             "nombre": 8
           },
           "artiste":{
             "title":"Artistes",
             "img":"fa-paint-brush",
-            "color":"#563d7c",
+            "color":"#762dd4",
             "nombre": 19
           },
           "autre":{
