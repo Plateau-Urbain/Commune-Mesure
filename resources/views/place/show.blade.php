@@ -83,12 +83,12 @@
                   </div>
                 </div>
               </div>
-              <section class="section">
-                <div class="column is-3 ">
+              <div class="section">
+                <div class="">
                     <h5 class="title is-5 has-text-centered">Financement</h5>
                     <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
                 </div>
-              </section>
+              </div>
             </section>
 
             <section class="section">
@@ -137,27 +137,27 @@
                   style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
                   data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                 </div>
-                <div class="columns">
-                    <div class="column is-one-fifth">
-                      <div class="caption-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
-                      </div>
-                      <div class="caption-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
-                      </div>
-                      <div class="caption-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
-                      </div>
-                      <div class="caption-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
-                      </div>
+                <div class="columns mt-6">
+                  <div class="column is-one-fifth">
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
                     </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
+                    </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
+                    </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
+                    </div>
+                  </div>
                   <div class="column is-7">
-                    <div class="columns is-multiline mt-6">
+                    <div class="columns is-multiline">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
                         @php $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
@@ -195,37 +195,113 @@
               <div class="column" style="width: 100%;height: 30em;">
                 <div id="map-insee"></div>
               </div>
-              <div class="column">
+              <div class="column is-7">
                 <div class="columns">
                   <div class="column">
-                    <h4>Actifs</h4>
-                    <div class="" style="width:100%">
-                      <div class="actifBar myBar is-inline-block" style="background-color:#9be500;border-radius: 1em 0 0 1em;"></div><div class="actifBar myBar is-inline-block"
-                       style="background-color:#005476; border-radius:0;">
-                      </div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#650065;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#0392cf;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
-                      style="background-color:#ffa500; border-radius: 0 1em 1em 0;"></div>
+                    <div class="mt-2">
+                      <h4>Actifs</h4>
+                      <div class="" style="width:100%">
+                        <div class="actifBar myBar is-inline-block" style="background-color:#9be500;border-radius: 1em 0 0 1em;"></div><div class="actifBar myBar is-inline-block"
+                         style="background-color:#005476; border-radius:0;">
+                        </div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#650065;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#0392cf;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#ffa500; border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                      </div>
                     </div>
-                    <h4>Catégories socioprofessionnelle</h4>
-                    <div class="" style="width:100%">
-                      <div class="cspBar myBar is-inline-block"
-                      style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                      style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
+                    <div class="mt-2">
+                      <h4>Catégories socioprofessionnelles</h4>
+                      <div class="" style="width:100%">
+                        <div class="cspBar myBar is-inline-block"
+                        style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                      </div>
                     </div>
-                    <h4>Immobilier</h4>
-                    <div class="" style="width:100%">
-                      <div class="logementBar myBar is-inline-block"
-                      style="background-color:#2bdcb2;border-radius: 1em 0 0 1em;"></div><div class="logementBar myBar is-inline-block"
-                      style="background-color:#275843;border-radius:0;">
-                      </div><div class="logementBar myBar is-inline-block"
-                      style="background-color:#0038ff;border-radius: 0 1em 1em 0;"></div>
+                    <div class="mt-2">
+                      <h4>Immobiliers</h4>
+                      <div class="" style="width:100%">
+                        <div class="logementBar myBar is-inline-block"
+                        style="background-color:#2bdcb2;border-radius: 1em 0 0 1em;"></div><div class="logementBar myBar is-inline-block"
+                        style="background-color:#275843;border-radius:0;">
+                        </div><div class="logementBar myBar is-inline-block"
+                        style="background-color:#0038ff;border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

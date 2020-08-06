@@ -64,30 +64,43 @@ function setCaptionDataBar(currentDataZone, zone){
     totalCsp += val.nb;
   });
   var actifBarElements = document.querySelectorAll(".actifBar")
+  var actifCaption = document.querySelectorAll(".actifCaption")
+  var actifTitle = document.querySelectorAll(".actifTitle")
   actifBarElements.forEach(function (element, i) {
     let data = Object.entries(placeData.insee.iris.activites)[i][1];
     let percent = data.nb * 100 / totalActif;
     element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
     element.setAttribute("data-fill", percent);
+    actifCaption[i].style.backgroundColor = element.style.backgroundColor;
+    actifTitle[i].innerHTML = data.title;
   })
   var cspBarElements = document.querySelectorAll(".cspBar")
+  var cspCaption = document.querySelectorAll(".cspCaption")
+  var cspTitle = document.querySelectorAll(".cspTitle")
   cspBarElements.forEach(function (element, i) {
     let data = Object.entries(placeData.insee.iris.csp)[i][1];
      let percent = data.nb * 100 / totalCsp
     element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
     element.setAttribute("data-fill", percent);
+    cspCaption[i].style.backgroundColor = element.style.backgroundColor;
+    cspTitle[i].innerHTML = data.title;
   })
   var logementBarElements = document.querySelectorAll(".logementBar")
+  var logementCaption = document.querySelectorAll(".logementCaption")
+  var logementTitle = document.querySelectorAll(".logementTitle")
   logementBarElements.forEach(function (element, i) {
     let data = Object.entries(placeData.insee.iris.logement)[i][1];
     let percent = data.nb * 100 / totalLogement;
     element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
     element.setAttribute("data-fill", percent);
+    logementCaption[i].style.backgroundColor = element.style.backgroundColor;
+    logementTitle[i].innerHTML = data.title;
   })
 }
 
   window.onload = (event) => {//TODO move in index.js
     setCaptionDataBar(placeData.insee.iris, "iris");
+
     animateBar();
 
   }
