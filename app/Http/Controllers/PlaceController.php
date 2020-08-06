@@ -70,12 +70,7 @@ class PlaceController extends Controller
       $keys = array_keys($inseeDataArray);
       usort($inseeDataArray, function($a, $b)
       {
-        if ($a->nb == $b->nb) {
-            return 0;
-        }
-        return ($a->nb > $b->nb) ? -1 : 1;
-
-
+        return strcasecmp($a->title, $b->title);
       });
       return (object)$inseeDataArray;
     }
