@@ -1,6 +1,6 @@
 var mapjs = (function () {
     var config = {
-        layer: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png',
+        layer: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
         attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'
     }
 
