@@ -58,8 +58,21 @@
                     </figure>
                     <div class="" id="description-illustration-detail">
                         <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
-                        <p class="fontSize1em">{{ $place->description }}</p>
-
+                        <p class="fonfSize0-8em">{{ $place->description }}</p>
+                        <p class="mb-3 mt-5">
+                          <strong>Les differents publics : </strong>
+                          <span class="font-color-theme">Tout le monde</span>
+                        </p>
+                        <div class="columns is-multiline fonfSize0-8em">
+                          <span class="is-block ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i>Handicapés</span>
+                          <span class="is-block ml-3"><i class="fa fa-child font-color-theme mr-1"></i>Enfants</span>
+                          <span class="is-inline-block ml-3"><i class="fa fa-user-graduate font-color-theme mr-1"></i>Étudiants</span>
+                          <span class="is-block ml-3"><i class="fa fa-blind font-color-theme mr-1"></i>Parsonnes</span>
+                          <span class="is-block ml-3"><i class="fa fa-users font-color-theme mr-1"></i>Famille</span>
+                          <span class="is-block ml-3"><i class="fa fa-user-tie font-color-theme mr-1"></i>Personnes visants le site</span>
+                          <span class="is-block ml-3"><i class="fa fa-person-booth font-color-theme mr-1"></i>Personnes habitant sur le site</span>
+                          <span class="is-block ml-3"><i class="fa fa-user-tag font-color-theme mr-1"></i>Personnes visants le site</span>
+                        </div>
                     </div>
                   </div>
                 </div>
