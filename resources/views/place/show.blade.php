@@ -211,7 +211,7 @@
               </div>
             </div>
             <div class="columns card is-rounded">
-              <div class="column" style="width: 100%;height: 30em;">
+              <div class="column" style="width: 100%;height: 30em; z-index:1">
                 <div id="map-insee"></div>
               </div>
               <div class="column is-7">
