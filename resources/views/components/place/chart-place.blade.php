@@ -99,48 +99,6 @@ function setCaptionDataBar(currentDataZone, zone){
   })
 }
 
-var datajson = {
-  "nodes": [
-    {
-      "id": "n0",
-      "label": "A node",
-      "x": 0,
-      "y": 0,
-      "size": 3
-    },
-    {
-      "id": "n1",
-      "label": "Another node",
-      "x": 3,
-      "y": 1,
-      "size": 2
-    },
-    {
-      "id": "n2",
-      "label": "And a last one",
-      "x": 1,
-      "y": 3,
-      "size": 1
-    }
-  ],
-  "edges": [
-    {
-      "id": "e0",
-      "source": "n0",
-      "target": "n1"
-    },
-    {
-      "id": "e1",
-      "source": "n1",
-      "target": "n2"
-    },
-    {
-      "id": "e2",
-      "source": "n2",
-      "target": "n0"
-    }
-  ]
-}
 
 var s = new sigma(
   {
@@ -160,14 +118,32 @@ var s = new sigma(
 // Create a graph object
 var graph = {
   nodes: [
-    { id: "n0", label: "A node", x: 0, y: 0, size: 3, color: '#008cc2' },
-    { id: "n1", label: "Another node", x: 3, y: 1, size: 2, color: '#008cc2' },
-    { id: "n2", label: "And a last one", x: 1, y: 3, size: 1, color: '#E57821' }
+    { id: "0", label: "Bien-être", x: 0, y: 0, size: 3, color: '#008cc2' },
+    { id: "1", label: "Environnement et dévelop. durable", x: 2, y: 1, size: 3, color: '#008cc2' },
+    { id: "2", label: "Solidarité", x: 2.5, y: 3, size: 3, color: '#008cc2' },
+    { id: "3", label: "Éducation", x: -2, y: 3, size: 3, color: '#008cc2' },
+    { id: "4", label: "Art et création", x: -4, y: 3, size: 3, color: '#008cc2' },
+    { id: "5", label: "Activités", x: -6, y: 3, size: 3, color: '#008cc2' },
+
+    { id: "6", label: "Écoute", x: 1.5, y: 1, size: 3, color: '#008cc2' },
+    { id: "7", label: "citoyenneté", x: 3, y: 1, size: 3, color: '#008cc2' },
+    { id: "8", label: "vivre ensemble", x: -2, y: 2, size: 3, color: '#008cc2' },
+    { id: "9", label: "transmission", x: -2, y: 1.5, size: 3, color: '#008cc2' },
+    { id: "10", label: "laïcité", x: -0.5, y: 3, size: 3, color: '#008cc2' },
+    { id: "11", label: "formation des individus", x: -2, y: 3, size: 3, color: '#008cc2' },
+    { id: "12", label: "innovation économique", x: -2, y: 3, size: 3, color: '#008cc2' },
+    { id: "13", label: "innovation sociale", x: -1, y: 0, size: 3, color: '#008cc2' },
   ],
   edges: [
-    { id: "e0", source: "n0", target: "n1", color: '#282c34', type:'curve', size:0.5 },
-    { id: "e1", source: "n1", target: "n2", color: '#282c34', type:'curve', size:1},
-    { id: "e2", source: "n2", target: "n0", color: '#FF0000', type:'curve', size:2}
+    { id: "0", source: "0", target: "8", color: '#FF0000', type:'curve', size:1},
+    { id: "1", source: "1", target: "12", color: '#FF0000', type:'curve', size:1},
+    { id: "2", source: "1", target: "13", color: '#FF0000', type:'curve', size:1},
+    { id: "3", source: "0", target: "10", color: '#FF0000', type:'curve', size:1},
+    { id: "4", source: "3", target: "11", color: '#FF0000', type:'curve', size:1},
+    { id: "5", source: "1", target: "2", color: '#FF0000', type:'curve', size:1},
+    { id: "6", source: "2", target: "6", color: '#008cc2', type:'curve', size:1},
+    { id: "7", source: "2", target: "10", color: '#008cc2', type:'curve', size:1},
+    { id: "8", source: "2", target: "8", color: '#008cc2', type:'curve', size:1}
   ]
 }
 
@@ -177,12 +153,44 @@ s.graph.read(graph);
 s.refresh();
 
 
+
+
+
+d3.select("#sigma").append("svg")
+        .attr("class", "svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g") // Ajout du groupe qui contiendra tout les mots
+            .attr("transform", "translate(" + width / 2 + ", " + height / 2 + ")") // Centrage du groupe
+            .selectAll("text")
+            .data(myWords)
+            .enter().append("text") // Ajout de chaque mot avec ses propriétés
+                .style("font-size", d => d.size + "px")
+                .style("font-family", fontFamily)
+                .style("fill", d => fillScale(d.size))
+                .attr("text-anchor", "middle")
+                // .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                .text(d => d.text);
+
+
   window.onload = (event) => {//TODO move in index.js
     setCaptionDataBar(placeData.insee.iris, "iris");
 
     animateBar();
 
+    if(document.readyState === "complete"){
+      const width = document.getElementById("sigma").offsetWidth * 0.95,
+          height = 500,
+          fontFamily = "Open Sans",
+          fontScale = d3.scaleLinear().range([20, 120]), // Construction d'une échelle linéaire continue qui va d'une font de 20px à 120px
+          fillScale = d3.scaleOrdinal(d3.schemeCategory10);
+          var myWords = [{word: "Running", size: "10"}, {word: "Surfing", size: "20"}, {word: "Climbing", size: "50"}, {word: "Kiting", size: "30"}, {word: "Sailing", size: "20"}, {word: "Snowboarding", size: "60"} ]
 
+          // List of words
+          var myWords = [{word: "Running", size: "10"}, {word: "Surfing", size: "20"}, {word: "Climbing", size: "50"}, {word: "Kiting", size: "30"}, {word: "Sailing", size: "20"}, {word: "Snowboarding", size: "60"} ]
 
-  }
+          // set the dimensions and margins of the graph
+          var margin = {top: 10, right: 10, bottom: 10, left: 10},
+
+    }
 </script>
