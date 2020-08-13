@@ -73,6 +73,10 @@
                           <span class="is-block ml-3"><i class="fa fa-person-booth font-color-theme mr-1"></i>Personnes habitant sur le site</span>
                           <span class="is-block ml-3"><i class="fa fa-user-tag font-color-theme mr-1"></i>Personnes visants le site</span>
                         </div>
+                        <p>
+                          <strong>Ouverture:</strong>
+                          <span class="font-color-theme">En permanence</span>
+                        </p>
                     </div>
                   </div>
                 </div>
@@ -97,17 +101,23 @@
                       <ul>
                         <li>
                           <strong>Les acteurs publics</strong>
-                          <ul>
-                            <li>Marie de Paris</li>
-                            <li>Region IDF</li>
-                          </ul>
+                          <span class="is-block fonfSize0-8em">
+                            Contrat de ville/ANCT, Plaine Commune, OPH, Ville d'Aubervilliers
+                          </span>
                         </li>
                         <br/>
                         <li class="fontSize1em">
                           <strong>Les acteurs privés</strong>
-                          <ul>
-                            <li>CIVA</li>
-                            <li>Renault</li>
+                          <span class="is-block fonfSize0-8em">
+                            Associations Méliadès, Bien dans mon quartier,
+                            Kialuçera, régie de quartier, maison du soleil (retraités), AVISA
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Nature des partenariats:</strong>
+                          <ul class="fonfSize0-8em">
+                            <li>Public : <span class="font-color-theme">Économique et nature</span></li>
+                            <li>Privé: <span class="font-color-theme">Économique</span></li>
                           </ul>
                         </li>
                       <ul>
