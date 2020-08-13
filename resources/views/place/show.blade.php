@@ -7,12 +7,20 @@
 @section('script_js')
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js" integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js" integrity="sha512-UWEnsxiF3PBLuxBEFjpFEHQGZNLwWFqztm66Wok/kXsGSrcOS76CP3ovpEQmwlOmR2Co4iV5FmXrdb7YzP37SA==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
     @include('components.place.chart-place')
     @include('components.place.map-insee-js')
+    @include('components.place.sigma-cloud-words-js')
+    @include('components.place.d3-cloud-words-js')
 @endsection
 
 @section('content')
-<div class="columns is-gapless">
+<div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('components.place.place-menu')
         {{-- @include('components.place.info-box') --}}
@@ -29,6 +37,17 @@
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
             </section>
+            <div class="section">
+              <h2>Nos valeurs </h2>
+              <div class="columns">
+                <div class="column">
+                  <div id="sigma" style="width:100%; height:20em;"></div>
+              </div>
+                <div class="column">
+                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
+                </div>
+              </div>
+            </div>
             <section>
               <h5 class="title is-5 has-text-centered">Modèle économique</h5>
               <div class="columns is-flex is-vcentered is-centered">
@@ -309,9 +328,6 @@
             </div>
           </div>
         </section>
-
-        <h2>Sigma interaction</h2>
-        <div id="sigma" style="width:50em; height:10em;"></div>
     </div>
 </div>
 @endsection
