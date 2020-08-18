@@ -31,15 +31,16 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@creativebulma/bulma-tooltip": "^1.2.0",
-    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "chart.js": "^2.9.3",
     "leaflet": "^1.6.0",
     "leaflet-gesture-handling": "^1.1.8",
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "^1.4.1",
+    "sigma": "^1.2.1"
   }
 }

@@ -7,12 +7,20 @@
 @section('script_js')
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js" integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js" integrity="sha512-UWEnsxiF3PBLuxBEFjpFEHQGZNLwWFqztm66Wok/kXsGSrcOS76CP3ovpEQmwlOmR2Co4iV5FmXrdb7YzP37SA==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
     @include('components.place.chart-place')
     @include('components.place.map-insee-js')
+    @include('components.place.sigma-cloud-words-js')
+    @include('components.place.d3-cloud-words-js')
 @endsection
 
 @section('content')
-<div class="columns is-gapless">
+<div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('components.place.place-menu')
         {{-- @include('components.place.info-box') --}}
@@ -28,6 +36,101 @@
                     @endforeach
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
+            </section>
+            <div class="section">
+              <h2>Nos valeurs </h2>
+              <div class="columns">
+                <div class="column">
+                  <div id="sigma" style="width:100%; height:20em;"></div>
+              </div>
+                <div class="column">
+                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
+                </div>
+              </div>
+            </div>
+            <section>
+              <h5 class="title is-5 has-text-centered">Modèle économique</h5>
+              <div class="columns is-flex is-vcentered is-centered">
+                <div class="column">
+                  <div id="budget-value-illustration">
+                    <figure class="image">
+                      <img  src="/images/bloc_note.svg" >
+                    </figure>
+                    <div class="" id="description-illustration-detail">
+                        <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
+                        <p class="fonfSize0-8em">{{ $place->description }}</p>
+                        <p class="mb-3 mt-5">
+                          <strong>Les differents publics : </strong>
+                          <span class="font-color-theme">Tout le monde</span>
+                        </p>
+                        <div class="columns is-multiline fonfSize0-8em">
+                          <span class="is-block ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i>Handicapés</span>
+                          <span class="is-block ml-3"><i class="fa fa-child font-color-theme mr-1"></i>Enfants</span>
+                          <span class="is-inline-block ml-3"><i class="fa fa-user-graduate font-color-theme mr-1"></i>Étudiants</span>
+                          <span class="is-block ml-3"><i class="fa fa-blind font-color-theme mr-1"></i>Parsonnes</span>
+                          <span class="is-block ml-3"><i class="fa fa-users font-color-theme mr-1"></i>Famille</span>
+                          <span class="is-block ml-3"><i class="fa fa-user-tie font-color-theme mr-1"></i>Personnes visants le site</span>
+                          <span class="is-block ml-3"><i class="fa fa-person-booth font-color-theme mr-1"></i>Personnes habitant sur le site</span>
+                          <span class="is-block ml-3"><i class="fa fa-user-tag font-color-theme mr-1"></i>Personnes visants le site</span>
+                        </div>
+                        <p>
+                          <strong>Ouverture:</strong>
+                          <span class="font-color-theme">En permanence</span>
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-one-fifth">
+                  <div class="budget">
+                    <figure class="image is30em">
+                      <img  src="/images/building_detail.svg" >
+                    </figure>
+                    <div class="very-small" id="occupant">{{ "150" }} occupants</div>
+                    <div class="very-small" id="budget-value">
+
+                    </div>
+                    <div class="" id="actor">Gouvernance partagée</div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="actor-illustration">
+                    <figure class="image">
+                      <img  src="/images/bloc_note.svg" >
+                    </figure>
+                    <div class="content" id="actor-illustration-detail">
+                      <ul>
+                        <li>
+                          <strong>Les acteurs publics</strong>
+                          <span class="is-block fonfSize0-8em">
+                            Contrat de ville/ANCT, Plaine Commune, OPH, Ville d'Aubervilliers
+                          </span>
+                        </li>
+                        <br/>
+                        <li class="fontSize1em">
+                          <strong>Les acteurs privés</strong>
+                          <span class="is-block fonfSize0-8em">
+                            Associations Méliadès, Bien dans mon quartier,
+                            Kialuçera, régie de quartier, maison du soleil (retraités), AVISA
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Nature des partenariats:</strong>
+                          <ul class="fonfSize0-8em">
+                            <li>Public : <span class="font-color-theme">Économique et nature</span></li>
+                            <li>Privé: <span class="font-color-theme">Économique</span></li>
+                          </ul>
+                        </li>
+                      <ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="">
+                    <h5 class="title is-5 has-text-centered">Financement</h5>
+                    <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
+                </div>
+              </div>
             </section>
 
             <section class="section">
@@ -52,28 +155,57 @@
             <section class="section">
               <div class="has-text-centered">
                 <div class="">
-                    @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
+                  @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"
+                  data-tooltip="{{ $place->data->composition->{1}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre) @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"
+                  data-tooltip="{{ $place->data->composition->{2}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre) @endphp
 
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"
+                  data-tooltip="{{ $place->data->composition->{3}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                   @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre) @endphp
-                  <div class="Progress-item is-inline-block" style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"></div>
+
+                  <div class="Progress-item is-inline-block"
+                  style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
+                  data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                 </div>
-                <div class="columns">
-                  <div class="column is-half is-offset-one-quarter">
-                    <div class="columns is-multiline mt-6">
+                <div class="columns mt-6">
+                  <div class="column is-one-fifth">
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
+                    </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
+                    </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
+                    </div>
+                    <div class="caption-block">
+                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
+                      <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
+                    </div>
+                  </div>
+                  <div class="column is-7">
+                    <div class="columns is-multiline">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
-                        @php ($quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1)) @endphp
-                        @php ($percent= $quantity * 100) @endphp
-                          @for ($i = 0; $i < 10*($quantity); $i++)
-                            <div class="column is-one-fifth squared">
-                                <i class="fa {{ $composition->img }} fa-3x" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
+                        @php
+                            $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
+                            $percent= $quantity * 100;
+                        @endphp
+                          @for ($i = 0; $i < 500*($quantity); $i++)
+                            <div class="">
+                                <i class="fa {{ $composition->img }}" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
                             </div>
                           @endfor
                         @endif
@@ -84,291 +216,135 @@
             </div>
           </section>
         </section>
-        <section>
-          <h5 class="title is-5 has-text-centered">Modèle économique</h5>
-          <div class="columns is-flex is-vcentered is-centered">
-            <div class="column">
-              <div id="budget-value-illustration">
-                <figure class="image">
-                  <img  src="/images/bloc_note.svg" >
-                </figure>
-                <div class="" id="description-illustration-detail">
-                    <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
-                    <p class="fontSize1em">{{ $place->description }}</p>
-
-                </div>
-              </div>
-            </div>
-            <div class="column is-one-fifth">
-              <div class="budget">
-                <figure class="image is30em">
-                  <img  src="/images/building_detail.svg" >
-                </figure>
-                <div class="very-small" id="occupant">{{ "150" }} occupants</div>
-                <div class="very-small" id="budget-value">
-
-                </div>
-                <div class="" id="actor">Gouvernance partagée</div>
-              </div>
-            </div>
-            <div class="column">
-              <div id="actor-illustration">
-                <figure class="image">
-                  <img  src="/images/bloc_note.svg" >
-                </figure>
-                <div class="content" id="actor-illustration-detail">
-                  <ul>
-                    <li>
-                      <strong>Les acteurs publics</strong>
-                      <ul>
-                        <li>Marie de Paris</li>
-                        <li>Region IDF</li>
-                      </ul>
-                    </li>
-                    <br/>
-                    <li class="fontSize1em">
-                      <strong>Les acteurs privés</strong>
-                      <ul>
-                        <li>CIVA</li>
-                        <li>Renault</li>
-                      </ul>
-                    </li>
-                  <ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <section class="section">
-            <div class="column is-3 ">
-                <h5 class="title is-5 has-text-centered">Financement</h5>
-                <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
-            </div>
-          </section>
-        </section>
-        <div id="indicateurs" class="anchor">
-            <section class="section" id="indicateurs-martin">
-              <h3 class="title is-3">Les indicateurs de Martin</h3>
-              <h5 class="title is-5 has-text-centered">Indicateurs sociaux</h5>
-              <div class="tabs is-small" data-tab-group="resilience">
-                <ul>
-                  <li class="is-active">
-                    <a href="#charts">
-                      <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                      <span>Graphiques</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#raw">
-                      <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                      <span>Données</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="tabs-content" data-tab-group="resilience">
-                <div class="tab is-active" data-tab="charts">
-                    @foreach($place->data->resilience->type as $resilience)
-                        <p>{{ $resilience->title }} : {{ ($resilience->total / $place->data->resilience->total)*100 }}%</p>
-                        <progress class="progress is-primary" value="{{ $resilience->total }}" max="{{ $place->data->resilience->total }}">%</progress>
-                  @endforeach
-                </div>
-
-                <div class="tab" data-tab="raw">
-                  <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                     <thead>
-                      <tr>
-                          @foreach($place->data->resilience->type->art as $key => $value)
-                              <th>{{ $key }}</th>
-                          @endforeach
-                      </tr>
-                    </thead>
-                    </tbody>
-                        @foreach($place->data->resilience->type as $key => $resilience)
-                        <tr>
-                            <th scope="row">{{ $resilience->title }}</th>
-                            @foreach($resilience as $key => $value)
-                            @if($resilience->title !== $value)
-                              <td>{{ $value }}</td>
-                            @endif
-                            @endforeach
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-        </div>
-
-        <section class="section">
-            <h5 class="title is-5 has-text-centered">Répartition de la population</h5>
-            <div class="columns is-vcentered">
-                <div class="column has-text-centered">
-                    <h2 class="title is-2 no-border">39%</h2>
-                    <h4 class="subtitle is-4">de femmes</h4>
-                </div>
-                <div class="column has-text-centered">
-                    <div class="columns is-multiline">
-                    @for ($i = 0; $i < 4; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/female.svg', 'very-small')
-                        </div>
-                    @endfor
-                    @for ($i = 0; $i < 6; $i++)
-                        <div class="column is-one-fifth">
-                            @svg('assets/images/male.svg', 'very-small')
-                        </div>
-                    @endfor
-                    </div>
-                </div>
-                <div class="column has-text-centered">
-                    <h2 class="title is-2 no-border">61%</h2>
-                    <h4 class="subtitle is-4">d'hommes</h4>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h5 class="title is-5 has-text-centered">Répartition de l'emploi par sexe</h5>
-            <div class="columns is-vcentered">
-                <div class="column is-2 has-text-centered is-offset-3">
-                    <h2 class="title is-2 no-border">84%</h2>
-                    <h4 class="subtitle is-4">d'emploi</h4>
-                </div>
-                <div class="column is-2 has-text-centered is-narrow">
-                    <div class="column">
-                        @svg('assets/images/body.svg', 'small')
-                    </div>
-                </div>
-                <div class="column is-2 has-text-centered">
-                    <h2 class="title is-2 no-border">91%</h2>
-                    <h4 class="subtitle is-4">d'emploi</h4>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="section anchors" id="indicateurs-approche">
-          <h3 class="title is-3">Les indicateurs d'Approche</h3>
-          <h5 class="title is-5 has-text-centered">Services</h5>
-          <div class="columns is-vcentered has-text-centered">
-            <div class="column is-2 is-offset-3">
-              <img id="img-left" src="/images/questionnaire/goal.svg">
-              <p style="font-family: 'Renner Bold'">Occupant.e.s du site</p>
-            </div>
-            <div class="column is-2">
-              <div>
-                <img src="/images/questionnaire/arrow.svg">
-              </div>
-              <div>
-                <p class="is-size-3" style="font-family: 'Renner Bold'">Conseils</p>
-              </div>
-              <div>
-                <img src="/images/questionnaire/arrow.svg" style="transform: scaleY(-1) scaleX(-1);">
-              </div>
-            </div>
-            <div class="column is-2">
-              <img id="img-right" src="/images/questionnaire/new-start.svg">
-              <p style="font-family: 'Renner Bold'">Chercheurs d'emplois</p>
-            </div>
-          </div>
-
-          <div id="radio-listener" class="columns is-vcentered has-text-centered">
-            <div class="column is-2 is-offset-3">
-              <div class="control mt-2">
-                <label class="radio"><input id="check-left" type="radio" name="left" checked data-img="goal" data-txt="Occupant.e.s du site">Occupant.e.s</label>
-                <label class="radio"><input id="check-left" type="radio" name="left" data-img="acteurs" data-txt="Acteurs locaux">Acteurs</label>
-              </div>
-            </div>
-            <div class="column is-2"></div>
-            <div class="column is-2">
-              <div class="control mt-2">
-                <label class="radio"><input type="radio" name="right" checked data-img="new-start" data-txt="Chercheurs d'emplois">Chercheurs d'emplois</label>
-                <label class="radio"><input type="radio" name="right" data-img="difficulties" data-txt="Public en difficultés">Publics en difficultés</label>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <section class="section anchor" id="donnees-insee">
           <h3 class="title is-3">Les données INSEE</h3>
           <div class="section">
-            <div class="columns">
-              <div class="column card is-rounded">
-                <div>
-                  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
-                </div>
-                <div class="columns">
-                  <div class="column">
-                    <h4>Actifs</h4>
-                    <div style="height:2em; width:40%; background-color:#0392cf;"></div>
-                    <h4>Chômeurs</h4>
-                    <div style="height:2em; width:25%; background-color:#f37736;"></div>
-                    <h4>Autres</h4>
-                    <div style="height:2em; width:35%; background-color:#ee4035;"></div>
-                  </div>
-                  <div class="column is-one-fifth">
-                    <h4>Légende</h4>
-                    <div class="">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:#0392cf;"></div>
-                      <p class="is-inline-block">Actifs</p>
-                    </div>
-                    <div class="">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:#f37736;"></div>
-                      <p class="is-inline-block">Étudiants</p>
-                    </div>
-                  </div>
-                </div>
+            <div class="mb-5">
+              <label>Choississez un découpage géographique: </label>
+              <div class="select">
+                <select id="selectGeo">
+                  <option value="region">Région</option>
+                  <option value="departement">Département</option>
+                  <option value="commune">Commune</option>
+                  <option value="iris" selected="selected">Iris</option>
+                </select>
               </div>
-              <div class="column" style="width: 100%;height: 30em;">
+            </div>
+            <div class="columns card is-rounded">
+              <div class="column" style="width: 100%;height: 30em; z-index:1">
                 <div id="map-insee"></div>
               </div>
-            </div>
-          </div>
-          <div>
-            <h5 class="title is-5 has-text-centered">Répartition H/F</h5>
-            <div class="tabs is-small" data-tab-group="population">
-              <ul>
-                <li class="is-active">
-                  <a href="#charts">
-                    <span class="icon is-small"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                    <span>Graphiques</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#raw">
-                    <span class="icon is-small"><i class="fas fa-table" aria-hidden="true"></i></span>
-                    <span>Données</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="columns is-multiline">
-              <div class="column is-half ">
-                <div class="tabs-content" data-tab-group="population">
-                  <div class="tab is-active" data-tab="charts">
-                    <canvas id="chart-pop" height=380 width=760></canvas>
-                  </div>
-                  <div class="tab" data-tab="raw">
-                    <pre>@json($place->data->population, JSON_PRETTY_PRINT)</pre>
+              <div class="column is-7">
+                <div class="columns">
+                  <div class="column">
+                    <div class="mt-2">
+                      <h4>Actifs</h4>
+                      <div class="" style="width:100%">
+                        <div class="actifBar myBar is-inline-block" style="background-color:#9be500;border-radius: 1em 0 0 1em;"></div><div class="actifBar myBar is-inline-block"
+                         style="background-color:#005476; border-radius:0;">
+                        </div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#650065;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#0392cf;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
+                        style="background-color:#ffa500; border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="actifTitle is-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <h4>Catégories socioprofessionnelles</h4>
+                      <div class="" style="width:100%">
+                        <div class="cspBar myBar is-inline-block"
+                        style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="cspTitle is-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <h4>Immobiliers</h4>
+                      <div class="" style="width:100%">
+                        <div class="logementBar myBar is-inline-block"
+                        style="background-color:#2bdcb2;border-radius: 1em 0 0 1em;"></div><div class="logementBar myBar is-inline-block"
+                        style="background-color:#275843;border-radius:0;">
+                        </div><div class="logementBar myBar is-inline-block"
+                        style="background-color:#0038ff;border-radius: 0 1em 1em 0;"></div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                        <div class="caption-block is-inline-block">
+                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
+                          <p class="logementTitle is-inline-block"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div> {{-- Repartition H/F --}}
-              <div class="column is-half">
-                <canvas id="chart-pop-bar"></canvas>
-              </div>
-              <div class="column is-12"><h5 class="title is-5 has-text-centered">Répartition des actifs</h5></div>
-              <div class="column is-half">
-                <canvas id="chart-activities"></canvas>
-              </div>
-              <div class="column is-half">
-                <canvas id="chart-activities2"></canvas>
-              </div>
-              <div class="column is-12"><h5 class="title is-5 has-text-centered">Logements</h5></div>
-              <div class="column is-4 is-offset-4">
-                  <canvas id="chart-logement-radar"></canvas>
               </div>
             </div>
           </div>

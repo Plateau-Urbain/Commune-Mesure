@@ -28,6 +28,14 @@ class PlaceController extends Controller
 
         $place->data->composition = $this->sortComposition($place->data->composition);
 
+        //Sort insee object data on each zone map
+        $insee = $place->data->insee;
+        foreach ($insee as $zone => $datas) {
+          foreach ($datas as $key => $data) {
+            $place->data->insee->{$zone}->{$key} = $this->sortDataInsee($data);
+          }
+        }
+
         $plots[] = (new PopulationChart('chart-pop', 'radar'))->build(
             (array) $place->data->population
         );
@@ -56,8 +64,18 @@ class PlaceController extends Controller
         return view('place.show', compact('place', 'plots'));
     }
 
-    protected function sortComposition($composition){
-      $compositionArray = (array) $composition;
+    protected function sortDataInsee($inseeData){
+      $inseeDataArray = (array) $inseeData;
+      $keys = array_keys($inseeDataArray);
+      usort($inseeDataArray, function($a, $b)
+      {
+        return strcasecmp($a->title, $b->title);
+      });
+      return (object)$inseeDataArray;
+    }
+
+    protected function sortCompositon($compostion){
+      $compositionArray = (array) $compostion;
       $keys = array_keys($compositionArray);
       usort($compositionArray, function($a, $b)
       {
