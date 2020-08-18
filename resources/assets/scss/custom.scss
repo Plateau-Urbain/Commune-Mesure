@@ -17,6 +17,25 @@ h1, h2, h3, h4, h5, h6 {
   color: #e85048;
 }
 
+.slice {
+    cursor: pointer;
+}
+
+.slice .main-arc {
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.slice .hidden-arc {
+    fill: none;
+}
+
+.slice text {
+    pointer-events: none;
+    dominant-baseline: middle;
+    text-anchor: middle;
+}
+
 .location-home,
 .budget,
 #actor-illustration,

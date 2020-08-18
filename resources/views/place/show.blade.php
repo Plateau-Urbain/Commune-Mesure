@@ -7,7 +7,7 @@
 @section('script_js')
     @parent
     <script src="https://unpkg.com/rough-viz@1.0.5"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js" integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg==" crossorigin="anonymous"></script>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js" integrity="sha512-UWEnsxiF3PBLuxBEFjpFEHQGZNLwWFqztm66Wok/kXsGSrcOS76CP3ovpEQmwlOmR2Co4iV5FmXrdb7YzP37SA==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
@@ -17,6 +17,7 @@
     @include('components.place.map-insee-js')
     @include('components.place.sigma-cloud-words-js')
     @include('components.place.d3-cloud-words-js')
+    @include('components.place.d3-doughnut-finance-js')
 @endsection
 
 @section('content')
@@ -38,7 +39,7 @@
                 </span></div>
             </section>
             <div class="section">
-              <h2>Nos valeurs </h2>
+              <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
               <div class="columns">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:20em;"></div>
@@ -125,11 +126,11 @@
                   </div>
                 </div>
               </div>
-              <div class="section">
-                <div class="">
-                    <h5 class="title is-5 has-text-centered">Financement</h5>
-                    <canvas id="financement-doughnut" width="50px" height="50px"></canvas>
-                </div>
+            </section>
+            <section class="section">
+              <div class="">
+                  <h5 class="title is-5 has-text-centered">Financement</h5>
+                  <div id="financement-doughnut"></div>
               </div>
             </section>
 

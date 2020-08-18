@@ -2660,6 +2660,44 @@
                     "total": 15
                 }
             }
+        },
+        "survey":{
+            "groups":{
+                "group":{
+                    "title": "Modalités d'occupation",
+                    "q1":{
+                        "answer": "non"
+                    },
+                    "q2":{
+                        "answer": "oui"
+                    },
+                    "q3":{
+                        "answer": "oui"
+                    },
+                    "q4":{
+                        "answer": "oui"
+                    }
+                }
+            }
+        },
+        "finance":{
+          "name": "Financement",
+          "children": [
+            {
+              "name": "Privé",
+              "children":[
+                {"name":"Nature","size" : 1000},
+                {"name":"Industrie", "size": 300}
+              ]
+            },
+            {
+              "name":"Public",
+              "children":[
+                {"name":"Nature","size" : 126},
+                {"name":"Industrie", "size": 430}
+              ]
+            }
+          ]
         }
     },
     "partners": [
@@ -2678,8 +2716,8 @@
     "structure":{
       "activities":[
         {"text":"Bien-être","size":35, "color":"#e34c26", "edge":[0,3,2]},
-        {"text":"Environnement","size":25, "color":"#762dd4", "edge":[6]},
-        {"text":"Développement durable","size":25, "color":"#762dd4", "edge":[5,6]},
+        {"text":"Environnement","size":25, "color":"#3f3d56", "edge":[6]},
+        {"text":"Développement durable","size":25, "color":"#3f3d56", "edge":[5,6]},
         {"text":"Solidarité","size":25, "color":"#762dd4", "edge":[6,2,0,1,3]},
         {"text":"Éducation","size":25, "color":"#cc0001", "edge":[1,4]},
         {"text":"Art et création","size":25, "color":"#d01975", "edge":[6]},

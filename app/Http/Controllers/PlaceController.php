@@ -74,6 +74,36 @@ class PlaceController extends Controller
       return (object)$inseeDataArray;
     }
 
+    public function getJsonD3Doughnut(){
+
+      $dataJson = new \stdClass;
+
+      $dataJson->name = "Financement";
+      $dataJson = '{
+        "name": "Financement",
+        "children": [
+          {
+            "name": "Privé",
+            "children":[
+              {"name":"Nature","size" : 1000},
+              {"name":"Industrie", "size": 300}
+            ]
+          },
+          {
+            "name":"Public",
+            "children":[
+              {"name":"Nature","size" : 126},
+              {"name":"Industrie", "size": 430}
+            ]
+          }
+        ]
+      }';
+      $dataJson = json_decode($dataJson);
+
+      return response()
+            ->json($dataJson);
+    }
+
     protected function sortCompositon($compostion){
       $compositionArray = (array) $compostion;
       $keys = array_keys($compositionArray);
