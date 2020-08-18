@@ -2603,37 +2603,8 @@
             "nombre":48
           }
         },
-        "resilience":{
-            "education":{
-                "title": "Modalités d'occupation",
-                "city": 50,
-                "Region": 3,
-                "total": 50
-            },
-            "association":{
-                "title":"Associations",
-                "img":"fa-hand-holding-heart",
-                "color":"#4F5D95",
-                "nombre": 8
-            },
-            "artiste":{
-                "title":"Artistes",
-                "img":"fa-paint-brush",
-                "color":"#563d7c",
-                "nombre": 19
-            },
-            "autre":{
-                "title":"Autres structures",
-                "img":"fa-sitemap",
-                "color":"#f1e05a",
-                "nombre": 6
-            },
-            "total":{
-                "nombre":48
-            }
-        },
         "resilience": {
-            "total": 100,
+            "total": 96,
             "type": {
                 "health": {
                     "title": "Santé",

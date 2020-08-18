@@ -104,8 +104,8 @@ class PlaceController extends Controller
             ->json($dataJson);
     }
 
-    protected function sortCompositon($compostion){
-      $compositionArray = (array) $compostion;
+    protected function sortComposition($composition){
+      $compositionArray = (array) $composition;
       $keys = array_keys($compositionArray);
       usort($compositionArray, function($a, $b)
       {

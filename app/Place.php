@@ -50,7 +50,8 @@ class Place
     {
         $resiliences = [
             'order' => [],
-            'byPlace' => []
+            'byPlace' => [],
+            'places' => []
         ];
 
         foreach ($this->places as $place) {
@@ -60,9 +61,13 @@ class Place
                 }
 
                 $resiliences['order'][$name][$place->name] = $resilience->total;
-
                 $resiliences['byPlace'][$place->name][$name] = $resilience->total;
             }
+
+            $resiliences['places'][$place->name] = [
+                'total' => $place->data->resilience->total,
+                'url' => route('place.show', ['slug' => $place->title])
+            ];
         }
 
         if ($sorted) {
@@ -141,23 +146,23 @@ class Place
       return $resiliencesArray;
     }
 
-    protected function sortResilience()
+    public function sortResilience()
     {
         $ar = [];
         $places = $this->places;
         foreach ($places as $key => $place) {
 
-            $ar = $this->assocResiliences($place->data->resilience);
+            $ar = $this->assocResiliences($place->data->resilience->type);
             usort($ar, function($a, $b)
             {
-                if(property_exists($a, 'city') && property_exists($b, 'city')){
-                    if ($a->city === $b->city) {
+                if(property_exists($a, 'total') && property_exists($b, 'total')){
+                    if ($a->total === $b->total) {
                         return 0;
                     }
-                    return $a->city > $b->city ? -1 : 1;
+                    return $a->total > $b->total ? -1 : 1;
                 }
             });
-            $this->places[$key]->data->resilience = (object)$ar;
+            $this->places[$key]->data->resilience->type = (object)$ar;
         }
     }
 
