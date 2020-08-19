@@ -21,6 +21,36 @@
         </div>
       </div>
       <div class="section has-text-centered font-color-theme">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
+                <div class="select is-small is-success" style="margin-left:1em;">
+                  <select name="1" id="first-city-select" class="is-focused">
+                      @foreach($places as $place)
+                        <option value="{{ $place->title }}">{{ $place->name }}</option>
+                      @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
+                <div class="select is-small is-success" style="margin-left:1em;">
+                 <select name="2" id="second-city-select" class="is-focused">
+                     @foreach($places as $place)
+                       <option value="{{ $place->title }}">{{ $place->name }}</option>
+                     @endforeach
+                 </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="columns compareHeight">
           <div class="column">
             <h2 class="is-2 font-color-theme">{{ "La Maison Montreau" }}</h2>
