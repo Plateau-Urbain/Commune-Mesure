@@ -42,15 +42,19 @@ function createResilienceBar(select) {
         var color = 0
         var total = infos[key].total
         var firstdiv = document.createElement('div')
-        _style(firstdiv, color, order[type][key], total)
+
+        _style(firstdiv, type, order[type][key], total)
+        firstdiv.dataset.tooltip = order[type][key]
         chromosomic.appendChild(firstdiv)
 
         Object.keys(place[key]).forEach(function (k) {
             if (k == type) {
                 return false
             }
+
             var div = document.createElement('div')
-            _style(div, color+1, place[key][k], total)
+            _style(div, k, place[key][k], total)
+            div.dataset.tooltip = place[key][k]
             chromosomic.appendChild(div)
             color++
         })
@@ -66,7 +70,7 @@ function _clean(div) {
 }
 
 function _style(div, color, width, total) {
-    div.style.backgroundColor = colors[color]
+    div.classList.add(color+'-color');
     div.style.width = (width * 100) / total + '%'
 }
 </script>

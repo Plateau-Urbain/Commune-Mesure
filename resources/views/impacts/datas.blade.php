@@ -18,16 +18,6 @@
       </div>
 
       <div class="section" id="resilienceData">
-        <div class="column">
-          <div class="Progress-label is-inline-block" style="background-color:#e34c26;"></div>
-          <span>Startup</span>
-          <div class="Progress-label is-inline-block" style="background-color:#4F5D95;"></div>
-          <span>Associations</span>
-          <div class="Progress-label is-inline-block" style="background-color:#563d7c;"></div>
-          <span>Artistes</span>
-          <div class="Progress-label is-inline-block" style="background-color:#f1e05a;"></div>
-          <span>Autres</span>
-        </div>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label for="resilience-select" class="label">Choisissez un indicateur:</label>
@@ -45,6 +35,12 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="column">
+            @foreach ((reset($places))->data->resilience->type as $key => $resilience)
+                <span class="chromosomic-color {{$key}}-color"></span> {{ $resilience->title }}
+            @endforeach
         </div>
 
         <div class="tabs is-right is-small" data-tab-group="indicateurs">
