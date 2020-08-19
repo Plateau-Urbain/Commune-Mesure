@@ -20,6 +20,30 @@
           </div>
         </div>
       </div>
+      <div class="section has-text-centered font-color-theme">
+        <div class="columns compareHeight">
+          <div class="column">
+            <h2 class="is-2 font-color-theme">{{ "La Maison Montreau" }}</h2>
+            <h3 class="is-3">Point fort</h3>
+            <svg id="compareLeftTop"></svg>
+          </div>
+          <div class="column borderL" >
+            <h2 class="is-2 font-color-theme">{{ "6b" }}</h2>
+            <h3 class="is-3">Point fort</h3>
+            <svg id="compareRightTop"></svg>
+          </div>
+        </div>
+        <div class="columns compareHeight borderT">
+          <div class="column borderR">
+                <h3 class="is-3">Point faible</h3>
+                <svg id="compareLeftBottom"></svg>
+          </div>
+          <div class="column">
+            <h3 class="is-3">Point faible</h3>
+            <svg id="compareRightBottom"></svg>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

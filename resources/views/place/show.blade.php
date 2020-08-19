@@ -127,7 +127,7 @@
                 </div>
               </div>
             </section>
-            <section class="section">
+            <section class="section has-text-centered">
               <div class="">
                   <h5 class="title is-5 has-text-centered">Financement</h5>
                   <div id="financement-doughnut"></div>
@@ -177,7 +177,9 @@
                   style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
                   data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                 </div>
-                <div class="columns mt-6">
+
+
+                <div class="columns mt-6 has-text-centered">
                   <div class="column is-one-fifth">
                     <div class="caption-block">
                       <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>

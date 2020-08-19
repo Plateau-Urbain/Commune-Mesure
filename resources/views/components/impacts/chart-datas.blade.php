@@ -98,7 +98,7 @@ function move(element) {
     return (30*city/total);
   }
   var node;
-  function createResilienceBar(select){
+  function createResilienceBarOld(select){
 
     var resilienceType = select.value;
     var resilience;
