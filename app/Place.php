@@ -132,40 +132,6 @@ class Place
         });
     }
 
-    protected function assocResiliences($resiliences){
-      $resiliencesArray = [];
-      $total = 0;
-      foreach ($resiliences as $key => $value) {
-        $total = $total + $value->city;
-        $value->{'key'} = $key;
-        $resiliencesArray[] = $value;
-      }
-      $totalObj = new \stdClass;
-      $totalObj->{'total'} = $total;
-      $resiliencesArray[] = $totalObj;
-      return $resiliencesArray;
-    }
-
-    public function sortResilience()
-    {
-        $ar = [];
-        $places = $this->places;
-        foreach ($places as $key => $place) {
-
-            $ar = $this->assocResiliences($place->data->resilience->type);
-            usort($ar, function($a, $b)
-            {
-                if(property_exists($a, 'total') && property_exists($b, 'total')){
-                    if ($a->total === $b->total) {
-                        return 0;
-                    }
-                    return $a->total > $b->total ? -1 : 1;
-                }
-            });
-            $this->places[$key]->data->resilience->type = (object)$ar;
-        }
-    }
-
     protected function getJson($place)
     {
         $json = json_decode(file_get_contents($place));

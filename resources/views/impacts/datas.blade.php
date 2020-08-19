@@ -68,33 +68,6 @@
                 <div class="section" id="sectionResilienceBar">
                     {{-- Généré par le JS --}}
                 </div>
-                <template id="template-progress">
-                  <div class="is-2">
-                    <div class="Progress">
-                    </div>
-                  </div>
-                </template>
-                <template id="template-progress-item-start">
-                  <div class="Progress-item is-inline-block" data-tooltip="Santé" style="background-color:#e34c26; border-radius: 1em 0 0 1em;"></div>
-                </template>
-                <template id="template-progress-item-medium">
-                <div class="Progress-item is-inline-block" data-tooltip="Sécurité" style="background-color:#4F5D95;"></div>
-                </template>
-                <template id="template-progress-item-end">
-                  <div class="Progress-item is-inline-block" data-tooltip="Environnement" style="background-color:#f1e05a; border-radius: 0 1em 1em 0;"></div>
-                </template>
-                <template id="template-title-place">
-                  <p class="title is-4 no-border"></p>
-                </template>
-                <template id="template-link-place"><a href=""></a></template>
-                <template id="template-indicateur-column">
-                  <div class="column"></div>
-                </template>
-
-                <template id="template-indicateur-columns">
-                  <div class="columns">
-                  </div>
-                </template>
             </div>
             <div class="tab" data-tab="raw">
                 <div class="section">
