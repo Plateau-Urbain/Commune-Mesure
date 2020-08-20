@@ -2159,26 +2159,25 @@
         }
        }
     },
-    "iris_code": null,
-    "name": "Association",
-    "status": "Coopérative",
-    "creation": "2018-06-18",
-    "ouverture": "2018-06-18",
+    "iris_code": 930660902,
+    "name": "Example",
+    "status": "Association",
+    "creation": "09/01/2009",
+    "ouverture": "01/01/2010",
     "address": {
-        "city": "Blois",
-        "address": "4 rue du temple",
-        "postalcode": "41000"
+      "city": "Blois",
+      "address": "4 rue du temple",
+      "postalcode": "41000"
     },
     "social": [
-        {"name": "web", "link": "http://www.example.com"},
-        {"name": "facebook", "link": "https://facebook.com/"},
+        {"name": "web", "link": "https://www.le6b.fr"},
+        {"name": "facebook", "link": "https://www.facebook.com/Le6b.SaintDenis/?fref=ts"},
         {"name": "twitter", "link": "https://twitter.com"},
-        {"name": "instagram", "link": "https://instagram.com"},
+        {"name": "instagram", "link": "https://www.instagram.com/le6b_officiel/"},
         {"name": "linkedin", "link": "https://linkedin.com"}
     ],
     "manager": [
-        "Aurore",
-        "Plateau Urbain"
+        "Le 6b Coop'"
     ],
     "data": {
         "insee":{
@@ -2632,52 +2631,34 @@
                 }
             }
         },
-        "survey":{
-            "groups":{
-                "group":{
-                    "title": "Modalités d'occupation",
-                    "q1":{
-                        "answer": "non"
-                    },
-                    "q2":{
-                        "answer": "oui"
-                    },
-                    "q3":{
-                        "answer": "oui"
-                    },
-                    "q4":{
-                        "answer": "oui"
-                    }
-                }
-            }
-        },
         "finance":{
           "name": "Financement",
           "children": [
             {
-              "name": "Privé",
+              "name": "Budget annuel de fonctionnent",
               "children":[
-                {"name":"Nature","size" : 1000},
-                {"name":"Industrie", "size": 300}
-              ]
-            },
-            {
-              "name":"Public",
-              "children":[
-                {"name":"Nature","size" : 126},
-                {"name":"Industrie", "size": 430}
+                {"name":"Recettes annuelles","size" : 550000},
+                {"name":"Dépenses annuelles", "size": 250000}
               ]
             }
           ]
         }
     },
     "partners": [
-        {
-            "name": "Commune de Plouhinec", "status": "Collectivité", "short_status": "C"
-        },
-        {
-            "name": "Communauté de Commune du Cap-Sizun Pointe du Raz", "status": "Établissement Public", "short_status": "EP"
-        }
+      {
+        "title": "public",
+        "names": "Région Idf, EPT Plaine Commune, Département, Municipalités Saint Denis et Ile Saint Denis",
+        "natures": [
+          "Économique"
+        ]
+      },
+      {
+        "title": "privé",
+        "names": "Structures ESS, scolaires, sociales et culturelles",
+        "natures": [
+          "En nature"
+        ]
+      }
     ],
     "badges": [
         "cantine",
@@ -2694,6 +2675,12 @@
         {"text":"Art et création","size":25, "color":"#d01975", "edge":[6]},
         {"text":"Activités","size":25, "color":"#9be500", "edge":[5,6]}
       ],
+      "theme":[
+        {"text":"Fablab","size":35, "color":"rgb(61, 30, 109, 0.3)"},
+        {"text":"Communauté","size":35, "color":"rgb(123, 192, 67, 0.3)"},
+        {"text":"Culture","size":35, "color":"rgb(126, 141, 152, 0.3)"},
+        {"text":"Makerspace","size":35, "color":"rgb(70, 41, 199, 0.3)"}
+      ],
       "merits":[
         {"text": "Écoute","size":15, "color":"#e34c26"},
         {"text":"citoyenneté","size":12, "color":"#cc0001"},
@@ -2702,6 +2689,7 @@
         {"text":"formation des individus","size":14, "color":"#cc0001"},
         {"text":"innovation économique","size":12, "color":"#9be500"},
         {"text":"innovation sociale","size":15, "color":"#e34c26"}
+
       ]
     },
     "tags": [

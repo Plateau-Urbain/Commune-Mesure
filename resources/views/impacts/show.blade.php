@@ -21,13 +21,13 @@
       }
       var selectcmpleft = document.getElementById("first-city-select");
       var selectcmpright = document.getElementById("second-city-select");
-      comparePlacePoints(selectcmpleft);
-      comparePlacePoints(selectcmpright);
+      comparePlacePoints(selectcmpleft, selectcmpright);
+      comparePlacePoints(selectcmpleft, selectcmpright);
       selectcmpleft.onchange = (event) => {
-        comparePlacePoints(selectcmpleft);
+        comparePlacePoints(selectcmpleft, selectcmpright);
       }
       selectcmpright.onchange = (event) => {
-        comparePlacePoints(selectcmpright);
+        comparePlacePoints(selectcmpleft, selectcmpright);
       }
 
     }
