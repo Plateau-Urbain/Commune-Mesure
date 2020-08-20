@@ -81,7 +81,6 @@
               .attr('class', 'main-arc')
               .style('fill', function(d){
                 let col = color((d.children ? d : d.parent).data.name);
-                console.log(d)
                 return col;
               })
               .attr('d', arc);

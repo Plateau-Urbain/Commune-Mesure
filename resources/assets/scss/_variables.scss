@@ -1,13 +1,14 @@
 // ours variables
-$red: #e85048;
+$red-theme: #e85048;
 $light-red: #ee7969;
 $black: #262631;
 $white: #f9f7f4;
 $light-blue: #deebee;
 $green: #4CAF50;
 
+
 // Bulma's variables
-$primary: $red;
+$primary: $red-theme;
 $light-primary: $light-red;
 $body-background-color: $white;
 $text: $black;

@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font-color-theme{
-  color: #e85048;
+  color: $red-theme ! important;
 }
 
 .slice {
@@ -34,6 +34,23 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
     dominant-baseline: middle;
     text-anchor: middle;
+}
+.compareHeight{
+  height: 17em;
+}
+.borderL{
+  border-left: solid;
+}
+.borderR{
+  border-right: solid;
+}
+
+.borderT{
+  border-top: solid;
+}
+
+.borderB{
+  border-bottom: solid;
 }
 
 .location-home,

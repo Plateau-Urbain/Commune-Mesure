@@ -18,7 +18,6 @@ var order = @json($resiliences['order']);
 var place = @json($resiliences['byPlace']);
 var infos = @json($resiliences['places']);
 
-var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf", "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
 var section = document.getElementById('sectionResilienceBar')
 var chromosomesTemplate = document.querySelector('#chromosomic-row')
 
