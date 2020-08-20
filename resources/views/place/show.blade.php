@@ -100,25 +100,29 @@
                     </figure>
                     <div class="content" id="actor-illustration-detail">
                       <ul>
-                        <li>
-                          <strong>Les acteurs publics</strong>
-                          <span class="is-block fonfSize0-8em">
-                            Contrat de ville/ANCT, Plaine Commune, OPH, Ville d'Aubervilliers
-                          </span>
-                        </li>
-                        <br/>
-                        <li class="fontSize1em">
-                          <strong>Les acteurs privés</strong>
-                          <span class="is-block fonfSize0-8em">
-                            Associations Méliadès, Bien dans mon quartier,
-                            Kialuçera, régie de quartier, maison du soleil (retraités), AVISA
-                          </span>
-                        </li>
+                        @foreach($place->partners as $partner)
+                          <li>
+                            <strong>Les acteurs {{ $partner->title }}s :</strong>
+                            <span class="is-block fonfSize0-8em">
+                              {{ $partner->names }}
+                            </span>
+                          </li>
+                          <br/>
+                        @endforeach
+
                         <li>
                           <strong>Nature des partenariats:</strong>
                           <ul class="fonfSize0-8em">
-                            <li>Public : <span class="font-color-theme">Économique et nature</span></li>
-                            <li>Privé: <span class="font-color-theme">Économique</span></li>
+                            @foreach($place->partners as $partner)
+                            <li>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
+                              @foreach($partner->natures as $nature)
+                                {{ $nature }}
+                                @if(count($partner->natures) > 1)
+                                  {{ "," }}
+                                @endif
+                              @endforeach
+                            </span></li>
+                            @endforeach
                           </ul>
                         </li>
                       <ul>
@@ -138,13 +142,13 @@
                 <h5 class="title is-5 has-text-centered no-border">Badges</h5>
                 <div class="columns is-centered">
                     <div class="tags are-large">
-                        @foreach ($place->badges as $badge)
+                        @foreach ($place->structure->theme as $badge)
                             {{-- <div class="column is-narrow"> --}}
                             {{--     <figure class="image is-128x128"> --}}
                             {{--         <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" /> --}}
                             {{--     </figure> --}}
                             {{-- </div> --}}
-                            <span class="tag is-primary">{{ $badge }}</span>
+                            <span class="tag is-primary">{{ $badge->text }}</span>
                         @endforeach
                     </div>
                 </div>
@@ -180,7 +184,7 @@
 
 
                 <div class="columns mt-6 has-text-centered">
-                  <div class="column is-one-fifth">
+                  <div class="column">
                     <div class="caption-block">
                       <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
                       <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
@@ -198,19 +202,32 @@
                       <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
                     </div>
                   </div>
-                  <div class="column is-7">
-                    <div class="columns is-multiline">
+                  <div class="column">
+                    <div class="">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
                         @php
                             $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
                             $percent= $quantity * 100;
+                            $n = 0;
                         @endphp
-                          @for ($i = 0; $i < 500*($quantity); $i++)
-                            <div class="">
-                                <i class="fa {{ $composition->img }}" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
+                        <div class="">
+                          @for ($i = 0; $i < 200*($quantity); $i++)
+                            @if($n == 20)
+                              </div>
+                              @php
+                                $n=0;
+                              @endphp
+                              <div class="">
+                            @endif
+                            <div class="is-inline-block">
+                                <i class="fa {{ $composition->img }} defaultSizefaComposition" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
                             </div>
+                            @php
+                              $n++;
+                            @endphp
                           @endfor
+                        </div>
                         @endif
                       @endforeach
                     </div>

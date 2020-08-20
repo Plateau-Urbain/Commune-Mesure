@@ -28,8 +28,12 @@
                 <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                   <select name="1" id="first-city-select" class="is-focused">
-                      @foreach($places as $place)
-                        <option value="{{ $place->title }}">{{ $place->name }}</option>
+                      @foreach($places as $n => $place)
+                      @if($n == 0)
+                       <option value="{{ $place->title }}" selected="selected">{{ $place->name }}</option>
+                      @else
+                       <option value="{{ $place->title }}">{{ $place->name }}</option>
+                      @endif
                       @endforeach
                   </select>
                 </div>
