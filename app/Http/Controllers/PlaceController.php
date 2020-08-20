@@ -25,6 +25,7 @@ class PlaceController extends Controller
         if ($place === false) {
             abort(404);
         }
+        $place->slug = $slug;
 
         $place->data->composition = $this->sortComposition($place->data->composition);
 
@@ -74,34 +75,13 @@ class PlaceController extends Controller
       return (object)$inseeDataArray;
     }
 
-    public function getJsonD3Doughnut(){
-
-      $dataJson = new \stdClass;
-
-      $dataJson->name = "Financement";
-      $dataJson = '{
-        "name": "Financement",
-        "children": [
-          {
-            "name": "Privé",
-            "children":[
-              {"name":"Nature","size" : 1000},
-              {"name":"Industrie", "size": 300}
-            ]
-          },
-          {
-            "name":"Public",
-            "children":[
-              {"name":"Nature","size" : 126},
-              {"name":"Industrie", "size": 430}
-            ]
-          }
-        ]
-      }';
-      $dataJson = json_decode($dataJson);
-
+    public function getJsonD3Doughnut($slug){
+      $place = (new Place())->getOne($slug);
+      if ($place === false) {
+          abort(404);
+      }
       return response()
-            ->json($dataJson);
+            ->json($place->data->finance);
     }
 
     protected function sortComposition($composition){
