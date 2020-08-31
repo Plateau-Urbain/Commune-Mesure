@@ -2189,45 +2189,45 @@
                 },
                 "artisant":{
                   "title":"Part des artisans, comm., chefs d’entreprise",
-                  "nb":61
+                  "nb":53
                 },
                 "cadre":{
                   "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":230
+                  "nb":215
                 },
                 "prof_int":{
                   "title":"Part des professions interméd.",
-                  "nb":404
+                  "nb":207
                 },
                 "employe":{
                   "title":"Part des employés",
-                  "nb":543
+                  "nb":357
                 },
                 "ouvrier":{
                   "title":"Part des ouvriers",
-                  "nb":280
+                  "nb":366
                 },
                 "retraite":{
                   "title":"Part des retraités ou préretraités",
-                  "nb":543
+                  "nb":105
                 },
                 "autre":{
                   "title":"Autres",
-                  "nb":404
+                  "nb":583
                 }
               },
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":430.129061763954
+                "nb":54.1172549298429
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":908.764562270782
+                "nb":1032.43435093218
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":66.1316260135998
+                "nb":166.679965382445
               }
             },
             "activites": {
