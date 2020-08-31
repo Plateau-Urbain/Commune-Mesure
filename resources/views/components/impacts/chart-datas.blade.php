@@ -43,7 +43,7 @@ function createResilienceBar(select) {
         var firstdiv = document.createElement('div')
 
         _style(firstdiv, type, order[type][key], total)
-        firstdiv.dataset.tooltip = order[type][key]
+        firstdiv.dataset.tooltip = order[type][key] + '%'
         chromosomic.appendChild(firstdiv)
 
         Object.keys(place[key]).forEach(function (k) {
@@ -53,7 +53,7 @@ function createResilienceBar(select) {
 
             var div = document.createElement('div')
             _style(div, k, place[key][k], total)
-            div.dataset.tooltip = place[key][k]
+            div.dataset.tooltip = place[key][k] + '%'
             chromosomic.appendChild(div)
             color++
         })
