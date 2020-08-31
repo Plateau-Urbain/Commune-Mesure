@@ -4,24 +4,49 @@
   var values;
 
   function move(element) {
-    var width = 0;
+    var width = Number.parseFloat(element.getAttribute("data-prec"));
+
     if (i == 0) {
       i = 1;
       var elem = element;
-      var id = setInterval(frame, 30);
+
       var fill = parseInt(element.dataset.fill);
       var full = parseInt(element.dataset.full);
       var widthfill = fill;
-      function frame() {
-        if (width >= widthfill) {
-          clearInterval(id);
-          i = 0;
-        } else {
-          width++;
-          elem.style.width = width + "%";
-          elem.innerHTML = width  + "%";
+      var stop = false;
+      var id;
+      if(width >= widthfill){
+        id = setInterval(frameDown, 5);
+        function frameDown() {
+          if (stop) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            if(width <= widthfill){
+              stop = true;
+            }
+            width = width - 0.1;
+            elem.style.width = width + "%";
+            elem.innerHTML = width.toFixed(0)  + "%";
+          }
+        }
+      }else{
+        id = setInterval(frameUp, 5);
+        function frameUp() {
+          if (stop) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            if(width >= widthfill){
+              stop = true;
+            }
+            width = (width + 0.1);
+            elem.style.width = width + "%";
+            elem.innerHTML = width.toFixed(0)  + "%";
+          }
         }
       }
+
     }
   }
 
@@ -55,23 +80,30 @@ function setCaptionDataBar(currentDataZone, zone){
   var totalActif = 0;
   var totalCsp = 0;
   var totalLogement = 0;
-  Object.values(placeData.insee.iris.activites).forEach(function(val){
+  Object.values(currentDataZone.activites).forEach(function(val){
     totalActif += val.nb;
   });
-  Object.values(placeData.insee.iris.logement).forEach(function(val){
+  Object.values(currentDataZone.logement).forEach(function(val){
     totalLogement += val.nb;
   });
-  Object.values(placeData.insee.iris.csp).forEach(function(val){
+  Object.values(currentDataZone.csp).forEach(function(val){
     totalCsp += val.nb;
   });
+  console.log(totalActif)
   var actifBarElements = document.querySelectorAll(".actifBar")
   var actifCaption = document.querySelectorAll(".actifCaption")
   var actifTitle = document.querySelectorAll(".actifTitle")
   actifBarElements.forEach(function (element, i) {
-    let data = Object.entries(placeData.insee.iris.activites)[i][1];
+    let data = Object.entries(currentDataZone.activites)[i][1];
     let percent = data.nb * 100 / totalActif;
-    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
-    element.setAttribute("data-fill", percent);
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(0)+"%");
+    let fill = element.getAttribute("data-fill");
+    if(fill !== null){
+      element.setAttribute("data-prec", fill);
+    }else{
+      element.setAttribute("data-prec", "0");
+    }
+    element.setAttribute("data-fill", percent.toFixed(1));
     actifCaption[i].style.backgroundColor = element.style.backgroundColor;
     actifTitle[i].innerHTML = data.title;
   })
@@ -79,10 +111,17 @@ function setCaptionDataBar(currentDataZone, zone){
   var cspCaption = document.querySelectorAll(".cspCaption")
   var cspTitle = document.querySelectorAll(".cspTitle")
   cspBarElements.forEach(function (element, i) {
-    let data = Object.entries(placeData.insee.iris.csp)[i][1];
+    let data = Object.entries(currentDataZone.csp)[i][1];
      let percent = data.nb * 100 / totalCsp
-    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
-    element.setAttribute("data-fill", percent);
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(0)+"%");
+    let fill = element.getAttribute("data-fill");
+    if(fill !== null){
+      element.setAttribute("data-prec", fill);
+    }else{
+      element.setAttribute("data-prec", "0");
+    }
+    element.setAttribute("data-fill", percent.toFixed(1));
+
     cspCaption[i].style.backgroundColor = element.style.backgroundColor;
     cspTitle[i].innerHTML = data.title;
   })
@@ -90,10 +129,16 @@ function setCaptionDataBar(currentDataZone, zone){
   var logementCaption = document.querySelectorAll(".logementCaption")
   var logementTitle = document.querySelectorAll(".logementTitle")
   logementBarElements.forEach(function (element, i) {
-    let data = Object.entries(placeData.insee.iris.logement)[i][1];
+    let data = Object.entries(currentDataZone.logement)[i][1];
     let percent = data.nb * 100 / totalLogement;
-    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(2)+"%");
-    element.setAttribute("data-fill", percent);
+    element.setAttribute("data-tooltip", data.title+":"+percent.toFixed(0)+"%");
+    let fill = element.getAttribute("data-fill");
+    if(fill !== null){
+      element.setAttribute("data-prec", fill);
+    }else{
+      element.setAttribute("data-prec", "0");
+    }
+    element.setAttribute("data-fill", percent.toFixed(1));
     logementCaption[i].style.backgroundColor = element.style.backgroundColor;
     logementTitle[i].innerHTML = data.title;
   })

@@ -38,17 +38,7 @@
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
             </section>
-            <div class="section">
-              <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
-              <div class="columns">
-                <div class="column">
-                  <div id="sigma" style="width:100%; height:20em;"></div>
-              </div>
-                <div class="column">
-                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
-                </div>
-              </div>
-            </div>
+
             <section>
               <h5 class="title is-5 has-text-centered">Modèle économique</h5>
               <div class="columns is-flex is-vcentered is-centered">
@@ -100,25 +90,29 @@
                     </figure>
                     <div class="content" id="actor-illustration-detail">
                       <ul>
-                        <li>
-                          <strong>Les acteurs publics</strong>
-                          <span class="is-block fonfSize0-8em">
-                            Contrat de ville/ANCT, Plaine Commune, OPH, Ville d'Aubervilliers
-                          </span>
-                        </li>
-                        <br/>
-                        <li class="fontSize1em">
-                          <strong>Les acteurs privés</strong>
-                          <span class="is-block fonfSize0-8em">
-                            Associations Méliadès, Bien dans mon quartier,
-                            Kialuçera, régie de quartier, maison du soleil (retraités), AVISA
-                          </span>
-                        </li>
+                        @foreach($place->partners as $partner)
+                          <li>
+                            <strong>Les acteurs {{ $partner->title }}s :</strong>
+                            <span class="is-block fonfSize0-8em">
+                              {{ $partner->names }}
+                            </span>
+                          </li>
+                          <br/>
+                        @endforeach
+
                         <li>
                           <strong>Nature des partenariats:</strong>
                           <ul class="fonfSize0-8em">
-                            <li>Public : <span class="font-color-theme">Économique et nature</span></li>
-                            <li>Privé: <span class="font-color-theme">Économique</span></li>
+                            @foreach($place->partners as $partner)
+                            <li>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
+                              @foreach($partner->natures as $nature)
+                                {{ $nature }}
+                                @if(count($partner->natures) > 1)
+                                  {{ "," }}
+                                @endif
+                              @endforeach
+                            </span></li>
+                            @endforeach
                           </ul>
                         </li>
                       <ul>
@@ -127,7 +121,18 @@
                 </div>
               </div>
             </section>
-            <section class="section has-text-centered">
+            <div class="section" id="nos-valeurs">
+              <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
+              <div class="columns">
+                <div class="column">
+                  <div id="sigma" style="width:100%; height:20em;"></div>
+              </div>
+                <div class="column">
+                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
+                </div>
+              </div>
+            </div>
+            <section class="section has-text-centered" id="finances">
               <div class="">
                   <h5 class="title is-5 has-text-centered">Financement</h5>
                   <div id="financement-doughnut"></div>
@@ -138,20 +143,20 @@
                 <h5 class="title is-5 has-text-centered no-border">Badges</h5>
                 <div class="columns is-centered">
                     <div class="tags are-large">
-                        @foreach ($place->badges as $badge)
+                        @foreach ($place->structure->theme as $badge)
                             {{-- <div class="column is-narrow"> --}}
                             {{--     <figure class="image is-128x128"> --}}
                             {{--         <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" /> --}}
                             {{--     </figure> --}}
                             {{-- </div> --}}
-                            <span class="tag is-primary">{{ $badge }}</span>
+                            <span class="tag is-primary">{{ $badge->text }}</span>
                         @endforeach
                     </div>
                 </div>
             </section>
         </div>
 
-        <section class="section has-text-centered ">
+        <section class="section has-text-centered " id="composition-lieu">
           <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
             <section class="section">
               <div class="has-text-centered">
@@ -180,7 +185,7 @@
 
 
                 <div class="columns mt-6 has-text-centered">
-                  <div class="column is-one-fifth">
+                  <div class="column">
                     <div class="caption-block">
                       <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
                       <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
@@ -198,19 +203,32 @@
                       <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
                     </div>
                   </div>
-                  <div class="column is-7">
-                    <div class="columns is-multiline">
+                  <div class="column">
+                    <div class="">
                       @foreach($place->data->composition as $composition)
                         @if(property_exists($composition, 'title'))
                         @php
                             $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
                             $percent= $quantity * 100;
+                            $n = 0;
                         @endphp
-                          @for ($i = 0; $i < 500*($quantity); $i++)
-                            <div class="">
-                                <i class="fa {{ $composition->img }}" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
+                        <div class="">
+                          @for ($i = 0; $i < 200*($quantity); $i++)
+                            @if($n == 20)
+                              </div>
+                              @php
+                                $n=0;
+                              @endphp
+                              <div class="">
+                            @endif
+                            <div class="is-inline-block">
+                                <i class="fa {{ $composition->img }} defaultSizefaComposition" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
                             </div>
+                            @php
+                              $n++;
+                            @endphp
                           @endfor
+                        </div>
                         @endif
                       @endforeach
                     </div>
@@ -278,14 +296,14 @@
                       <h4>Catégories socioprofessionnelles</h4>
                       <div class="" style="width:100%">
                         <div class="cspBar myBar is-inline-block"
-                        style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
+                        style="background-color: #F55658; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#FFA052;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#DE6543;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#DE43BF;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#C64DFF;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#E8AD3F;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#FFDC4A;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#E8E138;border-radius: 0 1em 1em 0;"></div>
                       </div>
                       <div class="mt-2">
                         <div class="caption-block is-inline-block">

@@ -1,7 +1,7 @@
 <script>
 
   var activitiesMerits = JSON.parse("{{ json_encode($place->structure) }}".replace(/&quot;/g,'"'));
-  var myActivities = activitiesMerits.activities;
+  var myActivities = activitiesMerits.theme;
   var myMerits = activitiesMerits.merits;
 
   var margin = {top: 10, right: 10, bottom: 10, left: 10},

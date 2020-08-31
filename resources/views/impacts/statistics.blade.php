@@ -21,28 +21,63 @@
         </div>
       </div>
       <div class="section has-text-centered font-color-theme">
-        <div class="columns compareHeight">
+        <div class="columns">
           <div class="column">
-            <h2 class="is-2 font-color-theme">{{ "La Maison Montreau" }}</h2>
-            <h3 class="is-3">Point fort</h3>
-            <svg id="compareLeftTop"></svg>
+            <div class="field">
+              <div class="control">
+                <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
+                <div class="select is-small is-success" style="margin-left:1em;">
+                  <select name="1" id="first-city-select" class="is-focused">
+                    <option selected="selected">--</option>
+                      @foreach($places as $n => $place)
+                       <option value="{{ $place->title }}">{{ $place->name }}</option>
+                      @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="column borderL" >
-            <h2 class="is-2 font-color-theme">{{ "6b" }}</h2>
-            <h3 class="is-3">Point fort</h3>
-            <svg id="compareRightTop"></svg>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
+                <div class="select is-small is-success" style="margin-left:1em;">
+                 <select name="2" id="second-city-select" class="is-focused">
+                  <option selected="selected">--</option>
+                  @foreach($places as $n => $place)
+                  <option value="{{ $place->title }}">{{ $place->name }}</option>
+                  @endforeach
+                 </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="columns compareHeight borderT">
-          <div class="column borderR">
-                <h3 class="is-3">Point faible</h3>
-                <svg id="compareLeftBottom"></svg>
+        <div style="display:none;" id="cmpBlock">
+          <div class="columns compareHeight">
+            <div class="column">
+              <h2 class="is-2 font-color-theme" id="titleCmpLeft">{{ "La Maison Montreau" }}</h2>
+              <h3 class="is-3">Points forts</h3>
+              <svg id="compareLeftTop"></svg>
+            </div>
+            <div class="column borderL" >
+              <h2 class="is-2 font-color-theme" id="titleCmpRight">{{ "6b" }}</h2>
+              <h3 class="is-3">Points forts</h3>
+              <svg id="compareRightTop"></svg>
+            </div>
           </div>
-          <div class="column">
-            <h3 class="is-3">Point faible</h3>
-            <svg id="compareRightBottom"></svg>
+          <div class="columns compareHeight borderT">
+            <div class="column borderR">
+              <h3 class="is-3">Points faibles</h3>
+              <svg id="compareLeftBottom"></svg>
+            </div>
+            <div class="column">
+              <h3 class="is-3">Points faibles</h3>
+              <svg id="compareRightBottom"></svg>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>

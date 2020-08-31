@@ -1,5 +1,4 @@
 <script>
-      var dataFinance = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&quot;/g,'"'));
       var divDougnhut = document.getElementById('financement-doughnut');
       var margin = {top: 10, right: 10, bottom: 10, left: 10};
 
@@ -57,7 +56,7 @@
           .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
           .on('click', () => focusOn()); // Reset zoom on canvas click
 
-      d3.json("/getJsonD3Doughnut", (error, root) => {
+      d3.json("/getJsonD3Doughnut/{{ $place->slug }}", (error, root) => {
           if (error) throw error;
           root = d3.hierarchy(root);
           root.sum(d => d.size);

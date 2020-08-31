@@ -19,6 +19,16 @@
       select.onchange = (event) => {
         createResilienceBar(select)
       }
+      var selectcmpleft = document.getElementById("first-city-select");
+      var selectcmpright = document.getElementById("second-city-select");
+      comparePlacePoints(selectcmpleft, selectcmpright);
+      comparePlacePoints(selectcmpleft, selectcmpright);
+      selectcmpleft.onchange = (event) => {
+        comparePlacePoints(selectcmpleft, selectcmpright);
+      }
+      selectcmpright.onchange = (event) => {
+        comparePlacePoints(selectcmpleft, selectcmpright);
+      }
 
     }
     </script>

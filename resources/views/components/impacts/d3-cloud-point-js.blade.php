@@ -2,6 +2,7 @@
 function loadCompare(selector, nbPoint){
   var data    = [], min = max = 10;
   var origin  = [80, 80], startAngle = Math.PI/8, beta = startAngle;
+  d3.select(selector).html("");
   var svg     = d3.select(selector).call(d3.drag().on('drag', dragged).on('start', dragStart).on('end', dragEnd)).append('g');
   var color   = d3.scaleOrdinal(d3.schemeCategory10);
   var rn      = function(min, max){ return Math.round(d3.randomUniform(min, max + 1)()); };
@@ -60,10 +61,5 @@ function loadCompare(selector, nbPoint){
 
   processData(data3D);
 }
-
-loadCompare("#compareLeftTop", 20);
-loadCompare("#compareRightTop", 50);
-loadCompare("#compareLeftBottom", 15);
-loadCompare("#compareRightBottom", 82);
 
 </script>

@@ -2,7 +2,7 @@
   var geoDataPlace = JSON.parse("{{ json_encode($place->geo) }}".replace(/&quot;/g,'"'));
   var placeData = JSON.parse("{{ json_encode($place->data) }}".replace(/&quot;/g,'"'));
   var geoJsonFeatures = geoDataPlace.geo_json;
-  var markerPoint = [geoDataPlace.lat, geoDataPlace.lon];
+  var markerPoint = new L.LatLng(geoDataPlace.lat, geoDataPlace.lon);
 
   //Set style map div
   var mapnode = document.getElementById('map-insee');
@@ -66,9 +66,15 @@
   /**
   *
   **/
+  var myIcon = L.icon({
+            iconUrl: window.location.origin +"/images/marker-icon.png",
+            iconSize: [32, 32],
+            iconAnchor: [16,32]
+        });
   function onEachFeature(feature, layer) {
     if(marker === undefined){
-      marker = L.marker(markerPoint).addTo(mapInsee)
+
+      marker = L.marker(markerPoint, {icon: myIcon}).addTo(mapInsee)
           .bindPopup("<div><h3>Nom: {{ $place->name }}</h3>"
           +"<h4>Quartier: "+layer.feature.properties.nom+"</h4><p>"+layer.feature.properties.citycode+"</p></div>")
           .openPopup();

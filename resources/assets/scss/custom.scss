@@ -38,6 +38,11 @@ h1, h2, h3, h4, h5, h6 {
 .compareHeight{
   height: 17em;
 }
+
+.defaultSizefaComposition{
+  width: 20px !important;
+  height: 16px !important;
+}
 .borderL{
   border-left: solid;
 }
@@ -144,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #actor{
   top: 22.5%;
-  right: 28%;
+  right: 21%;
 }
 
 #contract {
