@@ -15,37 +15,41 @@
       var widthfill = fill;
       var stop = false;
       var id;
-      if(width >= widthfill){
-        id = setInterval(frameDown, 5);
-        function frameDown() {
-          if (stop) {
-            clearInterval(id);
-            i = 0;
-          } else {
-            if(width <= widthfill){
-              stop = true;
+
+      if(widthfill != 0){
+        if(width >= widthfill){
+          id = setInterval(frameDown, 5);
+          function frameDown() {
+            if (stop) {
+              clearInterval(id);
+              i = 0;
+            } else {
+              if(width <= widthfill){
+                stop = true;
+              }
+              width = width - 0.1;
+              elem.style.width = width + "%";
+              elem.innerHTML = width.toFixed(0)  + "%";
             }
-            width = width - 0.1;
-            elem.style.width = width + "%";
-            elem.innerHTML = width.toFixed(0)  + "%";
           }
-        }
-      }else{
-        id = setInterval(frameUp, 5);
-        function frameUp() {
-          if (stop) {
-            clearInterval(id);
-            i = 0;
-          } else {
-            if(width >= widthfill){
-              stop = true;
+        }else{
+          id = setInterval(frameUp, 5);
+          function frameUp() {
+            if (stop) {
+              clearInterval(id);
+              i = 0;
+            } else {
+              if(width >= widthfill){
+                stop = true;
+              }
+              width = (width + 0.1);
+              elem.style.width = width + "%";
+              elem.innerHTML = width.toFixed(0)  + "%";
             }
-            width = (width + 0.1);
-            elem.style.width = width + "%";
-            elem.innerHTML = width.toFixed(0)  + "%";
           }
         }
       }
+
 
     }
   }
