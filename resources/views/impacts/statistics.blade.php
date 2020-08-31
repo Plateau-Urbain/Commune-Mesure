@@ -28,12 +28,9 @@
                 <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                   <select name="1" id="first-city-select" class="is-focused">
+                    <option selected="selected">--</option>
                       @foreach($places as $n => $place)
-                      @if($n == 0)
-                       <option value="{{ $place->title }}" selected="selected">{{ $place->name }}</option>
-                      @else
                        <option value="{{ $place->title }}">{{ $place->name }}</option>
-                      @endif
                       @endforeach
                   </select>
                 </div>
@@ -45,8 +42,7 @@
               <div class="control">
                 <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
-                   @php $selected = $places[1]->title @endphp
-                 <select name="2" value="{{ $selected }}" id="second-city-select" class="is-focused">
+                 <select name="2" id="second-city-select" class="is-focused">
                   <option selected="selected">--</option>
                   @foreach($places as $n => $place)
                   <option value="{{ $place->title }}">{{ $place->name }}</option>
