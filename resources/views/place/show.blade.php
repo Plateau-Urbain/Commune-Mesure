@@ -38,17 +38,7 @@
                     ⋅ Web : <a class='tag' href="//example.com">{{ $place->name }}</a>
                 </span></div>
             </section>
-            <div class="section">
-              <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
-              <div class="columns">
-                <div class="column">
-                  <div id="sigma" style="width:100%; height:20em;"></div>
-              </div>
-                <div class="column">
-                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
-                </div>
-              </div>
-            </div>
+
             <section>
               <h5 class="title is-5 has-text-centered">Modèle économique</h5>
               <div class="columns is-flex is-vcentered is-centered">
@@ -131,7 +121,18 @@
                 </div>
               </div>
             </section>
-            <section class="section has-text-centered">
+            <div class="section" id="nos-valeurs">
+              <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
+              <div class="columns">
+                <div class="column">
+                  <div id="sigma" style="width:100%; height:20em;"></div>
+              </div>
+                <div class="column">
+                  <div id="d3-cloud" style="width:100%; height:100%;"></div>
+                </div>
+              </div>
+            </div>
+            <section class="section has-text-centered" id="finances">
               <div class="">
                   <h5 class="title is-5 has-text-centered">Financement</h5>
                   <div id="financement-doughnut"></div>
@@ -155,7 +156,7 @@
             </section>
         </div>
 
-        <section class="section has-text-centered ">
+        <section class="section has-text-centered " id="composition-lieu">
           <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
             <section class="section">
               <div class="has-text-centered">
@@ -295,14 +296,14 @@
                       <h4>Catégories socioprofessionnelles</h4>
                       <div class="" style="width:100%">
                         <div class="cspBar myBar is-inline-block"
-                        style="background-color: #3354ed; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#33a9ff;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#cc0001;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#ffaa01;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#ffff00;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#d01975;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#78b385;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#000000;border-radius: 0 1em 1em 0;"></div>
+                        style="background-color: #F55658; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#FFA052;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#DE6543;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#DE43BF;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#C64DFF;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#E8AD3F;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#FFDC4A;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
+                        style="background-color:#E8E138;border-radius: 0 1em 1em 0;"></div>
                       </div>
                       <div class="mt-2">
                         <div class="caption-block is-inline-block">
