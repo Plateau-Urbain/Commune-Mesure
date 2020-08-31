@@ -352,10 +352,44 @@ svg {
 }
 
 // Chromosomes
+.chromosomic-color {
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+
+    &:not(:first-child) {
+        margin-left: 15px;
+    }
+}
+
+.health-color {
+    background-color: #ee4035;
+}
+
+.art-color {
+    background-color: #f37736;
+}
+
+.education-color {
+    background-color: #fdf498;
+}
+
+.activity-color {
+    background-color: #7bc043;
+}
+
+.environment-color {
+    background-color: #0392cf;
+}
+
+.solidarity-color {
+    background-color: #d11141;
+}
+
 .chromosomic {
     div {
         display: inline-block;
-        background-color: #dddddd;
         height: 1em;
     }
 
