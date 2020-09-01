@@ -140,7 +140,7 @@
             </section>
 
             <section class="section">
-                <h5 class="title is-5 has-text-centered no-border">Badges</h5>
+                <h5 class="title is-5 has-text-centered">Badges</h5>
                 <div class="columns is-centered">
                     <div class="tags are-large">
                         @foreach ($place->structure->theme as $badge)
@@ -157,7 +157,7 @@
         </div>
 
         <section class="section has-text-centered " id="composition-lieu">
-          <h5 class="title is-5 has-text-centered no-border">La composition du lieu</h5>
+          <h5 class="title is-5 has-text-centered ">La composition du lieu</h5>
             <section class="section">
               <div class="has-text-centered">
                 <div class="">
@@ -183,58 +183,25 @@
                   data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
                 </div>
 
-
-                <div class="columns mt-6 has-text-centered">
-                  <div class="column">
-                    <div class="caption-block">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
-                      <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
-                    </div>
-                    <div class="caption-block">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
-                      <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
-                    </div>
-                    <div class="caption-block">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
-                      <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
-                    </div>
-                    <div class="caption-block">
-                      <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
-                      <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
-                    </div>
+                <div class="mt-6">
+                  <div class="is-inline-block mr-3">
+                    <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
+                    <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
                   </div>
-                  <div class="column">
-                    <div class="">
-                      @foreach($place->data->composition as $composition)
-                        @if(property_exists($composition, 'title'))
-                        @php
-                            $quantity = number_format($composition->nombre/$place->data->composition->{0}->nombre, 1);
-                            $percent= $quantity * 100;
-                            $n = 0;
-                        @endphp
-                        <div class="">
-                          @for ($i = 0; $i < 200*($quantity); $i++)
-                            @if($n == 20)
-                              </div>
-                              @php
-                                $n=0;
-                              @endphp
-                              <div class="">
-                            @endif
-                            <div class="is-inline-block">
-                                <i class="fa {{ $composition->img }} defaultSizefaComposition" style="color:{{ $composition->color }};" data-toggle="tooltip" title="{{ $composition->title }} : {{ number_format($percent, 2) }}%"></i>
-                            </div>
-                            @php
-                              $n++;
-                            @endphp
-                          @endfor
-                        </div>
-                        @endif
-                      @endforeach
-                    </div>
+                  <div class="is-inline-block mr-3">
+                    <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
+                    <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
+                  </div>
+                  <div class="is-inline-block mr-3">
+                    <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
+                    <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
+                  </div>
+                  <div class="is-inline-block">
+                    <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
+                    <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
+                  </div>
                 </div>
               </div>
-            </div>
           </section>
         </section>
 
