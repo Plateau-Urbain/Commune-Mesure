@@ -125,17 +125,26 @@
               <h2 class="title is-5 has-text-centered" >Nos valeurs </h2>
               <div class="columns">
                 <div class="column">
-                  <div id="sigma" style="width:100%; height:20em;"></div>
+                  <div id="sigma" style="width:100%; height:30em;"></div>
               </div>
                 <div class="column">
                   <div id="d3-cloud" style="width:100%; height:100%;"></div>
                 </div>
               </div>
             </div>
-            <section class="section has-text-centered" id="finances">
+            <section class="section" id="finances">
               <div class="">
-                  <h5 class="title is-5 has-text-centered">Financement</h5>
-                  <div id="financement-doughnut"></div>
+                  <h5 class="title is-5 has-text-centered">Les financements</h5>
+                  <div class="columns">
+                    <div class="column has-text-centered">
+                      <h5 class="title is-5 has-text-centered">Le budget</h5>
+                      <div id="financement-budget-doughnut"></div>
+                    </div>
+                    <div class="column has-text-centered">
+                      <h5 class="title is-5 has-text-centered">Les fonds</h5>
+                      <div id="financement-doughnut"></div>
+                    </div>
+                  </div>
               </div>
             </section>
 
@@ -206,9 +215,9 @@
         </section>
 
         <section class="section anchor" id="donnees-insee">
-          <h3 class="title is-3">Les données INSEE</h3>
+          <h3 class="title is-3 has-text-centered">Les données INSEE</h3>
           <div class="section">
-            <div class="mb-5">
+            <div class="mb-5 has-text-centered">
               <label>Choississez un découpage géographique: </label>
               <div class="select">
                 <select id="selectGeo">

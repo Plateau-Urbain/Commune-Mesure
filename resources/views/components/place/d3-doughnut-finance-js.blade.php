@@ -1,5 +1,5 @@
 <script>
-      var divDougnhut = document.getElementById('financement-doughnut');
+  function createChartFinance(idchart){
       var margin = {top: 10, right: 10, bottom: 10, left: 10};
 
       const widthDoughnut = 500 - margin.left - margin.right,
@@ -50,8 +50,8 @@
           return d.data.name.length * CHAR_SPACE < perimeter;
       };
 
-      const svgDoughnut = d3.select('#financement-doughnut').append('svg')
-          .style('width', '18%')
+      const svgDoughnut = d3.select(idchart).append('svg')
+          .style('width', '30%')
           .style('height', '50%')
           .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
           .on('click', () => focusOn()); // Reset zoom on canvas click
@@ -79,6 +79,7 @@
           newSlice.append('path')
               .attr('class', 'main-arc')
               .style('fill', function(d){
+                console.log(d)
                 let col = color((d.children ? d : d.parent).data.name);
                 return col;
               })
@@ -102,7 +103,7 @@
           text.append('textPath')
               .attr('startOffset','50%')
               .attr('xlink:href', (_, i) => `#hiddenArc${i}` )
-              .text(d => d.data.name + ': ' + d.value + '€');
+              .text(d => d.data.name);
       });
 
       function focusOn(d = { x0: 0, x1: 1, y0: 0, y1: 1 }) {
@@ -136,4 +137,7 @@
                   })
           }
       }
+    }
+    createChartFinance('#financement-budget-doughnut')
+    createChartFinance('#financement-doughnut')
 </script>
