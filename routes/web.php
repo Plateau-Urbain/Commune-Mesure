@@ -26,13 +26,13 @@ if (!empty($proxy_schema)) {
 }
 
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
+$router->get('/les-lieux', ['uses' => 'MainController@places', 'as' => 'places']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
 $router->get('/les-institutions',  function () {
     return view('institutions');
 });
 $router->get('/getJsonD3Doughnut/{slug}', ['uses' =>"PlaceController@getJsonD3Doughnut", 'as' => "place.getJsonD3Doughnut"]);
-$router->get('/les-lieux', ['uses' => 'MainController@places', 'as' => 'places']);
 
 $router->get('/contact-us',  function () {
     return view('contact-us');
