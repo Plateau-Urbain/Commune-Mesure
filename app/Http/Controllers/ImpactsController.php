@@ -28,10 +28,4 @@ class ImpactsController extends Controller
         [$coordinates,$cities, $places] = $place->all();
         return view('impacts.statistics', compact('coordinates', 'cities', 'places'));
     }
-
-    public function datas(Place $place)
-    {
-        [$coordinates,$cities, $places] = $place->all();
-        return view('impacts.datas', compact('coordinates', 'cities', 'places'));
-    }
 }
