@@ -28,7 +28,6 @@ if (!empty($proxy_schema)) {
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
-$router->get('/les-statistiques',  ['uses' => 'ImpactsController@statistics', 'as' => 'impacts.statistics']);
 $router->get('/les-institutions',  function () {
     return view('institutions');
 });

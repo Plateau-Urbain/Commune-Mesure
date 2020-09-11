@@ -22,10 +22,4 @@ class ImpactsController extends Controller
 
         return view('impacts.show', compact('places', 'resiliences'));
     }
-
-    public function statistics(Place $place)
-    {
-        [$coordinates,$cities, $places] = $place->all();
-        return view('impacts.statistics', compact('coordinates', 'cities', 'places'));
-    }
 }
