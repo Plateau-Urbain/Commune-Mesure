@@ -2682,13 +2682,13 @@
         {"text":"Makerspace","size":35, "color":"rgb(52, 52, 52, 0.3)"}
       ],
       "merits":[
-        {"text": "Écoute","size":10, "color":"#e34c26"},
+        {"text":"Écoute","size":10, "color":"#e34c26"},
         {"text":"citoyenneté","size":10, "color":"#cc0001"},
         {"text":"vivre ensemble","size":10, "color":"#e34c26"},
         {"text":"laïcité","size":10, "color":"#762dd4"},
-        {"text":"formation des individus","size":10, "color":"#cc0001"},
-        {"text":"innovation économique","size":10, "color":"#9be500"},
-        {"text":"innovation sociale","size":10, "color":"#e34c26"}
+        {"text":"Formation des individus","size":10, "color":"#cc0001"},
+        {"text":"Innovation économique","size":10, "color":"#9be500"},
+        {"text":"Innovation sociale","size":10, "color":"#e34c26"}
 
       ]
     },

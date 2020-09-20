@@ -20,7 +20,7 @@
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
     @include('components.place.composition-doughnut-js')
-    @include('components.place.d3-forced-directed-tree')
+    @include('components.place.amcharts-forced-directed-tree')
 @endsection
 
 @section('content')
@@ -150,8 +150,12 @@
                 <h2 class="ribbon-banner is has-text-centered" >Nos valeurs </h2>
                 <div class="" id="slide">
                   <div class="column">
-                    <div id="caption"></div>
-                    <div id="container"></div>
+                    <div id="theme-container">
+
+                    </div>
+                    <!-- <div id="caption"></div>
+                    <div id="container"></div> -->
+                    <div id="chartdiv"></div>
                   </div>
                 </div>
               </div>

@@ -11,22 +11,22 @@ var margin = {
     left: marginFixed
 };
 
-// var width = parseFloat(((1200) - margin.left - margin.right));
-// var height = ((aspect * width) - margin.top - margin.bottom);
-// var svg = d3.select("#container")
-//     .append("svg")
-//     .attr("cursor", "crosshair")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//     .attr("id", "chart")
-//     .attr("viewBox", (-width / 2) + "," + (-height / 2) + "," + width + "," + height)
-//     .attr("preserveAspectRatio", "xMidYMid meet")
-//     .attr("transform", "translate(0," + margin.top / 2 + ")");
-//
-// var labels = svg.append("g")
-//     .attr("class", "labels")
-//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-//
+var width = parseFloat(((1200) - margin.left - margin.right));
+var height = ((aspect * width) - margin.top - margin.bottom);
+var svg = d3.select("#container")
+    .append("svg")
+    .attr("cursor", "crosshair")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("id", "chart")
+    .attr("viewBox", (-width / 2) + "," + (-height / 2) + "," + width + "," + height)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .attr("transform", "translate(0," + margin.top / 2 + ")");
+
+var labels = svg.append("g")
+    .attr("class", "labels")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 //Integrer bon json
 var path = d3.json("/d3/data/family_tree_2.json").then(function(data) {
 
@@ -80,8 +80,7 @@ var path = d3.json("/d3/data/family_tree_2.json").then(function(data) {
         .data(links)
         .join("line");
 
-
-    // Define the div for the tooltip
+ 
     var div = d3.select("#caption").append("div")
         .data(nodes)
         .attr("class", "tooltip")
