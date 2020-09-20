@@ -54,7 +54,7 @@
     }
   }
 
-  var colors = ["#ee4035", "#f37736", "#fdf498", "#7bc043", "#0392cf",
+  var colors = ["#F1F1F1", "#E85048", "#fdf498", "#7bc043", "#0392cf",
   "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
 
     var smallmap = mapjs.create('info-box-map')
@@ -80,10 +80,11 @@ function animateBar(){
 }
 
 function setCaptionDataBar(currentDataZone, zone){
-
+  // console.log(currentDataZone)
   var totalActif = 0;
   var totalCsp = 0;
   var totalLogement = 0;
+
   Object.values(currentDataZone.activites).forEach(function(val){
     totalActif += val.nb;
   });
@@ -93,7 +94,7 @@ function setCaptionDataBar(currentDataZone, zone){
   Object.values(currentDataZone.csp).forEach(function(val){
     totalCsp += val.nb;
   });
-  console.log(totalActif)
+  // console.log(totalActif)
   var actifBarElements = document.querySelectorAll(".actifBar")
   var actifCaption = document.querySelectorAll(".actifCaption")
   var actifTitle = document.querySelectorAll(".actifTitle")
@@ -111,6 +112,7 @@ function setCaptionDataBar(currentDataZone, zone){
     actifCaption[i].style.backgroundColor = element.style.backgroundColor;
     actifTitle[i].innerHTML = data.title;
   })
+
   var cspBarElements = document.querySelectorAll(".cspBar")
   var cspCaption = document.querySelectorAll(".cspCaption")
   var cspTitle = document.querySelectorAll(".cspTitle")
@@ -145,13 +147,159 @@ function setCaptionDataBar(currentDataZone, zone){
     element.setAttribute("data-fill", percent.toFixed(1));
     logementCaption[i].style.backgroundColor = element.style.backgroundColor;
     logementTitle[i].innerHTML = data.title;
+
   })
 }
+
+function setInseeChartData(currentDataZone,zone){
+
+  var data = @json($place->data->insee);
+  var dataIris = data["iris"].activites
+  var dataRegion = data["region"].activites
+  var dataCommune = data["commune"].activites
+  var dataDepartement = data["departement"].activites
+  var dataVille = data['ville'].activites
+
+
+  var totalActif = 0;
+  var totalCsp = 0;
+  var totalLogement = 0;
+
+  Object.values(currentDataZone.activites).forEach(function(val){
+    totalActif += val.nb;
+  });
+  Object.values(currentDataZone.logement).forEach(function(val){
+    totalLogement += val.nb;
+    // console.log(totalLogement);
+
+  });
+  Object.values(currentDataZone.csp).forEach(function(val){
+    totalCsp += val.nb;
+  });
+
+  // console.log(tabActifTitle)
+  // console.log(tabActifData)
+
+    // let data = Object.entries(currentDataZone.activites)[i][1];
+    // let percent = data.nb * 100 / totalActif;
+
+    actifChart.updateSeries([
+      {
+        name: data[zone].activites[0].title,
+        data: [data[zone].activites[0].nb * 100/totalActif ]
+      },
+      {
+        name: data[zone].activites[1].title,
+        data: [data[zone].activites[1].nb * 100/totalActif ]
+      },
+      {
+        name: data[zone].activites[2].title,
+        data: [data[zone].activites[2].nb * 100/totalActif ]
+      },
+      {
+        name: data[zone].activites[3].title,
+        data: [data[zone].activites[3].nb * 100/totalActif ]
+      },
+      {
+        name: data[zone].activites[4].title,
+        data: [data[zone].activites[4].nb * 100/totalActif ]
+      },
+    ]);
+    immobilierChart.updateSeries([
+      {
+        name: data[zone].logement[0].title,
+        data: [data[zone].logement[0].nb * 100 / totalLogement]
+      },
+      {
+        name: data[zone].logement[1].title,
+        data: [data[zone].logement[1].nb * 100 / totalLogement]
+      },
+      {
+        name: data[zone].logement[2].title,
+        data: [data[zone].logement[2].nb * 100 / totalLogement]
+      },
+    ]);
+    cspChart.updateSeries([
+      {
+        name: data[zone].csp[0].title,
+        data: [data[zone].csp[0].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[1].title,
+        data: [data[zone].csp[1].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[2].title,
+        data: [data[zone].csp[2].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[3].title,
+        data: [data[zone].csp[3].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[4].title,
+        data: [data[zone].csp[4].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[5].title,
+        data: [data[zone].csp[5].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[6].title,
+        data: [data[zone].csp[6].nb * 100 / totalCsp]
+      },
+      {
+        name: data[zone].csp[7].title,
+        data: [data[zone].csp[7].nb * 100 / totalCsp]
+      }, 
+    ]);
+}
+
+  // function updateBar(currentDataZone, zone){
+  //   var totalActif = 0;
+  //   var totalCsp = 0;
+  //   var totalLogement = 0;
+  //   Object.values(currentDataZone.activites).forEach(function(val){
+  //     totalActif += val.nb;
+  //   });
+  //   Object.values(currentDataZone.logement).forEach(function(val){
+  //     totalLogement += val.nb;
+  //   });
+  //   Object.values(currentDataZone.csp).forEach(function(val){
+  //     totalCsp += val.nb;
+  //   });
+  //   for (var i = 0; i < 5; i++) {
+  //     let data = Object.entries(currentDataZone.activites)[i][1];
+  //     let percent = data.nb * 100 / totalActif;
+  //     actifChart.appendSeries({
+  //       name: data.title,
+  //       data: [percent.toFixed(1)]
+  //     });
+  //   }
+  //   for (var j = 0; j < 8; j++) {
+  //     let data = Object.entries(currentDataZone.csp)[j][1];
+  //     let percent = data.nb * 100 / totalCsp;
+  //     categoryChart.appendSeries({
+  //       name: data.title,
+  //       data: [percent.toFixed(1)]
+  //     });
+  //   }
+  //   for (var k = 0; k < 3; k++) {
+  //     let data = Object.entries(currentDataZone.logement)[k][1];
+  //     let percent = data.nb * 100 / totalLogement;
+  //     immobilierChart.appendSeries({
+  //       name: data.title,
+  //       data: [percent.toFixed(1)]
+  //     });
+  //   }
+  // }
 
 
   window.onload = (event) => {//TODO move in index.js
     setCaptionDataBar(placeData.insee.iris, "iris");
-
+    setInseeChartData(placeData.insee.iris,"iris")
     animateBar();
+
   }
+
 </script>

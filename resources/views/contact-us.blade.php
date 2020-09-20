@@ -7,12 +7,12 @@
                 <h1 class="title">Envoyez-nous vos interrogations</h1>
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">From</label>
+                        <label class="label">De</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <p class="control is-expanded has-icons-left">
-                                <input class="input" type="text" placeholder="Name">
+                                <input class="input" type="text" placeholder="Nom">
                                 <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
         </span>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="field">
                             <p class="control is-expanded has-icons-left has-icons-right">
-                                <input class="input is-success" type="email" placeholder="Email" value="alex@smith.com">
+                                <input class="input is-success" type="email" placeholder="Email" value="alex@dupont.fr">
                                 <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
@@ -43,17 +43,17 @@
                                     </a>
                                 </p>
                                 <p class="control is-expanded">
-                                    <input class="input" type="tel" placeholder="Your phone number">
+                                    <input class="input" type="tel" placeholder="Numéro de téléphone">
                                 </p>
                             </div>
-                            <p class="help">Do not enter the first zero</p>
+                            <p class="help">Veuillez ne pas saisir le premier zéro</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Department</label>
+                        <label class="label">Département</label>
                     </div>
                     <div class="field-body">
                         <div class="field is-narrow">
@@ -72,18 +72,18 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label">
-                        <label class="label">Already a member?</label>
+                        <label class="label">Déjà membre?</label>
                     </div>
                     <div class="field-body">
                         <div class="field is-narrow">
                             <div class="control">
                                 <label class="radio">
                                     <input type="radio" name="member">
-                                    Yes
+                                    Oui
                                 </label>
                                 <label class="radio">
                                     <input type="radio" name="member">
-                                    No
+                                    Non
                                 </label>
                             </div>
                         </div>
@@ -92,15 +92,15 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Subject</label>
+                        <label class="label">Sujet</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input is-danger" type="text" placeholder="e.g. Partnership opportunity">
+                                <input class="input is-danger" type="text" placeholder="Exemple : Partenariat">
                             </div>
                             <p class="help is-danger">
-                                This field is required
+                                Champs obligatoire
                             </p>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+                                <textarea class="textarea" placeholder="Comment pouvons-nous vous aider ?"></textarea>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                         <div class="field">
                             <div class="control">
                                 <button class="button is-primary">
-                                    Send message
+                                    Envoyer ce message
                                 </button>
                             </div>
                         </div>

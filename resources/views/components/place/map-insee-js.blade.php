@@ -162,7 +162,7 @@
     var zone = event.target.value;
     var currentDataZone = placeData.insee[zone];
     setCaptionDataBar(currentDataZone, zone);
-    // console.log(currentDataZone);
+    setInseeChartData(currentDataZone,zone);
     mygeojson.remove();
     mygeojson = L.geoJSON(
       geoJsonFeatures[zone],
