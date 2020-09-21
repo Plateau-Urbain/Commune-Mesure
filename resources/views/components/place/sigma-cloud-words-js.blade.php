@@ -42,7 +42,7 @@ var graph = {
         source: i,
         target: myActivities.length+e,
         color: d.color,
-        type: 'curvedArrow'
+        type: 'line'
       });
     })
 

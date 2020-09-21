@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+<style media="screen">
+  .banner{
+    display: none;
+  }
+</style>
     <div class="container">
         <div class="hero is-large is-light">
             <section class="section">

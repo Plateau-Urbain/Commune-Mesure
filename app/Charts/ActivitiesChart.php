@@ -10,7 +10,7 @@ class ActivitiesChart implements ChartInterface
     protected $datasets = [];
 
     const colors = [
-        'rgba(186, 200, 255, %s)',
+        'rgba(186, 20, 255, %s)',
         'rgba(77, 171, 247, %s)',
         'rgba(11, 114, 133, %s)',
         'rgba(64, 192, 87, %s)',
