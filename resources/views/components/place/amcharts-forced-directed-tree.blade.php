@@ -9,6 +9,15 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 var chart = am4core.create("chartdiv", am4plugins_forceDirected.ForceDirectedTree);
 
+chart.colors.list = [
+  am4core.color("#DEEBEE"),
+  am4core.color("#DEEBEE"),
+  am4core.color("#DEEBEE"),
+  am4core.color("#DEEBEE"),
+  am4core.color("#DEEBEE"),
+  am4core.color("#F9F871")
+];
+
 var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
 networkSeries.dataFields.linkWith = "linkWith";
 networkSeries.dataFields.name = "name";
@@ -71,7 +80,7 @@ networkSeries.data = [
       "name":myActivities[0].text,
       "value":102,
       "linkWith":[
-         ""
+         myMerits[3].text,
       ],
       "children":[
          {
@@ -81,309 +90,84 @@ networkSeries.data = [
          {
             "name":myMerits[2].text,
             "value":1
-         },
-         {
-            "name":myMerits[3].text,
-            "value":1
-         },
+         }
       ]
    },
    {
       "name":myActivities[1].text,
       "value":204,
       "linkWith":[
-         "",
+         myMerits[6].text,
       ],
       "children":[
-         {
-            "name":myMerits[6].text,
-            "value":1
-         },
       ]
+
    },
    {
       "name":myActivities[2].text,
       "value":216,
       "linkWith":[
-         "",
+         myMerits[5].text,
+         myMerits[6].text,
       ],
       "children":[
-         {
-            "name":"Carol",
-            "value":10
-         },
-         {
-            "name":"Celia",
-            "value":2
-         },
-         {
-            "name":"Julie",
-            "value":6
-         },
-         {
-            "name":"Chloe",
-            "value":1
-         },
-         {
-            "name":"Bonnie",
-            "value":4
-         },
-         {
-            "name":"Messy Girl (Cheryl)",
-            "value":5
-         },
-         {
-            "name":"Jill",
-            "value":1
-         },
-         {
-            "name":"Elizabeth",
-            "value":8
-         },
-         {
-            "name":"Aunt Millie",
-            "value":2
-         },
-         {
-            "name":"Mona",
-            "value":11
-         },
-         {
-            "name":"Emma",
-            "value":7
-         },
-         {
-            "name":"Charlie",
-            "value":13
-         }
       ]
    },
    {
       "name":myActivities[3].text,
       "value":167,
       "linkWith":[
-         "Joey",
-         "Phoebe"
+         myMerits[0].text,
+         myMerits[1].text
       ],
       "children":[
          {
-            "name":"Aurora",
+            "name":myMerits[1].text,
             "value":2
          },
          {
-            "name":"Jill Goodacre",
-            "value":1
-         },
-         {
-            "name":"Janice",
-            "value":12
-         },
-         {
-            "name":"Mrs Bing",
-            "value":6
-         },
-         {
-            "name":"Nina",
-            "value":1
-         },
-         {
-            "name":"Susie",
-            "value":5
-         },
-         {
-            "name":"Mary Theresa",
-            "value":1
-         },
-         {
-            "name":"Ginger",
+            "name":myMerits[6].text,
             "value":2
          },
-         {
-            "name":"Joanna",
-            "value":5
-         },
-         {
-            "name":"Kathy",
-            "value":9
-         },
-         {
-            "name":"Mr Bing",
-            "value":1
-         }
       ]
    },
    {
       "name":myActivities[4].text,
       "value":158,
       "linkWith":[
-         "Chandler",
-         "Ross",
-         "Joey",
-         "Phoebe",
-         "Mr Geller",
-         "Mrs Geller"
+         "",
       ],
       "children":[
          {
-            "name":"Paolo",
+            "name":myMerits[1].text,
             "value":5
          },
          {
-            "name":"Barry",
+            "name":myMerits[4].text,
             "value":1
          },
-         {
-            "name":"Dr Green",
-            "value":3
-         },
-         {
-            "name":"Mark3",
-            "value":1
-         },
-         {
-            "name":"Josh",
-            "value":2
-         },
-         {
-            "name":"Gunther",
-            "value":2
-         },
-         {
-            "name":"Joshua",
-            "value":3
-         },
-         {
-            "name":"Danny",
-            "value":1
-         },
-         {
-            "name":"Mr. Zelner",
-            "value":1
-         },
-         {
-            "name":"Paul Stevens",
-            "value":3
-         },
-         {
-            "name":"Tag",
-            "value":4
-         },
-         {
-            "name":"Melissa",
-            "value":1
-         },
-         {
-            "name":"Gavin",
-            "value":2
-         }
       ]
    },
    {
       "name":myActivities[5].text,
       "value":88,
       "linkWith":[
-         "Phoebe",
-         "Janice",
-         "Mrs Green",
-         "Kathy",
-         "Emily",
-         "Charlie"
+         myMerits[6].text,
       ],
       "children":[
-         {
-            "name":"Lorraine",
-            "value":2
-         },
-         {
-            "name":"Melanie",
-            "value":2
-         },
-         {
-            "name":"Erica",
-            "value":2
-         },
-         {
-            "name":"Kate",
-            "value":4
-         },
-         {
-            "name":"Lauren",
-            "value":2
-         },
-         {
-            "name":"Estelle",
-            "value":1
-         },
-         {
-            "name":"Katie",
-            "value":2
-         },
-         {
-            "name":"Janine",
-            "value":9
-         },
-         {
-            "name":"Erin",
-            "value":1
-         },
-         {
-            "name":"Cecilia",
-            "value":3
-         }
       ]
    },
    {
       "name":myActivities[6].text,
       "value":88,
       "linkWith":[
-         "Phoebe",
-         "Janice",
-         "Mrs Green",
-         "Kathy",
-         "Emily",
-         "Charlie"
+         myMerits[6].text,
       ],
       "children":[
          {
-            "name":"Lorraine",
+            "name":myMerits[5].text,
             "value":2
          },
-         {
-            "name":"Melanie",
-            "value":2
-         },
-         {
-            "name":"Erica",
-            "value":2
-         },
-         {
-            "name":"Kate",
-            "value":4
-         },
-         {
-            "name":"Lauren",
-            "value":2
-         },
-         {
-            "name":"Estelle",
-            "value":1
-         },
-         {
-            "name":"Katie",
-            "value":2
-         },
-         {
-            "name":"Janine",
-            "value":9
-         },
-         {
-            "name":"Erin",
-            "value":1
-         },
-         {
-            "name":"Cecilia",
-            "value":3
-         }
       ]
    },
 

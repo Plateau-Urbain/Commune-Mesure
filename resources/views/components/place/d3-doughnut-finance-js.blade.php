@@ -242,7 +242,8 @@
           text.append('textPath')
               .attr('startOffset','50%')
               .attr('xlink:href', (_, i) => `#hiddenArc${i}` )
-              .text(d => d.data.name + ': ' + d.value + '€');
+              // .text(d => d.data.name + ': ' + d.value + '€');
+              .text(d => d.data.name );
       });
 
       function focusOn(d = { x0: 0, x1: 1, y0: 0, y1: 1 }) {
