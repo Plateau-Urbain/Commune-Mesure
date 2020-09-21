@@ -45,7 +45,7 @@
             </section>
 
             <section>
-              <h5 class="ribbon-banner is-5 has-text-centered">Modèle économique</h5>
+              <h2 class="ribbon-banner is-5 has-text-centered">Modèle économique</h2>
               <div class="has-text-centered">
                 <strong>Nature des partenariats:</strong>
                 <ul class="fonfSize0-8em">
@@ -134,7 +134,7 @@
             </section>
             <div class="slide" id="slideValeurs">
             <div class="section" id="nos-valeurs">
-              <h2 class="title is has-text-centered" >Nos valeurs </h2>
+              <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
               <div class="columns" id="slide">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:30em;"></div>
@@ -143,14 +143,12 @@
             </div>
             <div class="slide" id="slideValeurs2" style="display:none;">
               <div class="section" id="nos-valeurs">
-                <h2 class="ribbon-banner is has-text-centered" >Nos valeurs </h2>
+                <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
                 <div class="" id="slide">
                   <div class="column">
                     <div id="theme-container">
 
                     </div>
-                    <!-- <div id="caption"></div>
-                    <div id="container"></div> -->
                     <div id="chartdiv"></div>
                   </div>
                 </div>
@@ -158,14 +156,13 @@
             </div>
             <section class="section" id="finances">
               <div class="">
-                  <h5 class="title is-5 has-text-centered">Les financements</h5>
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h5 class="title is-5 has-text-centered">Le budget</h5>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">financements</h2>
                       <div id="financement-budget-doughnut"></div>
                     </div>
                     <div class="column has-text-centered">
-                      <h5 class="title is-5 has-text-centered">Les fonds</h5>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Acteurs</h2>
                       <div id="financement-doughnut"></div>
                     </div>
                   </div>
@@ -173,7 +170,7 @@
             </section>
 
             <section class="section">
-                <h5 class="title is-5 has-text-centered">Badges</h5>
+              <h2 class="ribbon-banner title is-5 has-text-centered" >Badges</h2>
                 <div class="columns is-centered">
                     <div class="tags are-large">
                         @foreach ($place->structure->theme as $badge)
@@ -191,7 +188,7 @@
           </div>
 
             <section class="section has-text-centered " id="composition-lieu">
-              <h5 class="title is-5 has-text-centered ">La composition du lieu</h5>
+              <h5 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h5>
                 <section class="section">
                   <div class="has-text-centered">
 
