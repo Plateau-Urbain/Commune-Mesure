@@ -80,7 +80,6 @@
           newSlice.append('path')
               .attr('class', 'main-arc')
               .style('fill', function(d){
-                console.log(d)
                 let col = color((d.children ? d : d.parent).data.name);
                 return col;
               })

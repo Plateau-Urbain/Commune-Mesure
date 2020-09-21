@@ -31,15 +31,29 @@ function slideFinanceCompo(value){
 
 }
 
-function openLegend(){
-  var checkBox = document.getElementById("legendCheckbox");
+function showLegendChart(chart){
+  chart.updateOptions({ legend: { show: true,}});
+}
+
+function hideLegendChart(chart){
+  chart.updateOptions({ legend: { show: false,}});
+}
+
+function openLegend(checkBox){
   if (checkBox.checked == true){
-    actifChart.updateOptions({ legend: { show: true,}});
-    cspChart.updateOptions({ legend: { show: true,}});
-    immobilierChart.updateOptions({ legend: { show: true,}});
+    if(actifChart.el === checkBox.previousElementSibling)
+      showLegendChart(actifChart)
+    if(cspChart.el === checkBox.previousElementSibling)
+      showLegendChart(cspChart);
+    if(immobilierChart.el === checkBox.previousElementSibling)
+      showLegendChart(immobilierChart);
   } else {
-    actifChart.updateOptions({ legend: { show: false,}});
-    cspChart.updateOptions({ legend: { show: false,}});
-    immobilierChart.updateOptions({ legend: { show: false,}});
+    if(actifChart.el === checkBox.previousElementSibling)
+      hideLegendChart(actifChart)
+    if(cspChart.el === checkBox.previousElementSibling)
+      hideLegendChart(cspChart);
+    if(immobilierChart.el === checkBox.previousElementSibling)
+      hideLegendChart(immobilierChart);
+
   }
 }

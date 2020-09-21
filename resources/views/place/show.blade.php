@@ -293,117 +293,18 @@
               <div class="column is-7">
                 <div class="columns">
                   <div class="column">
-
-                    <!-- <div class="mt-2">
-                      <h4>Actifs</h4>
-                      <div class="" style="width:100%">
-                        <div class="actifBar myBar is-inline-block" style="background-color:#f07d60;border-radius: 1em 0 0 1em;"></div><div class="actifBar myBar is-inline-block"
-                         style="background-color:#F05F3B; border-radius:0;">
-                        </div><div class="actifBar myBar is-inline-block"
-                        style="background-color:#A5C5C3;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
-                        style="background-color:#429F9E;border-radius:0;"></div><div class="actifBar myBar is-inline-block"
-                        style="background-color:#007872; border-radius: 0 1em 1em 0;"></div>
-                      </div>
-                      <div class="mt-2" >
-                        <div class="caption-block is-inline-block">
-                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="actifTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="actifTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="actifTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="actifTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="actifCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="actifTitle is-inline-block"></p>
-                        </div>
-                      </div>
+                    <div class="mb-4">
+                      <div id="actifsChart" width="100" height="10"></div>
+                      <input type="checkbox" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
                     </div>
-                    <div class="mt-2" >
-                      <h4 >Catégories socioprofessionnelles</h4>
-                      <div class="" style="width:100%;">
-                        <div class="cspBar myBar is-inline-block"
-                        style="background-color: #bf607e; border-radius: 1em 0 0 1em;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#ca4a3d;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#e3a7a1;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#fcd2bb;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#c7dfec;color: black; border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#81b8d6;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#3680b6;border-radius:0;"></div><div class="cspBar myBar is-inline-block"
-                        style="background-color:#1b519c;border-radius: 0 1em 1em 0;"></div>
-                      </div>
-                      <div class="mt-2">
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="cspCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="cspTitle is-inline-block"></p>
-                        </div>
-                      </div>
+                    <div class="mb-4">
+                      <div id="cateChart" width="100" height="10"></div>
+                      <input type="checkbox" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
                     </div>
-                    <div class="mt-2">
-                      <h4 >Immobiliers</h4>
-                      <div class="" style="width:100%;">
-                        <div class="logementBar myBar is-inline-block"
-                        style="background-color:#E1E1E1;border-radius: 1em 0 0 1em;"></div><div class="logementBar myBar is-inline-block"
-                        style="background-color:#456EB8;border-radius:0;">
-                        </div><div class="logementBar myBar is-inline-block"
-                        style="background-color:#F3771B;border-radius: 0 1em 1em 0;"></div>
-                      </div>
-                      <div class="">
-                        <div class="caption-block is-inline-block">
-                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="logementTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="logementTitle is-inline-block"></p>
-                        </div>
-                        <div class="caption-block is-inline-block">
-                          <div class="logementCaption is-circle is-inline-block" style="width: 1em; height:1em;"></div>
-                          <p class="logementTitle is-inline-block"></p>
-                        </div>
-                      </div>
-                    </div> -->
-                    <div id="actifsChart" width="100" height="10"></div>
-                    <div id="cateChart" width="100" height="10"></div>
-                    <div id="immoChart" width="100" height="10"></div>
-                    <input type="checkbox" id="legendCheckbox" name="" value="" onclick="openLegend()" style="margin-right:10px" >Légende
-
+                    <div class="mb-4">
+                      <div id="immoChart" width="100" height="10"></div>
+                      <input type="checkbox" value="" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
+                    </div>
                   </div>
                 </div>
               </div>
