@@ -71,10 +71,6 @@ var activitiesMerits = JSON.parse("{{ json_encode($place->structure) }}".replace
 var myActivities = activitiesMerits.activities;
 var myMerits = activitiesMerits.merits;
 
-console.log(data)
-console.log(myActivities[0].text)
-console.log(myMerits)
-
 networkSeries.data = [
    {
       "name":myActivities[0].text,

@@ -2633,6 +2633,7 @@
         },
         "finance":{
           "name": "Financement",
+          "color": "#ee4035",
           "children": [
             {
               "name": "Budget annuel de fonctionnent",

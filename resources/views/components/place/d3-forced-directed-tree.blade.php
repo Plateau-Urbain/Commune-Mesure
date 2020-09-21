@@ -33,7 +33,6 @@ var path = d3.json("/d3/data/family_tree_2.json").then(function(data) {
     const root = d3.hierarchy(data);
     const links = root.links();
     const nodes = root.descendants();
-    console.log(root);
     var counted = root.copy().count();
     var summed = root.sum(d => d.value)
     var sum = root.copy().sum(d => 1).value
@@ -43,7 +42,6 @@ var path = d3.json("/d3/data/family_tree_2.json").then(function(data) {
 
     var heightInt = [];
     root.each(d => heightInt.push(d.height));
-    console.log(heightInt);
 
     var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S");
     var today = new Date();
@@ -80,7 +78,7 @@ var path = d3.json("/d3/data/family_tree_2.json").then(function(data) {
         .data(links)
         .join("line");
 
- 
+
     var div = d3.select("#caption").append("div")
         .data(nodes)
         .attr("class", "tooltip")
