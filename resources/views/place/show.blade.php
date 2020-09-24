@@ -33,7 +33,7 @@
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered">Modèle économique</h2>
+              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu : {{ $place->name }}</h2>
 
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
@@ -75,14 +75,18 @@
                     <div class="actor content" id="actor-illustration-detail">
                       <div>
                         @foreach($place->partners as $partner)
+                          @if($partner->names)
                           <div>
                             <strong>Les acteurs {{ $partner->title }}s :</strong>
                             <span class="is-block fonfSize0-8em">
                               {{ $partner->names }}
                             </span>
                           </div>
+                          @endif
                         @endforeach
                       </div>
+
+                      @if($place->partners[0]->names || $place->partners[1]->names)
                       <div class="">
                         <strong class="">Nature des partenariats:</strong>
                         <div class="fonfSize0-8em">
@@ -101,6 +105,7 @@
                           @endforeach
                         </div>
                       </div>
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -148,37 +153,19 @@
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">financements</h2>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
                       <div id="financement-budget-doughnut"></div>
                     </div>
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Acteurs</h2>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
                       <div id="financement-doughnut"></div>
                     </div>
                   </div>
               </div>
             </section>
 
-            <section class="section">
-              <h2 class="ribbon-banner title is-5 has-text-centered" >Badges</h2>
-                <div class="columns is-centered">
-                    <div class="tags are-large">
-                        @foreach ($place->structure->theme as $badge)
-                            {{-- <div class="column is-narrow"> --}}
-                            {{--     <figure class="image is-128x128"> --}}
-                            {{--         <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" /> --}}
-                            {{--     </figure> --}}
-                            {{-- </div> --}}
-                            <span class="tag is-primary">{{ $badge->text }}</span>
-                        @endforeach
-                    </div>
-                </div>
-              </section>
-            </section>
-          </div>
-
             <section class="section has-text-centered " id="composition-lieu">
-              <h5 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h5>
+              <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
                 <section class="section">
                   <div class="has-text-centered">
 
@@ -232,7 +219,7 @@
             <div class="columns">
               <div class="column">
                 <section class="section has-text-centered" id="finances">
-                  <h5 class="title is-5 has-text-centered">Répartition du financement</h5>
+                  <h2 class="title is-5 has-text-centered">Répartition du financement</h2>
                   <section class="section">
                     <div class="has-text-centered">
                       <div id="financement-doughnut2"></div>
@@ -242,7 +229,7 @@
               </div>
               <div class="column">
                 <section class="section has-text-centered" id="finances">
-                  <h5 class="title is-5 has-text-centered">La composition du lieu</h5>
+                  <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
                   <section class="section">
                     <div class="has-text-centered">
                       <canvas id="composition-doughnut" width="100" height="100"></canvas>
@@ -260,21 +247,31 @@
 
 
         <section class="section anchor" id="donnees-insee">
-          <h3 class="title is-3 has-text-centered">Les données INSEE</h3>
+          <h2 class="ribbon-banner title is-3 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
-            <div class="mb-5 has-text-centered">
-              <label>Choississez un découpage géographique: </label>
-              <div class="select">
-                <select id="selectGeo">
-                  <option value="region">Région</option>
-                  <option value="departement">Département</option>
-                  <option value="commune">Commune</option>
-                  <option value="iris" selected="selected">Iris</option>
-                </select>
+            <div class="columns">
+              <div class="column">
+                <label class="is-pulled-right pt-4">Choississez un découpage géographique: </label>
+              </div>
+              <div class="column is-pulled-left">
+                <div class="mb-5 control has-icons-left">
+                  <div class="select">
+                    <select id="selectGeo">
+                      <option value="iris" selected>Quartier</option>
+                      <option value="commune">Commune</option>
+                      <option value="departement">Département</option>
+                      <option value="region">Région</option>
+                    </select>
+                  </div>
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-map"></i>
+                  </span>
+                </div>
               </div>
             </div>
+
             <div class="columns card is-rounded">
-              <div class="column " style="width: 100%;height: 27em; z-index:1">
+              <div class="column " style="width: 100%;height: 30em; z-index:1">
                 <div id="map-insee"></div>
               </div>
               <div class="column is-7">
@@ -288,14 +285,6 @@
               </div>
             </div>
           </div>
-        </section>
-        <section class="section">
-
-            <h5 class="ribbon-banner is-5 has-text-centered">Impact Social</h5>
-            <div class="columns is-centered">
-                <div class="tags are-large">
-                </div>
-            </div>
         </section>
     </div>
 </div>

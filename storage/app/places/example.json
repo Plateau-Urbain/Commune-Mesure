@@ -2661,6 +2661,31 @@
         ]
       }
     ],
+    "opening":[
+      {
+        "title": "welcome",
+        "names":{
+          "Handicapés":1,
+          "Enfants":1,
+          "Étudiants":1,
+          "Parsonnes":1,
+          "Famille":1,
+          "Personnes visants le site":1,
+          "Personnes habitant sur le site":1,
+          "Personnes visants le site": 1,
+          "Tout le monde": 1
+        }
+      },
+      {
+        "title":"open",
+        "names":{
+          "En permanence":1,
+          "Plusieurs jours par semaine":1,
+          "Une fois par semaine ou moins":1,
+          "Lors d'évènements ponctuels seulement":1
+        }
+      }
+    ],
     "badges": [
         "cantine",
         "hebergement-urgence",

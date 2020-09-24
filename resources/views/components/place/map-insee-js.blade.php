@@ -23,45 +23,13 @@
   /**
   * Css style default
   **/
-  styleObjet["iris"] = {
+  styleObjet = {
           fillColor: '#f37736',
           weight: 0,
           opacity: 2,
           color: 'white',
           fillOpacity: 0.3
       };
-
-  /**
-  * Css style departement
-  **/
-  styleObjet["departement"] = {
-      fillColor: '#d0f3fb',
-      weight: 0,
-      opacity: 2,
-      color: 'white',
-      fillOpacity: 0.7
-  };
-
-  styleObjet["commune"] = {
-      fillColor: '#fdf498',
-      weight: 0,
-      opacity: 2,
-      color: 'white',
-      fillOpacity: 0.7
-  };
-
-  /**
-  * Css style region
-  * //TODO opacity light
-  **/
-  styleObjet['region'] = {
-      fillColor: '#3d1e6d',
-      weight: 0,
-      opacity: 2,
-      color: 'white',
-      fillOpacity: 0.7
-  }
-
 
   /**
   *
@@ -142,7 +110,7 @@
       mygeojson = L.geoJSON(
         geoJsonFeatures.iris,
         {
-          style: styleObjet.iris,
+          style: styleObjet,
           onEachFeature: onEachFeature
         }
       ).addTo(mapInsee);
@@ -156,6 +124,7 @@
   mapInsee.setView(markerPoint, zoomDefault);
 
   loadGeoJson();
+  mapInsee.fitBounds(mygeojson.getBounds())
   //TODO other possibilities to make work displaying zoom
   //mapInsee.on("zoom", displayFeature);
   var select = document.getElementById("selectGeo");
@@ -168,13 +137,11 @@
     mygeojson = L.geoJSON(
       geoJsonFeatures[zone],
       {
-        style: styleObjet[zone],
+        style: styleObjet,
         onEachFeature: onEachFeature
       }
     ).addTo(mapInsee);
     mapInsee.fitBounds(mygeojson.getBounds())
-    //Bar caption with new data
-    //animateBar();
   }, false)
 
 
