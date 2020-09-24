@@ -78,9 +78,9 @@ fill: {
 
 },
 legend: {
-  show:false,
+  show:true,
   position: 'bottom',
-  horizontalAlign: 'left',
+  horizontalAlign: 'right',
   showForZeroSeries: false,
 }
 };
@@ -157,9 +157,9 @@ fill: {
 
 },
 legend: {
-  show:false,
+  show:true,
   position: 'bottom',
-  horizontalAlign: 'left',
+  horizontalAlign: 'right',
   showForZeroSeries: false,
 }
 };
@@ -253,9 +253,9 @@ fill: {
 
 },
 legend: {
-  show:false,
+  show:true,
   position: 'bottom',
-  horizontalAlign: 'left',
+  horizontalAlign: 'right',
   showForZeroSeries: false,
 }
 };

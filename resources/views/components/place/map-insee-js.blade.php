@@ -147,6 +147,7 @@
         }
       ).addTo(mapInsee);
 
+
   }
 
 
@@ -173,7 +174,7 @@
     ).addTo(mapInsee);
     mapInsee.fitBounds(mygeojson.getBounds())
     //Bar caption with new data
-    animateBar();
+    //animateBar();
   }, false)
 
 

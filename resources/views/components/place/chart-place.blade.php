@@ -158,7 +158,6 @@ function setInseeChartData(currentDataZone,zone){
   var dataRegion = data["region"].activites
   var dataCommune = data["commune"].activites
   var dataDepartement = data["departement"].activites
-  var dataVille = data['ville'].activites
 
 
   var totalActif = 0;
@@ -251,7 +250,7 @@ function setInseeChartData(currentDataZone,zone){
       {
         name: data[zone].csp[7].title,
         data: [data[zone].csp[7].nb * 100 / totalCsp]
-      }, 
+      },
     ]);
 }
 

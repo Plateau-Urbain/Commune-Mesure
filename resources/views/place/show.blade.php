@@ -32,35 +32,9 @@
 
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
-            <section class="section">
-                <h1 class="title is-1 has-text-centered">{{ $place->name }}</h1>
-                <div class="has-text-centered"><span class="has-text-grey-light">Tags :
-                    @foreach ($place->tags as $tag)
-                        <a class="tag tag-css" href="/tag/{{ $tag }}" title="{{ $tag }}">{{ $tag }}</a>
-                    @endforeach
-                </span></div>
-                <div class="has-text-centered">
-                  <a class="tag" href="//example.com">Découvrir plus</a>
-                </div>
-            </section>
-
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered">Modèle économique</h2>
-              <div class="has-text-centered">
-                <strong>Nature des partenariats:</strong>
-                <ul class="fonfSize0-8em">
-                  @foreach($place->partners as $partner)
-                  <li>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
-                    @foreach($partner->natures as $nature)
-                      {{ $nature }}
-                      @if(count($partner->natures) > 1)
-                        {{ "," }}
-                      @endif
-                    @endforeach
-                  </span></li>
-                  @endforeach
-                </ul>
-              </div>
+
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
                   <div id="budget-value-illustration">
@@ -68,7 +42,7 @@
                       <img  src="/images/bloc_note.svg" >
                     </figure>
                     <div class="content" id="description-illustration-detail">
-                        <p><strong>{{ $place->name }} c'est quoi ?</strong></p>
+                        <p><strong>L'idée fondatrice du lieu</strong></p>
                         <p class="description fonfSize0-8em">{{ $place->description }}</p>
 
                     </div>
@@ -99,18 +73,34 @@
                       <img  src="/images/bloc_note.svg" >
                     </figure>
                     <div class="actor content" id="actor-illustration-detail">
-                      <ul>
+                      <div>
                         @foreach($place->partners as $partner)
-                          <li>
+                          <div>
                             <strong>Les acteurs {{ $partner->title }}s :</strong>
                             <span class="is-block fonfSize0-8em">
                               {{ $partner->names }}
                             </span>
-                          </li>
+                          </div>
                         @endforeach
-
-
-                      <ul>
+                      </div>
+                      <div class="">
+                        <strong class="">Nature des partenariats:</strong>
+                        <div class="fonfSize0-8em">
+                          @php ($nb = 1) @endphp
+                          @foreach($place->partners as $partner)
+                          <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
+                            @foreach($partner->natures as $nature)
+                              {{ $nature }}
+                              @if(count($partner->natures) != $nb)
+                                {{ "," }}
+                                @php ($nb++) @endphp
+                              @endif
+                            @endforeach
+                            </span>
+                          </div>
+                          @endforeach
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -284,24 +274,15 @@
               </div>
             </div>
             <div class="columns card is-rounded">
-              <div class="column " style="width: 100%;height: auto; z-index:1">
+              <div class="column " style="width: 100%;height: 27em; z-index:1">
                 <div id="map-insee"></div>
               </div>
               <div class="column is-7">
                 <div class="columns">
                   <div class="column">
-                    <div class="mb-4">
                       <div id="actifsChart" width="100" height="10"></div>
-                      <input type="checkbox" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
-                    </div>
-                    <div class="mb-4">
                       <div id="cateChart" width="100" height="10"></div>
-                      <input type="checkbox" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
-                    </div>
-                    <div class="mb-4">
                       <div id="immoChart" width="100" height="10"></div>
-                      <input type="checkbox" value="" onclick="openLegend(this)" style="margin-right:10px" >Afficher la légende
-                    </div>
                   </div>
                 </div>
               </div>
@@ -313,21 +294,6 @@
             <h5 class="ribbon-banner is-5 has-text-centered">Impact Social</h5>
             <div class="columns is-centered">
                 <div class="tags are-large">
-                </div>
-            </div>
-        </section>
-        <section class="section">
-            <h5 class="title is-5 has-text-centered">Badges</h5>
-            <div class="columns is-centered">
-                <div class="tags are-large">
-                    @foreach ($place->structure->theme as $badge)
-                        {{-- <div class="column is-narrow"> --}}
-                        {{--     <figure class="image is-128x128"> --}}
-                        {{--         <img class="is-rounded" src="https://dummyimage.com/128x128/000/fff" alt="images/badges/{{ $badge }}.png" /> --}}
-                        {{--     </figure> --}}
-                        {{-- </div> --}}
-                        <span class="tag is-primary">{{ $badge->text }}</span>
-                    @endforeach
                 </div>
             </div>
         </section>

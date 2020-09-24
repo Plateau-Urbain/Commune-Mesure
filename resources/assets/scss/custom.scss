@@ -285,13 +285,11 @@ h1, h2, h3, h4, h5, h6 {
 
 #description-illustration-detail{
   top: 20%;
-  left: 33%;
+  left: 30%;
   width: 50%;
+  padding: 1em 0em 0 1.5em;
 }
-#description-illustration-detail >p, #actor-illustration-detail > p{
-  padding: 5px;
-  max-height: 190px;
-}
+
 .description,.actor{
   overflow-y:auto;
 }
@@ -300,6 +298,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 20%;
   left: 30%;
   width: 50%;
+  padding: 1em 0em 0 2em;
 }
 
 #sectionResilienceBar{
