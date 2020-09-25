@@ -10,12 +10,12 @@ class LogementChart implements ChartInterface
     protected $datasets = [];
 
     const colors = [
-        'rgba(186, 200, 255, %s)',
-        'rgba(77, 171, 247, %s)',
-        'rgba(11, 114, 133, %s)',
-        'rgba(64, 192, 87, %s)',
-        'rgba(252, 196, 25, %s)',
-        'rgba(217, 72, 15, %s)'
+        'rgba(186, 00, 255, %s)',
+        'rgba(77, 11, 247, %s)',
+        'rgba(11, 14, 133, %s)',
+        'rgba(64, 12, 87, %s)',
+        'rgba(252, 16, 25, %s)',
+        'rgba(217, 7, 15, %s)'
     ];
 
 public function __construct(string $id, string $type) {

@@ -1,8 +1,137 @@
+$rear-x-offset: 1em;
+$rear-y-offset: .35em;
+$ribbon-color: #e85048;
+
+a.tag-css{
+  text-transform:uppercase;
+  background-color: #E8E8E8;
+  padding: 1em;
+}
+ #slideValeurs2,#slideFinanceCompo2 {
+  transition: opacity 1s;
+  opacity: 0;
+}
+#chartdiv {
+  width: 100%;
+  height: 300px;
+}
+
+.ribbon-banner {
+  display: table;
+  font-size: 1.5em;
+  max-width: 85%;
+  position: relative;
+  background: $ribbon-color;
+  background: linear-gradient(to left,lighten($ribbon-color, 7%), $ribbon-color ,lighten($ribbon-color, 7%));
+  color: #fff;
+  text-align: center;
+  padding: .3em 1em .3em;
+  margin: .75em auto 1.25em;
+  text-shadow: 0 1px 3px darken($ribbon-color, 8%);
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: -($rear-y-offset);
+    border-width: .85em;
+    border-style: solid;
+    border-color: $ribbon-color;
+    z-index: -1;
+  }
+  &:before {
+    left: -($rear-x-offset);
+    border-right-width: $rear-x-offset * 1.5;
+    border-left-width: $rear-x-offset/2;
+    border-left-color: transparent;
+  }
+  &:after {
+    right: -($rear-x-offset);
+    border-left-width: $rear-x-offset * 1.5;
+    border-right-width: $rear-x-offset/2;
+    border-right-color: transparent;
+  }
+  span:before,
+  span:after {
+    content: "";
+    position: absolute;
+    display: block;
+    border-style: solid;
+    border-color: darken($ribbon-color, 12%) transparent transparent transparent;
+    bottom: -$rear-y-offset;
+  }
+  span:before {
+    left: 0;
+    border-width: $rear-y-offset 0 0 $rear-x-offset;
+  }
+  span:after {
+    right: 0;
+    border-width: $rear-y-offset $rear-x-offset 0 0;
+  }
+}
+
+div.tooltip {
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+    display: flex;
+    width: 100%;
+    height: 12px;
+    padding: 4px;
+    font: 1em "SF Mono Bold";
+    background-color: "#FFF";
+    border-bottom: .5px solid;
+    pointer-events: none;
+}
+
+.apexcharts-bar-series,.apexcharts-plot-series,.apexcharts-inner {
+  margin-top: -300px !important;
+}
+.box{
+  width: 35%;
+}
+
+.main-arc, .hidden-arc{
+  fill-opacity:0.8;
+}
+.line-slide {
+  cursor: pointer;
+  width: 100px;
+  height: 10px;
+  background-color: #DDD;
+  opacity: 1;
+  margin: 10px;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+.line-slide:hover{
+  opacity: 0.5;
+}
+p.cspTitle,div.cspCaption{
+  display: none !important;
+}
+
+.caption-block{
+  display: none !important;
+}
+
+.actifBar,.cspBar,.logementBar{
+  transition: transform 0.2s ease;
+}
+.btn-legend{
+  background-color: none;
+  border: none;
+}
+.actifBar:hover,.cspBar:hover,.logementBar:hover{
+  transform: scale(1.5);
+  z-index: 1000;
+}
+
 #balance, #process{
     height: 20em;
     margin: 1%;
 }
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Renner Bold';
 }
@@ -22,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slice .main-arc {
-    stroke: #fff;
+    stroke: #FFF;
     stroke-width: 1px;
 }
 
@@ -93,6 +222,8 @@ h1, h2, h3, h4, h5, h6 {
 {
   //border: 1px #e85048 solid;
   padding: 5px;
+  left: 12%;
+  font-size: .8em;
 }
 
 .is1em{
@@ -138,38 +269,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 #occupant{
   top: 37.5%;
-  left: 20%;
 }
-
 
 #owner {
   bottom: 8em;
-  left: 3em;
 }
 
 #actor{
   top: 22.5%;
-  right: 21%;
 }
 
 #contract {
   bottom: 8em;
-  left: 14em;
-
-}
-#actor-illustration-detail{
-  top: 20%;
-  left: 33%;
-  width: 51%
 }
 
 #description-illustration-detail{
-  top: 9em;
-  left: 39%;
-  width: 17em;
+  top: 20%;
+  left: 30%;
+  width: 50%;
+  padding: 1em 0em 0 1.5em;
 }
 
+.description,.actor{
+  overflow-y:auto;
+}
 
+#actor-illustration-detail{
+  top: 20%;
+  left: 30%;
+  width: 50%;
+  padding: 1em 0em 0 2em;
+}
 
 #sectionResilienceBar{
   padding-top: 0 !important;
@@ -213,6 +343,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: 1em;
     height: 10em;
 }
+
+.text-doughnut-finance{
+  font-size: .5em;
+}
+
 @media (min-height: 300px) {
     .scrolling-menu {
         position: sticky;

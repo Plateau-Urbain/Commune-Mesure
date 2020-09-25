@@ -79,6 +79,9 @@
         </div>
 
       </div>
+      <div class="section">
+        <div class="" id="chart-moyen-rea"></div>
+      </div>
 
     </div>
   </div>
