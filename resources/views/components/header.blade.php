@@ -10,7 +10,6 @@
                 <a class="navbar-item" href="/">Accueil</a>
                 <a class="navbar-item" href="/les-lieux">Les lieux</a>
                 <a class="navbar-item" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
-                <a class="navbar-item" href="/documentation">Documentation</a>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="les-institutions">Les institutions</a>
                     <div class="navbar-dropdown is-boxed">
