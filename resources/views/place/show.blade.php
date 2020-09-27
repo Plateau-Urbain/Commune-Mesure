@@ -19,7 +19,6 @@
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
-    @include('components.place.composition-doughnut-js')
     @include('components.place.amcharts-forced-directed-tree')
 @endsection
 
@@ -53,11 +52,11 @@
                     <figure class="image is25em" style="margin:auto;">
                       <img  src="/images/building_detail.svg" >
                     </figure>
-                    <div class="very-small" id="occupant">{{ "150" }} occupants</div>
+                    <div class="very-small" id="occupant">{{ $place->manager->occupants }} structures occupantes</div>
                     <div class="very-small" id="budget-value">
 
                     </div>
-                    <div class="very-small" id="actor">Gouvernance partagée</div>
+                    <div class="very-small" id="actor">La gouvernance partagée avec {{ $place->manager->name }}</div>
                   </div>
                   <div class="has-text-centered">
                     <p class="mb-3 mt-5">
@@ -158,7 +157,7 @@
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
-                      <div id="financement-doughnut"></div>
+                      <canvas id="actor-chart-pie" style="margin-top:10em;"></canvas>
                     </div>
                   </div>
               </div>
@@ -243,8 +242,6 @@
             <span class="line-slide" onclick="slideFinanceCompo(1)"></span>
             <span class="line-slide" onclick="slideFinanceCompo(2)"></span>
           </div>
-
-
 
         <section class="section anchor" id="donnees-insee">
           <h2 class="ribbon-banner title is-3 has-text-centered">Le lieu dans son territoire</h2>

@@ -1,16 +1,6 @@
 var charts = (function () {
     var options = {}
 
-    var colors = {
-        red: 'rgb(255, 99, 132)',
-        orange: 'rgb(255, 159, 64)',
-        yellow: 'rgb(255, 205, 86)',
-        green: 'rgb(75, 192, 192)',
-        blue: 'rgb(54, 162, 235)',
-        purple: 'rgb(153, 102, 255)',
-        grey: 'rgb(201, 203, 207)'
-    }
-
     var charts = [];
 
     var canvas = document.querySelectorAll('canvas');
@@ -24,7 +14,7 @@ var charts = (function () {
         return 'undefined';
     }
 
-    function create(chart, type, labels, data, ) {
+    function create(chart, type, labels, data, colors, options ) {
         var ctx = _search(chart)
 
         if (typeof ctx === 'undefined') {
@@ -35,21 +25,9 @@ var charts = (function () {
             type: type,
             data: {
                 labels: labels,
-                datasets: data
+                datasets:  data
             },
-            options: {
-                scales: {
-                    yAxes: [{
-                        id: 'lieu-1',
-                        type: 'linear',
-                        position: 'left'
-                    }, {
-                        id: 'lieu-2',
-                        type: 'linear',
-                        position: 'right'
-                    }]
-                  }
-                }
+            options: options
 
         });
 
