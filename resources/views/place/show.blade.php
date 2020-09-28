@@ -50,7 +50,7 @@
                     </figure>
                     <div class="content" id="description-illustration-detail">
                         <p><strong>L'idée fondatrice du lieu</strong></p>
-                        <p class="description fonfSize0-8em">{{ $place->description }}</p>
+                        <p class="description fontSize0-8em">{{ $place->description }}</p>
 
                     </div>
                   </div>
@@ -85,7 +85,7 @@
                           @if($partner->names)
                           <div>
                             <strong>Les acteurs {{ $partner->title }}s :</strong>
-                            <span class="is-block fonfSize0-8em">
+                            <span class="is-block fontSize0-8em">
                               {{ $partner->names }}
                             </span>
                           </div>
@@ -96,7 +96,7 @@
                       @if($place->partners[0]->names || $place->partners[1]->names)
                       <div class="">
                         <strong class="">Nature des partenariats:</strong>
-                        <div class="fonfSize0-8em">
+                        <div class="fontSize0-8em">
                           @php ($nb = 1) @endphp
                           @foreach($place->partners as $partner)
                           <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
@@ -118,7 +118,7 @@
                 </div>
               </div>
               <div class="has-text-centered">
-                <div class="columns is-multiline fonfSize0-8em" style="justify-content:center;">
+                <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
                   <span class="is-block ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i>Handicapés</span>
                   <span class="is-block ml-3"><i class="fa fa-child font-color-theme mr-1"></i>Enfants</span>
                   <span class="is-inline-block ml-3"><i class="fa fa-user-graduate font-color-theme mr-1"></i>Étudiants</span>
