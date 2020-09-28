@@ -2,7 +2,7 @@
 <template id="chromosomic-row">
     <div class="columns">
         <div class="column is-4">
-            <p class="title is-4">
+            <p class="title is-6">
                 <a href=""></a>
             </p>
         </div>
@@ -84,7 +84,6 @@ var options = {
 
   colors:['#e34c26','#f07d60','#A5C5C3', '#429F9E'],
 
-  series: [{name: '',data: [{{ $quantity1 *100}}]},{name: '',data: [{{ $quantity2*100 }}]},{name: '',data: [{{ $quantity3 *100}}]},{name: '',data: [{{ $quantity4 *100}}]}],
   chart: {
   type: 'bar',
   height: 130,

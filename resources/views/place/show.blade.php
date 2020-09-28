@@ -32,7 +32,7 @@
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu : {{ $place->name }}</h2>
+              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu : {{ $place->name }}</h2>
 
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
@@ -143,7 +143,7 @@
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
-                      <canvas id="actor-chart-pie" style="margin-top:10em;"></canvas>
+                      <canvas id="actor-chart-pie" ></canvas>
                     </div>
                   </div>
               </div>
