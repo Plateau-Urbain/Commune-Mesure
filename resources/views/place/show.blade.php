@@ -1,5 +1,14 @@
 @extends('layout')
 
+@section('title')
+<h1 class="title header-title">
+{{ $place->name }}
+</h1>
+<h2 class="subtitle">
+    {{ $place->address->city }}
+</h2>
+@endsection
+
 @section('head_css')
     @parent
 @endsection
@@ -19,21 +28,20 @@
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
-    @include('components.place.amcharts-forced-directed-tree')
+    @include('components.place.composition-chart')
 @endsection
 
 @section('content')
 <div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('components.place.place-menu')
-        {{-- @include('components.place.info-box') --}}
     </div>
 
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu : {{ $place->name }}</h2>
-
+              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
+              <div class="section">
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
                   <div id="budget-value-illustration">
@@ -42,7 +50,7 @@
                     </figure>
                     <div class="content" id="description-illustration-detail">
                         <p><strong>L'idée fondatrice du lieu</strong></p>
-                        <p class="description fonfSize0-8em">{{ $place->description }}</p>
+                        <p class="description fontSize0-8em">{{ $place->description }}</p>
 
                     </div>
                   </div>
@@ -77,7 +85,7 @@
                           @if($partner->names)
                           <div>
                             <strong>Les acteurs {{ $partner->title }}s :</strong>
-                            <span class="is-block fonfSize0-8em">
+                            <span class="is-block fontSize0-8em">
                               {{ $partner->names }}
                             </span>
                           </div>
@@ -88,7 +96,7 @@
                       @if($place->partners[0]->names || $place->partners[1]->names)
                       <div class="">
                         <strong class="">Nature des partenariats:</strong>
-                        <div class="fonfSize0-8em">
+                        <div class="fontSize0-8em">
                           @php ($nb = 1) @endphp
                           @foreach($place->partners as $partner)
                           <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
@@ -110,7 +118,7 @@
                 </div>
               </div>
               <div class="has-text-centered">
-                <div class="columns is-multiline fonfSize0-8em" style="justify-content:center;">
+                <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
                   <span class="is-block ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i>Handicapés</span>
                   <span class="is-block ml-3"><i class="fa fa-child font-color-theme mr-1"></i>Enfants</span>
                   <span class="is-inline-block ml-3"><i class="fa fa-user-graduate font-color-theme mr-1"></i>Étudiants</span>
@@ -125,126 +133,46 @@
                   <span class="font-color-theme">En permanence</span>
                 </p>
               </div>
+              </div>
             </section>
-            <div class="slide" id="slideValeurs">
-            <div class="section" id="nos-valeurs">
+            <section class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-              <div class="columns" id="slide">
+
+              <div class="columns">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:30em;"></div>
               </div>
-            </div>
-            </div>
-            <div class="slide" id="slideValeurs2" style="display:none;">
-              <div class="section" id="nos-valeurs">
-                <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-                <div class="" id="slide">
-                  <div class="column">
-                    <div id="theme-container">
-
-                    </div>
-                    <div id="chartdiv"></div>
-                  </div>
-                </div>
               </div>
-            </div>
+
+            </section>
             <section class="section" id="finances">
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
-                      <div id="financement-budget-doughnut"></div>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
+                      <div class="section">
+                      <canvas id="actor-chart-pie" ></canvas>
+                      </div>
                     </div>
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
-                      <canvas id="actor-chart-pie" style="margin-top:10em;"></canvas>
+                      <!-- A rendre plus comprehensible avant de reintegrer -->
+                      <!-- <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
+                      <div id="financement-budget-doughnut"></div> -->
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
+                      <div class="section">
+                      <canvas id="composition-chart-doughnut" ></canvas>
+                      </div>
                     </div>
                   </div>
               </div>
             </section>
 
-            <section class="section has-text-centered " id="composition-lieu">
-              <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                <section class="section">
-                  <div class="has-text-centered">
-
-
-                    <div class="" >
-                      @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"
-                      data-tooltip="{{ $place->data->composition->{1}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"
-                      data-tooltip="{{ $place->data->composition->{2}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"
-                      data-tooltip="{{ $place->data->composition->{3}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
-                      data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                    </div>
-
-                    <div class="mt-6">
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
-                      </div>
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
-                      </div>
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
-                      </div>
-                      <div class="is-inline-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
-                      </div>
-                    </div>
-                  </div>
-              </section>
-            </section>
           </div>
-          <div class="slide" id="slideFinanceCompo2" style="display:none;">
-            <div class="columns">
-              <div class="column">
-                <section class="section has-text-centered" id="finances">
-                  <h2 class="title is-5 has-text-centered">Répartition du financement</h2>
-                  <section class="section">
-                    <div class="has-text-centered">
-                      <div id="financement-doughnut2"></div>
-                    </div>
-                  </section>
-                </section>
-              </div>
-              <div class="column">
-                <section class="section has-text-centered" id="finances">
-                  <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                  <section class="section">
-                    <div class="has-text-centered">
-                      <canvas id="composition-doughnut" width="100" height="100"></canvas>
-                    </div>
-                  </section>
-                </section>
-              </div>
-            </div>
-          </div>
-          <div class="" style="text-align:center;">
-            <span class="line-slide" onclick="slideFinanceCompo(1)"></span>
-            <span class="line-slide" onclick="slideFinanceCompo(2)"></span>
-          </div>
-
+        <section>
+            <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
+        </section>
         <section class="section anchor" id="donnees-insee">
-          <h2 class="ribbon-banner title is-3 has-text-centered">Le lieu dans son territoire</h2>
+          <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">
               <div class="column">

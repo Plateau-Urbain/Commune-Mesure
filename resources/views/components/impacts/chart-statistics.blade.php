@@ -56,6 +56,7 @@ var layout = {
     showgrid: false,
     showline: true,
     linecolor: 'rgb(102, 102, 102)',
+    title:'X : Par évènement',
     titlefont: {
       font: {
         color: 'rgb(204, 04, 204)'
@@ -70,6 +71,14 @@ var layout = {
     dtick: 10,
     ticks: 'outside',
     tickcolor: '#fe7651'
+  },
+  yaxis: {
+    title:'Y : Par ETP',
+    titlefont: {
+      font: {
+        color: 'rgb(204, 04, 204)'
+      }
+    },
   },
   margin: {
     l: 140,
@@ -86,11 +95,32 @@ var layout = {
   },
   width: 600,
   height: 600,
-  paper_bgcolor: 'rgb(254, 247, 234)',
-  plot_bgcolor: 'rgb(254, 247, 234)',
+  paper_bgcolor: 'rgb(247, 247, 247)',
+  plot_bgcolor: 'rgb(247, 247, 247)',
   hovermode: 'closest'
 };
 
 Plotly.newPlot('chart-moyen-rea', data, layout);
 
+
+
+
+
+
+
+
+
+
+
+
+var lieux_elements = document.querySelectorAll(".li_lieux")
+
+lieux_elements.forEach(function (element) {
+  element.addEventListener("mouseover", function( event ) {
+    event.target.style.color = "orange";
+    setTimeout(function() {
+      event.target.style.color = "";
+    }, 600);
+  }, false);
+})
 </script>
