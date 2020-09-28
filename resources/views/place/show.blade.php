@@ -33,7 +33,7 @@
         <div id="presentation" class="hero is-large anchor">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu : {{ $place->name }}</h2>
-
+              <div class="section">
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
                   <div id="budget-value-illustration">
@@ -125,66 +125,44 @@
                   <span class="font-color-theme">En permanence</span>
                 </p>
               </div>
+              </div>
             </section>
-            <div class="section" id="nos-valeurs">
+            <section class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
+
               <div class="columns">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:30em;"></div>
               </div>
               </div>
-            </div>
+
+            </section>
             <section class="section" id="finances">
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
-                      <div id="financement-budget-doughnut"></div>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
+                      <div class="section">
+                      <canvas id="actor-chart-pie" ></canvas>
+                      </div>
                     </div>
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
-                      <canvas id="actor-chart-pie" ></canvas>
+                      <!-- A rendre plus comprehensible avant de reintegrer -->
+                      <!-- <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
+                      <div id="financement-budget-doughnut"></div> -->
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
+                      <div class="section">
+                      <canvas id="composition-chart-doughnut" ></canvas>
+                      </div>
                     </div>
                   </div>
               </div>
             </section>
 
-            <section class="section has-text-centered " id="composition-lieu">
-              <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                <section class="section">
-                  <div class="has-text-centered">
-
-                    <div id="compoChart" width="100" height="10"></div>
-
-                  </div>
-              </section>
-            </section>
           </div>
-          <div class="slide" id="slideFinanceCompo2" style="display:none;">
-            <div class="columns">
-              <div class="column">
-                <section class="section has-text-centered" id="finances">
-                  <h2 class="title is-5 has-text-centered">Répartition du financement</h2>
-                  <section class="section">
-                    <div class="has-text-centered">
-                      <div id="financement-doughnut2"></div>
-                    </div>
-                  </section>
-                </section>
-              </div>
-              <div class="column">
-                <section class="section has-text-centered" id="finances">
-                  <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                  <section class="section">
-                    <div class="has-text-centered">
-                      <canvas id="composition-doughnut" width="100" height="100"></canvas>
-                    </div>
-                  </section>
-                </section>
-              </div>
-            </div>
-          </div>
-
+        <section>
+            <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
+        </section>
         <section class="section anchor" id="donnees-insee">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
