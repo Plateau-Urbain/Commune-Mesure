@@ -171,6 +171,8 @@
           </div>
         <section>
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
+<center><img src="/images/occupant-e.jpg"/></center>
+</center>
         </section>
         <section class="section anchor" id="donnees-insee">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
