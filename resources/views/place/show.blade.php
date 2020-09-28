@@ -140,7 +140,8 @@
 
               <div class="columns">
                 <div class="column">
-                  <div id="sigma" style="width:100%; height:30em;"></div>
+<!--                  <div id="sigma" style="width:100%; height:30em;"></div> -->
+<center>		<iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center>
               </div>
               </div>
 
