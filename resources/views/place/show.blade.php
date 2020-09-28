@@ -1,5 +1,14 @@
 @extends('layout')
 
+@section('title')
+<h1 class="title header-title">
+{{ $place->name }}
+</h1>
+<h2 class="subtitle">
+    {{ $place->address->city }}
+</h2>
+@endsection
+
 @section('head_css')
     @parent
 @endsection
@@ -26,13 +35,12 @@
 <div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('components.place.place-menu')
-        {{-- @include('components.place.info-box') --}}
     </div>
 
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu : {{ $place->name }}</h2>
+              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
 
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
