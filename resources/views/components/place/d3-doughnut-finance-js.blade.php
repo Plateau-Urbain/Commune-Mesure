@@ -12,9 +12,9 @@ var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&q
 
             hoverBorderColor : "#e85048",
             backgroundColor: [
-              "#DEEBEE",
-              "#e1e1e3",
-            ],
+              "#f38b4a",
+             "#56d798"
+          ],
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -38,7 +38,7 @@ var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&q
         data: [{{ $quantityArtistes *100}}, {{ $quantityStartup *100}},{{ $quantityAssociations *100}},{{ $quantityAutres *100}}],
           borderColor : "#fff",
 
-          hoverBorderColor : "#000",
+          hoverBorderColor : "#e85048",
           backgroundColor: [
             "#DEEBEE",
             "#e1e1e3",
