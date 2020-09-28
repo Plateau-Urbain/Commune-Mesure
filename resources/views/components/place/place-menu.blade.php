@@ -1,7 +1,6 @@
 <div class="section scrolling-menu">
-    <aside id="info-box" class="mb-2">
+  <aside id="info-box" class="mb-2">
       <h3 class="info-box-header">{{ $place->name }}</h3>
-
   </aside>
   <aside class="menu">
     <p class="menu-label">

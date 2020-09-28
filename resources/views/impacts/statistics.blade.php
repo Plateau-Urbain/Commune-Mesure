@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div style="display:none;" id="cmpBlock">
+        <!-- <div style="display:none;" id="cmpBlock">
           <div class="columns compareHeight">
             <div class="column">
               <h2 class="is-2 font-color-theme" id="titleCmpLeft">{{ "La Maison Montreau" }}</h2>
@@ -77,7 +77,7 @@
               <svg id="compareRightBottom"></svg>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
       <div class="section" >
