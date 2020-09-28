@@ -1,0 +1,123 @@
+{
+    "type": "NetworkGraph",
+    "label": "Custom Attributes Example",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "revision": "6ec73b8f5213cc740816f2fd2ff93108",
+    "metric": "ETX",
+    "router_id": "172.16.146.6",
+    "nodes": [
+        {
+            "id": "10.10.0.1",
+            "label": "Innovation",
+            "properties": {
+                "gateway": true
+            }
+        },
+        {
+            "id": "10.20.0.1",
+            "label": "Solidarite",
+            "properties": {
+                "hostname": "fusolab.nnx",
+                "gateway": true
+            }
+        },
+        {
+            "id": "10.30.0.1",
+            "label": "Écologie",
+            "properties": {
+                "hostname": "clauzroma.nnx",
+                "gateway": true
+            }
+        },
+        {
+            "id": "10.10.1.1",
+            "label": "Fablab"
+        },
+        {
+            "id": "10.10.1.2",
+            "label": "Makerfare"
+        },
+        {
+            "id": "10.20.1.1",
+            "label": "Accueil migrant"
+	},
+        { 
+            "id": "10.20.1.2",
+            "label": "Cantine freegan"
+        },
+        {
+            "id": "10.30.1.1",
+            "label": "Jardin partagé"
+        }
+    ],
+    "links": [
+        {
+            "source": "10.10.0.1",
+            "target": "10.10.1.1"
+        },
+        {
+            "source": "10.10.0.1",
+            "target": "10.10.1.2"
+        },
+        {
+            "source": "10.20.0.1",
+            "target": "10.20.1.1"
+        },
+        {
+            "source": "10.20.0.1",
+            "target": "10.20.1.2"
+        },
+        {
+            "source": "10.30.0.1",
+            "target": "10.20.1.2"
+        },
+        {
+            "source": "10.30.0.1",
+            "target": "10.30.1.1"
+        },
+
+        {
+            "source": "10.20.0.1",
+            "target": "10.30.0.1"
+            ,"properties": {
+                "type": "wireless"
+            }
+        },
+        {
+            "source": "10.10.1.1",
+            "target": "10.10.1.2"
+        },
+        {
+            "source": "10.20.1.1",
+            "target": "10.10.1.2"
+            ,"properties": {
+                "type": "wireless"
+            }
+        },
+        {
+            "source": "10.20.1.1",
+            "target": "10.20.1.2"
+            ,"properties": {
+                "type": "wireless"
+            }
+        },  
+        {
+            "source": "10.20.1.2",
+            "target": "10.30.1.1"
+        },
+        {
+            "source": "10.10.1.1",
+            "target": "10.30.1.1"
+            ,"properties": {
+                "type": "wireless"
+            }
+        }
+
+
+
+
+
+
+    ]
+}
