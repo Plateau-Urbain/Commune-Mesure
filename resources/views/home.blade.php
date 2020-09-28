@@ -25,19 +25,19 @@
             <div class="level block-data-stat">
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
+                        <p class="title animate-value is-1" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
                         <p class="heading title is-4">Lieux</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
+                        <p class="title animate-value is-1" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
                         <p class="heading title is-4">Villes</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value" id="animate-project" data-total={{ 214 }}>{{ 214 }}</p>
+                        <p class="title animate-value is-1" id="animate-project" data-total={{ 214 }}>{{ 214 }}</p>
                         <p class="heading title is-4">Projets</p>
                     </div>
                 </div>

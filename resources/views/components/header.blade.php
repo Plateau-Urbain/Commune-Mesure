@@ -27,7 +27,7 @@
         <div class="container has-text-centered app-name">
             @section('title')
             <h1 class="title header-title">
-            {{ config('app.name') }}
+            Commune Mesure
             </h1>
             <h2 class="subtitle">
                 Les lieux et leurs impacts
