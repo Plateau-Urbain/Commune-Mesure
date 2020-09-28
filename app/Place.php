@@ -46,6 +46,29 @@ class Place
         return $this->coordinates;
     }
 
+    public function getCompares(){
+      $compare_data = [];
+      $compare_title = [
+        "moyens"=>[],
+        'realisations'=>[]
+      ];
+      foreach ($this->places[0]->data->compare as $key => $value) {
+        foreach ($value as $k => $v) {
+          $compare_title[$key][$k] = $v->title;
+        }
+      }
+      foreach ($this->places as $place) {
+
+        $compare_data[$place->name] = $place->data->compare;
+
+      }
+      $compares= [
+        "data" => $compare_data,
+        "titles" => $compare_title
+    ];
+      return $compares;
+    }
+
     public function getResiliences(bool $sorted = true)
     {
         $resiliences = [

@@ -52,15 +52,15 @@
 
       const svgDoughnut = d3.select(idchart).append('svg')
           .style('width', '100%')
-          .style('height', '100%')
-          .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
+          .style('height', '10%')
+          .attr('viewBox', `${-width / 2} ${-height / 4} ${width} ${height/2}`)
           .on('click', () => focusOn()); // Reset zoom on canvas click
 
       d3.json("/getJsonD3Doughnut/{{ $place->slug }}", (error, root) => {
           if (error) throw error;
           root = d3.hierarchy(root);
           root.sum(d => d.size);
-          const color = d3.scaleOrdinal().domain(root).range(['#ffc400', '#ff5728', '#c90035', '#96043e']);
+          const color = d3.scaleOrdinal().domain(root).range(['#ffdc7c', '#ff9b71', '#dd614A', '#dd614A']);
           const slice = svgDoughnut.selectAll('g.slice')
               .data(partition(root).descendants());
 
@@ -148,13 +148,13 @@
             hoverBorderColor : "#000",
             backgroundColor: [
               "#f38b4a",
-              "#56d798",
+              "#e1e1e3",
               "#ff8397",
               "#6970d5"
             ],
             hoverBackgroundColor: [
               "#f38b4a",
-              "#56d798",
+              "#d1d1d1",
               "#ff8397",
               "#6970d5"
             ]

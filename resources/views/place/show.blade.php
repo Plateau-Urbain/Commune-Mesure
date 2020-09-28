@@ -19,7 +19,7 @@
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
-    @include('components.place.amcharts-forced-directed-tree')
+    @include('components.place.composition-chart')
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu : {{ $place->name }}</h2>
+              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu : {{ $place->name }}</h2>
 
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
@@ -126,26 +126,12 @@
                 </p>
               </div>
             </section>
-            <div class="slide" id="slideValeurs">
             <div class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-              <div class="columns" id="slide">
+              <div class="columns">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:30em;"></div>
               </div>
-            </div>
-            </div>
-            <div class="slide" id="slideValeurs2" style="display:none;">
-              <div class="section" id="nos-valeurs">
-                <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-                <div class="" id="slide">
-                  <div class="column">
-                    <div id="theme-container">
-
-                    </div>
-                    <div id="chartdiv"></div>
-                  </div>
-                </div>
               </div>
             </div>
             <section class="section" id="finances">
@@ -157,7 +143,7 @@
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La diversité des acteurs</h2>
-                      <canvas id="actor-chart-pie" style="margin-top:10em;"></canvas>
+                      <canvas id="actor-chart-pie" ></canvas>
                     </div>
                   </div>
               </div>
@@ -168,48 +154,8 @@
                 <section class="section">
                   <div class="has-text-centered">
 
+                    <div id="compoChart" width="100" height="10"></div>
 
-                    <div class="" >
-                      @php ($quantity = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{1}->color }}; border-radius: 1em 0 0 1em;"
-                      data-tooltip="{{ $place->data->composition->{1}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{2}->color }};"
-                      data-tooltip="{{ $place->data->composition->{2}->title }} : {{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{3}->color }};"
-                      data-tooltip="{{ $place->data->composition->{3}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                      @php ($quantity = $place->data->composition->{4}->nombre/$place->data->composition->{0}->nombre) @endphp
-
-                      <div class="Progress-item is-inline-block"
-                      style="width:{{ $quantity*28 }}em; background-color:{{ $place->data->composition->{4}->color }}; border-radius: 0 1em 1em 0;"
-                      data-tooltip="{{ $place->data->composition->{4}->title }} :{{ number_format(number_format($quantity,1)*100, 2) }}%"></div>
-                    </div>
-
-                    <div class="mt-6">
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{1}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{1}->title }}</p>
-                      </div>
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{2}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{2}->title }}</p>
-                      </div>
-                      <div class="is-inline-block mr-3">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{3}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{3}->title }}</p>
-                      </div>
-                      <div class="is-inline-block">
-                        <div class="is-circle is-inline-block" style="width: 1em; height:1em; background-color:{{ $place->data->composition->{4}->color }};"></div>
-                        <p class="is-inline-block">{{ $place->data->composition->{4}->title }}</p>
-                      </div>
-                    </div>
                   </div>
               </section>
             </section>
@@ -238,13 +184,9 @@
               </div>
             </div>
           </div>
-          <div class="" style="text-align:center;">
-            <span class="line-slide" onclick="slideFinanceCompo(1)"></span>
-            <span class="line-slide" onclick="slideFinanceCompo(2)"></span>
-          </div>
 
         <section class="section anchor" id="donnees-insee">
-          <h2 class="ribbon-banner title is-3 has-text-centered">Le lieu dans son territoire</h2>
+          <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">
               <div class="column">
