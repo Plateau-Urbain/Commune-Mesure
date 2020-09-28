@@ -3,15 +3,18 @@ a.tag-css{
   background-color: #E8E8E8;
   padding: 1em;
 }
- #slideValeurs2,#slideFinanceCompo2 {
-  transition: opacity 1s;
-  opacity: 0;
-}
 #chartdiv {
   width: 100%;
   height: 300px;
 }
-
+#lieux_list{
+  overflow-y: auto;
+}
+.li_lieux{
+  list-style-type: none;
+  padding: 1em;
+  cursor: pointer;
+}
 .ribbon-banner {
   display: table;
   font-size: 1.5em;
@@ -83,7 +86,7 @@ div.tooltip {
 
 .apexcharts-bar-series,.apexcharts-plot-series,.apexcharts-inner {
   margin-top: -300px !important;
-} 
+}
 .main-arc, .hidden-arc{
   fill-opacity:0.8;
 }

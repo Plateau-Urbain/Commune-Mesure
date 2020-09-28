@@ -18,8 +18,7 @@
     @include('components.place.sigma-cloud-words-js')
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
-    @include('components.place.insee-chart-js')
-    @include('components.place.amcharts-forced-directed-tree')
+    @include('components.place.insee-chart-js') 
 @endsection
 
 @section('content')
@@ -126,26 +125,12 @@
                 </p>
               </div>
             </section>
-            <div class="slide" id="slideValeurs">
             <div class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-              <div class="columns" id="slide">
+              <div class="columns">
                 <div class="column">
                   <div id="sigma" style="width:100%; height:30em;"></div>
               </div>
-            </div>
-            </div>
-            <div class="slide" id="slideValeurs2" style="display:none;">
-              <div class="section" id="nos-valeurs">
-                <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-                <div class="" id="slide">
-                  <div class="column">
-                    <div id="theme-container">
-
-                    </div>
-                    <div id="chartdiv"></div>
-                  </div>
-                </div>
               </div>
             </div>
             <section class="section" id="finances">
@@ -237,10 +222,6 @@
                 </section>
               </div>
             </div>
-          </div>
-          <div class="" style="text-align:center;">
-            <span class="line-slide" onclick="slideFinanceCompo(1)"></span>
-            <span class="line-slide" onclick="slideFinanceCompo(2)"></span>
           </div>
 
         <section class="section anchor" id="donnees-insee">

@@ -34,7 +34,7 @@
                               Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
                                non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                             <div>
-                                <ul>
+                                <ul class="">
                                     @foreach($places as $place)
                                         <li><a href="{{ route('place.show',['slug' => $place['name']])  }}">{{ $place['title']  }}</a></li>
                                     @endforeach

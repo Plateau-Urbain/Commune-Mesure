@@ -25,10 +25,10 @@
           <div class="column">
             <div class="field">
               <div class="control">
-                <label for="first-city-select" class="title is-4">Choisissez un lieu:</label>
+                <label for="first-city-select" class="title is-4">Indicateur en abscisse:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                   <select name="1" id="first-city-select" class="is-focused">
-                    <option selected="selected">--</option>
+                    <option selected="selected">Par ETP</option>
                       @foreach($places as $n => $place)
                        <option value="{{ $place->title }}">{{ $place->name }}</option>
                       @endforeach
@@ -40,10 +40,10 @@
           <div class="column">
             <div class="field">
               <div class="control">
-                <label for="second-city-select" class="title is-4">Choisissez un lieu:</label>
+                <label for="second-city-select" class="title is-4">Indicateur en ordonnée:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                  <select name="2" id="second-city-select" class="is-focused">
-                  <option selected="selected">--</option>
+                  <option selected="selected">Par évènements</option>
                   @foreach($places as $n => $place)
                   <option value="{{ $place->title }}">{{ $place->name }}</option>
                   @endforeach
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div style="display:none;" id="cmpBlock">
+        <div style="display:none;" id="cmpBlock" >
           <div class="columns compareHeight">
             <div class="column">
               <h2 class="is-2 font-color-theme" id="titleCmpLeft">{{ "La Maison Montreau" }}</h2>
@@ -79,8 +79,26 @@
         </div>
 
       </div>
-      <div class="section">
-        <div class="" id="chart-moyen-rea"></div>
+      <div class="section" >
+        <div class="columns">
+          <div class="column">
+            <div class="" id="chart-moyen-rea" style="background-color:red"></div>
+          </div>
+          <div class="column">
+            <div class="">
+              <ul>
+                @foreach($places as $n => $place)
+                <li class="li_lieux">
+                  <div class="lieux_container">
+                    <h2 class="lieux_title">{{ $place->name }}</h2>
+                  </div>
+                </li>
+                @endforeach
+
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>

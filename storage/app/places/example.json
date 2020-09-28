@@ -2579,25 +2579,25 @@
           "startup":{
             "title":"Startup et entreprises",
             "img":"fa-hand-holding-usd",
-            "color":"#B5BF8A",
+            "color":"#f07d60",
             "nombre": 15
           },
           "association":{
             "title":"Associations",
             "img":"fa-hand-holding-heart",
-            "color":"#EDEBEB",
+            "color":"#a5c5c3",
             "nombre": 8
           },
           "artiste":{
             "title":"Artistes",
             "img":"fa-paint-brush",
-            "color":"#BC4C47",
+            "color":"#429f9e",
             "nombre": 19
           },
           "autre":{
             "title":"Autres structures",
             "img":"fa-sitemap",
-            "color":"#E9A34E",
+            "color":"#007872",
             "nombre": 6
           },
           "total":{
