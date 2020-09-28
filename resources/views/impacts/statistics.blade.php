@@ -31,7 +31,9 @@
                   <select name="1" id="first-city-select" class="is-focused">
                     <option selected="selected">--</option>
                       @foreach($compares['titles']['moyens'] as $name => $moyen)
-                       <option value="{{ $name }}">{{ $moyen }}</option>
+                       <option value="{{ $name }}" <?php if ($name==="etp"): ?>
+                         selected
+                       <?php endif; ?>>{{ $moyen }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -46,7 +48,9 @@
                  <select name="2" id="second-city-select" class="is-focused">
                   <option selected="selected">--</option>
                   @foreach($compares['titles']['realisations'] as $name => $realisation)
-                  <option value="{{ $name }}">{{ $realisation }}</option>
+                  <option value="{{ $name }}" <?php if ($name==="event"): ?>
+                    selected
+                  <?php endif; ?>>{{ $realisation }}</option>
                   @endforeach
                  </select>
                 </div>
