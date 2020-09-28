@@ -40,10 +40,10 @@ var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&q
 
           hoverBorderColor : "#e85048",
           backgroundColor: [
-            "#DEEBEE",
-            "#e1e1e3",
-            "#E85048",
-            "#343434"
+            "#B5BF8A",
+            "#ec6c66",
+            "#BC4C47",
+            "#E9A34E"
           ],
       }],
 
