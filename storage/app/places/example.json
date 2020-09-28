@@ -2579,25 +2579,25 @@
           "startup":{
             "title":"Startup et entreprises",
             "img":"fa-hand-holding-usd",
-            "color":"#f07d60",
+            "color":"#B5BF8A",
             "nombre": 15
           },
           "association":{
             "title":"Associations",
             "img":"fa-hand-holding-heart",
-            "color":"#a5c5c3",
+            "color":"#EDEBEB",
             "nombre": 8
           },
           "artiste":{
             "title":"Artistes",
             "img":"fa-paint-brush",
-            "color":"#429f9e",
+            "color":"#BC4C47",
             "nombre": 19
           },
           "autre":{
             "title":"Autres structures",
             "img":"fa-sitemap",
-            "color":"#007872",
+            "color":"#E9A34E",
             "nombre": 6
           },
           "total":{
@@ -2645,6 +2645,44 @@
               ]
             }
           ]
+        },
+        "compare":{
+          "moyens":{
+            "etp":{
+              "nombre":10,
+              "title":"Nombre d'ETP"
+            },
+            "benevole":{
+              "nombre":10,
+              "title":"Nombre de bénévoles"
+            },
+            "partenaire":{
+              "nombre":10,
+              "title":"Nombre de partenaires publics / privés"
+            },
+            "superficie":{
+              "nombre":10,
+              "title":"Superficie du lieu (m2)"
+            }
+          },
+          "realisations":{
+            "ouverture":{
+              "nombre":10,
+              "title":"Nombre d'heures d'ouverture"
+            },
+            "event":{
+              "nombre":10,
+              "title":"Nombre d'événements publics / privés organisés par an"
+            },
+            "struct_hebergee":{
+              "nombre":10,
+              "title":"Nombre de structures hébergées"
+            },
+            "visiteur":{
+              "nombre":10,
+              "title":"Nombre de visiteurs par an"
+            }
+          }
         }
     },
     "partners": [

@@ -1,3 +1,4 @@
+
 <template id="chromosomic-row">
     <div class="columns">
         <div class="column is-4">
@@ -72,4 +73,85 @@ function _style(div, color, width, total) {
     div.classList.add(color+'-color');
     div.style.width = (width * 100) / total + '%'
 }
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+
+var options = {
+
+  colors:['#e34c26','#f07d60','#A5C5C3', '#429F9E'],
+
+  series: [{name: '',data: [{{ $quantity1 *100}}]},{name: '',data: [{{ $quantity2*100 }}]},{name: '',data: [{{ $quantity3 *100}}]},{name: '',data: [{{ $quantity4 *100}}]}],
+  chart: {
+  type: 'bar',
+  height: 130,
+  stacked: true,
+  stackType: '100%',
+  toolbar:{
+    show:false,
+  },
+},
+plotOptions: {
+  bar: {
+    horizontal: true,
+  },
+},
+stroke: {
+  width: 1,
+  colors: ['#fff']
+},
+grid: {
+  show:false,
+},
+annotations: {
+},
+
+xaxis: {
+  show:false,
+  category:[''],
+  axisBorder:{
+    show:false,
+  },
+  axisTicks: {
+    show: false,
+  },
+  labels:{
+    show:false,
+  }
+},
+
+yaxis: {
+  show:false,
+  category:[''],
+  axisBorder:{
+    show:false,
+  },
+},
+
+tooltip: {
+  x:'',
+  y: {
+    formatter: function (val) {
+      return val + "%"
+    }
+  }
+},
+fill: {
+  opacity: 1
+
+},
+legend: {
+  show:true,
+  position: 'bottom',
+  horizontalAlign: 'center',
+  showForZeroSeries: false,
+}
+};
+
+var resilienceChart = new ApexCharts(document.querySelector("#resilienceChart"), options);
+resilienceChart.render();
+
 </script>

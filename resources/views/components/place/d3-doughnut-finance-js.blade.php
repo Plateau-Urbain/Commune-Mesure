@@ -52,7 +52,7 @@
 
       const svgDoughnut = d3.select(idchart).append('svg')
           .style('width', '100%')
-          .style('height', '100%')
+          .style('height', '10%')
           .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
           .on('click', () => focusOn()); // Reset zoom on canvas click
 

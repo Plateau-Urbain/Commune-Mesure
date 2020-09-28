@@ -62,7 +62,7 @@
         <div class="tabs-content" data-tab-group="indicateurs">
             <div class="tab is-active" data-tab="charts">
                 <div class="section" id="sectionResilienceBar">
-                    {{-- Généré par le JS --}}
+                    {{-- Généré par le JS --}} 
                 </div>
             </div>
             <div class="tab" data-tab="raw">

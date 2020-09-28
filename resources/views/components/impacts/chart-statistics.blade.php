@@ -1,4 +1,7 @@
 <script>
+  var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
+  var places_name = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
+
   function comparePlacePoints(selectcmpL, selectcmpR){
 
     var leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
@@ -16,26 +19,24 @@
     document.getElementById("titleCmpLeft").innerHTML = leftTitle;
     document.getElementById("titleCmpRight").innerHTML = rightTitle;
 
-    loadCompare("#compareLeftTop", 50);
-    loadCompare("#compareRightTop", 82);
-    loadCompare("#compareLeftBottom", 20);
-    loadCompare("#compareRightBottom", 15);
     document.getElementById("cmpBlock").style.display = "block";
   }
 
-  var country = ['Switzerland (2011)', 'Chile (2013)', 'Japan (2014)', 'United States (2012)', 'Slovenia (2014)', 'Canada (2011)', 'Poland (2010)', 'Estonia (2015)', 'Luxembourg (2013)', 'Portugal (2011)'];
+var ordonnee = [], abscisse = [];
+for (const [key, value] of Object.entries(compares.data)) {
+  console.log(`${key}: ${value}`);
+  ordonnee.push(value.moyens.etp.nombre);
+  abscisse.push(value.realisations.event.nombre);
+}
 
-
-var etp = [40, 45.7, 52, 53.6, 54.1, 54.2, 54.5, 54.7, 55.1, 56.6];
-
-var even = [49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9];
 
 var trace1 = {
   type: 'scatter',
-  x: etp,
-  y: even,
+  x: abscisse,
+  y: ordonnee,
   mode: 'markers',
-  name: 'Rapport entre le nombre ETP et Évènement',
+  name: 'Rapport entre le nombre ETP et le nombre des Évènements par an',
+  text: Object.keys(compares.data),
   marker: {
     color: 'rgba(156, 165, 196, 0.95)',
     line: {
@@ -69,7 +70,7 @@ var layout = {
     autotick: false,
     dtick: 10,
     ticks: 'outside',
-    tickcolor: '#29a8ab'
+    tickcolor: '#fe7651'
   },
   yaxis: {
     title:'Y : Par ETP',
@@ -100,6 +101,17 @@ var layout = {
 };
 
 Plotly.newPlot('chart-moyen-rea', data, layout);
+
+
+
+
+
+
+
+
+
+
+
 
 var lieux_elements = document.querySelectorAll(".li_lieux")
 

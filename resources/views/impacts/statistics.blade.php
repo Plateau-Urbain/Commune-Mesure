@@ -1,3 +1,4 @@
+
 <div class="content">
     <div class="hero is-large is-light">
       <div class="section container is-fullhd">
@@ -28,9 +29,9 @@
                 <label for="first-city-select" class="title is-4">Indicateur en abscisse:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                   <select name="1" id="first-city-select" class="is-focused">
-                    <option selected="selected">Par ETP</option>
-                      @foreach($places as $n => $place)
-                       <option value="{{ $place->title }}">{{ $place->name }}</option>
+                    <option selected="selected">--</option>
+                      @foreach($compares['titles']['moyens'] as $name => $moyen)
+                       <option value="{{ $name }}">{{ $moyen }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -43,9 +44,9 @@
                 <label for="second-city-select" class="title is-4">Indicateur en ordonnée:</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                  <select name="2" id="second-city-select" class="is-focused">
-                  <option selected="selected">Par évènements</option>
-                  @foreach($places as $n => $place)
-                  <option value="{{ $place->title }}">{{ $place->name }}</option>
+                  <option selected="selected">--</option>
+                  @foreach($compares['titles']['realisations'] as $name => $realisation)
+                  <option value="{{ $name }}">{{ $realisation }}</option>
                   @endforeach
                  </select>
                 </div>
@@ -53,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div style="display:none;" id="cmpBlock" >
+        <div style="display:none;" id="cmpBlock">
           <div class="columns compareHeight">
             <div class="column">
               <h2 class="is-2 font-color-theme" id="titleCmpLeft">{{ "La Maison Montreau" }}</h2>
@@ -82,10 +83,10 @@
       <div class="section" >
         <div class="columns">
           <div class="column">
-            <div class="" id="chart-moyen-rea" style="background-color:red"></div>
+            <div class="" id="chart-moyen-rea"></div>
           </div>
           <div class="column">
-            <div class="">
+            <div id="lieux_list">
               <ul>
                 @foreach($places as $n => $place)
                 <li class="li_lieux">
@@ -100,6 +101,7 @@
           </div>
         </div>
       </div>
+
 
     </div>
   </div>
