@@ -2176,9 +2176,11 @@
         {"name": "instagram", "link": "https://www.instagram.com/le6b_officiel/"},
         {"name": "linkedin", "link": "https://linkedin.com"}
     ],
-    "manager": [
-        "Le 6b Coop'"
-    ],
+    "manager": {
+      "occupants":7,
+      "name": "Le 6b Coop'",
+      "nb_manager": 1
+    },
     "data": {
         "insee":{
           "iris":{

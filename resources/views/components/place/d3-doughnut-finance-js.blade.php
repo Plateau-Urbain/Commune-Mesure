@@ -80,9 +80,7 @@
           newSlice.append('path')
               .attr('class', 'main-arc')
               .style('fill', function(d){
-                console.log(d)
-                let col = color(d.data.name);
-                return col;
+                return color(d.data.name);
               })
               .attr('d', arc);
 
@@ -141,5 +139,40 @@
       }
     }
     createChartFinance('#financement-budget-doughnut')
-    //createChartFinance('#financement-doughnut')
+
+    data = {
+        datasets: [{
+            data: [2, 3],
+            borderColor : "#fff",
+
+            hoverBorderColor : "#000",
+            backgroundColor: [
+              "#f38b4a",
+              "#56d798",
+              "#ff8397",
+              "#6970d5"
+            ],
+            hoverBackgroundColor: [
+              "#f38b4a",
+              "#56d798",
+              "#ff8397",
+              "#6970d5"
+            ]
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: [
+            'Acteurs publics',
+            'Acteurs privés',
+        ]
+    };
+
+    var chart = charts.create("actor-chart-pie", "doughnut",
+    data.labels, data.datasets, ['#ffc400', '#ff5728', '#c90035', '#96043e'],
+    {
+      legend: {
+        display: true,
+      },
+    }
+  );
 </script>
