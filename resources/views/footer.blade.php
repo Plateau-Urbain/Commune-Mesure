@@ -5,7 +5,6 @@
                 <p>Ecrivez-nous:</p>
                 <p>contact@commesures.fr</p>
             </div>
-            <span><img src="/images/logos/plateau-urbain.png" /></span>
         </div>
         <div class="column">
             <div class="menu is-inverted">
@@ -16,7 +15,7 @@
                     <li><a href="/les-lieux">Les lieux</a></li>
                     <li><a href="/les-donnees">Les données</a></li>
                     <li><a href="/documentation">Documentation </a></li>
-                    <li><a href="les-institutions">Les institutions</a></li>
+                    <li><a href="les-partenaires">Les partenaires</a></li>
                 </ul>
             </div>
 

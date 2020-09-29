@@ -120,7 +120,7 @@ lieux_elements.forEach(function (element) {
     event.target.style.color = "orange";
     setTimeout(function() {
       event.target.style.color = "";
-    }, 600);
+    }, 150);
   }, false);
 })
 </script>

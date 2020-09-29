@@ -2672,7 +2672,7 @@
             },
             "event":{
               "nombre":10,
-              "title":"Nombre d'événements publics / privés organisés par an"
+              "title":"Nombre d'événements publics / privés"
             },
             "struct_hebergee":{
               "nombre":10,

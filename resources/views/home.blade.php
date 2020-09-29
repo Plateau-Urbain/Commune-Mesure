@@ -38,7 +38,7 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="title animate-value is-1" id="animate-project" data-total={{ 214 }}>{{ 214 }}</p>
-                        <p class="heading title is-4">Projets</p>
+                        <p class="heading title is-4">m<sup>2</sup></p>
                     </div>
                 </div>
             </div>

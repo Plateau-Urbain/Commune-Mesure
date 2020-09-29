@@ -26,7 +26,7 @@
           <div class="column">
             <div class="field">
               <div class="control">
-                <label for="first-city-select" class="title is-4">Indicateur en abscisse:</label>
+                <label for="first-city-select" class="title is-4">Indicateur en abscisse  :</label>
                 <div class="select is-small is-success" style="margin-left:1em;">
                   <select name="1" id="first-city-select" class="is-focused">
                     <option selected="selected">--</option>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="hero is-large is-light">
         <section class="section">
-            <h1 class="title is-1 has-text-centered">Les institutions</h1>
+            <h1 class="title is-1 has-text-centered">Les partenaires</h1>
             <div class="column">
                 <p>Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un picon bitte, s'il te plaît.
                     Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p>

@@ -10,14 +10,8 @@
                 <a class="navbar-item" href="/">Accueil</a>
                 <a class="navbar-item" href="/les-lieux">Les lieux</a>
                 <a class="navbar-item" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="les-institutions">Les institutions</a>
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item">SNCF</a>
-                        <a class="navbar-item">Plateau Urbain</a>
-                    </div>
-                </div>
-                <a class="navbar-item" href="/contact-us">Nous contacter</a>
+                <a class="navbar-item" href="les-partenaires">Les partenaires</a>
+                <a class="navbar-item" href="/nous-contacter">Nous contacter</a>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@
              <script src="/js/charts.js"></script>
          @show
     </body>
-    <footer class="footer">
+    <footer>
         @include("footer")
     </footer>
 </html>

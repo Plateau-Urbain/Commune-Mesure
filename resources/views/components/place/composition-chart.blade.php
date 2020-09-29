@@ -11,7 +11,7 @@ var options = {
 
   colors:['#e34c26','#f07d60','#A5C5C3', '#429F9E'],
 
-  series: [{name: 'Artistes',data: [{{ $quantity1 *100}}]},{name: 'Start-up et entreprises',data: [{{ $quantity2*100 }}]},{name: 'Associations',data: [{{ $quantity3 *100}}]},{name: 'Autres structures',data: [{{ $quantity4 *100}}]}],
+  series: [{name: 'Artistes',data: [{{ $quantity1 *100}}]},{name: 'Entreprises',data: [{{ $quantity2*100 }}]},{name: 'Associations',data: [{{ $quantity3 *100}}]},{name: 'Autres structures',data: [{{ $quantity4 *100}}]}],
   chart: {
   type: 'bar',
   height: 130,

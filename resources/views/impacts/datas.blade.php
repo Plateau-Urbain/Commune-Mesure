@@ -62,7 +62,10 @@
         <div class="tabs-content" data-tab-group="indicateurs">
             <div class="tab is-active" data-tab="charts">
                 <div class="section" id="sectionResilienceBar">
-                    {{-- Généré par le JS --}} 
+                  <div id="actifsChart" width="100" height="10"></div>
+                  <div id="cateChart" width="100" height="10"></div>
+                  <div id="immoChart" width="100" height="10"></div>
+                    {{-- Généré par le JS --}}
                 </div>
             </div>
             <div class="tab" data-tab="raw">

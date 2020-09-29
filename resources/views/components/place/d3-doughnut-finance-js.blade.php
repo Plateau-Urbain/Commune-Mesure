@@ -50,7 +50,7 @@ var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&q
       // These labels appear in the legend and in the tooltips when hovering different arcs
       labels: [
           'Artistes',
-          'Start-up et entreprises',
+          'Entreprises',
           'Associations',
           'Autres structures'
       ]

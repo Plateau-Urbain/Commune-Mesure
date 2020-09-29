@@ -5,7 +5,7 @@
         <div class="hero is-large is-light">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">Les lieux</h1>
-                <div class="column">
+                <!-- <div class="column">
                     <p>Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un
                       picon bitte, s'il te plaît.
                         Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p>
@@ -21,23 +21,25 @@
                     <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais
                       che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour
                       les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-                </div>
+                </div> -->
             </section>
         </div>
         <div class="section">
+
             @foreach ($cities as $city => $places)
+            @foreach($places as $place)
                 <div class="box content">
                     <div class="columns is-bordered places-block">
                         <div class="column">
-                            <p class="title">{{ $city  }}</p>
+                            <p class="title"><a href="{{ route('place.show',['slug' => $place['name']])  }}">{{ $place['title']  }}</a></p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                               Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
                                non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                             <div>
                                 <ul class="">
-                                    @foreach($places as $place)
-                                        <li><a href="{{ route('place.show',['slug' => $place['name']])  }}">{{ $place['title']  }}</a></li>
-                                    @endforeach
+
+                                        <p><strong>{{ $city  }}</strong></p>
+
                                 </ul>
                             </div>
                         </div>
@@ -46,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+                  @endforeach
             @endforeach
         </div>
     </div>
