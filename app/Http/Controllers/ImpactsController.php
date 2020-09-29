@@ -15,11 +15,10 @@ class ImpactsController extends Controller
     {
         $place->build();
         $place->sortPlacesBy('name');
-        $resiliences = $place->getResiliences();
         $compares = $place->getCompares();
         $places = $place->getPlaces();
         //[$coordinates,$cities, $places] = $place->all();
 
-        return view('impacts.show', compact('places', 'resiliences', 'compares'));
+        return view('impacts.show', compact('places', 'compares'));
     }
 }

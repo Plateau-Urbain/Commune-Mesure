@@ -34,7 +34,7 @@ stroke: {
   colors: ['#fff']
 },
 title: {
-  text: 'Actifs',
+  text: 'Population',
   floating : true
 },
 grid: {
@@ -210,7 +210,7 @@ stroke: {
   lineCap: 'round',
 },
 title: {
-  text: 'Immobiliers'
+  text: 'Immobilier'
 },
 grid: {
   show:false,

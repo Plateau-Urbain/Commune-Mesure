@@ -10,16 +10,10 @@
     <script src='https://cdn.plot.ly/plotly-latest.min.js'>
     <script src="https://bl.ocks.org/Niekes/raw/d8007a5f71f45ab80a2977a8eb7ab3c9/d3-3d.js"></script>
     @include('components.impacts.d3-cloud-point-js')
-    @include('components.impacts.chart-statistics')
-    @include('components.impacts.chart-datas')
+    @include('components.impacts.chart-statistics') 
     <script>
     window.onload = (event) => {//TODO move in index.js
-      var select = document.getElementById("resilience-select")
-      createResilienceBar(select)
 
-      select.onchange = (event) => {
-        createResilienceBar(select)
-      }
       var selectcmpleft = document.getElementById("first-city-select");
       var selectcmpright = document.getElementById("second-city-select");
       comparePlacePoints(selectcmpleft, selectcmpright);

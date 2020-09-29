@@ -35,6 +35,11 @@
                          selected
                        <?php endif; ?>>{{ $moyen }}</option>
                       @endforeach
+                      @foreach($compares['titles']['realisations'] as $name => $realisation)
+                      <option value="{{ $name }}" <?php if ($name==="event"): ?>
+                        selected
+                      <?php endif; ?>>{{ $realisation }}</option>
+                      @endforeach
                   </select>
                 </div>
               </div>
@@ -52,37 +57,17 @@
                     selected
                   <?php endif; ?>>{{ $realisation }}</option>
                   @endforeach
+                  @foreach($compares['titles']['moyens'] as $name => $moyen)
+                   <option value="{{ $name }}" <?php if ($name==="etp"): ?>
+                     selected
+                   <?php endif; ?>>{{ $moyen }}</option>
+                  @endforeach
                  </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div style="display:none;" id="cmpBlock">
-          <div class="columns compareHeight">
-            <div class="column">
-              <h2 class="is-2 font-color-theme" id="titleCmpLeft">{{ "La Maison Montreau" }}</h2>
-              <h3 class="is-3">Points forts</h3>
-              <svg id="compareLeftTop"></svg>
-            </div>
-            <div class="column borderL" >
-              <h2 class="is-2 font-color-theme" id="titleCmpRight">{{ "6b" }}</h2>
-              <h3 class="is-3">Points forts</h3>
-              <svg id="compareRightTop"></svg>
-            </div>
-          </div>
-          <div class="columns compareHeight borderT">
-            <div class="column borderR">
-              <h3 class="is-3">Points faibles</h3>
-              <svg id="compareLeftBottom"></svg>
-            </div>
-            <div class="column">
-              <h3 class="is-3">Points faibles</h3>
-              <svg id="compareRightBottom"></svg>
-            </div>
-          </div>
-        </div> -->
-
       </div>
       <div class="section" >
         <div class="columns">

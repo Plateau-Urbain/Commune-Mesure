@@ -37,8 +37,14 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-project" data-total={{ 214 }}>{{ 214 }}</p>
+                        <p class="title animate-value is-1" id="animate-meters" data-total={{ $totalmeters }}>{{ $totalmeters }}</p>
                         <p class="heading title is-4">m<sup>2</sup></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ $total_etp }}>{{ $total_etp }}</p>
+                        <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
             </div>

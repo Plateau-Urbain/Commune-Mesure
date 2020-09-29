@@ -28,7 +28,6 @@
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
-    @include('components.place.composition-chart')
 @endsection
 
 @section('content')
@@ -69,7 +68,6 @@
                   <div class="has-text-centered">
                     <p class="mb-3 mt-5">
                       <strong>Les differents publics : </strong>
-                      <span class="font-color-theme">Tout le monde</span>
                     </p>
                   </div>
 
@@ -117,17 +115,18 @@
                   </div>
                 </div>
               </div>
-              <div class="has-text-centered">
+              <div class="has-text-centered ">
                 <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                  <span class="is-block ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i>Handicapés</span>
-                  <span class="is-block ml-3"><i class="fa fa-child font-color-theme mr-1"></i>Enfants</span>
-                  <span class="is-inline-block ml-3"><i class="fa fa-user-graduate font-color-theme mr-1"></i>Étudiants</span>
-                  <span class="is-block ml-3"><i class="fa fa-blind font-color-theme mr-1"></i>Parsonnes</span>
-                  <span class="is-block ml-3"><i class="fa fa-users font-color-theme mr-1"></i>Famille</span>
-                  <span class="is-block ml-3"><i class="fa fa-user-tie font-color-theme mr-1"></i>Personnes visants le site</span>
-                  <span class="is-block ml-3"><i class="fa fa-person-booth font-color-theme mr-1"></i>Personnes habitant sur le site</span>
-                  <span class="is-block ml-3"><i class="fa fa-user-tag font-color-theme mr-1"></i>Personnes visants le site</span>
+                  <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                  <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                  <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
                 </div>
+                <p>
+                  <strong>Accessible :</strong>
+                  <span class="ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                  <span class="ml-3"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+
+                </p>
                 <p>
                   <strong>Ouverture:</strong>
                   <span class="font-color-theme">En permanence</span>
@@ -150,15 +149,12 @@
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
                       <div class="section">
                       <canvas id="financement-budget-doughnut" ></canvas>
                       </div>
                     </div>
                     <div class="column has-text-centered">
-                      <!-- A rendre plus comprehensible avant de reintegrer -->
-                      <!-- <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
-                      <div id="financement-budget-doughnut"></div> -->
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
                       <div class="section">
                       <canvas id="composition-chart-doughnut" ></canvas>
