@@ -9,6 +9,8 @@ class Place
     protected $cities = [];
     protected $places = [];
     protected $withPopup = false;
+    protected $meters = [];
+    protected $etp_array = [];
 
     public function __construct()
     {
@@ -18,7 +20,9 @@ class Place
     public function all()
     {
         $this->build();
-        return [$this->coordinates, $this->cities, $this->places];
+        $totalmeters = array_sum($this->meters);
+        $total_etp = array_sum($this->etp_array);
+        return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp];
     }
 
     public function getOne($place)
@@ -45,6 +49,14 @@ class Place
     {
         return $this->coordinates;
     }
+    public function getMeters()
+    {
+        return $this->meters;
+    }
+    public function getETP()
+    {
+        return $this->ETP;
+    }
 
     public function getCompares(){
       $compare_data = [];
@@ -67,44 +79,6 @@ class Place
         "titles" => $compare_title
     ];
       return $compares;
-    }
-
-    public function getResiliences(bool $sorted = true)
-    {
-        $resiliences = [
-            'order' => [],
-            'byPlace' => [],
-            'places' => []
-        ];
-
-        foreach ($this->places as $place) {
-            foreach ($place->data->resilience->type as $name => $resilience) {
-                if (array_key_exists($name, $resiliences['order']) === false) {
-                    $resiliences['order'][$name] = [];
-                }
-
-                $resiliences['order'][$name][$place->name] = $resilience->total;
-                $resiliences['byPlace'][$place->name][$name] = $resilience->total;
-            }
-
-            $resiliences['places'][$place->name] = [
-                'total' => $place->data->resilience->total,
-                'url' => route('place.show', ['slug' => $place->title])
-            ];
-        }
-
-        if ($sorted) {
-            foreach ($resiliences['order'] as &$resilience) {
-                arsort($resilience, SORT_NUMERIC);
-            }
-            unset($resilience);
-
-            foreach ($resiliences['byPlace'] as &$resilience) {
-                arsort($resilience, SORT_NUMERIC);
-            }
-        }
-
-        return $resiliences;
     }
 
     public function withPopup()
@@ -136,6 +110,9 @@ class Place
                 ? ['geo' => $json->geo, 'popup' => $popup]
                 : ['geo' => $json->geo];
             $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
+
+            array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
+            array_push($this->meters,$json->surface);
         }
     }
 

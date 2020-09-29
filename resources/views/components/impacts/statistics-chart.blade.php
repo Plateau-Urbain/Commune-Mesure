@@ -1,4 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
 
@@ -73,7 +73,7 @@ legend: {
 }
 };
 
-var compoChart = new ApexCharts(document.querySelector("#compoChart"), options);
+var compoChart = new ApexCharts(document.querySelector("#composition-chart"), options);
 compoChart.render();
 
-</script>
+</script> -->

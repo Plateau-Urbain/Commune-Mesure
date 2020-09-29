@@ -9,8 +9,8 @@ class MainController extends Controller
 {
     public function map(Place $place)
     {
-        [$coordinates,$cities] = $place->withPopup()->all();
-        return view('home', compact('coordinates', 'cities'));
+        [$coordinates,$cities,$meters, $totalmeters,$total_etp] = $place->withPopup()->all();
+        return view('home', compact('coordinates', 'cities','meters','totalmeters','total_etp'));
     }
 
     public function places(Place $place)

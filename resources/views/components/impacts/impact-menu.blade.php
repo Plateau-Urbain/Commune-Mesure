@@ -14,17 +14,6 @@
           </ul>
         </li>
       </ul>
-      <p class="menu-label">
-        Données
-      </p>
-      <ul class="menu-list">
-        <li>
-          <ul>
-            <li><a href="#descriptionData">Description</a></li>
-            <li><a href="#resilienceData">Les données sur la résiliences</a></li>
-          </ul>
-        </li>
-      </ul>
     </aside>
   </div>
 </div>

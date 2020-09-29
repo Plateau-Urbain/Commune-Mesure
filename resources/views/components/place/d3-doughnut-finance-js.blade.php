@@ -7,7 +7,7 @@
 var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&quot;/g,'"'));
     data_finances = {
         datasets: [{
-            data: [finances.depense.size, finances.recette.size],
+            data: [finances.children[0].children[0].size, finances.children[0].children[1].size],
             borderColor : "#fff",
 
             hoverBorderColor : "#e85048",
@@ -19,8 +19,8 @@ var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&q
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-            finances.depense.name,
-            finances.recette.name,
+            finances.children[0].children[0].name,
+            finances.children[0].children[1].name,
         ]
     };
 
