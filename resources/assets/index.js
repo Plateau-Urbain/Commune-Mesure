@@ -19,3 +19,6 @@ import './js/tabs.js';
 const sigma = require('sigma'); (window).sigma = sigma;
 
 const sigmaParser = require('sigma/build/plugins/sigma.parsers.json.min.js'); (window).sigmaParser = sigmaParser;
+
+import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
+const carousels = bulmaCarousel.attach('.carousel', {})

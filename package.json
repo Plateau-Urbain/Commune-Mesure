@@ -37,6 +37,7 @@
   "dependencies": {
     "@creativebulma/bulma-tooltip": "^1.2.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "bulma-carousel": "^4.0.4",
     "chart.js": "^2.9.3",
     "leaflet": "^1.6.0",
     "leaflet-gesture-handling": "^1.1.8",
