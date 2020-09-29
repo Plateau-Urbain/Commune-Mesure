@@ -30,10 +30,7 @@
                             <div id="carousel-{{ $place['name'] }}" class="carousel">
                                 <div class="item-1">
                                     <img src="https://fakeimg.pl/350x200/?text={{ $city }}">
-                                </div>
-                                <div class="item-2">
-                                    <img src="https://fakeimg.pl/350x200/?text={{ $city }}-2">
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>

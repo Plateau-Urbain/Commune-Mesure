@@ -35,6 +35,11 @@
                          selected
                        <?php endif; ?>>{{ $moyen }}</option>
                       @endforeach
+                      @foreach($compares['titles']['realisations'] as $name => $realisation)
+                      <option value="{{ $name }}" <?php if ($name==="event"): ?>
+                        selected
+                      <?php endif; ?>>{{ $realisation }}</option>
+                      @endforeach
                   </select>
                 </div>
               </div>
@@ -51,6 +56,11 @@
                   <option value="{{ $name }}" <?php if ($name==="event"): ?>
                     selected
                   <?php endif; ?>>{{ $realisation }}</option>
+                  @endforeach
+                  @foreach($compares['titles']['moyens'] as $name => $moyen)
+                   <option value="{{ $name }}" <?php if ($name==="etp"): ?>
+                     selected
+                   <?php endif; ?>>{{ $moyen }}</option>
                   @endforeach
                  </select>
                 </div>

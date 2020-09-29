@@ -27,7 +27,7 @@
     @include('components.place.sigma-cloud-words-js')
     @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
-    @include('components.place.insee-chart-js') 
+    @include('components.place.insee-chart-js')
 @endsection
 
 @section('content')
@@ -149,7 +149,7 @@
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Le budget d'amorçage</h2>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
                       <div class="section">
                       <canvas id="financement-budget-doughnut" ></canvas>
                       </div>

@@ -1,4 +1,4 @@
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 @php ($quantityArtistes = $place->data->composition->{1}->nombre/$place->data->composition->{0}->nombre) @endphp
 @php ($quantityStartup = $place->data->composition->{2}->nombre/$place->data->composition->{0}->nombre) @endphp
 @php ($quantityAssociations = $place->data->composition->{3}->nombre/$place->data->composition->{0}->nombre) @endphp
