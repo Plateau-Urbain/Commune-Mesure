@@ -135,7 +135,11 @@ class Place
             $this->coordinates[$name] = ($this->withPopup)
                 ? ['geo' => $json->geo, 'popup' => $popup]
                 : ['geo' => $json->geo];
-            $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
+            $this->cities[$city][]= [
+              "title" => $title,
+            "name" => $name,"photo"=> $json->photos,
+            "data_chart" => $data_chart
+          ];
         }
     }
 
