@@ -112,8 +112,8 @@ class Place
 
             $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
 
-            array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
-            array_push($this->meters,$json->surface);
+            // array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
+            // array_push($this->meters,$json->surface);
         }
     }
 
