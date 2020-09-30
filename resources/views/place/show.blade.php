@@ -41,7 +41,7 @@
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
               <div class="section">
-              <div class="columns is-vcentered is-centered">
+                <div class="columns is-vcentered is-centered">
                 <div class="column" >
                   <div id="budget-value-illustration">
                     <figure class="image illustration-img">
@@ -65,12 +65,6 @@
                     </div>
                     <div class="very-small" id="actor">La gouvernance partagée avec {{ $place->manager->name }}</div>
                   </div>
-                  <div class="has-text-centered">
-                    <p class="mb-3 mt-5">
-                      <strong>Les differents publics : </strong>
-                    </p>
-                  </div>
-
                 </div>
                 <div class="column">
                   <div id="actor-illustration">
@@ -115,23 +109,44 @@
                   </div>
                 </div>
               </div>
-              <div class="has-text-centered ">
-                <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                  <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
-                  <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
-                  <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
-                </div>
-                <p>
-                  <strong>Accessible :</strong>
-                  <span class="ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
-                  <span class="ml-3"><i class="fa fa-blind font-color-theme mr-1"></i></span>
-
-                </p>
-                <p>
-                  <strong>Ouverture:</strong>
-                  <span class="font-color-theme">En permanence</span>
-                </p>
               </div>
+              <div class="columns has-text-centered ">
+                <div class="column">
+                  <div class="has-text-centered">
+                    <p class="mb-5">
+                      <strong>Les differents publics accueillis: </strong>
+                    </p>
+                  </div>
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+                    <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                    <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                    <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
+                  </div>
+                </div>
+                <div class="column">
+                  <p>
+                    <strong>Accessibilité au batiment :</strong>
+                  </p>
+                  <p>
+                    <span class="ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                    <span class="ml-3"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                  </p>
+                </div>
+                <div class="column">
+                  <p>
+                    <strong>Facilité d'accès au lieu par les transports:</strong>
+                    <span class="ml-3"><i class="fas fa-bus font-color-theme mr-1"></i></span>
+                    <span class="ml-3"><i class="fas fa-subway font-color-theme mr-1"></i></span>
+                    <span class="ml-3"><i class="fas fa-car font-color-theme mr-1"></i></span>
+
+                  </p>
+                </div>
+                <div class="column">
+                  <p><i class="fas fa-clock font-color-theme mr-1"></i>
+                    <strong>Ouverture:</strong>
+                  </p>
+                  <p><span class="font-color-theme">En permanence</span></p>
+                </div>
               </div>
             </section>
             <section class="section" id="nos-valeurs">
