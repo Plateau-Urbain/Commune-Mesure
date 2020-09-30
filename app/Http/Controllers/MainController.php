@@ -15,7 +15,9 @@ class MainController extends Controller
 
     public function places(Place $place)
     {
-        [$coordinates,$cities] = $place->all();
-        return view('places', compact('coordinates', 'cities'));
+        [$coordinates] = $place->all();
+        $place->sortPlacesBy('name');
+        $places = $place->getPlaces();
+        return view('places', compact('coordinates', 'places'));
     }
 }
