@@ -181,7 +181,7 @@
                 <div class="mb-5 control has-icons-left">
                   <div class="select">
                     <select id="selectGeo">
-                      <option value="iris" selected>Quartier</option>
+                      <option value="iris" selected>Proximité immédiate</option>
                       <option value="commune">Commune</option>
                       <option value="departement">Département</option>
                       <option value="region">Région</option>
