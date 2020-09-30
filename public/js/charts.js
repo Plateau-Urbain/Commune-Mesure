@@ -21,6 +21,8 @@ var charts = (function () {
             ctx = document.querySelector('#'.chart);
         }
 
+        data[0].backgroundColor = colors
+
         var chart = new Chart(ctx, {
             type: type,
             data: {
@@ -32,10 +34,15 @@ var charts = (function () {
         });
 
         charts.push(chart);
+        return chart;
     }
 
-    function update(chart, data) {
-
+    function update(chart, label, data) {
+      chart.data.labels.push(label);
+      chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+      });
+      chart.update();
     }
 
     return {

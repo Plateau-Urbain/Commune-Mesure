@@ -2578,35 +2578,6 @@
             "retraite": 55.3882652914775,
             "autre_inactif": 166.083807919979
         },
-        "composition":{
-          "startup":{
-            "title":"Startup et entreprises",
-            "img":"fa-hand-holding-usd",
-            "color":"#B5BF8A",
-            "nombre": 15
-          },
-          "association":{
-            "title":"Associations",
-            "img":"fa-hand-holding-heart",
-            "color":"#EDEBEB",
-            "nombre": 8
-          },
-          "artiste":{
-            "title":"Artistes",
-            "img":"fa-paint-brush",
-            "color":"#BC4C47",
-            "nombre": 19
-          },
-          "autre":{
-            "title":"Autres structures",
-            "img":"fa-sitemap",
-            "color":"#E9A34E",
-            "nombre": 6
-          },
-          "total":{
-            "nombre":48
-          }
-        },
         "resilience": {
             "total": 96,
             "type": {
@@ -2637,17 +2608,21 @@
             }
         },
         "finance":{
-          "name": "Financement",
-          "color": "#ee4035",
-          "children": [
-            {
-              "name": "Budget annuel de fonctionnent",
-              "children":[
-                {"name":"Recettes annuelles","size" : 550000},
-                {"name":"Dépenses annuelles", "size": 250000}
-              ]
-            }
-          ]
+          "composition":[
+            {"name": "entreprises", "size": 15},
+            {"name": "Associations", "size": 8},
+            {"name": "Artistes", "size": 19},
+            {"name": "Autres structures", "size": 6}
+          ],
+          "investissement":[
+              {"name":"Fonds publics","size" : 550000},
+              {"name":"Fonds privés", "size": 250000}
+            ],
+          "fonctionnement":[
+              {"name":"Subventions","size" : 550000},
+              {"name":"Aides privées","size" : 3500},
+              {"name":"Recettes", "size": 250000}
+            ]
         },
         "compare":{
           "moyens":{
@@ -2713,7 +2688,6 @@
           "Étudiants":1,
           "Parsonnes":1,
           "Famille":1,
-          "Personnes visants le site":1,
           "Personnes habitant sur le site":1,
           "Personnes visants le site": 1,
           "Tout le monde": 1

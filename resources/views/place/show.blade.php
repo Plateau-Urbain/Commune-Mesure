@@ -150,9 +150,12 @@
                   <div class="columns">
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
-                      <div class="section">
+                        <div class="field">
+                          <label class="is-size-5"for="switchRoundedSuccess">Investissement</label>
+                          <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
+                          <label class="is-size-5" for="switchRoundedSuccess">Fonctionnement</label>
+                        </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
-                      </div>
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>

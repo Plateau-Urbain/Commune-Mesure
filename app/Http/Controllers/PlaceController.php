@@ -27,7 +27,6 @@ class PlaceController extends Controller
         }
         $place->slug = $slug;
 
-        $place->data->composition = $this->sortComposition($place->data->composition);
 
         //Sort insee object data on each zone map
         $insee = $place->data->insee;
