@@ -136,6 +136,19 @@ class Place
         });
     }
 
+    public function sortNumericPlacesBy(string $what = 'moyens-etp')
+    {
+
+        usort($this->places, function($a, $b) use ($what) {
+          $q = explode("-", $what);
+
+            if ($a->data->compare->{$q[0]}->{$q[1]}->nombre === $b->data->compare->{$q[0]}->{$q[1]}->nombre) {
+                return 0;
+            }
+            return ($a->data->compare->{$q[0]}->{$q[1]}->nombre < $b->data->compare->{$q[0]}->{$q[1]}->nombre) ? -1 : 1;
+        });
+    }
+
     protected function getJson($place)
     {
         $json = json_decode(file_get_contents($place));

@@ -16,14 +16,26 @@
         <div class="section">
           <div class="columns">
             <div class="column">
-              <label class="is-pulled-right pt-4">Trier par ordre </label>
+              <label class="is-pulled-right pt-4">Trier par </label>
             </div>
               <div class="column is-pulled-left">
                 <div class="mb-5 control has-icons-left">
                   <div class="select">
-                    <select id="selectGeo">
-                      <option value="" selected>A-Z</option>
-                      <option value="">Programmation</option>
+                    <select id="selectSort" onchange="sortPlaces(this)">
+                      <option class="sort" value="" @if($selected == "default_az"):
+                        selected @endif >Ordre A-Z</option>
+                      @foreach ($places[0]->data->compare as $key_name => $programmations )
+                      <optgroup label="{{ $key_name }}">
+                        @foreach ($programmations as $key_prog_name => $programmation )
+                        <option class="sort" value="{{ $key_name }}-{{ $key_prog_name }}"
+                        @if($selected == $key_prog_name):
+                          selected @endif
+                        >
+                          {{ $programmation->title }}
+                        </option>
+                        @endforeach
+                      </optgroup>
+                      @endforeach
                     </select>
                   </div>
                   <span class="icon is-large is-left">
@@ -47,7 +59,7 @@
                         </div>
                         <div class="column is-one-third has-text-centered" style="overflow-x: hidden">
                             <div id="carousel-{{ $place->title }}" class="carousel">
-                              <img class="img-places" src="images/{{ $place->photos[0] }}">
+                              <img class="img-places" src='{{ url("/") }}/images/{{ $place->photos[0] }}'>
                               <div class="map-place" id="map_{{ $place->title }}"></div>
                             </div>
                         </div>
@@ -64,4 +76,5 @@
 @section('script_js')
   @parent
   @include('components.places.map-js')
+  @include('components.places.sortPlaces-js')
 @endsection
