@@ -10,7 +10,7 @@ class Place
     protected $places = [];
     protected $withPopup = false;
     protected $meters = [];
-    protected $etp_array = [];
+    protected $etp = [];
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ class Place
     {
         $this->build();
         $totalmeters = array_sum($this->meters);
-        $total_etp = array_sum($this->etp_array);
+        $total_etp = array_sum($this->etp);
         return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp];
     }
 
@@ -55,7 +55,7 @@ class Place
     }
     public function getETP()
     {
-        return $this->ETP;
+        return $this->etp;
     }
 
     public function getCompares(){
@@ -111,12 +111,19 @@ class Place
                 : ['geo' => $json->geo];
 
             $this->cities[$city][]= [
-              "title" => $title,
-            "name" => $name,"photo"=> $json->photos,
-            "data_chart" => $data_chart
-          ];
-            array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
-            array_push($this->meters,$json->surface);
+                "title" => $title,
+                "name" => $name,
+                "photo"=> $json->photos,
+                "data_chart" => $data_chart
+            ];
+
+            if (property_exists($json->data, 'compare')) {
+                array_push($this->etp, $json->data->compare->moyens->etp->nombre);
+            }
+
+            if (property_exists($json, 'surface')) {
+                array_push($this->meters, $json->surface);
+            }
         }
     }
 

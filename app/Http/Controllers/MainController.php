@@ -9,22 +9,30 @@ class MainController extends Controller
 {
     public function map(Place $place)
     {
-        [$coordinates,$cities,$meters, $totalmeters,$total_etp] = $place->withPopup()->all();
-        return view('home', compact('coordinates', 'cities','meters','totalmeters','total_etp'));
+        $place->withPopup()->build();
+        $coordinates = $place->getCoordinates();
+        $cities = $place->getCities();
+        $places = $place->getPlaces();
+        $total_surface = $place->getMeters();
+        $total_etp = $place->getETP();
+
+        return view('home', compact('coordinates', 'cities', 'total_surface','total_etp'));
     }
 
-    public function places($slug = null, Place $place)
+    public function places(Place $place, $sortBy = null)
     {
-        [$coordinates] = $place->all();
-        if(isset($slug)){
-          $place->sortNumericPlacesBy($slug);
-          $selected = explode('-', $slug)[1];
+        $place->build();
+
+        if(isset($sortBy)){
+          $place->sortNumericPlacesBy($sortBy);
+          $selected = explode('-', $sortBy)[1];
         }else{
           $place->sortPlacesBy('name');
           $selected = "default_az";
         }
 
         $places = $place->getPlaces();
+        $coordinates = $place->getCoordinates();
 
         return view('places', compact('coordinates', 'places', 'selected'));
     }
