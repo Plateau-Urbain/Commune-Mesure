@@ -121,8 +121,12 @@ class Place
             $this->coordinates[$name] = ($this->withPopup)
                 ? ['geo' => $json->geo, 'popup' => $popup]
                 : ['geo' => $json->geo];
-            $this->cities[$city][]= ["title" => $title, "name" => $name, "data_chart" => $data_chart];
 
+            $this->cities[$city][]= [
+              "title" => $title,
+            "name" => $name,"photo"=> $json->photos,
+            "data_chart" => $data_chart
+          ];
             array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
             array_push($this->meters,$json->surface);
 
@@ -147,6 +151,19 @@ class Place
                 return 0;
             }
             return (strcasecmp($a->$what, $b->$what) < 0) ? -1 : 1;
+        });
+    }
+
+    public function sortNumericPlacesBy(string $what = 'moyens-etp')
+    {
+
+        usort($this->places, function($a, $b) use ($what) {
+          $q = explode("-", $what);
+
+            if ($a->data->compare->{$q[0]}->{$q[1]}->nombre === $b->data->compare->{$q[0]}->{$q[1]}->nombre) {
+                return 0;
+            }
+            return ($a->data->compare->{$q[0]}->{$q[1]}->nombre < $b->data->compare->{$q[0]}->{$q[1]}->nombre) ? -1 : 1;
         });
     }
 
