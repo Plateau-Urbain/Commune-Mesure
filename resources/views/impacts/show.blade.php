@@ -10,13 +10,12 @@
     <script src='https://cdn.plot.ly/plotly-latest.min.js'>
     <script src="https://bl.ocks.org/Niekes/raw/d8007a5f71f45ab80a2977a8eb7ab3c9/d3-3d.js"></script>
     @include('components.impacts.d3-cloud-point-js')
-    @include('components.impacts.chart-statistics') 
+    @include('components.impacts.chart-statistics')
     <script>
     window.onload = (event) => {//TODO move in index.js
 
-      var selectcmpleft = document.getElementById("first-city-select");
-      var selectcmpright = document.getElementById("second-city-select");
-      comparePlacePoints(selectcmpleft, selectcmpright);
+      var selectcmpleft = document.getElementById("titleCmpLeft");
+      var selectcmpright = document.getElementById("titleCmpRight"); 
       comparePlacePoints(selectcmpleft, selectcmpright);
       selectcmpleft.onchange = (event) => {
         comparePlacePoints(selectcmpleft, selectcmpright);
@@ -32,6 +31,5 @@
 @include('components.impacts.impact-menu')
 <div class="column">
   @include('impacts.statistics')
-  @include('impacts.datas')
 </div>
 @endsection

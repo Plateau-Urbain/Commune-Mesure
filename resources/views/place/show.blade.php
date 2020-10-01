@@ -40,6 +40,12 @@
         <div id="presentation" class="hero is-large anchor">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
+              <div class="has-text-centered ">
+                <p>
+                  <strong>Ouverture :</strong>
+                  <span class="font-color-theme">En permanence</span>
+                </p>
+              </div>
               <div class="section">
               <div class="columns is-vcentered is-centered">
                 <div class="column" >
@@ -127,10 +133,6 @@
                   <span class="ml-3"><i class="fa fa-blind font-color-theme mr-1"></i></span>
 
                 </p>
-                <p>
-                  <strong>Ouverture:</strong>
-                  <span class="font-color-theme">En permanence</span>
-                </p>
               </div>
               </div>
             </section>
@@ -181,7 +183,7 @@
                 <div class="mb-5 control has-icons-left">
                   <div class="select">
                     <select id="selectGeo">
-                      <option value="iris" selected>Quartier</option>
+                      <option value="iris" selected>Proximité Immédiate</option>
                       <option value="commune">Commune</option>
                       <option value="departement">Département</option>
                       <option value="region">Région</option>

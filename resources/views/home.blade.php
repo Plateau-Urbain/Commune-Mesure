@@ -47,6 +47,18 @@
                         <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value is-1" id="animate-events" data-total={{ $total_events }}>{{ $total_events }}</p>
+                        <p class="heading title is-4">ÉVÉNEMENTS</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ $total_visiteurs }}>{{ $total_visiteurs }}</p>
+                        <p class="heading title is-4">VISITEURS</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

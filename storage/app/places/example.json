@@ -2170,8 +2170,16 @@
       "address": "4 rue du temple",
       "postalcode": "41000"
     },
-    "nombre_visiteurs":0,
-    "nombre_events":0,
+    "evenements":{
+      "publics":{
+        "nombre":0,
+        "nombre_visiteurs":0
+      },
+      "prives":{
+        "nombre":0,
+        "nombre_visiteurs":0
+      }
+    },
     "social": [
         {"name": "web", "link": "https://www.le6b.fr"},
         {"name": "facebook", "link": "https://www.facebook.com/Le6b.SaintDenis/?fref=ts"},
