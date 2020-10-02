@@ -59,7 +59,7 @@ class Place
     }
     public function getETP()
     {
-        return $this->ETP;
+        return $this->etp;
     }
     public function getEvents()
     {

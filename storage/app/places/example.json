@@ -2162,7 +2162,7 @@
     "iris_code": 930660902,
     "name": "Example",
     "status": "Association",
-    "surface": 0,
+    "surface": 1000,
     "creation": "09/01/2009",
     "ouverture": "01/01/2010",
     "address": {

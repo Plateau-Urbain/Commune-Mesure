@@ -21,9 +21,10 @@
               <div class="column is-pulled-left">
                 <div class="mb-5 control has-icons-left">
                   <div class="select">
-                    <select id="selectSort" onchange="sortPlaces(this)">
-                      <option class="sort" value="" @if($selected == "default_az"):
-                        selected @endif >Ordre A-Z</option>
+                    <select id="selectSort">
+                      <option class="sort" value="" @if($selected == "default_az")
+                                                    selected
+                                                @endif>Ordre A-Z</option>
                       @foreach ($places[0]->data->compare as $key_name => $programmations )
                       <optgroup label="{{ $key_name }}">
                         @foreach ($programmations as $key_prog_name => $programmation )
