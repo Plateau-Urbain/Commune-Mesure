@@ -41,9 +41,8 @@
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
               <div class="has-text-centered ">
-                <p>
-                  <strong>Ouverture :</strong>
-                  <span class="font-color-theme">En permanence</span>
+                <p><i class="fas fa-clock font-color-theme mr-1"></i>
+                  <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
               <div class="section">
@@ -120,38 +119,50 @@
                 <div class="column">
                   <div class="has-text-centered">
                     <p class="mb-5">
-                      <strong>Les differents publics accueillis: </strong>
+                      <strong>Les differents publics : </strong>
                     </p>
                   </div>
+
                   <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+                    @foreach($place->opening as $publics)
+                    @foreach($publics->names as $public)
+                    @if($public == 'Enfants')
                     <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                    @endif
+                    @if($public == 'Étudiants')
                     <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                    @endif
+                    @if($public == 'Famille')
                     <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
+                    @endif
+                    @endforeach
+                    @endforeach
                   </div>
                 </div>
                 <div class="column">
                   <p>
-                    <strong>Accessibilité au batiment :</strong>
+                    <strong>Accessibilité:</strong>
                   </p>
                   <p>
-                    <span class="ml-3"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
-                    <span class="ml-3"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                    @foreach($place->opening as $publics)
+                    @foreach($publics->names as $public)
+                    @if($public == 'Handicapés')
+                    <span class="ml-3 public-icons"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                    @endif
+                    @endforeach
+                    @endforeach
+                    <span class="ml-3 public-icons"><i class="fa fa-blind font-color-theme mr-1"></i></span>
                   </p>
                 </div>
                 <div class="column">
                   <p>
-                    <strong>Facilité d'accès au lieu par les transports:</strong>
-                    <span class="ml-3"><i class="fas fa-bus font-color-theme mr-1"></i></span>
-                    <span class="ml-3"><i class="fas fa-subway font-color-theme mr-1"></i></span>
-                    <span class="ml-3"><i class="fas fa-car font-color-theme mr-1"></i></span>
+                    <strong>Moyens de transports accessibles:</strong>
+                  </p>
+                    <span class="ml-3 public-icons"><i class="fas fa-bus font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons"><i class="fas fa-subway font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons"><i class="fas fa-car font-color-theme mr-1"></i></span>
 
-                  </p>
-                </div>
-                <div class="column">
-                  <p><i class="fas fa-clock font-color-theme mr-1"></i>
-                    <strong>Ouverture:</strong>
-                  </p>
-                  <p><span class="font-color-theme">En permanence</span></p>
+
                 </div>
               </div>
             </section>
@@ -172,9 +183,11 @@
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
                         <div class="field">
-                          <label class="is-size-5"for="switchRoundedSuccess">Investissement</label>
+                          <label class="title is-size-5">Budget </label>
+                          <span class="title is-size-5 budget_animation"><span>d'Investissement</span></span>
+                          <!-- <label class="is-size-5" for="switchRoundedSuccess">d'Investissement</label>
                           <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
-                          <label class="is-size-5" for="switchRoundedSuccess">Fonctionnement</label>
+                          <label class="is-size-5" for="switchRoundedSuccess">de Fonctionnement</label> -->
                         </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
                     </div>

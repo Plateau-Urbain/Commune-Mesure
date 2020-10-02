@@ -2690,16 +2690,16 @@
     "opening":[
       {
         "title": "welcome",
-        "names":{
-          "Handicapés":1,
-          "Enfants":1,
-          "Étudiants":1,
-          "Parsonnes":1,
-          "Famille":1,
-          "Personnes habitant sur le site":1,
-          "Personnes visants le site": 1,
-          "Tout le monde": 1
-        }
+        "names":[
+          "Handicapés",
+          "Enfants",
+          "Étudiants",
+          "Parsonnes",
+          "Famille",
+          "Personnes habitant sur le site",
+          "Personnes visants le site",
+          "Tout le monde"
+        ]
       },
       {
         "title":"open",

@@ -73,6 +73,8 @@
 
     var leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
     var rightTitle = selectcmpR.options[selectcmpR.selectedIndex].text;
+    var leftIndicator = selectcmpL.value;
+    console.log(leftIndicator)
 
     if(leftTitle == '--' || rightTitle == "--"){
       console.log(selectcmpL);
@@ -89,6 +91,11 @@
   }
 
   var ordonnee = [], abscisse = [];
+  var Places = [];
+  var tabRightValues = [] ;
+  var tabLeftValues = [];
+  var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
+  var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
 
   for (const [key, value] of Object.entries(compares.data)) {
     // console.log(`${key}: ${value.moyens.etp.nombre}`);
@@ -98,6 +105,9 @@
        name: key,
        data: [[value.moyens.etp.nombre, value.realisations.event.nombre, 10]]
      });
+     Places.push(key);
+     tabLeftValues.push();
+     tabRightValues.push();
   }
 
 var trace1 = {

@@ -486,11 +486,8 @@ svg {
 }
 //icon public:hover
 .public-icons > i{
-  font-size: 3em;
-}
-.public-icons > i,p{
-  margin-left: 30px;
-}
+  font-size: 2em;
+} 
 #i-childText, #i-familyText, #i-graduateText{
   opacity: 0;
   transition:opacity .5s ease;
@@ -504,6 +501,9 @@ svg {
 .fa-user-graduate:hover + #i-graduateText{
   opacity: 1;
 }
+.budget_animation:hover span {display:none}
+.budget_animation:hover:before {content:"de Fonctionnement";}
+
 
 /*
 * Page Places style

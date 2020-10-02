@@ -1,7 +1,6 @@
 <script>
 var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&quot;/g,'"'));
-
-
+ 
 function getLabels(id){
   var labels = [];
   finances[id].forEach(node => {
@@ -20,6 +19,7 @@ function getDataChart(id){
   }];
 
   var dataset = [];
+  console.log(id);
   finances[id].forEach(node => {
     dataset.push(node.size);
   })

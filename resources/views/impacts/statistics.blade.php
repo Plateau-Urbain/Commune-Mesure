@@ -76,8 +76,8 @@
             <tr>
                 <th><input type="checkbox" name="" value="" class="checkPlaces"></th>
                 <th scope="row"><p class="lieux_title">{{$place->name}}</p></th>
-                <td><p>{{$place->name}}</p></td>
-                <td><p>3</p></td>
+                <td><p class="leftPlaceIndicator"></p></td>
+                <td><p class="rightPlaceIndicator"></p></td>
             </tr>
             @endforeach
         </table>
