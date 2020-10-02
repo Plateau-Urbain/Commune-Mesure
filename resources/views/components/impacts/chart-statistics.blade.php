@@ -1,7 +1,8 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    var title = "Rapport entre" + + " et "+ "par an"
+
     var size = Math.floor(Math.random() * (200 - 100 + 1) + 100);
+    var places = [];
 
     var options = {
       series: [{
@@ -16,12 +17,15 @@
         type: 'bubble',
         events: {
           dataPointSelection: function(event, chartContext, config) {
-            var selectedName = config.w.config.series[config.seriesIndex].name
-            for (var i = 0; i < listed_places.length; i++) { if (listed_places[i] == selectedName) {  } }
+            var selectedName = config.w.config.series[config.seriesIndex].name 
           },
           dataPointMouseEnter: function(event, chartContext, config) {
+            var circle = event.target
+            colorGet = circle.getAttribute('fill')
             var selectedName = config.w.config.series[config.seriesIndex].name
-            for (var i = 0; i < listed_places.length; i++) { if (listed_places[i] == selectedName) {  } }
+            list_el = document.getElementById('list_'+selectedName)
+            list_el.style.color = colorGet
+            setTimeout(function() { list_el.style.color = ""; }, 400);
           }
         }
       },
@@ -32,7 +36,7 @@
           opacity: 0.8
       },
       title: {
-          text: 'Rapport entre le nombre ETP et le nombre des Évènements par an',
+          text: "Rapport",
           style: {
             fontSize:  '13px',
             fontWeight:  'bold',
@@ -50,14 +54,8 @@
         }
       },
       xaxis: {
-          min:0,
-          max:20,
           tickAmount: 12,
           type: 'category',
-      },
-      yaxis: {
-          min:-10,
-          max:300,
       },
       legend: {
         show:false,
@@ -68,13 +66,35 @@
 
   var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
   var places_name = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
+  var LeftIndicator ;
+  var RightIndicator;
+  var dataLeft,dataRight;
 
+  var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
+  var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
+  var title = document.querySelector('.apexcharts-title-text')
+  function cleanStatsChart(){
+    statschart.updateSeries([
+      {
+        name: '',
+        data: [[,,]]
+      },
+    ]);
+
+  }
   function comparePlacePoints(selectcmpL, selectcmpR){
+
+    cleanStatsChart()
+
+    var tabRightValues = [];
+    var tabLeftValues = [];
 
     var leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
     var rightTitle = selectcmpR.options[selectcmpR.selectedIndex].text;
-    var leftIndicator = selectcmpL.value;
-    console.log(leftIndicator)
+    // title.innerHTML = "Rapport entre " + leftTitle + " et " + rightTitle + " par an";
+
+    LeftIndicator = selectcmpL.value;
+    RightIndicator = selectcmpR.value;
 
     if(leftTitle == '--' || rightTitle == "--"){
       console.log(selectcmpL);
@@ -88,112 +108,48 @@
       document.getElementById("titleCmpLeft").innerHTML = leftTitle;
       document.getElementById("titleCmpRight").innerHTML = rightTitle;
     }
-  }
 
-  var ordonnee = [], abscisse = [];
-  var Places = [];
-  var tabRightValues = [] ;
-  var tabLeftValues = [];
-  var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
-  var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
-
-  for (const [key, value] of Object.entries(compares.data)) {
-    // console.log(`${key}: ${value.moyens.etp.nombre}`);
-    // ordonnee.push(value.moyens.etp.nombre);
-    // abscisse.push(value.realisations.event.nombre);
-    statschart.appendSeries({
-       name: key,
-       data: [[value.moyens.etp.nombre, value.realisations.event.nombre, 10]]
-     });
-     Places.push(key);
-     tabLeftValues.push();
-     tabRightValues.push();
-  }
-
-var trace1 = {
-  type: 'scatter',
-  x: abscisse,
-  y: ordonnee,
-  mode: 'markers',
-  name: 'Rapport entre le nombre ETP et le nombre des Évènements par an',
-  text: Object.keys(compares.data),
-  marker: {
-    color: 'rgba(156, 165, 196, 0.95)',
-    line: {
-      color: '#FFF',
-      width: 10,
-    },
-    symbol: 'circle',
-    size: 16
-  }
-};
-var data = [trace1];
-
-var layout = {
-  title: 'Nombre des ETP sur nombre d\'événements public et privé',
-  xaxis: {
-    showgrid: false,
-    showline: true,
-    linecolor: 'rgb(102, 102, 102)',
-    title:'X : Par évènement',
-    titlefont: {
-      font: {
-        color: 'rgb(204, 04, 204)'
+    for (const [key, value] of Object.entries(compares.data)) {
+      // console.log(`${key}: ${value.moyens.etp.nombre}`);
+      if (value.realisations[LeftIndicator] == undefined) {
+          dataLeft = value.moyens[LeftIndicator].nombre;
       }
-    },
-    tickfont: {
-      font: {
-        color: 'rgb(102, 102, 102)'
+      else {
+        dataLeft = value.realisations[LeftIndicator].nombre;
       }
-    },
-    autotick: false,
-    dtick: 10,
-    ticks: 'outside',
-    tickcolor: '#fe7651'
-  },
-  yaxis: {
-    title:'Y : Par ETP',
-    titlefont: {
-      font: {
-        color: 'rgb(204, 04, 204)'
+      if (value.moyens[RightIndicator] == undefined) {
+          dataRight = value.realisations[RightIndicator].nombre;
       }
-    },
-  },
-  margin: {
-    l: 140,
-    r: 40,
-    b: 50,
-    t: 80
-  },
-  legend: {
-    font: {
-      size: 10,
-    },
-    yanchor: 'middle',
-    xanchor: 'right'
-  },
-  width: 600,
-  height: 600,
-  paper_bgcolor: 'rgb(247, 247, 247)',
-  plot_bgcolor: 'rgb(247, 247, 247)',
-  hovermode: 'closest'
-};
+      else {
+        dataRight = value.moyens[RightIndicator].nombre;
 
-// Plotly.newPlot('chart-moyen-rea', data, layout);
+      }
 
-var lieux_elements = document.querySelectorAll(".li_lieux")
+      statschart.appendSeries({
+         name: key,
+         data: [[dataLeft, dataRight, 10]]
+       });
 
-    lieux_elements.forEach(function (element) {
-      element.addEventListener("mouseover", function( event ) {
-        event.target.style.color = "orange";
-        setTimeout(function() {
-          event.target.style.color = "";
-        }, 150);
-      }, false);
-    })
+       places.push(key);
+       tabLeftValues.push(dataLeft);
+       tabRightValues.push(dataRight);
+
+       console.log(placesLValues)
+       for (var i = 0; i < tabLeftValues.length; i++) {
+         console.log(placesLValues)
+         console.log(i)
+         placesLValues[i].innerHTML = tabLeftValues[i]
+       }
+
+       for (var j = 0; j < tabRightValues.length; j++) {
+         placesRValues[j].innerHTML = tabRightValues[j]
+       }
+
+
+    }
+  }
 
   function selectAll(source){
-    console.log('here');
     checkboxes = document.querySelectorAll(".checkPlaces")
     checkboxes.forEach(function(element){
       element.checked = source.checked;

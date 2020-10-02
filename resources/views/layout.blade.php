@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Commune Mesure</title>
+        <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')
             <link rel="stylesheet" href="/css/app.css">
         @show

@@ -487,7 +487,7 @@ svg {
 //icon public:hover
 .public-icons > i{
   font-size: 2em;
-} 
+}
 #i-childText, #i-familyText, #i-graduateText{
   opacity: 0;
   transition:opacity .5s ease;
@@ -505,10 +505,42 @@ svg {
 .budget_animation:hover:before {content:"de Fonctionnement";}
 
 
+.block-data-stat > div{
+    line-height: 0em ;
+}
+.accueil-paragraphe li{
+  list-style-type: disc;
+}
+.accueil-paragraphe{
+  padding: 5px;
+}
+
+.partenaires-block{
+  background-color: white !important;
+}
+p.partenaires_text{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.logo_partenaires:hover + p.partenaires_text{
+  opacity: 1;
+}
+.logo_partenaires{
+  width: 60%;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(252,252,252,1);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(252,252,252,1);
+  box-shadow: 10px 10px 5px 0px rgba(252,252,252,1);
+}
 /*
 * Page Places style
 */
-
+.place-tr th:hover{
+  background-color: #E8E8E8;
+}
 .img-places{
   max-height: 20em;
 }

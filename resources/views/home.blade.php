@@ -8,14 +8,9 @@
 
 @section('content')
     <div class="container section">
-        <div class="content">
+        <div class="content has-text-centered">
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              Un outil en commun pour révéler leurs impacts sur les personnes et les territoires
             </p>
         </div>
     </div>
@@ -37,13 +32,13 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($total_surface) }}>{{ array_sum($total_surface) }}</p>
+                        <p class="title animate-value is-1" id="animate-meters" data-total={{ $totalmeters }}>{{ $totalmeters }}</p>
                         <p class="heading title is-4">m<sup>2</sup></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
-                    <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
+                    <div>                      
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ $total_etp }}>{{ $total_etp }}</p>
                         <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
@@ -65,24 +60,27 @@
     <div class="container section">
         <div class="columns">
             <div class="column">
-                <h1 class="title is-2">Titre</h1>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <p class="accueil-paragraphe">
+                  <strong style="font-size:2em">D</strong>epuis quelques années, des lieux hybrides, par la multiplicité des usages qu’ils proposent et par la
+                  diversité des profils qu’ils accueillent, se développent sur tout le territoire français.</p>
+                  <p class="accueil-paragraphe">Souvent dénommés « tiers-lieux », ces projets s’inscrivent en marge du processus classique de
+                  production immobilière, affirmant une forte vocation culturelle, sociale et écologique.</p>
+                  <p class="accueil-paragraphe">La particularité de ces lieux est qu’ils sont, pour la majorité d’entre eux, portés par des personnes
+                  guidées par la volonté de créer :
                 </p>
             </div>
             <div class="column">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <p class="accueil-paragraphe">
+                  <ul class="" style="padding:10px">
+                    <li><strong>Des espaces propices à l’échange et à la mise en commun</strong></li>
+                    <li><strong>D’expérimenter ou de restaurer des usages et fonctions urbaines utiles à la population</strong></li>
+                    <li><strong>De générer un écosystème en capacité de penser et coconstruire le futur d’une société en pleine transformation</strong></li>
+                  </ul>
+                </p>
+                <p class="accueil-paragraphe">
+                  Répondant à des enjeux de développement territorial, de lien social et de solidarité, les lieux hybrides
+                  sont vecteurs de bien(s) commun(s) et d’externalités positives reconnus par les usager.e.s,
+                  l’environnement proche et bien sûr les actrices et acteurs publiques.
                 </p>
             </div>
         </div>
@@ -100,17 +98,22 @@
                     <h1 class="title">
                         Le projet
                     </h1>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                        also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                        in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    <p class="accueil-paragraphe">
+                      La raison d’être du projet « Commune Mesure » est de mettre en lumière les externalités positives de
+                      ces lieux hybrides pour :
+                    </p>
+                    <p class="accueil-paragraphe">
+                      Montrer le caractère innovant de ces lieux tant au niveau des solutions qu’ils apportent que sur le model
+                      économique.
+                    </p>
+                    <p class="accueil-paragraphe">
+                      Aider les porteurs.euses de projets à qualifier et valoriser les impacts de leur action sur le plan
+                      économique, social, urbain et environnemental pour ajuster leur action au plus près des besoins et
+                      mieux cibler les partenaires privés et publics susceptibles de les accompagner.
                     </p>
                 </div>
                 <div class="column">
-                    <img class=" is-pulled-right" src="https://fakeimg.pl/450x350/">
+                    <img class="is-pulled-right" style="height:30%;width:40%" src="{{ url('/images/logos/commune-mesure.png') }}">
                 </div>
             </div>
         </div>

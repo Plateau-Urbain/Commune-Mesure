@@ -1,15 +1,38 @@
 @extends('layout')
 
 @section('content')
-    <div class="hero is-large is-light">
+    <div class="colums hero is-large is-light partenaires-block">
         <section class="section">
             <h1 class="title is-1 has-text-centered">Les partenaires</h1>
-            <div class="column">
-                <p>Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un picon bitte, s'il te plaît.
-                    Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p>
-                <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au Christkindelsmärik en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-                <p>Yoo ch'ai lu dans les DNA que le Racing a encore perdu contre Oberschaeffolsheim. Verdammi et moi ch'avais donc parié deux knacks et une flammekueche. Ah so ? T'inquiète, ch'ai ramené du schpeck, du chambon, un kuglopf et du schnaps dans mon rucksack. Allez, s'guelt ! Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p>
-                <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
+            <div class="columns">
+            <div class="column partenaire_container">
+                <div>
+                  <p class="partenaires_text"><p>
+                  <img class="logo_partenaires" src="{{ url('/images/partenaires/PUCA.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="column partenaire_container">
+                <p class="partenaires_text"><p>
+                <img class="logo_partenaires" src="{{ url('/images/partenaires/ANCT.jpg') }}" alt="">
+            </div>
+            <div class="column partenaire_container">
+                <p class="partenaires_text"><p>
+                <img class="logo_partenaires" src="{{ url('/images/partenaires/1200px-Ministe_re_de_la_transition_e_cologique_et_solidaire.svg.png') }}" alt="">
+            </div>
+            </div>
+            <div class="columns">
+            <div class="column partenaire_container">
+                <p class="partenaires_text"><p>
+                <img class="logo_partenaires" src="{{ url('/images/partenaires/Fondation_de_France.svg.png') }}" alt="">
+            </div>
+            <div class="column partenaire_container">
+                <p class="partenaires_text"><p>
+                <img class="logo_partenaires" src="{{ url('/images/partenaires/Copie de LogoPionnierLFI.png') }}" alt="">
+            </div>
+            <div class="column partenaire_container">
+                <p class="partenaires_text"><p>
+                <img class="logo_partenaires" src="" alt="">
+            </div>
             </div>
         </section>
     </div>

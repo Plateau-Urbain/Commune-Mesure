@@ -17,6 +17,7 @@
 .block-data-stat > div{
     margin: 1em;
     height: 10em;
+    line-height: 10em !important;
 }
 @media (min-height: 300px) {
     .scrolling-menu {

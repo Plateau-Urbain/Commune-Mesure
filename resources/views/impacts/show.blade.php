@@ -16,7 +16,7 @@
 
       var selectcmpleft = document.getElementById("titleCmpLeft");
       var selectcmpright = document.getElementById("titleCmpRight");
-       
+
       comparePlacePoints(selectcmpleft, selectcmpright);
       selectcmpleft.onchange = (event) => {
         comparePlacePoints(selectcmpleft, selectcmpright);

@@ -12,10 +12,10 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "_variables";
 
 @import "~bulma/bulma.sass";
-// @import "~bulma-carousel/src/sass/index.sass";
-// @import "~bulma-switch/src/sass/index.sass";
+@import "~bulma-carousel/src/sass/index.sass";
+@import "~bulma-switch/src/sass/index.sass";
 @import "~@creativebulma/bulma-tooltip";
-// @import "~bulma-carousel/dist/css/bulma-carousel.min.css";
+@import "~bulma-carousel/dist/css/bulma-carousel.min.css";
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
