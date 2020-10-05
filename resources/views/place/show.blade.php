@@ -47,17 +47,25 @@
               </div>
               <div class="section">
                 <div class="columns is-vcentered is-centered">
-                <div class="column" >
-                  <div id="budget-value-illustration">
-                    <figure class="image illustration-img">
-                      <img  src="/images/bloc_note.svg" >
-                    </figure>
-                    <div class="content" id="description-illustration-detail">
-                        <p><strong>L'idée fondatrice du lieu</strong></p>
-                        <p class="description fontSize0-8em">{{ $place->description }}</p>
-
+                <div class="column">
+                  <!-- Bloc note begin -->
+                  <div class="columns bloc-note">
+                    <div class="column is-three-fifths is-offset-one-fifth">
+                      <div class="header-bloc-note">
+                        <figure class="image">
+                          <img src="/images/bloc_noteAsset.png">
+                        </figure>
+                      </div>
+                      <div class="bloc-note-body">
+                        <div class="content">
+                            <h2 class="has-text-centered">L'idée fondatrice du lieu</h2>
+                            <p class="fontSize0-8em">{{ $place->description }}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <!-- Bloc note end -->
+
                 </div>
                 <div class="column is-two-fifth">
                   <div class="budget">
@@ -72,46 +80,52 @@
                   </div>
                 </div>
                 <div class="column">
-                  <div id="actor-illustration">
-                    <figure class="image illustration-img">
-                      <img  src="/images/bloc_note.svg" >
-                    </figure>
-                    <div class="actor content" id="actor-illustration-detail">
-                      <div>
-                        @foreach($place->partners as $partner)
-                          @if($partner->names)
-                          <div>
-                            <strong>Les acteurs {{ $partner->title }}s :</strong>
-                            <span class="is-block fontSize0-8em">
-                              {{ $partner->names }}
-                            </span>
+                  <!-- Bloc note begin -->
+                  <div class="columns bloc-note">
+                    <div class="column is-three-fifths is-offset-one-fifth">
+                      <div class="header-bloc-note">
+                        <figure class="image">
+                          <img src="/images/bloc_noteAsset.png">
+                        </figure>
+                      </div>
+                      <div class="bloc-note-body">
+                        <div class="content">
+                          @foreach($place->partners as $partner)
+                            @if($partner->names)
+                            <div>
+                              <strong>Les acteurs {{ $partner->title }}s :</strong>
+                              <span class="is-block fontSize0-8em">
+                                {{ $partner->names }}
+                              </span>
+                            </div>
+                            @endif
+                          @endforeach
+
+                          @if($place->partners[0]->names || $place->partners[1]->names)
+                          <div class="">
+                            <strong class="">Nature des partenariats:</strong>
+                            <div class="fontSize0-8em">
+                              @php ($nb = 1) @endphp
+                              @foreach($place->partners as $partner)
+                              <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
+                                @foreach($partner->natures as $nature)
+                                  {{ $nature }}
+                                  @if(count($partner->natures) != $nb)
+                                    {{ "," }}
+                                    @php ($nb++) @endphp
+                                  @endif
+                                @endforeach
+                                </span>
+                              </div>
+                              @endforeach
+                            </div>
                           </div>
                           @endif
-                        @endforeach
-                      </div>
-
-                      @if($place->partners[0]->names || $place->partners[1]->names)
-                      <div class="">
-                        <strong class="">Nature des partenariats:</strong>
-                        <div class="fontSize0-8em">
-                          @php ($nb = 1) @endphp
-                          @foreach($place->partners as $partner)
-                          <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
-                            @foreach($partner->natures as $nature)
-                              {{ $nature }}
-                              @if(count($partner->natures) != $nb)
-                                {{ "," }}
-                                @php ($nb++) @endphp
-                              @endif
-                            @endforeach
-                            </span>
-                          </div>
-                          @endforeach
                         </div>
                       </div>
-                      @endif
                     </div>
                   </div>
+                  <!-- Bloc note end -->
                 </div>
               </div>
               </div>

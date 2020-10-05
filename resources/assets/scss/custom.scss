@@ -501,7 +501,7 @@ svg {
 .fa-user-graduate:hover + #i-graduateText{
   opacity: 1;
 }
- 
+
 .block-data-stat > div{
     line-height: 0em ;
 }
@@ -540,4 +540,27 @@ p.partenaires_text{
 }
 .img-places{
   max-height: 20em;
+}
+
+.header-bloc-note{
+  display: flex;
+  align-items: center;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bloc-note-body{
+  border: 0.4em solid #dbdbdb;
+  height:20em;
+  width:100%;
+  background-color: #fff;
+}
+
+.bloc-note-body div{
+  margin: 2% 2% 0% 2%;
+  text-align: justify;
+}
+div .bloc-note{
+  background-image: url('/images/bloc_note_rotate.svg');
+  background-repeat:round;
 }
