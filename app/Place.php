@@ -10,8 +10,8 @@ class Place
     protected $places = [];
     protected $withPopup = false;
     protected $meters = [];
-    protected $etp_array = [];
-    protected $events = [];
+    protected $etp = [];
+    protected $evenements = [];
     protected $visiteurs = [];
 
     public function __construct()
@@ -23,10 +23,10 @@ class Place
     {
         $this->build();
         $totalmeters = array_sum($this->meters);
-        $total_etp = array_sum($this->etp_array);
-        $total_events = array_sum($this->events);
+        $total_etp = array_sum($this->etp);
+        $total_evenements = array_sum($this->evenements);
         $total_visiteurs= array_sum($this->visiteurs);
-        return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp,$total_events,$total_visiteurs];
+        return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp,$total_evenements,$total_visiteurs];
     }
 
     public function getOne($place)
@@ -63,7 +63,7 @@ class Place
     }
     public function getEvents()
     {
-        return $this->events;
+        return $this->evenements;
     }
     public function getVisiteurs()
     {
@@ -124,17 +124,28 @@ class Place
 
             $this->cities[$city][]= [
               "title" => $title,
-            "name" => $name,"photo"=> $json->photos,
-            "data_chart" => $data_chart
-          ];
-            array_push($this->etp_array,$json->data->compare->moyens->etp->nombre);
-            array_push($this->meters,$json->surface);
+              "name" => $name,
+              "photo"=> $json->photos,
+              "data_chart" => $data_chart
+            ];
+            if (property_exists($json->data, 'compare')) {
+                array_push($this->etp, $json->data->compare->moyens->etp->nombre);
+            }
+
+            if (property_exists($json, 'surface')) {
+                array_push($this->meters, $json->surface);
+            }
 
             $total = $json->evenements->publics->nombre + $json->evenements->prives->nombre;
-            array_push($this->events,$total);
+            if (property_exists($json, 'evenements')) {
+                array_push($this->evenements, $total);
+            }
 
             $total = $json->evenements->publics->nombre_visiteurs + $json->evenements->prives->nombre_visiteurs;
-            array_push($this->visiteurs,$total);
+            if (property_exists($json, 'evenements')) {
+                array_push($this->visiteurs, $total);
+            }
+ 
         }
     }
 

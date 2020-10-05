@@ -2617,7 +2617,7 @@
         },
         "finance":{
           "composition":[
-            {"name": "entreprises", "size": 15},
+            {"name": "Entreprises", "size": 15},
             {"name": "Associations", "size": 8},
             {"name": "Artistes", "size": 19},
             {"name": "Autres structures", "size": 6}
