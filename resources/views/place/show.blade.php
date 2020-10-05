@@ -174,9 +174,9 @@
 
               <div class="columns">
                 <div class="column">
-                  <!-- <div id="value_container">
+                  <div id="value_container">
 
-                  </div> -->
+                  </div>
                   <!-- <ul class='circle-container'>
                     <li><img src='http://lorempixel.com/100/100/city'></li>
                     <li><img src='http://lorempixel.com/100/100/nature'></li>

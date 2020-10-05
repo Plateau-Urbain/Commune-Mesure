@@ -662,7 +662,6 @@ p.partenaires_text{
       &:nth-of-type(#{$i}) {
         transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
       }
-
       $rot: $rot + $angle;
     }
   }
@@ -670,7 +669,7 @@ p.partenaires_text{
 
 .circle-container {
   @include on-circle($item-count: 8, $circle-size: 20em, $item-size: 6em);
-  margin: 5em auto 0; 
+  margin: 5em auto 0;
 
   div {
     display: block;
