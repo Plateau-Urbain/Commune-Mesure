@@ -17,7 +17,7 @@
         type: 'bubble',
         events: {
           dataPointSelection: function(event, chartContext, config) {
-            var selectedName = config.w.config.series[config.seriesIndex].name 
+            var selectedName = config.w.config.series[config.seriesIndex].name
           },
           dataPointMouseEnter: function(event, chartContext, config) {
             var circle = event.target
@@ -95,6 +95,8 @@
 
     LeftIndicator = selectcmpL.value;
     RightIndicator = selectcmpR.value;
+    document.getElementById("stats_selectedLeftValue").innerHTML = LeftIndicator.toUpperCase()
+    document.getElementById("stats_selectedRightValue").innerHTML = RightIndicator.toUpperCase()
 
     if(leftTitle == '--' || rightTitle == "--"){
       console.log(selectcmpL);

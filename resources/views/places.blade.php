@@ -21,7 +21,7 @@
               <div class="column is-pulled-left">
                 <div class="mb-5 control has-icons-left">
                   <div class="select">
-                    <select id="selectSort">
+                    <select id="selectSort" onchange="sortPlaces(this)">
                       <option class="sort" value="" @if($selected == "default_az")
                                                     selected
                                                 @endif>Ordre A-Z</option>

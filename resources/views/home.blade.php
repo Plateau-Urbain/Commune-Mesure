@@ -32,25 +32,25 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-meters" data-total={{ $totalmeters }}>{{ $totalmeters }}</p>
+                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($total_surface) }}>{{ array_sum($total_surface) }}</p>
                         <p class="heading title is-4">m<sup>2</sup></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ $total_etp }}>{{ $total_etp }}</p>
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
                         <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-events" data-total={{ $total_events }}>{{ $total_events }}</p>
+                        <p class="title animate-value is-1" id="animate-events" data-total={{ array_sum($total_evenements) }}>{{ array_sum($total_evenements) }}</p>
                         <p class="heading title is-4">ÉVÉNEMENTS</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ $total_visiteurs }}>{{ $total_visiteurs }}</p>
+                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ array_sum($total_visiteurs) }}>{{ array_sum($total_visiteurs) }}</p>
                         <p class="heading title is-4">VISITEURS</p>
                     </div>
                 </div>
