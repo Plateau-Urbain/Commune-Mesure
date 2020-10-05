@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
-                    <div>                      
+                    <div>
                         <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
                         <p class="heading title is-4">ETP</p>
                     </div>
