@@ -65,19 +65,33 @@
                     </div>
                   </div>
                   <!-- Bloc note end -->
-
                 </div>
-                <div class="column is-two-fifth">
-                  <div class="budget">
+                <div class="column">
+                  <div class="home-head">
+                  </div>
+                <div class="column home-body">
+                      <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
+                      <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
+                      <div class="columns home-door">
+                        <div class="column"></div>
+                        <div class="column is-one-fifths">
+                          <div class="door"></div>
+                        </div>
+                        <div class="column"></div>
+                      </div>
+                  </div>
+                  <div class="home-foot"></div>
+
+
+                  <!-- <div class="budget">
                     <figure class="image is25em" style="margin:auto;">
-                      <img  src="/images/building_detail.svg" >
                     </figure>
                     <div class="very-small" id="occupant">{{ $place->manager->occupants }} structures occupantes</div>
                     <div class="very-small" id="budget-value">
 
                     </div>
                     <div class="very-small" id="actor">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="column">
                   <!-- Bloc note begin -->
