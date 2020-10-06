@@ -157,10 +157,12 @@
                   </div>
                 </div>
                 <div class="column">
-                  <p>
+                <div class="has-text-centered">
+                  <p class="mb-5">
                     <strong>Accessibilité:</strong>
                   </p>
-                  <p>
+                </div>
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Handicapés')
@@ -169,17 +171,19 @@
                     @endforeach
                     @endforeach
                     <span class="ml-3 public-icons"><i class="fa fa-blind font-color-theme mr-1"></i></span>
-                  </p>
+                  </div>
                 </div>
                 <div class="column">
-                  <p>
+                  <div class="has-text-centered">
+                  <p class="mb-5">
                     <strong>Moyens de transports accessibles:</strong>
                   </p>
+                  </div>
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
                     <span class="ml-3 public-icons"><i class="fas fa-bus font-color-theme mr-1"></i></span>
                     <span class="ml-3 public-icons"><i class="fas fa-subway font-color-theme mr-1"></i></span>
                     <span class="ml-3 public-icons"><i class="fas fa-car font-color-theme mr-1"></i></span>
-
-
+                  </div>
                 </div>
               </div>
             </section>
