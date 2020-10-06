@@ -65,7 +65,7 @@ tooltip: {
   x:'',
   y: {
     formatter: function (val) {
-      return val + "%"
+      return val.toFixed(2) + "%"
     }
   }
 },
@@ -144,7 +144,7 @@ tooltip: {
   x:'',
   y: {
     formatter: function (val) {
-      return val + "%"
+      return val.toFixed(2) + "%"
     }
   }
 },
@@ -240,7 +240,7 @@ tooltip: {
   x:'',
   y: {
     formatter: function (val) {
-      return val + "%"
+      return val.toFixed(2) + "%"
     }
   }
 },

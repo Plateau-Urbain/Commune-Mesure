@@ -156,6 +156,7 @@
     checkboxes.forEach(function(element){
       element.checked = source.checked;
     });
+    
 
   }
 </script>

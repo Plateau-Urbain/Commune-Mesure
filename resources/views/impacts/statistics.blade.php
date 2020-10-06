@@ -67,7 +67,7 @@
       <div id="lieux_list">
         <table id="table_places">
             <tr>
-                <th><input type="checkbox" name="" value="" onclick="selectAll(this)"></th>
+                <!-- <th><input type="checkbox" name="" value="" onclick="selectAll(this)"></th> -->
                 <th scope="col"><p class="lieux_title">Lieu</p></th>
                 <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
                 <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th>
@@ -75,7 +75,7 @@
             <hr>
             @foreach($places as $n => $place)
             <tr class="place-tr">
-                <th scope="row"><input type="checkbox" name="" value="" class="checkPlaces"></th>
+                <!-- <th scope="row"><input type="checkbox" name="checkbox_{{$place->name}}" value="" class="checkPlaces"></th> -->
                 <th><p class="place_element" id="list_{{$place->name}}">{{$place->name}}</p></th>
                 <td><p class="leftPlaceIndicator"></p></td>
                 <td><p class="rightPlaceIndicator"></p></td>

@@ -501,7 +501,81 @@ svg {
 .fa-user-graduate:hover + #i-graduateText{
   opacity: 1;
 }
-
+.path-2s {
+  stroke-dashoffset: 1000;
+  animation: dash 2s linear ;
+}
+.path-3s {
+  stroke-dashoffset: 1000;
+  animation: idash 3s linear ;
+}
+.value_item{
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 30px;
+  transition: 0.5s ease;
+}
+.value_item:hover{
+  transform: scale(1.5);
+}
+.value_item:hover + .value_item_child{
+  display: block;
+}
+.value_text{
+  font-size: 0.7em;
+  font-weight: bold;
+  word-wrap: break-word;
+  text-align: center;
+  margin-top: 30px;
+}
+.value_item_child{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 30px;
+  display: none;
+  transition: 0.5s ease;
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 822;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes idash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 830;
+  }
+}
+.impact_item{
+  position: absolute;
+  display: flex;
+  z-index: 0;
+}
+#impact_item_lien_social{
+  left: 400px;
+  margin-top: -30px;
+}
+#impact_item_sante{
+  margin-top: 0px;
+  right: 200px;
+}
+#impact_item_reseaux{
+  margin-top: 300px;
+  right: 100px;
+}
+#impact_item_appartenance{
+  margin-top: 200px;
+  left: 300px;
+}
+//
 .block-data-stat > div{
     line-height: 0em ;
 }
@@ -512,6 +586,7 @@ svg {
   padding: 5px;
 }
 
+//
 .partenaires-block{
   background-color: white !important;
 }
@@ -542,6 +617,44 @@ p.partenaires_text{
   max-height: 20em;
 }
 
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+  padding: 0;
+  list-style: none;
+
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    margin: -($item-size / 2);
+    width:  $item-size;
+    height: $item-size;
+
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+      }
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+.circle-container {
+  @include on-circle($item-count: 8, $circle-size: 20em, $item-size: 6em);
+  margin: 5em auto 0;
+
+  div {
+    display: block;
+    max-width: 100%;
+    border-radius: 50%;
+  }
 .header-bloc-note{
   display: flex;
   align-items: center;
