@@ -84,17 +84,6 @@
                       </div>
                   </div>
                   <div class="home-foot"></div>
-
-
-                  <!-- <div class="budget">
-                    <figure class="image is25em" style="margin:auto;">
-                    </figure>
-                    <div class="very-small" id="occupant">{{ $place->manager->occupants }} structures occupantes</div>
-                    <div class="very-small" id="budget-value">
-
-                    </div>
-                    <div class="very-small" id="actor">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                  </div> -->
                 </div>
                 <div class="column">
                   <!-- Bloc note begin -->

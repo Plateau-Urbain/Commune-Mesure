@@ -17,38 +17,46 @@
     <div class="hero is-primary-light">
         <div class="section">
             <h1 class="title has-text-centered">Quelques chiffres</h1>
-            <div class="level block-data-stat">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="title animate-value is-1" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
-                        <p class="heading title is-4">Lieux</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
+            <div class="has-text-centered">
+
+                <div class="level-item has-text-centered is-inline-block block-pyramide">
                     <div>
                         <p class="title animate-value is-1" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
                         <p class="heading title is-4">Villes</p>
                     </div>
                 </div>
-                <div class="level-item has-text-centered">
+
+            </div>
+            <div class="has-text-centered mt-3">
+              <div class="level-item has-text-centered is-inline-block block-pyramide">
                     <div>
-                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($total_surface) }}>{{ array_sum($total_surface) }}</p>
-                        <p class="heading title is-4">m<sup>2</sup></p>
+                        <p class="title animate-value is-1" id="animate-place" data-total={{ count($coordinates) }}>{{ count($coordinates) }}</p>
+                        <p class="heading title is-4">Lieux</p>
                     </div>
                 </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
-                        <p class="heading title is-4">ETP</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
+              <div class="level-item has-text-centered is-inline-block block-pyramide">
+                  <div>
+                      <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($total_surface) }}>{{ array_sum($total_surface) }}</p>
+                      <p class="heading title is-5">m<sup>2</sup></p>
+                  </div>
+              </div>
+
+            </div>
+            <div class="has-text-centered mt-3">
+
+                <div class="level-item has-text-centered is-inline-block block-pyramide">
                     <div>
                         <p class="title animate-value is-1" id="animate-events" data-total={{ array_sum($total_evenements) }}>{{ array_sum($total_evenements) }}</p>
                         <p class="heading title is-4">ÉVÉNEMENTS</p>
                     </div>
                 </div>
-                <div class="level-item has-text-centered">
+                <div class="level-item has-text-centered is-inline-block block-pyramide">
+                    <div>
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
+                        <p class="heading title is-4">ETP</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered is-inline-block block-pyramide">
                     <div>
                         <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ array_sum($total_visiteurs) }}>{{ array_sum($total_visiteurs) }}</p>
                         <p class="heading title is-4">VISITEURS</p>

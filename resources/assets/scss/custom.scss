@@ -580,6 +580,10 @@ p.partenaires_text{
   }
 }
 
+/*
+* Style page Place
+*/
+
 .header-bloc-note{
   display: flex;
   align-items: center;
@@ -649,4 +653,15 @@ div .bloc-note{
 .home-foot{
   width: 100%;
   border: 2px solid;
+}
+
+/*
+* Style page Home
+*/
+
+.block-pyramide{
+  // border:1px solid #fff;
+  margin: 6px;
+  padding: 2px;
+
 }
