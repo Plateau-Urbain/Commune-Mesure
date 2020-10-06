@@ -185,46 +185,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: solid;
 }
 
-.location-home,
-.budget,
-#actor-illustration,
-#budget-value-illustration {
-  position: relative;
-}
-
-#owner,
-#contract,
-#occupant,
-#actor,
-#actor-illustration-detail,
-#description-illustration-detail,
-#budget-value
-{
-  position: absolute;
-  height: auto;
-  width: auto;
-}
-
-#owner,
-#contract,
-#occupant,
-#budget-total,
-#actor{
-  //background-color: white;
-  color: white;
-}
-#owner,
-#contract,
-#occupant,
-#actor
-{
-  //border: 1px #e85048 solid;
-  padding: 1px;
-  left: 14%;
-  font-size: .8em;
-  width: 15em;
-}
-
 .is1em{
   height: auto;
   width: 1em;
@@ -263,43 +223,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .fontSize0-8em{
   font-size: 0.8em;
-}
-
-#budget-value{
-  top: 4em;
-}
-#occupant{
-  top: 37.5%;
-}
-
-#owner {
-  bottom: 8em;
-}
-
-#actor{
-  top: 22.5%;
-}
-
-#contract {
-  bottom: 8em;
-}
-
-#description-illustration-detail{
-  top: 20%;
-  left: 30%;
-  width: 50%;
-  padding: 1em 0em 0 1.5em;
-}
-
-.description,.actor{
-  overflow-y:auto;
-}
-
-#actor-illustration-detail{
-  top: 17%;
-  left: 30%;
-  width: 50%;
-  padding: 1em 0em 0 2em;
 }
 
 .Progress{
@@ -655,6 +578,8 @@ p.partenaires_text{
     max-width: 100%;
     border-radius: 50%;
   }
+}
+
 .header-bloc-note{
   display: flex;
   align-items: center;
