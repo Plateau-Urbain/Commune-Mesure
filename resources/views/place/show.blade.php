@@ -49,11 +49,10 @@
                 </p>
               </div>
               <div class="section">
-                <div class="columns is-vcentered is-centered">
+                <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
-                  <div class="columns bloc-note">
-                    <div class="column is-three-fifths is-offset-one-fifth">
+                  <div class=" bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
                           <img src="/images/bloc_noteAsset.png">
@@ -65,7 +64,6 @@
                             <p class="fontSize0-8em">{{ $place->description }}</p>
                         </div>
                       </div>
-                    </div>
                   </div>
                   <!-- Bloc note end -->
                 </div>
@@ -109,8 +107,7 @@
               </div>
                 <div class="column">
                   <!-- Bloc note begin -->
-                  <div class="columns bloc-note">
-                    <div class="column is-three-fifths is-offset-one-fifth">
+                  <div class="bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
                           <img src="/images/bloc_noteAsset.png">
@@ -151,11 +148,9 @@
                           @endif
                         </div>
                       </div>
-                    </div>
                   </div>
                   <!-- Bloc note end -->
                 </div>
-              </div>
               </div>
             </section>
           </div>

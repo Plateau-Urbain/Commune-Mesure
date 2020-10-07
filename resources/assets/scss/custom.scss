@@ -583,7 +583,9 @@ p.partenaires_text{
 /*
 * Style page Place
 */
-
+.bloc-note{
+  padding:20%;
+}
 .header-bloc-note{
   display: flex;
   align-items: center;
@@ -614,7 +616,7 @@ div .bloc-note{
 .home-body{
   width: 100%;
   padding-top: 0.5em;
-  height: 20em;
+  height: 100%;
 }
 
 .home-body-right{
