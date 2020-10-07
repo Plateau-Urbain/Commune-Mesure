@@ -609,47 +609,35 @@ div .bloc-note{
 
 .home-head{
   width:100%;
-}
-.home-head div{
-  display:inline-block;
-}
-.home-head{
-  width:100%;
-  height:100%;
-  border-left: 2.5em solid transparent;
-  border-right: 2.5em solid transparent;
-  border-bottom: 5em solid #e85048;
+  margin-bottom: 0px;
 }
 .home-body{
   width: 100%;
   padding-top: 0.5em;
-  background-color: #cccccc;
-  //height: 20em;
+  height: 20em;
 }
 
 .home-body-right{
   background-color: #cccccc;
+  margin-right: 1.5%;
+}
+.home-body-left{
+  padding-top: 10%;
+  background-color:#f2f2f2;
 }
 .window{
-  margin: 1px;
+  margin: 6%;
   padding: 1px;
   border: 1px solid #3f3d56;
   background-color: #3f3d56;
   font-size: .8em;
   color: white;
 }
-
-.door{
-  background-color: #3f3d56;
-  width: 100%;
-  height: 100%;
-  margin: 0 1em 0 1em;
-
+.window-right{
+  width:max-content;
 }
-.home-door{
-  margin: 1em;
-  height: 5em;
-}
+
+
 .home-foot{
   width: 100%;
   border: 2px solid;

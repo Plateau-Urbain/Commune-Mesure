@@ -71,20 +71,39 @@
                 </div>
                 <div class="column">
                   <div class="home-head">
+                    <figure class="image">
+                      <img src="/images/roofing.svg">
+                    </figure>
                   </div>
                 <div class="column home-body">
-                      <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
-                      <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                      <div class="columns home-door">
-                        <div class="column"></div>
-                        <div class="column is-one-fifths">
-                          <div class="door"></div>
+                    <div class="columns is-mobile">
+                      <div class="column home-body-left">
+                        <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
+                        <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
+
+                        <div class="home-door">
+                          <figure class="image">
+                            <img src="/images/foot_home.svg">
+                          </figure>
                         </div>
-                        <div class="column"></div>
                       </div>
+                      <div class="column is-one-third has-text-centered home-body-right">
+
+                      <div class="">
+                        <figure class="image">
+                          <img src="/images/groupe_windows.svg">
+                        </figure>
+                      </div>
+                      <div class="">
+                        <figure class="image">
+                          <img src="/images/groupe_windows.svg">
+                        </figure>
+                      </div>
+                    </div>
                   </div>
                   <div class="home-foot"></div>
                 </div>
+              </div>
                 <div class="column">
                   <!-- Bloc note begin -->
                   <div class="columns bloc-note">
