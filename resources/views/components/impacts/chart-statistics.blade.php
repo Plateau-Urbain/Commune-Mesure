@@ -95,8 +95,7 @@
 
     LeftIndicator = selectcmpL.value;
     RightIndicator = selectcmpR.value;
-    document.getElementById("stats_selectedLeftValue").innerHTML = LeftIndicator.toUpperCase()
-    document.getElementById("stats_selectedRightValue").innerHTML = RightIndicator.toUpperCase()
+
 
     if(leftTitle == '--' || rightTitle == "--"){
       console.log(selectcmpL);
@@ -135,11 +134,7 @@
        places.push(key);
        tabLeftValues.push(dataLeft);
        tabRightValues.push(dataRight);
-
-       console.log(placesLValues)
        for (var i = 0; i < tabLeftValues.length; i++) {
-         console.log(placesLValues)
-         console.log(i)
          placesLValues[i].innerHTML = tabLeftValues[i]
        }
 
@@ -149,6 +144,12 @@
 
 
     }
+    LeftIndicator = traduction(LeftIndicator)
+    RightIndicator = traduction(RightIndicator)
+
+    document.getElementById("stats_selectedLeftValue").innerHTML = LeftIndicator.toUpperCase()
+    document.getElementById("stats_selectedRightValue").innerHTML = RightIndicator.toUpperCase()
+
   }
 
   function selectAll(source){
@@ -156,7 +157,26 @@
     checkboxes.forEach(function(element){
       element.checked = source.checked;
     });
-    
-
+  }
+  function traduction(expression) {
+    switch (expression) {
+      case 'event':
+        expression = 'nombre d\'évènements'
+        break;
+      case 'benevole':
+        expression = 'nombre de bénévoles'
+        break;
+      case 'ouverture':
+        expression = 'heures d\'ouvertures'
+        break;
+      case 'struct_hebergee':
+        expression = 'nombre de structures'
+        break;
+      case 'partenaire':
+        expression = 'nombre de partenaires'
+        break;
+    }
+    console.log(expression)
+    return expression
   }
 </script>

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 var activitiesMerits = JSON.parse("{{ json_encode($place->structure) }}".replace(/&quot;/g,'"'));
 var myActivities = activitiesMerits.activities;
 var myMerits = activitiesMerits.merits;
@@ -53,4 +53,4 @@ var graph = {
   s.startForceAtlas2();
   window.setTimeout(function() {s.killForceAtlas2()}, 5000);
 
-</script>
+</script> -->

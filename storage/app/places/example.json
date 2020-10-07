@@ -2711,6 +2711,10 @@
         }
       }
     ],
+    "impact": [
+        "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres",
+        "Certaines personnes ont fait preuve d'une plus grande confiance en eux"
+    ],
     "badges": [
         "cantine",
         "hebergement-urgence",
@@ -2718,13 +2722,58 @@
     ],
     "structure":{
       "activities":[
-        {"text":"Bien-être","size":25, "color":"#e34c26", "edge":[0,3,2]},
-        {"text":"Environnement","size":25, "color":"#3f3d56", "edge":[6]},
-        {"text":"Développement durable","size":25, "color":"#3f3d56", "edge":[5,6]},
-        {"text":"Solidarité","size":25, "color":"#762dd4", "edge":[6,2,0,1,3]},
-        {"text":"Éducation","size":25, "color":"#cc0001", "edge":[1,4]},
-        {"text":"Art et création","size":25, "color":"#d01975", "edge":[6]},
-        {"text":"Activités","size":25, "color":"#9be500", "edge":[5,6]}
+        {
+          "text":"Bien-être",
+          "children":[
+            {"text":"Vivre ensemble"},
+            {"text":"Laïcité"},
+            {"text":"Cantine Freegan"},
+            {"text":"Co-working"}
+          ]
+        },
+        {
+          "text":"Environnement",
+          "children":[
+            {"text":"Innovation sociale"}
+          ]
+        },
+        {
+          "text":"Développement durable",
+          "children":[
+            {"text":"Innovation économique"},
+            {"text":"Innovation sociale"}
+          ]
+        },
+        {
+          "text":"Solidarité",
+          "children":[
+            {"text":"Citoyenneté"},
+            {"text":"Innovation sociale"}
+          ]
+        },
+        {
+          "text":"Éducation",
+          "children":[
+            {"text":"Citoyenneté"},
+            {"text":"Formation des individus"},
+            {"text":"Vivre ensemble"},
+            {"text":"Laïcité"},
+            {"text":"Cantine Freegan"},
+            {"text":"Co-working"}
+          ]
+        },
+        {
+          "text":"Art et création",
+          "children":[
+            {"text":"Innovation sociale"}
+          ]
+        },
+        {
+          "text":"Activités",
+          "children":[
+            {"text":"Innovation économique"}
+          ]
+        }
       ],
       "theme":[
         {"text":"Fablab","size":35, "color":"rgb(52, 52, 52, 0.3)"},

@@ -1,75 +1,71 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
 <script>
 
 var values = JSON.parse("{{ json_encode($place->structure->activities) }}".replace(/&quot;/g,'"'));
-var applications = JSON.parse("{{ json_encode($place->structure->merits) }}".replace(/&quot;/g,'"'));
-var randomColors = ["#E85048","#DEEBEE","#617D8C","#F3771B","#B5BF8A","#E3386A","#d6d8ff","#b1bfac","#fcba03"]
-console.log(values)
-console.log(applications)
-var mainHeight = 100;
-var radius = 150;
-var theta = [0, (2 * (Math.PI / 15)), (4 * (Math.PI / 15)), (2 * (Math.PI / 5)), (8 * (Math.PI / 15)), (2 * (Math.PI / 3)), (4 * (Math.PI / 5)), (14 * (Math.PI / 15)), (16 * (Math.PI / 15)), (6 * (Math.PI / 5)), (4 * (Math.PI / 3)), (22 * (Math.PI / 15)), (8 * (Math.PI / 5)), (26 * (Math.PI / 15)), (28 * (Math.PI / 15))];
+
+var colors = ['#E85048', '#DEEBEE', '#F3771B', '#B5BF8A', 'orange', '#E3386A', '#d6d8ff', 'grey', '#b1bfac', '#fcba03', '#FFB7B2', '#B5EAD7', '#C7CEEA', '#FF9AA2','#E85048', '#DEEBEE', '#617D8C', '#F3771B', '#B5BF8A'];
+
+var theta = [];
+
+function setCircle(n, rx, ry, id) {
+    var main = document.getElementById(id);
+    var mainHeight = parseInt(window.getComputedStyle(main).height.slice(0, -2));
+    var circleArray = [];
+    for (var i = 0; i < n; i++) {
+        var circleChild = document.createElement('div');
+        circleChild.className = 'value_item-child';
+        var textChild = document.createElement("p")
+        textChild.className = "value_text_child"
+        textChild.innerHTML = childrens[i].text
+        circleChild.appendChild(textChild)
+        circleArray.push(circleChild); 
+        circleArray[i].posx = Math.round(rx * (Math.cos(theta[i]))) + 'px';
+        circleArray[i].posy = Math.round(ry * (Math.sin(theta[i]))) + 'px';
+        circleArray[i].style.position = "absolute";
+        circleArray[i].style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        circleArray[i].style.transform = "translate(-50%,-50%)";
+        circleArray[i].style.top = ((mainHeight / 2) - parseInt(circleArray[i].posy.slice(0, -2))) + 'px';
+        circleArray[i].style.left = ((mainHeight / 2) + parseInt(circleArray[i].posx.slice(0, -2))) + 'px';
+
+        main.appendChild(circleArray[i]);
+        // main.addEventListener("mouseover", function( event ) { circleChild[i].style.opacity = "1"; }, false);
+    }
+};
+function circleGenerator(number, rx, ry, id) {
+    theta = [];
+    var circle = 360 / number;
+    for (var i = 0; i <= number; i++) {
+        theta.push((circle / 180) * i * Math.PI);
+    }
+    setCircle(number, rx, ry, id)
+}
 
 for (const [key, value] of Object.entries(values)) {
-  console.log(value.text)
   var container = document.getElementById("value_container")
-  var newDiv = document.createElement("div")
-  newDiv.className = "value_item";
-  newDiv.style.backgroundColor = randomColors[Math.floor(Math.random() * (7 - 1 + 1) + 1)]
+  var mainCircle = document.createElement("div")
+  mainCircle.id = "circle" + value.text;
+  mainCircle.className = "value_item";
+  mainCircle.style.backgroundColor = colors[Math.floor(Math.random()*10)]
+  mainCircle.style.backgroundColor = "#F1F1F1"
   var text = document.createElement("p")
   text.innerHTML = value.text
   text.className = "value_text";
-  newDiv.appendChild(text);
-  container.appendChild(newDiv)
-
-  childrens = applications;
-
-  childrens.forEach(function(element){
-    var newChild = document.createElement("div")
-    newChild.className = "value_item_child";
-    var textChild = document.createElement("p")
-    textChild.className = "value_text"
-    textChild.innerHTML = element.text
-    newChild.appendChild(textChild)
-    container.appendChild(newChild)
-
-    newChild.posx = Math.round(radius * (Math.cos(theta[i]))) + 'px';
-    newChild.posy = Math.round(radius * (Math.sin(theta[i]))) + 'px';
-    newChild.style.position = "absolute";
-    newChild.style.top = ((mainHeight / 2) - parseInt(newChild.posy.slice(0, -2))) + 'px';
-    newChild.style.left = ((mainHeight / 2) + parseInt(newChild.posx.slice(0, -2))) + 'px';
-    newDiv.addEventListener("mouseover", function( event ) {
-      newChild.style.display = "block";
-      setTimeout(function() { newChild.style.display = "none";}, 500);
-    }, false);
-  });
-
-  function setCircleMerits() {
-  var radius = 150;
-  var main = document.getElementById('value_container');
-  var mainHeight = parseInt(window.getComputedStyle(main).height.slice(0, -2));
-  var theta = [0, (2 * (Math.PI / 15)), (4 * (Math.PI / 15)), (2 * (Math.PI / 5)), (8 * (Math.PI / 15)), (2 * (Math.PI / 3)), (4 * (Math.PI / 5)), (14 * (Math.PI / 15)), (16 * (Math.PI / 15)), (6 * (Math.PI / 5)), (4 * (Math.PI / 3)), (22 * (Math.PI / 15)), (8 * (Math.PI / 5)), (26 * (Math.PI / 15)), (28 * (Math.PI / 15))];
-  var circleArray = [];
-  var colors = ['red', 'green', 'purple', 'black', 'orange', 'yellow', 'maroon', 'grey', 'lightblue', 'tomato', 'pink', 'maroon', 'cyan', 'magenta', 'blue', 'chocolate', 'DarkSlateBlue'];
-  for (var i = 0; i < 6; i++) {
-    var circle = document.createElement('div');
-    circle.className = 'circle number' + i;
-    circleArray.push(circle);
-    circleArray[i].posx = Math.round(radius * (Math.cos(theta[i]))) + 'px';
-    circleArray[i].posy = Math.round(radius * (Math.sin(theta[i]))) + 'px';
-    circleArray[i].style.position = "absolute";
-    circleArray[i].style.backgroundColor = colors[i];
-    circleArray[i].style.top = ((mainHeight / 2) - parseInt(circleArray[i].posy.slice(0, -2))) + 'px';
-    circleArray[i].style.left = ((mainHeight / 2) + parseInt(circleArray[i].posx.slice(0, -2))) + 'px';
-    main.appendChild(circleArray[i]);
-  }
-};
-setCircleMerits();
-
-
-
+  mainCircle.appendChild(text);
+  container.appendChild(mainCircle)
+  var childrens = value.children
+  circleGenerator(childrens.length, 100, 100, mainCircle.id);
+  // childrens.forEach(function(element){
+  //   i= i+2;
+  //   var newChild = document.createElement("div")
+  //   newChild.className = "value_item_child";
+  //   var textChild = document.createElement("p")
+  //   textChild.className = "value_text_child"
+  //   textChild.innerHTML = element.text
+  //   newChild.appendChild(textChild)
+  //
 }
+
+
         //
         // var options = {
         //   series: [{
