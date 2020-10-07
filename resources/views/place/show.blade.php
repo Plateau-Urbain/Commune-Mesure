@@ -189,19 +189,15 @@
             </section>
             <section class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
-
               <div class="columns">
                 <div class="column">
-                  <div id="value_container">
-
-                  </div>
-<!--                  <div id="sigma" style="width:100%; height:30em;"></div> -->
-              <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
+                  <div id="value_container"></div>
+                  <!-- <div id="sigma" style="width:100%; height:30em;"></div> -->
+                  <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
+                </div>
               </div>
-              </div>
-
             </section>
-            <section class="section" id="finances">
+            <section class="section" id="finances" >
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
@@ -254,14 +250,14 @@
             @endif
             @if($impacts == "Certaines personnes ont fait preuve d'une plus grande confiance en eux")
             <div class="impact_item" id="impact_item_confiance" data-aos="fade-in">
+              <div class="impact_box" id="impact_box_confiance">
+                <p class="impact_text">{{$impacts}}</p>
+              </div>
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text x="28" y="40" font-size="7" font-weight="bold" fill="#004c44">Développement</text>
               <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">personnel</text>
-            </svg>
-            <div class="impact_box" id="impact_box_confiance">
-              <p class="impact_text">{{$impacts}}</p>
-            </div></div>
+            </svg></div>
             @endif
             @if($impacts == "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)")
             <div class="impact_item" id="impact_item_inconfort" data-aos="fade-in">

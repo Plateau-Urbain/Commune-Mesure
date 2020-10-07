@@ -41,7 +41,7 @@ h2.title{
     border-width: .85em;
     border-style: solid;
     border-color: $ribbon-color;
-    z-index: -1;
+    z-index: -10;
   }
   &:before {
     left: -($rear-x-offset);
@@ -513,6 +513,7 @@ svg {
   margin: 30px;
   vertical-align: middle;
   transition: 0.2s ease;
+
 }
 .value_item:hover{
   transform: scale(1.5);
@@ -525,14 +526,28 @@ svg {
   font-weight: bold;
   word-wrap: break-word;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
 }
-.value_item_child{
-  height: 100px;
-  width: 100px;
+.value_item-child{
+  height: 65px;
+  width: 65px;
   border-radius: 50%;
-  transition: 0.2s ease;
-
+  transition: all .1s ease;
+  z-index:-1;
+}
+.value_text_child{
+  font-size: .5em;
+  font-weight: bold;
+  word-wrap: break-word;
+  text-align: center;
+  margin-top: 20px;
+}
+#value_container{
+  margin-top: 70px;
+  background-color:#DEEBEE;
+}
+#circleActivités >div{
+  left: -50px !important; 
 }
 @keyframes dash {
   from {
