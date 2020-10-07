@@ -2711,6 +2711,9 @@
         }
       }
     ],
+    "impact_economique":{
+      "nombre_structures_crees":5
+    },
     "impact": [
         "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres",
         "Certaines personnes ont fait preuve d'une plus grande confiance en eux"

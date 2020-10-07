@@ -247,8 +247,7 @@
             </section>
 
           </div>
-        <section>
-
+        <section class="section" id="impact_social">
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
             <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
             <img style="margin-top: 50px; margin-left:400px;" width="200" src="/images/3_characters.png"/>
@@ -310,6 +309,21 @@
             @endif
             @endforeach
         </section>
+        @if($place->impact_economique->nombre_structures_crees > 0)
+        <section class="section" id="impact_economique">
+            <h2 class="ribbon-banner title is-5 has-text-centered">Impact Économique</h2>
+            <p></p>
+            <div class="" style="margin-left: 50px;margin-right: 50px;">
+            @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++) 
+              @if($place->impact_economique->nombre_structures_crees>5)
+              @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i+5)
+              <img width="100" src="/images/building.png" alt="Nombre d'emplois crées">
+              @endfor
+              @endif
+            @endfor
+            </div>
+        </section>
+        @endif
         <section class="section anchor" id="donnees-insee">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
