@@ -40,7 +40,7 @@
     </div>
 
     <div class="column">
-        <div id="presentation" class="hero is-large anchor">
+        <div id="presentation" class="hero is-large anchor" style="height:25%;">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
               <div class="has-text-centered ">
@@ -49,11 +49,10 @@
                 </p>
               </div>
               <div class="section">
-                <div class="columns is-vcentered is-centered">
+                <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
-                  <div class="columns bloc-note">
-                    <div class="column is-three-fifths is-offset-one-fifth">
+                  <div class=" bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
                           <img src="/images/bloc_noteAsset.png">
@@ -65,27 +64,50 @@
                             <p class="fontSize0-8em">{{ $place->description }}</p>
                         </div>
                       </div>
-                    </div>
                   </div>
                   <!-- Bloc note end -->
-
-                </div>
-                <div class="column is-two-fifth">
-                  <div class="budget">
-                    <figure class="image is25em" style="margin:auto;">
-                      <img  src="/images/building_detail.svg" >
-                    </figure>
-                    <div class="very-small" id="occupant">{{ $place->manager->occupants }} structures occupantes</div>
-                    <div class="very-small" id="budget-value">
-
-                    </div>
-                    <div class="very-small" id="actor">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                  </div>
                 </div>
                 <div class="column">
+                  <div class="home-head">
+                    <figure class="image">
+                      <img src="/images/roofing.svg">
+                    </figure>
+                  </div>
+                <div class="column home-body">
+                    <div class="columns is-mobile">
+                      <div class="column home-body-left">
+                        <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
+                        <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
+                        <div class="window very-small">Ouvert depuis {{ $place->ouverture}}</div>
+                        <div class="window very-small">Surface de {{ $place->data->compare->moyens->superficie->nombre}}m<sup>2</sup></div>
+                        <div class="window very-small">{{ $place->data->compare->moyens->etp->nombre}} ETP</div>
+
+                        <div class="home-door">
+                          <figure class="image">
+                            <img src="/images/foot_home.svg">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="column is-one-third has-text-centered home-body-right">
+
+                      <div class="">
+                        <figure class="image">
+                          <img src="/images/groupe_windows.svg">
+                        </figure>
+                      </div>
+                      <div class="">
+                        <figure class="image">
+                          <img src="/images/groupe_windows.svg">
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="home-foot"></div>
+                </div>
+              </div>
+                <div class="column">
                   <!-- Bloc note begin -->
-                  <div class="columns bloc-note">
-                    <div class="column is-three-fifths is-offset-one-fifth">
+                  <div class="bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
                           <img src="/images/bloc_noteAsset.png">
@@ -126,12 +148,14 @@
                           @endif
                         </div>
                       </div>
-                    </div>
                   </div>
                   <!-- Bloc note end -->
                 </div>
               </div>
-              </div>
+            </section>
+          </div>
+          <section>
+            <div class="section">
               <div class="columns has-text-centered ">
                 <div class="column">
                   <div class="has-text-centered">
@@ -186,7 +210,10 @@
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
+          <div>
+
             <section class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
               <div class="columns">

@@ -19,10 +19,6 @@ class MainController extends Controller
         $total_visiteurs = $place->getVisiteurs();
 
         return view('home', compact('coordinates', 'cities', 'total_surface','total_etp','total_evenements','total_visiteurs'));
-
-        // [$coordinates,$cities,$meters, $totalmeters,$total_etp,$total_events,$total_visiteurs] = $place->withPopup()->all();
-        // return view('home', compact('coordinates', 'cities','meters','totalmeters','total_etp','total_events','total_visiteurs'));
-
     }
 
     public function places(Place $place, $sortBy = null)

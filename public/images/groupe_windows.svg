@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="21mm"
+   height="19mm"
+   viewBox="0 0 21 19"
+   version="1.1"
+   id="svg1501"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="groupe_windows.svg">
+  <defs
+     id="defs1495" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="29.938118"
+     inkscape:cy="67.175518"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1498">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-278)">
+    <polygon
+       points="691.043,286.149 691.043,306.573 713.51,306.573 715.552,306.573 715.552,286.149 "
+       id="polygon48"
+       style="fill:#3f3d56"
+       transform="matrix(0.11494104,0,0,0.11494104,-72.861812,251.35308)" />
+    <polygon
+       points="691.043,343.336 715.552,343.336 715.552,322.912 713.51,322.912 691.043,322.912 "
+       id="polygon50"
+       style="fill:#3f3d56"
+       transform="matrix(0.11494104,0,0,0.11494104,-72.861812,251.35308)" />
+    <rect
+       x="11.262521"
+       y="284.24338"
+       width="2.8170521"
+       height="2.347543"
+       id="rect52"
+       style="fill:#3f3d56;stroke-width:0.11494104" />
+    <rect
+       x="11.262521"
+       y="288.4689"
+       width="2.8170521"
+       height="2.347543"
+       id="rect54"
+       style="fill:#3f3d56;stroke-width:0.11494104" />
+  </g>
+</svg>
