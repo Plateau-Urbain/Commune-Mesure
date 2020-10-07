@@ -195,16 +195,6 @@
                   <div id="value_container">
 
                   </div>
-                  <!-- <ul class='circle-container'>
-                    <li><img src='http://lorempixel.com/100/100/city'></li>
-                    <li><img src='http://lorempixel.com/100/100/nature'></li>
-                    <li><img src='http://lorempixel.com/100/100/abstract'></li>
-                    <li><img src='http://lorempixel.com/100/100/cats'></li>
-                    <li><img src='http://lorempixel.com/100/100/food'></li>
-                    <li><img src='http://lorempixel.com/100/100/animals'></li>
-                    <li><img src='http://lorempixel.com/100/100/business'></li>
-                    <li><img src='http://lorempixel.com/100/100/people'></li>
-                  </ul> -->
 <!--                  <div id="sigma" style="width:100%; height:30em;"></div> -->
               <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
               </div>
@@ -235,29 +225,67 @@
 
           </div>
         <section>
+
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
-            <div class="" data-aos="fade-in">
-            <svg class="impact_item" data-aos="fade-right" id="impact_item_lien_social" width="315" height="150" viewBox="20 20 75 40">
+            <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
+            <img style="margin-top: 50px; margin-left:400px;" width="200" src="/images/3_characters.png"/>
+            @foreach($place->impact as $impacts)
+            @if($impacts == "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres")
+            <div class="impact_item" id="impact_item_lien_social" data-aos="fade-in">
+            <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text x="35" y="40" font-size="8" font-weight="bold" fill="#004c44">Lien Social</text>
-            </svg></div>
-            <div class="" data-aos="fade-right">
-            <svg class="impact_item" data-aos="fade-left" id="impact_item_sante" width="315" height="150" viewBox="20 20 75 40">
-              <path class="path-3s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="48" y="40" font-size="8" font-weight="bold" fill="#004c44">Santé</text>
-            </svg></div>
-            <div class="" data-aos="fade-in">
-            <svg class="impact_item" data-aos="fade-right" id="impact_item_appartenance" width="315" height="150" viewBox="20 20 75 40">
-              <path class="path-3s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="30" y="43" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
-            </svg></div>
-            <div class="" data-aos="fade-left">
-            <svg class="impact_item"  id="impact_item_reseaux" width="315" height="150" viewBox="20 20 75 40">
-              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="40" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
-            </svg></div>
-            <center><img style="margin-top: 50px;" width="300" src="/images/3_characters.png"/></center></center>
+            </svg>
+            <div class="impact_box" id="impact_box_social">
+              <p class="impact_text">{{$impacts}}</p>
+            </div></div>
 
+            @endif
+            @if($impacts == "Certaines personnes ont fait part ou ont paru en meilleure santé physique ou psychique")
+            <div class="impact_item" id="impact_item_sante" data-aos="fade-right">
+            <svg  width="215" height="150" viewBox="20 20 75 40">
+              <<path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Santé et</text>
+              <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">Bien-être</text>
+            </svg>
+            <div class="impact_box" id="impact_box_sante">
+              <p class="impact_text">{{$impacts}}</p>
+            </div></div>
+            @endif
+            @if($impacts == "Certaines personnes ont fait preuve d'une plus grande confiance en eux")
+            <div class="impact_item" id="impact_item_confiance" data-aos="fade-in">
+            <svg  width="215" height="150" viewBox="20 20 75 40">
+              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text x="28" y="40" font-size="7" font-weight="bold" fill="#004c44">Développement</text>
+              <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">personnel</text>
+            </svg>
+            <div class="impact_box" id="impact_box_confiance">
+              <p class="impact_text">{{$impacts}}</p>
+            </div></div>
+            @endif
+            @if($impacts == "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)")
+            <div class="impact_item" id="impact_item_inconfort" data-aos="fade-in">
+            <svg width="215" height="150" viewBox="20 20 75 40">
+              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text id="impact_text_inconfort" x="38" y="40" font-size="8" font-weight="bold" fill="#004c44">Inconfort</text>
+            </svg>
+            <div class="impact_box" id="impact_box_inconfort">
+              <p class="impact_text" >{{$impacts}}</p>
+            </div></div>
+
+            @endif
+            @if($impacts == "Certaines personnes ont fait part d'un stress ou de conflits")
+            <div class="impact_item" id="impact_item_stress" data-aos="fade-in">
+            <div class="impact_box" id="impact_box_stress">
+              <p class="impact_text">{{$impacts}}</p>
+            </div>
+            <svg width="215" height="150" viewBox="20 20 75 40">
+              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text x="40" y="40" font-size="8" font-weight="bold" fill="#004c44">Stress</text>
+            </svg>
+            </div>
+            @endif
+            @endforeach
         </section>
         <section class="section anchor" id="donnees-insee">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
