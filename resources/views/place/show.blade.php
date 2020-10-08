@@ -40,7 +40,7 @@
     </div>
 
     <div class="column">
-        <div id="presentation" class="hero is-large anchor" style="height:25%;">
+        <div id="presentation" class="hero is-large anchor">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
               <div class="has-text-centered ">
@@ -155,7 +155,7 @@
             </section>
           </div>
           <section>
-            <div class="section">
+            <div class="section" style="padding:0;">
               <div class="columns has-text-centered ">
                 <div class="column">
                   <div class="has-text-centered">
@@ -247,6 +247,7 @@
             </section>
 
           </div>
+        @if($place->impact != [])
         <section class="section" id="impact_social">
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
             <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
@@ -285,6 +286,7 @@
               <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">personnel</text>
             </svg></div>
             @endif
+            <!-- A REFAIRE REGLAGE DUN INCONFORT ET NON LE CONTRAIRE -->
             @if($impacts == "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)")
             <div class="impact_item" id="impact_item_inconfort" data-aos="fade-in">
             <svg width="215" height="150" viewBox="20 20 75 40">
@@ -309,17 +311,22 @@
             @endif
             @endforeach
         </section>
-        @if($place->impact_economique->nombre_structures_crees > 0)
+        @endif
+        @php
+        $nb_struct = $place->impact_economique->nombre_structures_crees
+        @endphp
+        @if($nb_struct > 0)
         <section class="section" id="impact_economique">
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Économique</h2>
             <p></p>
-            <div class="" style="margin-left: 50px;margin-right: 50px;">
-            @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++) 
-              @if($place->impact_economique->nombre_structures_crees>5)
-              @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i+5)
-              <img width="100" src="/images/building.png" alt="Nombre d'emplois crées">
-              @endfor
-              @endif
+            <div class="" style="margin-top: 50px;">
+            <center><p style="font-weight:bold;">Nombre de structures crées : {{$nb_struct}}</p></center>
+            @php
+            $inc = 1;
+            if($nb_struct>=5) $inc = $nb_struct/5
+            @endphp
+            @for ($i = 0; $i < $nb_struct; $i=$i+$inc)
+              <img width="100" src="/images/building.png" alt="Nombre d'emplois crées" style="margin-left:100px">
             @endfor
             </div>
         </section>
