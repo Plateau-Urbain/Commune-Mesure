@@ -42,13 +42,13 @@
     <div class="column">
         <div id="presentation" class="hero is-large anchor" style="height:25%;">
             <section>
-              <h2 class="ribbon-banner is-5 has-text-centered" style="margin-top:30px;">Présentation du lieu</h2>
+              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
               <div class="has-text-centered ">
                 <p><i class="fas fa-clock font-color-theme mr-1"></i>
                   <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
-              <div class="section">
+              <div class="section" style="padding-top:0;">
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
