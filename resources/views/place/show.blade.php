@@ -48,7 +48,7 @@
                   <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
-              <div class="section" style="padding-top:0;">
+              <div class="section" style="padding-top:0;padding-bottom:0;">
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
@@ -125,7 +125,6 @@
                             </div>
                             @endif
                           @endforeach
-
                           @if($place->partners[0]->names || $place->partners[1]->names)
                           <div class="">
                             <strong class="">Nature des partenariats:</strong>
@@ -214,7 +213,7 @@
           </section>
           <div>
 
-            <section class="section" id="nos-valeurs">
+            <section class="section" id="nos-valeurs" style="padding-top:0;">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
               <div class="columns">
                 <div class="column">
