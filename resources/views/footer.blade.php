@@ -3,7 +3,7 @@
         <div class="column">
             <div class="write-us">
                 <p>Ecrivez-nous:</p>
-                <p>contact@commesures.fr</p>
+                <p>contact@communemesure.fr</p>
             </div>
         </div>
         <div class="column">

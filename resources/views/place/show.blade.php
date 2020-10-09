@@ -48,7 +48,7 @@
                   <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
-              <div class="section" style="padding-top:0;padding-bottom:0;">
+              <div class="section" style="padding-bottom:0;">
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
@@ -229,16 +229,44 @@
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
                       <div class="field">
-                        <label class="is-size-5"for="switchRoundedSuccess">Investissement</label>
+                        <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
                         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
-                        <label class="is-size-5" for="switchRoundedSuccess">Fonctionnement</label>
+                        <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
                       </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
+                      <div class="">
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens humains</h2>
+                      @php
+                      $etp = $place->data->compare->moyens->etp
+                      @endphp 
+                      @foreach ($place->data->compare->moyens->etp as $etp)
+                        @for ($j = 0; $j < $etp; $j++)
+                        <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" >
+                        @endfor
+                      @endforeach
+                      </div>
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
                       <div class="section">
                       <canvas id="composition-chart-doughnut" ></canvas>
+                      </div>
+                      <div class="">
+                      @php
+                      $nb_struct = $place->impact_economique->nombre_structures_crees
+                      @endphp
+                      @if($nb_struct > 0)
+                      <div class="">
+                      <center><p style="font-weight:bold;">Nombre de structures crées : {{$nb_struct}}</p></center>
+                      @php
+                      $inc = 1;
+                      if($nb_struct>=5) $inc = $nb_struct/5
+                      @endphp
+                      @for ($i = 0; $i < $nb_struct; $i=$i+$inc)
+                        <img width="50" src="/images/building.png" alt="Nombre d'emplois crées" >
+                      @endfor
+                      </div>
+                      @endif
                       </div>
                     </div>
                   </div>
@@ -267,7 +295,7 @@
             <div class="impact_item" id="impact_item_sante" data-aos="fade-right">
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <<path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Santé et</text>
+              <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Santé</text>
               <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">Bien-être</text>
             </svg>
             <div class="impact_box" id="impact_box_sante">
@@ -281,8 +309,8 @@
               </div>
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="28" y="40" font-size="7" font-weight="bold" fill="#004c44">Développement</text>
-              <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">personnel</text>
+              <text x="28" y="40" font-size="7" font-weight="bold" fill="#004c44">Capacité</text>
+              <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">à agir</text>
             </svg></div>
             @endif
             <!-- A REFAIRE REGLAGE DUN INCONFORT ET NON LE CONTRAIRE -->
@@ -290,7 +318,7 @@
             <div class="impact_item" id="impact_item_inconfort" data-aos="fade-in">
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text id="impact_text_inconfort" x="38" y="40" font-size="8" font-weight="bold" fill="#004c44">Inconfort</text>
+              <text id="impact_text_inconfort" x="38" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
             </svg>
             <div class="impact_box" id="impact_box_inconfort">
               <p class="impact_text" >{{$impacts}}</p>
@@ -304,30 +332,12 @@
             </div>
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="40" y="40" font-size="8" font-weight="bold" fill="#004c44">Stress</text>
+              <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
+              <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
             </svg>
             </div>
             @endif
             @endforeach
-        </section>
-        @endif
-        @php
-        $nb_struct = $place->impact_economique->nombre_structures_crees
-        @endphp
-        @if($nb_struct > 0)
-        <section class="section" id="impact_economique">
-            <h2 class="ribbon-banner title is-5 has-text-centered">Impact Économique</h2>
-            <p></p>
-            <div class="" style="margin-top: 50px;">
-            <center><p style="font-weight:bold;">Nombre de structures crées : {{$nb_struct}}</p></center>
-            @php
-            $inc = 1;
-            if($nb_struct>=5) $inc = $nb_struct/5
-            @endphp
-            @for ($i = 0; $i < $nb_struct; $i=$i+$inc)
-              <img width="100" src="/images/building.png" alt="Nombre d'emplois crées" style="margin-left:100px">
-            @endfor
-            </div>
         </section>
         @endif
         <section class="section anchor" id="donnees-insee">
