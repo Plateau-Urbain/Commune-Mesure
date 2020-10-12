@@ -276,7 +276,7 @@
             </section>
 
           </div>
-        @if($place->impact != [])
+        @if($place->impact == "pasfini")
         <section class="section" id="impact_social">
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
             <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
