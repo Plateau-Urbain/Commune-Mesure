@@ -74,8 +74,7 @@
                 <th scope="col"><p class="lieux_title">Lieu</p></th>
                 <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
                 <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th>
-            </tr>
-            <hr>
+            </tr> 
             @foreach($places as $n => $place)
             <tr class="place-tr">
                 <!-- <th scope="row"><input type="checkbox" name="checkbox_{{$place->name}}" value="" class="checkPlaces"></th> -->

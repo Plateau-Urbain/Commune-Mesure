@@ -9,7 +9,7 @@ a.tag-css{
 }
 #lieux_list{
   overflow-y: auto;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 h2.title{
   margin-bottom: 60px;
@@ -593,7 +593,7 @@ li.tags{
   display: inline-flex;
   color:#999;
   border-radius: 3px;
-  background-color: #EEE;  
+  background-color: #EEE;
   font-size: 1em;
   padding-left: 1em;
   padding-right: 1em;
@@ -607,7 +607,7 @@ li.tags:hover {
 .switch[type="checkbox"].is-success:checked + label::before, .switch[type="checkbox"].is-success:checked + label:before{
   background-color: #B5B5B5 !important;
 }
-.switch[type="checkbox"] ~ #label_investissement{
+.switch[type="checkbox"].is-success #label_investissement{
   font-weight: bold;
 }
 .switch[type="checkbox"].is-success:checked ~ #label_investissement{
@@ -638,6 +638,7 @@ li.tags:hover {
   height:20em;
   width:100%;
   background-color: #fff;
+  overflow: auto;
 }
 
 .bloc-note-body div{

@@ -2715,7 +2715,7 @@
       "nombre_structures_crees":5
     },
     "impact": [{
-        "Santé": {
+        "Sante": {
           "show":false,
           "text":
           [
@@ -2724,7 +2724,7 @@
         }
       },
       {
-        "Capacité": {
+        "Capacite": {
         "show":false,
         "text":
         [
@@ -2751,7 +2751,7 @@
         }
       },
       {
-      "Réseaux": {
+      "Reseaux": {
         "show":false,
         "text":
         [

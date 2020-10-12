@@ -227,7 +227,8 @@
               <div class="">
                   <div class="columns">
                     <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens financiers</h2>
+                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens</h2>
+                      <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Financiers</h4>
                       <div class="field">
                         <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
                         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
@@ -235,15 +236,16 @@
                       </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
                       <div class="">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens humains</h2>
+                      <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Humains</h4>
+                      <span class="title is-5 has-text-centered">{{$place->data->compare->moyens->etp->nombre}} ETP : </span>
                       @php
-                      $etp = $place->data->compare->moyens->etp
-                      @endphp 
-                      @foreach ($place->data->compare->moyens->etp as $etp)
-                        @for ($j = 0; $j < $etp; $j++)
-                        <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" >
-                        @endfor
-                      @endforeach
+                      $etp = $place->data->compare->moyens->etp->nombre;
+                      $nb_etp = 1;
+                      if($etp>8) $nb_etp = 2;
+                      @endphp
+                      @for ($j = 0; $j < $etp; $j=$j+$nb_etp)
+                        <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" style="vertical-align:middle">
+                      @endfor
                       </div>
                     </div>
                     <div class="column has-text-centered">
@@ -279,22 +281,10 @@
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
             <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
             <img style="margin-top: 50px; margin-left:400px;" width="200" src="/images/3_characters.png"/>
-            @foreach($place->impact as $impacts)
-            @if($impacts == "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres")
-            <div class="impact_item" id="impact_item_lien_social" data-aos="fade-in">
+            @if($place->impact->Sante->show == true)
+            <div class="impact_item" id="impact_item_lien_sante" data-aos="fade-in">
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-              <text x="35" y="40" font-size="8" font-weight="bold" fill="#004c44">Lien Social</text>
-            </svg>
-            <div class="impact_box" id="impact_box_social">
-              <p class="impact_text">{{$impacts}}</p>
-            </div></div>
-
-            @endif
-            @if($impacts == "Certaines personnes ont fait part ou ont paru en meilleure santé physique ou psychique")
-            <div class="impact_item" id="impact_item_sante" data-aos="fade-right">
-            <svg  width="215" height="150" viewBox="20 20 75 40">
-              <<path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Santé</text>
               <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">Bien-être</text>
             </svg>
@@ -302,9 +292,19 @@
               <p class="impact_text">{{$impacts}}</p>
             </div></div>
             @endif
-            @if($impacts == "Certaines personnes ont fait preuve d'une plus grande confiance en eux")
-            <div class="impact_item" id="impact_item_confiance" data-aos="fade-in">
-              <div class="impact_box" id="impact_box_confiance">
+            @if($place->impact->Lien->show == true)
+            <div class="impact_item" id="impact_item_lien_social" data-aos="fade-right">
+            <svg  width="215" height="150" viewBox="20 20 75 40">
+              <<path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text x="35" y="40" font-size="8" font-weight="bold" fill="#004c44">Lien Social</text>
+            </svg>
+            <div class="impact_box" id="impact_box_lien_social">
+              <p class="impact_text">{{$impacts}}</p>
+            </div></div>
+            @endif
+            @if($place->impact->Capacite->show == true)
+            <div class="impact_item" id="impact_item_capacite" data-aos="fade-in">
+              <div class="impact_box" id="impact_box_capacite">
                 <p class="impact_text">{{$impacts}}</p>
               </div>
             <svg  width="215" height="150" viewBox="20 20 75 40">
@@ -313,21 +313,31 @@
               <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">à agir</text>
             </svg></div>
             @endif
-            <!-- A REFAIRE REGLAGE DUN INCONFORT ET NON LE CONTRAIRE -->
-            @if($impacts == "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)")
-            <div class="impact_item" id="impact_item_inconfort" data-aos="fade-in">
+            @if($place->impact->Insertion->show == true)
+            <div class="impact_item" id="impact_item_insertion" data-aos="fade-in">
+            <svg width="215" height="150" viewBox="20 20 75 40">
+              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+              <text x="48" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
+              <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
+            </svg>
+            <div class="impact_box" id="impact_box_insertion">
+              <p class="impact_text" >{{$impacts}}</p>
+            </div></div>
+            @endif
+            @if($place->impact->Reseaux->show == true)
+            <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in">
+            <div class="impact_box" id="impact_box_reseaux">
+              <p class="impact_text">{{$impacts}}</p>
+            </div>
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text id="impact_text_inconfort" x="38" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
             </svg>
-            <div class="impact_box" id="impact_box_inconfort">
-              <p class="impact_text" >{{$impacts}}</p>
-            </div></div>
-
+            </div>
             @endif
-            @if($impacts == "Certaines personnes ont fait part d'un stress ou de conflits")
-            <div class="impact_item" id="impact_item_stress" data-aos="fade-in">
-            <div class="impact_box" id="impact_box_stress">
+            @if($place->impact->Appartenance->show == true)
+            <div class="impact_item" id="impact_item_appartenance" data-aos="fade-in">
+            <div class="impact_box" id="impact_box_appartenance">
               <p class="impact_text">{{$impacts}}</p>
             </div>
             <svg width="215" height="150" viewBox="20 20 75 40">
@@ -337,7 +347,6 @@
             </svg>
             </div>
             @endif
-            @endforeach
         </section>
         @endif
         <section class="section anchor" id="donnees-insee">
