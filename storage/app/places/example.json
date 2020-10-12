@@ -2162,7 +2162,7 @@
     "iris_code": 930660902,
     "name": "Example",
     "status": "Association",
-    "surface": 1000,
+    "surface": 0,
     "creation": "09/01/2009",
     "ouverture": "01/01/2010",
     "address": {
@@ -2694,10 +2694,10 @@
           "Handicapés",
           "Enfants",
           "Étudiants",
-          "Parsonnes",
+          "Personnes",
           "Famille",
           "Personnes habitant sur le site",
-          "Personnes visants le site",
+          "Personnes visitant le site",
           "Tout le monde"
         ]
       },
@@ -2711,6 +2711,9 @@
         }
       }
     ],
+    "impact_economique":{
+      "nombre_structures_crees":5
+    },
     "impact": [
         "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres",
         "Certaines personnes ont fait preuve d'une plus grande confiance en eux"
