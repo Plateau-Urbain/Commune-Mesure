@@ -281,7 +281,6 @@
             <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
             <img style="margin-top: 50px;margin-left:100px;" width="300" src="/images/4_characters.png"/>
             <img style="margin-top: 50px; margin-left:400px;" width="200" src="/images/3_characters.png"/>
-            @if($place->impact->Sante->show == true)
             <div class="impact_item" id="impact_item_lien_sante" data-aos="fade-in">
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -289,31 +288,26 @@
               <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">Bien-être</text>
             </svg>
             <div class="impact_box" id="impact_box_sante">
-              <p class="impact_text">{{$impacts}}</p>
+              <p class="impact_text"></p>
             </div></div>
-            @endif
-            @if($place->impact->Lien->show == true)
             <div class="impact_item" id="impact_item_lien_social" data-aos="fade-right">
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <<path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text x="35" y="40" font-size="8" font-weight="bold" fill="#004c44">Lien Social</text>
             </svg>
             <div class="impact_box" id="impact_box_lien_social">
-              <p class="impact_text">{{$impacts}}</p>
+              <p class="impact_text"></p>
             </div></div>
-            @endif
-            @if($place->impact->Capacite->show == true)
+
             <div class="impact_item" id="impact_item_capacite" data-aos="fade-in">
               <div class="impact_box" id="impact_box_capacite">
-                <p class="impact_text">{{$impacts}}</p>
+                <p class="impact_text"></p>
               </div>
             <svg  width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text x="28" y="40" font-size="7" font-weight="bold" fill="#004c44">Capacité</text>
               <text x="40" y="48" font-size="7" font-weight="bold" fill="#004c44">à agir</text>
             </svg></div>
-            @endif
-            @if($place->impact->Insertion->show == true)
             <div class="impact_item" id="impact_item_insertion" data-aos="fade-in">
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -321,24 +315,20 @@
               <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
             </svg>
             <div class="impact_box" id="impact_box_insertion">
-              <p class="impact_text" >{{$impacts}}</p>
+              <p class="impact_text" ></p>
             </div></div>
-            @endif
-            @if($place->impact->Reseaux->show == true)
             <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in">
             <div class="impact_box" id="impact_box_reseaux">
-              <p class="impact_text">{{$impacts}}</p>
+              <p class="impact_text"></p>
             </div>
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
               <text id="impact_text_inconfort" x="38" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
             </svg>
             </div>
-            @endif
-            @if($place->impact->Appartenance->show == true)
             <div class="impact_item" id="impact_item_appartenance" data-aos="fade-in">
             <div class="impact_box" id="impact_box_appartenance">
-              <p class="impact_text">{{$impacts}}</p>
+              <p class="impact_text"></p>
             </div>
             <svg width="215" height="150" viewBox="20 20 75 40">
               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -346,7 +336,6 @@
               <text x="45" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
             </svg>
             </div>
-            @endif
         </section>
         @endif
         <section class="section anchor" id="donnees-insee">
