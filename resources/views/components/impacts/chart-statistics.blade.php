@@ -5,6 +5,16 @@
     var places = [];
 
     var options = {
+      grid: {
+          show: true,
+          borderColor: '#90A4AE',
+          padding: {
+              top: 20,
+              right: 10,
+              bottom: 10,
+              left: 10
+          },
+      },
       series: [{
         name: 'Légende',
         data: []
@@ -14,6 +24,7 @@
           show:false,
         },
         height: 550,
+        width: "100%",
         type: 'bubble',
         events: {
           dataPointSelection: function(event, chartContext, config) {
@@ -54,13 +65,49 @@
         }
       },
       xaxis: {
-          tickAmount: 12,
+          tickAmount: 10,
           type: 'category',
+          min: -20,
+          max: 300
+
+      },
+      yaxis:{
+        tickAmount: 10,
+        min:-2,
+        max: 20
       },
       legend: {
         show:false,
       }
     };
+    var maxX = 0, maxY = 0, minX=9999999, minY=9999999;
+    function getMaxXaxis(dataX){
+      console.log(dataX)
+      if(maxX < dataX)
+        maxX = dataX + dataX/2;
+      return maxX;
+    }
+
+    function getMaxYaxis(dataY){
+      console.log(dataY)
+      if(maxY < dataY)
+        maxY = dataY + dataY/2;
+      return maxY;
+    }
+
+    function getMinXaxis(dataX){
+      console.log(dataX)
+      if(minX > dataX && dataX > 10)
+        minX = - dataX;
+      return minX;
+    }
+
+    function getMinYaxis(dataY){
+      console.log(dataY)
+      if(minY > dataY && dataY > 10)
+        minY = - dataY;
+      return minY;
+    }
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
 
@@ -83,7 +130,9 @@
 
   }
   function comparePlacePoints(selectcmpL, selectcmpR){
-
+    // options.xaxis.max = 350;
+    minX=9999999, minY=9999999
+    maxX = 0, maxY = 0;
     cleanStatsChart()
 
     var tabRightValues = [];
@@ -125,11 +174,26 @@
         dataRight = value.moyens[RightIndicator].nombre;
 
       }
-
+      statschart.updateOptions(
+        {
+          xaxis: {
+            max:getMaxXaxis(dataLeft),
+            min: getMinXaxis(dataLeft),
+            tickAmount: 12,
+            type: 'category',
+          },
+          yaxis:{
+            max:getMaxYaxis(dataRight),
+            min: getMinYaxis(dataRight),
+            tickAmount: 10,
+          }
+        }
+      );
       statschart.appendSeries({
          name: key,
          data: [[dataLeft, dataRight, 10]]
        });
+       // statschart.options
 
        places.push(key);
        tabLeftValues.push(dataLeft);
@@ -176,7 +240,6 @@
         expression = 'nombre de partenaires'
         break;
     }
-    console.log(expression)
     return expression
   }
 </script>
