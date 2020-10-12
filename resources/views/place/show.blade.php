@@ -153,8 +153,6 @@
               </div>
             </section>
           </div>
-<<<<<<< HEAD
-=======
           <section>
             <div class="section" style="padding:0;">
               <div class="columns has-text-centered ">
@@ -164,8 +162,55 @@
                       <strong>Les differents publics : </strong>
                     </p>
                   </div>
->>>>>>> 7fed8625b395546e30b8c75129f7082b1b52c1ea
 
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+                    @foreach($place->opening as $publics)
+                    @foreach($publics->names as $public)
+                    @if($public == 'Enfants')
+                    <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                    @endif
+                    @if($public == 'Étudiants')
+                    <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                    @endif
+                    @if($public == 'Famille')
+                    <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
+                    @endif
+                    @endforeach
+                    @endforeach
+                  </div>
+                </div>
+                <div class="column">
+                <div class="has-text-centered">
+                  <p class="mb-5">
+                    <strong>Accessibilité:</strong>
+                  </p>
+                </div>
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+                    @foreach($place->opening as $publics)
+                    @foreach($publics->names as $public)
+                    @if($public == 'Handicapés')
+                    <span class="ml-3 public-icons"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                    @endif
+                    @endforeach
+                    @endforeach
+                    <span class="ml-3 public-icons"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="has-text-centered">
+                  <p class="mb-5">
+                    <strong>Moyens de transports accessibles:</strong>
+                  </p>
+                  </div>
+                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+                    <span class="ml-3 public-icons"><i class="fas fa-bus font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons"><i class="fas fa-subway font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons"><i class="fas fa-car font-color-theme mr-1"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           <div>
 
             <section class="section" id="nos-valeurs" style="padding-top:0;">
