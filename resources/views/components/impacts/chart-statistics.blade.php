@@ -1,20 +1,8 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-
-    var size = Math.floor(Math.random() * (200 - 100 + 1) + 100);
     var places = [];
 
     var options = {
-      grid: {
-          show: true,
-          borderColor: '#90A4AE',
-          padding: {
-              top: 20,
-              right: 10,
-              bottom: 10,
-              left: 10
-          },
-      },
       series: [{
         name: 'Légende',
         data: []
