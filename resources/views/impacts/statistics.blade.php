@@ -73,8 +73,8 @@
               <tr>
                   <!-- <th><input type="checkbox" name="" value="" onclick="selectAll(this)"></th> -->
                   <th scope="col"><p class="lieux_title">Lieu</p></th>
-                  <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
-                  <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th>
+                  <!-- <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
+                  <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th> -->
               </tr>
             </thead>
             <tbody>
@@ -82,9 +82,12 @@
                 @foreach($places as $n => $place)
                 <tr class="place-tr">
                     <!-- <th scope="row"><input type="checkbox" name="checkbox_{{$place->name}}" value="" class="checkPlaces"></th> -->
-                    <td><p class="place_element" id="list_{{$place->name}}"><strong>{{$place->name}}</strong></p></td>
-                    <td><p class="leftPlaceIndicator"></p></td>
-                    <td><p class="rightPlaceIndicator"></p></td>
+                    <td>
+                      <div>
+                        <p class="place_element" id="list_{{$place->title}}"><strong>{{$place->name}}</strong></p>
+
+                      </div>
+                    </td>
                 </tr>
                 @endforeach
               </div>
@@ -95,4 +98,10 @@
     </div>
   </div>
 </div>
+<template id="detail-chart">
+  <div class="" id="detail_list">
+    <p id="leftPlaceIndicator"></p>
+    <p id="rightPlaceIndicator"></p>
+  </div>
+</template>
 </div>

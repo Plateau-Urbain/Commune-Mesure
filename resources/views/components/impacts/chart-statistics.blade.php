@@ -1,7 +1,11 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     var places = [];
+    var places_name = JSON.parse("{{ json_encode($compares['names']) }}".replace(/&quot;/g,'"'));
+    var leftTitle;
+    var rightTitle;
 
+    var template = document.querySelector("template#detail-chart");
     var options = {
       series: [{
         name: 'Légende',
@@ -19,13 +23,35 @@
             var selectedName = config.w.config.series[config.seriesIndex].name
           },
           dataPointMouseEnter: function(event, chartContext, config) {
+            var templateCloned = document.importNode(template.content, true);
             var circle = event.target
             colorGet = circle.getAttribute('fill')
             var selectedName = config.w.config.series[config.seriesIndex].name
-            list_el = document.getElementById('list_'+selectedName)
-            list_el.style.color = colorGet
-            setTimeout(function() { list_el.style.color = ""; }, 400);
-          }
+            list_el = document.querySelector('p#list_'+places_name[selectedName])
+            list_el.querySelector("strong").style.color = colorGet
+            if(document.querySelector("div#detail_list_"+places_name[selectedName]) == null){              
+              var divDetail = templateCloned.querySelector("div#detail_list");
+              divDetail.setAttribute("id", "detail_list_"+places_name[selectedName]);
+              var xAxis = templateCloned.querySelector("#leftPlaceIndicator");
+              var yAxis = templateCloned.querySelector("#rightPlaceIndicator");
+              xAxis.innerHTML= leftTitle+" : "+config.w.config.series[config.seriesIndex].data[0][0]
+              xAxis.style.color = colorGet
+              yAxis.style.color = colorGet
+              yAxis.innerHTML= rightTitle+" : "+config.w.config.series[config.seriesIndex].data[0][1]
+              list_el.parentElement.appendChild(templateCloned);
+            }else{
+              var divDetail = document.querySelector("div#detail_list_"+places_name[selectedName])
+              divDetail.setAttribute("class", "is-block")
+            }
+          },
+          dataPointMouseLeave:function(event, chartContext, config) {
+            var circle = event.target
+            colorGet = circle.getAttribute('fill')
+            var selectedName = config.w.config.series[config.seriesIndex].name
+            list_el.querySelector("strong").style.color = 'black'
+            var divDetail = document.querySelector("div#detail_list_"+places_name[selectedName])
+            divDetail.setAttribute("class", "is-hidden")
+          },
         }
       },
       dataLabels: {
@@ -70,43 +96,37 @@
     };
     var maxX = 0, maxY = 0, minX=9999999, minY=9999999;
     function getMaxXaxis(dataX){
-      console.log(dataX)
       if(maxX < dataX)
         maxX = dataX + dataX/2;
       return maxX;
     }
 
     function getMaxYaxis(dataY){
-      console.log(dataY)
       if(maxY < dataY)
         maxY = dataY + dataY/2;
       return maxY;
     }
 
     function getMinXaxis(dataX){
-      console.log(dataX)
       if(minX > dataX && dataX > 10)
         minX = - dataX;
       return minX;
     }
 
     function getMinYaxis(dataY){
-      console.log(dataY)
       if(minY > dataY && dataY > 10)
         minY = - dataY;
       return minY;
     }
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
-
   var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
-  var places_name = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
   var LeftIndicator ;
   var RightIndicator;
   var dataLeft,dataRight;
 
-  var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
-  var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
+  // var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
+  // var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
   var title = document.querySelector('.apexcharts-title-text')
   function cleanStatsChart(){
     statschart.updateSeries([
@@ -126,18 +146,13 @@
     var tabRightValues = [];
     var tabLeftValues = [];
 
-    var leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
-    var rightTitle = selectcmpR.options[selectcmpR.selectedIndex].text;
+    leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
+    rightTitle = selectcmpR.options[selectcmpR.selectedIndex].text;
     // title.innerHTML = "Rapport entre " + leftTitle + " et " + rightTitle + " par an";
 
     LeftIndicator = selectcmpL.value;
     RightIndicator = selectcmpR.value;
 
-
-    if(leftTitle == '--' || rightTitle == "--"){
-      console.log(selectcmpL);
-      console.log(selectcmpR);
-    }
     if(leftTitle == rightTitle){
       alert("Vos indicateurs sont identiques.");
       return;
@@ -148,7 +163,6 @@
     }
 
     for (const [key, value] of Object.entries(compares.data)) {
-      // console.log(`${key}: ${value.moyens.etp.nombre}`);
       if (value.realisations[LeftIndicator] == undefined) {
           dataLeft = value.moyens[LeftIndicator].nombre;
       }
@@ -186,13 +200,13 @@
        places.push(key);
        tabLeftValues.push(dataLeft);
        tabRightValues.push(dataRight);
-       for (var i = 0; i < tabLeftValues.length; i++) {
-         placesLValues[i].innerHTML = tabLeftValues[i]
-       }
-
-       for (var j = 0; j < tabRightValues.length; j++) {
-         placesRValues[j].innerHTML = tabRightValues[j]
-       }
+       // for (var i = 0; i < tabLeftValues.length; i++) {
+       //   placesLValues[i].innerHTML = tabLeftValues[i]
+       // }
+       //
+       // for (var j = 0; j < tabRightValues.length; j++) {
+       //   placesRValues[j].innerHTML = tabRightValues[j]
+       // }
 
 
     }

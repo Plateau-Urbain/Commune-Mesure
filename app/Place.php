@@ -72,6 +72,7 @@ class Place
 
     public function getCompares(){
       $compare_data = [];
+      $compare_place_name = [];
       $compare_title = [
         "moyens"=>[],
         'realisations'=>[]
@@ -84,11 +85,14 @@ class Place
       foreach ($this->places as $place) {
 
         $compare_data[$place->name] = $place->data->compare;
+        $compare_place_name[$place->name] = $place->title;
 
       }
       $compares= [
         "data" => $compare_data,
-        "titles" => $compare_title
+        "titles" => $compare_title,
+        "names" => $compare_place_name
+
     ];
       return $compares;
     }
@@ -145,7 +149,7 @@ class Place
             if (property_exists($json, 'evenements')) {
                 array_push($this->visiteurs, $total);
             }
- 
+
         }
     }
 
