@@ -96,7 +96,7 @@ var options = {
     show:false,
   },
   type: 'bar',
-  height: 150,
+  height: 175,
   stacked: true,
   stackType: '100%',
 },

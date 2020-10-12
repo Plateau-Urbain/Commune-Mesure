@@ -23,6 +23,7 @@ const sigmaParser = require('sigma/build/plugins/sigma.parsers.json.min.js'); (w
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 const carousels = bulmaCarousel.attach('.carousel', {
   slidesToScroll: 1,
+  navigationKeys:false,
   slidesToShow: 1,
   loop:true,
 });

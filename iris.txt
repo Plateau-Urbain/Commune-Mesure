@@ -1,0 +1,1 @@
+{"iris": "1002", "address": "Quai Louis Prunier 17000 La Rochelle", "name": "Les Minimes Universite", "complete_code": "173001002", "lon": -1.151713, "type": "H", "city": "La Rochelle", "lat": 46.148768, "citycode": "17300"}

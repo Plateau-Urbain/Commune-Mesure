@@ -14,50 +14,19 @@
             </section>
         </div>
         <div class="section">
-          <div class="columns">
-            <div class="column">
-              <label class="is-pulled-right pt-4">Trier par </label>
-            </div>
-              <div class="column is-pulled-left">
-                <div class="mb-5 control has-icons-left">
-                  <div class="select">
-                    <select id="selectSort" onchange="sortPlaces(this)">
-                      <option class="sort" value="" @if($selected == "default_az")
-                                                    selected
-                                                @endif>Ordre A-Z</option>
-                      @foreach ($places[0]->data->compare as $key_name => $programmations )
-                      <optgroup label="{{ $key_name }}">
-                        @foreach ($programmations as $key_prog_name => $programmation )
-                        <option class="sort" value="{{ $key_name }}-{{ $key_prog_name }}"
-                        @if($selected == $key_prog_name):
-                          selected @endif
-                        >
-                          {{ $programmation->title }}
-                        </option>
-                        @endforeach
-                      </optgroup>
-                      @endforeach
-                    </select>
-                  </div>
-                  <span class="icon is-large is-left">
-                    <i class="fas fa-sort-alpha-down"></i>
-                  </span>
-
-                </div>
-              </div>
-            </div>
             @foreach ($places as $place)
                 <div class="box content">
                     <div class="columns is-bordered places-block">
-                        <div class="column">
-                            <p class="title"><a href="{{ route('place.show',['slug' => $place->title ])  }}">{{ $place->name  }}</a></p>
+                        <div class="column" style="position:relative;min-height:250px;">
+                            <p class="title"><a href="{{ route('place.show',['slug' => $place->title ])  }}">{{ $place->name  }}</a><span class="title_places-city"> - <strong>{{ $place->address->city  }}</strong></span></p>
                             <p>{{ $place->description }}</p>
-                            <div>
-                                <ul class="">
-                                  <p><strong>{{ $place->address->city  }}</strong></p>
-                                </ul>
-                            </div>
+                            <ul class="tags_container">
+                            @foreach($place->tags as $tag)
+                            <li class="tags">{{$tag}}</li>
+                            @endforeach
+                            </ul>
                         </div>
+
                         <div class="column is-one-third has-text-centered" style="overflow-x: hidden">
                             <div id="carousel-{{ $place->title }}" class="carousel">
                               <img class="img-places" src='{{ url("/") }}/images/{{ $place->photos[0] }}'>

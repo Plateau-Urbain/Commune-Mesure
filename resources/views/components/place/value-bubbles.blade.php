@@ -18,7 +18,7 @@ function setCircle(n, rx, ry, id) {
         textChild.className = "value_text_child"
         textChild.innerHTML = childrens[i].text
         circleChild.appendChild(textChild)
-        circleArray.push(circleChild); 
+        circleArray.push(circleChild);
         circleArray[i].posx = Math.round(rx * (Math.cos(theta[i]))) + 'px';
         circleArray[i].posy = Math.round(ry * (Math.sin(theta[i]))) + 'px';
         circleArray[i].style.position = "absolute";
