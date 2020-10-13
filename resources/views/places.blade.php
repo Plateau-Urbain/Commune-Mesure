@@ -31,7 +31,7 @@
                         <div class="column is-one-third has-text-centered" style="overflow: hidden;">
                             <div id="carousel-{{ $place->title }}" style="height: 226px;" class="carousel">
                             @if( $place->photos[0] )
-                              <img class="img-places" style="height: 226px;" src='{{ url("/") }}/images/{{ $place->photos[0] }}'>
+                              <img class="img-places" style="height: 226px;" src='{{ url("/") }}/images/lieux/{{ $place->photos[0] }}'>
                             @endif
                               <div class="map-place" style="height: 226px;" id="map_{{ $place->title }}"></div>
                             </div>
