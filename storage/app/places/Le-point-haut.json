@@ -125,15 +125,15 @@
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":54.1172549298429
+                "nb":612.502792605232
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":1032.43435093218
+                "nb":1102.09350585934
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":166.679965382445
+                "nb":167.972959696708
               }
             },
             "activites": {
@@ -171,7 +171,7 @@
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":0
+                "nb":27754
               }
             },
             "activites": {
@@ -538,17 +538,21 @@
             }
         },
         "finance":{
-          "name": "Financement",
-          "color": "#ee4035",
-          "children": [
-            {
-              "name": "Budget annuel de fonctionnent",
-              "children":[
-                {"name":"Recettes annuelles","size" : 550000},
-                {"name":"Dépenses annuelles", "size": 250000}
-              ]
-            }
-          ]
+          "composition":[
+            {"name": "Entreprises", "size": 3},
+            {"name": "Associations", "size": 4},
+            {"name": "Artistes", "size": 0},
+            {"name": "Autres structures", "size": 0}
+          ],
+          "investissement":[
+              {"name":"Fonds publics","size" : 4500000},
+              {"name":"Fonds privés", "size": 0}
+            ],
+          "fonctionnement":[
+              {"name":"Subventions","size" : 0},
+              {"name":"Aides privées","size" : 30000},
+              {"name":"Recettes", "size": 5000}
+            ]
         },
         "compare":{
           "moyens":{
@@ -637,10 +641,10 @@
     },
     "impact": [{
         "Sante": {
-          "show":false,
+          "show":true,
           "text":
           [
-          "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)"
+          "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres"
           ]
         }
       },
@@ -649,7 +653,7 @@
         "show":true,
         "text":
         [
-          ""
+          "60 personnes ou des structures ont été accompagnées (conseil pour la création ou le développement d'activité)"
         ]
         }
       },
@@ -676,7 +680,7 @@
         "show":true,
         "text":
         [
-          ""
+          "Des services (bricolage, aller à la poste, aide au déménagement...) entre les structures."
         ]
         }
       },
