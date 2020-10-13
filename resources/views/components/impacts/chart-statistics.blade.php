@@ -200,14 +200,6 @@
        places.push(key);
        tabLeftValues.push(dataLeft);
        tabRightValues.push(dataRight);
-       // for (var i = 0; i < tabLeftValues.length; i++) {
-       //   placesLValues[i].innerHTML = tabLeftValues[i]
-       // }
-       //
-       // for (var j = 0; j < tabRightValues.length; j++) {
-       //   placesRValues[j].innerHTML = tabRightValues[j]
-       // }
-
 
     }
     LeftIndicator = traduction(LeftIndicator)
