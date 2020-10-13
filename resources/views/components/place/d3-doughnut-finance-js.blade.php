@@ -65,6 +65,7 @@ function switchChart(){
         }
 
       );
+      document.querySelector("label#label_investissement").style.fontWeight = "normal";
   }else{
     //Investissement
     charts.create("financement-budget-doughnut", "doughnut",
@@ -76,6 +77,7 @@ function switchChart(){
         }
 
       );
+      document.querySelector("label#label_investissement").style.fontWeight = "bold";
 
   }
 

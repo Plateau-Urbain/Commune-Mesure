@@ -60,7 +60,7 @@
                       </div>
                       <div class="bloc-note-body">
                         <div class="content">
-                            <h2 class="has-text-centered">L'idée fondatrice du lieu</h2>
+                            <h2 class="has-text-centered">L'idée fondatrice</h2>
                             <p class="fontSize0-8em">{{ $place->description }}</p>
                         </div>
                       </div>
@@ -228,7 +228,6 @@
                   <div class="columns">
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens</h2>
-                      <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Financiers</h4>
                       <div class="field">
                         <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
                         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
@@ -237,23 +236,38 @@
                       <canvas id="financement-budget-doughnut" ></canvas>
                       <div class="">
                       <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Humains</h4>
-                      <span class="title is-5 has-text-centered">{{$place->data->compare->moyens->etp->nombre}} ETP : </span>
-                      @php
-                      $etp = $place->data->compare->moyens->etp->nombre;
-                      $nb_etp = 1;
-                      if($etp>8) $nb_etp = 2;
-                      @endphp
-                      @for ($j = 0; $j < $etp; $j=$j+$nb_etp)
-                        <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" style="vertical-align:middle">
-                      @endfor
+                      <span class="title is-5 has-text-centered"><span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> ETP</span>
+                        @if($place->data->compare->moyens->etp->nombre > 5)
+                            @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
+                                @svg('assets/images/body.svg', 'tiny') ⋅ ⋅ ⋅&nbsp;
+                            @endfor
+                        @else
+                            @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i++)
+                                @svg('assets/images/body.svg', 'tiny')
+                            @endfor
+                        @endif
+                        <br/>
+                      <span class="title is-5 has-text-centered"><span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> Bénévoles</span>
+                        @if($place->data->compare->moyens->benevole->nombre > 5)
+                            @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
+                                @svg('assets/images/body.svg', 'tiny') &#9679; &#9679; &#9679;&nbsp;
+                            @endfor
+                        @else
+                            @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i++)
+                                @svg('assets/images/body.svg', 'tiny')
+                            @endfor
+                        @endif
+
+                        {{-- <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" style="vertical-align:middle"> --}}
                       </div>
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                      <div class="section">
-                      <canvas id="composition-chart-doughnut" ></canvas>
+                      <div class="field">
+                        <label class="is-size-5" style="font-weight: bold;" >Structure</label>
                       </div>
-                      <div class="">
+                      <canvas id="composition-chart-doughnut" ></canvas>
+                    <div class="">
                       @php
                       $nb_struct = $place->impact_economique->nombre_structures_crees
                       @endphp

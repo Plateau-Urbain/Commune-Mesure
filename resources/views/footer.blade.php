@@ -13,21 +13,13 @@
                 </p>
                 <ul class="menu-list ">
                     <li><a href="/les-lieux">Les lieux</a></li>
-                    <li><a href="/les-donnees">Les données</a></li>
-                    <li><a href="/documentation">Documentation </a></li>
-                    <li><a href="les-partenaires">Les partenaires</a></li>
+                    <li><a href="/les-statistiques-et-donnees-des-lieux">Les données</a></li>
+                    <li><a href="/les-partenaires">Les partenaires</a></li>
                 </ul>
             </div>
 
         </div>
         <div class="column">
-            <div class="social-network">
-                <p class="is-size-4">Les réseaux</p>
-                <span class="is-block"><a>Facebook</a></span>
-                <span class="is-block"><a>Twitter</a></span>
-                <span class="is-block"><a>Instagram</a></span>
-            </div>
-
         </div>
     </div>
 </div>
