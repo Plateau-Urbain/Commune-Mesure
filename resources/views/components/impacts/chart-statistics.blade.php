@@ -29,7 +29,7 @@
             var selectedName = config.w.config.series[config.seriesIndex].name
             list_el = document.querySelector('p#list_'+places_name[selectedName])
             list_el.querySelector("strong").style.color = colorGet
-            if(document.querySelector("div#detail_list_"+places_name[selectedName]) == null){              
+            if(document.querySelector("div#detail_list_"+places_name[selectedName]) == null){
               var divDetail = templateCloned.querySelector("div#detail_list");
               divDetail.setAttribute("id", "detail_list_"+places_name[selectedName]);
               var xAxis = templateCloned.querySelector("#leftPlaceIndicator");
@@ -213,8 +213,6 @@
     LeftIndicator = traduction(LeftIndicator)
     RightIndicator = traduction(RightIndicator)
 
-    document.getElementById("stats_selectedLeftValue").innerHTML = LeftIndicator.toUpperCase()
-    document.getElementById("stats_selectedRightValue").innerHTML = RightIndicator.toUpperCase()
 
   }
 
