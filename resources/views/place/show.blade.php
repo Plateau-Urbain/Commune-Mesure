@@ -43,12 +43,12 @@
         <div id="presentation" class="hero is-large anchor">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
-              <div class="has-text-centered ">
+              <div class="has-text-centered pt-2">
                 <p><i class="fas fa-clock font-color-theme mr-1"></i>
                   <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
-              <div class="section" style="padding-bottom:0;">
+              <div class="section pt-5" style="padding-bottom:0;">
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
@@ -238,15 +238,29 @@
                       <canvas id="financement-budget-doughnut" ></canvas>
                       <div class="">
                       <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Humains</h4>
-                      <span class="title is-5 has-text-centered">{{$place->data->compare->moyens->etp->nombre}} ETP : </span>
-                      @php
-                      $etp = $place->data->compare->moyens->etp->nombre;
-                      $nb_etp = 1;
-                      if($etp>8) $nb_etp = 2;
-                      @endphp
-                      @for ($j = 0; $j < $etp; $j=$j+$nb_etp)
-                        <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" style="vertical-align:middle">
-                      @endfor
+                      <span class="title is-5 has-text-centered"><span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> ETP</span>
+                        @if($place->data->compare->moyens->etp->nombre > 5)
+                            @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
+                                @svg('assets/images/body.svg', 'tiny') ⋅ ⋅ ⋅&nbsp;
+                            @endfor
+                        @else
+                            @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i++)
+                                @svg('assets/images/body.svg', 'tiny')
+                            @endfor
+                        @endif
+                        <br/>
+                      <span class="title is-5 has-text-centered"><span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> Bénévoles</span>
+                        @if($place->data->compare->moyens->benevole->nombre > 5)
+                            @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
+                                @svg('assets/images/body.svg', 'tiny') &#9679; &#9679; &#9679;&nbsp;
+                            @endfor
+                        @else
+                            @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i++)
+                                @svg('assets/images/body.svg', 'tiny')
+                            @endfor
+                        @endif
+
+                        {{-- <img width="50" src="/images/humaaans.png" alt="Nombre d'emplois crées" style="vertical-align:middle"> --}}
                       </div>
                     </div>
                     <div class="column has-text-centered">
