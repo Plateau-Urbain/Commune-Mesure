@@ -27,7 +27,7 @@
                 @foreach ($places[0]->data->compare as $key_name => $programmations )
                 <optgroup label="{{ $key_name }}">
                   @foreach ($programmations as $key_prog_name => $programmation )
-                  <option @if($key_prog_name == "etp") id="stats_selectedLeftValue" 
+                  <option @if($key_prog_name == "etp") id="stats_selectedLeftValue"
                                                         selected
                                                       @endif
                                             value="{{ $key_prog_name }}" >{{ $programmation->title }}</option>
@@ -63,33 +63,8 @@
   </div>
   <div class="section" >
     <div class="columns card is-rounded">
-      <div class="column is-two-fifths">
-        <div id="stats-chart" width="100" height="10"></div>
-      </div>
       <div class="column">
-      <div id="lieux_list">
-        <table id="table_places">
-            <thead>
-              <tr>
-                  <th scope="col"><p class="lieux_title">Lieu</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <div>
-                @foreach($places as $n => $place)
-                <tr class="place-tr">
-                    <td>
-                      <div>
-                        <p class="place_element" id="list_{{$place->title}}"><strong>{{$place->name}}</strong></p>
-
-                      </div>
-                    </td>
-                </tr>
-                @endforeach
-              </div>
-            <tbody>
-        </table>
-      </div>
+        <div id="stats-chart" width="100" height="10"></div>
       </div>
     </div>
   </div>

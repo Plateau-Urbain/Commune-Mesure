@@ -43,12 +43,12 @@
         <div id="presentation" class="hero is-large anchor">
             <section>
               <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
-              <div class="has-text-centered ">
+              <div class="has-text-centered pt-2">
                 <p><i class="fas fa-clock font-color-theme mr-1"></i>
                   <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
                 </p>
               </div>
-              <div class="section" style="padding-bottom:0;">
+              <div class="section pt-5" style="padding-bottom:0;">
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->

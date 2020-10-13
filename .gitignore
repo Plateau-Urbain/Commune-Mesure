@@ -7,6 +7,5 @@ Homestead.json
 Homestead.yaml
 .env
 .phpunit.result.cache
-/public/fonts/*
 /resources/*.xlsx
 !/storage/app/places/example.json
