@@ -3,7 +3,6 @@
   document.querySelectorAll("div.map-place").forEach(nodeMap => {
     var id = nodeMap.getAttribute("id");
     var mapnode = document.getElementById(id);
-    mapnode.style.height = "22em";
     var namePlace = id.replace("map_", '');
     if (!geoDataPlace[namePlace]) {
         console.log(namePlace+" not found ("+id+")");
