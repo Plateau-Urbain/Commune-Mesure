@@ -228,7 +228,6 @@
                   <div class="columns">
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">Les moyens</h2>
-                      <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Financiers</h4>
                       <div class="field">
                         <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
                         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
@@ -250,10 +249,11 @@
                     </div>
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                      <div class="section">
-                      <canvas id="composition-chart-doughnut" ></canvas>
+                      <div class="field">
+                        <label class="is-size-5" style="font-weight: bold;" >Structure</label>
                       </div>
-                      <div class="">
+                      <canvas id="composition-chart-doughnut" ></canvas>
+                    <div class="">
                       @php
                       $nb_struct = $place->impact_economique->nombre_structures_crees
                       @endphp
