@@ -584,25 +584,6 @@ p.partenaires_text{
 .slider-navigation-previous,.slider-navigation-next{
   display: none !important;
 }
-.tags_container{
-  position: absolute;
-  bottom: 1px;
-}
-li.tags{
-  display: inline-flex;
-  color:#999;
-  border-radius: 3px;
-  background-color: #EEE;
-  font-size: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  text-align: center;
-}
-li.tags:hover {
-  cursor: pointer;
-  background-color: crimson;
-  color:white;
-}
 .switch[type="checkbox"].is-success:checked + label::before, .switch[type="checkbox"].is-success:checked + label:before{
   background-color: #B5B5B5 !important;
 }
@@ -709,7 +690,7 @@ div.bloc-note{
   line-height: 26px;
   padding: 0 20px 0 23px;
   position: relative;
-  margin: 0 10px 10px 0;
+  margin: 0 10px 0 0;
   text-decoration: none;
   -webkit-transition: color 0.2s;
 }
