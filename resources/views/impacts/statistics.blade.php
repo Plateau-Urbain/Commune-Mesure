@@ -62,38 +62,8 @@
   </div>
   <div class="section" >
     <div class="columns card is-rounded">
-      <div class="column is-two-fifths">
-        <!-- <div class="" id="chart-moyen-rea"></div> -->
-        <div id="stats-chart" width="100" height="10"></div>
-      </div>
       <div class="column">
-      <div id="lieux_list">
-        <table id="table_places">
-            <thead>
-              <tr>
-                  <!-- <th><input type="checkbox" name="" value="" onclick="selectAll(this)"></th> -->
-                  <th scope="col"><p class="lieux_title">Lieu</p></th>
-                  <!-- <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
-                  <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <div>
-                @foreach($places as $n => $place)
-                <tr class="place-tr">
-                    <!-- <th scope="row"><input type="checkbox" name="checkbox_{{$place->name}}" value="" class="checkPlaces"></th> -->
-                    <td>
-                      <div>
-                        <p class="place_element" id="list_{{$place->title}}"><strong>{{$place->name}}</strong></p>
-
-                      </div>
-                    </td>
-                </tr>
-                @endforeach
-              </div>
-            <tbody>
-        </table>
-      </div>
+        <div id="stats-chart" width="100" height="10"></div>
       </div>
     </div>
   </div>
