@@ -216,7 +216,7 @@
             <section class="section" id="nos-valeurs" style="padding-top:0;">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
               <div class="columns">
-                <div class="column">
+                <div class="column has-text-centered">
                   <div id="value_container"></div>
                   <!-- <div id="sigma" style="width:100%; height:30em;"></div> -->
                   <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
