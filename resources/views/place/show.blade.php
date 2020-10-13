@@ -314,22 +314,34 @@
                   <div class="column has-text-centered">
                       <img width="300" src="/images/4_characters.png"/>
                       <div class="impact_item" id="impact_item_lien_social" data-aos="fade-in" style="left: 445px;  margin-top: -80px;">
-                          <svg  width="215" height="150" viewBox="20 20 75 40">
+                          <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                               <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
                           </svg>
                           <div class="impact_box" id="impact_box_social">
-                              <p class="impact_text"> mes réseaux </p>
+                              <p class="impact_text">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Reseaux) && $impact->Reseaux->show)
+                                    @foreach($impact->Reseaux->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
                           </div>
                       </div>
                       <div class="impact_item" id="impact_item_sante" data-aos="fade-right" style="margin-top: -345px; left: 785px;">
-                          <svg  width="215" height="150" viewBox="20 20 75 40">
+                          <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                               <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
                               <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
                           </svg>
                           <div class="impact_box" id="impact_box_sante">
-                              <p class="impact_text"> appartenance </p>
+                              <p class="impact_text" style="z-index:10">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Lien) && $impact->Lien->show)
+                                    @foreach($impact->Lien->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
                           </div>
                       </div>
                   </div>
@@ -337,18 +349,31 @@
                       <img width="200" src="/images/3_characters.png"/>
                       <div class="impact_item" id="impact_item_confiance" data-aos="fade-in" style="right: 180px; margin-top: -315px;">
                           <div class="impact_box" id="impact_box_confiance">
-                              <p class="impact_text">$impacts</p>
+                              <p class="impact_text">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Sante) && $impact->Sante->show)
+                                    @foreach($impact->Sante->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
                           </div>
-                          <svg  width="215" height="150" viewBox="20 20 75 40">
-                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+                          <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                               <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
                               <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
-                          </svg></div>
+                          </svg>
+                      </div>
                           <div class="impact_item" id="impact_item_stress" data-aos="fade-in" style="margin-top: -100px; right: 190px;">
                               <div class="impact_box" id="impact_box_stress">
-                                  <p class="impact_text">$impacts</p>
+                                  <p class="impact_text">
+                                    @foreach($place->impact as $key => $impact)
+                                      @if(isset($impact->Insertion) && $impact->Insertion->show)
+                                        @foreach($impact->Insertion->text as $text) {{ $text }} @endforeach
+                                      @endif
+                                    @endforeach
+                                  </p>
                               </div>
-                              <svg width="215" height="150" viewBox="20 20 75 40">
+                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
                                   <text x="35" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
