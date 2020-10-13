@@ -15033,7 +15033,6 @@ svg#male {
   margin-top: 20px; }
 
 #value_container {
-  margin-top: 70px;
   background-color: #DEEBEE; }
 
 #circleActivités > div {
@@ -15288,4 +15287,3 @@ div.bloc-note {
 
 .tag:hover::after {
   border-left-color: crimson; }
-
