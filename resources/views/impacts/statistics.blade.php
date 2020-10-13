@@ -23,13 +23,14 @@
           <div class="control">
             <label for="titleCmpLeft" class="title is-4">Indicateur en abscisse  :</label>
             <div class="select is-small is-success" style="margin-left:1em;">
-              <select name="1" id="titleCmpLeft" class="is-focused">
+              <select name="1" id="titleCmpLeft" class="is-focused" >
                 @foreach ($places[0]->data->compare as $key_name => $programmations )
                 <optgroup label="{{ $key_name }}">
                   @foreach ($programmations as $key_prog_name => $programmation )
-                  <option value="{{ $key_prog_name }}" @if($key_prog_name == "event")
-                                                selected
-                                            @endif>{{ $programmation->title }}</option>
+                  <option @if($key_prog_name == "etp") id="stats_selectedLeftValue" 
+                                                        selected
+                                                      @endif
+                                            value="{{ $key_prog_name }}" >{{ $programmation->title }}</option>
                   @endforeach
                 </optgroup>
                 @endforeach
@@ -47,9 +48,9 @@
             @foreach ($places[0]->data->compare as $key_name => $programmations )
             <optgroup label="{{ $key_name }}">
               @foreach ($programmations as $key_prog_name => $programmation )
-              <option value="{{ $key_prog_name }}" @if($key_prog_name == "etp")
-                                            selected
-                                        @endif>{{ $programmation->title }}</option>
+              <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
+                  selected
+              @endif >{{ $programmation->title }}</option>
               @endforeach
             </optgroup>
             @endforeach
@@ -63,7 +64,6 @@
   <div class="section" >
     <div class="columns card is-rounded">
       <div class="column is-two-fifths">
-        <!-- <div class="" id="chart-moyen-rea"></div> -->
         <div id="stats-chart" width="100" height="10"></div>
       </div>
       <div class="column">
@@ -71,17 +71,13 @@
         <table id="table_places">
             <thead>
               <tr>
-                  <!-- <th><input type="checkbox" name="" value="" onclick="selectAll(this)"></th> -->
                   <th scope="col"><p class="lieux_title">Lieu</p></th>
-                  <!-- <th scope="col"><p class="lieux_selectedLeftValue" id="stats_selectedLeftValue">X</p></th>
-                  <th scope="col"><p class="lieux_selectedRightValue" id="stats_selectedRightValue">Y</p></th> -->
               </tr>
             </thead>
             <tbody>
               <div>
                 @foreach($places as $n => $place)
                 <tr class="place-tr">
-                    <!-- <th scope="row"><input type="checkbox" name="checkbox_{{$place->name}}" value="" class="checkPlaces"></th> -->
                     <td>
                       <div>
                         <p class="place_element" id="list_{{$place->title}}"><strong>{{$place->name}}</strong></p>
