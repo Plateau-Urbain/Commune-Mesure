@@ -15188,6 +15188,9 @@ li.tags:hover {
   margin-left: auto;
   margin-right: auto; }
 
+.header-bloc-note .image img{
+      margin-bottom: -10px;  }
+
 .bloc-note-body {
   border: 0.4em solid #dbdbdb;
   height: 20em;
