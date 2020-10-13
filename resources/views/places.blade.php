@@ -15,7 +15,7 @@
         </div>
         <div class="section">
             @foreach ($places as $place)
-                <div class="box content">
+                <div class="box content is-clickable">
                     <div class="columns is-bordered places-block">
                         <div class="column" style="position:relative;min-height:250px;">
                             <p class="title"><a href="{{ route('place.show',['slug' => $place->title ])  }}">{{ $place->name  }}</a><span class="title_places-city"> - <strong>{{ $place->address->city  }}</strong></span></p>

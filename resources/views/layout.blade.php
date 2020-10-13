@@ -8,6 +8,7 @@
         @section('head_css')
             <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
             <link rel="stylesheet" href="/css/app.css">
+            <link rel="stylesheet" href="/css/style.css">
         @show
     </head>
     <body>
@@ -20,6 +21,7 @@
         </div>
 
          @section('script_js')
+             <script src="/js/global.js"></script>
              <script src="/js/bundle.js"></script>
              <script src="/js/map.js"></script>
              <script src="/js/animate.js"></script>
