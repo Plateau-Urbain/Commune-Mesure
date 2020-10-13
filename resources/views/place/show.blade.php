@@ -127,10 +127,11 @@
                           @endforeach
                           @if($place->partners[0]->names || $place->partners[1]->names)
                           <div class="">
-                            <strong class="">Nature des partenariats:</strong>
+                            <strong class="">Nature des partenariats :</strong>
                             <div class="fontSize0-8em">
                               @php ($nb = 1) @endphp
                               @foreach($place->partners as $partner)
+                              @if (count($partner->natures))
                               <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                                 @foreach($partner->natures as $nature)
                                   {{ $nature }}
@@ -140,6 +141,7 @@
                                   @endif
                                 @endforeach
                                 </span>
+                                @endif
                               </div>
                               @endforeach
                             </div>
