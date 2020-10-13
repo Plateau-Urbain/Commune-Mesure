@@ -234,12 +234,12 @@
                         <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
                       </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
-                      <div class="">
                       <h4 class="is-4 has-text-centered" style="margin-bottom:20px;">Humains</h4>
-                          <div class="column is-3 title is-5">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> ETP
+                        <div class="columns">
+                          <div class="column is-3">
+                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> <span class="title is-5">ETP</span>
                           </div>
-                          <div class="column">
+                          <div class="column" style="overflow-y: hidden; max-height: 200px;">
                               @if($place->data->compare->moyens->etp->nombre > 5)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -249,9 +249,15 @@
                                       @svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
-                              <br/>
-                              <span class="title is-5 has-text-centered"><span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> Bénévoles</span>
-                              @if($place->data->compare->moyens->benevole->nombre > 5)
+                          </div>
+                        </div>
+
+                        <div class="columns">
+                            <div class="column is-3">
+                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> <span class="title is-5"> Bénévoles</span>
+                            </div>
+                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                              @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
                                   @endfor
@@ -260,10 +266,10 @@
                                       @svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
-                          </div>
-
-                      </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="column has-text-centered">
                       <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
                       <div class="field">
