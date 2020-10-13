@@ -20,13 +20,6 @@
 
         </div>
         <div class="column">
-            <div class="social-network">
-                <p class="is-size-4">Les réseaux</p>
-                <span class="is-block"><a>Facebook</a></span>
-                <span class="is-block"><a>Twitter</a></span>
-                <span class="is-block"><a>Instagram</a></span>
-            </div>
-
         </div>
     </div>
 </div>
