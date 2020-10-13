@@ -11,12 +11,10 @@
     <div class="column  is-three-fifths ">
               <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au <a href="#">Christkindelsmärik</a> en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
               <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-              <p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias</p>
-              <p>Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci</p>
     </div>
     </div>
   </div>
-  <div class="section has-text-centered font-color-theme">
+  <div class="section has-text-centered font-color-theme pt-0">
     <div class="columns is-mobile">
       <div class="column">
         <div class="field">
@@ -60,7 +58,7 @@
       </div>
     </div>
   </div>
-  <div class="section" >
+  <div class="section pt-0" >
     <div class="columns card is-rounded">
       <div class="column">
         <div id="stats-chart" width="100" height="10"></div>
