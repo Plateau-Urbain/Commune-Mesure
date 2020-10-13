@@ -13,8 +13,8 @@
                 </p>
                 <ul class="menu-list ">
                     <li><a href="/les-lieux">Les lieux</a></li>
-                    <li><a href="/les-donnees">Les données</a></li>
-                    <li><a href="les-partenaires">Les partenaires</a></li>
+                    <li><a href="/les-statistiques-et-donnees-des-lieux">Les données</a></li>
+                    <li><a href="/les-partenaires">Les partenaires</a></li>
                 </ul>
             </div>
 
