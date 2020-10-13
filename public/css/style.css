@@ -6,3 +6,38 @@ svg.tiny {
     height: 2em;
     width: 2em;
 }
+
+.btn-voir-lieu {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+}
+
+.content ul.tags_container{
+  position: absolute;
+  bottom: 0.75rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+li.tags{
+  display: inline-flex;
+  color:#999;
+  border-radius: 3px;
+  background-color: #EEE;
+  font-size: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+}
+
+li.tags:hover {
+  cursor: pointer;
+  background-color: crimson;
+  color:white;
+}
+
+.slider-pagination {
+    position: absolute !important;
+}
