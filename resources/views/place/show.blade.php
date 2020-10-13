@@ -60,7 +60,7 @@
                       </div>
                       <div class="bloc-note-body">
                         <div class="content">
-                            <h2 class="has-text-centered">L'idée fondatrice du lieu</h2>
+                            <h2 class="has-text-centered">L'idée fondatrice</h2>
                             <p class="fontSize0-8em">{{ $place->description }}</p>
                         </div>
                       </div>
