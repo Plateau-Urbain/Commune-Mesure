@@ -17,9 +17,12 @@
             @foreach ($places as $place)
                 <div class="box content">
                     <div class="columns is-bordered places-block">
-                        <div class="column" style="position:relative;min-height:250px;">
+                        <div class="column is-clickable" style="position:relative;min-height:250px;">
                             <p class="title"><a href="{{ route('place.show',['slug' => $place->title ])  }}">{{ $place->name  }}</a><span class="title_places-city"> - <strong>{{ $place->address->city  }}</strong></span></p>
                             <p>{{ $place->description }}</p>
+                            <p class="has-text-right">
+                            <a href="{{ route('place.show',['slug' => $place->title ])  }}" class="button is-default">Voir ce lieu</a>
+                            </p>
                             <ul class="tags_container">
                             @foreach($place->tags as $tag)
                             <li class="tags">{{$tag}}</li>
