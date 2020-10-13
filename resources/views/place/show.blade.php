@@ -224,7 +224,6 @@
               </div>
             </section>
             <section class="section" id="finances" >
-              <div class="">
                   <div class="columns">
                     <div class="column">
                       <h2 class="ribbon-banner title is-5">Les moyens</h2>
@@ -270,32 +269,39 @@
                         </div>
                     </div>
 
-                    <div class="column has-text-centered">
-                      <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                      <div class="field">
-                        <label class="is-size-5" style="font-weight: bold;" >Structure</label>
-                      </div>
-                      <canvas id="composition-chart-doughnut" ></canvas>
-                    <div class="">
-                      @php
-                      $nb_struct = $place->impact_economique->nombre_structures_crees
-                      @endphp
-                      @if($nb_struct > 0)
-                      <div class="">
-                      <center><p style="font-weight:bold;">Nombre de structures crées : {{$nb_struct}}</p></center>
-                      @php
-                      $inc = 1;
-                      if($nb_struct>=5) $inc = $nb_struct/5
-                      @endphp
-                      @for ($i = 0; $i < $nb_struct; $i=$i+$inc)
-                        <img width="50" src="/images/building.png" alt="Nombre d'emplois crées" >
-                      @endfor
-                      </div>
-                      @endif
-                      </div>
+                    <div class="column">
+                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
+                        <div class="field">
+                            <label class="is-size-5" style="font-weight: bold;" >Structure</label>
+                        </div>
+                        <canvas id="composition-chart-doughnut" ></canvas>
+
+                        <h1 class="title no-border is-4 has-text-centered mt-6">Création</h1>
+                        <div class="columns">
+                            <div class="column is-3">
+                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
+                                <span class="title is-5">
+                                    @if ($place->impact_economique->nombre_structures_crees > 1)
+                                        entreprises créées
+                                    @else
+                                        entreprise créée
+                                    @endif
+                                </span>
+                            </div>
+
+                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                                @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
+                                    <span class="icon is-large">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fas fa-sun fa-stack-1x" style="color: #FFDC00"></i>
+                                            <i class="fas fa-industry fa-stack-1x" style="color: #e85048"></i>
+                                        </span>
+                                    </span>
+                                @endfor
+                            </div>
+                        </div>
                     </div>
                   </div>
-              </div>
             </section>
 
           </div>
