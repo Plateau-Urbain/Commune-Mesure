@@ -32,7 +32,9 @@
 
                         <div class="column is-one-third has-text-centered" style="overflow-x: hidden">
                             <div id="carousel-{{ $place->title }}" class="carousel">
+                              @if( $place->photos[0] )
                               <img class="img-places" src='{{ url("/") }}/images/{{ $place->photos[0] }}'>
+                              @endif                              
                               <div class="map-place" id="map_{{ $place->title }}"></div>
                             </div>
                         </div>
