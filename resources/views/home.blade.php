@@ -112,9 +112,6 @@
                       mieux cibler les partenaires privés et publics susceptibles de les accompagner.
                     </p>
                 </div>
-                <div class="column">
-                    <img class="is-pulled-right" style="height:30%;width:40%" src="{{ url('/images/logos/commune-mesure.png') }}">
-                </div>
             </div>
         </div>
     </div>
