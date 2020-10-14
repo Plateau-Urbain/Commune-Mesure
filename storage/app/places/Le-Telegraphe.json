@@ -472,17 +472,21 @@
             }
         },
         "finance":{
-          "name": "Financement",
-          "color": "#ee4035",
-          "children": [
-            {
-              "name": "Budget annuel de fonctionnent",
-              "children":[
-                {"name":"Recettes annuelles","size" : 550000},
-                {"name":"Dépenses annuelles", "size": 250000}
-              ]
-            }
-          ]
+          "composition":[
+            {"name": "Entreprises", "size": 2},
+            {"name": "Associations", "size": 0},
+            {"name": "Artistes", "size": 0},
+            {"name": "Autres structures", "size": 0}
+          ],
+          "investissement":[
+              {"name":"Fonds publics","size" : 0},
+              {"name":"Fonds privés", "size": 3000000}
+            ],
+          "fonctionnement":[
+              {"name":"Subventions","size" : 0},
+              {"name":"Aides privées","size" : 3000000},
+              {"name":"Recettes", "size": 0}
+            ]
         },
         "compare":{
           "moyens":{
@@ -526,16 +530,16 @@
     "partners": [
       {
         "title": "public",
-        "names": "",
+        "names": "Commune de Toulon",
         "natures": [
-          ""
+          "Nature"
         ]
       },
       {
         "title": "privé",
-        "names": "",
+        "names": "Société 95 Degré",
         "natures": [
-          ""
+          "Économique"
         ]
       }
     ],
@@ -564,7 +568,7 @@
       }
     ],
     "impact_economique":{
-      "nombre_structures_crees":0
+      "nombre_structures_crees":5
     },
     "impact": [{
         "Sante": {
@@ -595,19 +599,19 @@
       },
       {
       "Lien": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Proposition de rencontres avec échanges avec le public, de quartier libre, etc."
         ]
         }
       },
       {
       "Reseaux": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Le Telegraphe est un lieu qui rassemble, avec à l'origine la création d'un système d'abonnement qui a fédéré un noyau encore resserré."
         ]
         }
       },
