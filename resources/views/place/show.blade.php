@@ -296,9 +296,9 @@
           <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
-                  <div class="column has-text-centered">
+                  <div class="column has-text-centered" style="position: relative;">
                       <img width="300" src="/images/4_characters.png"/>
-                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 445px;  margin-top: -80px;">
+                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 110px;  bottom: -50px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Reseaux) && $impact->Reseaux->show)
                           @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
@@ -311,7 +311,7 @@
                               </svg>
                           </div>
                       </div>
-                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="margin-top: -345px; left: 785px;">
+                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="right: 80px;  top: -45px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Appartenance) && $impact->Appartenance->show)
                           @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
