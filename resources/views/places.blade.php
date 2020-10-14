@@ -1,11 +1,5 @@
 @extends('layout')
 
-@section('head_css')
-  @parent
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
-
-@endsection
-
 @section('content')
     <div class="container">
         <div class="hero is-large is-light">
@@ -29,11 +23,11 @@
                             <a href="{{ route('place.show',['slug' => $place->title ])  }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
                         <div class="column is-one-third has-text-centered" style="overflow: hidden;">
-                            <div id="carousel-{{ $place->title }}" style="height: 226px; overflow: hidden;" class="carousel">
+                            <div id="carousel-{{ $place->title }}" style="height: 230px; overflow: hidden;" class="carousel">
                             @if( $place->photos[0] )
-                              <img class="img-places" style="height: 226px;" src='{{ url("/") }}/images/lieux/{{ $place->photos[0] }}'>
+                              <img class="img-places" style="height: 230px;" src='{{ url("/") }}/images/lieux/{{ $place->photos[0] }}'>
                             @endif
-                              <div class="map-place" style="height: 226px;" id="map_{{ $place->title }}"></div>
+                              <div class="map-place" style="height: 230px;" id="map_{{ $place->title }}"></div>
                             </div>
                         </div>
                     </div>
