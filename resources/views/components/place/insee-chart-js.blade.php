@@ -59,7 +59,7 @@ yaxis: {
 },
 
 tooltip: {
-  x:'',
+  x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
   y: {
     formatter: function (val) {
       return val.toFixed(2) + "%"
@@ -138,7 +138,7 @@ var options = {
     },
 
     tooltip: {
-        x:'',
+        x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
         y: {
             formatter: function (val) {
                 return val.toFixed(2) + "%"
@@ -234,7 +234,7 @@ yaxis: {
 },
 
 tooltip: {
-  x:'',
+  x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
   y: {
     formatter: function (val) {
       return val.toFixed(2) + "%"

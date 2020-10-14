@@ -150,15 +150,14 @@ function setCaptionDataBar(currentDataZone, zone){
 
   })
 }
-
+var select_zone;
 function setInseeChartData(currentDataZone,zone){
-
+  select_zone = zone;
   var data = @json($place->data->insee);
   var dataIris = data["iris"].activites
   var dataRegion = data["region"].activites
   var dataCommune = data["commune"].activites
   var dataDepartement = data["departement"].activites
-
 
   var totalActif = 0;
   var totalCsp = 0;
