@@ -273,13 +273,13 @@
 
                         <h1 class="title no-border is-4 has-text-centered mt-6">Création</h1>
                         <div class="columns">
-                            <div class="column is-3">
+                            <div class="column is-4">
                                 <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
                                 <span class="title is-5">
                                     @if ($place->impact_economique->nombre_structures_crees > 1)
-                                        entreprises créées
+                                        structures créées
                                     @else
-                                        entreprise créée
+                                        structure créée
                                     @endif
                                 </span>
                             </div>
