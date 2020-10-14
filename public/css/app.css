@@ -15033,7 +15033,6 @@ svg#male {
   margin-top: 20px; }
 
 #value_container {
-  margin-top: 70px;
   background-color: #DEEBEE; }
 
 #circleActivités > div {
@@ -15050,9 +15049,13 @@ svg#male {
   z-index: 0; }
 
 #impact_item_lien_social:hover #impact_box_social {
-  opacity: 1; }
+		z-index: 1000;
+  opacity: 1;
+
+}
 
 #impact_item_sante:hover #impact_box_sante {
+	z-index: 1000;
   opacity: 1; }
 
 #impact_item_stress:hover #impact_box_stress {
