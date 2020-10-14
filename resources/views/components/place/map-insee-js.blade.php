@@ -43,7 +43,7 @@
 
       marker = L.marker(markerPoint, {icon: myIcon}).addTo(mapInsee)
           .bindPopup("<div><h3>Nom: {{ $place->name }}</h3>"
-          +"<h4>Quartier: "+layer.feature.properties.nom+"</h4><p>"+layer.feature.properties.citycode+"</p></div>")
+          +"<h4>Quartier: "+layer.feature.properties.nom+"</h4></div>")
           .openPopup();
     }
   }
