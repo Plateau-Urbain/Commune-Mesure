@@ -229,13 +229,22 @@
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
                           <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->etp->nombre > 10)
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
+                              @if($place->data->compare->moyens->etp->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->etp->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
                                   @endfor
+
+                                  @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
                               @endif
-                              @for($i = 0; $i < substr($place->data->compare->moyens->etp->nombre, -1); $i++)
-                                  @svg('assets/images/body.svg', 'tiny')
+                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
                               @endfor
                           </div>
                         </div>
@@ -245,13 +254,22 @@
                               <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
                             <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->benevole->nombre > 10)
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
+                              @if($place->data->compare->moyens->benevole->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->benevole->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
                                   @endfor
+
+                                  @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
                               @endif
-                              @for($i = 0; $i < substr($place->data->compare->moyens->benevole->nombre, -1); $i++)
-                                  @svg('assets/images/body.svg', 'tiny')
+                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
                               @endfor
                             </div>
                         </div>
@@ -277,7 +295,7 @@
                                 </span>
                             </div>
 
-                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column" style="overflow-y: auto; max-height: 115px;">
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
@@ -296,9 +314,9 @@
           <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
-                  <div class="column has-text-centered">
+                  <div class="column has-text-centered" style="position: relative;">
                       <img width="300" src="/images/4_characters.png"/>
-                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 445px;  margin-top: -80px;">
+                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 110px;  bottom: -50px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Reseaux) && $impact->Reseaux->show)
                           @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
@@ -311,7 +329,7 @@
                               </svg>
                           </div>
                       </div>
-                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="margin-top: -345px; left: 785px;">
+                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="right: 80px;  top: -45px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Appartenance) && $impact->Appartenance->show)
                           @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
@@ -412,15 +430,15 @@
             </div>
 
             <div class="columns card is-rounded">
-              <div class="column " style="width: 100%;height: 30em; z-index:1">
+              <div class="column " style="width: 100%; height: 35em;">
                 <div id="map-insee"></div>
               </div>
               <div class="column is-7">
                 <div class="columns">
                   <div class="column">
-                      <div id="actifsChart" width="100" height="10"></div>
-                      <div id="cateChart" width="100" height="10"></div>
-                      <div id="immoChart" width="100" height="10"></div>
+                      <div id="actifsChart"></div>
+                      <div id="cateChart"></div>
+                      <div id="immoChart"></div>
                   </div>
                 </div>
               </div>
