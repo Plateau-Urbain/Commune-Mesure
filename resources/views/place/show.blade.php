@@ -231,9 +231,9 @@
                       <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
                         <div class="columns">
                           <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> <span class="title is-5">ETP</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                          <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->etp->nombre > 5)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -248,9 +248,9 @@
 
                         <div class="columns">
                             <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> <span class="title is-5"> Bénévoles</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -274,7 +274,7 @@
                         <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
                         <div class="columns">
                             <div class="column is-4">
-                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
+                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
                                 <span class="title is-5">
                                     @if ($place->impact_economique->nombre_structures_crees > 1)
                                         structures créées
