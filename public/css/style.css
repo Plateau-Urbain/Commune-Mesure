@@ -2,11 +2,6 @@
     cursor: pointer;
 }
 
-svg.tiny {
-    height: 2em;
-    width: 2em;
-}
-
 .btn-voir-lieu {
     position: absolute;
     bottom: 0.75rem;
