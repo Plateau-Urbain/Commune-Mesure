@@ -20,18 +20,10 @@
       fill: {
           opacity: 1
       },
-      title: {
-          text: "Rapport",
-          style: {
-            fontSize:  '13px',
-            fontWeight:  'bold',
-            color:  '#616161'
-          },
-      },
       tooltip: {
           custom: function({series, seriesIndex, dataPointIndex, w}) {
             return '<div class="arrow_box" style="padding: 10px;">' +
-              '<strong>' +  w.config.series[seriesIndex].name.replace('&#039;', "'") + '</strong> <ul><li>Superficie du lieu (m2) : 10</li><li>Nombre d\'évenement : 5</li></ul>' +
+              '<strong>' +  w.config.series[seriesIndex].name.replace('&#039;', "'") + '</strong> <ul><li>'+w.config.xaxis.title.text+' : '+w.config.series[seriesIndex].data[0][0]+'</li><li>'+w.config.yaxis[0].title.text+' : '+w.config.series[seriesIndex].data[0][1]+'</li></ul>' +
               '</div>'
           },
           onDatasetHover: {
@@ -73,30 +65,6 @@
         show:false,
       }
     };
-    var maxX = 0, maxY = 0, minX=9999999, minY=9999999;
-    function getMaxXaxis(dataX){
-      if(maxX < dataX)
-        maxX = dataX + dataX/2;
-      return maxX;
-    }
-
-    function getMaxYaxis(dataY){
-      if(maxY < dataY)
-        maxY = dataY + dataY/2;
-      return maxY;
-    }
-
-    function getMinXaxis(dataX){
-      if(minX > dataX && dataX > 10)
-        minX = - dataX;
-      return minX;
-    }
-
-    function getMinYaxis(dataY){
-      if(minY > dataY && dataY > 10)
-        minY = - dataY;
-      return minY;
-    }
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
   var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
@@ -115,9 +83,6 @@
 
   }
   function comparePlacePoints(selectcmpL, selectcmpR){
-    // options.xaxis.max = 350;
-    minX=9999999, minY=9999999
-    maxX = 0, maxY = 0;
     cleanStatsChart()
 
     leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
@@ -135,6 +100,30 @@
       document.getElementById("titleCmpRight").innerHTML = rightTitle;
     }
 
+    statschart.updateOptions(
+      {
+        title: {
+            text: 'Lieux en fonction du ' + rightTitle + " et du " + leftTitle
+        },
+        xaxis: {
+            tickAmount: 12,
+            tickPlacement: 'between',
+            type: 'category',
+            min: undefined,
+            max: undefined,
+            title: { text: leftTitle}
+
+        },
+        yaxis:{
+          tickAmount: 10,
+          tickPlacement: 'between',
+          min:undefined,
+          max: undefined,
+          title: { text: rightTitle }
+        }
+      }
+    );
+
     for (const [key, value] of Object.entries(compares.data)) {
       if (value.realisations[LeftIndicator] == undefined) {
           dataLeft = value.moyens[LeftIndicator].nombre;
@@ -149,35 +138,15 @@
         dataRight = value.moyens[RightIndicator].nombre;
 
       }
-      /*statschart.updateOptions(
-        {
-          xaxis: {
-            max:getMaxXaxis(dataLeft),
-            min: getMinXaxis(dataLeft),
-            tickAmount: 12,
-            type: 'category',
-          },
-          yaxis:{
-            max:getMaxYaxis(dataRight),
-            min: getMinYaxis(dataRight),
-            tickAmount: 10,
-          }
-        }
-    );*/
 
-        if(dataLeft && dataRight) {
-            console.log(key+":"+dataLeft+","+dataRight);
-            statschart.appendSeries({
-                name: key,
-                data: [[dataLeft, dataRight, 10]]
-            });
-        }
-
-
+        statschart.appendSeries({
+            name: key,
+            data: [[dataLeft, dataRight, 8]]
+        });
     }
+
     LeftIndicator = traduction(LeftIndicator)
     RightIndicator = traduction(RightIndicator)
-
 
   }
 
