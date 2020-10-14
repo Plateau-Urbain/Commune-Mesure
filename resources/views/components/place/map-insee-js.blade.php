@@ -34,14 +34,11 @@
   /**
   *
   **/
-  var myIcon = L.icon({
-            iconUrl: "/images/marker-icon.png",
-            iconSize: [0, 0],
-        });
+
   function onEachFeature(feature, layer) {
     if(marker === undefined){
 
-      marker = L.marker(markerPoint, {icon: myIcon}).addTo(mapInsee)
+      marker = L.marker(markerPoint).addTo(mapInsee)
           .bindPopup("<div><h3>Nom: {{ $place->name }}</h3>"
           +"<h4>Quartier: "+layer.feature.properties.nom+"</h4></div>")
           .openPopup();
