@@ -208,7 +208,7 @@
           </section>
           <div>
 
-            <section class="section" id="nos-valeurs" style="padding-top:0;">
+            <section class="section" id="nos-valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
               <div class="columns">
                 <div class="column has-text-centered">
@@ -265,7 +265,7 @@
                     </div>
 
                     <div class="column">
-                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
+                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                         <div class="field has-text-centered">
                             <label class="is-size-5" style="font-weight: bold;" >Structure</label>
                         </div>

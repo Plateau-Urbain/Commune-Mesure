@@ -11,8 +11,9 @@
         <ul>
           <li><a href="#presentation">Présentation du lieu</a></li>
           <li><a href="#nos-valeurs">Nos valeurs</a></li>
-          <li><a href="#finances">Les finances</a></li>
-          <li><a href="#composition-lieu">La composition du lieu</a></li>
+          <li><a href="#finances">Les moyens</a></li>
+          <li><a href="#finances">La composition</a></li>
+          <li><a href="#impact_social">Impact social</a></li>
           <li><a href="#donnees-insee">Données INSEE</a></li>
         </ul>
       </li>
