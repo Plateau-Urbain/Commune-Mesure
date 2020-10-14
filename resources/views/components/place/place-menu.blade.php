@@ -9,11 +9,12 @@
     <ul class="menu-list">
       <li>
         <ul>
-          <li><a href="#presentation">Présentation du lieu</a></li>
-          <li><a href="#nos-valeurs">Nos valeurs</a></li>
-          <li><a href="#finances">Les finances</a></li>
-          <li><a href="#composition-lieu">La composition du lieu</a></li>
-          <li><a href="#donnees-insee">Données INSEE</a></li>
+          <li><a href="#presentation">Présentation</a></li>
+          <li><a href="#valeurs">Les valeurs</a></li>
+          <li><a href="#finances">Les moyens</a></li>
+          <li><a href="#finances">La composition</a></li>
+          <li><a href="#impact-social">L'impact social</a></li>
+          <li><a href="#territoire">Le territoire</a></li>
         </ul>
       </li>
     </ul>
