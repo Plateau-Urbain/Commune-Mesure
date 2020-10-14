@@ -1,7 +1,5 @@
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="/js/apexcharts.min.js"></script>
 <script>
-    var places = [];
-    var places_name = JSON.parse("{{ json_encode($compares['names']) }}".replace(/&quot;/g,'"'));
     var leftTitle;
     var rightTitle;
 
@@ -15,80 +13,53 @@
         toolbar:{
           show:false,
         },
-        height: 550,
+        height: 450,
         width: "100%",
-        type: 'bubble',
-        events: {
-          dataPointSelection: function(event, chartContext, config) {
-            var selectedName = config.w.config.series[config.seriesIndex].name
-          },
-          dataPointMouseEnter: function(event, chartContext, config) {
-            var templateCloned = document.importNode(template.content, true);
-            var circle = event.target
-            colorGet = circle.getAttribute('fill')
-            var selectedName = config.w.config.series[config.seriesIndex].name
-            list_el = document.querySelector('p#list_'+places_name[selectedName])
-            list_el.querySelector("strong").style.color = colorGet
-            if(document.querySelector("div#detail_list_"+places_name[selectedName]) == null){
-              var divDetail = templateCloned.querySelector("div#detail_list");
-              divDetail.setAttribute("id", "detail_list_"+places_name[selectedName]);
-              var xAxis = templateCloned.querySelector("#leftPlaceIndicator");
-              var yAxis = templateCloned.querySelector("#rightPlaceIndicator");
-              xAxis.innerHTML= leftTitle+" : "+config.w.config.series[config.seriesIndex].data[0][0]
-              xAxis.style.color = colorGet
-              yAxis.style.color = colorGet
-              yAxis.innerHTML= rightTitle+" : "+config.w.config.series[config.seriesIndex].data[0][1]
-              list_el.parentElement.appendChild(templateCloned);
-            }else{
-              var divDetail = document.querySelector("div#detail_list_"+places_name[selectedName])
-              divDetail.setAttribute("class", "is-block")
-            }
-          },
-          dataPointMouseLeave:function(event, chartContext, config) {
-            var circle = event.target
-            colorGet = circle.getAttribute('fill')
-            var selectedName = config.w.config.series[config.seriesIndex].name
-            list_el.querySelector("strong").style.color = 'black'
-            var divDetail = document.querySelector("div#detail_list_"+places_name[selectedName])
-            divDetail.setAttribute("class", "is-hidden")
-          },
-        }
-      },
-      dataLabels: {
-          enabled: false
-      },
+        type: 'scatter',
+    },
       fill: {
-          opacity: 0.8
-      },
-      title: {
-          text: "Rapport",
-          style: {
-            fontSize:  '13px',
-            fontWeight:  'bold',
-            color:  '#616161'
-          },
+          opacity: 1
       },
       tooltip: {
-        x:{
-           show: false,
-        },
-        y: {
-          formatter: function (val) {
-            return val
+          custom: function({series, seriesIndex, dataPointIndex, w}) {
+            return '<div class="arrow_box" style="padding: 10px;">' +
+              '<strong>' +  w.config.series[seriesIndex].name.replace('&#039;', "'") + '</strong> <ul><li>'+w.config.xaxis.title.text+' : '+w.config.series[seriesIndex].data[0][0]+'</li><li>'+w.config.yaxis[0].title.text+' : '+w.config.series[seriesIndex].data[0][1]+'</li></ul>' +
+              '</div>'
+          },
+          onDatasetHover: {
+              highlightDataSeries: false,
           }
-        }
-      },
+        },
+        dataLabels: {
+          enabled: true,
+          textAnchor: 'start',
+          offsetX: 6,
+          formatter: function(value, { seriesIndex, dataPointIndex, w }) {
+              var name = w.config.series[seriesIndex].name.replace('&#039;', "'");
+              if(name.length > 10) {
+                  name = name.substr(0,10)+"...";
+              }
+              return name;
+          },
+          style: {
+              colors: undefined
+          },
+          background: {
+              enabled: false
+          }
+
+        },
       xaxis: {
-          tickAmount: 10,
+          tickAmount: 12,
           type: 'category',
-          min: -20,
-          max: 300
+          min: undefined,
+          max: undefined
 
       },
       yaxis:{
         tickAmount: 10,
-        min:-2,
-        max: 20
+        min:undefined,
+        max: undefined
       },
       legend: {
         show:false,
@@ -125,8 +96,6 @@
   var RightIndicator;
   var dataLeft,dataRight;
 
-  // var placesLValues = document.querySelectorAll('.leftPlaceIndicator');
-  // var placesRValues = document.querySelectorAll('.rightPlaceIndicator');
   var title = document.querySelector('.apexcharts-title-text')
   function cleanStatsChart(){
     statschart.updateSeries([
@@ -143,12 +112,8 @@
     maxX = 0, maxY = 0;
     cleanStatsChart()
 
-    var tabRightValues = [];
-    var tabLeftValues = [];
-
     leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
     rightTitle = selectcmpR.options[selectcmpR.selectedIndex].text;
-    // title.innerHTML = "Rapport entre " + leftTitle + " et " + rightTitle + " par an";
 
     LeftIndicator = selectcmpL.value;
     RightIndicator = selectcmpR.value;
@@ -161,6 +126,30 @@
       document.getElementById("titleCmpLeft").innerHTML = leftTitle;
       document.getElementById("titleCmpRight").innerHTML = rightTitle;
     }
+
+    statschart.updateOptions(
+      {
+        title: {
+            text: 'Lieux en fonction du ' + rightTitle + " et du " + leftTitle
+        },
+        xaxis: {
+            tickAmount: 12,
+            tickPlacement: 'between',
+            type: 'category',
+            min: undefined,
+            max: undefined,
+            title: { text: rightTitle}
+
+        },
+        yaxis:{
+          tickAmount: 10,
+          tickPlacement: 'between',
+          min:undefined,
+          max: undefined,
+          title: { text: leftTitle }
+        }
+      }
+    );
 
     for (const [key, value] of Object.entries(compares.data)) {
       if (value.realisations[LeftIndicator] == undefined) {
@@ -176,43 +165,19 @@
         dataRight = value.moyens[RightIndicator].nombre;
 
       }
-      statschart.updateOptions(
-        {
-          xaxis: {
-            max:getMaxXaxis(dataLeft),
-            min: getMinXaxis(dataLeft),
-            tickAmount: 12,
-            type: 'category',
-          },
-          yaxis:{
-            max:getMaxYaxis(dataRight),
-            min: getMinYaxis(dataRight),
-            tickAmount: 10,
-          }
-        }
-      );
-      statschart.appendSeries({
-         name: key,
-         data: [[dataLeft, dataRight, 10]]
-       });
-       // statschart.options
 
-       places.push(key);
-       tabLeftValues.push(dataLeft);
-       tabRightValues.push(dataRight);
-       // for (var i = 0; i < tabLeftValues.length; i++) {
-       //   placesLValues[i].innerHTML = tabLeftValues[i]
-       // }
-       //
-       // for (var j = 0; j < tabRightValues.length; j++) {
-       //   placesRValues[j].innerHTML = tabRightValues[j]
-       // }
+        if(dataLeft && dataRight) {
+            statschart.appendSeries({
+                name: key,
+                data: [[dataLeft, dataRight, 8]]
+            });
+        }
 
 
     }
+
     LeftIndicator = traduction(LeftIndicator)
     RightIndicator = traduction(RightIndicator)
-
 
   }
 

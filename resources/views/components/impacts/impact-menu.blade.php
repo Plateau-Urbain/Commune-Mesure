@@ -10,7 +10,6 @@
           <ul>
             <li><a href="#descriptionStatistic">Description</a></li>
             <li><a href="#compareStatistic">Comparer deux lieux</a></li>
-            <li><a href="#graphStatistic">Graphique de la population</a></li>
           </ul>
         </li>
       </ul>

@@ -27,8 +27,8 @@
              <script src="/js/animate.js"></script>
              <script src="/js/charts.js"></script>
          @show
-    </body>
     <footer>
         @include("footer")
     </footer>
+    </body>
 </html>
