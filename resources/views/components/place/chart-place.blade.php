@@ -185,71 +185,71 @@ function setInseeChartData(currentDataZone,zone){
     actifChart.updateSeries([
       {
         name: data[zone].activites[0].title,
-        data: [data[zone].activites[0].nb * 100/totalActif ]
+        data: [63.70, data[zone].activites[0].nb * 100/totalActif ]
       },
       {
         name: data[zone].activites[1].title,
-        data: [data[zone].activites[1].nb * 100/totalActif ]
+        data: [8.70, data[zone].activites[1].nb * 100/totalActif ]
       },
       {
         name: data[zone].activites[2].title,
-        data: [data[zone].activites[2].nb * 100/totalActif ]
+        data: [10.30, data[zone].activites[2].nb * 100/totalActif ]
       },
       {
         name: data[zone].activites[3].title,
-        data: [data[zone].activites[3].nb * 100/totalActif ]
+        data: [6.7, data[zone].activites[3].nb * 100/totalActif ]
       },
       {
         name: data[zone].activites[4].title,
-        data: [data[zone].activites[4].nb * 100/totalActif ]
+        data: [10.60, data[zone].activites[4].nb * 100/totalActif ]
       },
     ]);
     immobilierChart.updateSeries([
       {
         name: data[zone].logement[0].title,
-        data: [data[zone].logement[0].nb * 100 / totalLogement]
+        data: [0, data[zone].logement[0].nb * 100 / totalLogement]
       },
       {
         name: data[zone].logement[1].title,
-        data: [data[zone].logement[1].nb * 100 / totalLogement]
+        data: [43.71, data[zone].logement[1].nb * 100 / totalLogement]
       },
       {
         name: data[zone].logement[2].title,
-        data: [data[zone].logement[2].nb * 100 / totalLogement]
+        data: [56.29, data[zone].logement[2].nb * 100 / totalLogement]
       },
     ]);
     cspChart.updateSeries([
       {
         name: data[zone].csp[0].title,
-        data: [data[zone].csp[0].nb * 100 / totalCsp]
+        data: [0, data[zone].csp[0].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[1].title,
-        data: [data[zone].csp[1].nb * 100 / totalCsp]
+        data: [1.36, data[zone].csp[1].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[2].title,
-        data: [data[zone].csp[2].nb * 100 / totalCsp]
+        data: [6.12, data[zone].csp[2].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[3].title,
-        data: [data[zone].csp[3].nb * 100 / totalCsp]
+        data: [16.54, data[zone].csp[3].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[4].title,
-        data: [data[zone].csp[4].nb * 100 / totalCsp]
+        data: [28.94, data[zone].csp[4].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[5].title,
-        data: [data[zone].csp[5].nb * 100 / totalCsp]
+        data: [21.83, data[zone].csp[5].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[6].title,
-        data: [data[zone].csp[6].nb * 100 / totalCsp]
+        data: [25.21, data[zone].csp[6].nb * 100 / totalCsp]
       },
       {
         name: data[zone].csp[7].title,
-        data: [data[zone].csp[7].nb * 100 / totalCsp]
+        data: [0, data[zone].csp[7].nb * 100 / totalCsp]
       },
     ]);
 }
