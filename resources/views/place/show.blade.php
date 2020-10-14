@@ -312,7 +312,7 @@
                           @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="has-tooltip-top has-tooltip-multiline">
+                          <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact-disabled @endisset">
 
                               <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -326,7 +326,7 @@
                           @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="has-tooltip-bottom has-tooltip-multiline">
+                          <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_appartenance_text) impact-disabled @endisset">
 
                               <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -344,7 +344,7 @@
                           @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="has-tooltip-bottom  has-tooltip-multiline">
+                          <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact-disabled @endisset">
                               <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
@@ -358,7 +358,7 @@
                           @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="has-tooltip-top has-tooltip-multiline">
+                          <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact-disabled @endisset">
 
                               <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
@@ -373,7 +373,7 @@
                           @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="has-tooltip-bottom has-tooltip-multiline">
+                          <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact-disabled @endisset">
                               <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="52" y="38" font-size="7" font-weight="bold" fill="#004c44">Lien</text>
@@ -387,7 +387,7 @@
                           @foreach($impact->Capacite->text as $text) @php( $impact_capacite_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="has-tooltip-top has-tooltip-multiline">
+                          <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact-disabled @endisset">
                               <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
