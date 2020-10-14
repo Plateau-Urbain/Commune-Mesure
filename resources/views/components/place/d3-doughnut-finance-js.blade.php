@@ -1,5 +1,7 @@
 <script>
-var finances = JSON.parse("{{ json_encode($place->data->finance) }}".replace(/&quot;/g,'"'));
+var finances = @json($place->data->finance);
+var inputChoice = document.querySelector("input#switchRoundedSuccess");
+var canvasFinancesId = 'financement-budget-doughnut'
 
 function getLabels(id){
   var labels = [];
@@ -30,7 +32,7 @@ function getDataChart(id){
 }
 
 
-var financeChart = charts.create("financement-budget-doughnut", "doughnut",
+var financeChart = charts.create(canvasFinancesId, "doughnut",
     getLabels("fonctionnement"), getDataChart("fonctionnement"), ['#ffc400', '#ff5728', '#c90035', '#96043e'],
     {
       legend: {
@@ -53,10 +55,11 @@ var financeChart = charts.create("financement-budget-doughnut", "doughnut",
 document.querySelector("input#switchRoundedSuccess").addEventListener('change', switchChart);
 
 function switchChart(){
-  var inputChoice = document.querySelector("input#switchRoundedSuccess");
+  financeChart.destroy();
+
   if(inputChoice.checked){
     //Fonctionnement
-    charts.create("financement-budget-doughnut", "doughnut",
+    financeChart = charts.create(canvasFinancesId, "doughnut",
         getLabels("fonctionnement"), getDataChart("fonctionnement"), ['#ffc400', '#ff5728', '#c90035', '#96043e'],
         {
           legend: {
@@ -68,7 +71,7 @@ function switchChart(){
       document.querySelector("label#label_investissement").style.fontWeight = "normal";
   }else{
     //Investissement
-    charts.create("financement-budget-doughnut", "doughnut",
+    financeChart = charts.create(canvasFinancesId, "doughnut",
         getLabels("investissement"), getDataChart("investissement"), ['#8e44ad', '#3498db', '#1abc9c', '#96043e'],
         {
           legend: {
