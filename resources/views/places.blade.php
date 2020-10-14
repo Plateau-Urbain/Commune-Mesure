@@ -1,11 +1,5 @@
 @extends('layout')
 
-@section('head_css')
-  @parent
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
-
-@endsection
-
 @section('content')
     <div class="container">
         <div class="hero is-large is-light">
