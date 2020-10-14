@@ -340,7 +340,7 @@
                   </div>
                   <div  class="column has-text-centered">
                       <img width="200" src="/images/3_characters.png"/>
-                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="right: 180px; margin-top: -315px;">
+                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="margin-top: -315px; margin-left: 90px;">
                           <div class="impact_box" id="impact_box_sante">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -356,7 +356,7 @@
                               <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="margin-top: -100px; right: 210px;">
+                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="margin-top: -100px; margin-left: 40px;">
                           <div class="impact_box" id="impact_box_insertion">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -372,7 +372,7 @@
                               <text x="35" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="right: -160px; margin-top: -315px;">
+                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="right: 160px; margin-top: -315px;">
                           <div class="impact_box" id="impact_box_lien">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -388,7 +388,7 @@
                               <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="margin-top: -100px; right: -190px;">
+                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="margin-top: -100px; right: 110px;">
                           <div class="impact_box" id="impact_box_capacite">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
