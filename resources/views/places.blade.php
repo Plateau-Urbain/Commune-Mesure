@@ -23,11 +23,11 @@
                             <a href="{{ route('place.show',['slug' => $place->title ])  }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
                         <div class="column is-one-third has-text-centered" style="overflow: hidden;">
-                            <div id="carousel-{{ $place->title }}" style="height: 230px; overflow: hidden;" class="carousel">
-                            @if( $place->photos[0] )
+                            <div id="carousel-{{ $place->title }}" style="height: 230px; overflow: hidden; " class="carousel">
+                            @if( count($place->photos) > 0)
                               <img class="img-places" style="height: 230px;" src='{{ url("/") }}/images/lieux/{{ $place->photos[0] }}'>
                             @endif
-                              <div class="map-place" style="height: 230px;" id="map_{{ $place->title }}"></div>
+                              <div class="map-place" style="height: 230px; width: 345px; display: inline-block;" id="map_{{ $place->title }}"></div>
                             </div>
                         </div>
                     </div>
