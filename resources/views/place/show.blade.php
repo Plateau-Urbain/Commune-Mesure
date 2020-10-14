@@ -203,8 +203,8 @@
           </section>
           <div>
 
-            <section class="section" id="nos-valeurs">
-              <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
+            <section class="section" id="valeurs">
+              <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
               <div class="columns">
                 <div class="column has-text-centered">
                   <div id="value_container"></div>
@@ -296,8 +296,8 @@
 
           </div>
           @if($place->impact != [])
-          <section class="section" id="impact_social">
-              <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
+          <section class="section" id="impact-social">
+              <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered">
                       <img width="300" src="/images/4_characters.png"/>
@@ -403,7 +403,7 @@
                   </div>
               </section>
           @endif
-        <section class="section anchor" id="donnees-insee">
+        <section class="section anchor" id="territoire">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">
