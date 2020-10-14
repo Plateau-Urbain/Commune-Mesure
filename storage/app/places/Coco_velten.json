@@ -572,7 +572,7 @@
     },
     "impact": [{
         "Sante": {
-          "show":false,
+          "show":true,
           "text":
           [
           "Résidents présents lors des évènements, conseil de vie, qui participent à la vie du lieu, intégré à l'équipe."
@@ -590,7 +590,7 @@
       },
       {
       "Insertion": {
-        "show":false,
+        "show":true,
         "text":
         [
           "3 emplois crées pour les résidents, + stages"
@@ -599,7 +599,7 @@
       },
       {
       "Lien": {
-        "show":false,
+        "show":true,
         "text":
         [
           "Conseil de vie, table ronde dans le cadre de la programmation, évènements gd public"
@@ -608,7 +608,7 @@
       },
       {
       "Reseaux": {
-        "show":false,
+        "show":true,
         "text":
         [
           "Création de radio bernard, du journal l'Autre monde, du festival de quartier les Babelsunciades"

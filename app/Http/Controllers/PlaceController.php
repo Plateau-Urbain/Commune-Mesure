@@ -74,15 +74,6 @@ class PlaceController extends Controller
       return (object)$inseeDataArray;
     }
 
-    public function getJsonD3Doughnut($slug){
-      $place = (new Place())->getOne($slug);
-      if ($place === false) {
-          abort(404);
-      }
-      return response()
-            ->json($place->data->finance);
-    }
-
     protected function sortComposition($composition){
       $compositionArray = (array) $composition;
       $keys = array_keys($compositionArray);
