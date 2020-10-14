@@ -8,9 +8,8 @@
       <div class="column">
         <div class="field">
           <div class="control">
-            <label for="titleCmpLeft" class="title is-4">Indicateur en abscisse  :</label>
-            <div class="select is-small is-success" style="margin-left:1em;">
-              <select name="1" id="titleCmpLeft" class="is-focused" >
+            <div class="select is-normal is-success">
+              <select style="display: inline-block;" name="1" id="titleCmpLeft" class="is-focused" >
                 @foreach ($places[0]->data->compare as $key_name => $programmations )
                 <optgroup label="{{ $key_name }}">
                   @foreach ($programmations as $key_prog_name => $programmation )
@@ -23,27 +22,22 @@
                 @endforeach
               </select>
             </div>
+              <strong class="is-size-4" style="margin-left: 10px;">en fonction de</strong>
+            <div class="select is-success" style="margin-left:1em;">
+              <select style="display: inline-block;" name="2" id="titleCmpRight" class="is-focused">
+                @foreach ($places[0]->data->compare as $key_name => $programmations )
+                <optgroup label="{{ $key_name }}">
+                  @foreach ($programmations as $key_prog_name => $programmation )
+                  <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
+                      selected
+                  @endif >{{ $programmation->title }}</option>
+                  @endforeach
+                </optgroup>
+                @endforeach
+              </select>
+            </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="field">
-        <div class="control">
-        <label for="titleCmpRight" class="title is-4">Indicateur en ordonnée:</label>
-        <div class="select is-small is-success" style="margin-left:1em;">
-          <select name="2" id="titleCmpRight" class="is-focused">
-            @foreach ($places[0]->data->compare as $key_name => $programmations )
-            <optgroup label="{{ $key_name }}">
-              @foreach ($programmations as $key_prog_name => $programmation )
-              <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
-                  selected
-              @endif >{{ $programmation->title }}</option>
-              @endforeach
-            </optgroup>
-            @endforeach
-          </select>
-        </div>
-        </div>
         </div>
       </div>
     </div>

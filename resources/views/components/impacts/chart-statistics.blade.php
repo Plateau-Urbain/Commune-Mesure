@@ -138,7 +138,7 @@
             type: 'category',
             min: undefined,
             max: undefined,
-            title: { text: rightTitle}
+            title: { text: leftTitle}
 
         },
         yaxis:{
@@ -146,7 +146,7 @@
           tickPlacement: 'between',
           min:undefined,
           max: undefined,
-          title: { text: leftTitle }
+          title: { text: rightTitle }
         }
       }
     );

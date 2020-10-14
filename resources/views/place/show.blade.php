@@ -266,7 +266,7 @@
 
                     <div class="column">
                         <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                        <div class="field">
+                        <div class="field has-text-centered">
                             <label class="is-size-5" style="font-weight: bold;" >Structure</label>
                         </div>
                         <canvas id="composition-chart-doughnut" ></canvas>
