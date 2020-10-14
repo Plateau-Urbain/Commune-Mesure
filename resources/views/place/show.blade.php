@@ -228,7 +228,7 @@
                         <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
                       </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
-                      <h1 class="title no-border is-4 has-text-centered mt-6">Humains</h1>
+                      <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
                         <div class="columns">
                           <div class="column is-3">
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> <span class="title is-5">ETP</span>
@@ -267,11 +267,11 @@
                     <div class="column">
                         <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                         <div class="field has-text-centered">
-                            <label class="is-size-5" style="font-weight: bold;" >Structure</label>
+                            <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
                         </div>
                         <canvas id="composition-chart-doughnut" ></canvas>
 
-                        <h1 class="title no-border is-4 has-text-centered mt-6">Création</h1>
+                        <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
                         <div class="columns">
                             <div class="column is-4">
                                 <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
