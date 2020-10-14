@@ -1,4 +1,3 @@
-
 {
     "geo": {
         "lat": 48.87346,
@@ -2199,71 +2198,71 @@
             "csp": {
                 "agriculteur":{
                   "title":"Part des agriculteurs exploitants",
-                  "nb":0
+                  "nb":19.979879364581
                 },
                 "artisant":{
                   "title":"Part des artisans, comm., chefs d’entreprise",
-                  "nb":0
+                  "nb":4338.47044670387
                 },
                 "cadre":{
                   "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":0
+                  "nb":38241.291288742
                 },
                 "prof_int":{
                   "title":"Part des professions interméd.",
-                  "nb":0
+                  "nb":27929.6055127999
                 },
                 "employe":{
                   "title":"Part des employés",
-                  "nb":0
+                  "nb":25804.1911600006
                 },
                 "ouvrier":{
                   "title":"Part des ouvriers",
-                  "nb":0
+                  "nb":10797.8371981917
                 },
                 "retraite":{
                   "title":"Part des retraités ou préretraités",
-                  "nb":0
+                  "nb":30618.4320475245
                 },
                 "autre":{
                   "title":"Autres",
-                  "nb":0
+                  "nb":27446.3381474935
                 }
               },
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":0
+                "nb":104.088817356909
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":0
+                "nb":1552.55432140154
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":0
+                "nb":124.322782589853
               }
             },
             "activites": {
               "chomeur":{
                 "title":"Chômeur (Actif inoccupé)",
-                "nb":0
+                "nb":213.337712548685
               },
               "actif":{
                 "title":"Actif occupé",
-                "nb":0
+                "nb":1669.43248536934
               },
               "etudiant":{
                 "title":"Élèves, étudiants et stagiaires non rémunérés",
-                "nb":0
+                "nb":139.279897419917
               },
               "retraite":{
                 "title":"Retraités ou préretraités",
-                "nb":0
+                "nb":38.8710506366376
               },
               "autre":{
                 "title":"Autre inactif",
-                "nb":0
+                "nb":122.45211969023
               }
             }
           },
@@ -2271,63 +2270,63 @@
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":0
+                "nb":11669
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":0
+                "nb":1338947
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":0
+                "nb":117082
               }
             },
             "activites": {
               "chomeur":{
                 "title":"Chômeur (Actif inoccupé)",
-                "nb":0
+                "nb":141275.277
               },
               "actif":{
                 "title":"Actif occupé",
-                "nb":0
+                "nb":1186408.51
               },
               "etudiant":{
                 "title":"Élèves, étudiants et stagiaires non rémunérés",
-                "nb":0
+                "nb":194443.392
               },
               "retraite":{
                 "title":"Retraités ou préretraités",
-                "nb":0
+                "nb":41015.403
               },
               "autre":{
                 "title":"Autre inactif",
-                "nb":0
+                "nb":97221.696
               }
             },
             "csp": {
                 "agriculteur":{
                   "title":"Part des agriculteurs exploitants",
-                  "nb":0
+                  "nb":331
                 },
                 "artisant":{
                   "title":"Part des artisans, comm., chefs d’entr.",
-                  "nb":0
+                  "nb":62867
                 },
                 "cadre":{
                   "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":0
+                  "nb":534772
                 },
                 "prof_int":{
                   "title":"Part des professions interméd.",
-                  "nb":0
+                  "nb":268310
                 },
                 "employe":{
                   "title":"Part des employés",
-                  "nb":0
+                  "nb":225301
                 },
                 "ouvrier":{
                   "title":"Part des ouvriers",
-                  "nb":0
+                  "nb":78838
                 },
                 "retraite":{
                   "title":"Part des retraités ou préretraités",
@@ -2343,63 +2342,63 @@
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":0
+                "nb":1508867
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":0
+                "nb":4188362
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":0
+                "nb":391294
               }
             },
             "activites": {
               "chomeur":{
                 "title":"Chômeur (Actif inoccupé)",
-                "nb":0
+                "nb":768995.232
               },
               "actif":{
                 "title":"Actif occupé",
-                "nb":0
+                "nb":6111910
               },
               "etudiant":{
                 "title":"Élèves, étudiants et stagiaires non rémunérés",
-                "nb":0
+                "nb":937212.939
               },
               "retraite":{
                 "title":"Retraités ou préretraités",
-                "nb":0
+                "nb":328425.047
               },
               "autre":{
                 "title":"Autre inactif",
-                "nb":0
+                "nb":632818.993
               }
             },
             "csp": {
                 "agriculteur":{
                   "title":"Part des agriculteurs exploitants",
-                  "nb":0
+                  "nb":5301
                 },
                 "artisant":{
                   "title":"Part des artisans, comm., chefs d’entr.",
-                  "nb":0
+                  "nb":298346
                 },
                 "cadre":{
                   "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":0
+                  "nb":1716328
                 },
                 "prof_int":{
                   "title":"Part des professions interméd.",
-                  "nb":0
+                  "nb":1549189
                 },
                 "employe":{
                   "title":"Part des employés",
-                  "nb":0
+                  "nb":1605274
                 },
                 "ouvrier":{
                   "title":"Part des ouvriers",
-                  "nb":0
+                  "nb":833424
                 },
                 "retraite":{
                   "title":"Part des retraités ou préretraités",
@@ -2415,71 +2414,71 @@
             "logement":{
               "house": {
                 "title":"Maison",
-                "nb":0
+                "nb":1590
               },
               "appartment": {
                 "title":"Appartement",
-                "nb":0
+                "nb":103224
               },
               "unoccupied": {
                 "title":"Appart/Maison inoccupé",
-                "nb":0
+                "nb":6412
               }
             },
             "activites": {
               "chomeur":{
                 "title":"Chômeur (Actif inoccupé)",
-                "nb":0
+                "nb":15671.74
               },
               "actif":{
                 "title":"Actif occupé",
-                "nb":0
+                "nb":106976.66
               },
               "etudiant":{
                 "title":"Élèves, étudiants et stagiaires non rémunérés",
-                "nb":0
+                "nb":14308.98
               },
               "retraite":{
                 "title":"Retraités ou préretraités",
-                "nb":0
+                "nb":4497.108
               },
               "autre":{
                 "title":"Autre inactif",
-                "nb":0
+                "nb":10356.376
               }
             },
             "csp": {
                 "agriculteur":{
                   "title":"Part des agriculteurs exploitants",
-                  "nb":0
+                  "nb":122.45211969023
                 },
                 "artisant":{
                   "title":"Part des artisans, comm., chefs d’entr.",
-                  "nb":0
+                  "nb":4290
                 },
                 "cadre":{
                   "title":"Part des cadres, professions intellect. supérieures",
-                  "nb":0
+                  "nb":38827
                 },
                 "prof_int":{
                   "title":"Part des professions interméd.",
-                  "nb":0
+                  "nb":27741
                 },
                 "employe":{
                   "title":"Part des employés",
-                  "nb":0
+                  "nb":25468
                 },
                 "ouvrier":{
                   "title":"Part des ouvriers",
-                  "nb":0
+                  "nb":10727
                 },
                 "retraite":{
                   "title":"Part des retraités ou préretraités",
-                  "nb":0
+                  "nb":30425
                 },
                 "autre":{
                   "title":"Autres",
-                  "nb":0
+                  "nb":28372
                 }
               }
           },
@@ -2557,35 +2556,35 @@
           }
         },
         "population": {
-            "female_15_29": 0,
-            "female_30_44": 0,
-            "male_30_44": 0,
-            "male_0_14": 0,
-            "female_0_14": 0,
-            "male_15_29": 0,
-            "male_75": 0,
-            "female_45_59": 0,
-            "female_75": 0,
-            "male_60_74": 0,
-            "male_45_59": 0,
-            "female_60_74": 0,
-            "total": 0
+            "female_15_29": 21170.7266115622,
+            "female_30_44": 23427.8715509299,
+            "male_30_44": 22600.4053880316,
+            "male_0_14": 15355.5833154839,
+            "female_0_14": 15004.420222536,
+            "male_15_29": 19532.1175486124,
+            "male_75": 4773.92459348205,
+            "female_45_59": 20534.293558893,
+            "female_75": 8041.80143154478,
+            "male_60_74": 12361.3491666277,
+            "male_45_59": 18092.388894803,
+            "female_60_74": 14709.1177174934,
+            "total": 195604
         },
         "logement":{
-            "main_residence": 0,
-            "second_residence": 0,
-            "unoccupied": 0,
-            "logement": 0,
-            "house": 0,
-            "appartment": 0
+            "main_residence": 1499.59867033261,
+            "second_residence": 53.0805700572809,
+            "unoccupied": 124.322782589853,
+            "logement": 1677.00202297974,
+            "house": 104.088817356909,
+            "appartment": 1552.55432140154
         },
         "activites": {
-            "inactif": 0,
-            "chomeur": 0,
-            "actif": 0,
-            "etudiant": 0,
-            "retraite": 0,
-            "autre_inactif": 0
+            "inactif": 300.603067746785,
+            "chomeur": 213.337712548685,
+            "actif": 1669.43248536934,
+            "etudiant": 139.279897419917,
+            "retraite": 38.8710506366376,
+            "autre_inactif": 122.45211969023
         },
         "composition":{
           "startup":{
@@ -2746,7 +2745,7 @@
         "show":true,
         "text":
         [
-        "Certaines personnes ont fait part d'un inconfort (froid, promiscuité, nuisances sonores, désaccord...)"
+        "isolation phonique"
         ]
       },
       "Capacite": {

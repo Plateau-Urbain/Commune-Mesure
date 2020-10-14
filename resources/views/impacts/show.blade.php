@@ -23,7 +23,6 @@
     </script>
 @endsection
 @section('content')
-@include('components.impacts.impact-menu')
 <div class="column">
   @include('impacts.statistics')
 </div>

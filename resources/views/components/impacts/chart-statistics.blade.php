@@ -65,30 +65,6 @@
         show:false,
       }
     };
-    var maxX = 0, maxY = 0, minX=9999999, minY=9999999;
-    function getMaxXaxis(dataX){
-      if(maxX < dataX)
-        maxX = dataX + dataX/2;
-      return maxX;
-    }
-
-    function getMaxYaxis(dataY){
-      if(maxY < dataY)
-        maxY = dataY + dataY/2;
-      return maxY;
-    }
-
-    function getMinXaxis(dataX){
-      if(minX > dataX && dataX > 10)
-        minX = - dataX;
-      return minX;
-    }
-
-    function getMinYaxis(dataY){
-      if(minY > dataY && dataY > 10)
-        minY = - dataY;
-      return minY;
-    }
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
   var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
@@ -107,9 +83,6 @@
 
   }
   function comparePlacePoints(selectcmpL, selectcmpR){
-    // options.xaxis.max = 350;
-    minX=9999999, minY=9999999
-    maxX = 0, maxY = 0;
     cleanStatsChart()
 
     leftTitle = selectcmpL.options[selectcmpL.selectedIndex].text;
@@ -166,14 +139,10 @@
 
       }
 
-        if(dataLeft && dataRight) {
-            statschart.appendSeries({
-                name: key,
-                data: [[dataLeft, dataRight, 8]]
-            });
-        }
-
-
+        statschart.appendSeries({
+            name: key,
+            data: [[dataLeft, dataRight, 8]]
+        });
     }
 
     LeftIndicator = traduction(LeftIndicator)
