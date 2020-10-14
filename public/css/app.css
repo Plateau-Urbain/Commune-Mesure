@@ -14956,6 +14956,13 @@ svg.very-small {
   width: 5em;
   height: 5em; }
 
+svg.tiny {
+  width: 2em;
+  height: 2em; }
+
+svg.narrow {
+  margin: auto -10px; }
+
 svg#female {
   fill: #e85048; }
 
@@ -15044,19 +15051,18 @@ svg#male {
   to {
     stroke-dashoffset: 0; } }
 
+.impact_item .impact_tooltip::before {
+  background: white;
+  border: 1px solid #004c44;
+  color: #004c44;
+  fond-size: 0.8em; }
+
 .impact_item {
-  position: absolute;}
+  position: absolute; }
 
 .impact-disabled {
-  opacity: 0.5;
-}
+  opacity: 0.5; }
 
-.impact_item .impact_tooltip::before {
-    background: white;
-    border: 1px solid #004c44;
-    color: #004c44;
-	fond-size: 0.8em;
-}
 .impact_box {
   width: 300px;
   background-color: white;
@@ -15066,9 +15072,7 @@ svg#male {
   height: 100%;
   opacity: 0;
   transition: all .3s ease;
-  float: right;
-  position: absolute;
- }
+  float: right; }
 
 .impact_text {
   font-size: .8em;
@@ -15244,3 +15248,4 @@ div.bloc-note {
 
 .tag:hover::after {
   border-left-color: crimson; }
+
