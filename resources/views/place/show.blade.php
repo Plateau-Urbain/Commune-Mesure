@@ -112,7 +112,7 @@
                             @if($partner->names)
                             <div>
                               <strong>Les acteurs {{ $partner->title }}s :</strong>
-                              <span class="is-block fontSize0-8em">
+                              <span class="is-block is-size-7">
                                 {{ $partner->names }}
                               </span>
                             </div>
@@ -121,17 +121,12 @@
                           @if($place->partners[0]->names || $place->partners[1]->names)
                           <div class="">
                             <strong class="">Nature des partenariats :</strong>
-                            <div class="fontSize0-8em">
-                              @php ($nb = 1) @endphp
+                            <div class="is-size-7">
                               @foreach($place->partners as $partner)
                               @if (count($partner->natures))
                               <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                                 @foreach($partner->natures as $nature)
-                                  {{ $nature }}
-                                  @if(count($partner->natures) != $nb)
-                                    {{ "," }}
-                                    @php ($nb++) @endphp
-                                  @endif
+                                  {{ $nature }}@if(! $loop->last), @endif
                                 @endforeach
                                 </span>
                                 @endif
