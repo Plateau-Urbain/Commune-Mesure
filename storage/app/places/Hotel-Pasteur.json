@@ -539,16 +539,21 @@
             }
         },
         "finance":{
-          "name": "Financement",
-          "children": [
-            {
-              "name": "Budget annuel de fonctionnent",
-              "children":[
-                {"name":"Recettes annuelles","size" : 80000},
-                {"name":"Dépenses annuelles", "size": 250000}
-              ]
-            }
-          ]
+          "composition":[
+            {"name": "Entreprises", "size": 0},
+            {"name": "Associations", "size": 250},
+            {"name": "Artistes", "size": 0},
+            {"name": "Autres structures", "size": 0}
+          ],
+          "investissement":[
+              {"name":"Fonds publics","size" : 70000},
+              {"name":"Fonds privés", "size": 0}
+            ],
+          "fonctionnement":[
+              {"name":"Subventions","size" : 0},
+              {"name":"Aides privées","size" : 170000},
+              {"name":"Recettes", "size": 80000}
+            ]
         },
         "compare":{
           "moyens":{
@@ -561,7 +566,7 @@
               "title":"Nombre de bénévoles"
             },
             "partenaire":{
-              "nombre":14,
+              "nombre":15,
               "title":"Nombre de partenaires publics / privés"
             },
             "superficie":{
@@ -650,7 +655,10 @@
         "show":true,
         "text":
         [
-          ""
+          "Petits services (bricolage, aller à la poste, aide au déménagement...)",
+          "Compétences (cours de français, conseil en informatique, communication...)",
+          "Biens",
+          "Espaces"
         ]
         }
       },
@@ -665,28 +673,33 @@
       },
       {
       "Lien": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Pasteur - Place Publique avec un Toit"
         ]
         }
       },
       {
       "Reseaux": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Bénévoles (si applicable)",
+          "Personnes travaillant sur le site (si applicable)"
+          "Publics en difficulté",
+          "Visiteurs et visiteuses grand public"
+          "Acteurs et actrices du quartier, associations ou entreprises locales"
+          "Voisins et voisines du quartier"
         ]
         }
       },
       {
       "Appartenance": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Pas vraiment mais les gens sont fédérés autour du lieu"
         ]
         }
       }
