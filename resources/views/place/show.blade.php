@@ -157,13 +157,13 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Enfants')
-                    <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="fa fa-child font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Étudiants')
-                    <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                    <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="fa fa-user-graduate font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Famille')
-                    <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
+                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="fa fa-users font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
@@ -179,11 +179,11 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Handicapés')
-                    <span class="ml-3 public-icons"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
-                    <span class="ml-3 public-icons"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="fa fa-blind font-color-theme mr-1"></i></span>
                   </div>
                 </div>
                 <div class="column">
@@ -193,9 +193,9 @@
                   </p>
                   </div>
                   <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                    <span class="ml-3 public-icons"><i class="fas fa-bus font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons"><i class="fas fa-subway font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons"><i class="fas fa-car font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="fas fa-bus font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="fas fa-subway font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="fas fa-car font-color-theme mr-1"></i></span>
                   </div>
                 </div>
               </div>

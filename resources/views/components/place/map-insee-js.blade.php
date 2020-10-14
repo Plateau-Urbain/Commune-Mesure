@@ -35,7 +35,8 @@
   *
   **/
   var myIcon = L.icon({
-            iconUrl: window.location.origin +"/images/marker-icon.png"
+            iconUrl: "/images/marker-icon.png",
+            iconSize: [0, 0],
         });
   function onEachFeature(feature, layer) {
     if(marker === undefined){
