@@ -225,10 +225,10 @@
                       <canvas id="financement-budget-doughnut" ></canvas>
                       <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
                         <div class="columns">
-                          <div class="column is-3">
+                          <div class="column is-3 is-offset-2">
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
+                          <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
                               @if($place->data->compare->moyens->etp->nombre >= 10)
                                   {{-- fix pour le cas spécial 10 --}}
                                   @if($place->data->compare->moyens->etp->nombre == 10)
@@ -250,10 +250,10 @@
                         </div>
 
                         <div class="columns">
-                            <div class="column is-3">
+                            <div class="column is-3 is-offset-2">
                               <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
                               @if($place->data->compare->moyens->benevole->nombre >= 10)
                                   {{-- fix pour le cas spécial 10 --}}
                                   @if($place->data->compare->moyens->benevole->nombre == 10)
@@ -284,7 +284,7 @@
 
                         <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
                         <div class="columns">
-                            <div class="column is-4">
+                            <div class="column is-offset-2 is-4">
                                 <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
                                 <span class="title is-5">
                                     @if ($place->impact_economique->nombre_structures_crees > 1)
@@ -295,7 +295,7 @@
                                 </span>
                             </div>
 
-                            <div class="column" style="overflow-y: auto; max-height: 115px;">
+                            <div class="column is-4" style="overflow-y: auto; max-height: 115px;">
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
