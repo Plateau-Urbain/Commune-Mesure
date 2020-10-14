@@ -82,79 +82,79 @@ var actifChart = new ApexCharts(document.querySelector("#actifsChart"), options)
 actifChart.render();
 
 var options = {
-  colors:['#bf607e', '#ca4a3d', '#e3a7a1','#fcd2bb','#c7dfec','#81b8d6','#3680b6','#1b519c'],
+    colors:['#bf607e', '#ca4a3d', '#e3a7a1','#fcd2bb','#c7dfec','#81b8d6','#3680b6','#1b519c'],
 
-  series: [{
-  name: '',
-  data: [0]
-  }],
-  chart: {
-  toolbar:{
-    show:false,
-  },
-  type: 'bar',
-  height: 175,
-  stacked: true,
-  stackType: '100%',
-},
-plotOptions: {
-  bar: {
-    horizontal: true,
-  },
-},
-stroke: {
-  width: 1,
-  colors: ['#fff']
-},
-title: {
-  text: 'Catégories socioprofessionnelles'
-},
-grid: {
-  show:false,
-},
-annotations: {
-},
+    series: [{
+        name: '',
+        data: [0]
+    }],
+    chart: {
+        toolbar:{
+            show:false,
+        },
+        type: 'bar',
+        height: 175,
+        stacked: true,
+        stackType: '100%',
+    },
+    plotOptions: {
+        bar: {
+            horizontal: true,
+        },
+    },
+    stroke: {
+        width: 1,
+        colors: ['#fff']
+    },
+    title: {
+        text: 'Catégories socioprofessionnelles'
+    },
+    grid: {
+        show:false,
+    },
+    annotations: {
+    },
 
-xaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
-    show:false,
-  },
-  axisTicks: {
-    show: false,
-  },
-  labels:{
-    show:false,
-  }
-},
+    xaxis: {
+        show:false,
+        category:[''],
+        axisBorder:{
+            show:false,
+        },
+        axisTicks: {
+            show: false,
+        },
+        labels:{
+            show:false,
+        }
+    },
 
-yaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
-    show:false,
-  },
-},
+    yaxis: {
+        show:false,
+        category:[''],
+        axisBorder:{
+            show:false,
+        },
+    },
 
-tooltip: {
-  x:'',
-  y: {
-    formatter: function (val) {
-      return val.toFixed(2) + "%"
+    tooltip: {
+        x:'',
+        y: {
+            formatter: function (val) {
+                return val.toFixed(2) + "%"
+            }
+        }
+    },
+    fill: {
+        opacity: 1
+
+    },
+    legend: {
+        show:true,
+        position: 'bottom',
+        horizontalAlign: 'right',
+        showForZeroSeries: false,
     }
-  }
-},
-fill: {
-  opacity: 1
-
-},
-legend: {
-  show:true,
-  position: 'bottom',
-  horizontalAlign: 'right',
-  showForZeroSeries: false,
-}
 };
 
 var cspChart = new ApexCharts(document.querySelector("#cateChart"), options);
