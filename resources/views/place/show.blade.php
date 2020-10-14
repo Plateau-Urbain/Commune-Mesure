@@ -337,8 +337,8 @@
                           <div class="impact_box" id="impact_box_appartenance">
                               <p class="impact_text" style="z-index:10">
                                 @foreach($place->impact as $key => $impact)
-                                  @if(isset($impact->Lien) && $impact->Lien->show)
-                                    @foreach($impact->Lien->text as $text) {{ $text }} @endforeach
+                                  @if(isset($impact->Appartenance) && $impact->Appartenance->show)
+                                    @foreach($impact->Appartenance->text as $text) {{ $text }} @endforeach
                                   @endif
                                 @endforeach
                               </p>
@@ -383,8 +383,8 @@
                           <div class="impact_box" id="impact_box_lien">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
-                                  @if(isset($impact->Sante) && $impact->Sante->show)
-                                    @foreach($impact->Sante->text as $text) {{ $text }} @endforeach
+                                  @if(isset($impact->Lien) && $impact->Lien->show)
+                                    @foreach($impact->Lien->text as $text) {{ $text }} @endforeach
                                   @endif
                                 @endforeach
                               </p>
@@ -395,12 +395,12 @@
                               <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_agir" data-aos="fade-in" style="margin-top: -100px; right: -190px;">
-                          <div class="impact_box" id="impact_box_agir">
+                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="margin-top: -100px; right: -190px;">
+                          <div class="impact_box" id="impact_box_capacite">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
-                                  @if(isset($impact->Insertion) && $impact->Insertion->show)
-                                    @foreach($impact->Insertion->text as $text) {{ $text }} @endforeach
+                                  @if(isset($impact->Capacite) && $impact->Capacite->show)
+                                    @foreach($impact->Capacite->text as $text) {{ $text }} @endforeach
                                   @endif
                                 @endforeach
                               </p>
