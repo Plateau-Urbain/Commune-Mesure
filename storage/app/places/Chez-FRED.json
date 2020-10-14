@@ -2745,13 +2745,14 @@
         "show":true,
         "text":
         [
-        "isolation phonique"
+        "Isolation phonique"
         ]
       }},{
       "Capacite": {
       "show":true,
       "text":
       [
+          "Cuisine collective"
       ]
       }},{
     "Insertion": {
