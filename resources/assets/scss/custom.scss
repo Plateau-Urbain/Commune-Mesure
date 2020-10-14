@@ -378,6 +378,13 @@ svg {
         width: 5em;
         height: 5em;
     }
+    &.tiny {
+        width: 2em;
+        height: 2em;
+    }
+    &.narrow {
+        margin: auto -10px;
+    }
     &#female {
         fill: $primary;
     }

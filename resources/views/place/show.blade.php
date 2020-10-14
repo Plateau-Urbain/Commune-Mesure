@@ -229,13 +229,22 @@
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
                           <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->etp->nombre > 10)
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
+                              @if($place->data->compare->moyens->etp->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->etp->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
                                   @endfor
+
+                                  @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
                               @endif
-                              @for($i = 0; $i < substr($place->data->compare->moyens->etp->nombre, -1); $i++)
-                                  @svg('assets/images/body.svg', 'tiny')
+                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
                               @endfor
                           </div>
                         </div>
@@ -245,13 +254,22 @@
                               <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
                             <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->benevole->nombre > 10)
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
+                              @if($place->data->compare->moyens->benevole->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->benevole->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
                                   @endfor
+
+                                  @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
                               @endif
-                              @for($i = 0; $i < substr($place->data->compare->moyens->benevole->nombre, -1); $i++)
-                                  @svg('assets/images/body.svg', 'tiny')
+                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
                               @endfor
                             </div>
                         </div>
@@ -277,7 +295,7 @@
                                 </span>
                             </div>
 
-                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column" style="overflow-y: auto; max-height: 115px;">
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
