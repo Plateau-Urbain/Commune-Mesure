@@ -228,16 +228,15 @@
                           <div class="column is-3">
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
-                              @if($place->data->compare->moyens->etp->nombre > 5)
+                          <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
+                              @if($place->data->compare->moyens->etp->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
-                                  @endfor
-                              @else
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i++)
-                                      @svg('assets/images/body.svg', 'tiny')
+                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
+                              @for($i = 0; $i < substr($place->data->compare->moyens->etp->nombre, -1); $i++)
+                                  @svg('assets/images/body.svg', 'tiny')
+                              @endfor
                           </div>
                         </div>
 
@@ -245,16 +244,15 @@
                             <div class="column is-3">
                               <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
+                            <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
                               @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
-                                  @endfor
-                              @else
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i++)
-                                      @svg('assets/images/body.svg', 'tiny')
+                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
+                              @for($i = 0; $i < substr($place->data->compare->moyens->benevole->nombre, -1); $i++)
+                                  @svg('assets/images/body.svg', 'tiny')
+                              @endfor
                             </div>
                         </div>
                     </div>
@@ -283,8 +281,8 @@
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
-                                            <i class="fas fa-sun fa-stack-1x" style="color: #FFDC00"></i>
-                                            <i class="fas fa-industry fa-stack-1x" style="color: #e85048"></i>
+                                            <i class="fas fa-industry fa-stack-2x" style="color: #e85048"></i>
+                                            <i class="fas fa-star fa-stack-1x" style="color: #FFDC00; padding-left:1.33em; margin-top:-15px"></i>
                                         </span>
                                     </span>
                                 @endfor
