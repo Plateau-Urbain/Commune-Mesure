@@ -6,9 +6,9 @@ import { GestureHandling } from 'leaflet-gesture-handling';
 
 L.Icon.Default.imagePath = '/';
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+    iconRetinaUrl: 'images/marker-icon-2x.png',
+    iconUrl: 'images/marker-icon.png',
+    shadowUrl: 'images/marker-shadow.png'
 });
 
 import Chart from 'chart.js';
