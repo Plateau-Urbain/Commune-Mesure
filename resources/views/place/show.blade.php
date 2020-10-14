@@ -412,15 +412,15 @@
             </div>
 
             <div class="columns card is-rounded">
-              <div class="column " style="width: 100%;height: 30em; z-index:1">
+              <div class="column " style="width: 100%; height: 35em;">
                 <div id="map-insee"></div>
               </div>
               <div class="column is-7">
                 <div class="columns">
                   <div class="column">
-                      <div id="actifsChart" width="100" height="10"></div>
-                      <div id="cateChart" width="100" height="10"></div>
-                      <div id="immoChart" width="100" height="10"></div>
+                      <div id="actifsChart"></div>
+                      <div id="cateChart"></div>
+                      <div id="immoChart"></div>
                   </div>
                 </div>
               </div>

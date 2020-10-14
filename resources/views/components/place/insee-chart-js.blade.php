@@ -10,7 +10,7 @@ var options = {
   }],
   chart: {
   type: 'bar',
-  height: 130,
+  height: 175,
   stacked: true,
   stackType: '100%',
   toolbar:{
@@ -170,7 +170,7 @@ var options = {
   }],
   chart: {
   type: 'bar',
-  height: 130,
+  height: 175,
   stacked: true,
   stackType: '100%',
   toolbar:{
