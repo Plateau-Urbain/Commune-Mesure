@@ -293,7 +293,6 @@
                     </div>
                   </div>
             </section>
-
           </div>
           @if($place->impact != [])
           <section class="section" id="impact-social">
@@ -308,8 +307,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact-disabled @endisset">
-
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
                               </svg>
@@ -322,8 +320,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_appartenance_text) impact-disabled @endisset">
-
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
                                   <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
@@ -340,7 +337,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact-disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
                                   <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
@@ -354,8 +351,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact-disabled @endisset">
-
-                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
                                   <text x="34" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
@@ -369,7 +365,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact-disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="52" y="38" font-size="7" font-weight="bold" fill="#004c44">Lien</text>
                                   <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
@@ -383,7 +379,7 @@
                           @endif
                           @endforeach
                           <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact-disabled @endisset">
-                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
                                   <text x="50" y="45" font-size="8" font-weight="bold" fill="#004c44">à agir</text>

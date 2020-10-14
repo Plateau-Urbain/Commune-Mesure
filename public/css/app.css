@@ -15045,16 +15045,17 @@ svg#male {
     stroke-dashoffset: 0; } }
 
 .impact_item {
-  position: absolute;
-  z-index: 0; }
+  position: absolute;}
 
 .impact-disabled {
   opacity: 0.5;
 }
+
 .impact_item .impact_tooltip::before {
     background: white;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid #004c44;
+    color: #004c44;
+	fond-size: 0.8em;
 }
 .impact_box {
   width: 300px;
