@@ -157,13 +157,13 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Enfants')
-                    <span class="is-block ml-3 public-icons"><i class="fa fa-child font-color-theme mr-1"></i><p id="i-childText">Enfants</p></span>
+                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="fa fa-child font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Étudiants')
-                    <span class="is-inline-block ml-3 public-icons"><i class="fa fa-user-graduate font-color-theme mr-1"></i><p id="i-graduateText">Étudiants</p></span>
+                    <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="fa fa-user-graduate font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Famille')
-                    <span class="is-block ml-3 public-icons"><i class="fa fa-users font-color-theme mr-1"></i><p id="i-familyText">Famille</p></span>
+                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="fa fa-users font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
@@ -179,11 +179,11 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Handicapés')
-                    <span class="ml-3 public-icons"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
-                    <span class="ml-3 public-icons"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="fa fa-blind font-color-theme mr-1"></i></span>
                   </div>
                 </div>
                 <div class="column">
@@ -193,9 +193,9 @@
                   </p>
                   </div>
                   <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                    <span class="ml-3 public-icons"><i class="fas fa-bus font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons"><i class="fas fa-subway font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons"><i class="fas fa-car font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="fas fa-bus font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="fas fa-subway font-color-theme mr-1"></i></span>
+                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="fas fa-car font-color-theme mr-1"></i></span>
                   </div>
                 </div>
               </div>
@@ -228,16 +228,15 @@
                           <div class="column is-3">
                               <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
-                              @if($place->data->compare->moyens->etp->nombre > 5)
+                          <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
+                              @if($place->data->compare->moyens->etp->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
-                                  @endfor
-                              @else
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i++)
-                                      @svg('assets/images/body.svg', 'tiny')
+                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
+                              @for($i = 0; $i < substr($place->data->compare->moyens->etp->nombre, -1); $i++)
+                                  @svg('assets/images/body.svg', 'tiny')
+                              @endfor
                           </div>
                         </div>
 
@@ -245,16 +244,15 @@
                             <div class="column is-3">
                               <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
+                            <div class="column my-3" style="overflow-y: hidden; max-height: 200px;">
                               @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
-                                  @endfor
-                              @else
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i++)
-                                      @svg('assets/images/body.svg', 'tiny')
+                                      @svg('assets/images/body.svg', 'tiny')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;&nbsp;</span>@svg('assets/images/body.svg', 'tiny')
                                   @endfor
                               @endif
+                              @for($i = 0; $i < substr($place->data->compare->moyens->benevole->nombre, -1); $i++)
+                                  @svg('assets/images/body.svg', 'tiny')
+                              @endfor
                             </div>
                         </div>
                     </div>
@@ -283,8 +281,8 @@
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
-                                            <i class="fas fa-sun fa-stack-1x" style="color: #FFDC00"></i>
-                                            <i class="fas fa-industry fa-stack-1x" style="color: #e85048"></i>
+                                            <i class="fas fa-industry fa-stack-2x" style="color: #e85048"></i>
+                                            <i class="fas fa-star fa-stack-1x" style="color: #FFDC00; padding-left:1.33em; margin-top:-15px"></i>
                                         </span>
                                     </span>
                                 @endfor
@@ -293,7 +291,6 @@
                     </div>
                   </div>
             </section>
-
           </div>
           @if($place->impact != [])
           <section class="section" id="impact-social">
@@ -308,8 +305,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact-disabled @endisset">
-
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
                               </svg>
@@ -322,8 +318,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_appartenance_text) impact-disabled @endisset">
-
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
                                   <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
@@ -340,7 +335,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact-disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
                                   <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
@@ -354,8 +349,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact-disabled @endisset">
-
-                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
                                   <text x="34" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
@@ -369,7 +363,7 @@
                           @endif
                           @endforeach
                           <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact-disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="52" y="38" font-size="7" font-weight="bold" fill="#004c44">Lien</text>
                                   <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
@@ -383,7 +377,7 @@
                           @endif
                           @endforeach
                           <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact-disabled @endisset">
-                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
                                   <text x="50" y="45" font-size="8" font-weight="bold" fill="#004c44">à agir</text>

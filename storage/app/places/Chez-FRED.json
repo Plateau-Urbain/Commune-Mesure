@@ -2752,14 +2752,12 @@
       "show":true,
       "text":
       [
-        ""
       ]
       }},{
     "Insertion": {
       "show":false,
       "text":
       [
-        ""
       ]
       }},{
     "Lien": {
@@ -2840,12 +2838,12 @@
       ]
     },
     "tags": [
-        "France",
-        "FRED",
-        "PU"
+        "Île-de-France",
+        "Paris",
+        "Étudiant",
+        "Famille",
+        "Non-voyant"
     ],
-    "photos": [
-        "Chez-FRED.jpg"
-    ],
+    "photos": [""],
     "description": "Regrouper nos espaces de travail."
 }
