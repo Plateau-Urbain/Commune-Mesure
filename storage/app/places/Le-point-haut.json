@@ -90,31 +90,31 @@
           "iris":{
             "csp": {
                 "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
+                  "title":"agricult.",
                   "nb":0
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entreprise",
+                  "title":"artisans, comm., chefs d’entreprise",
                   "nb":70
                 },
                 "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
+                  "title":"cadres, prof. intellect. sup.",
                   "nb":235
                 },
                 "prof_int":{
-                  "title":"Part des professions interméd.",
+                  "title":"prof. interméd.",
                   "nb":377
                 },
                 "employe":{
-                  "title":"Part des employés",
+                  "title":"employés",
                   "nb":446
                 },
                 "ouvrier":{
-                  "title":"Part des ouvriers",
+                  "title":"ouvriers",
                   "nb":397
                 },
                 "retraite":{
-                  "title":"Part des retraités ou préretraités",
+                  "title":"retrait.",
                   "nb":621
                 },
                 "autre":{
@@ -198,31 +198,31 @@
             },
             "csp": {
                 "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
+                  "title":"agricult.",
                   "nb":3559
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "title":"artisans, comm., chefs d’entr.",
                   "nb":15400
                 },
                 "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
+                  "title":"cadres, prof. intellect. sup.",
                   "nb":41173
                 },
                 "prof_int":{
-                  "title":"Part des professions interméd.",
+                  "title":"prof. interméd.",
                   "nb":72871
                 },
                 "employe":{
-                  "title":"Part des employés",
+                  "title":"employés",
                   "nb":80129
                 },
                 "ouvrier":{
-                  "title":"Part des ouvriers",
+                  "title":"ouvriers",
                   "nb":61481
                 },
                 "retraite":{
-                  "title":"Part des retraités ou préretraités",
+                  "title":"retrait.",
                   "nb":0
                 },
                 "autre":{
@@ -270,31 +270,31 @@
             },
             "csp": {
                 "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
+                  "title":"agricult.",
                   "nb":2101
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "title":"artisans, comm., chefs d’entr.",
                   "nb":11774
                 },
                 "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
+                  "title":"cadres, prof. intellect. sup.",
                   "nb":15559
                 },
                 "prof_int":{
-                  "title":"Part des professions interméd.",
+                  "title":"prof. interméd.",
                   "nb":38016
                 },
                 "employe":{
-                  "title":"Part des employés",
+                  "title":"employés",
                   "nb":57855
                 },
                 "ouvrier":{
-                  "title":"Part des ouvriers",
+                  "title":"ouvriers",
                   "nb":34188
                 },
                 "retraite":{
-                  "title":"Part des retraités ou préretraités",
+                  "title":"retrait.",
                   "nb":0
                 },
                 "autre":{
@@ -342,31 +342,31 @@
             },
             "csp": {
                 "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
+                  "title":"agricult.",
                   "nb":8
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "title":"artisans, comm., chefs d’entr.",
                   "nb":260
                 },
                 "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
+                  "title":"cadres, prof. intellect. sup.",
                   "nb":738
                 },
                 "prof_int":{
-                  "title":"Part des professions interméd.",
+                  "title":"prof. interméd.",
                   "nb":1580
                 },
                 "employe":{
-                  "title":"Part des employés",
+                  "title":"employés",
                   "nb":2067
                 },
                 "ouvrier":{
-                  "title":"Part des ouvriers",
+                  "title":"ouvriers",
                   "nb":1834
                 },
                 "retraite":{
-                  "title":"Part des retraités ou préretraités",
+                  "title":"retrait.",
                   "nb":0
                 },
                 "autre":{
@@ -414,31 +414,31 @@
             },
             "csp": {
                 "agriculteur":{
-                  "title":"Part des agriculteurs exploitants",
+                  "title":"agricult.",
                   "nb":0
                 },
                 "artisant":{
-                  "title":"Part des artisans, comm., chefs d’entr.",
+                  "title":"artisans, comm., chefs d’entr.",
                   "nb":61
                 },
                 "cadre":{
-                  "title":"Part des cadres, professions intellect. supérieures",
+                  "title":"cadres, prof. intellect. sup.",
                   "nb":230
                 },
                 "prof_int":{
-                  "title":"Part des professions interméd.",
+                  "title":"prof. interméd.",
                   "nb":404
                 },
                 "employe":{
-                  "title":"Part des employés",
+                  "title":"employés",
                   "nb":543
                 },
                 "ouvrier":{
-                  "title":"Part des ouvriers",
+                  "title":"ouvriers",
                   "nb":280
                 },
                 "retraite":{
-                  "title":"Part des retraités ou préretraités",
+                  "title":"retrait.",
                   "nb":543
                 },
                 "autre":{
