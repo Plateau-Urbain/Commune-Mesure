@@ -541,11 +541,10 @@
     "impact": [
       {
         "Sante": {
-          "show":false,
+          "show":true,
           "text":
           [
-          "Certaines personnes ont fait part ou ont paru se sentir mieux dans leurs relations avec les autres",
-          "Certaines personnes ont fait preuve d'une plus grande confiance en eux"
+          "Prise de confiance à travers l'engagement au sein de projets, particulièrement de la part de publics jeunes"
           ]
         }
       },
@@ -554,8 +553,7 @@
         "show":true,
         "text":
         [
-          "Compétences (cours de français, conseil en informatique, communication...)",
-          "Espaces"
+          "Co-construction de projets entre entreprises et associations"
         ]
         }
       },
@@ -581,8 +579,7 @@
       "Reseaux": {
         "show":true,
         "text":
-        ["Acteurs et actrices du quartier, associations ou entreprises locales",
-        "Personnes travaillant sur le site (si applicable)"
+        ["Mobilisation de nombreuses structures dans le cadre du Pass'Vac proposé par le CDIJ (programme transversal d'activités pour les jeunes)"
       ]
         }
       },
@@ -591,7 +588,7 @@
         "show":true,
         "text":
         [
-          "Oui, certaines personnes se sentent faire partie d'un groupe autour du ou d'un projet"
+          "Jeunes regroupés en coopérative dans le cadre du projet Kpacité"
         ]
         }
       }

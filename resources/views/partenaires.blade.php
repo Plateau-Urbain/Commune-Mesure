@@ -4,10 +4,10 @@
     <div class="colums hero is-large is-light partenaires-block">
         <section class="section">
             <h1 class="title is-1 has-text-centered">Les partenaires</h1>
-            <h2 class="subtitle is-3 has-text-centered mt-6">Le comité</h2>
+            <h2 class="subtitle is-2 has-text-centered mt-6">Le comité</h2>
             <img class="logo_partenaires" src="{{ url('/images/partenaires/comites.png') }}" alt="">
 
-            <h2 class="subtitle is-3 has-text-centered mt-6">Les soutiens</h2>
+            <h2 class="subtitle is-2 has-text-centered mt-6">Les soutiens</h2>
             <div class="columns mt-4 mb-6">
                 <div class="column partenaire_container">
                 </div>
