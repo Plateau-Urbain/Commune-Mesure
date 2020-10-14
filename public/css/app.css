@@ -15076,7 +15076,9 @@ svg#male {
   height: 100%;
   opacity: 0;
   transition: all .3s ease;
-  float: right; }
+  float: right;
+  position: absolute;
+ }
 
 .impact_text {
   font-size: .8em;

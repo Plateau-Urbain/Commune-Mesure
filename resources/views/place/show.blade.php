@@ -338,25 +338,28 @@
                           </div>
                       </div>
                   </div>
-                  <div  class="column has-text-centered">
+                  <div  class="column has-text-centered" style="position: relative;">
                       <img width="200" src="/images/3_characters.png"/>
-                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="margin-top: -315px; margin-left: 90px;">
-                          <div class="impact_box" id="impact_box_sante">
-                              <p class="impact_text">
-                                @foreach($place->impact as $key => $impact)
-                                  @if(isset($impact->Sante) && $impact->Sante->show)
-                                    @foreach($impact->Sante->text as $text) {{ $text }} @endforeach
-                                  @endif
-                                @endforeach
-                              </p>
+                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="position: absolue; top: -45px; left: 85px;">
+                          <div  data-tooltip="Tooltip Text" class="has-tooltip-bottom">
+                              <div class="impact_box" id="impact_box_sante">
+                                  <p class="impact_text">
+                                      @foreach($place->impact as $key => $impact)
+                                      @if(isset($impact->Sante) && $impact->Sante->show)
+                                      @foreach($impact->Sante->text as $text) {{ $text }} @endforeach
+                                      @endif
+                                      @endforeach
+                                  </p>
+                              </div>
+                              <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                                  <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
+                                  <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
+                                  <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
+                              </svg>
                           </div>
-                          <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
-                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
-                              <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
-                              <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
-                          </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="margin-top: -100px; margin-left: 40px;">
+                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="position: absolue;bottom: -40px; left: 50px;">
+                          <div data-tooltip="Tooltip Text" class="has-tooltip-top">
                           <div class="impact_box" id="impact_box_insertion">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -369,10 +372,12 @@
                           <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                               <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
-                              <text x="35" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
+                              <text x="34" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="right: 160px; margin-top: -315px;">
+                      </div>
+                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="position: absolue; top: -45px; right: 130px;">
+                          <div  data-tooltip=""  class="has-tooltip-bottom">
                           <div class="impact_box" id="impact_box_lien">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -388,7 +393,9 @@
                               <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
                           </svg>
                       </div>
-                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="margin-top: -100px; right: 110px;">
+                      </div>
+                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="position: absolue;bottom: -40px;right: 80px;">
+                          <div  data-tooltip="Tooltip Text"  class="has-tooltip-top">
                           <div class="impact_box" id="impact_box_capacite">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
@@ -403,6 +410,7 @@
                               <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
                               <text x="50" y="45" font-size="8" font-weight="bold" fill="#004c44">à agir</text>
                           </svg>
+                      </div>
                       </div>
 
                   </div>
