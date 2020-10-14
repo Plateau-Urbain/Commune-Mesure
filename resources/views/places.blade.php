@@ -29,7 +29,7 @@
                             <a href="{{ route('place.show',['slug' => $place->title ])  }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
                         <div class="column is-one-third has-text-centered" style="overflow: hidden;">
-                            <div id="carousel-{{ $place->title }}" style="height: 226px;" class="carousel">
+                            <div id="carousel-{{ $place->title }}" style="height: 226px; overflow: hidden;" class="carousel">
                             @if( $place->photos[0] )
                               <img class="img-places" style="height: 226px;" src='{{ url("/") }}/images/lieux/{{ $place->photos[0] }}'>
                             @endif
