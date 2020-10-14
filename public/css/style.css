@@ -36,3 +36,7 @@ li.tags:hover {
 .slider-pagination {
     position: absolute !important;
 }
+
+.hero.is-light h2.subtitle.is-2 {
+    color: #e85048;
+}

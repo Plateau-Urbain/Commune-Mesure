@@ -111,13 +111,15 @@ class Place
 
             $name = basename($place, '.json');
             $title = $json->name;
+            $description = $json->description;
             $city = $json->address->city;
+            $departement = substr($json->address->postalcode, 0, 2);
             $data_chart = $json->data;
             $json->title = $name;
 
             if ($this->withPopup) {
                 $popup = str_replace(["\r\n", "\n", '  '], '',
-                    view('components/popup', ['name' => $name, 'title' => $title, 'city' => $city, 'images' => $json->photos])->render()
+                    view('components/popup', ['name' => $name, 'title' => $title, 'description' => $description, 'departement' => $departement,  'city' => $city, 'images' => $json->photos])->render()
                 );
             }
 

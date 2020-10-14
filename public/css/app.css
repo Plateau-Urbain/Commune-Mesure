@@ -15248,3 +15248,9 @@ div.bloc-note {
 .tag:hover::after {
   border-left-color: crimson; }
 
+.leaflet-container a {
+  color: #e85048; }
+
+.leaflet-container a.button {
+  color: #262631; }
+
