@@ -43,9 +43,9 @@
     </div>
   </div>
   <div class="section pt-0" >
-    <div class="columns card is-rounded">
-      <div class="column">
-        <div id="stats-chart" width="100" height="10"></div>
+    <div class="container">
+      <div class="card is-rounded">
+        <div id="stats-chart"></div>
       </div>
     </div>
   </div>
