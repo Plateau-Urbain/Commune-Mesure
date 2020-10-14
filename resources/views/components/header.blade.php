@@ -8,9 +8,9 @@
         <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/">Accueil</a>
-                <a class="navbar-item" href="/les-lieux">Les lieux</a>
-                <a class="navbar-item" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
-                <a class="navbar-item" href="les-partenaires">Les partenaires</a>
+                <a class="navbar-item" href="{{ route("places") }}">Les lieux</a>
+                <a class="navbar-item" href="{{ route('impacts.show') }}">Les données</a>
+                <a class="navbar-item" href="{{ route('partners') }}">Les partenaires</a>
             </div>
         </div>
     </div>
