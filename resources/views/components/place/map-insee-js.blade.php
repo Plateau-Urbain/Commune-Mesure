@@ -1,6 +1,7 @@
 <script>
   var geoDataPlace = JSON.parse("{{ json_encode($place->geo) }}".replace(/&quot;/g,'"'));
   var placeData = JSON.parse("{{ json_encode($place->data) }}".replace(/&quot;/g,'"'));
+  var address = @json($place->address);
   var geoJsonFeatures = geoDataPlace.geo_json;
   var markerPoint = new L.LatLng(geoDataPlace.lat, geoDataPlace.lon);
 
@@ -42,62 +43,11 @@
     if(marker === undefined){
 
       marker = L.marker(markerPoint, {icon: myIcon}).addTo(mapInsee)
-          .bindPopup("<div><h3>Nom: {{ $place->name }}</h3>"
-          +"<h4>Quartier: "+layer.feature.properties.nom+"</h4></div>")
+          .bindPopup("<div><h3 class='font-color-theme'>{{ $place->name }}</h3>"
+          +"<h4>"+address.city+"("+address.postalcode.slice(0,2)+")</h4></div>")
           .openPopup();
     }
   }
-
-  // function displayFeature(zoom) {
-  //
-  //   var color = '#3d1e6d';
-  //   var bounds;
-  //   mygeojson.remove();
-  //   if(mapInsee.getZoom() > zoomIris && mapInsee.getZoom() < zoomDefault){
-  //     mygeojson = L.geoJSON(
-  //       geoJsonFeatures.iris,
-  //       {
-  //         style: styleObjet.iris,
-  //         onEachFeature: onEachFeature
-  //       }
-  //     ).addTo(mapInsee);
-  //   }
-  //   if(mapInsee.getZoom() <= zoomIris && mapInsee.getZoom() >= zoomCommune){
-  //     mygeojson = L.geoJSON(
-  //       geoJsonFeatures.commune,
-  //       {
-  //         style: styleObjet.commune,
-  //         onEachFeature: onEachFeature
-  //       }
-  //     ).addTo(mapInsee);
-  //   }
-  //   if(mapInsee.getZoom() < zoomCommune && mapInsee.getZoom() >= zoomDepartement){
-  //     mygeojson = L.geoJSON(
-  //       geoJsonFeatures.commune,
-  //       {
-  //         style: styleObjet.departement,
-  //         onEachFeature: onEachFeature
-  //       }
-  //     ).addTo(mapInsee);
-  //   }
-  //   if(mapInsee.getZoom() < zoomDepartement){
-  //     mygeojson = L.geoJSON(
-  //       geoJsonFeatures.region,
-  //       {
-  //         style: styleObjet.region,
-  //         onEachFeature: onEachFeature
-  //       }
-  //     ).addTo(mapInsee);
-  //   }
-  //   //mapInsee.fitBounds(mygeojson.getBounds())
-  //   animateBar();
-  //   //delete placeData.insee[zone].population.total;
-  //   // chartMap.data.labels = Object.keys(placeData.insee[zone].population);
-  //   // chartMap.data.datasets[0].data = Object.values(placeData.insee[zone].population);
-  //   //
-  //   // chartMap.update()
-  //
-  // }
 
   /**
   * Load data geoJson in function of zoom level
