@@ -2337,18 +2337,23 @@
             }
         },
         "finance":{
-          "name": "Acteurs",
-          "children": [
-            {
-              "name": "Budget total d'investissement",
-              "children":[
-                {"name":"Fonds publics","size" : 307400},
-                {"name":"Fonds privés", "size": 132500},
-                {"name":"Fonds apportés", "size": 90100}
-              ]
-            }
+        "composition":[
+          {"name": "Entreprises", "size": 0},
+          {"name": "Associations", "size": 0},
+          {"name": "Artistes", "size": 0},
+          {"name": "Autres structures", "size": 0}
+        ],
+        "investissement":[
+            {"name":"Fonds publics","size" : 307400},
+            {"name":"Fonds privés", "size": 132500},
+            {"name":"Fonds apportés", "size": 90100}
+          ],
+        "fonctionnement":[
+            {"name":"Subventions","size" : 0},
+            {"name":"Aides privées","size" : 0},
+            {"name":"Recettes", "size": 175500}
           ]
-        },
+      },
         "compare":{
           "moyens":{
             "etp":{
