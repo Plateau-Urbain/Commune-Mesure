@@ -11,7 +11,6 @@
                 <a class="navbar-item" href="/les-lieux">Les lieux</a>
                 <a class="navbar-item" href="/les-statistiques-et-donnees-des-lieux">Les données</a>
                 <a class="navbar-item" href="les-partenaires">Les partenaires</a>
-                <a class="navbar-item" href="/nous-contacter">Nous contacter</a>
             </div>
         </div>
     </div>

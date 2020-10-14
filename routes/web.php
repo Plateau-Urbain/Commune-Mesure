@@ -32,7 +32,3 @@ $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsContr
 $router->get('/les-partenaires',  function () {
     return view('partenaires');
 });
-
-$router->get('/nous-contacter',  function () {
-    return view('nous-contacter');
-});
