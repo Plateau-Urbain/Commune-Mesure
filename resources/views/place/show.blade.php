@@ -112,7 +112,7 @@
                             @if($partner->names)
                             <div>
                               <strong>Les acteurs {{ $partner->title }}s :</strong>
-                              <span class="is-block fontSize0-8em">
+                              <span class="is-block is-size-7">
                                 {{ $partner->names }}
                               </span>
                             </div>
@@ -121,17 +121,12 @@
                           @if($place->partners[0]->names || $place->partners[1]->names)
                           <div class="">
                             <strong class="">Nature des partenariats :</strong>
-                            <div class="fontSize0-8em">
-                              @php ($nb = 1) @endphp
+                            <div class="is-size-7">
                               @foreach($place->partners as $partner)
                               @if (count($partner->natures))
                               <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                                 @foreach($partner->natures as $nature)
-                                  {{ $nature }}
-                                  @if(count($partner->natures) != $nb)
-                                    {{ "," }}
-                                    @php ($nb++) @endphp
-                                  @endif
+                                  {{ $nature }}@if(! $loop->last), @endif
                                 @endforeach
                                 </span>
                                 @endif
@@ -208,8 +203,8 @@
           </section>
           <div>
 
-            <section class="section" id="nos-valeurs">
-              <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
+            <section class="section" id="valeurs">
+              <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
               <div class="columns">
                 <div class="column has-text-centered">
                   <div id="value_container"></div>
@@ -231,9 +226,9 @@
                       <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
                         <div class="columns">
                           <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> <span class="title is-5">ETP</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                          <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->etp->nombre > 5)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -248,9 +243,9 @@
 
                         <div class="columns">
                             <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> <span class="title is-5"> Bénévoles</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -274,7 +269,7 @@
                         <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
                         <div class="columns">
                             <div class="column is-4">
-                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
+                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
                                 <span class="title is-5">
                                     @if ($place->impact_economique->nombre_structures_crees > 1)
                                         structures créées
@@ -301,8 +296,8 @@
 
           </div>
           @if($place->impact != [])
-          <section class="section" id="impact_social">
-              <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
+          <section class="section" id="impact-social">
+              <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered">
                       <img width="300" src="/images/4_characters.png"/>
@@ -408,7 +403,7 @@
                   </div>
               </section>
           @endif
-        <section class="section anchor" id="donnees-insee">
+        <section class="section anchor" id="territoire">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">
