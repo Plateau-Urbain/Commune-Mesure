@@ -1,8 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
 
-var values = JSON.parse("{{ json_encode($place->structure->activities) }}".replace(/&quot;/g,'"'));
-
+var values = @json($place->structure->activities);
 var colors = ['#E85048', '#DEEBEE', '#F3771B', '#B5BF8A', 'orange', '#E3386A', '#d6d8ff', 'grey', '#b1bfac', '#fcba03', '#FFB7B2', '#B5EAD7', '#C7CEEA', '#FF9AA2','#E85048', '#DEEBEE', '#617D8C', '#F3771B', '#B5BF8A'];
 
 var theta = [];
@@ -54,75 +52,5 @@ for (const [key, value] of Object.entries(values)) {
   container.appendChild(mainCircle)
   var childrens = value.children
   circleGenerator(childrens.length, 100, 100, mainCircle.id);
-  // childrens.forEach(function(element){
-  //   i= i+2;
-  //   var newChild = document.createElement("div")
-  //   newChild.className = "value_item_child";
-  //   var textChild = document.createElement("p")
-  //   textChild.className = "value_text_child"
-  //   textChild.innerHTML = element.text
-  //   newChild.appendChild(textChild)
-  //
 }
-
-
-        //
-        // var options = {
-        //   series: [{
-        //   name: 'Bubble1',
-        //   data: [[10,60,10]]
-        // },
-        // {
-        //   name: 'Bubble4',
-        //   data: [[10,0,10]]
-        // }],
-        //   chart: {
-        //     height: 350,
-        //     type: 'bubble',
-        //     toolbar:{
-        //       show:false,
-        //     }
-        // },
-        // dataLabels: {
-        //     enabled: false
-        // },
-        // fill: {
-        //     opacity: 0.8
-        // },
-        // title: {
-        //     text: ''
-        // },
-        // grid: {
-        //   show:false,
-        // },
-        // annotations: {
-        //   x:'',
-        // },
-        // xaxis: {
-        //   show:false,
-        //   axisBorder:{
-        //     show:false,
-        //   },
-        //   lines: {
-        //     show: false,
-        //   }
-        // },
-        // yaxis: {
-        //   show:false,
-        //   axisBorder:{
-        //     show:false,
-        //   },
-        //   lines: {
-        //     show: true,
-        //   }
-        // },
-        // legend:{
-        //   show:false,
-        // }
-        //
-        // };
-        //
-        // var valuesChart = new ApexCharts(document.querySelector("#valuesChart"), options);
-        // valuesChart.render();
-
 </script>

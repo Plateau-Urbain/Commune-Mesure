@@ -15,19 +15,12 @@
 
 @section('script_js')
     @parent
-    <script src="https://unpkg.com/rough-viz@1.0.5"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {{-- Graphs insee --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> {{-- animate on scroll impact --}}
     <script>AOS.init();</script>
-    <script src='https://d3js.org/d3.v4.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js" integrity="sha512-UWEnsxiF3PBLuxBEFjpFEHQGZNLwWFqztm66Wok/kXsGSrcOS76CP3ovpEQmwlOmR2Co4iV5FmXrdb7YzP37SA==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sigma@1.2.1/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+    <script src='https://d3js.org/d3.v4.min.js'></script> {{-- chart finance --}}
     @include('components.place.chart-place')
     @include('components.place.map-insee-js')
-    @include('components.place.sigma-cloud-words-js')
-    @include('components.place.d3-cloud-words-js')
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
     @include('components.place.value-bubbles')
@@ -273,7 +266,7 @@
 
                     <div class="column">
                         <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
-                        <div class="field">
+                        <div class="field has-text-centered">
                             <label class="is-size-5" style="font-weight: bold;" >Structure</label>
                         </div>
                         <canvas id="composition-chart-doughnut" ></canvas>
