@@ -2740,42 +2740,42 @@
     "impact_economique":{
       "nombre_structures_crees":0
     },
-    "impact": {
+    "impact": [{
       "Sante": {
         "show":true,
         "text":
         [
         "isolation phonique"
         ]
-      },
+      }},{
       "Capacite": {
       "show":true,
       "text":
       [
         ""
       ]
-      },
+      }},{
     "Insertion": {
       "show":false,
       "text":
       [
         ""
       ]
-      },
+      }},{
     "Lien": {
-      "show":false,
+      "show":true,
       "text":
       [
-        "Café pris ensemble"
+        "Café pris ensemble avec les voisins et voisines du quartier, les personnes travaillant sur le site font de la cuisine ensemble"
       ]
-      },
+      }},{
     "Reseaux": {
       "show":true,
       "text":
       [
-        ""
+        "Il y a une aide pour les personnes en difficulté pour les accompagner dans leurs projets ou actions"
       ]
-      },
+      }},{
     "Appartenance": {
       "show":true,
       "text":
@@ -2783,7 +2783,7 @@
         "Oui, certaines personnes se sentent faire partie d'un groupe autour du ou d'un projet"
       ]
       }
-    },
+    }],
     "badges": [
         "France"
     ],
@@ -2840,9 +2840,11 @@
       ]
     },
     "tags": [
-        "France",
-        "FRED",
-        "PU"
+        "Île-de-France",
+        "Paris",
+        "Étudiant",
+        "Famille",
+        "Non-voyant"
     ],
     "photos": [
         "Chez-FRED.jpg"
