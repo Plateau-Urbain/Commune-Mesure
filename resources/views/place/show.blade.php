@@ -281,8 +281,8 @@
                                 @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
                                     <span class="icon is-large">
                                         <span class="fa-stack fa-lg">
-                                            <i class="fas fa-sun fa-stack-1x" style="color: #FFDC00"></i>
-                                            <i class="fas fa-industry fa-stack-1x" style="color: #e85048"></i>
+                                            <i class="fas fa-industry fa-stack-2x" style="color: #e85048"></i>
+                                            <i class="fas fa-star fa-stack-1x" style="color: #FFDC00; padding-left:1.33em; margin-top:-15px"></i>
                                         </span>
                                     </span>
                                 @endfor
