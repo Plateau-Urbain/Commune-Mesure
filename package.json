@@ -42,7 +42,6 @@
     "chart.js": "^2.9.3",
     "leaflet": "^1.6.0",
     "leaflet-gesture-handling": "^1.1.8",
-    "leaflet.markercluster": "^1.4.1",
-    "sigma": "^1.2.1"
+    "leaflet.markercluster": "^1.4.1"
   }
 }

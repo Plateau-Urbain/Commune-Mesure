@@ -112,7 +112,7 @@
                             @if($partner->names)
                             <div>
                               <strong>Les acteurs {{ $partner->title }}s :</strong>
-                              <span class="is-block fontSize0-8em">
+                              <span class="is-block is-size-7">
                                 {{ $partner->names }}
                               </span>
                             </div>
@@ -121,17 +121,12 @@
                           @if($place->partners[0]->names || $place->partners[1]->names)
                           <div class="">
                             <strong class="">Nature des partenariats :</strong>
-                            <div class="fontSize0-8em">
-                              @php ($nb = 1) @endphp
+                            <div class="is-size-7">
                               @foreach($place->partners as $partner)
                               @if (count($partner->natures))
                               <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                                 @foreach($partner->natures as $nature)
-                                  {{ $nature }}
-                                  @if(count($partner->natures) != $nb)
-                                    {{ "," }}
-                                    @php ($nb++) @endphp
-                                  @endif
+                                  {{ $nature }}@if(! $loop->last), @endif
                                 @endforeach
                                 </span>
                                 @endif
@@ -208,8 +203,8 @@
           </section>
           <div>
 
-            <section class="section" id="nos-valeurs" style="padding-top:0;">
-              <h2 class="ribbon-banner title is-5 has-text-centered" >Nos valeurs</h2>
+            <section class="section" id="valeurs">
+              <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
               <div class="columns">
                 <div class="column has-text-centered">
                   <div id="value_container"></div>
@@ -228,12 +223,12 @@
                         <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
                       </div>
                       <canvas id="financement-budget-doughnut" ></canvas>
-                      <h1 class="title no-border is-4 has-text-centered mt-6">Humains</h1>
+                      <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
                         <div class="columns">
                           <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span> <span class="title is-5">ETP</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
                           </div>
-                          <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                          <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->etp->nombre > 5)
                                   @for($i = 0; $i < $place->data->compare->moyens->etp->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -248,9 +243,9 @@
 
                         <div class="columns">
                             <div class="column is-3">
-                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span> <span class="title is-5"> Bénévoles</span>
+                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
                             </div>
-                            <div class="column" style="overflow-y: hidden; max-height: 200px;">
+                            <div class="column" style="overflow-y: hidden; max-height: 200px; padding-top: 35px;">
                               @if($place->data->compare->moyens->benevole->nombre > 10)
                                   @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre; $i = $i+10)
                                       @svg('assets/images/body.svg', 'tiny') &bull;&bull;&bull;&nbsp;
@@ -265,21 +260,21 @@
                     </div>
 
                     <div class="column">
-                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition du lieu</h2>
+                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                         <div class="field has-text-centered">
-                            <label class="is-size-5" style="font-weight: bold;" >Structure</label>
+                            <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
                         </div>
                         <canvas id="composition-chart-doughnut" ></canvas>
 
-                        <h1 class="title no-border is-4 has-text-centered mt-6">Création</h1>
+                        <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
                         <div class="columns">
-                            <div class="column is-3">
-                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span>
+                            <div class="column is-4">
+                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
                                 <span class="title is-5">
                                     @if ($place->impact_economique->nombre_structures_crees > 1)
-                                        entreprises créées
+                                        structures créées
                                     @else
-                                        entreprise créée
+                                        structure créée
                                     @endif
                                 </span>
                             </div>
@@ -301,17 +296,17 @@
 
           </div>
           @if($place->impact != [])
-          <section class="section" id="impact_social">
-              <h2 class="ribbon-banner title is-5 has-text-centered">Impact Social</h2>
-              <div class="columns">
+          <section class="section" id="impact-social">
+              <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
+              <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered">
                       <img width="300" src="/images/4_characters.png"/>
-                      <div class="impact_item" id="impact_item_lien_social" data-aos="fade-in" style="left: 445px;  margin-top: -80px;">
+                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 445px;  margin-top: -80px;">
                           <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                               <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
                           </svg>
-                          <div class="impact_box" id="impact_box_social">
+                          <div class="impact_box" id="impact_box_reseaux">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
                                   @if(isset($impact->Reseaux) && $impact->Reseaux->show)
@@ -321,17 +316,17 @@
                               </p>
                           </div>
                       </div>
-                      <div class="impact_item" id="impact_item_sante" data-aos="fade-right" style="margin-top: -345px; left: 785px;">
+                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="margin-top: -345px; left: 785px;">
                           <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
                               <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                               <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
                               <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
                           </svg>
-                          <div class="impact_box" id="impact_box_sante">
+                          <div class="impact_box" id="impact_box_appartenance">
                               <p class="impact_text" style="z-index:10">
                                 @foreach($place->impact as $key => $impact)
-                                  @if(isset($impact->Lien) && $impact->Lien->show)
-                                    @foreach($impact->Lien->text as $text) {{ $text }} @endforeach
+                                  @if(isset($impact->Appartenance) && $impact->Appartenance->show)
+                                    @foreach($impact->Appartenance->text as $text) {{ $text }} @endforeach
                                   @endif
                                 @endforeach
                               </p>
@@ -340,8 +335,8 @@
                   </div>
                   <div  class="column has-text-centered">
                       <img width="200" src="/images/3_characters.png"/>
-                      <div class="impact_item" id="impact_item_confiance" data-aos="fade-in" style="right: 180px; margin-top: -315px;">
-                          <div class="impact_box" id="impact_box_confiance">
+                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="right: 180px; margin-top: -315px;">
+                          <div class="impact_box" id="impact_box_sante">
                               <p class="impact_text">
                                 @foreach($place->impact as $key => $impact)
                                   @if(isset($impact->Sante) && $impact->Sante->show)
@@ -356,26 +351,59 @@
                               <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
                           </svg>
                       </div>
-                          <div class="impact_item" id="impact_item_stress" data-aos="fade-in" style="margin-top: -100px; right: 190px;">
-                              <div class="impact_box" id="impact_box_stress">
-                                  <p class="impact_text">
-                                    @foreach($place->impact as $key => $impact)
-                                      @if(isset($impact->Insertion) && $impact->Insertion->show)
-                                        @foreach($impact->Insertion->text as $text) {{ $text }} @endforeach
-                                      @endif
-                                    @endforeach
-                                  </p>
-                              </div>
-                              <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
-                                  <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-                                  <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
-                                  <text x="35" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
-                              </svg>
+                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="margin-top: -100px; right: 210px;">
+                          <div class="impact_box" id="impact_box_insertion">
+                              <p class="impact_text">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Insertion) && $impact->Insertion->show)
+                                    @foreach($impact->Insertion->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
                           </div>
+                          <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+                              <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
+                              <text x="35" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
+                          </svg>
                       </div>
-                  </section>
+                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="right: -160px; margin-top: -315px;">
+                          <div class="impact_box" id="impact_box_lien">
+                              <p class="impact_text">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Lien) && $impact->Lien->show)
+                                    @foreach($impact->Lien->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
+                          </div>
+                          <svg  width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
+                              <text x="52" y="38" font-size="7" font-weight="bold" fill="#004c44">Lien</text>
+                              <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
+                          </svg>
+                      </div>
+                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="margin-top: -100px; right: -190px;">
+                          <div class="impact_box" id="impact_box_capacite">
+                              <p class="impact_text">
+                                @foreach($place->impact as $key => $impact)
+                                  @if(isset($impact->Capacite) && $impact->Capacite->show)
+                                    @foreach($impact->Capacite->text as $text) {{ $text }} @endforeach
+                                  @endif
+                                @endforeach
+                              </p>
+                          </div>
+                          <svg width="215" height="150" viewBox="20 20 75 40" style="z-index:0">
+                              <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+                              <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
+                              <text x="50" y="45" font-size="8" font-weight="bold" fill="#004c44">à agir</text>
+                          </svg>
+                      </div>
+
+                  </div>
+              </section>
           @endif
-        <section class="section anchor" id="donnees-insee">
+        <section class="section anchor" id="territoire">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">

@@ -483,6 +483,24 @@ svg {
   position: absolute;
   z-index: 0;
 }
+#impact_item_reseaux:hover #impact_box_reseaux {
+  opacity: 1;
+}
+#impact_item_sante:hover #impact_box_sante {
+  opacity: 1;
+}
+#impact_item_appartenance:hover #impact_box_appartenance {
+  opacity: 1;
+}
+#impact_item_insertion:hover #impact_box_insertion {
+  opacity: 1;
+}
+#impact_item_lien:hover #impact_box_lien {
+  opacity: 1;
+}
+#impact_item_capacite:hover #impact_box_capacite {
+  opacity: 1;
+}
 .impact_box{
   width: 300px;
   background-color: white ;
@@ -584,7 +602,6 @@ p.partenaires_text{
 
 .bloc-note-body div{
   margin: 2% 2% 0% 2%;
-  text-align: justify;
 }
 div.bloc-note{
   background-image: url('/images/bloc_note_rotate.svg');

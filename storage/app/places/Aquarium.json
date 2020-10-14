@@ -1,7 +1,7 @@
 {
     "geo": {
-        "lat": 47.3818,
-        "lon": 0.724603,
+        "lat": 48.9152638,
+        "lon": 2.4014704,
         "geo_json":{
             "commune": {
             "type": "Feature",
@@ -646,11 +646,10 @@
     },
     "impact": [{
         "Sante": {
-          "show":false,
+          "show":true,
           "text":
           [
-          "Certaines personnes ont fait part d'un stress ou de conflits",
-          "Certaines personnes ont fait preuve d'une plus grande confiance en eux"
+          "Une personne s'est mobilisée pour organiser des ateliers de couture, elle a semblé se sentir valorisée par ce rôle et la transmission de ses savoirs / une autre, assez renfermée, a proposé au bout de qqs temps d'organiser des ateliers pour fabriquer ses propres lessives"
           ]
         }
       },
@@ -659,7 +658,7 @@
         "show":true,
         "text":
         [
-          ""
+          "Il y a eu des échanges, dons ou mutualisations entre personnes au sein du projet"
         ]
         }
       },
@@ -674,28 +673,28 @@
       },
       {
       "Lien": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Les participantes régulières (habitantes du quartier) ne se connaissaient pas toutes et prennent l'habitude de se retrouver maintenant à l'Aquarium. Elles organisent des actions en commun à l'extérieur (fabrique de masque en tissu pendant le confinement)."
         ]
         }
       },
       {
       "Reseaux": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Voisins et voisines du quartier constituent le reseaux"
         ]
         }
       },
       {
       "Appartenance": {
-        "show":false,
+        "show":true,
         "text":
         [
-          ""
+          "Il y a le sentiment qu'un petit groupe s'est constitué"
         ]
         }
       }
