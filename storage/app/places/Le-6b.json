@@ -2741,6 +2741,7 @@
         "show":true,
         "text":
         [
+          "Mutualisation des ressources et des moyens entre résidents, mises à disposition de matériel ou d'espaces, transferts de compétences"
         ]
         }
       },
@@ -2754,25 +2755,28 @@
       },
       {
       "Lien": {
-        "show":false,
+        "show":true,
         "text":
         [
+          "Rencontres, synergies, collectifs, projet commun des résidents, débat et rencontres des habitants et acteurs associatif avec les résidents"
         ]
         }
       },
       {
       "Reseaux": {
-        "show":false,
+        "show":true,
         "text":
         [
+          "Création d'un réseau informel de voisins & habitués du tiers-lieu qui se sont rencontrées grâce à la programmation musicale (concerts, moments de convivalité) ; création d'une web radio avec le centre social et des associations de quartier pour fédérer les habitants du quartier et garder le lien pendant la crise ; création d'une collecte et distribution alimentaire pendant la crise"
         ]
         }
       },
       {
       "Appartenance": {
-        "show":false,
+        "show":true,
         "text":
         [
+          "Les habitants du quartier n'étant pas à l'origine du projet de tiers-lieu, il est difficile de dire que ceux-ci se sentent faire partie d'un groupe. Mais force est de constater qu'ils se sont peu à peu approprié le lieu, et qu'ils le recommandent à leurs voisins, et peu à peu s'impliquent dans la programmation socio-culturelle. Nous espérons que cette dynamique s'amplifiera avec le temps !"
         ]
         }
       }
