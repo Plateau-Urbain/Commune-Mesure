@@ -483,47 +483,6 @@ svg {
   position: absolute;
   z-index: 0;
 }
-
-#impact_item_lien_social{
-  left: 300px;
-  margin-top: -60px;
-}
-#impact_item_lien_social:hover  #impact_box_social{
-    opacity: 1;
-}
-
-#impact_item_sante{
-  margin-top: -380px;
-  left: 500px;
-}
-#impact_item_sante:hover  #impact_box_sante{
-    opacity: 1;
-}
-
-#impact_item_stress{
-  margin-top: -100px;
-  right: 80px;
-}
-#impact_item_stress:hover  #impact_box_stress{
-    opacity: 1;
-}
-
-#impact_item_inconfort{
-  left: 700px;
-  margin-top: -200px;
-}
-#impact_item_inconfort:hover  #impact_box_inconfort{
-    opacity: 1;
-}
-
-#impact_item_confiance{
-  right: 90px;
-  margin-top: -340px;
-}
-#impact_item_confiance:hover  #impact_box_confiance{
-    opacity: 1;
-}
-
 .impact_box{
   width: 300px;
   background-color: white ;
@@ -611,6 +570,9 @@ p.partenaires_text{
   width: 40%;
   margin-left: auto;
   margin-right: auto;
+}
+.header-bloc-note .image img{
+    margin-bottom: -10px;
 }
 .bloc-note-body{
   border: 0.4em solid #dbdbdb;
