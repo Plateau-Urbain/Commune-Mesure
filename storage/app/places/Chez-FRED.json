@@ -2752,14 +2752,12 @@
       "show":true,
       "text":
       [
-        ""
       ]
       }},{
     "Insertion": {
       "show":false,
       "text":
       [
-        ""
       ]
       }},{
     "Lien": {
@@ -2846,8 +2844,6 @@
         "Famille",
         "Non-voyant"
     ],
-    "photos": [
-        "Chez-FRED.jpg"
-    ],
+    "photos": [""],
     "description": "Regrouper nos espaces de travail."
 }
