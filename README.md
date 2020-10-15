@@ -1,6 +1,6 @@
-# Commune Mesure
+# Commune Mesure - la plateforme
 
-Plan des espaces
+Projet de dataviz des impacts des lieux hybrides français.
 
 ## Installation
 
