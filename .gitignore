@@ -9,3 +9,6 @@ Homestead.yaml
 .phpunit.result.cache
 /resources/*.xlsx
 !/storage/app/places/example.json
+/public/fonts/
+/public/js/bundle.js
+/public/css/app.css
