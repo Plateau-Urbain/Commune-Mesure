@@ -15,7 +15,7 @@ class CreatePlacesTable extends Migration
     public function up()
     {
         Schema::create('places', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->autoIncrement();
             $table->string('place')->unique();
             $table->json('data')->default(new Expression('(JSON_ARRAY())'));
             $table->timestamps();
