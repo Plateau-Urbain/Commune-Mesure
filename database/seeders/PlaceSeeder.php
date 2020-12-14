@@ -17,7 +17,6 @@ class PlaceSeeder extends Seeder
     public function run()
     {
         $storage = getenv('STORAGE_PATH').'places/';
-        $place = new Place();
 
         foreach (glob($storage.'*.json') as $lieu) {
             $name = basename($lieu, '.json');
