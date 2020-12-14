@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+
 class Place
 {
     protected $storage;
@@ -29,14 +31,19 @@ class Place
         return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp,$total_evenements,$total_visiteurs];
     }
 
-    public function getOne($place)
+    public function getOne($slug)
     {
-        $json = $this->storage.$place.'.json';
-        if (! file_exists($json)) {
+        $place = DB::table('places')
+                    ->select('data')
+                    ->where('deleted_at', null)
+                    ->where('place', $slug)
+                    ->value('data');
+
+        if ($place === null) {
             return false;
         }
 
-        return $this->getJson($json);
+        return json_decode($place);
     }
 
     public function getCities()
