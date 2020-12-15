@@ -20,22 +20,4 @@ class MainController extends Controller
 
         return view('home', compact('coordinates', 'cities', 'total_surface','total_etp','total_evenements','total_visiteurs'));
     }
-
-    public function places(Place $place, $sortBy = null)
-    {
-        $place->build();
-
-        if(isset($sortBy)){
-          $place->sortNumericPlacesBy($sortBy);
-          $selected = explode('-', $sortBy)[1];
-        }else{
-          $place->sortPlacesBy('name');
-          $selected = "default_az";
-        }
-
-        $places = $place->getPlaces();
-        $coordinates = $place->getCoordinates();
-
-        return view('places', compact('coordinates', 'places', 'selected'));
-    }
 }

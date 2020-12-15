@@ -46,6 +46,18 @@ class Place
         return json_decode($place);
     }
 
+    public function getList()
+    {
+        $places = DB::table('places')
+            ->select('place as url', 'data->name as name', 'data->tags as tags',
+                'data->description as description', 'data->photos as photos',
+                'data->address->city as city', 'data->address->postalcode as postalcode')
+            ->where('deleted_at', null)
+            ->get();
+
+        return $places;
+    }
+
     public function getCities()
     {
         return $this->cities;

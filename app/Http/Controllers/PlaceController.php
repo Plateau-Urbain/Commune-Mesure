@@ -39,6 +39,21 @@ class PlaceController extends Controller
         return view('place.show', compact('place'));
     }
 
+    public function list(Place $place, $sortBy = null)
+    {
+        $places = $place->getList();
+
+        if(isset($sortBy)){
+          $place->sortNumericPlacesBy($sortBy);
+          $selected = explode('-', $sortBy)[1];
+        }else{
+          $place->sortPlacesBy('name');
+          $selected = "default_az";
+        }
+
+        return view('places', compact('places', 'selected'));
+    }
+
     protected function sortDataInsee($inseeData){
       $inseeDataArray = (array) $inseeData;
       $keys = array_keys($inseeDataArray);
