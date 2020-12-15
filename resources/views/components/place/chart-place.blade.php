@@ -61,16 +61,6 @@
     L.marker([{{ $place->geo->lat }}, {{ $place->geo->lon}}]).addTo(smallmap)
     smallmap.setView([{{ $place->geo->lat }}, {{ $place->geo->lon}}], 9)
 
-    //TODO if we wont use chart on place page delete next code
-    // @foreach($plots as $plot)
-    //   var chartPop = new charts.create(
-    //       '{{ $plot->getId() }}',
-    //       '{{ $plot->getType() }}',
-    //       @json($plot->getLabels()),
-    //       @json($plot->getDatasets())
-    //   );
-    // @endforeach
-
 function animateBar(){
   elements = document.querySelectorAll(".myBar")
   elements.forEach(function (element) {
