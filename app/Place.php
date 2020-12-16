@@ -50,6 +50,7 @@ class Place
     {
         $places = DB::table('places')
             ->select('place as url', 'data->name as name', 'data->tags as tags',
+                'data->geo->lat as lat', 'data->geo->lon as lon',
                 'data->description as description', 'data->photos as photos',
                 'data->address->city as city', 'data->address->postalcode as postalcode')
             ->where('deleted_at', null)

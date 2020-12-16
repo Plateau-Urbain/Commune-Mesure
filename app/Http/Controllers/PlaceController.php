@@ -43,6 +43,10 @@ class PlaceController extends Controller
     {
         $places = $place->getList();
 
+        $coordinates = $places->mapWithKeys(function ($item, $key) {
+            return [$item->url => ['geo' => ['lat' => $item->lat, 'lon' => $item->lon]]];
+        });
+
         if(isset($sortBy)){
           $place->sortNumericPlacesBy($sortBy);
           $selected = explode('-', $sortBy)[1];
@@ -51,7 +55,7 @@ class PlaceController extends Controller
           $selected = "default_az";
         }
 
-        return view('places', compact('places', 'selected'));
+        return view('places', compact('places', 'coordinates', 'selected'));
     }
 
     protected function sortDataInsee($inseeData){
