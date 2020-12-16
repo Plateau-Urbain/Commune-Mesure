@@ -9,15 +9,15 @@ class MainController extends Controller
 {
     public function map(Place $place)
     {
-        $place->withPopup()->build();
-        $coordinates = $place->getCoordinates();
-        $cities = $place->getCities();
-        $places = $place->getPlaces();
-        $total_surface = $place->getMeters();
-        $total_etp = $place->getETP();
-        $total_evenements = $place ->getEvents();
-        $total_visiteurs = $place->getVisiteurs();
+        $places = $place->withPopup()->build();
 
-        return view('home', compact('coordinates', 'cities', 'total_surface','total_etp','total_evenements','total_visiteurs'));
+        $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
+            return $place->getCoordinates($item);
+        });
+
+        $stats = $place->getStats();
+        $popup = $place->getPopup();
+
+        return view('home', compact('coordinates', 'stats', 'popup'));
     }
 }

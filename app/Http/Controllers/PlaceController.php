@@ -43,8 +43,8 @@ class PlaceController extends Controller
     {
         $places = $place->getList();
 
-        $coordinates = $places->mapWithKeys(function ($item, $key) {
-            return [$item->url => ['geo' => ['lat' => $item->lat, 'lon' => $item->lon]]];
+        $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
+            return $place->getCoordinates($item);
         });
 
         if(isset($sortBy)){

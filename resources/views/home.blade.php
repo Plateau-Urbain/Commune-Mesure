@@ -26,31 +26,31 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-city" data-total={{ count($cities) }}>{{ count($cities) }}</p>
+                        <p class="title animate-value is-1" id="animate-city" data-total={{ count($stats['cities']) }}>{{ count($stats['cities']) }}</p>
                         <p class="heading title is-4">Villes</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($total_surface) }}>{{ array_sum($total_surface) }}</p> 
+                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($stats['surface']) }}>{{ array_sum($stats['surface']) }}</p>
                         <p class="heading title is-4">m<sup>2</sup></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($total_etp) }}>{{ array_sum($total_etp) }}</p>
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($stats['etp']) }}>{{ array_sum($stats['etp']) }}</p>
                         <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-events" data-total={{ array_sum($total_evenements) }}>{{ array_sum($total_evenements) }}</p>
+                        <p class="title animate-value is-1" id="animate-events" data-total={{ array_sum($stats['evenements']) }}>{{ array_sum($stats['evenements']) }}</p>
                         <p class="heading title is-4">ÉVÉNEMENTS</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ array_sum($total_visiteurs) }}>{{ array_sum($total_visiteurs) }}</p>
+                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ array_sum($stats['visiteurs']) }}>{{ array_sum($stats['visiteurs']) }}</p>
                         <p class="heading title is-4">VISITEURS</p>
                     </div>
                 </div>
@@ -129,9 +129,9 @@
             html: "<div><span>1</span></div>",
             iconSize: [40, 40],
         });
-        @foreach ($coordinates as $name => $place)
-            var point = [{{ $place['geo']->lat }}, {{ $place['geo']->lon}}];
-            var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $place['popup'] !!}");
+            @foreach ($coordinates as $name => $points)
+            var point = [{{ $points['geo']['lat'] }}, {{ $points['geo']['lon'] }}];
+            var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $popup[$name] !!}");
             groupMarker.push(marker);
             markersCluster.addLayer(marker);
         @endforeach

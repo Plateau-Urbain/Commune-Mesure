@@ -15,6 +15,7 @@ class Place
     protected $etp = [];
     protected $evenements = [];
     protected $visiteurs = [];
+    protected $popup = [];
 
     public function __construct()
     {
@@ -29,6 +30,19 @@ class Place
         $total_evenements = array_sum($this->evenements);
         $total_visiteurs= array_sum($this->visiteurs);
         return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp,$total_evenements,$total_visiteurs];
+    }
+
+    public function getAll()
+    {
+        $json = $this->getList();
+
+        $json->transform(function ($item, $key) {
+            $item->tags = json_decode($item->tags);
+            $item->photos = json_decode($item->photos);
+            return $item;
+        });
+
+        return $json;
     }
 
     public function getOne($slug)
@@ -59,6 +73,28 @@ class Place
         return $places;
     }
 
+    public function getCoordinates($place)
+    {
+        return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
+    }
+
+    public function getStats()
+    {
+        $s = [];
+        $s['cities'] = $this->getCities();
+        $s['surface'] = $this->getMeters();
+        $s['etp'] = $this->getETP();
+        $s['evenements'] = $this->getEvents();
+        $s['visiteurs'] = $this->getVisiteurs();
+
+        return $s;
+    }
+
+    public function getPopup()
+    {
+        return $this->popup;
+    }
+
     public function getCities()
     {
         return $this->cities;
@@ -69,10 +105,6 @@ class Place
         return $this->places;
     }
 
-    public function getCoordinates()
-    {
-        return $this->coordinates;
-    }
     public function getMeters()
     {
         return $this->meters;
@@ -125,54 +157,41 @@ class Place
 
     public function build()
     {
-        // TODO: Cache into files (PSR-16)
-        foreach (glob($this->storage.'*.json') as $place) {
-            $json = $this->getJson($place);
+        $places = $this->getAll();
 
-            $name = basename($place, '.json');
-            $title = $json->name;
-            $description = $json->description;
-            $city = $json->address->city;
-            $departement = substr($json->address->postalcode, 0, 2);
-            $data_chart = $json->data;
-            $json->title = $name;
-
+        foreach ($places as $place) {
             if ($this->withPopup) {
                 $popup = str_replace(["\r\n", "\n", '  '], '',
-                    view('components/popup', ['name' => $name, 'title' => $title, 'description' => $description, 'departement' => $departement,  'city' => $city, 'images' => $json->photos])->render()
+                    view('components/popup', ['name' => $place->url, 'title' => $place->name, 'description' => $place->description, 'departement' => $place->postalcode, 'city' => $place->city, 'images' => $place->photos])->render()
                 );
+
+                $this->popup[$place->url] = $popup;
             }
 
-            $this->places[] = $json;
-            $this->coordinates[$name] = ($this->withPopup)
-                ? ['geo' => $json->geo, 'popup' => $popup]
-                : ['geo' => $json->geo];
-
-            $this->cities[$city][]= [
-              "title" => $title,
-              "name" => $name,
-              "photo"=> $json->photos,
-              "data_chart" => $data_chart
+            $this->cities[$place->city][]= [
+              "title" => $place->url,
             ];
-            if (property_exists($json->data, 'compare')) {
-                array_push($this->etp, $json->data->compare->moyens->etp->nombre);
-            }
 
-            if (property_exists($json, 'surface')) {
-                array_push($this->meters, $json->surface);
-            }
+            /* if (property_exists($json->data, 'compare')) { */
+            /*     array_push($this->etp, $json->data->compare->moyens->etp->nombre); */
+            /* } */
 
-            $total = $json->evenements->publics->nombre + $json->evenements->prives->nombre;
-            if (property_exists($json, 'evenements')) {
-                array_push($this->evenements, $total);
-            }
+            /* if (property_exists($json, 'surface')) { */
+            /*     array_push($this->meters, $json->surface); */
+            /* } */
 
-            $total = $json->evenements->publics->nombre_visiteurs + $json->evenements->prives->nombre_visiteurs;
-            if (property_exists($json, 'evenements')) {
-                array_push($this->visiteurs, $total);
-            }
+            /* $total = $json->evenements->publics->nombre + $json->evenements->prives->nombre; */
+            /* if (property_exists($json, 'evenements')) { */
+            /*     array_push($this->evenements, $total); */
+            /* } */
+
+            /* $total = $json->evenements->publics->nombre_visiteurs + $json->evenements->prives->nombre_visiteurs; */
+            /* if (property_exists($json, 'evenements')) { */
+            /*     array_push($this->visiteurs, $total); */
+            /* } */
 
         }
+        return $places;
     }
 
     public function sortCities()
