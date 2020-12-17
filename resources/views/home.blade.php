@@ -26,31 +26,31 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-city" data-total={{ count($stats['cities']) }}>{{ count($stats['cities']) }}</p>
+                        <p class="title animate-value is-1" id="animate-city" data-total={{ $stats['cities'] }}>{{ $stats['cities'] }}</p>
                         <p class="heading title is-4">Villes</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-meters" data-total={{ array_sum($stats['surface']) }}>{{ array_sum($stats['surface']) }}</p>
+                        <p class="title animate-value is-1" id="animate-meters" data-total={{ $stats['surface'] }}>{{ $stats['surface'] }}</p>
                         <p class="heading title is-4">m<sup>2</sup></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ array_sum($stats['etp']) }}>{{ array_sum($stats['etp']) }}</p>
+                        <p class="title animate-value is-1" id="animate-etp" data-total={{ $stats['etp'] }}>{{ $stats['etp'] }}</p>
                         <p class="heading title is-4">ETP</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-events" data-total={{ array_sum($stats['evenements']) }}>{{ array_sum($stats['evenements']) }}</p>
+                        <p class="title animate-value is-1" id="animate-events" data-total={{ $stats['evenements'] }}>{{ $stats['evenements'] }}</p>
                         <p class="heading title is-4">ÉVÉNEMENTS</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ array_sum($stats['visiteurs']) }}>{{ array_sum($stats['visiteurs']) }}</p>
+                        <p class="title animate-value is-1" id="animate-visiteurs" data-total={{ $stats['visiteurs'] }}>{{ $stats['visiteurs'] }}</p>
                         <p class="heading title is-4">VISITEURS</p>
                     </div>
                 </div>

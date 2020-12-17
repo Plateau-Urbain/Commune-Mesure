@@ -6,6 +6,18 @@ use Illuminate\Support\Facades\DB;
 
 class Place
 {
+    const STAT_CITIES = "cities";
+    const STAT_SURFACE = "surface";
+    const STAT_EVENTS = "evenements";
+    const STAT_ETP = "etp";
+    const STAT_VISITORS = "visiteurs";
+
+    protected $stats = [
+        self::STAT_SURFACE => 0,
+        self::STAT_EVENTS => 0,
+        self::STAT_ETP => 0,
+        self::STAT_VISITORS => 0
+    ];
     protected $cities = [];
     protected $places = [];
     protected $withPopup = false;
@@ -14,19 +26,6 @@ class Place
     protected $evenements = [];
     protected $visiteurs = [];
     protected $popup = [];
-
-    public function getAll()
-    {
-        $json = $this->getList();
-
-        $json->transform(function ($item, $key) {
-            $item->tags = json_decode($item->tags);
-            $item->photos = json_decode($item->photos);
-            return $item;
-        });
-
-        return $json;
-    }
 
     public function getOne($slug)
     {
@@ -48,6 +47,7 @@ class Place
         $places = DB::table('places')
             ->select('place as url', 'data->name as name', 'data->tags as tags',
                 'data->geo->lat as lat', 'data->geo->lon as lon',
+                'data->data->compare as compare', 'data->surface as surface', 'data->evenements as evenements',
                 'data->description as description', 'data->photos as photos',
                 'data->address->city as city', 'data->address->postalcode as postalcode')
             ->where('deleted_at', null)
@@ -63,14 +63,8 @@ class Place
 
     public function getStats()
     {
-        $s = [];
-        $s['cities'] = $this->getCities();
-        $s['surface'] = $this->getMeters();
-        $s['etp'] = $this->getETP();
-        $s['evenements'] = $this->getEvents();
-        $s['visiteurs'] = $this->getVisiteurs();
-
-        return $s;
+        $this->stats[self::STAT_CITIES] = count($this->cities);
+        return $this->stats;
     }
 
     public function getPopup()
@@ -140,7 +134,16 @@ class Place
 
     public function build()
     {
-        $places = $this->getAll();
+        $places = $this->getList();
+
+        $places->transform(function ($item, $key) {
+            $item->tags = json_decode($item->tags);
+            $item->photos = json_decode($item->photos);
+            $item->evenements = json_decode($item->evenements);
+            $item->compare = json_decode($item->compare);
+            return $item;
+        });
+
 
         foreach ($places as $place) {
             if ($this->withPopup) {
@@ -155,24 +158,10 @@ class Place
               "title" => $place->url,
             ];
 
-            /* if (property_exists($json->data, 'compare')) { */
-            /*     array_push($this->etp, $json->data->compare->moyens->etp->nombre); */
-            /* } */
-
-            /* if (property_exists($json, 'surface')) { */
-            /*     array_push($this->meters, $json->surface); */
-            /* } */
-
-            /* $total = $json->evenements->publics->nombre + $json->evenements->prives->nombre; */
-            /* if (property_exists($json, 'evenements')) { */
-            /*     array_push($this->evenements, $total); */
-            /* } */
-
-            /* $total = $json->evenements->publics->nombre_visiteurs + $json->evenements->prives->nombre_visiteurs; */
-            /* if (property_exists($json, 'evenements')) { */
-            /*     array_push($this->visiteurs, $total); */
-            /* } */
-
+            $this->stats[self::STAT_SURFACE] += $place->surface;
+            $this->stats[self::STAT_EVENTS] += ($place->evenements->prives->nombre + $place->evenements->publics->nombre);
+            $this->stats[self::STAT_ETP] += ($place->compare) ? $place->compare->moyens->etp->nombre : 0;
+            $this->stats[self::STAT_VISITORS] += ($place->evenements->prives->nombre_visiteurs + $place->evenements->publics->nombre_visiteurs);
         }
         return $places;
     }
