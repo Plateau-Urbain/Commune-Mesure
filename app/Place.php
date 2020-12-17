@@ -68,30 +68,31 @@ class Place
         return $this->popup;
     }
 
-    public function getCompares(){
+    public function getCompares($places){
       $compare_data = [];
       $compare_place_name = [];
       $compare_title = [
         "moyens"=>[],
         'realisations'=>[]
       ];
-      foreach ($this->places[0]->data->compare as $key => $value) {
+
+      foreach ($places->first()->compare as $key => $value) {
         foreach ($value as $k => $v) {
           $compare_title[$key][$k] = $v->title;
         }
       }
-      foreach ($this->places as $place) {
 
-        $compare_data[$place->name] = $place->data->compare;
-        $compare_place_name[$place->name] = $place->title;
-
+      foreach ($places as $place) {
+        $compare_data[$place->name] = $place->compare;
+        $compare_place_name[$place->name] = $place->name;
       }
+
       $compares= [
         "data" => $compare_data,
         "titles" => $compare_title,
         "names" => $compare_place_name
+      ];
 
-    ];
       return $compares;
     }
 

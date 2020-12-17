@@ -13,10 +13,8 @@ class ImpactsController extends Controller
 {
     public function show(Place $place)
     {
-        $place->build();
-        $place->sortPlacesBy('name');
-        $compares = $place->getCompares();
-        $places = $place->getPlaces();
+        $places = $place->build();
+        $compares = $place->getCompares($places);
 
         return view('impacts.show', compact('places', 'compares'));
     }
