@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\DB;
 
 class Place
 {
-    protected $storage;
-    protected $coordinates = [];
     protected $cities = [];
     protected $places = [];
     protected $withPopup = false;
@@ -16,11 +14,6 @@ class Place
     protected $evenements = [];
     protected $visiteurs = [];
     protected $popup = [];
-
-    public function __construct()
-    {
-        $this->storage = getenv('STORAGE_PATH').'places/';
-    }
 
     public function getAll()
     {
