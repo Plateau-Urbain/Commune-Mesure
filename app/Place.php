@@ -21,10 +21,6 @@ class Place
     protected $cities = [];
     protected $places = [];
     protected $withPopup = false;
-    protected $meters = [];
-    protected $etp = [];
-    protected $evenements = [];
-    protected $visiteurs = [];
     protected $popup = [];
 
     public function getOne($slug)
@@ -70,33 +66,6 @@ class Place
     public function getPopup()
     {
         return $this->popup;
-    }
-
-    public function getCities()
-    {
-        return $this->cities;
-    }
-
-    public function getPlaces()
-    {
-        return $this->places;
-    }
-
-    public function getMeters()
-    {
-        return $this->meters;
-    }
-    public function getETP()
-    {
-        return $this->etp;
-    }
-    public function getEvents()
-    {
-        return $this->evenements;
-    }
-    public function getVisiteurs()
-    {
-        return $this->visiteurs;
     }
 
     public function getCompares(){
