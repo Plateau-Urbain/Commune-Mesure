@@ -22,16 +22,6 @@ class Place
         $this->storage = getenv('STORAGE_PATH').'places/';
     }
 
-    public function all()
-    {
-        $this->build();
-        $totalmeters = array_sum($this->meters);
-        $total_etp = array_sum($this->etp);
-        $total_evenements = array_sum($this->evenements);
-        $total_visiteurs= array_sum($this->visiteurs);
-        return [$this->coordinates, $this->cities, $this->places,$totalmeters,$total_etp,$total_evenements,$total_visiteurs];
-    }
-
     public function getAll()
     {
         $json = $this->getList();
@@ -221,24 +211,5 @@ class Place
             }
             return ($a->data->compare->{$q[0]}->{$q[1]}->nombre < $b->data->compare->{$q[0]}->{$q[1]}->nombre) ? -1 : 1;
         });
-    }
-
-    protected function getJson($place)
-    {
-        $json = json_decode(file_get_contents($place));
-
-        if ($json === null) {
-            throw new \LogicException("Invalid json : $place", 1);
-        }
-
-        if (property_exists($json->address, 'city') === false){
-            throw new \LogicException("'La ville n'existe pas' in $place", 1);
-        }
-
-        if(property_exists($json, 'data') === false){
-            throw new \LogicException("'Les données sont inexistantes.' in $place", 1);
-        }
-
-        return $json;
     }
 }

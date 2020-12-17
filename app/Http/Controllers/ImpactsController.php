@@ -17,7 +17,6 @@ class ImpactsController extends Controller
         $place->sortPlacesBy('name');
         $compares = $place->getCompares();
         $places = $place->getPlaces();
-        //[$coordinates,$cities, $places] = $place->all();
 
         return view('impacts.show', compact('places', 'compares'));
     }
