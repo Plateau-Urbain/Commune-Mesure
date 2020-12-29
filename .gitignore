@@ -12,3 +12,4 @@ Homestead.yaml
 /public/fonts/
 /public/js/bundle.js
 /public/css/app.css
+/database/*.sqlite
