@@ -51,13 +51,19 @@ class PlaceController extends Controller
 
     public function admin($slug, $auth)
     {
-        if ((new Place())->check($slug, $auth) === false) {
+        $place = new Place();
+
+        if ($place->check($slug, $auth) === false) {
             abort(403, 'Wrong authentication string');
         }
 
         if ($auth === str_repeat('a', 64)) {
             throw new \LogicException('Exiting, default admin hash');
         }
+
+        $place = $place->getOne($slug);
+
+        return view('place.admin', compact('place'));
     }
 
     protected function sortDataInsee($inseeData){
