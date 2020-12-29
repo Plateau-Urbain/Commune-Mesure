@@ -14,7 +14,7 @@ class HashAdmin extends Migration
     public function up()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->char('hash_admin', 60)->after('data');
+            $table->char('hash_admin', 60)->after('data')->default(str_repeat('a', 60));
         });
     }
 
