@@ -49,6 +49,17 @@ class PlaceController extends Controller
         return view('places', compact('places', 'coordinates', 'selected'));
     }
 
+    public function admin($slug, $auth)
+    {
+        if ((new Place())->check($slug, $auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+    }
+
     protected function sortDataInsee($inseeData){
       $inseeDataArray = (array) $inseeData;
       $keys = array_keys($inseeDataArray);

@@ -52,6 +52,15 @@ class Place
         return $places;
     }
 
+    public function check($slug, $auth)
+    {
+        $place = DB::table('places')->select('hash_admin')
+                                    ->where('place', $slug)
+                                    ->first();
+
+        return $place->hash_admin === $auth;
+    }
+
     public function getCoordinates($place)
     {
         return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
