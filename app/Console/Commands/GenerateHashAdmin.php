@@ -76,7 +76,7 @@ class GenerateHashAdmin extends Command
     protected function updateHash($id)
     {
         DB::table('places')->where($this->field, $id)->update([
-            'hash_admin' => Hash::make($place.date(DATE_ISO8601))
+            'hash_admin' => Hash::make($id.date(DATE_ISO8601))
         ]);
     }
 }
