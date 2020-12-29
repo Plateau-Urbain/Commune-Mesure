@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class GenerateHashAdmin extends Command
 {
@@ -58,15 +59,24 @@ class GenerateHashAdmin extends Command
             if ($id === null) {
                 $places = DB::table('places')->select($this->field)->pluck($this->field);
 
-                foreach ($places as $place) {echo $place.PHP_EOL;}
+                foreach ($places as $place) {
+                    $this->updateHash($place);
+                }
             } else {
                 if (DB::table('places')->select($this->field)->where($this->field, $id)->doesntExist()) {
                     $this->error('Place doesn\'t exists');
                     exit;
                 }
 
-                echo $id.PHP_EOL;
+                $this->updateHash($id);
             }
         }
+    }
+
+    protected function updateHash($id)
+    {
+        DB::table('places')->where($this->field, $id)->update([
+            'hash_admin' => Hash::make($place.date())
+        ]);
     }
 }
