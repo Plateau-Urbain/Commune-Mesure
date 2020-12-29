@@ -55,11 +55,14 @@ class GenerateHashAdmin extends Command
         $id = $this->argument('place');
 
         if ($this->confirm('This will erase existing hash. Continue ?')) {
+            $total = 0;
+
             if ($id === null) {
                 $places = DB::table('places')->select($this->field)->pluck($this->field);
 
                 foreach ($places as $place) {
                     $this->updateHash($place);
+                    $total++;
                 }
             } else {
                 if (DB::table('places')->select($this->field)->where($this->field, $id)->doesntExist()) {
@@ -68,7 +71,10 @@ class GenerateHashAdmin extends Command
                 }
 
                 $this->updateHash($id);
+                $total++;
             }
+
+            $this->info($total.' hash updated');
         }
     }
 
