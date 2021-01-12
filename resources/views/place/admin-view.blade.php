@@ -28,13 +28,19 @@
                             <a target="_blank" href="{{ route('place.admin', ['slug' => $place->url, 'auth' => 'placeholder']) }}">Espace d'admin</a>
                         </td>
                         <td>
+                            <button class="button is-success" disabled>
+                                <span class="icon is-small">
+                                    <i class="fas fa-download"></i>
+                                </span>
+                                <span>Télécharger le csv</span>
+                            </button>
                             <button class="button is-warning" disabled>
                                 <span class="icon is-small">
                                     <i class="fas fa-redo"></i>
                                 </span>
                                 <span>Changer la hash admin</span>
                             </button>
-                            <button class="button is-danger is-outlined">
+                            <button class="button is-danger is-outlined" disabled>
                                 <span>Delete</span>
                                 <span class="icon is-small">
                                     <i class="fas fa-times"></i>
