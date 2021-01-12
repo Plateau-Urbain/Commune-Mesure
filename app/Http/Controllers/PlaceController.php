@@ -66,6 +66,12 @@ class PlaceController extends Controller
         return view('place.admin', compact('place'));
     }
 
+    public function adminView(Place $place)
+    {
+        $list = $place->getList();
+        return view('place.admin-view', compact('list'));
+    }
+
     protected function sortDataInsee($inseeData){
       $inseeDataArray = (array) $inseeData;
       $keys = array_keys($inseeDataArray);

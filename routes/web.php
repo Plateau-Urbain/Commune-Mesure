@@ -28,6 +28,8 @@ if (!empty($proxy_schema)) {
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 
 $router->get('/les-lieux[/{sortBy}]', ['uses' => 'PlaceController@list', 'as' => 'places']);
+
+$router->get('/place/_admin', ['uses' => 'PlaceController@adminView', 'as' => 'place.admin-view']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/place/{slug}/admin/{auth:[a-z0-9]+}', ['uses' => 'PlaceController@admin', 'as' => 'place.admin']);
 
