@@ -29,9 +29,10 @@ $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 
 $router->get('/les-lieux[/{sortBy}]', ['uses' => 'PlaceController@list', 'as' => 'places']);
 
-$router->get('/place/_admin', ['uses' => 'PlaceController@adminView', 'as' => 'place.admin-view']);
+$router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
+
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
-$router->get('/place/{slug}/admin/{auth:[a-z0-9]+}', ['uses' => 'PlaceController@admin', 'as' => 'place.admin']);
+$router->get('/place/{slug}/edit/{auth:[a-z0-9]+}', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {

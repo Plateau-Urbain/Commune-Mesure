@@ -25,7 +25,7 @@
                             <p class="has-text-grey-dark is-size-7">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</p>
                         </td>
                         <td>
-                            <a target="_blank" href="{{ route('place.admin', ['slug' => $place->url, 'auth' => 'placeholder']) }}">Espace d'admin</a>
+                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => 'placeholder']) }}">Espace d'admin</a>
                         </td>
                         <td>
                             <button class="button is-success" disabled>

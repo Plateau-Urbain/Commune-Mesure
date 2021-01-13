@@ -49,7 +49,7 @@ class PlaceController extends Controller
         return view('places', compact('places', 'coordinates', 'selected'));
     }
 
-    public function admin($slug, $auth)
+    public function edit($slug, $auth)
     {
         $place = new Place();
 
@@ -63,13 +63,7 @@ class PlaceController extends Controller
 
         $place = $place->getOne($slug);
 
-        return view('place.admin', compact('place'));
-    }
-
-    public function adminView(Place $place)
-    {
-        $list = $place->getList();
-        return view('place.admin-view', compact('list'));
+        return view('place.edit', compact('place'));
     }
 
     protected function sortDataInsee($inseeData){
