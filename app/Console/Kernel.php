@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
+use App\Console\Commands\KeyGenerateCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         LoadIrisGeoJson::class,
-        GenerateHashAdmin::class
+        GenerateHashAdmin::class,
+        KeyGenerateCommand::class
     ];
 
     /**
