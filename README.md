@@ -19,4 +19,6 @@ Pour lancer le projet:
 
     php -S localhost:8000 -t public/ 
 
+## Mise à jour
 
+Voir le fichier [UPDATING.md](UPDATING.md)
