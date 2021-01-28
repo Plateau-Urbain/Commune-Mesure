@@ -14,7 +14,8 @@ l'application :
 **chemin absolu** du fichier : `/home/user/commune/database/database.sqlite`
 
 Dans les paramètres `.env`, il faut aussi s'assurer que l'entrée APP_KEY est
-remplie (32 charactères a-zA-Z0-9).
+remplie (32 charactères a-zA-Z0-9). La commande `php artisan key:generate`
+permet d'en créer une.
 
 Il faut enfin lancer la migration de la base de données :
 `php artisan migrate:fresh --seed` permet de créer la table et de la populer
