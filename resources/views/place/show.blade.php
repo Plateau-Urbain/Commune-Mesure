@@ -45,6 +45,7 @@
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
+                  <?php if($place->description_show): ?>
                   <div class=" bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
@@ -58,6 +59,7 @@
                         </div>
                       </div>
                   </div>
+                <?php endif; ?>
                   <!-- Bloc note end -->
                 </div>
                 <div class="column">
@@ -100,6 +102,7 @@
               </div>
                 <div class="column">
                   <!-- Bloc note begin -->
+                  <?php if($place->partners_show): ?>
                   <div class="bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
@@ -138,6 +141,7 @@
                         </div>
                       </div>
                   </div>
+                <?php endif ?>
                   <!-- Bloc note end -->
                 </div>
               </div>
@@ -213,8 +217,10 @@
                 </div>
               </div>
             </section>
+
             <section class="section" id="finances" >
                   <div class="columns">
+                    <?php if($place->moyens_show): ?>
                     <div class="column">
                       <h2 class="ribbon-banner title is-5">Les moyens</h2>
                       <div class="field has-text-centered">
@@ -274,7 +280,8 @@
                             </div>
                         </div>
                     </div>
-
+          <?php endif; ?>
+          <?php if($place->composition_show): ?>
                     <div class="column">
                         <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                         <div class="field has-text-centered">
@@ -307,8 +314,10 @@
                             </div>
                         </div>
                     </div>
+                  <?php endif;?>
                   </div>
             </section>
+
           </div>
           @if($place->impact != [])
           <section class="section" id="impact-social">
