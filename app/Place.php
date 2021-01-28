@@ -173,4 +173,11 @@ class Place
             return ($a->data->compare->{$q[0]}->{$q[1]}->nombre < $b->data->compare->{$q[0]}->{$q[1]}->nombre) ? -1 : 1;
         });
     }
+
+    public function save($slug,$jsonPlace){
+      $result = DB::table('places')
+          ->where('place', $slug)
+          ->update(array('data'=>json_encode($jsonPlace)));
+      return $result;
+    }
 }

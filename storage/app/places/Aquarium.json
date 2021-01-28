@@ -763,5 +763,9 @@
     ],
     "photos": [
     ],
-    "description": "L'Aquarium est un lieu de rencontre et de création pour et par les femmes du quartier."
+    "description": "L'Aquarium est un lieu de rencontre et de création pour et par les femmes du quartier.",
+    "description_show":true,
+    "partners_show":true,
+    "moyens_show":true,
+    "composition_show":true
 }

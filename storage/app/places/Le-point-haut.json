@@ -781,5 +781,9 @@
     ],
     "photos": [
     ],
-    "description": "Faire du Point Haut un outil d’envergure au service de la création urbaine contemporaine, imaginé au plus près des besoins des scénographes, urbanistes, chorégraphes, circassiens, paysagistes et autres créateurs de l’espace public, animé par le POLAU-pôle arts & urbanisme et la Compagnie Off."
+    "description": "Faire du Point Haut un outil d’envergure au service de la création urbaine contemporaine, imaginé au plus près des besoins des scénographes, urbanistes, chorégraphes, circassiens, paysagistes et autres créateurs de l’espace public, animé par le POLAU-pôle arts & urbanisme et la Compagnie Off.",
+    "description_show":true,
+    "partners_show":true,
+    "moyens_show":true,
+    "composition_show":true
 }

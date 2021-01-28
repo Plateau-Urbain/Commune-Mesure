@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
@@ -63,8 +64,39 @@ class PlaceController extends Controller
 
         $place = $place->getOne($slug);
 
-        return view('place.edit', compact('place'));
+        return view('place.edit', compact('place', 'auth'));
     }
+
+    public function update(Request $request, $slug, $auth)   //écrire la fonction qui met à jour le lieu
+    {
+
+      $placeClient = new Place();
+
+      if ($placeClient->check($slug, $auth) === false) {
+          abort(403, 'Wrong authentication string');
+      }
+
+      if ($auth === str_repeat('a', 64)) {
+          throw new \LogicException('Exiting, default admin hash');
+      }
+
+      $place = $placeClient->getOne($slug);
+
+      $json_field =$request->json_field;
+      $place->$json_field = !$place->$json_field;
+      $result=$placeClient->save($slug,$place);
+      if($result==0){
+        echo('Pas de modif');
+      }
+      if($result==1){
+        echo('Modification prise en compte');
+      }
+      else{
+        echo('Problème');
+      }
+      return redirect()->route('place.edit', compact('slug', 'auth'));
+    }
+
 
     protected function sortDataInsee($inseeData){
       $inseeDataArray = (array) $inseeData;

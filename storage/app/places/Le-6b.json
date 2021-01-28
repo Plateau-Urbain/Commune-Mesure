@@ -2865,5 +2865,9 @@
     "photos": [
         "6b_Plage.jpg"
     ],
-    "description": "Un lieu d'espace de travail aux multiples usages."
+    "description": "Un lieu d'espace de travail aux multiples usages.",
+    "description_show":true,
+    "partners_show":true,
+    "moyens_show":true,
+    "composition_show":true
 }

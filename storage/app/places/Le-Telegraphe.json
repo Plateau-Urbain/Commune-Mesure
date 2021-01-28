@@ -709,5 +709,9 @@
     "photos": [
         "Le-Telegraphe.jpg"
     ],
-    "description": "Rassembler, être lieu de vie et de partage."
+    "description": "Rassembler, être lieu de vie et de partage.",
+    "description_show":true,
+    "partners_show":true,
+    "moyens_show":true,
+    "composition_show":true
 }

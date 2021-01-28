@@ -680,5 +680,9 @@
     "photos": [
         "La_Proue.jpg"
     ],
-    "description": "Créer un super incubateur territorial dédié à l'émergence et à l'accompagnement de projets prenant la forme d'un grand tiers-lieu hybride."
+    "description": "Créer un super incubateur territorial dédié à l'émergence et à l'accompagnement de projets prenant la forme d'un grand tiers-lieu hybride.",
+    "description_show":true,
+    "partners_show":true,
+    "moyens_show":true,
+    "composition_show":true
 }
