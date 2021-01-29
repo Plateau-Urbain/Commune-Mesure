@@ -64,7 +64,7 @@ class PlaceController extends Controller
 
         $place = $place->getOne($slug);
 
-        return view('place.edit', compact('place', 'auth'));
+        return view('place.edit', compact('place', 'auth', 'slug'));
     }
 
     public function update(Request $request, $slug, $auth)   //écrire la fonction qui met à jour le lieu

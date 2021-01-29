@@ -20,7 +20,6 @@
     @include('components.place.d3-doughnut-finance-js')
     @include('components.place.insee-chart-js')
     @include('components.place.value-bubbles')
-    <script src="/js/edit.js"></script>
 @endsection
 
 @section('content')
@@ -49,7 +48,7 @@
                     <div class="columns is-tablet">
                     <div class="column">
                       <div id='ideeFondatrice' style="border:solid 1px black;<?php if(!$place->description->show): ?>;opacity:0.5<?php endif;?>">
-                      <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "description"]) }}">&#x1F441;</a></p>
+                      <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "description"]) }}">&#x1F441;</a></p>
                       <!-- Bloc note begin -->
                       <div class=" bloc-note" id='ideeFondatrice'>
                           <div class="header-bloc-note">
@@ -107,7 +106,7 @@
                   </div>
                     <div class="column">
                       <div id='acteurs' style="border:solid 1px black<?php if($place->partners->show == false):?>;opacity:0.5<?php endif;?>">
-                        <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "partners"]) }}">&#x1F441;</a></p>
+                        <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "partners"]) }}">&#x1F441;</a></p>
                       <!-- Bloc note begin -->
                       <div class="bloc-note">
                           <div class="header-bloc-note">
@@ -221,13 +220,13 @@
                         <!-- <div id="sigma" style="width:100%; height:30em;"></div> -->
                         <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
                       </div>
-                      <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "valeurs_show"]) }}">&#x1F441;</a></p>
+                      <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "valeurs_show"]) }}">&#x1F441;</a></p>
                     </div>
                   </section>
                 <section class="section" id="finances" >
                       <div class="columns">
                         <div class="column" id="moyens" style="border:solid 1px black<?php if(!$place->moyens_show):?>;opacity:0.5<?php endif;?>">
-                          <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "moyens_show"]) }}">&#x1F441;</a></p>
+                          <p align="right" style="padding:10px;font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "moyens_show"]) }}">&#x1F441;</a></p>
                           <h2 class="ribbon-banner title is-5">Les moyens</h2>
                           <div class="field has-text-centered">
                             <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
@@ -287,7 +286,7 @@
                             </div>
                         </div>
                         <div class="column"id="composition" style="border:solid 1px black<?php if(!$place->composition_show):?>;opacity:0.5<?php endif;?>" >
-                          <p align="right" style="padding:10px; font-size:30px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "composition_show"]) }}">&#x1F441;</a></p>
+                          <p align="right" style="padding:10px; font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "composition_show"]) }}">&#x1F441;</a></p>
                             <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                             <div class="field has-text-centered">
                                 <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
@@ -329,7 +328,7 @@
                       <div class="column has-text-centered" style="position: relative;">
                           <img width="300" src="/images/4_characters.png"/>
                           <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 110px;  bottom: -50px;border:solid 1px black<?php if(!$place->composition_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "reseau_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "reseau_show"]) }}">&#x1F441;</a></p>
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Reseaux) && $impact->Reseaux->show && $place->reseau_show)
                               @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
@@ -343,7 +342,7 @@
                               </div>
                           </div>
                           <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="right: 80px;  top: -45px;border:solid 1px black<?php if(!$place->composition_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "appartenance_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "appartenance_show"]) }}">&#x1F441;</a></p>
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Appartenance) && $impact->Appartenance->show  && $place->appartenance_show)
                               @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
@@ -361,7 +360,7 @@
                       <div  class="column has-text-centered" style="position: relative;">
                           <img width="200" src="/images/3_characters.png"/>
                           <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="top: -45px; left: 85px;border:solid 1px black<?php if(!$place->sante_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "sante_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "sante_show"]) }}">&#x1F441;</a></p>
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Sante) && $impact->Sante->show)
                               @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
@@ -376,7 +375,7 @@
                               </div>
                           </div>
                           <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="bottom: -40px; left: 50px;border:solid 1px black<?php if(!$place->insertion_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "insertion_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "insertion_show"]) }}">&#x1F441;</a></p>
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Insertion) && $impact->Insertion->show)
                               @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
@@ -391,7 +390,7 @@
                               </div>
                           </div>
                           <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="top: -45px; right: 130px;border:solid 1px black<?php if(!$place->lien_sociaux_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "lien_sociaux_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "lien_sociaux_show"]) }}">&#x1F441;</a></p>
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Lien) && $impact->Lien->show)
                               @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
@@ -406,7 +405,7 @@
                               </div>
                           </div>
                           <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="bottom: -40px;right: 80px;border:solid 1px black<?php if(!$place->capacite_show):?>;opacity:0.5<?php endif;?>">
-                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "capacite_show"]) }}">&#x1F441;</a></p>
+                            <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "capacite_show"]) }}">&#x1F441;</a></p>
 
                               @foreach($place->impact as $key => $impact)
                               @if(isset($impact->Capacite) && $impact->Capacite->show)
@@ -427,7 +426,7 @@
             <section class="section anchor" id="territoire">
               <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
               <div class="section" style="border:solid 1px black<?php if(!$place->lieu_territoire_show):?>;opacity:0.5<?php endif;?>">
-                <p align="right" style="font-size:20px"><a href="{{ route('place.update', ['slug' => $place->name, 'auth' => $auth, 'json_field' => "lieu_territoire_show"]) }}">&#x1F441;</a></p>
+                <p align="right" style="font-size:30px"><a href="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'json_field' => "lieu_territoire_show"]) }}">&#x1F441;</a></p>
                 <div class="columns">
                   <div class="column">
                     <label class="is-pulled-right pt-4">Choississez un découpage géographique: </label>
