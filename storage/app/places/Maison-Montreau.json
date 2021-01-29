@@ -2386,23 +2386,27 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Conseil Départemental de la Seine-Saint-Denis, région Île de France, Est Ensemble, CGET, Ville de Montreuil, la Direccte",
-        "natures": [
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Make Sense, Emmaüs Alternatives, les Chaudronneries, Fab Lab La Verrière, Profession Sport & Loisirs, Comité Départemental du Tourisme de Seine-Saint-Denis, Centre social Espéranto, Simplon, Fondation Vinci",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Conseil Départemental de la Seine-Saint-Denis, région Île de France, Est Ensemble, CGET, Ville de Montreuil, la Direccte",
+          "natures": [
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Make Sense, Emmaüs Alternatives, les Chaudronneries, Fab Lab La Verrière, Profession Sport & Loisirs, Comité Départemental du Tourisme de Seine-Saint-Denis, Centre social Espéranto, Simplon, Fondation Vinci",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -2573,9 +2577,18 @@
     "photos": [
         "La-Maison-Montreau.jpg"
     ],
-    "description": "La Maison Montreau est un tiers-lieu inclusif et éco-responsable, proumouvant un tourisme social et solidaire grâce à son activité hôtelière. Egalement structure d'insertion, elle accompagne des personnes éloignées de l'emploi dans leur transition professionnelle. La Maison Montreau met en valeur les talents et savoir-faire locaux, et propose des activités socio-culturelles aux habitants des quartiers populaire du Nord de Montreuil.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"La Maison Montreau est un tiers-lieu inclusif et éco-responsable, proumouvant un tourisme social et solidaire grâce à son activité hôtelière. Egalement structure d'insertion, elle accompagne des personnes éloignées de l'emploi dans leur transition professionnelle. La Maison Montreau met en valeur les talents et savoir-faire locaux, et propose des activités socio-culturelles aux habitants des quartiers populaire du Nord de Montreuil.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

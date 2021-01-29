@@ -527,22 +527,26 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Commune de Toulon",
-        "natures": [
-          "Nature"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Société 95 Degré",
-        "natures": [
-          "Économique"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Commune de Toulon",
+          "natures": [
+            "Nature"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Société 95 Degré",
+          "natures": [
+            "Économique"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -709,9 +713,18 @@
     "photos": [
         "Le-Telegraphe.jpg"
     ],
-    "description": "Rassembler, être lieu de vie et de partage.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Rassembler, être lieu de vie et de partage.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

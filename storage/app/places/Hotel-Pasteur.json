@@ -594,24 +594,28 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "La ville de Rennes -Le département Ile et Vilaine - CCAS - CHGR - Enseignement supérieur - SPLA Territoires Publics - Les Champs Libres - AFPA",
-        "natures": [
-          "Économique",
-          "En nature"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "La SPLA Territoires Publics - Les Tombées de la Nuit - Breizh Insertion Sport - Au Bout du Plongeoir - Keur-Eskemm ...",
-        "natures": [
-          "Économique",
-          "En nature"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "La ville de Rennes -Le département Ile et Vilaine - CCAS - CHGR - Enseignement supérieur - SPLA Territoires Publics - Les Champs Libres - AFPA",
+          "natures": [
+            "Économique",
+            "En nature"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "La SPLA Territoires Publics - Les Tombées de la Nuit - Breizh Insertion Sport - Au Bout du Plongeoir - Keur-Eskemm ...",
+          "natures": [
+            "Économique",
+            "En nature"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -786,9 +790,18 @@
     "photos": [
         "Hotel-Pasteur.jpg"
     ],
-    "description": "Le Non-Programme.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Le Non-Programme.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

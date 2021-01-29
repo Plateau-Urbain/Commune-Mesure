@@ -533,24 +533,28 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Communauté d'agglomération du Grand Guéret",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Des Associations locales",
-        "natures": [
-          "En nature",
-          "Codéveloppement de projets"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Communauté d'agglomération du Grand Guéret",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Des Associations locales",
+          "natures": [
+            "En nature",
+            "Codéveloppement de projets"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -701,9 +705,18 @@
     ],
     "photos": [
     ],
-    "description": "Lieu centralisateur des pratiques numériques.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Lieu centralisateur des pratiques numériques.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

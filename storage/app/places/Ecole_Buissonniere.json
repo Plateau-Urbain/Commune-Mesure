@@ -594,24 +594,28 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "La Mairie de Montjustin",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Association La Serpentine,Brasserie Associative,Le Centre de Loisir Léo Lagrange de Reillanne",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "La Mairie de Montjustin",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Association La Serpentine,Brasserie Associative,Le Centre de Loisir Léo Lagrange de Reillanne",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -753,9 +757,18 @@
     "photos": [
         "Buissonniere.jpg"
     ],
-    "description": "Préserver l’aspect, l’environnement, l’esprit, la mémoire, le patrimoine bâti, historique et culturel de Montjustin ainsi que de développer l’animation, la vie culturelle et le lien social au sein du village, dans un souci d’intégration dans la vie locale.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Préserver l’aspect, l’environnement, l’esprit, la mémoire, le patrimoine bâti, historique et culturel de Montjustin ainsi que de développer l’animation, la vie culturelle et le lien social au sein du village, dans un souci d’intégration dans la vie locale.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

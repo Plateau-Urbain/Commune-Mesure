@@ -45,7 +45,7 @@
                 <div class="columns is-tablet">
                 <div class="column">
                   <!-- Bloc note begin -->
-                  <?php if($place->description_show): ?>
+                  <?php if($place->description->show): ?>
                   <div class=" bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
@@ -55,7 +55,7 @@
                       <div class="bloc-note-body">
                         <div class="content">
                             <h2 class="has-text-centered">L'idée fondatrice</h2>
-                            <p class="fontSize0-8em">{{ $place->description }}</p>
+                            <p class="fontSize0-8em">{{$place->description->value}}</p>
                         </div>
                       </div>
                   </div>
@@ -102,7 +102,7 @@
               </div>
                 <div class="column">
                   <!-- Bloc note begin -->
-                  <?php if($place->partners_show): ?>
+                  <?php if($place->partners->show): ?>
                   <div class="bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
@@ -111,7 +111,7 @@
                       </div>
                       <div class="bloc-note-body">
                         <div class="content">
-                          @foreach($place->partners as $partner)
+                          @foreach($place->partners->value as $partner)
                             @if($partner->names)
                             <div>
                               <strong>Les acteurs {{ $partner->title }}s :</strong>
@@ -121,11 +121,11 @@
                             </div>
                             @endif
                           @endforeach
-                          @if($place->partners[0]->names || $place->partners[1]->names)
+                          @if($place->partners->value[0]->names || $place->partners->value[1]->names)
                           <div class="">
                             <strong class="">Nature des partenariats :</strong>
                             <div class="is-size-7">
-                              @foreach($place->partners as $partner)
+                              @foreach($place->partners->value as $partner)
                               @if (count($partner->natures))
                               <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                                 @foreach($partner->natures as $nature)
@@ -206,7 +206,7 @@
             </div>
           </section>
           <div>
-
+            <?php if($place->valeurs_show): ?>
             <section class="section" id="valeurs">
               <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
               <div class="columns">
@@ -217,10 +217,13 @@
                 </div>
               </div>
             </section>
-
+          <?php elseif($place->moyens_show && $place->composition_show): ?>
+            <section style="padding-top:100px">
+            </section>
+          <?php endif; ?>
             <section class="section" id="finances" >
                   <div class="columns">
-                    <?php if($place->moyens_show): ?>
+                    <?php if($place->moyens_show && $place->composition_show): ?>
                     <div class="column">
                       <h2 class="ribbon-banner title is-5">Les moyens</h2>
                       <div class="field has-text-centered">
@@ -280,8 +283,6 @@
                             </div>
                         </div>
                     </div>
-          <?php endif; ?>
-          <?php if($place->composition_show): ?>
                     <div class="column">
                         <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
                         <div class="field has-text-centered">
@@ -314,17 +315,80 @@
                             </div>
                         </div>
                     </div>
+
+                  <?php elseif($place->moyens_show): ?>
+                    <div class="column is-half is-offset-one-quarter">
+                      <h2 class="ribbon-banner title is-5">Les moyens</h2>
+                      <div class="field has-text-centered">
+                        <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
+                        <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
+                        <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
+                      </div>
+                      <canvas id="financement-budget-doughnut" ></canvas>
+                      <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
+                        <div class="columns">
+                          <div class="column is-3 is-offset-2">
+                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
+                          </div>
+                          <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
+                              @if($place->data->compare->moyens->etp->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->etp->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endfor
+
+                                  @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
+                              @endif
+                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
+                              @endfor
+                          </div>
+                        </div>
+
+                        <div class="columns">
+                            <div class="column is-3 is-offset-2">
+                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
+                            </div>
+                            <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
+                              @if($place->data->compare->moyens->benevole->nombre >= 10)
+                                  {{-- fix pour le cas spécial 10 --}}
+                                  @if($place->data->compare->moyens->benevole->nombre == 10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endif
+
+                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
+                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                                  @endfor
+
+                                  @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
+                                      @svg('assets/images/body.svg', 'tiny narrow')
+                                  @endif
+                              @endif
+                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
+                              @endfor
+                            </div>
+                        </div>
+                    </div>
+                  <?php elseif($place->composition_show) : ?>
                   <?php endif;?>
                   </div>
             </section>
 
           </div>
-          @if($place->impact != [])
+          @if($place->impact != [] && $place->appartenance_show || $place->reseau_show || $place->sante_show || $place->lien_sociaux_show || $place->insertion_show || $place->capacite_show)
           <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered" style="position: relative;">
                       <img width="300" src="/images/4_characters.png"/>
+                      <?php if($place->reseau_show): ?>
                       <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 110px;  bottom: -50px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Reseaux) && $impact->Reseaux->show)
@@ -338,6 +402,8 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif;?>
+                    <?php if($place->appartenance_show): ?>
                       <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="right: 80px;  top: -45px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Appartenance) && $impact->Appartenance->show)
@@ -352,9 +418,11 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif;?>
                   </div>
                   <div  class="column has-text-centered" style="position: relative;">
                       <img width="200" src="/images/3_characters.png"/>
+                      <?php if($place->sante_show): ?>
                       <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="top: -45px; left: 85px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Sante) && $impact->Sante->show)
@@ -369,6 +437,8 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif; ?>
+                    <?php if($place->insertion_show): ?>
                       <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="bottom: -40px; left: 50px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Insertion) && $impact->Insertion->show)
@@ -383,6 +453,8 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif; ?>
+                    <?php if($place->lien_sociaux_show): ?>
                       <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="top: -45px; right: 130px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Lien) && $impact->Lien->show)
@@ -397,6 +469,8 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif;?>
+                    <?php if($place->capacite_show): ?>
                       <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="bottom: -40px;right: 80px;">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Capacite) && $impact->Capacite->show)
@@ -411,9 +485,11 @@
                               </svg>
                           </div>
                       </div>
+                    <?php endif;?>
                   </div>
               </section>
           @endif
+        <?php if($place->lieu_territoire_show): ?>
         <section class="section anchor" id="territoire">
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
@@ -454,6 +530,7 @@
             </div>
           </div>
         </section>
+      <?php endif; ?>
     </div>
 </div>
 

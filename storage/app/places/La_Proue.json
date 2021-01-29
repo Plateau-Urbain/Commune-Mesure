@@ -495,24 +495,28 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Ville de La Rochelle, Communauté d'Agglomération de La Rochelle",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Excelia Group, La Rochelle Université, Fondation Léa Nature, GRDF Poitou-Charentes, Manutan, Maif Innovation Sociale",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Ville de La Rochelle, Communauté d'Agglomération de La Rochelle",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Excelia Group, La Rochelle Université, Fondation Léa Nature, GRDF Poitou-Charentes, Manutan, Maif Innovation Sociale",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -680,9 +684,18 @@
     "photos": [
         "La_Proue.jpg"
     ],
-    "description": "Créer un super incubateur territorial dédié à l'émergence et à l'accompagnement de projets prenant la forme d'un grand tiers-lieu hybride.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Créer un super incubateur territorial dédié à l'émergence et à l'accompagnement de projets prenant la forme d'un grand tiers-lieu hybride.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

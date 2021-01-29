@@ -2685,22 +2685,26 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Région Idf, EPT Plaine Commune, Département, Municipalités Saint Denis et Ile Saint Denis",
-        "natures": [
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Structures ESS, scolaires, sociales et culturelles",
-        "natures": [
-          "En nature"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Région Idf, EPT Plaine Commune, Département, Municipalités Saint Denis et Ile Saint Denis",
+          "natures": [
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Structures ESS, scolaires, sociales et culturelles",
+          "natures": [
+            "En nature"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -2865,9 +2869,18 @@
     "photos": [
         "6b_Plage.jpg"
     ],
-    "description": "Un lieu d'espace de travail aux multiples usages.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Un lieu d'espace de travail aux multiples usages.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

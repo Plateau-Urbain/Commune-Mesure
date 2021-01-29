@@ -83,8 +83,14 @@ class PlaceController extends Controller
       $place = $placeClient->getOne($slug);
 
       $json_field =$request->json_field;
-      $place->$json_field = !$place->$json_field;
+      if(!strpos($json_field, 'show')){
+        $place->$json_field->show = !$place->$json_field->show;
+      }
+      else{
+        $place->$json_field=!$place->$json_field;
+      }
       $result=$placeClient->save($slug,$place);
+
       if($result==0){
         echo('Pas de modif');
       }

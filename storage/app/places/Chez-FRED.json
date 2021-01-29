@@ -2463,21 +2463,25 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "",
-        "natures": [
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "",
-        "natures": [
-          ""
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "",
+          "natures": [
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "",
+          "natures": [
+            ""
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -2609,9 +2613,18 @@
         "Non-voyant"
     ],
     "photos": [],
-    "description": "Regrouper nos espaces de travail.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Regrouper nos espaces de travail.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }

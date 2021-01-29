@@ -535,23 +535,27 @@
           }
         }
     },
-    "partners": [
-      {
-        "title": "public",
-        "names": "Etat, Région, Département, Municipalité, DRAC",
-        "natures": [
-          "Économique"
-        ]
-      },
-      {
-        "title": "privé",
-        "names": "Promoteur, SMAC, Associations culturelles, Associations de l'économie sociale et solidaire",
-        "natures": [
-          "En nature",
-          "Économique"
-        ]
-      }
-    ],
+    "partners": {
+      "show":true,
+      "value":
+      [
+        {
+          "title": "public",
+          "names": "Etat, Région, Département, Municipalité, DRAC",
+          "natures": [
+            "Économique"
+          ]
+        },
+        {
+          "title": "privé",
+          "names": "Promoteur, SMAC, Associations culturelles, Associations de l'économie sociale et solidaire",
+          "natures": [
+            "En nature",
+            "Économique"
+          ]
+        }
+    ]
+  },
     "opening":[
       {
         "title": "welcome",
@@ -692,9 +696,18 @@
     "photos": [
         "Le_Spot.jpg"
     ],
-    "description": "Promouvoir et développer les cultures alternatives.",
-    "description_show":true,
-    "partners_show":true,
-    "moyens_show":true,
-    "composition_show":true
+    "description":
+      {"value":"Promouvoir et développer les cultures alternatives.",
+        "show":true}
+      ,
+      "valeurs_show":true,
+      "moyens_show":true,
+      "composition_show":true,
+      "appartenance_show":true,
+      "reseau_show":true,
+      "sante_show":true,
+      "lien_sociaux_show":true,
+      "insertion_show":true,
+      "capacite_show":true,
+      "lieu_territoire_show":true
 }
