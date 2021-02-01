@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class GenerateHashAdmin extends Command
 {
@@ -81,7 +82,7 @@ class GenerateHashAdmin extends Command
     protected function updateHash($id)
     {
         DB::table('places')->where($this->field, $id)->update([
-            'hash_admin' => hash('sha256', $id.config('app.key'))
+            'hash_admin' => hash('sha256', $id.Str::random(32).config('app.key'))
         ]);
     }
 }
