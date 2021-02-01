@@ -19,6 +19,7 @@ class AdminController extends Controller
     public function view(Place $place)
     {
         $list = $place->getList();
-        return view('admin.view', compact('list'));
+        $auths = $place->getAuth();
+        return view('admin.view', compact('list', 'auths'));
     }
 }

@@ -61,6 +61,17 @@ class Place
         return $place->hash_admin === $auth;
     }
 
+    public function getAuth($place = null)
+    {
+        $query = DB::table('places');
+
+        if ($place) {
+            $query->where('place', $place);
+        }
+
+        return $query->pluck('hash_admin', 'place');
+    }
+
     public function getCoordinates($place)
     {
         return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
