@@ -77,40 +77,38 @@ class PlaceController extends Controller
         return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
     }
 
-    public function update(Request $request, $slug, $auth)   //écrire la fonction qui met à jour le lieu
+    /**
+     * Toggle visibility of a section
+     *
+     * @param Request $request The request
+     * @param string $slug The place name sluggified
+     * @param string $auth The authentication string
+     * @param string $section The section name
+     *
+     * @return Response
+     */
+    public function toggle(Request $request, $slug, $auth, $section)
     {
+        $place = new Place();
 
-      $placeClient = new Place();
+        if ($place->check($slug, $auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
 
-      if ($placeClient->check($slug, $auth) === false) {
-          abort(403, 'Wrong authentication string');
-      }
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
 
-      if ($auth === str_repeat('a', 64)) {
-          throw new \LogicException('Exiting, default admin hash');
-      }
+        $s = Section::where('place_id', $slug)
+                            ->where('section', $section)
+                            ->firstOrFail();
 
-      $place = $placeClient->getOne($slug);
+        $s->visible = ! $s->visible;
+        $res = $s->save();
 
-      $json_field =$request->json_field;
-      if(!strpos($json_field, 'show')){
-        $place->$json_field->show = !$place->$json_field->show;
-      }
-      else{
-        $place->$json_field=!$place->$json_field;
-      }
-      $result=$placeClient->save($slug,$place);
+        $flash = ['success' => $res, 'section' => $section];
 
-      if($result==0){
-        echo('Pas de modif');
-      }
-      if($result==1){
-        echo('Modification prise en compte');
-      }
-      else{
-        echo('Problème');
-      }
-      return redirect()->route('place.edit', compact('slug', 'auth'));
+        return redirect()->route('place.edit', compact('slug', 'auth'));
     }
 
 

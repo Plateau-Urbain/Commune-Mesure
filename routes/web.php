@@ -34,7 +34,7 @@ $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/place/{slug}/edit/{auth:[a-z0-9]+}', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 $router->get('/place/{slug}/update/{auth:[a-z0-9]+}', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
-
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {
