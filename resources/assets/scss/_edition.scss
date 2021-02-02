@@ -1,0 +1,7 @@
+.edit {
+    border: 1px $black dotted;
+
+    &.hidden {
+        opacity: 0.5
+    }
+}

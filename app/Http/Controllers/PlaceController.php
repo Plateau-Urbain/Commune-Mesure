@@ -11,11 +11,13 @@ class PlaceController extends Controller
     public function show($slug)
     {
         $place = (new Place())->getOne($slug);
+
         if ($place === false) {
             abort(404);
         }
-        $place->slug = $slug;
 
+        $place->slug = $slug;
+        $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
 
         //Sort insee object data on each zone map
         $insee = $place->data->insee;
@@ -29,7 +31,7 @@ class PlaceController extends Controller
             throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);
         }
 
-        return view('place.show', compact('place'));
+        return view('place.show', compact('place', 'sections'));
     }
 
     public function list(Place $place, $sortBy = null)
@@ -108,7 +110,7 @@ class PlaceController extends Controller
 
         $flash = ['success' => $res, 'section' => $section];
 
-        return redirect()->route('place.edit', compact('slug', 'auth'));
+        return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
     }
 
 

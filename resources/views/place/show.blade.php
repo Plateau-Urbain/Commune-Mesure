@@ -205,19 +205,39 @@
               </div>
             </div>
           </section>
-          <div>
-            <?php if($place->valeurs_show): ?>
+          @if (isset($edit) || ($sections->has('valeurs') && $sections->get('valeurs')))
             <section class="section" id="valeurs">
-              <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
-              <div class="columns">
-                <div class="column has-text-centered">
-                  <div id="value_container"></div>
-                  <!-- <div id="sigma" style="width:100%; height:30em;"></div> -->
-                  <!-- <center><iframe height="300" width="500" src="/graph/examples/graph.html"></iframe></center> -->
+              @if (isset($edit) && $sections->get('valeurs'))
+                <div class="edit">
+              @elseif (isset($edit))
+                <div class="edit hidden">
+              @else
+                <div>
+              @endif
+
+              @isset($edit)
+                <div class="is-pulled-right mx-2">
+                  <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'valeurs']) }}">
+                    @if ($sections->get('valeurs'))
+                      <i class="fa fa-eye-slash"></i>
+                    @else
+                      <i class="fa fa-eye"></i>
+                    @endif
+                  </a>
                 </div>
-              </div>
+              @endisset
+
+                  <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
+                  <div class="columns">
+                    <div class="column has-text-centered">
+                      <div id="value_container"></div>
+                    </div>
+                  </div>
+                </div>
             </section>
-          <?php elseif($place->moyens_show && $place->composition_show): ?>
+          <?php endif; ?>
+
+          <?php if($place->moyens_show && $place->composition_show): ?>
             <section style="padding-top:100px">
             </section>
           <?php endif; ?>
@@ -381,7 +401,6 @@
                   </div>
             </section>
 
-          </div>
           @if($place->impact != [] && $place->appartenance_show || $place->reseau_show || $place->sante_show || $place->lien_sociaux_show || $place->insertion_show || $place->capacite_show)
           <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
