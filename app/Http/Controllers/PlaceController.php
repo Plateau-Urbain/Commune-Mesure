@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -64,7 +65,16 @@ class PlaceController extends Controller
 
         $place = $place->getOne($slug);
 
-        return view('place.edit', compact('place', 'auth', 'slug'));
+        if ($place === false) {
+            abort(404);
+        }
+
+        $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
+
+        // Pour indiquer à la vue que c'est en mode édition
+        $edit = true;
+
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
     }
 
     public function update(Request $request, $slug, $auth)   //écrire la fonction qui met à jour le lieu
