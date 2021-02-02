@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\PlaceSeeder;
+use Database\Seeders\SectionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PlaceSeeder::class);
+        $this->call([
+            PlaceSeeder::class,
+            SectionSeeder::class
+        ]);
     }
 }

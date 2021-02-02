@@ -26,7 +26,7 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 $app->alias('blade.compiler', Illuminate\View\Compilers\BladeCompiler::class);
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
