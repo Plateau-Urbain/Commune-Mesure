@@ -444,8 +444,15 @@
                   </div>
                   <div  class="column has-text-centered" style="position: relative;">
                       <img width="200" src="/images/3_characters.png"/>
-                      <?php if($place->sante_show): ?>
                       <div class="impact_item top left" id="impact_item_sante" data-aos="fade-in">
+
+                        <x-edit-section :edit="isset($edit)" section="sante" :sections="$sections" id="sante">
+                          @isset($edit)
+                          <x-slot name="url">
+                            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'sante']) }}">
+                          </x-slot>
+                          @endisset
+
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Sante) && $impact->Sante->show)
                           @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
@@ -458,10 +465,19 @@
                                   <text x="44" y="45" font-size="7" font-weight="bold" fill="#004c44">Bien être</text>
                               </svg>
                           </div>
+                        </x-edit-section>
+
                       </div>
-                    <?php endif; ?>
-                    <?php if($place->insertion_show): ?>
+
                       <div class="impact_item bottom left" id="impact_item_insertion" data-aos="fade-in">
+
+                        <x-edit-section :edit="isset($edit)" section="insertion" :sections="$sections" id="insertion">
+                          @isset($edit)
+                          <x-slot name="url">
+                            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'insertion']) }}">
+                          </x-slot>
+                          @endisset
+
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Insertion) && $impact->Insertion->show)
                           @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
@@ -474,10 +490,19 @@
                                   <text x="34" y="45" font-size="8" font-weight="bold" fill="#004c44">professionnelle</text>
                               </svg>
                           </div>
+                        </x-edit-section>
+
                       </div>
-                    <?php endif; ?>
-                    <?php if($place->lien_sociaux_show): ?>
+
                       <div class="impact_item top right" id="impact_item_lien" data-aos="fade-in">
+
+                        <x-edit-section :edit="isset($edit)" section="lien_sociaux" :sections="$sections" id="lien_sociaux">
+                          @isset($edit)
+                          <x-slot name="url">
+                            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'lien_sociaux']) }}">
+                          </x-slot>
+                          @endisset
+
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Lien) && $impact->Lien->show)
                           @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
@@ -490,10 +515,19 @@
                                   <text x="50" y="45" font-size="7" font-weight="bold" fill="#004c44">social</text>
                               </svg>
                           </div>
+                        </x-edit-section>
+
                       </div>
-                    <?php endif;?>
-                    <?php if($place->capacite_show): ?>
+
                       <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
+
+                        <x-edit-section :edit="isset($edit)" section="capacite" :sections="$sections" id="capacite">
+                          @isset($edit)
+                          <x-slot name="url">
+                            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'capacite']) }}">
+                          </x-slot>
+                          @endisset
+
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Capacite) && $impact->Capacite->show)
                           @foreach($impact->Capacite->text as $text) @php( $impact_capacite_text = $text ) @endforeach
@@ -506,8 +540,10 @@
                                   <text x="50" y="45" font-size="8" font-weight="bold" fill="#004c44">à agir</text>
                               </svg>
                           </div>
+                        </x-edit-section>
+
                       </div>
-                    <?php endif;?>
+
                   </div>
               </section>
           @endif
