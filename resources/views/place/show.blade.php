@@ -387,8 +387,7 @@
                   </div>
             </section>
 
-          @if($place->impact != [] && $place->appartenance_show || $place->reseau_show || $place->sante_show || $place->lien_sociaux_show || $place->insertion_show || $place->capacite_show)
-          <section class="section" id="impact-social">
+            <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered is-relative">
@@ -545,10 +544,16 @@
                       </div>
 
                   </div>
-              </section>
-          @endif
-        <?php if($place->lieu_territoire_show): ?>
-        <section class="section anchor" id="territoire">
+            </section>
+
+      <section class="section anchor" id="lieu_territoire">
+        <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections">
+          @isset($edit)
+          <x-slot name="url">
+            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'lieu_territoire']) }}">
+          </x-slot>
+          @endisset
+
           <h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
           <div class="section">
             <div class="columns">
@@ -587,8 +592,8 @@
               </div>
             </div>
           </div>
-        </section>
-      <?php endif; ?>
+        </x-edit-section>
+      </section>
     </div>
 </div>
 
