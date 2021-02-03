@@ -1,5 +1,4 @@
 @if ($edit || ($hasSection && $sectionVisibility))
-  <section class="section" id="{{ $section }}">
     @if ($edit && $sectionVisibility)
       <div class="edit">
     @elseif ($edit)
@@ -22,5 +21,4 @@
 
         {{ $slot }}
       </div>
-  </section>
 <?php endif; ?>

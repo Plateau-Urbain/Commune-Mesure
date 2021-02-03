@@ -133,12 +133,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Renner Bold';
 }
 
-.impacts >h1, .impacts >h2, .app-name > h1{
-    // font-family: blzee-font;
-    font-family: 'Renner Bold';
-    font-size: 5em;
-}
-
 .font-color-theme{
   color: $red-theme ! important;
 }
@@ -486,33 +480,6 @@ svg {
   }
 }
 
-.impact_item .impact_tooltip::before {
-    background: white;
-    border: 1px solid #004c44;
-    color: #004c44;
-	fond-size: 0.8em;
-}
-.impact_item{
-  position: absolute;
-}
-.impact-disabled {
-  opacity: 0.5;
-}
-.impact_box{
-  width: 300px;
-  background-color: white ;
-  border: 1px solid #000;
-  padding: 1em;
-  overflow:auto;
-  height: 100%;
-  opacity:0;
-  transition:all .3s ease;
-  float:right;
-}
-.impact_text{
-  font-size: .8em;
-  color: #004c44;
-}
 //
 .block-data-stat > div{
     line-height: 0em ;

@@ -1,0 +1,30 @@
+.impact_item {
+    position: absolute;
+
+    &.impact_disabled {
+        opacity: 0.5;
+    }
+
+    .impact_tooltip::before {
+        background: white;
+        border: 1px solid #004c44;
+        color: #004c44;
+        fond-size: 0.8em;
+    }
+
+    &.bottom {
+        bottom: -50px;
+    }
+
+    &.left {
+        left: 110px;
+    }
+
+    &.right {
+        right: 80px;
+    }
+
+    &.top {
+        top: -45px;
+    }
+}

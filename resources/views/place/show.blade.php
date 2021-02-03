@@ -206,6 +206,7 @@
             </div>
           </section>
 
+          <section class="section" id="valeurs">
           <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections">
             @isset($edit)
             <x-slot name="url">
@@ -220,38 +221,7 @@
               </div>
             </div>
           </x-edit-section>
-
-          @if (isset($edit) || ($sections->has('valeurs') && $sections->get('valeurs')))
-            <section class="section" id="valeurs">
-              @if (isset($edit) && $sections->get('valeurs'))
-                <div class="edit">
-              @elseif (isset($edit))
-                <div class="edit hidden">
-              @else
-                <div>
-              @endif
-
-              @isset($edit)
-                <div class="is-pulled-right mx-2">
-                  <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'valeurs']) }}">
-                    @if ($sections->get('valeurs'))
-                      <i class="fa fa-eye-slash"></i>
-                    @else
-                      <i class="fa fa-eye"></i>
-                    @endif
-                  </a>
-                </div>
-              @endisset
-
-                  <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
-                  <div class="columns">
-                    <div class="column has-text-centered">
-                      <div id="value_container"></div>
-                    </div>
-                  </div>
-                </div>
-            </section>
-          <?php endif; ?>
+          </section>
 
           <?php if($place->moyens_show && $place->composition_show): ?>
             <section style="padding-top:100px">
@@ -421,16 +391,16 @@
           <section class="section" id="impact-social">
               <h2 class="ribbon-banner title is-5 has-text-centered">L'impact social</h2>
               <div class="columns" style="margin-top: 100px;">
-                  <div class="column has-text-centered" style="position: relative;">
+                  <div class="column has-text-centered is-relative">
                       <img width="300" src="/images/4_characters.png"/>
                       <?php if($place->reseau_show): ?>
-                      <div class="impact_item" id="impact_item_reseaux" data-aos="fade-in" style="left: 110px;  bottom: -50px;">
+                      <div class="impact_item bottom left" id="impact_item_reseaux" data-aos="fade-in">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Reseaux) && $impact->Reseaux->show)
                           @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact-disabled @endisset">
+                          <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact_disabled @endisset">
                               <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
@@ -438,33 +408,42 @@
                           </div>
                       </div>
                     <?php endif;?>
-                    <?php if($place->appartenance_show): ?>
-                      <div class="impact_item" id="impact_item_appartenance" data-aos="fade-right" style="right: 80px;  top: -45px;">
-                          @foreach($place->impact as $key => $impact)
-                          @if(isset($impact->Appartenance) && $impact->Appartenance->show)
-                          @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
-                          @endif
-                          @endforeach
-                          <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_appartenance_text) impact-disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40">
-                                  <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-                                  <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
-                                  <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
-                              </svg>
-                          </div>
-                      </div>
-                    <?php endif;?>
+
+                    <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
+
+                      <x-edit-section :edit="isset($edit)" section="appartenance" :sections="$sections">
+                        @isset($edit)
+                        <x-slot name="url">
+                          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'appartenance']) }}">
+                        </x-slot>
+                        @endisset
+
+                            @foreach($place->impact as $key => $impact)
+                            @if(isset($impact->Appartenance) && $impact->Appartenance->show)
+                            @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
+                            @endif
+                            @endforeach
+                            <div @isset($impact_appartenance_text) data-tooltip="{{ $impact_appartenance_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_appartenance_text) impact_disabled @endisset">
+                                <svg  width="215" height="150" viewBox="20 20 75 40">
+                                    <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+                                    <text x="35" y="38" font-size="8" font-weight="bold" fill="#004c44">Appartenance</text>
+                                    <text x="40" y="46" font-size="8" font-weight="bold" fill="#004c44">ou exclusion</text>
+                                </svg>
+                            </div>
+                      </x-edit-section>
+
+                    </div>
                   </div>
                   <div  class="column has-text-centered" style="position: relative;">
                       <img width="200" src="/images/3_characters.png"/>
                       <?php if($place->sante_show): ?>
-                      <div class="impact_item" id="impact_item_sante" data-aos="fade-in" style="top: -45px; left: 85px;">
+                      <div class="impact_item top left" id="impact_item_sante" data-aos="fade-in">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Sante) && $impact->Sante->show)
                           @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact-disabled @endisset">
+                          <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact_disabled @endisset">
                               <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="48" y="38" font-size="7" font-weight="bold" fill="#004c44">Santé</text>
@@ -474,13 +453,13 @@
                       </div>
                     <?php endif; ?>
                     <?php if($place->insertion_show): ?>
-                      <div class="impact_item" id="impact_item_insertion" data-aos="fade-in" style="bottom: -40px; left: 50px;">
+                      <div class="impact_item bottom left" id="impact_item_insertion" data-aos="fade-in">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Insertion) && $impact->Insertion->show)
                           @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact-disabled @endisset">
+                          <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact_disabled @endisset">
                               <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="45" y="38" font-size="8" font-weight="bold" fill="#004c44">Insertion</text>
@@ -490,13 +469,13 @@
                       </div>
                     <?php endif; ?>
                     <?php if($place->lien_sociaux_show): ?>
-                      <div class="impact_item" id="impact_item_lien" data-aos="fade-in" style="top: -45px; right: 130px;">
+                      <div class="impact_item top right" id="impact_item_lien" data-aos="fade-in">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Lien) && $impact->Lien->show)
                           @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
                           @endif
                           @endforeach
-                          <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact-disabled @endisset">
+                          <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact_disabled @endisset">
                               <svg  width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10" />
                                   <text x="52" y="38" font-size="7" font-weight="bold" fill="#004c44">Lien</text>
@@ -506,13 +485,13 @@
                       </div>
                     <?php endif;?>
                     <?php if($place->capacite_show): ?>
-                      <div class="impact_item" id="impact_item_capacite" data-aos="fade-in" style="bottom: -40px;right: 80px;">
+                      <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
                           @foreach($place->impact as $key => $impact)
                           @if(isset($impact->Capacite) && $impact->Capacite->show)
                           @foreach($impact->Capacite->text as $text) @php( $impact_capacite_text = $text ) @endforeach
                           @endif
                           @endforeach
-                          <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact-disabled @endisset">
+                          <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact_disabled @endisset">
                               <svg width="215" height="150" viewBox="20 20 75 40">
                                   <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
                                   <text x="43" y="38" font-size="8" font-weight="bold" fill="#004c44">Capacité</text>
