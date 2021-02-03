@@ -15,7 +15,7 @@
             @else
               <i class="fa fa-eye" title="Afficher la section"></i>
             @endif
-          </a>
+          </a> {{-- <a> starts in {{ $url }} --}}
         </div>
         @endif
 
