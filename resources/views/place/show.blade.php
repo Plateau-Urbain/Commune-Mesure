@@ -205,6 +205,22 @@
               </div>
             </div>
           </section>
+
+          <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections">
+            @isset($edit)
+            <x-slot name="url">
+              <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'valeurs']) }}">
+            </x-slot>
+            @endisset
+
+            <h2 class="ribbon-banner title is-5 has-text-centered" >Les valeurs</h2>
+            <div class="columns">
+              <div class="column has-text-centered">
+                <div id="value_container"></div>
+              </div>
+            </div>
+          </x-edit-section>
+
           @if (isset($edit) || ($sections->has('valeurs') && $sections->get('valeurs')))
             <section class="section" id="valeurs">
               @if (isset($edit) && $sections->get('valeurs'))
