@@ -6,34 +6,50 @@ use Illuminate\View\Component;
 
 class EditSection extends Component
 {
+    /**
+     * Are we in edition mode
+     *
+     * @var bool
+     */
     public $edit;
 
     /**
-     * The section name.
+     * Does it have the section.
+     *
+     * @var string
+     */
+    public $hasSection;
+
+    /**
+     * The section visibility
+     *
+     * @var bool
+     */
+    public $sectionVisibility;
+
+    /**
+     * The section name
      *
      * @var string
      */
     public $section;
 
     /**
-     * The sections collection.
-     *
-     * @var Collection
-     */
-    public $sections;
-
-    /**
      * Create the component instance.
      *
-     * @param  string  $section
-     * @param  bool  $visible
+     * @param  bool  $edit Edition mode
+     * @param  Collection  $sections All the sections
+     * @param  string $section The section name
      * @return void
      */
     public function __construct($edit, $sections, $section)
     {
         $this->edit = $edit;
         $this->section = $section;
-        $this->sections = $sections;
+        $this->hasSection = $sections->has($section);
+        $this->sectionVisibility = (bool) ($this->hasSection)
+                                          ? $sections->get($section)
+                                          : "0";
     }
 
     /**

@@ -1,6 +1,6 @@
-@if ($edit || ($sections->has($section) && $sections->get($section)))
+@if ($edit || ($hasSection && $sectionVisibility))
   <section class="section" id="{{ $section }}">
-    @if ($edit && $sections->get($section))
+    @if ($edit && $sectionVisibility)
       <div class="edit">
     @elseif ($edit)
       <div class="edit hidden">
@@ -11,7 +11,7 @@
         @if ($edit)
         <div class="is-pulled-right mx-2">
             {{ $url }}
-            @if ($sections->get($section))
+            @if ($sectionVisibility)
               <i class="fa fa-eye-slash"></i>
             @else
               <i class="fa fa-eye"></i>
