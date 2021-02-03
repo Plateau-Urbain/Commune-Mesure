@@ -411,7 +411,7 @@
 
                     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
 
-                      <x-edit-section :edit="isset($edit)" section="appartenance" :sections="$sections">
+                      <x-edit-section :edit="isset($edit)" section="appartenance" :sections="$sections" id="appartenance">
                         @isset($edit)
                         <x-slot name="url">
                           <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'appartenance']) }}">

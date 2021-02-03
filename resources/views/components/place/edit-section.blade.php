@@ -1,10 +1,10 @@
 @if ($edit || ($hasSection && $sectionVisibility))
     @if ($edit && $sectionVisibility)
-      <div class="edit">
+      <div class="edit" {{ $attributes }}>
     @elseif ($edit)
-      <div class="edit hidden">
+      <div class="edit hidden" {{ $attributes }}>
     @else
-      <div>
+      <div {{ $attributes }}>
     @endif
 
         @if ($edit)
