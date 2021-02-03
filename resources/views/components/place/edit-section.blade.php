@@ -8,7 +8,7 @@
     @endif
 
         @if ($edit)
-        <div class="is-pulled-right mx-2">
+        <div class="icon-edit">
             {{ $url }}
             @if ($sectionVisibility)
               <i class="fa fa-eye-slash"></i>
