@@ -393,21 +393,29 @@
               <div class="columns" style="margin-top: 100px;">
                   <div class="column has-text-centered is-relative">
                       <img width="300" src="/images/4_characters.png"/>
-                      <?php if($place->reseau_show): ?>
                       <div class="impact_item bottom left" id="impact_item_reseaux" data-aos="fade-in">
-                          @foreach($place->impact as $key => $impact)
-                          @if(isset($impact->Reseaux) && $impact->Reseaux->show)
-                          @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
-                          @endif
-                          @endforeach
-                          <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact_disabled @endisset">
-                              <svg  width="215" height="150" viewBox="20 20 75 40">
-                                  <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-                                  <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
-                              </svg>
-                          </div>
+
+                        <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections">
+                          @isset($edit)
+                          <x-slot name="url">
+                            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'reseau']) }}">
+                          </x-slot>
+                          @endisset
+
+                            @foreach($place->impact as $key => $impact)
+                            @if(isset($impact->Reseaux) && $impact->Reseaux->show)
+                            @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
+                            @endif
+                            @endforeach
+                            <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact_disabled @endisset">
+                                <svg  width="215" height="150" viewBox="20 20 75 40">
+                                    <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
+                                    <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux</text>
+                                </svg>
+                            </div>
+                        </x-edit-section>
+
                       </div>
-                    <?php endif;?>
 
                     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
 
