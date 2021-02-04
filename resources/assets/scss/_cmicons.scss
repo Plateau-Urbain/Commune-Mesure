@@ -1,0 +1,76 @@
+.cm-icons {
+    margin: 2px;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+
+    &.small {
+        width: 1rem !important;
+        height: 1rem !important;
+    }
+
+    &.large {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+
+    &.bus {
+        content: url("../images/icons/bus.png");
+    }
+
+    &.enfants {
+        content: url("../images/icons/enfants.png");
+    }
+
+    &.etp {
+        content: url("../images/icons/etp.png");
+    }
+
+    &.event {
+        content: url("../images/icons/event.png");
+    }
+
+    &.fauteuil-roulant {
+        content: url("../images/icons/fauteuil-roulant.png");
+    }
+
+    &.lieu {
+        content: url("../images/icons/lieu.png");
+    }
+
+    &.m2 {
+        content: url("../images/icons/m2.png");
+    }
+
+    &.mal-voyant {
+        content: url("../images/icons/mal-voyant.png");
+    }
+
+    &.metro {
+        content: url("../images/icons/metro.png");
+    }
+
+    &.student {
+        content: url("../images/icons/student.png");
+    }
+
+    &.train {
+        content: url("../images/icons/train.png");
+    }
+
+    &.velo {
+        content: url("../images/icons/velo.png");
+    }
+
+    &.villes {
+        content: url("../images/icons/villes.png");
+    }
+
+    &.familles {
+        content: url("../images/icons/familles.png");
+    }
+
+    &.voiture {
+        content: url("../images/icons/voiture.png");
+    }
+}

@@ -179,13 +179,13 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Enfants')
-                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="fa fa-child font-color-theme mr-1"></i></span>
+                      <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="cm-icons enfants font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Étudiants')
-                    <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="fa fa-user-graduate font-color-theme mr-1"></i></span>
+                      <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="cm-icons student font-color-theme mr-1"></i></span>
                     @endif
                     @if($public == 'Famille')
-                    <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="fa fa-users font-color-theme mr-1"></i></span>
+                      <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="cm-icons familles font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
@@ -208,11 +208,11 @@
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
                     @if($public == 'Handicapés')
-                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="fa fa-wheelchair font-color-theme mr-1"></i></span>
+                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>
                     @endif
                     @endforeach
                     @endforeach
-                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="fa fa-blind font-color-theme mr-1"></i></span>
+                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
                   </div>
                 </x-edit-section>
 
@@ -229,9 +229,9 @@
                   </p>
                   </div>
                   <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="fas fa-bus font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="fas fa-subway font-color-theme mr-1"></i></span>
-                    <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="fas fa-car font-color-theme mr-1"></i></span>
+                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="cm-icons bus font-color-theme mr-1"></i></span>
+                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="cm-icons metro font-color-theme mr-1"></i></span>
+                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="cm-icons voiture font-color-theme mr-1"></i></span>
                   </div>
                 </x-edit-section>
               </div>

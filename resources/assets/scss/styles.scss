@@ -20,6 +20,9 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 @import "~leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+
+// CSS Commune Mesure
 @import "custom";
 @import "_edition";
 @import "_socialimpact";
+@import "_cmicons";
