@@ -1,11 +1,13 @@
 @if ($edit || ($hasSection && $sectionVisibility))
-    @if ($edit && $sectionVisibility)
-      <div class="edit" {{ $attributes }}>
-    @elseif ($edit)
-      <div class="edit hidden" {{ $attributes }}>
-    @else
-      <div {{ $attributes }}>
-    @endif
+    <div
+      @if ($edit && $sectionVisibility)
+        {{ $attributes->merge(['class' => 'edit']) }}
+      @elseif ($edit)
+        {{ $attributes->merge(['class' => 'edit hidden']) }}
+      @else
+        {{ $attributes }}
+      @endif
+    >
 
         @if ($edit)
         <div class="icon-edit">

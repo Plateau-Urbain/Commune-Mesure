@@ -223,168 +223,124 @@
           </x-edit-section>
           </section>
 
-          <?php if($place->moyens_show && $place->composition_show): ?>
-            <section style="padding-top:100px">
-            </section>
-          <?php endif; ?>
             <section class="section" id="finances" >
-                  <div class="columns">
-                    <?php if($place->moyens_show && $place->composition_show): ?>
-                    <div class="column">
-                      <h2 class="ribbon-banner title is-5">Les moyens</h2>
-                      <div class="field has-text-centered">
-                        <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
-                        <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
-                        <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
-                      </div>
-                      <canvas id="financement-budget-doughnut" ></canvas>
-                      <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
-                        <div class="columns">
-                          <div class="column is-3 is-offset-2">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
-                          </div>
-                          <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->etp->nombre >= 10)
-                                  {{-- fix pour le cas spécial 10 --}}
-                                  @if($place->data->compare->moyens->etp->nombre == 10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endif
+              <div class="columns">
+                @php $class="" @endphp
+                @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
+                  @php $class="is-6 is-offset-3" @endphp
+                @endif
 
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endfor
+                <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'moyens']) }}">
+                  </x-slot>
+                  @endisset
 
-                                  @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
-                                      @svg('assets/images/body.svg', 'tiny narrow')
-                                  @endif
-                              @endif
-                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
-                                  @svg('assets/images/body.svg', 'tiny narrow')
-                              @endfor
-                          </div>
-                        </div>
-
-                        <div class="columns">
-                            <div class="column is-3 is-offset-2">
-                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
-                            </div>
-                            <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->benevole->nombre >= 10)
-                                  {{-- fix pour le cas spécial 10 --}}
-                                  @if($place->data->compare->moyens->benevole->nombre == 10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endif
-
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endfor
-
-                                  @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
-                                      @svg('assets/images/body.svg', 'tiny narrow')
-                                  @endif
-                              @endif
-                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
-                                  @svg('assets/images/body.svg', 'tiny narrow')
-                              @endfor
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
-                        <div class="field has-text-centered">
-                            <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
-                        </div>
-                        <canvas id="composition-chart-doughnut" ></canvas>
-
-                        <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
-                        <div class="columns">
-                            <div class="column is-offset-2 is-3">
-                                <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
-                                <span class="title is-5">
-                                    @if ($place->impact_economique->nombre_structures_crees > 1)
-                                        structures créées
-                                    @else
-                                        structure créée
-                                    @endif
-                                </span>
-                            </div>
-
-                            <div class="column is-5 my-3" style="overflow-y: auto; ">
-                                @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
-                                    <span class="icon is-small mx-2">
-                                        <span class="fa-stack fa-sm">
-                                            <i class="fas fa-industry fa-stack-2x" style="color: #e85048"></i>
-                                            <i class="fas fa-star fa-stack-1x" style="color: #FFDC00; padding-left:1.33em; margin-top:-15px"></i>
-                                        </span>
-                                    </span>
-                                @endfor
-                            </div>
-                        </div>
-                    </div>
-
-                  <?php elseif($place->moyens_show): ?>
-                    <div class="column is-half is-offset-one-quarter">
-                      <h2 class="ribbon-banner title is-5">Les moyens</h2>
-                      <div class="field has-text-centered">
-                        <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
-                        <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
-                        <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
-                      </div>
-                      <canvas id="financement-budget-doughnut" ></canvas>
-                      <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
-                        <div class="columns">
-                          <div class="column is-3 is-offset-2">
-                              <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
-                          </div>
-                          <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->etp->nombre >= 10)
-                                  {{-- fix pour le cas spécial 10 --}}
-                                  @if($place->data->compare->moyens->etp->nombre == 10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endif
-
-                                  @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endfor
-
-                                  @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
-                                      @svg('assets/images/body.svg', 'tiny narrow')
-                                  @endif
-                              @endif
-                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
-                                  @svg('assets/images/body.svg', 'tiny narrow')
-                              @endfor
-                          </div>
-                        </div>
-
-                        <div class="columns">
-                            <div class="column is-3 is-offset-2">
-                              <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
-                            </div>
-                            <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-                              @if($place->data->compare->moyens->benevole->nombre >= 10)
-                                  {{-- fix pour le cas spécial 10 --}}
-                                  @if($place->data->compare->moyens->benevole->nombre == 10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endif
-
-                                  @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
-                                      @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-                                  @endfor
-
-                                  @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
-                                      @svg('assets/images/body.svg', 'tiny narrow')
-                                  @endif
-                              @endif
-                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
-                                  @svg('assets/images/body.svg', 'tiny narrow')
-                              @endfor
-                            </div>
-                        </div>
-                    </div>
-                  <?php elseif($place->composition_show) : ?>
-                  <?php endif;?>
+                  <h2 class="ribbon-banner title is-5">Les moyens</h2>
+                  <div class="field has-text-centered">
+                    <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
+                    <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
+                    <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
                   </div>
+                  <canvas id="financement-budget-doughnut" ></canvas>
+                  <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
+                    <div class="columns">
+                      <div class="column is-3 is-offset-2">
+                          <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
+                      </div>
+                      <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
+                          @if($place->data->compare->moyens->etp->nombre >= 10)
+                              {{-- fix pour le cas spécial 10 --}}
+                              @if($place->data->compare->moyens->etp->nombre == 10)
+                                  @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                              @endif
+
+                              @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
+                                  @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                              @endfor
+
+                              @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
+                              @endif
+                          @endif
+                          @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
+                              @svg('assets/images/body.svg', 'tiny narrow')
+                          @endfor
+                      </div>
+                    </div>
+
+                    <div class="columns">
+                        <div class="column is-3 is-offset-2">
+                          <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
+                        </div>
+                        <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
+                          @if($place->data->compare->moyens->benevole->nombre >= 10)
+                              {{-- fix pour le cas spécial 10 --}}
+                              @if($place->data->compare->moyens->benevole->nombre == 10)
+                                  @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                              @endif
+
+                              @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
+                                  @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+                              @endfor
+
+                              @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
+                                  @svg('assets/images/body.svg', 'tiny narrow')
+                              @endif
+                          @endif
+                          @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
+                              @svg('assets/images/body.svg', 'tiny narrow')
+                          @endfor
+                        </div>
+                    </div>
+                </x-edit-section>
+
+                @php $class="" @endphp
+                @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
+                  @php $class="is-6 is-offset-3" @endphp
+                @endif
+
+                <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'composition']) }}">
+                  </x-slot>
+                  @endisset
+
+                      <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
+                      <div class="field has-text-centered">
+                          <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
+                      </div>
+                      <canvas id="composition-chart-doughnut" ></canvas>
+
+                      <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
+                      <div class="columns">
+                          <div class="column is-offset-2 is-3">
+                              <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
+                              <span class="title is-5">
+                                  @if ($place->impact_economique->nombre_structures_crees > 1)
+                                      structures créées
+                                  @else
+                                      structure créée
+                                  @endif
+                              </span>
+                          </div>
+
+                          <div class="column is-5 my-3" style="overflow-y: auto; ">
+                              @for ($i = 0; $i < $place->impact_economique->nombre_structures_crees; $i++)
+                                  <span class="icon is-small mx-2">
+                                      <span class="fa-stack fa-sm">
+                                          <i class="fas fa-industry fa-stack-2x" style="color: #e85048"></i>
+                                          <i class="fas fa-star fa-stack-1x" style="color: #FFDC00; padding-left:1.33em; margin-top:-15px"></i>
+                                      </span>
+                                  </span>
+                              @endfor
+                          </div>
+                      </div>
+                </x-edit-section>
+
+              </div>
             </section>
 
             <section class="section" id="impact-social">
