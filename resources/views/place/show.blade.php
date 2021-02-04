@@ -34,7 +34,7 @@
 
     <div class="column">
         <div id="presentation" class="hero is-large anchor">
-            <section>
+            <section class="section">
               <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
               <div class="has-text-centered pt-2">
                 <p><i class="fas fa-clock font-color-theme mr-1"></i>
@@ -43,10 +43,14 @@
               </div>
               <div class="section pt-5" style="padding-bottom:0;">
                 <div class="columns is-tablet">
-                <div class="column">
-                  <!-- Bloc note begin -->
-                  <?php if($place->description->show): ?>
-                  <div class=" bloc-note">
+                  <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" class="column">
+                    @isset($edit)
+                    <x-slot name="url">
+                      <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_gauche']) }}">
+                    </x-slot>
+                    @endisset
+
+                    <div class=" bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
                           <img src="/images/bloc_noteAsset.png">
@@ -58,51 +62,61 @@
                             <p class="fontSize0-8em">{{$place->description->value}}</p>
                         </div>
                       </div>
-                  </div>
-                <?php endif; ?>
-                  <!-- Bloc note end -->
-                </div>
-                <div class="column">
-                  <div class="home-head">
-                    <figure class="image">
-                      <img src="/images/roofing.svg">
-                    </figure>
-                  </div>
-                <div class="column home-body">
-                    <div class="columns is-mobile">
-                      <div class="column home-body-left">
-                        <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
-                        <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                        <div class="window very-small">Ouvert depuis {{ $place->ouverture}}</div>
-                        <div class="window very-small">Surface de {{ $place->data->compare->moyens->superficie->nombre}}m<sup>2</sup></div>
-                        <div class="window very-small">{{ $place->data->compare->moyens->etp->nombre}} ETP</div>
+                    </div>
+                  </x-edit-section>
 
-                        <div class="home-door">
-                          <figure class="image">
-                            <img src="/images/foot_home.svg">
-                          </figure>
+                  <x-edit-section :edit="isset($edit)" section="bloc_milieu" :sections="$sections" class="column">
+                    @isset($edit)
+                    <x-slot name="url">
+                      <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_milieu']) }}">
+                    </x-slot>
+                    @endisset
+
+                    <div class="home-head">
+                      <figure class="image">
+                        <img src="/images/roofing.svg">
+                      </figure>
+                    </div>
+                    <div class="column home-body">
+                        <div class="columns is-mobile">
+                          <div class="column home-body-left">
+                            <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
+                            <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
+                            <div class="window very-small">Ouvert depuis {{ $place->ouverture}}</div>
+                            <div class="window very-small">Surface de {{ $place->data->compare->moyens->superficie->nombre}}m<sup>2</sup></div>
+                            <div class="window very-small">{{ $place->data->compare->moyens->etp->nombre}} ETP</div>
+
+                            <div class="home-door">
+                              <figure class="image">
+                                <img src="/images/foot_home.svg">
+                              </figure>
+                            </div>
+                          </div>
+                          <div class="column is-one-third has-text-centered home-body-right">
+
+                          <div class="">
+                            <figure class="image">
+                              <img src="/images/groupe_windows.svg">
+                            </figure>
+                          </div>
+                          <div class="">
+                            <figure class="image">
+                              <img src="/images/groupe_windows.svg">
+                            </figure>
+                          </div>
                         </div>
                       </div>
-                      <div class="column is-one-third has-text-centered home-body-right">
-
-                      <div class="">
-                        <figure class="image">
-                          <img src="/images/groupe_windows.svg">
-                        </figure>
-                      </div>
-                      <div class="">
-                        <figure class="image">
-                          <img src="/images/groupe_windows.svg">
-                        </figure>
-                      </div>
+                      <div class="home-foot"></div>
                     </div>
-                  </div>
-                  <div class="home-foot"></div>
-                </div>
-              </div>
-                <div class="column">
-                  <!-- Bloc note begin -->
-                  <?php if($place->partners->show): ?>
+                </x-edit-section>
+
+                <x-edit-section :edit="isset($edit)" section="bloc_droite" :sections="$sections" class="column">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_droite']) }}">
+                  </x-slot>
+                  @endisset
+
                   <div class="bloc-note">
                       <div class="header-bloc-note">
                         <figure class="image">
@@ -141,9 +155,7 @@
                         </div>
                       </div>
                   </div>
-                <?php endif ?>
-                  <!-- Bloc note end -->
-                </div>
+                </x-edit-section>
               </div>
             </section>
           </div>
