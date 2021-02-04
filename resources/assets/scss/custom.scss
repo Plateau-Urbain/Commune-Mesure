@@ -133,6 +133,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Renner Bold';
 }
 
+.impacts >h1, .impacts >h2, .app-name > h1{
+    // font-family: blzee-font;
+    font-family: 'Renner Bold';
+    font-size: 5em;
+}
+
 .font-color-theme{
   color: $red-theme ! important;
 }
