@@ -150,7 +150,13 @@
           <section>
             <div class="section" style="padding:0;">
               <div class="columns has-text-centered ">
-                <div class="column">
+                <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" class="column">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'public']) }}">
+                  </x-slot>
+                  @endisset
+
                   <div class="has-text-centered">
                     <p class="mb-5">
                       <strong>Les differents publics : </strong>
@@ -172,13 +178,20 @@
                     @endforeach
                     @endforeach
                   </div>
-                </div>
-                <div class="column">
-                <div class="has-text-centered">
-                  <p class="mb-5">
-                    <strong>Accessibilité:</strong>
-                  </p>
-                </div>
+                </x-edit-section>
+
+                <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" class="column">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'accessibilite']) }}">
+                  </x-slot>
+                  @endisset
+
+                  <div class="has-text-centered">
+                    <p class="mb-5">
+                      <strong>Accessibilité:</strong>
+                    </p>
+                  </div>
                   <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
                     @foreach($place->opening as $publics)
                     @foreach($publics->names as $public)
@@ -189,8 +202,15 @@
                     @endforeach
                     <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="fa fa-blind font-color-theme mr-1"></i></span>
                   </div>
-                </div>
-                <div class="column">
+                </x-edit-section>
+
+                <x-edit-section :edit="isset($edit)" section="transport" :sections="$sections" class="column">
+                  @isset($edit)
+                  <x-slot name="url">
+                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'transport']) }}">
+                  </x-slot>
+                  @endisset
+
                   <div class="has-text-centered">
                   <p class="mb-5">
                     <strong>Moyens de transports accessibles:</strong>
@@ -201,7 +221,7 @@
                     <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="fas fa-subway font-color-theme mr-1"></i></span>
                     <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="fas fa-car font-color-theme mr-1"></i></span>
                   </div>
-                </div>
+                </x-edit-section>
               </div>
             </div>
           </section>
