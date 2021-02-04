@@ -42,6 +42,6 @@
 @endsection
 @section('script_js')
   @parent
-  @include('components.places.map-js')
-  @include('components.places.sortPlaces-js')
+  @include('partials.places.map-js')
+  @include('partials.places.sortPlaces-js')
 @endsection

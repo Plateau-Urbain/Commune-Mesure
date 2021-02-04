@@ -13,7 +13,7 @@
     </head>
     <body>
         @section('header')
-            @include('components.header')
+            @include('partials.header')
         @show
 
         <div class="main-container main">

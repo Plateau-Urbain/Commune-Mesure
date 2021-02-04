@@ -4,7 +4,7 @@
 @endsection
 @section('script_js')
     @parent
-    @include('components.impacts.chart-statistics')
+    @include('partials.impacts.chart-statistics')
     <script>
     window.onload = (event) => {//TODO move in index.js
 
