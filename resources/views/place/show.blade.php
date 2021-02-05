@@ -50,19 +50,7 @@
                     </x-slot>
                     @endisset
 
-                    <div class=" bloc-note">
-                      <div class="header-bloc-note">
-                        <figure class="image">
-                          <img src="/images/bloc_noteAsset.png">
-                        </figure>
-                      </div>
-                      <div class="bloc-note-body">
-                        <div class="content">
-                            <h2 class="has-text-centered">L'idée fondatrice</h2>
-                            <p class="fontSize0-8em">{{$place->description->value}}</p>
-                        </div>
-                      </div>
-                    </div>
+                    @include('partials.place.sections.bloc-gauche')
                   </x-edit-section>
 
                   <x-edit-section :edit="isset($edit)" section="bloc_milieu" :sections="$sections" class="column">
@@ -72,43 +60,8 @@
                     </x-slot>
                     @endisset
 
-                    <div class="home-head">
-                      <figure class="image">
-                        <img src="/images/roofing.svg">
-                      </figure>
-                    </div>
-                    <div class="column home-body">
-                        <div class="columns is-mobile">
-                          <div class="column home-body-left">
-                            <div class="window very-small">{{ $place->manager->occupants }} structures occupantes</div>
-                            <div class="window very-small">La gouvernance partagée avec {{ $place->manager->name }}</div>
-                            <div class="window very-small">Ouvert depuis {{ $place->ouverture}}</div>
-                            <div class="window very-small">Surface de {{ $place->data->compare->moyens->superficie->nombre}}m<sup>2</sup></div>
-                            <div class="window very-small">{{ $place->data->compare->moyens->etp->nombre}} ETP</div>
-
-                            <div class="home-door">
-                              <figure class="image">
-                                <img src="/images/foot_home.svg">
-                              </figure>
-                            </div>
-                          </div>
-                          <div class="column is-one-third has-text-centered home-body-right">
-
-                          <div class="">
-                            <figure class="image">
-                              <img src="/images/groupe_windows.svg">
-                            </figure>
-                          </div>
-                          <div class="">
-                            <figure class="image">
-                              <img src="/images/groupe_windows.svg">
-                            </figure>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="home-foot"></div>
-                    </div>
-                </x-edit-section>
+                    @include('partials.place.sections.bloc-milieu')
+                  </x-edit-section>
 
                 <x-edit-section :edit="isset($edit)" section="bloc_droite" :sections="$sections" class="column">
                   @isset($edit)
@@ -117,44 +70,7 @@
                   </x-slot>
                   @endisset
 
-                  <div class="bloc-note">
-                      <div class="header-bloc-note">
-                        <figure class="image">
-                          <img src="/images/bloc_noteAsset.png">
-                        </figure>
-                      </div>
-                      <div class="bloc-note-body">
-                        <div class="content">
-                          @foreach($place->partners->value as $partner)
-                            @if($partner->names)
-                            <div>
-                              <strong>Les acteurs {{ $partner->title }}s :</strong>
-                              <span class="is-block is-size-7">
-                                {{ $partner->names }}
-                              </span>
-                            </div>
-                            @endif
-                          @endforeach
-                          @if($place->partners->value[0]->names || $place->partners->value[1]->names)
-                          <div class="">
-                            <strong class="">Nature des partenariats :</strong>
-                            <div class="is-size-7">
-                              @foreach($place->partners->value as $partner)
-                              @if (count($partner->natures))
-                              <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
-                                @foreach($partner->natures as $nature)
-                                  {{ $nature }}@if(! $loop->last), @endif
-                                @endforeach
-                                </span>
-                                @endif
-                              </div>
-                              @endforeach
-                            </div>
-                          </div>
-                          @endif
-                        </div>
-                      </div>
-                  </div>
+                  @include('partials.place.sections.bloc-droite')
                 </x-edit-section>
               </div>
             </section>
