@@ -19,13 +19,7 @@ class PlaceController extends Controller
         $place->slug = $slug;
         $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
 
-        //Sort insee object data on each zone map
-        $insee = $place->data->insee;
-        foreach ($insee as $zone => $datas) {
-          foreach ($datas as $key => $data) {
-            $place->data->insee->{$zone}->{$key} = $this->sortDataInsee($data);
-          }
-        }
+        $this->sortDataInsee($place);
 
         if(property_exists($place->data, 'activites') === false) {
             throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);
@@ -71,6 +65,7 @@ class PlaceController extends Controller
             abort(404);
         }
 
+        $this->sortDataInsee($place);
         $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
 
         // Pour indiquer à la vue que c'est en mode édition
@@ -114,14 +109,18 @@ class PlaceController extends Controller
     }
 
 
-    protected function sortDataInsee($inseeData){
-      $inseeDataArray = (array) $inseeData;
-      $keys = array_keys($inseeDataArray);
-      usort($inseeDataArray, function($a, $b)
-      {
-        return strcasecmp($a->title, $b->title);
-      });
-      return (object)$inseeDataArray;
+    protected function sortDataInsee($place){
+        //Sort insee object data on each zone map
+        $insee = $place->data->insee;
+        foreach ($insee as $zone => $datas) {
+            foreach ($datas as $key => $data) {
+                $inseeDataArray = (array) $data;
+                usort($inseeDataArray, function($a, $b) {
+                    return strcasecmp($a->title, $b->title);
+                });
+                $place->data->insee->{$zone}->{$key} = $inseeDataArray;
+            }
+        }
     }
 
     protected function sortComposition($composition){
