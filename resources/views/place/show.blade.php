@@ -85,27 +85,7 @@
                   </x-slot>
                   @endisset
 
-                  <div class="has-text-centered">
-                    <p class="mb-5">
-                      <strong>Les differents publics : </strong>
-                    </p>
-                  </div>
-
-                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                    @foreach($place->opening as $publics)
-                    @foreach($publics->names as $public)
-                    @if($public == 'Enfants')
-                      <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="cm-icons enfants font-color-theme mr-1"></i></span>
-                    @endif
-                    @if($public == 'Étudiants')
-                      <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="cm-icons student font-color-theme mr-1"></i></span>
-                    @endif
-                    @if($public == 'Famille')
-                      <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="cm-icons familles font-color-theme mr-1"></i></span>
-                    @endif
-                    @endforeach
-                    @endforeach
-                  </div>
+                  @include('partials.place.sections.public')
                 </x-edit-section>
 
                 <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" class="column">
@@ -115,21 +95,7 @@
                   </x-slot>
                   @endisset
 
-                  <div class="has-text-centered">
-                    <p class="mb-5">
-                      <strong>Accessibilité:</strong>
-                    </p>
-                  </div>
-                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                    @foreach($place->opening as $publics)
-                    @foreach($publics->names as $public)
-                    @if($public == 'Handicapés')
-                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>
-                    @endif
-                    @endforeach
-                    @endforeach
-                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
-                  </div>
+                  @include('partials.place.sections.accessibilite')
                 </x-edit-section>
 
                 <x-edit-section :edit="isset($edit)" section="transport" :sections="$sections" class="column">
@@ -139,16 +105,7 @@
                   </x-slot>
                   @endisset
 
-                  <div class="has-text-centered">
-                  <p class="mb-5">
-                    <strong>Moyens de transports accessibles:</strong>
-                  </p>
-                  </div>
-                  <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="cm-icons bus font-color-theme mr-1"></i></span>
-                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="cm-icons metro font-color-theme mr-1"></i></span>
-                      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="cm-icons voiture font-color-theme mr-1"></i></span>
-                  </div>
+                  @include('partials.place.sections.transport')
                 </x-edit-section>
               </div>
             </div>
