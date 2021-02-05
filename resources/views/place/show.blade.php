@@ -19,11 +19,11 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> {{-- animate on scroll impact --}}
     <script>AOS.init();</script>
     <script src='https://d3js.org/d3.v4.min.js'></script> {{-- chart finance --}}
-    @include('partials.place.chart-place')
-    @include('partials.place.map-insee-js')
-    @include('partials.place.d3-doughnut-finance-js')
-    @include('partials.place.insee-chart-js')
-    @include('partials.place.value-bubbles')
+    @include('js.place.chart-place')
+    @include('js.place.map-insee-js')
+    @include('js.place.d3-doughnut-finance-js')
+    @include('js.place.insee-chart-js')
+    @include('js.place.value-bubbles')
 @endsection
 
 @section('content')
