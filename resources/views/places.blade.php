@@ -14,7 +14,7 @@
                         <div class="column is-clickable" style="position:relative; height:250px; overflow: hidden;">
                             <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->url ])  }}">{{ $place->name }}</a><br />
                             <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</span></p>
-                            <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->description }}</p>
+                            <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ json_decode($place->description)->value }}</p>
                             <ul class="tags_container">
                             @foreach(json_decode($place->tags) as $tag)
                             <li class="tags">{{$tag}}</li>
