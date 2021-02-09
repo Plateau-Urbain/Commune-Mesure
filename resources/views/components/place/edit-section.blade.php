@@ -11,13 +11,21 @@
 
         @if ($edit)
         <div class="icon-edit">
-            {{ $url }}
+          <a href="{{ route('place.toggle', [
+            'slug' => $attributes->get('slug'),
+            'auth' => $attributes->get('auth'),
+            'section' => $section
+          ]) }}">
             @if ($sectionVisibility)
               <i class="fa fa-eye-slash" title="Cacher la section"></i>
             @else
               <i class="fa fa-eye" title="Afficher la section"></i>
             @endif
-          </a> {{-- <a> starts in {{ $url }} --}}
+          </a>
+        </div>
+
+        <div class="icon-edit">
+            <i class="fa fa-pen" title="Éditer la section"></i>
         </div>
         @endif
 

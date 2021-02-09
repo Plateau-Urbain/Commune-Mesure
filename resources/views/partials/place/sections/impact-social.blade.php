@@ -6,13 +6,7 @@
     <img width="300" src="/images/4_characters.png"/>
 
     <div class="impact_item bottom left" id="impact_item_reseaux" data-aos="fade-in">
-      <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'reseau']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Reseaux) && $impact->Reseaux->show)
             @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
@@ -28,13 +22,7 @@
     </div>
 
     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
-      <x-edit-section :edit="isset($edit)" section="appartenance" :sections="$sections" id="appartenance">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'appartenance']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="appartenance" :sections="$sections" id="appartenance" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Appartenance) && $impact->Appartenance->show)
             @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text ) @endforeach
@@ -57,13 +45,7 @@
     <img width="200" src="/images/3_characters.png"/>
 
     <div class="impact_item top left" id="impact_item_sante" data-aos="fade-in">
-      <x-edit-section :edit="isset($edit)" section="sante" :sections="$sections" id="sante">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'sante']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="sante" :sections="$sections" id="sante" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Sante) && $impact->Sante->show)
             @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
@@ -80,13 +62,7 @@
     </div>
 
     <div class="impact_item bottom left" id="impact_item_insertion" data-aos="fade-in">
-      <x-edit-section :edit="isset($edit)" section="insertion" :sections="$sections" id="insertion">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'insertion']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="insertion" :sections="$sections" id="insertion" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Insertion) && $impact->Insertion->show)
             @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
@@ -103,13 +79,7 @@
     </div>
 
     <div class="impact_item top right" id="impact_item_lien" data-aos="fade-in">
-      <x-edit-section :edit="isset($edit)" section="lien_sociaux" :sections="$sections" id="lien_sociaux">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'lien_sociaux']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="lien_sociaux" :sections="$sections" id="lien_sociaux" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Lien) && $impact->Lien->show)
             @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
@@ -126,13 +96,7 @@
     </div>
 
     <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
-      <x-edit-section :edit="isset($edit)" section="capacite" :sections="$sections" id="capacite">
-        @isset($edit)
-        <x-slot name="url">
-          <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'capacite']) }}">
-        </x-slot>
-        @endisset
-
+      <x-edit-section :edit="isset($edit)" section="capacite" :sections="$sections" id="capacite" :slug="$slug ?? false" :auth="$auth ?? false">
         @foreach($place->impact as $key => $impact)
           @if(isset($impact->Capacite) && $impact->Capacite->show)
             @foreach($impact->Capacite->text as $text) @php( $impact_capacite_text = $text ) @endforeach

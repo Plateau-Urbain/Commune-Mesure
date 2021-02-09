@@ -43,33 +43,15 @@
               </div>
               <div class="section pt-5" style="padding-bottom:0;">
                 <div class="columns is-tablet">
-                  <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" class="column">
-                    @isset($edit)
-                    <x-slot name="url">
-                      <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_gauche']) }}">
-                    </x-slot>
-                    @endisset
-
+                  <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                     @include('partials.place.sections.bloc-gauche')
                   </x-edit-section>
 
-                  <x-edit-section :edit="isset($edit)" section="bloc_milieu" :sections="$sections" class="column">
-                    @isset($edit)
-                    <x-slot name="url">
-                      <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_milieu']) }}">
-                    </x-slot>
-                    @endisset
-
+                  <x-edit-section :edit="isset($edit)" section="bloc_milieu" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                     @include('partials.place.sections.bloc-milieu')
                   </x-edit-section>
 
-                <x-edit-section :edit="isset($edit)" section="bloc_droite" :sections="$sections" class="column">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'bloc_droite']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="bloc_droite" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.bloc-droite')
                 </x-edit-section>
               </div>
@@ -78,33 +60,15 @@
           <section>
             <div class="section" style="padding:0;">
               <div class="columns has-text-centered ">
-                <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" class="column">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'public']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.public')
                 </x-edit-section>
 
-                <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" class="column">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'accessibilite']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.accessibilite')
                 </x-edit-section>
 
-                <x-edit-section :edit="isset($edit)" section="transport" :sections="$sections" class="column">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'transport']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="transport" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.transport')
                 </x-edit-section>
               </div>
@@ -112,13 +76,7 @@
           </section>
 
           <section class="section" id="valeurs">
-          <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections">
-            @isset($edit)
-            <x-slot name="url">
-              <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'valeurs']) }}">
-            </x-slot>
-            @endisset
-
+          <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
             @include('partials.place.sections.values')
           </x-edit-section>
           </section>
@@ -129,13 +87,7 @@
                 @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
                   @php $class="is-6 is-offset-3" @endphp
                 @endif
-                <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'moyens']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.moyens')
                 </x-edit-section>
 
@@ -143,13 +95,7 @@
                 @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
                   @php $class="is-6 is-offset-3" @endphp
                 @endif
-                <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}">
-                  @isset($edit)
-                  <x-slot name="url">
-                    <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'composition']) }}">
-                  </x-slot>
-                  @endisset
-
+                <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
                   @include('partials.place.sections.composition')
                 </x-edit-section>
               </div>
@@ -160,13 +106,7 @@
             </section>
 
       <section class="section anchor" id="lieu_territoire">
-        <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections">
-          @isset($edit)
-          <x-slot name="url">
-            <a href="{{ route('place.toggle', ['slug' => $slug, 'auth' => $auth, 'section' => 'lieu_territoire']) }}">
-          </x-slot>
-          @endisset
-
+        <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
           @include('partials.place.sections.territoire')
         </x-edit-section>
       </section>
