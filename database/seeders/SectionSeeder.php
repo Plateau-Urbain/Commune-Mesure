@@ -9,16 +9,22 @@ use App\Models\Section;
 class SectionSeeder extends Seeder
 {
     protected $sections = [
+        "bloc_gauche",
+        "bloc_milieu",
+        "bloc_droite",
+        "public",
+        "accessibilite",
+        "transport",
         "valeurs",
         "moyens",
         "composition",
-        "appartenance",
         "reseau",
+        "appartenance",
         "sante",
-        "lien_sociaux",
         "insertion",
+        "lien_social",
         "capacite",
-        "lieu_territoire",
+        "lieu_territoire"
     ];
 
     /**
@@ -28,15 +34,18 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-        $places = DB::table('places')->get();
+        foreach ($this->sections as $section) {
+            Section::create([
+                'section' => $section
+            ]);
+        }
 
-        foreach ($places as $place) {
-            foreach ($this->sections as $section) {
-                Section::create([
-                    'place_id' => $place->id,
-                    'section' => $section,
-                    'visible' => true
-                ]);
+        $places = DB::table('places')->get();
+        $sections = Section::all();
+
+        foreach ($sections as $section) {
+            foreach ($places as $place) {
+                $section->place()->attach($place->place);
             }
         }
     }

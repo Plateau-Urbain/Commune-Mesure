@@ -10,6 +10,6 @@ class Section extends Model
 
     public function place()
     {
-        return $this->belongsTo(Place::class);
+        return $this->belongsToMany(Place::class)->withTimestamps();
     }
 }
