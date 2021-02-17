@@ -16,7 +16,7 @@ class CreatePlaceSectionTable extends Migration
         Schema::create('place_section', function (Blueprint $table) {
             $table->id();
             $table->uuid('place_id');
-            $table->string('section_id');
+            $table->integer('section_id');
             $table->boolean('visible')->default(true);
             $table->timestamps();
 

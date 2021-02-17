@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    protected $fillable = ['place_id', 'section', 'visible'];
+    protected $fillable = ['section'];
 
-    public function place()
+    public function places()
     {
         return $this->belongsToMany(Place::class)->withTimestamps();
     }
