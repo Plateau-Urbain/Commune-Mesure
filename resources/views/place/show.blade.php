@@ -33,77 +33,80 @@
     </div>
 
     <div class="column">
-        <div id="presentation" class="hero is-large anchor">
-            <section class="section">
-              <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
-              <div class="has-text-centered pt-2">
-                <p><i class="fas fa-clock font-color-theme mr-1"></i>
-                  <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
-                </p>
-              </div>
-              <div class="section pt-5" style="padding-bottom:0;">
-                <div class="columns is-tablet">
-                  <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                    @include('partials.place.sections.bloc-gauche')
-                  </x-edit-section>
-
-                  <x-edit-section :edit="isset($edit)" section="bloc_milieu" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                    @include('partials.place.sections.bloc-milieu')
-                  </x-edit-section>
-
-                <x-edit-section :edit="isset($edit)" section="bloc_droite" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.bloc-droite')
-                </x-edit-section>
-              </div>
-            </section>
+      <section class="section">
+        <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
+          <div class="has-text-centered pt-2">
+            <p><i class="fas fa-clock font-color-theme mr-1"></i>
+            <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
+            </p>
           </div>
-          <section>
-            <div class="section" style="padding:0;">
-              <div class="columns has-text-centered ">
-                <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.public')
-                </x-edit-section>
+          <div class="section pt-5" style="padding-bottom:0;">
+            <div class="columns is-tablet">
+              <div class="column">
+                @include('partials.place.sections.bloc-gauche')
+              </div>
 
-                <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.accessibilite')
-                </x-edit-section>
+              <div class="column">
+                @include('partials.place.sections.bloc-milieu')
+              </div>
 
-                <x-edit-section :edit="isset($edit)" section="transport" :sections="$sections" class="column" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.transport')
-                </x-edit-section>
+              <div class="column">
+                @include('partials.place.sections.bloc-droite')
               </div>
             </div>
-          </section>
+        </x-edit-section>
+      </section>
 
-          <section class="section" id="valeurs">
-          <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
-            @include('partials.place.sections.values')
+      <section class="section">
+        <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div class="columns has-text-centered">
+            <div class="column">
+              @include('partials.place.sections.public')
+            </div>
+
+            <div class="column">
+              @include('partials.place.sections.accessibilite')
+            </div>
+
+            <div class="column">
+              @include('partials.place.sections.transport')
+            </div>
+          </div>
+        </x-edit-section>
+      </section>
+
+      <section class="section" id="valeurs">
+        <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          @include('partials.place.sections.values')
+        </x-edit-section>
+      </section>
+
+      <section class="section" id="finances">
+        <div class="columns">
+          @php $class="" @endphp
+          @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
+            @php $class="is-6 is-offset-3" @endphp
+          @endif
+          <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            @include('partials.place.sections.moyens')
           </x-edit-section>
-          </section>
 
-            <section class="section" id="finances" >
-              <div class="columns">
-                @php $class="" @endphp
-                @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
-                  @php $class="is-6 is-offset-3" @endphp
-                @endif
-                <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.moyens')
-                </x-edit-section>
+          @php $class="" @endphp
+          @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
+            @php $class="is-6 is-offset-3" @endphp
+          @endif
+          <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            @include('partials.place.sections.composition')
+          </x-edit-section>
+        </div>
+      </section>
 
-                @php $class="" @endphp
-                @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
-                  @php $class="is-6 is-offset-3" @endphp
-                @endif
-                <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-                  @include('partials.place.sections.composition')
-                </x-edit-section>
-              </div>
-            </section>
-
-            <section class="section" id="impact-social">
-              @include('partials.place.sections.impact-social')
-            </section>
+      <section class="section" id="impact-social">
+        <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          @include('partials.place.sections.impact-social')
+        </x-edit-section>
+      </section>
 
       <section class="section anchor" id="lieu_territoire">
         <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
