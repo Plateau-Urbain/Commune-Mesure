@@ -524,9 +524,6 @@ p.partenaires_text{
 .img-places{
   max-height: 20em;
 }
-.slider-navigation-previous,.slider-navigation-next{
-  display: none !important;
-}
 .switch[type="checkbox"].is-success:checked + label::before, .switch[type="checkbox"].is-success:checked + label:before{
   background-color: #B5B5B5 !important;
 }
@@ -675,4 +672,8 @@ div.bloc-note{
 }
 .leaflet-container a.button {
 	color: #262631;
+}
+
+.carousel {
+    overflow: hidden;
 }

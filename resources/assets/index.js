@@ -16,8 +16,7 @@ import './js/tabs.js';
 
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 const carousels = bulmaCarousel.attach('.carousel', {
+  navigation: false,
   slidesToScroll: 1,
-  navigationKeys:false,
-  slidesToShow: 1,
-  loop:true,
+  slidesToShow: 1
 });

@@ -113,6 +113,10 @@
           @include('partials.place.sections.territoire')
         </x-edit-section>
       </section>
+
+      <section class="section anchor" id="carousel">
+        @include('partials.place.sections.carousel')
+      </section>
     </div>
 </div>
 
