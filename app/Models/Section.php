@@ -10,6 +10,6 @@ class Section extends Model
 
     public function places()
     {
-        return $this->belongsToMany(Place::class)->withTimestamps();
+        return $this->belongsToMany(Place::class)->withTimestamps()->withPivot('visible');
     }
 }

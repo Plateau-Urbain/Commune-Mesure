@@ -97,11 +97,14 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $s = Section::where('place_id', $slug)
-                            ->where('section', $section)
-                            ->firstOrFail();
+        $place_id = PlaceModel::where('place', $slug)->value('id');
 
-        $s->visible = ! $s->visible;
+        $s = Section::where('section', $section)->firstOrFail();
+        $visibility = $s->places()->where('place_id', $place_id)->value('visible');
+        $s->places()->updateExistingPivot($place_id, [
+            'visible' => ! $visibility
+        ]);
+
         $res = $s->save();
 
         $flash = ['success' => $res, 'section' => $section];
