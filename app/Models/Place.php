@@ -15,4 +15,33 @@ class Place extends Model
     {
         return $this->belongsToMany(Section::class)->withTimestamps()->withPivot('visible');
     }
+
+    public static function getValueByChemin($place,$chemin){
+      $array=explode("->", $chemin);
+      $result=$place;
+      foreach ($array as $champ){
+        $hash = preg_replace("/\[[0-9]+\]$/", "", $champ);
+        if(!isset($result->$hash)){
+          return;
+        }
+
+        $result=$result->$hash;
+
+        if(preg_match("/\[([0-9]+)\]$/", $champ, $matches)) {
+           $result=$result[$matches[1]];
+        }
+      }
+
+
+      if(is_array($result)) {
+        foreach ($result as $key => $value) {
+          if(is_object($value)){
+            return $result;
+          }
+        }
+        return implode("\n", $result);
+      }
+
+      return $result;
+  }
 }

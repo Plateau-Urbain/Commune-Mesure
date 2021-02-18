@@ -1,28 +1,42 @@
-<div class="modal" id="{{$section}}" style='padding-top:40px'>
+<span class="icon-edit" style="position: absolute;">
+    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
+</span>
+<div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Modifier le texte</p>
       <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
     </header>
-    <form method="POST" id="" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'section'=>$section])}}">
+    <form method="POST" id="" action="">
       <section class="modal-card-body">
 
-        @if(in_array($section,['bloc_gauche','gouvernance_partagee','acteurs_publics','acteurs_prives','nature_partenariats','appartenance','reseaux','sante','lien','insertion','capacite']))
-            <textarea id="{{$section}}" name="{{$section}}" style='width:600px;height:200px'>
-              @if($section =='bloc_gauche')
-                {{$place->description->value}}
-              @endif
-            </textarea>
-            <input hidden id='arborescence' name='arborescence'value="description->value"</input><!-- donner le chemin dans l'arborescence  -->
-        @elseif(in_array($section, ['bloc_droite','nb_struct_occupants','surface','nb_etp']))
-            <input type='number'></input>
+        @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
+        @if(is_array($valueChemin))
+          @foreach($valueChemin as $key=>$value)
+            @foreach ($value as $k=> $v)
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">{{ucfirst($k)}} :</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <input class="input" type="text" value="{{$v}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+            <hr/>
+          @endforeach
         @else
+        <textarea class="textarea">{{ $valueChemin }}</textarea>
         @endif
-
+        <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">
-        <button type="submit">Enregistrer</button>
+        <button class="button" type="submit">Enregistrer</button>
       </footer>
     </form>
   </div>

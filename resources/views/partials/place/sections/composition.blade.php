@@ -1,18 +1,21 @@
 <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
 <div class="field has-text-centered">
   <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
+  @include('components.modals.modalEdition',['chemin'=>'data->finance->composition'])
 </div>
 <canvas id="composition-chart-doughnut" ></canvas>
 
 <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
 <div class="columns">
   <div class="column is-offset-2 is-3">
-    <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
+    <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span> <br />
     <span class="title is-5">
       @if ($place->impact_economique->nombre_structures_crees > 1)
         structures créées
+        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @else
         structure créée
+        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @endif
     </span>
   </div>
