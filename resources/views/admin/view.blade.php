@@ -25,7 +25,15 @@
                             <p class="has-text-grey-dark is-size-7">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</p>
                         </td>
                         <td>
-                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">Espace d'admin</a>
+                          <div class="field has-addons">
+                            <p class="control is-expanded">
+                              <input class="input is-family-code" id="input-{{ $place->url }}" readonly type="text" value="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">
+                            </p>
+                            <p class="control">
+                              <a class="button button-clipboard" data-input="input-{{ $place->url }}"><i class="fa fa-clipboard"></i></a>
+                            </p>
+                          </div>
+                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">Accéder</a>
                         </td>
                         <td>
                             <button class="button is-success" disabled title="Télécharger le csv">
@@ -53,4 +61,26 @@
 
     </div>
 
+@endsection
+
+@section('script_js')
+  <script>
+    document.addEventListener('click', function(e) {
+      for (var target = e.target; target && target != this; target = target.parentNode) {
+        if (target.matches('.button-clipboard')) {
+          copypaste(target);
+          break;
+        }
+      }
+    }, false);
+
+    function copypaste(target) {
+      let input_id = target.dataset.input
+      let input = document.getElementById(input_id)
+
+      input.focus()
+      input.select()
+      navigator.clipboard.writeText(input.value)
+    }
+  </script>
 @endsection
