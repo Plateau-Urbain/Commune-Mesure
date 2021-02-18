@@ -2,16 +2,24 @@
     border: 1px $black dotted;
 
     &.hidden {
-        opacity: 0.5
+        opacity: 0.5;
+    }
+
+    .icon-edit {
+        margin: 0 5px;
+        text-align: left;
+        display: inline-block;
+
+        i {
+            cursor: help;
+        }
     }
 }
 
-.edit .icon-edit {
-    margin: 0 5px;
-    text-align: left;
-    display: inline-block;
+.edit.hidden .icon-edit:hover i.fa::before {
+    content: "\f06e";
+}
 
-    i {
-        cursor: help;
-    }
+.edit .icon-edit:hover i.fa::before {
+    content: "\f070";
 }
