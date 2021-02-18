@@ -1,7 +1,10 @@
 .carousel-container {
     overflow: hidden;
-    padding-left: 50px;
-    padding-right: 50px;
+
+    &.with-padding {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }
 
 .map-place {
