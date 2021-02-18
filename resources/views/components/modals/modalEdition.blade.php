@@ -1,6 +1,6 @@
-<div class="icon-edit">
+<span class="icon-edit" style="position: absolute">
     <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
-</div>
+</span>
 <div class="modal" id="{{$chemin}}">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -10,10 +10,10 @@
     </header>
     <form method="POST" id="" action="">
       <section class="modal-card-body">
-        <textarea style='width:600px;height:200px'>{{ \app\Models\Place::getValueByChemin($place,$chemin) }}</textarea>
+        <textarea class="textarea">{{ \app\Models\Place::getValueByChemin($place,$chemin) }}</textarea>
       </section>
       <footer class="modal-card-foot">
-        <button type="submit">Enregistrer</button>
+        <button class="button" type="submit">Enregistrer</button>
       </footer>
     </form>
   </div>
