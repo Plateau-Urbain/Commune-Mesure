@@ -122,9 +122,4 @@
     </div>
 </div>
 
-@if(isset($edit) && $edit)
-  @foreach($sections as $section => $visibility)
-    @include('components.modals.modalEdition',['section'=>$section])
-  @endforeach
-@endif
 @endsection

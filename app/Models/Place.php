@@ -15,4 +15,13 @@ class Place extends Model
     {
         return $this->belongsToMany(Section::class)->withTimestamps()->withPivot('visible');
     }
+    
+    public static function getValueByChemin($place,$chemin){
+      $array=explode("->", $chemin);
+      $result=$place;
+      foreach ($array as $champ){
+        $result=$result->$champ;
+      }
+      return $result;
+    }
 }
