@@ -38,7 +38,7 @@
                                 <span class="icon is-small">
                                     <i class="fas fa-redo"></i>
                                 </span>
-                                <span>Changer la hash admin</span>
+                                <span>Renouveller la clé secrète</span>
                             </button>
                             <button class="button is-danger is-outlined" disabled>
                                 <span>Delete</span>
