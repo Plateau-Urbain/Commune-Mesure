@@ -16,10 +16,10 @@
     }
 }
 
-.edit.hidden .icon-edit:hover i.fa::before {
+.edit.hidden .icon-edit:hover i.fa.fa-eye-slash::before {
     content: "\f06e";
 }
 
-.edit .icon-edit:hover i.fa::before {
+.edit .icon-edit:hover i.fa.fa-eye::before {
     content: "\f070";
 }
