@@ -28,7 +28,16 @@
 @endsection
 
 @section('content')
-
+  @isset($edit)
+  <div class="has-background-warning">
+    <div class="container">
+      <p class="has-text-centered has-text-weight-bold py-2">
+        Vous êtes en mode édition.<br/>
+        Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page du lieu</a>.
+      </p>
+    </div>
+  </div>
+  @endisset
 <div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('partials.place.place-menu')
