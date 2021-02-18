@@ -22,7 +22,22 @@
                 <div class="field-body">
                   <div class="field">
                     <div class="control">
+                      @if(is_array($v) && isset($type) && $type == 'checkbox')
+                        @foreach($v as $kCheck => $vCheck)
+                        <div class="field">
+                          <div class="control">
+                            <label class="checkbox">
+                              <input type="checkbox" value="{{$kCheck}}" checked="checked">
+                              {{ $vCheck }}
+                            </label>
+                          </div>
+                        </div>
+                        @endforeach
+                      @elseif(is_array($v))
+                      <textarea class="textarea">{{ implode("\n", $v) }}</textarea>
+                      @elseif(!is_object($v))
                       <input class="input" type="text" value="{{$v}}">
+                      @endif
                     </div>
                   </div>
                 </div>
