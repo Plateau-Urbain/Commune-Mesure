@@ -8,13 +8,16 @@
     <div class="impact_item bottom left" id="impact_item_reseaux" data-aos="fade-in">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Reseaux) && $impact->Reseaux->show)
-          @foreach($impact->Reseaux->text as $text) @php( $impact_reseau_text = $text ) @endforeach
+          @foreach($impact->Reseaux->text as $text)
+          @php( $impact_reseau_text = $text )
+          @php ($impact_chemin='impact['.$key.']->Reseaux->text')
+          @endforeach
         @endif
       @endforeach
       <div @isset($impact_reseau_text) data-tooltip="{{ $impact_reseau_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_reseau_text) impact_disabled @endisset">
         <svg  width="215" height="150" viewBox="20 20 75 40">
           <path class="path-2s" stroke-dasharray="414" fill="none" stroke="black" stroke-width="1.2" d="M 30 30 a 3 1 0 0 1 50 20 a -3 -1 1 0 1 -40 -20 m 0 -10"/>
-          <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux @include('components.modals.modalEdition',['chemin'=>'impact->Reseaux->text'])</text>
+          <text x="45" y="40" font-size="8" font-weight="bold" fill="#004c44">Réseaux @include('components.modals.modalEdition',['chemin'=>$impact_chemin])</text>
 
         </svg>
       </div>
@@ -23,8 +26,9 @@
     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Appartenance) && $impact->Appartenance->show)
-          @foreach($impact->Appartenance->text as $text) @php( $impact_appartenance_text = $text)
-          @php ($impact_chemin='impact->'.$key.'->Appartenance->text')
+          @foreach($impact->Appartenance->text as $text)
+          @php( $impact_appartenance_text = $text)
+          @php ($impact_chemin='impact['.$key.']->Appartenance->text')
           @endforeach
         @endif
       @endforeach
@@ -46,7 +50,10 @@
     <div class="impact_item top left" id="impact_item_sante" data-aos="fade-in">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Sante) && $impact->Sante->show)
-          @foreach($impact->Sante->text as $text) @php( $impact_sante_text = $text ) @endforeach
+          @foreach($impact->Sante->text as $text)
+          @php( $impact_sante_text = $text )
+          @php ($impact_chemin='impact['.$key.']->Sante->text')
+          @endforeach
         @endif
       @endforeach
       <div @isset($impact_sante_text) data-tooltip="{{ $impact_sante_text }}" @endisset class="impact_tooltip has-tooltip-bottom  has-tooltip-multiline @empty($impact_sante_text) impact_disabled @endisset">
@@ -61,7 +68,10 @@
     <div class="impact_item bottom left" id="impact_item_insertion" data-aos="fade-in">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Insertion) && $impact->Insertion->show)
-          @foreach($impact->Insertion->text as $text) @php($impact_insertion_text = $text ) @endforeach
+          @foreach($impact->Insertion->text as $text)
+          @php($impact_insertion_text = $text )
+          @php ($impact_chemin='impact['.$key.']->Insertion->text')
+          @endforeach
         @endif
       @endforeach
       <div @isset($impact_insertion_text) data-tooltip="{{ $impact_insertion_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_insertion_text) impact_disabled @endisset">
@@ -76,7 +86,10 @@
     <div class="impact_item top right" id="impact_item_lien" data-aos="fade-in">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Lien) && $impact->Lien->show)
-          @foreach($impact->Lien->text as $text) @php($impact_lien_text = $text) @endforeach
+          @foreach($impact->Lien->text as $text)
+          @php($impact_lien_text = $text)
+          @php ($impact_chemin='impact['.$key.']->Lien->text')
+          @endforeach
         @endif
       @endforeach
       <div @isset($impact_lien_text) data-tooltip="{{ $impact_lien_text }}" @endisset class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_lien_text) impact_disabled @endisset">
@@ -91,7 +104,10 @@
     <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
       @foreach($place->impact as $key => $impact)
         @if(isset($impact->Capacite) && $impact->Capacite->show)
-          @foreach($impact->Capacite->text as $text) @php( $impact_capacite_text = $text ) @endforeach
+          @foreach($impact->Capacite->text as $text)
+          @php( $impact_capacite_text = $text )
+          @php ($impact_chemin='impact['.$key.']->Capacite->text')
+          @endforeach
         @endif
       @endforeach
       <div @isset( $impact_capacite_text ) data-tooltip="{{ $impact_capacite_text }}" @endisset class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact_disabled @endisset">

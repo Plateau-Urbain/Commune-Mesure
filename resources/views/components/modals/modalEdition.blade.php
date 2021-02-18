@@ -1,7 +1,7 @@
 <span class="icon-edit" style="position: absolute;">
     <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
 </span>
-<div class="modal" id="{{$chemin}}">
+<div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
