@@ -66,8 +66,8 @@ class PlaceController extends Controller
         }
 
         $this->sortDataInsee($place);
-        $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
-
+        // $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
+        $sections= Section::all();
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
 
@@ -108,6 +108,35 @@ class PlaceController extends Controller
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
     }
 
+
+
+    public function update(Request $request,$slug,$auth,$section){
+       $placeClient = new Place();
+       if ($placeClient->check($slug, $auth) === false) {
+         abort(403, 'Wrong authentication string');
+       }
+       if ($auth === str_repeat('a', 64)) {
+           throw new \LogicException('Exiting, default admin hash');
+       }
+       $place = $placeClient->getOne($slug);
+
+       //echo($request->arborescence);
+       $description =$request->arborescence;
+       // exit;
+
+       // $array=json_encode($place);
+       // $array_json=json_decode($array);
+
+       // dd($place->$obj);
+       $place->$description = $request->$section;
+       //$place->description->value = $request->$section;
+
+       // dd(gettype($place->description));
+
+
+       $placeClient->save($slug,$place);
+       return redirect(route('place.edit', compact('slug', 'auth')));
+    }
 
     protected function sortDataInsee($place){
         //Sort insee object data on each zone map

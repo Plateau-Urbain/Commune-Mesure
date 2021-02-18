@@ -24,9 +24,11 @@
     @include('js.place.d3-doughnut-finance-js')
     @include('js.place.insee-chart-js')
     @include('js.place.value-bubbles')
+    @include('js.place.modals')
 @endsection
 
 @section('content')
+
 <div class="columns is-gapless" id="container">
     <div class="column is-2">
         @include('partials.place.place-menu')
@@ -110,7 +112,13 @@
           @include('partials.place.sections.territoire')
         </x-edit-section>
       </section>
+
     </div>
 </div>
 
+@if(isset($edit) && $edit) 
+  @foreach($sections as $section)
+    @include('components.modals.modalEdition',['section'=>$section->section])
+  @endforeach
+@endif
 @endsection

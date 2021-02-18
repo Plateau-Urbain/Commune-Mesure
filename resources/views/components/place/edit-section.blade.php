@@ -25,7 +25,7 @@
         </div>
 
         <div class="icon-edit">
-            <i class="fa fa-pen" title="Éditer la section"></i>
+            <i class="fa fa-pen modal-crayon" data-modal="{{ $section }}" title="Éditer la section"></i>
         </div>
         @endif
 
