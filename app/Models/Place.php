@@ -41,7 +41,24 @@ class Place extends Model
         }
         return implode("\n", $result);
       }
-
       return $result;
+  }
+
+  public static function getHeadObjectChemin($place,$chemin){
+    $array=explode('->',$chemin);
+    $result=$place;
+    for($i=0 ; $i < count($array)-1; $i++){
+      $result=$result->{$array[$i]};
+    }
+    return $result;
+  }
+
+  public static function getLastChemin($chemin){
+    $array=explode('->',$chemin);
+    return ($array[count($array)-1]);
+  }
+
+  public static function setValueByChemin($place,$chemin,$newValue){
+    return (self::getHeadObjectChemin($place,$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
 }

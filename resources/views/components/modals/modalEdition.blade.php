@@ -11,7 +11,7 @@
       <p class="modal-card-title">Modifier le texte</p>
       <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
     </header>
-    <form method="POST" id="" action="">
+    <form method="POST" id="" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
       <section class="modal-card-body">
 
         @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
@@ -49,7 +49,7 @@
             <hr/>
           @endforeach
         @else
-        <textarea class="textarea">{{ $valueChemin }}</textarea>
+        <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
         @endif
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
