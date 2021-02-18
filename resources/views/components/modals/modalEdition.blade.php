@@ -1,7 +1,7 @@
 @if(!isset($edit))
   @php return @endphp
 @endif
-<span class="icon-edit" style="position: absolute;">
+<span class="icon-edit">
     <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
