@@ -12,7 +12,7 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP</span>
+    <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre'])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
     @if($place->data->compare->moyens->etp->nombre >= 10)
@@ -37,7 +37,7 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>
+    <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre'])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
     @if($place->data->compare->moyens->benevole->nombre >= 10)

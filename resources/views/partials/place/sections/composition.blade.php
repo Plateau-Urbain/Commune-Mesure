@@ -7,12 +7,14 @@
 <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
 <div class="columns">
   <div class="column is-offset-2 is-3">
-    <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span><br />
+    <span class="title is-1">{{ $place->impact_economique->nombre_structures_crees }}</span> <br />
     <span class="title is-5">
       @if ($place->impact_economique->nombre_structures_crees > 1)
         structures créées
+        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @else
         structure créée
+        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @endif
     </span>
   </div>
