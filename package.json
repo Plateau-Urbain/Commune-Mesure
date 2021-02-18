@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/24eme/Commune-Mesure#readme",
   "devDependencies": {
-    "bulma": "^0.9.1",
     "css-loader": "^3.6.0",
     "expose-loader": "^0.7.5",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -35,6 +34,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "bulma": "^0.9.1",
     "@creativebulma/bulma-tooltip": "^1.2.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "bulma-carousel": "^4.0.4",

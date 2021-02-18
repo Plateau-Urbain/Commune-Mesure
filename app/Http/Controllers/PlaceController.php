@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\Models\Place as PlaceModel;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PlaceController extends Controller
         }
 
         $place->slug = $slug;
-        $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
+        $sections = PlaceModel::where('place', $slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
 
         $this->sortDataInsee($place);
 
@@ -66,8 +67,8 @@ class PlaceController extends Controller
         }
 
         $this->sortDataInsee($place);
-        // $sections = Section::where('place_id', $slug)->pluck('visible', 'section');
-        $sections= Section::all();
+        $sections = PlaceModel::where('place', $slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
+
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
 
@@ -96,11 +97,14 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $s = Section::where('place_id', $slug)
-                            ->where('section', $section)
-                            ->firstOrFail();
+        $place_id = PlaceModel::where('place', $slug)->value('id');
 
-        $s->visible = ! $s->visible;
+        $s = Section::where('section', $section)->firstOrFail();
+        $visibility = $s->places()->where('place_id', $place_id)->value('visible');
+        $s->places()->updateExistingPivot($place_id, [
+            'visible' => ! $visibility
+        ]);
+
         $res = $s->save();
 
         $flash = ['success' => $res, 'section' => $section];

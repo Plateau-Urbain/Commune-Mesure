@@ -1,0 +1,43 @@
+.carousel {
+    overflow: hidden;
+}
+
+.map-place {
+    display: inline-block;
+    height: 230px;
+    width: 345px;
+}
+
+li.tags{
+    display: inline-flex;
+    color: $text-light;
+    border-radius: $radius-small;
+    background-color: $grey-lightest;
+    padding-left: $size-normal;
+    padding-right: $size-normal;
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+.is-clickable {
+    cursor: pointer;
+}
+
+.btn-voir-lieu {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+}
+
+.content ul.tags_container{
+  position: absolute;
+  bottom: 0.75rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-left: 0;
+}

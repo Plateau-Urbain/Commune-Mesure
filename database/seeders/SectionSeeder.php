@@ -45,7 +45,7 @@ class SectionSeeder extends Seeder
 
         foreach ($sections as $section) {
             foreach ($places as $place) {
-                $section->place()->attach($place->place);
+                $section->places()->attach($place->id);
             }
         }
     }

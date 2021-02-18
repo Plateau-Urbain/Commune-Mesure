@@ -11,23 +11,23 @@
             @foreach ($places as $place)
                 <div class="box box-lieu content">
                     <div class="columns is-bordered places-block">
-                        <div class="column is-clickable" style="position:relative; height:250px; overflow: hidden;">
-                            <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->url ])  }}">{{ $place->name }}</a><br />
+                        <div class="column is-clickable" style="position:relative; height:250px;">
+                            <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->url ]) }}">{{ $place->name }}</a><br />
                             <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</span></p>
                             <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ json_decode($place->description)->value }}</p>
                             <ul class="tags_container">
                             @foreach(json_decode($place->tags) as $tag)
-                            <li class="tags">{{$tag}}</li>
+                              <li class="tags">{{$tag}}</li>
                             @endforeach
                             </ul>
-                            <a href="{{ route('place.show',['slug' => $place->url ])  }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
+                            <a href="{{ route('place.show',['slug' => $place->url ]) }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
-                        <div class="column is-one-third has-text-centered" style="overflow: hidden;">
-                            <div id="carousel-{{ $place->url }}" style="height: 230px; overflow: hidden; " class="carousel">
+                        <div class="column is-one-third has-text-centered">
+                            <div id="carousel-{{ $place->url }}" class="carousel">
                             @if( count(json_decode($place->photos)) > 0)
-                              <img class="img-places" style="height: 230px;" src='{{ url("/") }}/images/lieux/{{ json_decode($place->photos)[0] }}'>
+                              <img class="img-places" height="230px" src='{{ url("/") }}/images/lieux/{{ json_decode($place->photos)[0] }}'>
                             @endif
-                              <div class="map-place" style="height: 230px; width: 345px; display: inline-block;" id="map_{{ $place->url }}"></div>
+                              <div class="map-place" id="map_{{ $place->url }}"></div>
                             </div>
                         </div>
                     </div>
