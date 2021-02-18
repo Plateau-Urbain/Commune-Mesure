@@ -17,9 +17,9 @@
             'section' => $section
           ]) }}">
             @if ($sectionVisibility)
-              <i class="fa fa-eye-slash" title="Cacher la section"></i>
+              <i class="fa fa-eye" title="Cacher la section"></i>
             @else
-              <i class="fa fa-eye" title="Afficher la section"></i>
+              <i class="fa fa-eye-slash" title="Afficher la section"></i>
             @endif
           </a>
         </div>
