@@ -28,20 +28,17 @@
                             <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">Espace d'admin</a>
                         </td>
                         <td>
-                            <button class="button is-success" disabled>
+                            <button class="button is-success" disabled title="Télécharger le csv">
                                 <span class="icon is-small">
                                     <i class="fas fa-download"></i>
                                 </span>
-                                <span>Télécharger le csv</span>
                             </button>
-                            <button class="button is-warning" disabled>
+                            <button class="button is-warning" disabled title="Renouveller la clé secrète">
                                 <span class="icon is-small">
                                     <i class="fas fa-redo"></i>
                                 </span>
-                                <span>Renouveller la clé secrète</span>
                             </button>
-                            <button class="button is-danger is-outlined" disabled>
-                                <span>Delete</span>
+                            <button class="button is-danger is-outlined" disabled title="Suppression du lieu">
                                 <span class="icon is-small">
                                     <i class="fas fa-times"></i>
                                 </span>
