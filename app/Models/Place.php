@@ -20,11 +20,23 @@ class Place extends Model
       $array=explode("->", $chemin);
       $result=$place;
       foreach ($array as $champ){
-        if(!isset($result->$champ)){
+        $hash = preg_replace("/\[[0-9]+\]$/", "", $champ);
+        if(!isset($result->$hash)){
           return;
         }
-        $result=$result->$champ;
+
+        $result=$result->$hash;
+
+        if(preg_match("/\[([0-9]+)\]$/", $champ, $matches)) {
+           $result=$result[$matches[1]];
+        }
       }
+
+      if(is_array($result)) {
+
+        return implode("\n", $result);
+      }
+
       return $result;
   }
 }

@@ -11,6 +11,7 @@
     <form method="POST" id="" action="">
       <section class="modal-card-body">
         <textarea class="textarea">{{ \app\Models\Place::getValueByChemin($place,$chemin) }}</textarea>
+        <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">
         <button class="button" type="submit">Enregistrer</button>
