@@ -32,8 +32,13 @@ class Place extends Model
         }
       }
 
-      if(is_array($result)) {
 
+      if(is_array($result)) {
+        foreach ($result as $key => $value) {
+          if(is_object($value)){
+            return $result;
+          }
+        }
         return implode("\n", $result);
       }
 

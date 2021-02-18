@@ -1,6 +1,7 @@
 <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
 <div class="field has-text-centered">
   <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
+  @include('components.modals.modalEdition',['chemin'=>'data->finance->composition'])
 </div>
 <canvas id="composition-chart-doughnut" ></canvas>
 
