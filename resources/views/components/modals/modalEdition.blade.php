@@ -5,15 +5,14 @@
     <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
-  <div class="modal-background"></div>
+  <div class="modal-background" ></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modifier le texte</p>
+      <h2 class="modal-card-title">Modifier le texte</h2>
       <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
     </header>
     <form method="POST" id="" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
       <section class="modal-card-body">
-
         @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
         @if(is_array($valueChemin))
           @foreach($valueChemin as $key=>$value)
@@ -54,7 +53,11 @@
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">
-        <button class="button" type="submit">Enregistrer</button>
+        <span class="container">
+          <span class="field">
+            <button class="button is-pulled-right is-success" type="submit">Enregistrer</button>
+          </span>
+        </span>
       </footer>
     </form>
   </div>

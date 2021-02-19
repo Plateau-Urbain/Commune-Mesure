@@ -19,6 +19,7 @@
             @yield('content')
         </div>
 
+        <div id="modal_container"></div>
          @section('script_js')
              <script src="/js/global.js"></script>
              <script src="/js/bundle.js"></script>
