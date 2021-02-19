@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
+                        <th>Accéder</th>
                         <th>Page d'administration</th>
                         <th>Actions</th>
                     </tr>
@@ -25,6 +26,15 @@
                             <p class="has-text-grey-dark is-size-7">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</p>
                         </td>
                         <td>
+                          <button class="button" title="Accéder au lieu ">
+                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">
+                                <span class="icon is-small">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </span>
+                              </a>
+                          </button>
+                        </td>
+                        <td>
                           <div class="field has-addons">
                             <p class="control is-expanded">
                               <input class="input is-family-code" id="input-{{ $place->url }}" readonly type="text" value="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">
@@ -33,7 +43,6 @@
                               <a class="button button-clipboard" data-input="input-{{ $place->url }}"><i class="fa fa-clipboard"></i></a>
                             </p>
                           </div>
-                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">Accéder</a>
                         </td>
                         <td>
                             <button class="button is-success" disabled title="Télécharger le csv">
