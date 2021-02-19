@@ -23,7 +23,7 @@
                             <a href="{{ route('place.show',['slug' => $place->url ]) }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
                         <div class="column is-one-third has-text-centered">
-                            <div id="carousel-{{ $place->url }}" class="carousel">
+                            <div id="carousel-{{ $place->url }}" class="carousel carousel-container">
                             @if( count(json_decode($place->photos)) > 0)
                               <img class="img-places" height="230px" src='{{ url("/") }}/images/lieux/{{ json_decode($place->photos)[0] }}'>
                             @endif
