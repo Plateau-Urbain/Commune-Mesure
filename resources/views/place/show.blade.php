@@ -128,7 +128,9 @@
       </section>
 
       <section class="section anchor" id="carousel">
-        @include('partials.place.sections.carousel')
+        <x-edit-section :edit="isset($edit)" section="gallerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          @include('partials.place.sections.carousel')
+        </x-edit-section>
       </section>
     </div>
 </div>
