@@ -29,11 +29,10 @@
 
 @section('content')
   @isset($edit)
-  <div class="has-background-warning">
+  <div style="position: fixed;width: 100%;top: 50px; z-index: 999;" class="has-background-warning">
     <div class="container">
       <p class="has-text-centered has-text-weight-bold py-2">
-        Vous êtes en mode édition.<br/>
-        Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page du lieu</a>.
+        Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
       </p>
     </div>
   </div>
