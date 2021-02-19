@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
 
@@ -59,6 +60,9 @@ class Place extends Model
   }
 
   public static function setValueByChemin($place,$chemin,$newValue){
+    if(is_array(self::getValueByChemin($place,$chemin))){
+       throw new Exception('Not Implemented');
+    }
     return (self::getHeadObjectChemin($place,$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
 }
