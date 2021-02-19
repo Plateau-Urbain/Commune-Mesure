@@ -54,8 +54,9 @@
       </section>
       <footer class="modal-card-foot">
         <span class="container">
-          <span class="field">
-            <button class="button is-pulled-right is-success" type="submit">Enregistrer</button>
+          <span class="field is-grouped is-grouped-right">
+            <button class="button modal-croix" type="submit">Annuler</button>
+            <button class="button is-success" type="submit">Enregistrer</button>
           </span>
         </span>
       </footer>
