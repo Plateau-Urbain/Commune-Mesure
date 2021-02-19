@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Accéder</th>
+                        <th>Administrer</th>
                         <th>Page d'administration</th>
                         <th>Actions</th>
                     </tr>
@@ -26,7 +26,7 @@
                             <p class="has-text-grey-dark is-size-7">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</p>
                         </td>
                         <td>
-                          <button class="button" title="Accéder au lieu ">
+                          <button class="button" title="Administrer le lieu ">
                             <a target="_blank" href="{{ route('place.edit', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}">
                                 <span class="icon is-small">
                                     <i class="fas fa-external-link-alt"></i>
