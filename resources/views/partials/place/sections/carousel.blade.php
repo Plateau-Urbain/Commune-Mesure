@@ -12,8 +12,10 @@
   </div>
   @else
     <div>
-      <p>Vous n'avez pas de photos</p>
-      <p><a href="#">Ajouter une photo</a></p>
+      <p>Il n'y a pas encore de photo.</p>
+      @isset($edit)
+        @include('components.modals.modalEdition', ['chemin' => 'photos'])
+      @endisset
     </div>
   @endunless
 </div>
