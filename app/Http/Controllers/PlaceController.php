@@ -114,7 +114,7 @@ class PlaceController extends Controller
 
 
 
-    public function update(Request $request,$slug,$auth,$section){
+    public function update(Request $request,$slug,$auth){
        $placeClient = new Place();
        if ($placeClient->check($slug, $auth) === false) {
          abort(403, 'Wrong authentication string');
@@ -124,20 +124,7 @@ class PlaceController extends Controller
        }
        $place = $placeClient->getOne($slug);
 
-       //echo($request->arborescence);
-       $description =$request->arborescence;
-       // exit;
-
-       // $array=json_encode($place);
-       // $array_json=json_decode($array);
-
-       // dd($place->$obj);
-       $place->$description = $request->$section;
-       //$place->description->value = $request->$section;
-
-       // dd(gettype($place->description));
-
-
+       PlaceModel::setValueByChemin($place,$request->chemin,$request->champ);
        $placeClient->save($slug,$place);
        return redirect(route('place.edit', compact('slug', 'auth')));
     }

@@ -1,4 +1,7 @@
-<span class="icon-edit" style="position: absolute;">
+@if(!isset($edit))
+  @php return @endphp
+@endif
+<span class="icon-edit">
     <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
@@ -8,7 +11,7 @@
       <p class="modal-card-title">Modifier le texte</p>
       <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
     </header>
-    <form method="POST" id="" action="">
+    <form method="POST" id="" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
       <section class="modal-card-body">
 
         @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
@@ -22,7 +25,22 @@
                 <div class="field-body">
                   <div class="field">
                     <div class="control">
+                      @if(is_array($v) && isset($type) && $type == 'checkbox')
+                        @foreach($v as $kCheck => $vCheck)
+                        <div class="field">
+                          <div class="control">
+                            <label class="checkbox">
+                              <input type="checkbox" value="{{$kCheck}}" checked="checked">
+                              {{ $vCheck }}
+                            </label>
+                          </div>
+                        </div>
+                        @endforeach
+                      @elseif(is_array($v))
+                      <textarea class="textarea">{{ implode("\n", $v) }}</textarea>
+                      @elseif(!is_object($v))
                       <input class="input" type="text" value="{{$v}}">
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -31,7 +49,7 @@
             <hr/>
           @endforeach
         @else
-        <textarea class="textarea">{{ $valueChemin }}</textarea>
+        <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
         @endif
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>

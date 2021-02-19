@@ -71,7 +71,8 @@
 
       <section class="section">
         <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
-          @include('components.modals.modalEdition',['chemin'=>'opening->publics'])
+
+          @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox'])
           <div class="columns has-text-centered">
             <div class="column">
               @include('partials.place.sections.public')
