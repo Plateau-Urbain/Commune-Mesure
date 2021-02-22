@@ -2,7 +2,7 @@
   @php return @endphp
 @endif
 <span class="icon-edit">
-    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
+    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
@@ -55,7 +55,7 @@
       <footer class="modal-card-foot">
         <span class="container">
           <span class="field is-grouped is-grouped-right">
-            <button class="button modal-croix" type="submit">Annuler</button>
+            <button class="button modal-croix">Annuler</button>
             <button class="button is-success" type="submit">Enregistrer</button>
           </span>
         </span>

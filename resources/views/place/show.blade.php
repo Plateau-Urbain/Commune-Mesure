@@ -33,6 +33,7 @@
     <div class="container">
       <p class="has-text-centered has-text-weight-bold py-2">
         Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
+      <span style="color:red;float:right" class=" has-text-right"><a href="{{ route('place.show', ['slug' => $slug]) }}"><i class='fas fa-times'></i></a></span>
       </p>
     </div>
   </div>
