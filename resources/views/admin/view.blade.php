@@ -90,6 +90,14 @@
       input.focus()
       input.select()
       navigator.clipboard.writeText(input.value)
+
+      changeIcon(target, 'fa-check')
+      window.setTimeout(function() {changeIcon(target, 'fa-clipboard')}, 15*1000)
+    }
+
+    function changeIcon(target, icon) {
+      target.firstElementChild.classList.remove('fa-check', 'fa-clipboard')
+      target.firstElementChild.classList.add(icon)
     }
   </script>
 @endsection
