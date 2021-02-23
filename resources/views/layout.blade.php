@@ -8,7 +8,6 @@
         @section('head_css')
             <link rel="stylesheet" href="/css/aos.css" />
             <link rel="stylesheet" href="/css/app.css" />
-            <link rel="stylesheet" type="text/css" href="/css/easyScrollDots.min.css" />
         @show
     </head>
     <body>

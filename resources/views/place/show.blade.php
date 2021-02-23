@@ -39,8 +39,10 @@
   </div>
   @endisset
 <div class="columns is-gapless is-mobile" id="container">
-
-    <div class="column is-10  is-offset-1" >
+  <div class="column is-2">
+         @include('partials.place.place-menu')
+     </div>
+    <div class="column" >
 
       <section class="section " id="0">
         <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">

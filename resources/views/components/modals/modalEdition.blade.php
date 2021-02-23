@@ -11,7 +11,7 @@
       <h2 class="modal-card-title">Modifier le texte</h2>
       <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
     </header>
-    <form method="POST" id="" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
+    <form method="POST" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
       <section class="modal-card-body">
         @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
         @if(is_array($valueChemin))
