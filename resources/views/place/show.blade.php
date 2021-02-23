@@ -172,10 +172,10 @@
 
 <script>
 easyScrollDots({
-  'fixedNav': false, // Set to true if you have a fixed nav.
-  'fixedNavId': '', // Set to the id of your navigation element if 'fixedNav' is true (easyScrollDots will measure the height of the element).
+  'fixedNav': true, // Set to true if you have a fixed nav.
+  'fixedNavId': 'main-navbar', // Set to the id of your navigation element if 'fixedNav' is true (easyScrollDots will measure the height of the element).
   'fixedNavUpward': false, // Set to true if your nav is only sticky when the user is scrolling up (requires 'fixedNav' to be true and 'fixedNavId' to be a value).
-  'offset': 0 // Set to the amount of pixels you wish to offset the scroll amount by.
+  'offset': 50 // Set to the amount of pixels you wish to offset the scroll amount by.
 });
 </script>
 @endsection
