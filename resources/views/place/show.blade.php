@@ -107,9 +107,19 @@
           @endif
 
           <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
+              <div>
+                  <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens"></div>
+              </div>
+            @elseif(isset($edit))
             <div>
-                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens"></div>
+                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
+            @elseif(!isset($edit) && ($sections->has('composition') || $sections->get('composition')) && $sections->has('moyens') || $sections->get('moyens'))
+            <div>
+                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens / La composition"></div>
+            </div>
+            @endif
             @include('partials.place.sections.moyens')
           </x-edit-section>
 
@@ -118,9 +128,12 @@
             @php $class="is-6 is-offset-3" @endphp
           @endif
           <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+
+            @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
             <div>
-                <div class="scroll-indicator" id="section07" data-scroll-indicator-title="La composition"></div>
+                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="La composition"></div>
             </div>
+            @endif
             @include('partials.place.sections.composition')
           </x-edit-section>
         </div>
@@ -129,7 +142,7 @@
       <section  class="section">
         <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
           <div>
-              <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
+              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="L'impact social"></div>
           </div>
           @include('partials.place.sections.impact-social')
         </x-edit-section>
@@ -138,7 +151,7 @@
       <section class="section anchor">
         <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
           <div>
-              <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
+              <div class="scroll-indicator" id="section05" data-scroll-indicator-title="Le territoire"></div>
           </div>
           @include('partials.place.sections.territoire')
         </x-edit-section>
@@ -146,7 +159,7 @@
       <section class="section anchor">
         <x-edit-section :edit="isset($edit)" section="gallerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
           <div>
-              <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
+              <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Galerie"></div>
           </div>
           @include('partials.place.sections.carousel')
         </x-edit-section>
