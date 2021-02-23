@@ -38,14 +38,15 @@
     </div>
   </div>
   @endisset
-<div class="columns is-gapless" id="container">
-    <div class="column is-2">
-        @include('partials.place.place-menu')
-    </div>
+<div class="columns is-gapless is-mobile" id="container">
 
-    <div class="column">
-      <section class="section">
+    <div class="column is-10  is-offset-1" >
+
+      <section class="section " id="0">
         <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div>
+              <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
+          </div>
           <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
           <div class="has-text-centered pt-2">
             <p><i class="fas fa-clock font-color-theme mr-1"></i>
@@ -89,19 +90,26 @@
         </x-edit-section>
       </section>
 
-      <section class="section" id="valeurs">
+      <section class="section">
         <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div>
+              <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Les valeurs"></div>
+          </div>
           @include('partials.place.sections.values')
         </x-edit-section>
       </section>
 
-      <section class="section" id="finances">
+      <section  class="section">
         <div class="columns">
           @php $class="" @endphp
           @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
             @php $class="is-6 is-offset-3" @endphp
           @endif
+
           <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            <div>
+                <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens"></div>
+            </div>
             @include('partials.place.sections.moyens')
           </x-edit-section>
 
@@ -110,29 +118,49 @@
             @php $class="is-6 is-offset-3" @endphp
           @endif
           <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            <div>
+                <div class="scroll-indicator" id="section07" data-scroll-indicator-title="La composition"></div>
+            </div>
             @include('partials.place.sections.composition')
           </x-edit-section>
         </div>
       </section>
 
-      <section class="section" id="impact-social">
+      <section  class="section">
         <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div>
+              <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
+          </div>
           @include('partials.place.sections.impact-social')
         </x-edit-section>
       </section>
 
-      <section class="section anchor" id="lieu_territoire">
+      <section class="section anchor">
         <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div>
+              <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
+          </div>
           @include('partials.place.sections.territoire')
         </x-edit-section>
       </section>
-
-      <section class="section anchor" id="carousel">
+      <section class="section anchor">
         <x-edit-section :edit="isset($edit)" section="gallerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+          <div>
+              <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
+          </div>
           @include('partials.place.sections.carousel')
         </x-edit-section>
       </section>
     </div>
 </div>
+<script type="text/javascript" src="/js/easyScrollDots.min.js"></script>
 
+<script>
+easyScrollDots({
+  'fixedNav': false, // Set to true if you have a fixed nav.
+  'fixedNavId': '', // Set to the id of your navigation element if 'fixedNav' is true (easyScrollDots will measure the height of the element).
+  'fixedNavUpward': false, // Set to true if your nav is only sticky when the user is scrolling up (requires 'fixedNav' to be true and 'fixedNavId' to be a value).
+  'offset': 0 // Set to the amount of pixels you wish to offset the scroll amount by.
+});
+</script>
 @endsection
