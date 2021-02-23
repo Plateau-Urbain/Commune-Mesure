@@ -42,9 +42,9 @@
   <div class="column is-2">
          @include('partials.place.place-menu')
      </div>
-    <div class="column" >
+    <div class="column">
 
-      <section class="section " id="0">
+      <section class="section " id="section01">
         <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
           <div>
               <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
