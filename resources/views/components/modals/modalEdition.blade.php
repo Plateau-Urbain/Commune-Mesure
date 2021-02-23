@@ -7,12 +7,29 @@
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
   <div class="modal-card">
+
     <header class="modal-card-head">
-      <h2 class="modal-card-title">Modifier le texte</h2>
-      <i class="fas fa-times modal-croix" title="Fermer modale" ></i>
+      <div class="modal-card-title">
+        <h2 >
+           @if(isset($titre))
+              {{$titre}}
+           @endif
+         </h2>
+      </div>
+       <button class="delete modal-croix" aria-label="close"></button>
+       <br>
+
     </header>
+
     <form method="POST" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
+
       <section class="modal-card-body">
+        @if(isset($description))
+          <small style='margin-left:10px'>
+             {{$description}}
+          </small>
+          <hr style='border:1px solid #dbdbdb'>
+        @endif
         @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
         @if(is_array($valueChemin))
           @foreach($valueChemin as $key=>$value)

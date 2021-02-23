@@ -32,13 +32,9 @@ document.addEventListener('click', function(e){
 
 
 function fermerModale(target){
-  //console.log(target);
   var elems = document.querySelectorAll(".is-active");
   [].forEach.call(elems, function(el) {
     el.classList.remove("is-active");
   });
-  //e.target.className = "is-active";
 }
-
-
 </script>

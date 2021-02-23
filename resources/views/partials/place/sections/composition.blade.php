@@ -1,7 +1,7 @@
 <h2 class="ribbon-banner title is-5 has-text-centered">La composition</h2>
 <div class="field has-text-centered">
   <label class="is-size-5" style="font-weight: bold;" >Type de structures</label>
-  @include('components.modals.modalEdition',['chemin'=>'data->finance->composition'])
+  @include('components.modals.modalEdition',['chemin'=>'data->finance->composition','titre'=>"Modifier Les types de structures",'description'=>"Quelles sont les types de structures et quelles sont leurs effectifs ?"])
 </div>
 <canvas id="composition-chart-doughnut" ></canvas>
 
@@ -12,11 +12,10 @@
     <span class="title is-5">
       @if ($place->impact_economique->nombre_structures_crees > 1)
         structures créées
-        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @else
         structure créée
-        @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees'])
       @endif
+      @include('components.modals.modalEdition',['chemin'=>'impact_economique->nombre_structures_crees','titre'=>"Modifier Le nombre de structures créées"])
     </span>
   </div>
 

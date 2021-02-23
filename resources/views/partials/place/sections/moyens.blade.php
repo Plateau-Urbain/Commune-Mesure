@@ -2,10 +2,10 @@
 
 <div class="field has-text-centered">
   <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
-  @include('components.modals.modalEdition',['chemin'=>'data->finance->investissement'])&nbsp; &nbsp; 
+  @include('components.modals.modalEdition',['chemin'=>'data->finance->investissement','titre'=>"Modifier L'Investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
   <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
   <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
-  @include('components.modals.modalEdition',['chemin'=>'data->finance->fonctionnement'])
+  @include('components.modals.modalEdition',['chemin'=>'data->finance->fonctionnement','titre'=>"Modifier Le fonctionnement"])
 </div>
 
 <canvas id="financement-budget-doughnut" ></canvas>
@@ -14,7 +14,7 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre'])
+    <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre','titre'=>"Modifier Le nombre d'ETP"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
     @if($place->data->compare->moyens->etp->nombre >= 10)
@@ -39,7 +39,7 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre'])
+    <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre','titre'=>"Modifier Le nombre de bénévoles"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
     @if($place->data->compare->moyens->benevole->nombre >= 10)

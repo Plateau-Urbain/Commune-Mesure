@@ -14,7 +14,7 @@
     <div>
       <p>Il n'y a pas encore de photo.</p>
       @isset($edit)
-        @include('components.modals.modalEdition', ['chemin' => 'photos'])
+        @include('components.modals.modalEdition', ['chemin' => 'photos','titre'=>"Modifier La galerie",'description'=>"Ajoutez ou Supprimez des photos de votre lieu."])
       @endisset
     </div>
   @endunless

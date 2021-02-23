@@ -7,7 +7,7 @@
   <div class="bloc-note-body">
     <div class="content">
       <h2 class="has-text-centered">L'idée fondatrice</h2>
-      <p class="fontSize0-8em">{{$place->description->value}} @include('components.modals.modalEdition',['chemin'=>'description->value'])
+      <p class="fontSize0-8em">{{$place->description->value}} @include('components.modals.modalEdition',['chemin'=>'description->value','titre'=>"Modifier L'idée Fondatrice",'description'=>"Dites comment le lieu a été fondé."])
 </p>
     </div>
   </div>
