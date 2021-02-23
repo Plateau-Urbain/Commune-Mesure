@@ -9,12 +9,13 @@
     <ul class="menu-list">
       <li>
         <ul>
-          <li><a href="#presentation">Présentation</a></li>
-          <li><a href="#valeurs">Les valeurs</a></li>
-          <li><a href="#finances">Les moyens</a></li>
-          <li><a href="#finances">La composition</a></li>
-          <li><a href="#impact-social">L'impact social</a></li>
-          <li><a href="#territoire">Le territoire</a></li>
+          <li><a href="#section01">Présentation</a></li>
+          <li><a href="#section02">Les valeurs</a></li>
+          <li><a href="#section03">Les moyens</a></li>
+          <li><a href="#section03">La composition</a></li>
+          <li><a href="#section04">L'impact social</a></li>
+          <li><a href="#section05">Le territoire</a></li>
+          <li><a href="#section06">Galerie</a></li>
         </ul>
       </li>
     </ul>
