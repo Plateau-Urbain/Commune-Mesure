@@ -29,13 +29,18 @@
 
 @section('content')
   @isset($edit)
-  <div style="position: fixed;width: 100%;top: 50px; z-index: 999;" class="has-background-warning">
+  <div style="position: fixed;width: 100%;top: 50px; z-index: 999;display:inline-flex" class="has-background-warning">
     <div class="container">
-      <p class="has-text-centered has-text-weight-bold py-2">
-        Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
-      <span style="color:red;float:right" class=" has-text-right"><a href="{{ route('place.show', ['slug' => $slug]) }}"><i class='fas fa-times'></i></a></span>
+        <p class="has-text-centered has-text-weight-bold py-2" style="margin:auto;">
+          Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
       </p>
     </div>
+    <button style='padding: 5px 20px 0px 20px;'class="button is-success" disabled title="Télécharger le csv">
+        <span class="icon is-small">
+            <i class="fas fa-download"></i>
+        </span>
+    </button>
+    <span style="padding: 5px 20px 0px 20px;color:red;float:right" class=" has-text-right"><a href="{{ route('place.show', ['slug' => $slug]) }}"><i class='fas fa-times'></i></a></span>
   </div>
   @endisset
 <div class="columns is-gapless is-mobile" id="container">
