@@ -165,7 +165,8 @@
               </x-edit-section>
             </section>
             <section class="section anchor">
-              <x-edit-section :edit="isset($edit)" section="gallerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+              <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+                  @include('components.modals.modalEdition', ['chemin' => 'photos', 'type' => 'image','titre'=>"Modifier La galerie",'description'=>"Ajoutez ou Supprimez des photos de votre lieu."])
                 <div>
                     <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Galerie"></div>
                 </div>

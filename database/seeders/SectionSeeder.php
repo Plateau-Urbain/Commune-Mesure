@@ -25,7 +25,7 @@ class SectionSeeder extends Seeder
         "lien_social",
         "capacite",
         "lieu_territoire",
-        "gallerie"
+        "galerie"
     ];
 
     /**

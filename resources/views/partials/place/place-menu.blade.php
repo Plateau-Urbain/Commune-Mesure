@@ -36,7 +36,7 @@
             @if($sections->get('lieu_territoire'))
               <li><a href="#section05">Le territoire</a></li>
             @endif
-            @if($sections->get('gallerie'))
+            @if($sections->get('galerie'))
               <li><a href="#section06">Galerie</a></li>
             @endif
           @endif
