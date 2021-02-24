@@ -129,6 +129,20 @@ class PlaceController extends Controller
        return redirect(route('place.edit', compact('slug', 'auth')));
     }
 
+    public function publish(Request $request,$slug,$auth){
+      $placeClient = new Place();
+      if ($placeClient->check($slug, $auth) === false) {
+        abort(403, 'Wrong authentication string');
+      }
+      if ($auth === str_repeat('a', 64)) {
+          throw new \LogicException('Exiting, default admin hash');
+      }
+      $place = $placeClient->getOne($slug);
+      $place->publish = !$place->publish;
+      $placeClient->save($slug,$place);
+      return redirect(route('place.edit', compact('slug', 'auth')));
+    }
+
     protected function sortDataInsee($place){
         //Sort insee object data on each zone map
         $insee = $place->data->insee;

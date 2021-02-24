@@ -2581,6 +2581,7 @@
       {"value":"La Maison Montreau est un tiers-lieu inclusif et éco-responsable, proumouvant un tourisme social et solidaire grâce à son activité hôtelière. Egalement structure d'insertion, elle accompagne des personnes éloignées de l'emploi dans leur transition professionnelle. La Maison Montreau met en valeur les talents et savoir-faire locaux, et propose des activités socio-culturelles aux habitants des quartiers populaire du Nord de Montreuil.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

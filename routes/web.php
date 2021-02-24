@@ -34,6 +34,7 @@ $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/update', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'PlaceController@publish', 'as' => 'place.publish']);
 
 
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);

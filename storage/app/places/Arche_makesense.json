@@ -2571,6 +2571,7 @@
       {"value":"Le lieu de l'engagement par les mains : revaloriser les savoir-faire manuels du quotidien et professionnels.",
         "show":true}
     ,
+    "publish":false,
     "valeurs_show":true,
     "moyens_show":true,
     "composition_show":true,

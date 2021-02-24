@@ -700,6 +700,7 @@
       {"value":"Promouvoir et développer les cultures alternatives.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

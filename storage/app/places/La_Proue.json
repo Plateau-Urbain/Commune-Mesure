@@ -688,6 +688,7 @@
       {"value":"Créer un super incubateur territorial dédié à l'émergence et à l'accompagnement de projets prenant la forme d'un grand tiers-lieu hybride.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

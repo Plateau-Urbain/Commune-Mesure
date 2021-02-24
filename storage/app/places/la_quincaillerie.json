@@ -709,6 +709,7 @@
       {"value":"Lieu centralisateur des pratiques numériques.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

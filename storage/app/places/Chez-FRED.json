@@ -2617,6 +2617,7 @@
       {"value":"Regrouper nos espaces de travail.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

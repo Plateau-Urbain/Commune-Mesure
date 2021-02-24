@@ -717,6 +717,7 @@
       {"value":"Rassembler, être lieu de vie et de partage.",
         "show":true}
       ,
+      "publish":false,
       "valeurs_show":true,
       "moyens_show":true,
       "composition_show":true,

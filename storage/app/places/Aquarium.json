@@ -771,6 +771,7 @@
       {"value":"L'Aquarium est un lieu de rencontre et de création pour et par les femmes du quartier.",
         "show":true
       },
+    "publish":false,
     "valeurs_show":true,
     "moyens_show":true,
     "composition_show":true,
