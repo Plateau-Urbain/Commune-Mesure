@@ -45,7 +45,7 @@ class Place
                 'data->geo->lat as lat', 'data->geo->lon as lon',
                 'data->data->compare as compare', 'data->surface as surface', 'data->evenements as evenements',
                 'data->description as description', 'data->photos as photos',
-                'data->address->city as city', 'data->address->postalcode as postalcode')
+                'data->address->city as city', 'data->address->postalcode as postalcode','data->publish as publish')
             ->where('deleted_at', null)
             ->get();
 

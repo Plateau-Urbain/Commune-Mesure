@@ -11,6 +11,7 @@
             <table class="table is-fullwidth">
                 <thead>
                     <tr>
+                        <th>Status</th>
                         <th>Nom</th>
                         <th>Page d'administration</th>
                         <th>Accéder</th>
@@ -20,7 +21,15 @@
 
                 <tbody>
                     @foreach ($list as $place)
+
                     <tr>
+                      <td>
+                        @if ($place->publish)
+                          <i class="fa fa-eye" style='color:#4CAF50'></i>
+                        @else
+                          <i class="fas fa-eye-slash" style='color:#e85048'></i>
+                        @endif
+                      </td>
                         <td>
                             <p class="has-text-weight-bold"><a href="{{ route('place.show', ['slug' => $place->url]) }}">{{ $place->name }}</a></p>
                             <p class="has-text-grey-dark is-size-7">{{ $place->city }} ({{ substr($place->postalcode, 0, 2) }})</p>
