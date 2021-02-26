@@ -48,7 +48,7 @@
     <h3 class="info-box-header">Localisation</h3>
     <div class="info-box-content">
         <div id="info-box-map" class="info-box-map"></div>
-        <a href="geo:{{ $place->geo->lat }},{{ $place->geo->lon }}">{{ $place->address->address }}, {{ $place->address->postalcode }} {{ $place->address->city }}</a>
+        <a href="geo:{{ $place->get('geo->lat') }},{{ $place->get('geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
     </div>
   </aside>
 

@@ -1,6 +1,6 @@
 <script>
 
-var values = @json($place->structure->activities);
+var values = @json($place->get('structure->activities'));
 var colors = ['#E85048', '#DEEBEE', '#F3771B', '#B5BF8A', 'orange', '#E3386A', '#d6d8ff', 'grey', '#b1bfac', '#fcba03', '#FFB7B2', '#B5EAD7', '#C7CEEA', '#FF9AA2','#E85048', '#DEEBEE', '#617D8C', '#F3771B', '#B5BF8A'];
 
 var theta = [];

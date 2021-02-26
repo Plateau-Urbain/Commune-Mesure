@@ -6,7 +6,7 @@
   </div>
   <div class="bloc-note-body">
     <div class="content">
-      @foreach($place->partners->value as $key => $partner)
+      @foreach($place->get('partners->value') as $key => $partner)
         @if($partner->names)
           <div>
             <strong>Les acteurs {{ $partner->title }}s : </strong>
@@ -17,11 +17,11 @@
           </div>
         @endif
       @endforeach
-      @if($place->partners->value[0]->names || $place->partners->value[1]->names)
+      @if($place->get('partners->value[0]->names') || $place->get('partners->value[1]->names'))
         <div class="">
           <strong class="">Nature des partenariats :</strong>
           <div class="is-size-7">
-            @foreach($place->partners->value as $key => $partner)
+            @foreach($place->get('partners->value') as $key => $partner)
               @if (count($partner->natures))
                 <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
                     @foreach($partner->natures as $nature)

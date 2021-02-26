@@ -1,5 +1,5 @@
 <script>
-var finances = @json($place->data->finance);
+var finances = @json($place->get('data->finance'));
 var inputChoice = document.querySelector("input#switchRoundedSuccess");
 var canvasFinancesId = 'financement-budget-doughnut'
 
