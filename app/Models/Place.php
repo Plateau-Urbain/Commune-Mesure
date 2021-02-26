@@ -94,6 +94,11 @@ class Place extends Model
         return $query->pluck('hash_admin', 'place');
     }
 
+    public function getSections()
+    {
+        return self::where('place', $this->slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
+    }
+
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);

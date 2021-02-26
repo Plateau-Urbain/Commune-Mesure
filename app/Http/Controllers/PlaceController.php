@@ -20,6 +20,8 @@ class PlaceController extends Controller
             return view('place.unpublished', compact('place'));
         }
 
+        $sections = $place->getSections();
+
         return view('place.show', compact('place', 'sections'));
     }
 
