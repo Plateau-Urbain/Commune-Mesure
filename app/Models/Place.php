@@ -99,6 +99,11 @@ class Place extends Model
         return self::where('place', $this->slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
     }
 
+    public function get($chemin)
+    {
+        return self::getValueByChemin($this->getData(), $chemin);
+    }
+
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);
