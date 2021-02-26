@@ -21,6 +21,7 @@ class PlaceController extends Controller
         }
 
         $sections = $place->getSections();
+        $this->sortDataInsee($place->getData());
 
         return view('place.show', compact('place', 'sections'));
     }
