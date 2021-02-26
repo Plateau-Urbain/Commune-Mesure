@@ -10,7 +10,7 @@ class PlaceController extends Controller
 {
     public function show($slug)
     {
-        $place = (new Place())->getOne($slug);
+        $place = Place::find($slug);
 
         if ($place === false) {
             abort(404);

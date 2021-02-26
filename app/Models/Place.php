@@ -10,33 +10,33 @@ use Illuminate\Support\Facades\DB;
 class Place extends Model
 {
     public $incrementing = false;
-    private $place;
     protected $keyType = 'string';
+
+    private $data;
+    private $slug;
 
     public function sections()
     {
         return $this->belongsToMany(Section::class)->withTimestamps()->withPivot('visible');
     }
 
-    public function find($slug)
+    public static function find($slug)
     {
-        $place = DB::table('places')
-                    ->select('data')
+        $db = DB::table('places')
+                    ->select('place as slug', 'data')
                     ->where('deleted_at', null)
                     ->where('place', $slug)
-                    ->value('data');
-        if ($place === null) {
+                    ->first();
+
+        if ($db === null) {
             return false;
         }
-        $this->place=json_decode($place);
-        return $this->place;
-    }
-    public function setPlace($place){
-      $this->place = $place;
-    }
 
-    public function getPlace(){
-      return $this->place;
+        $place = new Place();
+        $place->setSlug($db->slug);
+        $place->setData(json_decode($db->data));
+
+        return $place;
     }
 
     public function list(){
@@ -53,12 +53,30 @@ class Place extends Model
 
       foreach($places as $place){
           $p = new Place();
-          $p->setPlace($place);
+          $p->setData($place);
           $array_place[] = $p;
       }
 
       return $places;
     }
+
+    public function setData($data){
+      $this->data = $data;
+    }
+
+    public function getData(){
+      return $this->data;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug(){
+      return $this->slug;
+    }
+
     public function getCoordinates($place)
     {
         return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
