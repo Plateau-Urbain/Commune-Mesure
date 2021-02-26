@@ -47,9 +47,9 @@ class PlaceController extends Controller
 
     public function edit($slug, $auth)
     {
-        $place = new Place();
+        $place = Place::find($slug);
 
-        if ($place->check($slug, $auth) === false) {
+        if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
 
@@ -57,14 +57,12 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $place = $place->getOne($slug);
-
         if ($place === false) {
             abort(404);
         }
 
-        $this->sortDataInsee($place);
-        $sections = PlaceModel::where('place', $slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
+        $sections = $place->getSections();
+        $this->sortDataInsee($place->getData());
 
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;

@@ -104,6 +104,11 @@ class Place extends Model
         return self::getValueByChemin($this->getData(), $chemin);
     }
 
+    public function isPublish()
+    {
+        return $this->data->publish;
+    }
+
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);
@@ -150,8 +155,13 @@ class Place extends Model
     return (self::getHeadObjectChemin($place,$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
 
-    public function isPublish()
-    {
-        return $this->data->publish;
-    }
+  public function check($auth)
+  {
+      $place = DB::table('places')->select('hash_admin')
+                                  ->where('place', $this->getSlug())
+                                  ->first();
+
+      return $place->hash_admin === $auth;
+  }
+
 }
