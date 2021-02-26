@@ -5,17 +5,34 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
+use Illuminate\Support\Facades\DB;
 
 class Place extends Model
 {
     public $incrementing = false;
-
+    private $place;
     protected $keyType = 'string';
 
     public function sections()
     {
         return $this->belongsToMany(Section::class)->withTimestamps()->withPivot('visible');
     }
+
+    public function find($slug)
+    {
+        $place = DB::table('places')
+                    ->select('data')
+                    ->where('deleted_at', null)
+                    ->where('place', $slug)
+                    ->value('data');
+        if ($place === null) {
+            return false;
+        }
+        $this->place=json_decode($place)
+        return $this->place;
+    }
+
+    
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);
