@@ -82,9 +82,9 @@ class PlaceController extends Controller
      */
     public function toggle(Request $request, $slug, $auth, $section)
     {
-        $place = new Place();
+        $place = Place::find($slug);
 
-        if ($place->check($slug, $auth) === false) {
+        if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
 
@@ -92,14 +92,7 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $place_id = PlaceModel::where('place', $slug)->value('id');
-
-        $s = Section::where('section', $section)->firstOrFail();
-        $visibility = $s->places()->where('place_id', $place_id)->value('visible');
-        $s->places()->updateExistingPivot($place_id, [
-            'visible' => ! $visibility
-        ]);
-
+        $s = $place->toggleVisibility($section);
         $res = $s->save();
 
         $flash = ['success' => $res, 'section' => $section];

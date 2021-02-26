@@ -164,4 +164,20 @@ class Place extends Model
       return $place->hash_admin === $auth;
   }
 
+  public function getId(){
+    return Place::where('place', $this->getSlug())->value('id');
+  }
+
+  public function toggleVisibility($section){
+    $place_id = $this->getId();
+    $s = Section::where('section', $section)->firstOrFail();
+    $visibility = $s->places()->where('place_id', $place_id)->value('visible');
+    $s->places()->updateExistingPivot($place_id, [
+        'visible' => ! $visibility
+    ]);
+    return $s;
+  }
+
+
+
 }
