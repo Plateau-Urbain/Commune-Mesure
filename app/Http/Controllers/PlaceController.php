@@ -16,13 +16,8 @@ class PlaceController extends Controller
             abort(404);
         }
 
-        $place->slug = $slug;
-        $sections = PlaceModel::where('place', $slug)->with('sections')->firstOrFail()->sections()->pluck('visible', 'section');
-
-        $this->sortDataInsee($place);
-
-        if(property_exists($place->data, 'activites') === false) {
-            throw new \LogicException("Pas de données sur les activitiés. Verifiez le json.", 1);
+        if ($place->isPublish() === false) {
+            return view('place.unpublished', compact('place'));
         }
 
         return view('place.show', compact('place', 'sections'));

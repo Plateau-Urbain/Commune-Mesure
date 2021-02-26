@@ -1,3 +1,5 @@
+@extends('layout')
+
 @section('content')
 <div class="container">
     <div class="hero is-large is-light">

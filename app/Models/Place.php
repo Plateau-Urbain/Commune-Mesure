@@ -139,4 +139,9 @@ class Place extends Model
     }
     return (self::getHeadObjectChemin($place,$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
+
+    public function isPublish()
+    {
+        return $this->data->publish;
+    }
 }
