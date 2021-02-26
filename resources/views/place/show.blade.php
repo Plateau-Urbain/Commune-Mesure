@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title')
   <h1 class="title header-title">
-    {{ $place->name }}
+    {{ $place->get('name') }}
   </h1>
   <h2 class="subtitle">
     {{ $place->get('address->city') }}

@@ -4,7 +4,7 @@
   </p>
 </div>
 <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
-  @foreach($place->opening as $publics)
+  @foreach($place->get('opening') as $publics)
     @foreach($publics->names as $public)
       @if($public == 'Handicapés')
         <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>

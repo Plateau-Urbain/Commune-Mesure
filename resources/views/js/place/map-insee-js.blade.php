@@ -1,7 +1,7 @@
 <script>
-  var geoDataPlace = JSON.parse("{{ json_encode($place->geo) }}".replace(/&quot;/g,'"'));
-  var placeData = JSON.parse("{{ json_encode($place->data) }}".replace(/&quot;/g,'"'));
-  var address = @json($place->address);
+  var geoDataPlace = JSON.parse("{{ json_encode($place->get('geo')) }}".replace(/&quot;/g,'"'));
+  var placeData = JSON.parse("{{ json_encode($place->get('data')) }}".replace(/&quot;/g,'"'));
+  var address = @json($place->get('address'));
   var geoJsonFeatures = geoDataPlace.geo_json;
   var markerPoint = new L.LatLng(geoDataPlace.lat, geoDataPlace.lon);
 

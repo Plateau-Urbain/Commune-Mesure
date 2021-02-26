@@ -14,24 +14,24 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->etp->nombre}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre','titre'=>"Modifier Le nombre d'ETP"])
+    <span class="title is-1">{{$place->get('data->compare->moyens->etp->nombre')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre','titre'=>"Modifier Le nombre d'ETP"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-    @if($place->data->compare->moyens->etp->nombre >= 10)
+    @if($place->get('data->compare->moyens->etp->nombre') >= 10)
       {{-- fix pour le cas spécial 10 --}}
-      @if($place->data->compare->moyens->etp->nombre == 10)
+      @if($place->get('data->compare->moyens->etp->nombre') == 10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endif
 
-      @for($i = 0; $i < $place->data->compare->moyens->etp->nombre - 10; $i = $i+10)
+      @for($i = 0; $i < $place->get('data->compare->moyens->etp->nombre') - 10; $i = $i+10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endfor
 
-      @if ($place->data->compare->moyens->etp->nombre % 10 == 0)
+      @if ($place->get('data->compare->moyens->etp->nombre') % 10 == 0)
         @svg('assets/images/body.svg', 'tiny narrow')
       @endif
     @endif
-    @for($i = 0; $i < $place->data->compare->moyens->etp->nombre % 10; $i++)
+    @for($i = 0; $i < $place->get('data->compare->moyens->etp->nombre') % 10; $i++)
       @svg('assets/images/body.svg', 'tiny narrow')
     @endfor
   </div>
@@ -39,26 +39,25 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->data->compare->moyens->benevole->nombre}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre','titre'=>"Modifier Le nombre de bénévoles"])
+    <span class="title is-1">{{$place->get('data->compare->moyens->benevole->nombre')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre','titre'=>"Modifier Le nombre de bénévoles"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-    @if($place->data->compare->moyens->benevole->nombre >= 10)
+    @if($place->get('data->compare->moyens->benevole->nombre') >= 10)
       {{-- fix pour le cas spécial 10 --}}
-      @if($place->data->compare->moyens->benevole->nombre == 10)
+      @if($place->get('data->compare->moyens->benevole->nombre') == 10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endif
 
-      @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre - 10; $i = $i+10)
+      @for($i = 0; $i < $place->get('data->compare->moyens->benevole->nombre') - 10; $i = $i+10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endfor
 
-      @if ($place->data->compare->moyens->benevole->nombre % 10 == 0)
+      @if ($place->get('data->compare->moyens->benevole->nombre') % 10 == 0)
         @svg('assets/images/body.svg', 'tiny narrow')
       @endif
     @endif
-    @for($i = 0; $i < $place->data->compare->moyens->benevole->nombre % 10; $i++)
+    @for($i = 0; $i < $place->get('data->compare->moyens->benevole->nombre') % 10; $i++)
       @svg('assets/images/body.svg', 'tiny narrow')
     @endfor
   </div>
 </div>
-

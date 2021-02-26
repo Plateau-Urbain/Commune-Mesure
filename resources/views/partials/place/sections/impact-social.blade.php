@@ -6,7 +6,7 @@
     <img width="300" src="/images/4_characters.png"/>
 
     <div class="impact_item bottom left" id="impact_item_reseaux" data-aos="fade-in">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Reseaux) && $impact->Reseaux->show)
           @foreach($impact->Reseaux->text as $text)
           @php( $impact_reseau_text = $text )
@@ -24,7 +24,7 @@
     </div>
 
     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Appartenance) && $impact->Appartenance->show)
           @foreach($impact->Appartenance->text as $text)
           @php( $impact_appartenance_text = $text)
@@ -48,7 +48,7 @@
     <img width="200" src="/images/3_characters.png"/>
 
     <div class="impact_item top left" id="impact_item_sante" data-aos="fade-in">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Sante) && $impact->Sante->show)
           @foreach($impact->Sante->text as $text)
           @php( $impact_sante_text = $text )
@@ -66,7 +66,7 @@
     </div>
 
     <div class="impact_item bottom left" id="impact_item_insertion" data-aos="fade-in">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Insertion) && $impact->Insertion->show)
           @foreach($impact->Insertion->text as $text)
           @php($impact_insertion_text = $text )
@@ -84,7 +84,7 @@
     </div>
 
     <div class="impact_item top right" id="impact_item_lien" data-aos="fade-in">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Lien) && $impact->Lien->show)
           @foreach($impact->Lien->text as $text)
           @php($impact_lien_text = $text)
@@ -102,7 +102,7 @@
     </div>
 
     <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
-      @foreach($place->impact as $key => $impact)
+      @foreach($place->get('impact') as $key => $impact)
         @if(isset($impact->Capacite) && $impact->Capacite->show)
           @foreach($impact->Capacite->text as $text)
           @php( $impact_capacite_text = $text )
