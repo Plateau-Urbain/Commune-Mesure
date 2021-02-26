@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Place;
-use App\Models\Place as PlaceModel;
+use App\Models\Place;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -31,21 +30,21 @@ class PlaceController extends Controller
 
     public function list(Place $place, $sortBy = null)
     {
-        $places = $place->getList();
+        $places = $place->list();
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
         });
 
-        if(isset($sortBy)){
-          $place->sortNumericPlacesBy($sortBy);
-          $selected = explode('-', $sortBy)[1];
-        }else{
-          $place->sortPlacesBy('name');
-          $selected = "default_az";
-        }
+        // if(isset($sortBy)){
+        //   $place->sortNumericPlacesBy($sortBy);
+        //   $selected = explode('-', $sortBy)[1];
+        // }else{
+        //   $place->sortPlacesBy('name');
+        //   $selected = "default_az";
+        // }
 
-        return view('places', compact('places', 'coordinates', 'selected'));
+        return view('places', compact('places', 'coordinates'));
     }
 
     public function edit($slug, $auth)
@@ -108,11 +107,8 @@ class PlaceController extends Controller
         $res = $s->save();
 
         $flash = ['success' => $res, 'section' => $section];
-
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
     }
-
-
 
     public function update(Request $request,$slug,$auth){
        $placeClient = new Place();
@@ -171,4 +167,5 @@ class PlaceController extends Controller
       });
       return (object)$compositionArray;
     }
+
 }

@@ -28,11 +28,54 @@ class Place extends Model
         if ($place === null) {
             return false;
         }
-        $this->place=json_decode($place)
+        $this->place=json_decode($place);
         return $this->place;
     }
+    public function setPlace($place){
+      $this->place = $place;
+    }
 
-    
+    public function getPlace(){
+      return $this->place;
+    }
+
+    public function list(){
+      $places = DB::table('places')
+          ->select('place as url', 'data->name as name', 'data->tags as tags',
+              'data->geo->lat as lat', 'data->geo->lon as lon',
+              'data->data->compare as compare', 'data->surface as surface', 'data->evenements as evenements',
+              'data->description as description', 'data->photos as photos',
+              'data->address->city as city', 'data->address->postalcode as postalcode','data->publish as publish')
+          ->where('deleted_at', null)
+          ->get();
+
+      $array_place = [];
+
+      foreach($places as $place){
+          $p = new Place();
+          $p->setPlace($place);
+          $array_place[] = $p;
+      }
+
+      return $places;
+    }
+    public function getCoordinates($place)
+    {
+        return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
+    }
+
+
+    public function getAuth($place = null)
+    {
+        $query = DB::table('places');
+
+        if ($place) {
+            $query->where('place', $place);
+        }
+
+        return $query->pluck('hash_admin', 'place');
+    }
+
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);
@@ -42,15 +85,11 @@ class Place extends Model
         if(!isset($result->$hash)){
           return;
         }
-
         $result=$result->$hash;
-
         if(preg_match("/\[([0-9]+)\]$/", $champ, $matches)) {
            $result=$result[$matches[1]];
         }
       }
-
-
       if(is_array($result)) {
         foreach ($result as $key => $value) {
           if(is_object($value)){

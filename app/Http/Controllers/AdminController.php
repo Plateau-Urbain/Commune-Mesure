@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Place;
+use App\Models\Place;
 
 class AdminController extends Controller
 {
@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function view(Place $place)
     {
-        $list = $place->getList();
+        $list = $place->list();
         $auths = $place->getAuth();
         return view('admin.view', compact('list', 'auths'));
     }

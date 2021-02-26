@@ -8,7 +8,6 @@
         {{ $attributes }}
       @endif
     >
-
         @if ($edit)
         <div class="icon-edit">
           <a href="{{ route('place.toggle', [
