@@ -30,7 +30,7 @@
           </small>
           <hr style='border:1px solid #dbdbdb'>
         @endif
-        @php($valueChemin =\app\Models\Place::getValueByChemin($place,$chemin))
+        @php ($valueChemin = $place->get($chemin))
         @if(is_array($valueChemin))
           @foreach($valueChemin as $key=>$value)
             @foreach ($value as $k=> $v)

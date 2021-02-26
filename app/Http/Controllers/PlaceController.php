@@ -100,17 +100,19 @@ class PlaceController extends Controller
     }
 
     public function update(Request $request,$slug,$auth){
-       $placeClient = new Place();
-       if ($placeClient->check($slug, $auth) === false) {
+       $place = Place::find($slug);
+
+       if ($place->check($auth) === false) {
          abort(403, 'Wrong authentication string');
        }
        if ($auth === str_repeat('a', 64)) {
            throw new \LogicException('Exiting, default admin hash');
        }
-       $place = $placeClient->getOne($slug);
 
-       PlaceModel::setValueByChemin($place,$request->chemin,$request->champ);
-       $placeClient->save($slug,$place);
+       $place->set($request->chemin,$request->champ);
+
+       $place->save();
+
        return redirect(route('place.edit', compact('slug', 'auth')));
     }
 

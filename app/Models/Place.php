@@ -148,11 +148,11 @@ class Place extends Model
     return ($array[count($array)-1]);
   }
 
-  public static function setValueByChemin($place,$chemin,$newValue){
-    if(is_array(self::getValueByChemin($place,$chemin))){
+  public function set($chemin,$newValue){
+    if(is_array($this->get($chemin))){
        throw new Exception('Not Implemented');
     }
-    return (self::getHeadObjectChemin($place,$chemin)->{self::getLastChemin($chemin)}= $newValue);
+    return (self::getHeadObjectChemin($this->getData(),$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
 
   public function check($auth)
@@ -178,6 +178,11 @@ class Place extends Model
     return $s;
   }
 
-
+  public function save(array $options = Array()){
+    $result = DB::table('places')
+        ->where('place', $this->getSlug())
+        ->update(array('data'=>json_encode($this->getData())));
+    return $result;
+  }
 
 }
