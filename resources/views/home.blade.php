@@ -129,7 +129,7 @@
             html: "<div><span>1</span></div>",
             iconSize: [40, 40],
         });
-            @foreach ($coordinates as $name => $points)
+        @foreach($coordinates as $name => $points)
             var point = [{{ $points['geo']['lat'] }}, {{ $points['geo']['lon'] }}];
             var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $popup[$name] !!}");
             groupMarker.push(marker);
