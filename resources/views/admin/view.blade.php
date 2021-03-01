@@ -24,11 +24,13 @@
 
                     <tr>
                       <td>
+                        <a style='color: black'href="{{ route('admin.publish', ['slug' => $place->url, 'auth' => $auths[$place->url]]) }}"
                         @if ($place->publish)
-                          <i class="fa fa-eye" style='color:#4CAF50'></i>
+                          title="Publier"> <i class="fa fa-eye" style='color:#4CAF50'></i>
                         @else
-                          <i class="fas fa-eye-slash" style='color:#e85048'></i>
+                          title="Dé-publier"><i class="fas fa-eye-slash" style='color:#e85048'></i>
                         @endif
+                        </a>
                       </td>
                         <td>
                             <p class="has-text-weight-bold"><a href="{{ route('place.show', ['slug' => $place->url]) }}">{{ $place->name }}</a></p>

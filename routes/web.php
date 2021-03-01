@@ -30,6 +30,8 @@ $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 $router->get('/les-lieux[/{sortBy}]', ['uses' => 'PlaceController@list', 'as' => 'places']);
 
 $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
+$router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminController@publish', 'as' => 'admin.publish']);
+
 
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
