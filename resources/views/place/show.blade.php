@@ -34,7 +34,23 @@
       Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
       </p>
     </div>
-    <button <?php if($place->isPublish()):?> class="button is-danger" title="Dé-publier le lieu" <?php else : ?> class="button is-success" title="Publier le lieu" <?php endif ?> ><a style="color:black"  href="{{ route('place.publish', ['slug' => $slug, 'auth' => $auth]) }}"><span class="icon"><i class="fas fa-share-square"></i></span></a></button>
+    <button
+      <?php if($place->isPublish()):?>
+          class="button is-danger is-light" title="Dé-publier le lieu">
+          <a style='color: black'href="{{ route('place.publish', ['slug' => $slug, 'auth' => $auth]) }}">
+            <span class="icon">
+              <i class="fas fa-users-slash"></i>
+            </span>
+          </a>
+      <?php else : ?>
+        class="button" title="Publier le lieu">
+        <a style='color: black'href="{{ route('place.publish', ['slug' => $slug, 'auth' => $auth]) }}">
+          <span class="icon">
+            <i class="fas fa-globe"></i>
+          </span>
+        </a>
+      <?php endif ?>
+    </button>
     <button style='margin: 0px 20px 0px 20px;'class="button is-success" disabled title="Télécharger le csv">
       <span class="icon">
         <i class="fas fa-download"></i>
