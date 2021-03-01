@@ -7,7 +7,7 @@ use App\Charts\PopulationChart;
 use App\Charts\ActivitiesChart;
 use App\Charts\ActivitiesOverlayChart;
 use App\Charts\LogementChart;
-use App\Place;
+use App\Models\Place;
 
 class ImpactsController extends Controller
 {

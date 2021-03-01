@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use App\Place;
+use App\Models\Place;
 
 class PlaceSeeder extends Seeder
 {
