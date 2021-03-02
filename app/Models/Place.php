@@ -98,9 +98,8 @@ class Place extends Model
 
     public function getCoordinates($place)
     {
-        return [$place->url => ['geo' => ['lat' => $place->lat, 'lon' => $place->lon]]];
+        return [$place->get('url') => ['geo' => ['lat' => $place->get('lat'), 'lon' => $place->get('lon')]]];
     }
-
 
     public function getAuth($place = null)
     {
@@ -221,39 +220,47 @@ class Place extends Model
       // var_dump($places);
       // exit;
       $places->transform(function ($item, $key) {
-          $item->tags = json_decode($item->tags);
-          $item->photos = json_decode($item->photos);
-          $item->evenements = json_decode($item->evenements);
-          $item->compare = json_decode($item->compare);
+          $item->tags = json_decode($item->get('tags'));
+          $item->photos = json_decode($item->get('photos'));
+          // var_dump($item->photos);
+          $item->evenements = json_decode($item->get('evenements'));
+          $item->compare = json_decode($item->get('compare'));
           return $item;
       });
 
       foreach ($places as $place) {
           if ($this->withPopup) {
               $popup = str_replace(["\r\n", "\n", '  '], '',
-                  view('components/popup', ['name' => $place->url, 'title' => $place->name, 'description' => $place->description, 'departement' => $place->postalcode, 'city' => $place->city, 'images' => $place->photos])->render()
+                  view('components/popup', ['name' => $place->get('url'), 'title' => $place->get('name'), 'description' => $place->get('description'), 'departement' => $place->get('postalcode'), 'city' => $place->get('city'),
+                  'images' => $place->photos])->render()
               );
-
-              $this->popup[$place->url] = $popup;
+              $this->popup[$place->get('url')] = $popup;
           }
 
-          $this->cities[$place->city][]= [
-            "title" => $place->url,
+          $this->cities[$place->get('city')][]= [
+            "title" => $place->get('url'),
           ];
 
-          $this->stats[self::STAT_SURFACE] += $place->surface;
-          $this->stats[self::STAT_EVENTS] += ($place->evenements->prives->nombre + $place->evenements->publics->nombre);
-          $this->stats[self::STAT_ETP] += ($place->compare) ? $place->compare->moyens->etp->nombre : 0;
-          $this->stats[self::STAT_VISITORS] += ($place->evenements->prives->nombre_visiteurs + $place->evenements->publics->nombre_visiteurs);
+          $this->stats[self::STAT_SURFACE] += $place->get('surface');
+          $this->stats[self::STAT_EVENTS] += ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
+          $this->stats[self::STAT_ETP] += ($place->get('compare')) ? $place->get('compare->moyens->etp->nombre') : 0;
+          $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
       }
       return $places;
   }
+
+
+
+
 
   public function getStats()
   {
       $this->stats[self::STAT_CITIES] = count($this->cities);
       return $this->stats;
   }
+
+
+
 
   public function getCompares($places){
     $compare_data = [];
