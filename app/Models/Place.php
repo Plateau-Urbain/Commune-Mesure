@@ -67,15 +67,16 @@ class Place extends Model
           ->where('deleted_at', null)
           ->get();
 
-      $array_place = [];
 
+      $array_place = [];
       foreach($places as $place){
           $p = new Place();
           $p->setData($place);
-          $array_place[] = $p;
+          $array_place[] =$p;
       }
 
-      return $places;
+      $return = collect($array_place);
+      return $return;
     }
 
     public function setData($data){
