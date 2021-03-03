@@ -179,7 +179,11 @@
     </section>
     <section class="section anchor">
       <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
-        @include('components.modals.modalEditionGalerie', ['chemin' => 'photos', 'type' => 'image','titre'=>"Modifier La galerie",'description'=>"Ajoutez ou Supprimez des photos de votre lieu."])
+        @if(isset($edit))
+          <span class="icon-edit">
+            <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>
+          </span>
+        @endif
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Galerie"></div>
         </div>
