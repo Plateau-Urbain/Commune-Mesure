@@ -65,9 +65,12 @@
         show:false,
       }
     };
+
+
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
-  var compares = JSON.parse("{{ json_encode($compares) }}".replace(/&quot;/g,'"'));
+   var data = '{!! json_encode($compares, JSON_HEX_APOS) !!}';
+   var compares = JSON.parse(data);
   var LeftIndicator ;
   var RightIndicator;
   var dataLeft,dataRight;

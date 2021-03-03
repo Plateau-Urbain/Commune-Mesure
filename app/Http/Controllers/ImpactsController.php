@@ -15,7 +15,6 @@ class ImpactsController extends Controller
     {
         $places = $place->build();
         $compares = $place->getCompares($places);
-
         return view('impacts.show', compact('places', 'compares'));
     }
 }

@@ -74,7 +74,6 @@ class Place extends Model
           $p->setData($place);
           $array_place[] =$p;
       }
-
       $return = collect($array_place);
       return $return;
     }
@@ -126,7 +125,6 @@ class Place extends Model
     {
         return $this->data->publish;
     }
-
 
     public static function getValueByChemin($place,$chemin){
       $array=explode("->", $chemin);
@@ -217,16 +215,14 @@ class Place extends Model
   public function build()
   {
       $places = $this->list();
-      // var_dump($places);
-      // exit;
       $places->transform(function ($item, $key) {
           $item->tags = json_decode($item->get('tags'));
           $item->photos = json_decode($item->get('photos'));
-          // var_dump($item->photos);
           $item->evenements = json_decode($item->get('evenements'));
           $item->compare = json_decode($item->get('compare'));
           return $item;
       });
+
 
       foreach ($places as $place) {
           if ($this->withPopup) {
@@ -241,11 +237,14 @@ class Place extends Model
             "title" => $place->get('url'),
           ];
 
+
           $this->stats[self::STAT_SURFACE] += $place->get('surface');
           $this->stats[self::STAT_EVENTS] += ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
           $this->stats[self::STAT_ETP] += ($place->get('compare')) ? $place->get('compare->moyens->etp->nombre') : 0;
           $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
+
       }
+
       return $places;
   }
 
@@ -263,22 +262,23 @@ class Place extends Model
 
 
   public function getCompares($places){
+
+    $array_compares = json_decode($places->first()->get('compare'), true);
     $compare_data = [];
     $compare_place_name = [];
     $compare_title = [
       "moyens"=>[],
       'realisations'=>[]
     ];
-
-    foreach ($places->first()->compare as $key => $value) {
+    foreach ($array_compares as $key => $value) {
       foreach ($value as $k => $v) {
-        $compare_title[$key][$k] = $v->title;
+        $compare_title[$key][$k] = $v['title'];
       }
     }
 
-    foreach ($places as $place) {
-      $compare_data[$place->name] = $place->compare;
-      $compare_place_name[$place->name] = $place->name;
+   foreach ($places as $place) {
+      $compare_data[$place->get('name')] = json_decode($place->get('compare'));
+      $compare_place_name[$place->get('name')] = $place->get('name');
     }
 
     $compares= [
@@ -286,7 +286,6 @@ class Place extends Model
       "titles" => $compare_title,
       "names" => $compare_place_name
     ];
-
     return $compares;
   }
 
