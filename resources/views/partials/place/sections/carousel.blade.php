@@ -1,8 +1,8 @@
 <div class="container carousel-container with-padding column is-6 has-text-centered">
   <h2 class="ribbon-banner is-5">Galerie</h2>
-  @unless(empty($place->photos))
+  @unless(empty($array_photos))
   <div id="place-carousel" class="carousel" data-navigation=1>
-    @foreach ($place->photos as $photo)
+    @foreach ($array_photos as $photo)
     <div class="item-{{ $loop->iteration }}">
       <figure class="image is-covered">
         <img src="/images/lieux/{{ $photo }}">

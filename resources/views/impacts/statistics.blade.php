@@ -9,13 +9,14 @@
       <div class="control">
         <div class="select is-normal is-success">
           <select style="display: inline-block;" name="1" id="titleCmpLeft" class="is-focused" >
-            @foreach ($places->first()->compare as $key_name => $programmations )
+            @php $tab = json_decode($places->first()->get('compare'),true) @endphp
+            @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )
                   <option @if($key_prog_name == "etp") id="stats_selectedLeftValue"
                     selected
                   @endif
-                                                       value="{{ $key_prog_name }}" >{{ $programmation->title }}</option>
+                                                       value="{{ $key_prog_name }}" >{{ $programmation['title'] }}</option>
                                                      @endforeach
               </optgroup>
             @endforeach
@@ -24,12 +25,12 @@
         <strong class="is-size-4" style="margin-left: 10px;">en fonction de</strong>
         <div class="select is-success" style="margin-left:1em;">
           <select style="display: inline-block;" name="2" id="titleCmpRight" class="is-focused">
-              @foreach ($places->first()->compare as $key_name => $programmations )
+              @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )
                   <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
                     selected
-                  @endif >{{ $programmation->title }}</option>
+                  @endif >{{ $programmation['title'] }}</option>
                 @endforeach
               </optgroup>
             @endforeach
