@@ -24,12 +24,14 @@
                         </div>
                         <div class="column is-one-third has-text-centered">
                             <div id="carousel-{{ $place->get('url') }}" class="carousel carousel-container">
-                            @if( count(json_decode($place->get('photos'))) > 0)
-                              <img class="img-places" height="230px" src='{{ url("/") }}/images/lieux/{{ json_decode($place->get('photos'))[0] }}'>
+                            @if( count($place->getPhotos()) > 0)
+                              @foreach($place->getPhotos() as $photo)
+                              <img class="img-places" height="230px" src='{{ url("/") }}/images/lieux/{{ $photo }}'>
+                              @endforeach
                             @endif
                               <div class="map-place" id="map_{{ $place->get('url') }}"></div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
               @endforeach

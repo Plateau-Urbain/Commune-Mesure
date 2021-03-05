@@ -228,16 +228,13 @@ class Place extends Model
           if ($this->withPopup) {
               $popup = str_replace(["\r\n", "\n", '  '], '',
                   view('components/popup', ['name' => $place->get('url'), 'title' => $place->get('name'), 'description' => $place->get('description'), 'departement' => $place->get('postalcode'), 'city' => $place->get('city'),
-                  'images' => $place->photos])->render()
+                  'images' => $place->getPhotos()])->render()
               );
               $this->popup[$place->get('url')] = $popup;
           }
-
           $this->cities[$place->get('city')][]= [
             "title" => $place->get('url'),
           ];
-
-
           $this->stats[self::STAT_SURFACE] += $place->get('surface');
           $this->stats[self::STAT_EVENTS] += ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
           $this->stats[self::STAT_ETP] += ($place->get('compare')) ? $place->get('compare->moyens->etp->nombre') : 0;
@@ -248,18 +245,38 @@ class Place extends Model
       return $places;
   }
 
-
-
-
-
   public function getStats()
   {
       $this->stats[self::STAT_CITIES] = count($this->cities);
       return $this->stats;
   }
 
+  public function getPhotos(){
+    return (json_decode($this->get('photos')));
+  }
 
+  public function getPhotosForOnePlace(){
+    if (json_decode(json_encode($this->getData()))->photos ){
+      return json_decode(json_encode($this->getData()))->photos;
+    }
+    echo("PAS DE PHOTOS");
+    return array();
+  }
 
+  public function addPhoto($newPhoto){
+    $photos=$this->getPhotosForOnePlace();
+    array_push($photos,$newPhoto);
+    $this->set('photos',$photos);
+    var_dump($this->getPhotosForOnePlace());
+  }
+
+  public function deletePhoto($indexOfPhoto){
+    $photos = $this->getPhotosForOnePlace();
+    unset($photos[$indexOfPhoto]);
+    $photos = array_values($photos);
+    $this->set('photos',$photos);
+    var_dump($this->getPhotosForOnePlace());
+  }
 
   public function getCompares($places){
 

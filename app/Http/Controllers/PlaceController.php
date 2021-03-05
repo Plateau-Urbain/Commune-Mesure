@@ -131,7 +131,7 @@ class PlaceController extends Controller
       $edit = true;
 
       $chemin = 'photos';
-      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','photos'));
+      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
     }
 
 
@@ -154,44 +154,38 @@ class PlaceController extends Controller
         $chemin = 'photos';
 
         if(isset($_POST['supprimer'])){
-          print_r($_POST);
-          $array_photos = explode(',',$place->get('photos'));
-          unset($array_photos[$_POST['supprimer']]);
-          // print_r($array_photos);
-          $photos= implode(',',$array_photos);
-          $place->set('photos',$photos);
+
+          $place->deletePhoto($_POST['supprimer']);
           $place->save();
-          $_POST=array();
-          return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
+
+          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin')));
         }
 
         elseif(isset($_POST['ajouter'])){
           if( (!in_array( get_extension($_FILES['image']['name']), $extensions)))
           {
             echo("Ce n'est pas une image");
-            $_POST=array();
             return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
           }
           if( file_exists($_FILES['image']['tmp_name']) and filesize($_FILES['image']['tmp_name']) > 3027*3072){
             echo("Pas la bonne taille");
-            $_POST=array();
             return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
           }
+
           $name=$_FILES['image']['name'];
           $dossier = '../public/images/lieux/';
           move_uploaded_file( $_FILES['image']['tmp_name'], $dossier . basename($_FILES['image']['name']));
-          $place->set('photos',$place->get('photos').",".$name);
-          $place->save();
-          $_POST=array();
-          return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
-        }
 
+          $place->addPhoto($name);
+          $place->save();
+
+          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin')));
+        }
         else{
-          echo('non');
-          $_POST=array();
           return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
         }
   }
+
     public function publish(Request $request,$slug,$auth){
       $place = Place::find($slug);
       if ($place->check($auth) === false) {

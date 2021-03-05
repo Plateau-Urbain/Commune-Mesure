@@ -1,10 +1,6 @@
 <div class="container carousel-container with-padding column is-6 has-text-centered">
   <h2 class="ribbon-banner is-5">Galerie</h2>
-  @if($place->get('photos') == "")
-    @php $array_photos=[] @endphp
-  @else
-    @php $array_photos = explode(',',$place->get('photos')) @endphp
-  @endif
+    @php $array_photos = $place->getPhotosForOnePlace(); @endphp
     @unless(empty($array_photos))
     <div id="place-carousel" class="carousel" data-navigation=1>
       @foreach ($array_photos as $photo)
