@@ -1,6 +1,6 @@
 <div class="container carousel-container with-padding column is-6 has-text-centered">
   <h2 class="ribbon-banner is-5">Galerie</h2>
-    @php $array_photos = $place->getPhotosForOnePlace(); @endphp
+    @php $array_photos = $place->getPhotos(); @endphp
     @unless(empty($array_photos))
     <div id="place-carousel" class="carousel" data-navigation=1>
       @foreach ($array_photos as $photo)

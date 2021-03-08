@@ -22,7 +22,7 @@
     <form method="POST" action="{{route('place.updateGalerie',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}" enctype="multipart/form-data">
         <section class="modal-card-body">
 
-          @php $array_photos = $place->getPhotosForOnePlace();@endphp
+          @php $array_photos = $place->getPhotos();@endphp
             {{ var_dump($array_photos)}}
             @unless(empty($array_photos))
             <div class="carousel" data-navigation=1>

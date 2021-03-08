@@ -243,23 +243,19 @@ class Place extends Model
     return $result;
   }
 
-  public function getPhotosForOnePlace(){
-    return (json_decode($this->get('photos')));
-  }
-
   public function addPhoto($newPhoto){
-    $photos=$this->getPhotosForOnePlace();
+    $photos=$this->getPhotos();
     array_push($photos,$newPhoto);
     $this->set('photos',$photos);
-    var_dump($this->getPhotosForOnePlace());
+    var_dump($this->getPhotos());
   }
 
   public function deletePhoto($indexOfPhoto){
-    $photos = $this->getPhotosForOnePlace();
+    $photos = $this->getPhotos();
     unset($photos[$indexOfPhoto]);
     $photos = array_values($photos);
     $this->set('photos',$photos);
-    var_dump($this->getPhotosForOnePlace());
+    var_dump($this->getPhotos());
   }
 
 
