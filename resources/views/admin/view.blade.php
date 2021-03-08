@@ -21,10 +21,9 @@
 
                 <tbody>
                     @foreach ($list as $place)
-
                     <tr>
                       <td>
-                        <a style='color: black'href="{{ route('admin.publish', ['slug' => $place->get('url'), 'auth' => $auths[$place->get('url')]]) }}"
+                        <a style='color: black'href="{{ route('admin.publish', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"
                         @if ($place->get('publish'))
                           title="Publier"> <i class="fa fa-eye" style='color:#4CAF50'></i>
                         @else
@@ -32,23 +31,25 @@
                         @endif
                         </a>
                       </td>
+
                         <td>
-                            <p class="has-text-weight-bold"><a href="{{ route('place.show', ['slug' => $place->get('url')]) }}">{{ $place->get('name') }}</a></p>
-                            <p class="has-text-grey-dark is-size-7">{{ $place->get('city') }} ({{ substr($place->get('postalcode'), 0, 2) }})</p>
+                            <p class="has-text-weight-bold"><a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}">{{ $place->get('name') }}</a></p>
+                            <p class="has-text-grey-dark is-size-7">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
                         </td>
                         <td>
                           <div class="field has-addons">
                             <p class="control is-expanded">
-                              <input class="input is-family-code" id="input-{{ $place->get('url') }}" readonly type="text" value="{{ route('place.edit', ['slug' => $place->get('url'), 'auth' => $auths[$place->get('url')]]) }}">
+                              <input class="input is-family-code" id="input-{{ $place->getSlug() }}" readonly type="text" value="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
                             </p>
                             <p class="control">
-                              <a class="button button-clipboard" data-input="input-{{ $place->get('url') }}"><i class="fa fa-clipboard"></i></a>
+                              <a class="button button-clipboard" data-input="input-{{ $place->getSlug() }}"><i class="fa fa-clipboard"></i></a>
                             </p>
                           </div>
                         </td>
+
                         <td>
                           <button class="button" title="Administrer le lieu ">
-                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->get('url'), 'auth' => $auths[$place->get('url')]]) }}">
+                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
                                 <span class="icon is-small">
                                     <i class="fas fa-external-link-alt"></i>
                                 </span>

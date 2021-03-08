@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function view(Place $place)
     {
-        $list = $place->list();
+        $list = $place->retrivePlaces();
         $auths = $place->getAuth();
         return view('admin.view', compact('list', 'auths'));
     }
@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function publish(Request $request,$slug,$auth){
       $place = Place::find($slug);
 
-      $list = $place->list();
+      $list = $place->retrivePlaces();
       $auths = $place->getAuth();
 
       if ($place->check($auth) === false) {
