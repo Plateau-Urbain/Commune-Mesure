@@ -28,19 +28,11 @@ class PlaceController extends Controller
 
     public function list(Place $place, $sortBy = null)
     {
-        $places = $place->list();
+        $places = $place->retrivePlaces();
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
         });
-
-        // if(isset($sortBy)){
-        //   $place->sortNumericPlacesBy($sortBy);
-        //   $selected = explode('-', $sortBy)[1];
-        // }else{
-        //   $place->sortPlacesBy('name');
-        //   $selected = "default_az";
-        // }
 
         return view('places', compact('places', 'coordinates'));
     }

@@ -1,13 +1,12 @@
 {{-- Attention, use ' instead of " --}}
 <div class='card'>
-    @if (count($images))
-    @if($images[0])
+
+    @if($images != "")
         <div class='card-image'>
             <figure class='image'>
-                <img src='{{ url('/images/lieux/'.$images[0]) }}' alt='Image lieu'>
+                <img src='{{ url('/images/lieux/'.$images) }}' alt='Image lieu'>
             </figure>
         </div>
-    @endisset
     @endif
 
     <div class='card-content'>

@@ -12,26 +12,26 @@
                 <div class="box box-lieu content">
                     <div class="columns is-bordered places-block">
                         <div class="column is-clickable" style="position:relative; height:250px;">
-                            <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->get('url') ]) }}">{{ $place->get('name') }}</a><br />
-                            <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->get('city') }} ({{ substr($place->get('postalcode'), 0, 2) }})</span></p>
-                            <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ (json_decode($place->get('description')))->value }}</p>
+                            <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}">{{ $place->get('name') }}</a><br />
+                            <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</span></p>
+                            <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('description->value') }}</p>
                             <ul class="tags_container">
-                            @foreach(json_decode($place->get('tags')) as $tag)
+                            @foreach($place->getData()->tags as $tag)
                               <li class="tags">{{$tag}}</li>
                             @endforeach
                             </ul>
-                            <a href="{{ route('place.show',['slug' => $place->get('url') ]) }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
+                            <a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
                         </div>
                         <div class="column is-one-third has-text-centered">
-                            <div id="carousel-{{ $place->get('url') }}" class="carousel carousel-container">
+                            <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
                             @if( count($place->getPhotos()) > 0)
                               @foreach($place->getPhotos() as $photo)
                               <img class="img-places" height="230px" src='{{ url("/") }}/images/lieux/{{ $photo }}'>
                               @endforeach
                             @endif
-                              <div class="map-place" id="map_{{ $place->get('url') }}"></div>
+                              <div class="map-place" id="map_{{ $place->getSlug() }}"></div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
               @endforeach

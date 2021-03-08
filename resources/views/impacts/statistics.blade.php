@@ -9,7 +9,7 @@
       <div class="control">
         <div class="select is-normal is-success">
           <select style="display: inline-block;" name="1" id="titleCmpLeft" class="is-focused" >
-            @php $tab = json_decode($places->first()->get('compare'),true) @endphp
+            @php $tab = json_decode(json_encode($places->first()->get('data->compare')),true) @endphp
             @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )

@@ -57,21 +57,15 @@ class Place extends Model
         return $place;
     }
 
-    public function list(){
+    public static function retrivePlaces(){
       $places = DB::table('places')
-          ->select('place as url', 'data->name as name', 'data->tags as tags',
-              'data->geo->lat as lat', 'data->geo->lon as lon',
-              'data->data->compare as compare', 'data->surface as surface', 'data->evenements as evenements',
-              'data->description as description', 'data->photos as photos',
-              'data->address->city as city', 'data->address->postalcode as postalcode','data->publish as publish')
+          ->select('place as slug')
           ->where('deleted_at', null)
           ->get();
 
-
       $array_place = [];
       foreach($places as $place){
-          $p = new Place();
-          $p->setData($place);
+          $p = self::find($place->slug);
           $array_place[] =$p;
       }
       $return = collect($array_place);
@@ -97,7 +91,55 @@ class Place extends Model
 
     public function getCoordinates($place)
     {
-        return [$place->get('url') => ['geo' => ['lat' => $place->get('lat'), 'lon' => $place->get('lon')]]];
+        return [$place->getSlug() => ['geo' => ['lat' => $place->get('geo->lat'), 'lon' => $place->get('geo->lon')]]];
+    }
+
+    public function getStats(){
+
+      $places = $this->retrivePlaces();
+
+      foreach($places as $place){
+        $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
+        $this->stats[self::STAT_SURFACE] += $place->get('surface');
+        $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
+        $this->stats[self::STAT_ETP] += ($place->get('data->compare')) ? $place->get('data->compare->moyens->etp->nombre') : 0 ;
+        $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
+        $this->stats[self::STAT_CITIES] = count($this->cities);
+      }
+      return $this->stats;
+    }
+
+    public function withPopup()
+    {
+        $this->withPopup = true;
+        return $this;
+    }
+
+    public function getInfoPopup($place)
+    {
+      if ($place->withPopup()) {
+          $popup["name"] = $place->getSlug();
+          $popup["title"] = $place ->get("name");
+          $popup['description'] = json_encode($place->get('description'));
+          $popup['departement'] = $place->get('address->postalcode');
+          $popup['city'] = $place->get('address->city');
+          if(count($place->getPhotos()) > 0){
+            $popup['images'] = $place->getPhotos()[0];
+          }
+          else{
+            $popup['images'] = "";
+          }
+          $this->popup[$place->getSlug()] = $popup;
+      }
+      return $this->popup;
+
+    }
+
+    public function getPhotos(){
+      if( $this->getData()->photos ){
+        return $this->getData()->photos;
+      }
+      return array();
     }
 
     public function getAuth($place = null)
@@ -201,66 +243,8 @@ class Place extends Model
     return $result;
   }
 
-  public function getPopup()
-  {
-      return $this->popup;
-  }
-
-  public function withPopup()
-  {
-      $this->withPopup = true;
-      return $this;
-  }
-
-  public function build()
-  {
-      $places = $this->list();
-      $places->transform(function ($item, $key) {
-          $item->tags = json_decode($item->get('tags'));
-          $item->photos = json_decode($item->get('photos'));
-          $item->evenements = json_decode($item->get('evenements'));
-          $item->compare = json_decode($item->get('compare'));
-          return $item;
-      });
-
-
-      foreach ($places as $place) {
-          if ($this->withPopup) {
-              $popup = str_replace(["\r\n", "\n", '  '], '',
-                  view('components/popup', ['name' => $place->get('url'), 'title' => $place->get('name'), 'description' => $place->get('description'), 'departement' => $place->get('postalcode'), 'city' => $place->get('city'),
-                  'images' => $place->getPhotos()])->render()
-              );
-              $this->popup[$place->get('url')] = $popup;
-          }
-          $this->cities[$place->get('city')][]= [
-            "title" => $place->get('url'),
-          ];
-          $this->stats[self::STAT_SURFACE] += $place->get('surface');
-          $this->stats[self::STAT_EVENTS] += ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
-          $this->stats[self::STAT_ETP] += ($place->get('compare')) ? $place->get('compare->moyens->etp->nombre') : 0;
-          $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
-
-      }
-
-      return $places;
-  }
-
-  public function getStats()
-  {
-      $this->stats[self::STAT_CITIES] = count($this->cities);
-      return $this->stats;
-  }
-
-  public function getPhotos(){
-    return (json_decode($this->get('photos')));
-  }
-
   public function getPhotosForOnePlace(){
-    if (json_decode(json_encode($this->getData()))->photos ){
-      return json_decode(json_encode($this->getData()))->photos;
-    }
-    echo("PAS DE PHOTOS");
-    return array();
+    return (json_decode($this->get('photos')));
   }
 
   public function addPhoto($newPhoto){
@@ -278,9 +262,9 @@ class Place extends Model
     var_dump($this->getPhotosForOnePlace());
   }
 
-  public function getCompares($places){
 
-    $array_compares = json_decode($places->first()->get('compare'), true);
+  public function getCompares($places){
+    $array_compares = json_decode(json_encode($places->first()->get('data->compare')),true);
     $compare_data = [];
     $compare_place_name = [];
     $compare_title = [
@@ -294,7 +278,7 @@ class Place extends Model
     }
 
    foreach ($places as $place) {
-      $compare_data[$place->get('name')] = json_decode($place->get('compare'));
+      $compare_data[$place->get('name')] = json_decode(json_encode($place->get('data->compare')),true);
       $compare_place_name[$place->get('name')] = $place->get('name');
     }
 

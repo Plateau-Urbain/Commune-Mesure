@@ -9,14 +9,17 @@ class MainController extends Controller
 {
     public function map(Place $place)
     {
-        $places = $place->withPopup()->build();
+        $places= $place->retrivePlaces();
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
         });
 
         $stats = $place->getStats();
-        $popup = $place->getPopup();
+
+        $popup = $places->mapWithKeys(function ($item, $key) use ($place) {
+            return $place->getInfoPopup($item);
+        });
 
         return view('home', compact('coordinates', 'stats', 'popup'));
     }

@@ -129,9 +129,21 @@
             html: "<div><span>1</span></div>",
             iconSize: [40, 40],
         });
+
         @foreach($coordinates as $name => $points)
             var point = [{{ $points['geo']['lat'] }}, {{ $points['geo']['lon'] }}];
-            var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $popup[$name] !!}");
+            @php
+            $popupview = str_replace(["\r\n", "\n", '  '], '',
+            view('components/popup',
+            ['name' => $popup[$name]['name'],
+            'title'=>$popup[$name]['title'],
+            'description'=>$popup[$name]['description'],
+            'departement' => $popup[$name]['departement'],
+            'city' => $popup[$name]['city'],
+            'images' => $popup[$name]['images']
+            ])->render());
+            @endphp
+            var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $popupview !!}");
             groupMarker.push(marker);
             markersCluster.addLayer(marker);
         @endforeach
