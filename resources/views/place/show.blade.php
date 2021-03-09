@@ -89,21 +89,19 @@
           </div>
       </x-edit-section>
     </section>
-
-
-    <aside id="info-box" class="mb-2">
-      <div>
-        <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
-      </div>
-      <h3 class="info-box-header">Localisation</h3>
-      <div class="info-box-content">
-          <div id="info-box-map" class="info-box-map"></div>
-          <a href="geo:{{ $place->get('geo->lat') }},{{ $place->get('geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
-      </div>
-    </aside>
     <section class="section">
       <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox'])
+        <aside id="info-box" class="mb-2">
+          <div>
+            <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
+          </div>
+          <h3 class="info-box-header">Localisation</h3>
+          <div class="info-box-content">
+              <div id="info-box-map" class="info-box-map"></div>
+              <a href="geo:{{ $place->get('geo->lat') }},{{ $place->get('geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+          </div>
+        </aside>
         <div class="columns has-text-centered">
           <div class="column">
             @include('partials.place.sections.public')
