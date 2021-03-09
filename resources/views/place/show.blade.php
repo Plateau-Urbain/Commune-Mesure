@@ -65,7 +65,7 @@
   <div class="column is-10 is-offset-1">
 
     <section class="section " id="section01">
-      <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
         </div>
@@ -90,7 +90,7 @@
       </x-edit-section>
     </section>
     <section class="section">
-      <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="localisation" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox'])
         <aside id="info-box" class="mb-2">
           <div>
@@ -168,7 +168,7 @@
     </section>
 
     <section  class="section">
-      <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
         </div>
@@ -177,7 +177,7 @@
     </section>
 
     <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
         </div>

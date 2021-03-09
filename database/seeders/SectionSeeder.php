@@ -9,22 +9,13 @@ use App\Models\Section;
 class SectionSeeder extends Seeder
 {
     protected $sections = [
-        "bloc_gauche",
-        "bloc_milieu",
-        "bloc_droite",
-        "public",
-        "accessibilite",
-        "transport",
+        "presentation",
+        "localisation",
         "valeurs",
         "moyens",
         "composition",
-        "reseau",
-        "appartenance",
-        "sante",
-        "insertion",
-        "lien_social",
-        "capacite",
-        "lieu_territoire",
+        "impact_social",
+        "territoire",
         "galerie"
     ];
 
