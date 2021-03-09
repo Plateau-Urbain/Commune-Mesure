@@ -629,10 +629,20 @@
     "opening":[
       {
         "title": "welcome",
-        "names":[
-          "Personnes âgées",
-          "Famille"
-        ]
+        "names":{
+          "Famille":1,
+          "Personnes âgées": 1,
+          "Enfants":0,
+          "Étudiants":0,
+          "Personnes travaillant le site":0,
+          "Personnes visitant le site":0,
+          "Chercheurs d'emplois":0,
+          "Personnes habitant sur le site":0,
+          "Personnes visants le site":0,
+          "Personnes":0,
+          "Handicapés":0,
+          "Tout le monde":0
+        }
       },
       {
         "title":"open",

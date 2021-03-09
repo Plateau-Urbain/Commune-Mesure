@@ -2419,14 +2419,20 @@
     "opening":[
       {
         "title": "welcome",
-        "names":[
-          "Enfants",
-          "Étudiants",
-          "Personnes âgées",
-          "Famille",
-          "Personnes travaillant le site",
-          "Tout le monde"
-        ]
+        "names":{
+          "Enfants":1,
+          "Étudiants":1,
+          "Personnes âgées":1,
+          "Famille":1,
+          "Personnes travaillant le site":1,
+          "Tout le monde":1,
+          "Personnes visitant le site":0,
+          "Personnes habitant sur le site":0,
+          "Personnes visants le site":0,
+          "Personnes":0,
+          "Handicapés":0,
+          "Chercheurs d'emplois":0
+        }
       },
       {
         "title":"open",

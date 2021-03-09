@@ -294,4 +294,8 @@ class Place extends Model
     return $compares;
   }
 
+  public function getPublics(){
+    return json_decode(json_encode($this->get('opening')[0]->names),true);
+  }
+
 }

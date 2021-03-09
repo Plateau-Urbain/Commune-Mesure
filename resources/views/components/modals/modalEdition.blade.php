@@ -64,9 +64,21 @@
             @endforeach
             <hr/>
           @endforeach
+        @elseif( isset($type) && $type== 'text' )
+          <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
+        @elseif( isset($type) && $type== 'number')
+          <input class='input-number' name='champ' type='number' value = "{{ $valueChemin }}"/>
+        @elseif ( isset($type) && $type == 'decimal')
+          <input class='input-number'step="any" name='champ' type='number' value = "{{ $valueChemin }}"/>
+        @elseif ( isset($type) && $type == 'date')
+          <input class='input-number' step="any" name='champ' type='date' value = "{{ $valueChemin }}"/>
         @else
         <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
         @endif
+
+
+
+
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">

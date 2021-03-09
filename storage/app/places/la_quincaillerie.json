@@ -558,9 +558,20 @@
     "opening":[
       {
         "title": "welcome",
-        "names":[
-          "Tout le monde"
-        ]
+        "names":{
+          "Tout le monde":1
+          "Chercheurs d'emplois":0,
+          "Enfants":0,
+          "Étudiants":0,
+          "Personnes âgées":0,
+          "Famille":0,
+          "Personnes visitant le site":0,
+          "Personnes habitant sur le site":0,
+          "Personnes travaillant le site":0,
+          "Personnes visants le site":0,
+          "Handicapés":0,
+          "Personnes":0
+        }
       },
       {
         "title":"open",

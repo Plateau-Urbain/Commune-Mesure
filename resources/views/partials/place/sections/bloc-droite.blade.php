@@ -12,7 +12,7 @@
             <strong>Les acteurs {{ $partner->title }}s : </strong>
             <span class="is-block is-size-7">
               {{ $partner->names }}
-              @include('components.modals.modalEdition',['chemin'=>'partners->value['.$key.']->names','titre'=>"Modifier Les acteurs ".$partner->title.'s','description'=>"Qui sont les acteurs ".$partner->title.'s ?'])
+              @include('components.modals.modalEdition',['chemin'=>'partners->value['.$key.']->names','type' => 'text','titre'=>"Modifier Les acteurs ".$partner->title.'s','description'=>"Qui sont les acteurs ".$partner->title.'s ?'])
             </span>
           </div>
         @endif
@@ -28,11 +28,11 @@
                       {{ $nature }}@if(! $loop->last), @endif
                     @endforeach
                   </span>
-                  @include('components.modals.modalEdition',['chemin'=> 'partners->value[0]->natures','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
+                  @include('components.modals.modalEdition',['chemin'=> 'partners->value[0]->natures','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
                 </div>
                 @elseif(isset($edit) && $edit)
                   <div>
-                    {{ ucfirst($partner->title) }} : @include('components.modals.modalEdition',['chemin'=> 'partners->value['.$key.']->natures','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
+                    {{ ucfirst($partner->title) }} : @include('components.modals.modalEdition',['chemin'=> 'partners->value['.$key.']->natures','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
                   </div>
                 @endif
               @endforeach

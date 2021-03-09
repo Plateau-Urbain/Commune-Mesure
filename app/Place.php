@@ -191,4 +191,5 @@ class Place
           ->update(array('data'=>json_encode($jsonPlace)));
       return $result;
     }
+
 }

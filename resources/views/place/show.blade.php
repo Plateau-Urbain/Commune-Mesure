@@ -91,7 +91,6 @@
     </section>
     <section class="section">
       <x-edit-section :edit="isset($edit)" section="localisation" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
-        @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox'])
         <aside id="info-box" class="mb-2">
           <div>
             <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
