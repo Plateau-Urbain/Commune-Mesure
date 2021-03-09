@@ -1,9 +1,6 @@
-@extends('layout')
 @if(!isset($edit))
   @php return @endphp
 @endif
-@php //var_dump($place->get('photos'));//exit; @endphp
-
 <div class="modal is-active" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
   <div class="modal-card">
@@ -14,16 +11,14 @@
           Modifier la galerie
          </h2>
       </div>
-       <button class="delete modal-croix" aria-label="close"></button>
+       <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"><button class="delete modal-croix" aria-label="close"></button></a>
        <br>
 
     </header>
 
     <form method="POST" action="{{route('place.updateGalerie',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}" enctype="multipart/form-data">
         <section class="modal-card-body">
-
           @php $array_photos = $place->getPhotos();@endphp
-            {{ var_dump($array_photos)}}
             @unless(empty($array_photos))
             <div class="carousel" data-navigation=1>
               @foreach($array_photos as $photo)
@@ -43,14 +38,20 @@
               </div>
             @endunless
           <br>
-        <footer class="modal-card-foot">
+        <footer class="modal-card-foot" style="border-bottom: 1px solid #dbdbdb" >
           <span class="container">
-            <label>Ajouter une image :</label><input id='image' type='file' accept="image/jpeg" name='image'/>
-            <!-- <span class="field is-grouped is-grouped-right"> -->
-              <button name="ajouter" class="button is-success" type="submit" value='ajouter'>Ajouter</button>
-            <!-- </span> -->
+            <label>Ajouter une image : </label><input id='image' type='file' accept="image/jpeg" name='image'/>
+            <button name="ajouter" class="button is-success" type="submit" value='ajouter'>Ajouter</button>
           </span>
         </footer>
+        <br>
+        <span class="container">
+          <span class="field is-grouped is-grouped-left">
+            <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"><input class="button" type='button' value="Fermer"/></button></a>
+          </span>
+        </span>
+
     </form>
 </div>
 </div>
+@include('place.show')

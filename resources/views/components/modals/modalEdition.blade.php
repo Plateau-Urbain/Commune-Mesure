@@ -70,9 +70,9 @@
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">
+        <input type="button" class="button modal-croix" value="Annuler"/>
         <span class="container">
           <span class="field is-grouped is-grouped-right">
-            <button class="button modal-croix">Annuler</button>
             <button class="button is-success" type="submit">Enregistrer</button>
           </span>
         </span>

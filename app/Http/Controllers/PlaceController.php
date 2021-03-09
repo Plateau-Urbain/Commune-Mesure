@@ -110,6 +110,8 @@ class PlaceController extends Controller
 
     public function editGalerie($slug,$auth){
       $place = Place::find($slug);
+      $auths = $place->getAuth();
+      $sections = $place->getSections();
 
       if ($place === false) {
           abort(404);
@@ -123,12 +125,15 @@ class PlaceController extends Controller
       $edit = true;
 
       $chemin = 'photos';
-      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
+      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections'));
     }
 
 
     public function updateGalerie(Request $request,$slug,$auth){
         $place = Place::find($slug);
+        $auths = $place->getAuth();
+        $sections = $place->getSections();
+
         if ($place->check($auth) === false) {
           abort(403, 'Wrong authentication string');
         }
@@ -150,18 +155,18 @@ class PlaceController extends Controller
           $place->deletePhoto($_POST['supprimer']);
           $place->save();
 
-          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin')));
+          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections')));
         }
 
         elseif(isset($_POST['ajouter'])){
           if( (!in_array( get_extension($_FILES['image']['name']), $extensions)))
           {
-            echo("Ce n'est pas une image");
-            return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
+            // echo("Ce n'est pas une image");
+            return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections'));
           }
           if( file_exists($_FILES['image']['tmp_name']) and filesize($_FILES['image']['tmp_name']) > 3027*3072){
-            echo("Pas la bonne taille");
-            return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin'));
+            // echo("Pas la bonne taille");
+            return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections'));
           }
 
           $name=$_FILES['image']['name'];
@@ -171,7 +176,7 @@ class PlaceController extends Controller
           $place->addPhoto($name);
           $place->save();
 
-          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin')));
+          return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections')));
         }
         else{
           return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
