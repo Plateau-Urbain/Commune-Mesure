@@ -61,10 +61,8 @@
 @endisset
 
 <div class="columns is-gapless is-mobile" id="container">
-  <div class="column is-2">
-    @include('partials.place.place-menu')
-  </div>
-  <div class="column">
+
+  <div class="column is-10 is-offset-1">
 
     <section class="section " id="section01">
       <x-edit-section :edit="isset($edit)" section="bloc_gauche" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
@@ -92,6 +90,17 @@
       </x-edit-section>
     </section>
 
+
+    <aside id="info-box" class="mb-2">
+      <div>
+        <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
+      </div>
+      <h3 class="info-box-header">Localisation</h3>
+      <div class="info-box-content">
+          <div id="info-box-map" class="info-box-map"></div>
+          <a href="geo:{{ $place->get('geo->lat') }},{{ $place->get('geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+      </div>
+    </aside>
     <section class="section">
       <x-edit-section :edit="isset($edit)" section="public" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox'])
@@ -114,7 +123,7 @@
     <section class="section">
       <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
-          <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Les valeurs"></div>
+          <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
         </div>
         @include('partials.place.sections.values')
       </x-edit-section>
@@ -130,15 +139,15 @@
         <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
             <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens"></div>
+              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
             </div>
           @elseif(isset($edit))
             <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens / La composition"></div>
+              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
           @elseif(!isset($edit) && ($sections->has('composition') || $sections->get('composition')) && $sections->has('moyens') || $sections->get('moyens'))
             <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les moyens / La composition"></div>
+              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
           @endif
           @include('partials.place.sections.moyens')
@@ -152,7 +161,7 @@
 
           @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
             <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="La composition"></div>
+              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
             </div>
           @endif
           @include('partials.place.sections.composition')
@@ -163,7 +172,7 @@
     <section  class="section">
       <x-edit-section :edit="isset($edit)" section="reseau" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
-          <div class="scroll-indicator" id="section04" data-scroll-indicator-title="L'impact social"></div>
+          <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
         </div>
         @include('partials.place.sections.impact-social')
       </x-edit-section>
@@ -172,7 +181,7 @@
     <section class="section anchor">
       <x-edit-section :edit="isset($edit)" section="lieu_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
-          <div class="scroll-indicator" id="section05" data-scroll-indicator-title="Le territoire"></div>
+          <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
         </div>
         @include('partials.place.sections.territoire')
       </x-edit-section>
@@ -185,7 +194,7 @@
           </span>
         @endif
         <div>
-          <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Galerie"></div>
+          <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
         </div>
         @include('partials.place.sections.carousel')
       </x-edit-section>

@@ -236,6 +236,14 @@ class Place extends Model
     return $s;
   }
 
+  public function getVisibility($section){
+    $sections = $this->getSections();
+    $sections = $sections->toArray();
+    if($sections[$section] == "0"){
+      return false;
+    }
+    return true;
+  }
   public function save(array $options = Array()){
     $result = DB::table('places')
         ->where('place', $this->getSlug())
