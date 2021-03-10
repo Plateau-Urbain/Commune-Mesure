@@ -562,7 +562,7 @@
           "Personnes visants le site":0,
           "Chercheurs d'emplois":0,
           "Personnes âgées":0,
-          "Personnes travaillant le site":0          
+          "Personnes travaillant le site":0
         }
       },
       {
@@ -572,6 +572,14 @@
           "Plusieurs jours par semaine":1,
           "Une fois par semaine ou moins":1,
           "Lors d'évènements ponctuels seulement":1
+        }
+      },
+      {
+        "title":"transports",
+        "names":{
+          "Bus":1,
+          "Métro":1,
+          "Voiture":1
         }
       }
     ],

@@ -560,7 +560,7 @@
       {
         "title": "welcome",
         "names":{
-          "Tout le monde":1
+          "Tout le monde":1,
           "Chercheurs d'emplois":0,
           "Enfants":0,
           "Étudiants":0,
@@ -581,6 +581,14 @@
           "Plusieurs jours par semaine":1,
           "Une fois par semaine ou moins":1,
           "Lors d'évènements ponctuels seulement":1
+        }
+      },
+      {
+        "title":"transports",
+        "names":{
+          "Bus":1,
+          "Métro":1,
+          "Voiture":1
         }
       }
     ],

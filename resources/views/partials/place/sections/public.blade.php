@@ -16,7 +16,7 @@
         <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="cm-icons familles font-color-theme mr-1"></i></span>
       @endif
       @if($public == 'Personnes âgées' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes âgées"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
       @endif
     @endforeach
 </div>

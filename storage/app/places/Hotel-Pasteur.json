@@ -643,6 +643,14 @@
           "Une fois par semaine ou moins":1,
           "Lors d'évènements ponctuels seulement":1
         }
+      },
+      {
+        "title":"transports",
+        "names":{
+          "Bus":1,
+          "Métro":1,
+          "Voiture":1
+        }
       }
     ],
     "impact_economique":{

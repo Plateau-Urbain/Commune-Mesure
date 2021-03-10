@@ -298,4 +298,7 @@ class Place extends Model
     return json_decode(json_encode($this->get('opening')[0]->names),true);
   }
 
+  public function getTransports(){
+    return json_decode(json_encode($this->get('opening')[2]->names),true);
+  }
 }
