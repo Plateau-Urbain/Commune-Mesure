@@ -14,13 +14,6 @@ class EditSection extends Component
     public $edit;
 
     /**
-     * Does it have the section.
-     *
-     * @var string
-     */
-    public $hasSection;
-
-    /**
      * The section visibility
      *
      * @var bool
@@ -46,10 +39,8 @@ class EditSection extends Component
     {
         $this->edit = $edit;
         $this->section = $section;
-        $this->hasSection = $sections->has($section);
-        $this->sectionVisibility = (bool) ($this->hasSection)
-                                          ? $sections->get($section)
-                                          : "0";
+        $this->sectionVisibility = (bool) $sections[$section];
+
     }
 
     /**

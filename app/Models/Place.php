@@ -91,7 +91,7 @@ class Place extends Model
 
     public function getCoordinates($place)
     {
-        return [$place->getSlug() => ['geo' => ['lat' => $place->get('geo->lat'), 'lon' => $place->get('geo->lon')]]];
+        return [$place->getSlug() => ['geo' => ['lat' => $place->get('blocs->data_territoire->donnees->geo->lat'), 'lon' => $place->get('blocs->data_territoire->donnees->geo->lon')]]];
     }
 
     public function getStats(){
@@ -100,9 +100,9 @@ class Place extends Model
 
       foreach($places as $place){
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
-        $this->stats[self::STAT_SURFACE] += $place->get('surface');
+        $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
         $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
-        $this->stats[self::STAT_ETP] += ($place->get('data->compare')) ? $place->get('data->compare->moyens->etp->nombre') : 0 ;
+        $this->stats[self::STAT_ETP] += ($place->get('blocs->presentation->donnees->etp')) ? $place->get('blocs->presentation->donnees->etp') : 0 ;
         $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
         $this->stats[self::STAT_CITIES] = count($this->cities);
       }
@@ -120,7 +120,7 @@ class Place extends Model
       if ($place->withPopup()) {
           $popup["name"] = $place->getSlug();
           $popup["title"] = $place ->get("name");
-          $popup['description'] = json_encode($place->get('description'));
+          $popup['description'] = json_encode($place->get('blocs->presentation->donnees->idee_fondatrice'));
           $popup['departement'] = $place->get('address->postalcode');
           $popup['city'] = $place->get('address->city');
           if(count($place->getPhotos()) > 0){
@@ -136,8 +136,8 @@ class Place extends Model
     }
 
     public function getPhotos(){
-      if( $this->getData()->photos ){
-        return $this->getData()->photos;
+      if($this->getData()->blocs->galerie->donnees){
+        return $this->getData()->blocs->galerie->donnees;
       }
       return array();
     }
@@ -187,7 +187,7 @@ class Place extends Model
             return $result;
           }
         }
-        return implode("\n", $result);
+        return $result;
       }
       return $result;
   }
@@ -206,10 +206,12 @@ class Place extends Model
     return ($array[count($array)-1]);
   }
 
+
+  public function setOnArray($chemin,$index,$newValue){
+    return (self::getHeadObjectChemin($this->getData(),$chemin)->{self::getLastChemin($chemin)}[$index]= $newValue);
+  }
+
   public function set($chemin,$newValue){
-    if(is_array($this->get($chemin))){
-       throw new Exception('Not Implemented');
-    }
     return (self::getHeadObjectChemin($this->getData(),$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
 
@@ -227,23 +229,22 @@ class Place extends Model
   }
 
   public function toggleVisibility($section){
-    $place_id = $this->getId();
-    $s = Section::where('section', $section)->firstOrFail();
-    $visibility = $s->places()->where('place_id', $place_id)->value('visible');
-    $s->places()->updateExistingPivot($place_id, [
-        'visible' => ! $visibility
-    ]);
-    return $s;
+    $sections = $this->getVisibility();
+    $visibility = $sections[$section];
+    return !$visibility;
+
   }
 
-  public function getVisibility($section){
-    $sections = $this->getSections();
-    $sections = $sections->toArray();
-    if($sections[$section] == "0"){
-      return false;
+  public function getVisibility(){
+    $tabSections = ["presentation","accessibilite","valeurs","moyens","composition","impact_social","data_territoire","galerie"];
+    $tabVisibility=array();
+    foreach($tabSections as $s){
+      $tabVisibility[$s]= $this->get('blocs->'.$s.'->visible');
     }
-    return true;
+    return $tabVisibility;
   }
+
+
   public function save(array $options = Array()){
     $result = DB::table('places')
         ->where('place', $this->getSlug())
@@ -254,7 +255,7 @@ class Place extends Model
   public function addPhoto($newPhoto){
     $photos=$this->getPhotos();
     array_push($photos,$newPhoto);
-    $this->set('photos',$photos);
+    $this->set('blocs->galerie->donnees',$photos);
     var_dump($this->getPhotos());
   }
 
@@ -262,13 +263,13 @@ class Place extends Model
     $photos = $this->getPhotos();
     unset($photos[$indexOfPhoto]);
     $photos = array_values($photos);
-    $this->set('photos',$photos);
+    $this->set('blocs->galerie->donnees',$photos);
     var_dump($this->getPhotos());
   }
 
 
   public function getCompares($places){
-    $array_compares = json_decode(json_encode($places->first()->get('data->compare')),true);
+    $array_compares = json_decode(json_encode($places->first()->get('blocs->data_territoire->donnees->compare')),true);
     $compare_data = [];
     $compare_place_name = [];
     $compare_title = [
@@ -282,7 +283,25 @@ class Place extends Model
     }
 
    foreach ($places as $place) {
-      $compare_data[$place->get('name')] = json_decode(json_encode($place->get('data->compare')),true);
+      $data = '{"moyens":{"etp":{"nombre":'.
+              $place->get('blocs->presentation->donnees->etp').
+              ',"title":"Nombre d\'ETP"},"benevole":{"nombre":'.
+              $place->get('blocs->moyens->donnees->benevoles').
+              ',"title":"Nombre de bénévoles"},"partenaire":{"nombre":'
+              . $place->get('blocs->moyens->donnees->partenaires').
+              ',"title":"Nombre de partenaires publics / privés"},"superficie":{"nombre":'
+              . $place->get('blocs->presentation->donnees->surface').
+              ',"title":"Superficie du lieu (m2)"}},"realisations":{"ouverture":{"nombre":'
+              .$place->get('blocs->data_territoire->donnees->compare->realisations->ouverture->nombre').
+              ',"title":"Nombre d\'heures d\'ouverture"},"event":{"nombre":'.
+              $place->get('blocs->data_territoire->donnees->compare->realisations->event->nombre').
+              ',"title":"Nombre d\'événements publics / privés"},"struct_hebergee":{"nombre":'.
+              $place->get('blocs->data_territoire->donnees->compare->realisations->struct_hebergee->nombre').
+              ',"title":"Nombre de structures hébergées"},"visiteur":{"nombre":'.
+              $place->get('blocs->data_territoire->donnees->compare->realisations->visiteur->nombre').
+              ',"title":"Nombre de visiteurs par an"}}}';
+
+      $compare_data[$place->get('name')] = json_decode($data,true);
       $compare_place_name[$place->get('name')] = $place->get('name');
     }
 
@@ -291,14 +310,20 @@ class Place extends Model
       "titles" => $compare_title,
       "names" => $compare_place_name
     ];
-    return $compares;
+    return json_encode($compares, JSON_HEX_APOS);
   }
+
 
   public function getPublics(){
-    return json_decode(json_encode($this->get('opening')[0]->names),true);
+    return json_decode(json_encode($this->get('blocs->accessibilite->donnees->publics')),true);
   }
 
-  public function getTransports(){
-    return json_decode(json_encode($this->get('opening')[2]->names),true);
+  public function getAccessibilite(){
+    return json_decode(json_encode($this->get('blocs->accessibilite->donnees->accessibilite')),true);
   }
+  public function getTransports(){
+    return json_decode(json_encode($this->get('blocs->accessibilite->donnees->transports')),true);
+  }
+
+
 }

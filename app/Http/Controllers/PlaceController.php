@@ -20,7 +20,7 @@ class PlaceController extends Controller
             return view('place.unpublished', compact('place'));
         }
 
-        $sections = $place->getSections();
+        $sections = $place->getVisibility();
         $this->sortDataInsee($place->getData());
 
         return view('place.show', compact('place', 'sections'));
@@ -53,7 +53,7 @@ class PlaceController extends Controller
             abort(404);
         }
 
-        $sections = $place->getSections();
+        $sections = $place->getVisibility();
         $this->sortDataInsee($place->getData());
 
         // Pour indiquer à la vue que c'est en mode édition
@@ -84,8 +84,9 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $s = $place->toggleVisibility($section);
-        $res = $s->save();
+        $v = $place->toggleVisibility($section);
+        $place->set('blocs->'.$section.'->visible',$v);
+        $res = $place->save();
 
         $flash = ['success' => $res, 'section' => $section];
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
@@ -111,7 +112,7 @@ class PlaceController extends Controller
     public function editGalerie($slug,$auth){
       $place = Place::find($slug);
       $auths = $place->getAuth();
-      $sections = $place->getSections();
+      $sections = $place->getVisibility();
 
       if ($place === false) {
           abort(404);
@@ -132,7 +133,7 @@ class PlaceController extends Controller
     public function updateGalerie(Request $request,$slug,$auth){
         $place = Place::find($slug);
         $auths = $place->getAuth();
-        $sections = $place->getSections();
+        $sections = $place->getVisibility();
 
         if ($place->check($auth) === false) {
           abort(403, 'Wrong authentication string');
