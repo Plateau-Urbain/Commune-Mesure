@@ -1,7 +1,7 @@
 <div class="has-text-centered">
   <p class="mb-5">
     <strong>Les differents publics :</strong>
-    @include('components.modals.modalEdition',['chemin'=>'opening', 'type' => 'checkbox','titre' => 'Modifier les différents publics'])
+    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->publics','type' => 'checkbox','titre' => 'Modifier les différents publics'])
   </p>
 </div>
 <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
