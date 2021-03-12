@@ -22,7 +22,6 @@
   @include('js.place.map-insee-js')
   @include('js.place.d3-doughnut-finance-js')
   @include('js.place.insee-chart-js')
-  @include('js.place.value-bubbles')
   @include('js.place.modals')
 @endsection
 
@@ -90,7 +89,7 @@
       </x-edit-section>
     </section>
     <section class="section">
-      <x-edit-section :edit="isset($edit)" section="localisation" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <aside id="info-box" class="mb-2">
           <div>
             <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
@@ -98,7 +97,7 @@
           <h3 class="info-box-header">Localisation</h3>
           <div class="info-box-content">
               <div id="info-box-map" class="info-box-map"></div>
-              <a href="geo:{{ $place->get('geo->lat') }},{{ $place->get('geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+              <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
           </div>
         </aside>
         <div class="columns has-text-centered">
@@ -129,12 +128,12 @@
     <section  class="section">
       <div class="columns">
         @php $class="" @endphp
-        @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
+        @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
           @php $class="is-6 is-offset-3" @endphp
         @endif
 
         <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-          @if (!isset($edit) && (!$sections->has('composition') || !$sections->get('composition')))
+          @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
             </div>
@@ -142,7 +141,7 @@
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
-          @elseif(!isset($edit) && ($sections->has('composition') || $sections->get('composition')) && $sections->has('moyens') || $sections->get('moyens'))
+          @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
@@ -151,12 +150,12 @@
         </x-edit-section>
 
         @php $class="" @endphp
-        @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
+        @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
           @php $class="is-6 is-offset-3" @endphp
         @endif
         <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
 
-          @if (!isset($edit) && (!$sections->has('moyens') || !$sections->get('moyens')))
+          @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
             </div>
@@ -176,7 +175,7 @@
     </section>
 
     <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
         </div>

@@ -69,7 +69,8 @@
 
    var statschart = new ApexCharts(document.querySelector("#stats-chart"), options);
    statschart.render();
-   var data = '{!! json_encode($compares, JSON_HEX_APOS) !!}';
+   var data = '{!! $compares !!}';
+
    var compares = JSON.parse(data);
   var LeftIndicator ;
   var RightIndicator;

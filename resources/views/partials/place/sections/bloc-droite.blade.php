@@ -6,39 +6,48 @@
   </div>
   <div class="bloc-note-body">
     <div class="content">
-      @foreach($place->get('partners->value') as $key => $partner)
-        @if($partner->names)
+      @if($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
           <div>
-            <strong>Les acteurs {{ $partner->title }}s : </strong>
+            <strong>Les acteurs publics : </strong>
             <span class="is-block is-size-7">
-              {{ $partner->names }}
-              @include('components.modals.modalEdition',['chemin'=>'partners->value['.$key.']->names','type' => 'text','titre'=>"Modifier Les acteurs ".$partner->title.'s','description'=>"Qui sont les acteurs ".$partner->title.'s ?'])
+              {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
+              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','type' => 'text','titre'=>"Modifier Les acteurs publics",'description'=>"Qui sont les acteurs publics ?"])
             </span>
           </div>
-        @endif
-      @endforeach
-      @if($place->get('partners->value[0]->names') || $place->get('partners->value[1]->names'))
+      @endif
+      @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
+          <div>
+            <strong>Les acteurs privés : </strong>
+            <span class="is-block is-size-7">
+              {{ $place->get('blocs->presentation->donnees->acteurs_prives') }}
+              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','type' => 'text','titre'=>"Modifier Les acteurs privés",'description'=>"Qui sont les acteurs privés ?"])
+            </span>
+          </div>
+      @endif
         <div class="">
           <strong class="">Nature des partenariats :</strong>
           <div class="is-size-7">
-            @foreach($place->get('partners->value') as $key => $partner)
-              @if (count($partner->natures))
-                <div>{{ ucfirst($partner->title) }} : <span class="font-color-theme">
-                    @foreach($partner->natures as $nature)
-                      {{ $nature }}@if(! $loop->last), @endif
-                    @endforeach
-                  </span>
-                  @include('components.modals.modalEdition',['chemin'=> 'partners->value[0]->natures','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
-                </div>
-                @elseif(isset($edit) && $edit)
-                  <div>
-                    {{ ucfirst($partner->title) }} : @include('components.modals.modalEdition',['chemin'=> 'partners->value['.$key.']->natures','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du '.$partner->title.'s ?'])
-                  </div>
-                @endif
-              @endforeach
+            @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
+              <div> Publics : <span class="font-color-theme">
+                  @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)
+                    {{ $nature }}@if(! $loop->last), @endif
+                  @endforeach
+                </span>
+                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->public','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du publics ?'])
+              </div>
+            @endif
+            @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
+              <div> Privés : <span class="font-color-theme">
+                @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
+                  {{ $nature}}@if(! $loop->last), @endif
+                @endforeach
+                </span>
+                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','type' => 'text','titre'=>"Modifier La nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du privé ?'])
+              </div>
+            @endif
           </div>
         </div>
-      @endif
+
     </div>
   </div>
 </div>
