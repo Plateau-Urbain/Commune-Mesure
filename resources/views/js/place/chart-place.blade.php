@@ -58,8 +58,8 @@
   "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
 
     var smallmap = mapjs.create('info-box-map')
-  L.marker([{{ $place->get('geo->lat') }}, {{ $place->get('geo->lon') }}]).addTo(smallmap)
-    smallmap.setView([{{ $place->get('geo->lat') }}, {{ $place->get('geo->lon') }}], 9)
+  L.marker([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}]).addTo(smallmap)
+    smallmap.setView([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}], 9)
 
 function animateBar(){
   elements = document.querySelectorAll(".myBar")
@@ -143,7 +143,7 @@ function setCaptionDataBar(currentDataZone, zone){
 var select_zone;
 function setInseeChartData(currentDataZone,zone){
   select_zone = zone;
-  var data = @json($place->get('data->insee'));
+  var data = @json($place->get('blocs->data_territoire->donnees->insee'));
   var dataIris = data["iris"].activites
   var dataRegion = data["region"].activites
   var dataCommune = data["commune"].activites
