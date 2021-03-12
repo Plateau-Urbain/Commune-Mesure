@@ -102,6 +102,51 @@ class PlaceController extends Controller
            throw new \LogicException('Exiting, default admin hash');
        }
 
+       if (is_array($place->get($request->chemin)) && isset($request->type) && $request->type == "text"){   // plusieurs champs textuel dans le modal
+
+         $tab = $place->get($request->chemin);
+         $i=0;
+         foreach($tab as $champ){
+           $place->setOnArray(($request->chemin),array_search($champ,$tab), $request->{'champ'.$i});
+           $i++;
+         }
+         if($request->{'champ'.$i}!=""){
+           $place->setOnArray(($request->chemin),$i,$request->{'champ'.$i});
+         }
+         $place->set($request->chemin,array_values(array_filter($place->get($request->chemin))));
+
+         $place->save();
+         return redirect(route('place.edit', compact('slug', 'auth')));
+       }
+
+
+       if ( is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "checkbox"){
+         $i=0;
+         foreach($place->get($request->chemin) as $value => $check) {
+           if($request->{$i} == "on"){
+             $on = 1;
+           }
+           else{
+             $on = 0;
+           }
+           $place->get($request->chemin)->{$value} = $on;
+           $place->save();
+           $i++;
+         }
+         return redirect(route('place.edit', compact('slug', 'auth')));
+       }
+       if ( is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "number"){
+         $i=0;
+         foreach($place->get($request->chemin) as $k => $v) {
+           $place->get($request->chemin)->{$k} = $request->{$i};
+           $place->save();
+           $i++;
+         }
+         return redirect(route('place.edit', compact('slug', 'auth')));
+       }
+
+
+
        $place->set($request->chemin,$request->champ);
 
        $place->save();
@@ -199,14 +244,14 @@ class PlaceController extends Controller
 
     protected function sortDataInsee($place){
         //Sort insee object data on each zone map
-        $insee = $place->data->insee;
+        $insee = $place->blocs->data_territoire->donnees->insee;
         foreach ($insee as $zone => $datas) {
             foreach ($datas as $key => $data) {
                 $inseeDataArray = (array) $data;
                 usort($inseeDataArray, function($a, $b) {
                     return strcasecmp($a->title, $b->title);
                 });
-                $place->data->insee->{$zone}->{$key} = $inseeDataArray;
+                $place->blocs->data_territoire->donnees->insee->{$zone}->{$key} = $inseeDataArray;
             }
         }
     }
