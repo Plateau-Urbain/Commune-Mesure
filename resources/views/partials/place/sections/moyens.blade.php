@@ -2,10 +2,10 @@
 
 <div class="field has-text-centered">
   <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
-  @include('components.modals.modalEdition',['chemin'=>'data->finance->investissement','titre'=>"Modifier L'Investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
+  @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','type'=>'number','titre'=>"Modifier L'Investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
   <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
   <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
-  @include('components.modals.modalEdition',['chemin'=>'data->finance->fonctionnement','titre'=>"Modifier Le fonctionnement"])
+  @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','type'=>'number','titre'=>"Modifier Le fonctionnement"])
 </div>
 
 <canvas id="financement-budget-doughnut" ></canvas>
@@ -14,24 +14,24 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->get('data->compare->moyens->etp->nombre')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->etp->nombre','titre'=>"Modifier Le nombre d'ETP"])
+    <span class="title is-1">{{$place->get('blocs->presentation->donnees->etp')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->etp','type'=>'number','titre'=>"Modifier Le nombre d'ETP"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-    @if($place->get('data->compare->moyens->etp->nombre') >= 10)
+    @if($place->get('blocs->presentation->donnees->etp') >= 10)
       {{-- fix pour le cas spécial 10 --}}
-      @if($place->get('data->compare->moyens->etp->nombre') == 10)
+      @if($place->get('blocs->presentation->donnees->etp') == 10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endif
 
-      @for($i = 0; $i < $place->get('data->compare->moyens->etp->nombre') - 10; $i = $i+10)
+      @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') - 10; $i = $i+10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endfor
 
-      @if ($place->get('data->compare->moyens->etp->nombre') % 10 == 0)
+      @if ($place->get('blocs->presentation->donnees->etp') % 10 == 0)
         @svg('assets/images/body.svg', 'tiny narrow')
       @endif
     @endif
-    @for($i = 0; $i < $place->get('data->compare->moyens->etp->nombre') % 10; $i++)
+    @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') % 10; $i++)
       @svg('assets/images/body.svg', 'tiny narrow')
     @endfor
   </div>
@@ -39,24 +39,24 @@
 
 <div class="columns">
   <div class="column is-3 is-offset-2">
-    <span class="title is-1">{{$place->get('data->compare->moyens->benevole->nombre')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'data->compare->moyens->benevole->nombre','titre'=>"Modifier Le nombre de bénévoles"])
+    <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','type'=>'number','titre'=>"Modifier Le nombre de bénévoles"])
   </div>
   <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-    @if($place->get('data->compare->moyens->benevole->nombre') >= 10)
+    @if($place->get('blocs->moyens->donnees->benevoles') >= 10)
       {{-- fix pour le cas spécial 10 --}}
-      @if($place->get('data->compare->moyens->benevole->nombre') == 10)
+      @if($place->get('blocs->moyens->donnees->benevoles') == 10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endif
 
-      @for($i = 0; $i < $place->get('data->compare->moyens->benevole->nombre') - 10; $i = $i+10)
+      @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') - 10; $i = $i+10)
         @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endfor
 
-      @if ($place->get('data->compare->moyens->benevole->nombre') % 10 == 0)
+      @if ($place->get('blocs->moyens->donnees->benevoles') % 10 == 0)
         @svg('assets/images/body.svg', 'tiny narrow')
       @endif
     @endif
-    @for($i = 0; $i < $place->get('data->compare->moyens->benevole->nombre') % 10; $i++)
+    @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
       @svg('assets/images/body.svg', 'tiny narrow')
     @endfor
   </div>
