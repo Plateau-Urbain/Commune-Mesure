@@ -1,4 +1,4 @@
-@if ($edit || ($hasSection && $sectionVisibility))
+@if ($edit || ($sectionVisibility))
     <div
       @if ($edit && $sectionVisibility)
         {{ $attributes->merge(['class' => 'edit']) }}
