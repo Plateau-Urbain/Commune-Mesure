@@ -23,15 +23,14 @@
                     @foreach ($list as $place)
                     <tr>
                       <td>
-                        <a style='color: black'href="{{ route('admin.publish', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"
-                        @if ($place->get('publish'))
+                        <a style='color: black' href="{{ route('admin.publish', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"
+                        @if($place->get('publish'))
                           title="Publier"> <i class="fa fa-eye" style='color:#4CAF50'></i>
                         @else
                           title="Dé-publier"><i class="fas fa-eye-slash" style='color:#e85048'></i>
                         @endif
                         </a>
                       </td>
-
                         <td>
                             <p class="has-text-weight-bold"><a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}">{{ $place->get('name') }}</a></p>
                             <p class="has-text-grey-dark is-size-7">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>

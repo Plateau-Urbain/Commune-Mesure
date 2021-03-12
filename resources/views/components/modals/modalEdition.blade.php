@@ -2,7 +2,7 @@
   @php return @endphp
 @endif
 <span class="icon-edit">
-    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i>
+    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
@@ -30,39 +30,42 @@
           </small>
           <hr style='border:1px solid #dbdbdb'>
         @endif
-        @php ($valueChemin = $place->get($chemin))
+
+        @php ($valueChemin = $place->get($chemin)) @endphp
+
         @if(is_array($valueChemin))
-          @foreach($valueChemin as $key=>$value)
-            @foreach ($value as $k=> $v)
-              <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                  <label class="label">{{ucfirst($k)}} :</label>
-                </div>
-                <div class="field-body">
-                  <div class="field">
-                    <div class="control">
-                      @if(is_array($v) && isset($type) && $type == 'checkbox')
-                        @foreach($v as $kCheck => $vCheck)
-                        <div class="field">
-                          <div class="control">
-                            <label class="checkbox">
-                              <input type="checkbox" value="{{$kCheck}}" checked="checked">
-                              {{ $vCheck }}
-                            </label>
-                          </div>
-                        </div>
-                        @endforeach
-                      @elseif(is_array($v))
-                      <textarea class="textarea">{{ implode("\n", $v) }}</textarea>
-                      @elseif(!is_object($v))
-                      <input class="input" type="text" value="{{$v}}">
-                      @endif
-                    </div>
-                  </div>
-                </div>
-              </div>
+          @if (isset($type) && $type =='text')
+            @foreach( $valueChemin as $value)
+            <input name="champ{{array_search($value,$valueChemin)}}"  value="{{ $value }}"/>
+            <br>
             @endforeach
-            <hr/>
+            <input name="champ{{count($valueChemin)}}"></input>
+            <br>
+            <input name="champ{{count($valueChemin)+1}}"></input>
+            <input hidden name="type" value="{{$type}}"></input>
+          @endif
+        @elseif(is_object($valueChemin) && isset($type) && $type == "checkbox")
+          @php $i=0; @endphp
+          @foreach($valueChemin as $value => $check)
+            <label>{{$value}} : </label>
+            @if($check)
+              <input type="checkbox" name="{{$i}}" checked>
+              <br>
+            @else
+              <input type="checkbox" name="{{$i}}">
+              <br>
+            @endif
+            @php $i++; @endphp
+            <input hidden name="type" value="{{$type}}"></input>
+          @endforeach
+        @elseif(is_object($valueChemin) && isset($type) && $type == "number")
+          @php $i=0; @endphp
+          @foreach($valueChemin as $k => $v)
+            <label>{{$k}} : </label>
+            <input class='input-number' type="number" name="{{$i}}" value="{{$v}}">
+            <br>
+            @php $i++; @endphp
+            <input hidden name="type" value="{{$type}}"></input>
           @endforeach
         @elseif( isset($type) && $type== 'text' )
           <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
@@ -72,12 +75,7 @@
           <input class='input-number'step="any" name='champ' type='number' value = "{{ $valueChemin }}"/>
         @elseif ( isset($type) && $type == 'date')
           <input class='input-number' step="any" name='champ' type='date' value = "{{ $valueChemin }}"/>
-        @else
-        <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
         @endif
-
-
-
 
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
