@@ -2407,6 +2407,24 @@
               }
           },
           "compare":{
+            "moyens":{
+              "etp":{
+                "nombre":2,
+                "title":"Nombre d'ETP"
+              },
+              "benevole":{
+                "nombre":0,
+                "title":"Nombre de bénévoles"
+              },
+              "partenaire":{
+                "nombre":1,
+                "title":"Nombre de partenaires publics / privés"
+              },
+              "superficie":{
+                "nombre":220,
+                "title":"Superficie du lieu (m2)"
+              }
+            },
             "realisations":{
               "ouverture":{
                 "nombre":60,

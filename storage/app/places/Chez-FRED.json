@@ -2473,21 +2473,39 @@
               }
           },
           "compare":{
+            "moyens":{
+              "etp":{
+                "nombre":1.2,
+                "title":"Nombre d'ETP"
+              },
+              "benevole":{
+                "nombre":0,
+                "title":"Nombre de bénévoles"
+              },
+              "partenaire":{
+                "nombre":0,
+                "title":"Nombre de partenaires publics / privés"
+              },
+              "superficie":{
+                "nombre":1502,
+                "title":"Superficie du lieu (m2)"
+              }
+            },
             "realisations":{
               "ouverture":{
-                "nombre":60,
+                "nombre":50,
                 "title":"Nombre d'heures d'ouverture"
               },
               "event":{
-                "nombre":165,
+                "nombre":2,
                 "title":"Nombre d'événements publics / privés"
               },
               "struct_hebergee":{
-                "nombre":4,
+                "nombre":3,
                 "title":"Nombre de structures hébergées"
               },
               "visiteur":{
-                "nombre":70,
+                "nombre":50,
                 "title":"Nombre de visiteurs par an"
               }
             }
