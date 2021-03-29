@@ -74,9 +74,10 @@
         @elseif ( isset($type) && $type == 'decimal')
           <input class='input-number'step="any" name='champ' type='number' value = "{{ $valueChemin }}"/>
         @elseif ( isset($type) && $type == 'date')
-          <input class='input-number' step="any" name='champ' type='date' value = "{{ $valueChemin }}"/>
+          @php $date = $valueChemin[6].$valueChemin[7].$valueChemin[8].$valueChemin[9].'-'.$valueChemin[4].$valueChemin[3].'-'.$valueChemin[0].$valueChemin[1] @endphp
+          <input class='input-number' name='champ' value = "{{ $date }}" type="date" />
         @endif
-
+        <br>
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
       </section>
       <footer class="modal-card-foot">
