@@ -21,6 +21,9 @@
               <i class="fa fa-eye-slash" title="Afficher la section"></i>
             @endif
           </a>
+          @if ($isEmpty)
+            <i class="fas fa-exclamation-triangle" style='color:orange' title="Les données sont vides"></i>
+          @endif
         </div>
         @endif
 

@@ -21,9 +21,10 @@ class PlaceController extends Controller
         }
 
         $sections = $place->getVisibility();
+        $isEmpty = $place->getIsEmpty();
         $this->sortDataInsee($place->getData());
 
-        return view('place.show', compact('place', 'sections'));
+        return view('place.show', compact('place', 'sections','isEmpty'));
     }
 
     public function list(Place $place, $sortBy = null)
@@ -54,12 +55,15 @@ class PlaceController extends Controller
         }
 
         $sections = $place->getVisibility();
+        $isEmpty = $place->getIsEmpty();
         $this->sortDataInsee($place->getData());
+
 
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
 
-        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
+
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections','isEmpty'));
     }
 
     /**
@@ -179,6 +183,7 @@ class PlaceController extends Controller
         $place = Place::find($slug);
         $auths = $place->getAuth();
         $sections = $place->getVisibility();
+        $isEmpty = $place->getIsEmpty();
 
         if ($place->check($auth) === false) {
           abort(403, 'Wrong authentication string');
@@ -225,7 +230,7 @@ class PlaceController extends Controller
           return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections')));
         }
         else{
-          return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections'));
+          return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections','isEmpty'));
         }
   }
 

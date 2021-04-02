@@ -240,10 +240,69 @@ class Place extends Model
     $tabVisibility=array();
     foreach($tabSections as $s){
       $tabVisibility[$s]= $this->get('blocs->'.$s.'->visible');
+      if($s !='presentation'){
+        if($this->isEmpty($s)){
+          $tabVisibility[$s]= !$this->isEmpty($s);
+        }
+      }
     }
     return $tabVisibility;
   }
 
+
+  public function getIsEmpty(){
+    $tabSections = ["accessibilite","valeurs","moyens","composition","impact_social","galerie"];
+    $tabIsEmpty=array();
+    foreach($tabSections as $s){
+      $tabIsEmpty[$s]= $this->isEmpty($s);
+    }
+    return $tabIsEmpty;
+  }
+
+  public function isEmptyAccessibilityBySection($s){
+    $tab = $this->get('blocs->accessibilite->donnees->'.$s);
+    foreach($tab as $v){
+      if($v != 0){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public function isEmptyAccessibility(){
+    $tab = json_decode(json_encode($this->get('blocs->accessibilite->donnees')),true);
+    foreach($tab as $k=>$v){
+      if(!$this->isEmptyAccessibilityBySection($k)){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public function isEmpty($section){
+
+    if($section == "accessibilite"){  //cas particulier 0/1
+      return $this->isEmptyAccessibility();
+    }
+
+    $tab = json_decode(json_encode($this->get('blocs->'.$section.'->donnees')),true);
+    foreach($tab as $v){
+      if(is_array($v)){
+        foreach($v as $k){
+          if(!empty($k)){
+            return false;
+          }
+        }
+        if($section != 'valeurs'){  //Cas particulier ou on ne regarde que les données dans des tableaux//
+          return true;
+        }
+      }
+      if(!empty($v)){
+        return false;
+      }
+    }
+    return true;
+  }
 
   public function save(array $options = Array()){
     $result = DB::table('places')

@@ -64,7 +64,8 @@
   <div class="column is-10 is-offset-1">
 
     <section class="section " id="section01">
-      <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+
+      <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
         </div>
@@ -89,7 +90,7 @@
       </x-edit-section>
     </section>
     <section class="section">
-      <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <aside id="info-box" class="mb-2">
           <div>
             <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
@@ -101,23 +102,27 @@
           </div>
         </aside>
         <div class="columns has-text-centered">
-          <div class="column">
-            @include('partials.place.sections.public')
-          </div>
-
-          <div class="column">
-            @include('partials.place.sections.accessibilite')
-          </div>
-
-          <div class="column">
-            @include('partials.place.sections.transport')
-          </div>
+          @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
+            <div class="column">
+              @include('partials.place.sections.public')
+            </div>
+          @endif
+          @if(!$place->isEmptyAccessibilityBySection('accessibilite')&& !isset($edit) || isset($edit))
+            <div class="column">
+              @include('partials.place.sections.accessibilite')
+            </div>
+          @endif
+          @if(!$place->isEmptyAccessibilityBySection('transports') && !isset($edit) || isset($edit))
+            <div class="column">
+              @include('partials.place.sections.transport')
+            </div>
+          @endif
         </div>
       </x-edit-section>
     </section>
 
     <section class="section">
-      <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
         </div>
@@ -128,11 +133,11 @@
     <section  class="section">
       <div class="columns">
         @php $class="" @endphp
-        @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
+        @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
           @php $class="is-6 is-offset-3" @endphp
         @endif
 
-        <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+        <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
@@ -149,12 +154,7 @@
           @include('partials.place.sections.moyens')
         </x-edit-section>
 
-        @php $class="" @endphp
-        @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
-          @php $class="is-6 is-offset-3" @endphp
-        @endif
-        <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-
+        <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
@@ -166,7 +166,7 @@
     </section>
 
     <section  class="section">
-      <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
         </div>
@@ -175,7 +175,7 @@
     </section>
 
     <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
         </div>
@@ -183,7 +183,7 @@
       </x-edit-section>
     </section>
     <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :slug="$slug ?? false" :auth="$auth ?? false">
+      <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         @if(isset($edit))
           <span class="icon-edit">
             <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>

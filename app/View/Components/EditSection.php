@@ -21,6 +21,13 @@ class EditSection extends Component
     public $sectionVisibility;
 
     /**
+     * The section is empty
+     *
+     * @var bool
+     */
+    public $isEmpty;
+
+    /**
      * The section name
      *
      * @var string
@@ -35,12 +42,18 @@ class EditSection extends Component
      * @param  string $section The section name
      * @return void
      */
-    public function __construct($edit, $sections, $section)
+    public function __construct($edit, $sections, $section, $isEmpty)
     {
+
         $this->edit = $edit;
         $this->section = $section;
         $this->sectionVisibility = (bool) $sections[$section];
-
+        if(isset($isEmpty[$section])){
+          $this->isEmpty = (bool) $isEmpty[$section];
+        }
+        else{
+          $this->isEmpty= false;
+        }
     }
 
     /**
