@@ -5,7 +5,7 @@
     @if(count($tabExemples)>0 || isset($edit))
       <div class="column has-text-centered " >
         <p><strong class="valeurs">{{$valeur}}</strong><p>
-        @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','titre'=>"Modifier Les valeurs",'description'=>"Donner des exemples en rapport avec le ".$valeur."?"])&nbsp; &nbsp;
+        @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','titre'=>"Modifier Les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp;
         @foreach($tabExemples as $exemple)
           <p><strong>- {{$exemple}}</strong></p>
         @endforeach
