@@ -162,6 +162,7 @@ class PlaceController extends Controller
       $place = Place::find($slug);
       $auths = $place->getAuth();
       $sections = $place->getVisibility();
+      $isEmpty = $place->getIsEmpty();
 
       if ($place === false) {
           abort(404);
@@ -175,7 +176,7 @@ class PlaceController extends Controller
       $edit = true;
 
       $chemin = 'photos';
-      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections'));
+      return view('components.modals.modalEditionGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections','isEmpty'));
     }
 
 
