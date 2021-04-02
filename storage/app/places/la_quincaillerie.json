@@ -106,8 +106,7 @@
           "Entreprises" : 0,
           "Associations" : 1,
           "Artistes":0,
-          "Autres structures":0,
-          "total":1
+          "Autres structures":0
         },
         "structures_crees":2
       }
@@ -541,42 +540,22 @@
                   }
               }
           },
-          "compare":{
-            "moyens":{
-              "etp":{
-                "nombre":3.5,
-                "title":"Nombre d'ETP"
-              },
-              "benevole":{
-                "nombre":5,
-                "title":"Nombre de bénévoles"
-              },
-              "partenaire":{
-                "nombre":2,
-                "title":"Nombre de partenaires publics / privés"
-              },
-              "superficie":{
-                "nombre":1001,
-                "title":"Superficie du lieu (m2)"
-              }
+          "realisations":{
+            "ouverture":{
+              "nombre":54,
+              "title":"Nombre d'heures d'ouverture"
             },
-            "realisations":{
-              "ouverture":{
-                "nombre":54,
-                "title":"Nombre d'heures d'ouverture"
-              },
-              "event":{
-                "nombre":25,
-                "title":"Nombre d'événements publics / privés"
-              },
-              "struct_hebergee":{
-                "nombre":22,
-                "title":"Nombre de structures hébergées"
-              },
-              "visiteur":{
-                "nombre":100,
-                "title":"Nombre de visiteurs par an"
-              }
+            "event":{
+              "nombre":25,
+              "title":"Nombre d'événements publics / privés"
+            },
+            "struct_hebergee":{
+              "nombre":22,
+              "title":"Nombre de structures hébergées"
+            },
+            "visiteur":{
+              "nombre":100,
+              "title":"Nombre de visiteurs par an"
             }
           }
         }

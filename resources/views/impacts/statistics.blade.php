@@ -4,20 +4,35 @@
   <div class="section container">
     <h1 class="title is-1 has-text-centered">Les statistiques</h1>
   </div>
+
+
   <div class="section container has-text-centered pt-0">
     <div class="field">
       <div class="control">
         <div class="select is-normal is-success">
           <select style="display: inline-block;" name="1" id="titleCmpLeft" class="is-focused" >
-            @php $tab = json_decode(json_encode($places->first()->get('blocs->data_territoire->donnees->compare')),true) @endphp
+            @php $tab = [
+                  "moyens"=>[
+                    "etp" => "Nombre d'ETP",
+                    "benevole" => "Nombre de bénévoles",
+                    "partenaire" => "Nombre de partenaires publics / privés",
+                    "superficie" => "Superficie du lieu (m2)"
+                  ],
+                  "realisations"=>[
+                    "ouverture" => "Nombre d'heures d'ouverture",
+                    "event" => "Nombre d'événements publics / privés",
+                    "struct_hebergee" => "Nombre de structures hébergées",
+                    "visiteur" => "Nombre de visiteurs par an"]
+                  ];
+            @endphp
             @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )
                   <option @if($key_prog_name == "etp") id="stats_selectedLeftValue"
                     selected
                   @endif
-                                                       value="{{ $key_prog_name }}" >{{ $programmation['title'] }}</option>
-                                                     @endforeach
+                 value="{{ $key_prog_name }}" >{{ $programmation }}</option>
+               @endforeach
               </optgroup>
             @endforeach
           </select>
@@ -30,7 +45,7 @@
                 @foreach ($programmations as $key_prog_name => $programmation )
                   <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
                     selected
-                  @endif >{{ $programmation['title'] }}</option>
+                  @endif >{{ $programmation }}</option>
                 @endforeach
               </optgroup>
             @endforeach

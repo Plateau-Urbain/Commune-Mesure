@@ -336,14 +336,18 @@ class Place extends Model
     $compare_data = [];
     $compare_place_name = [];
     $compare_title = [
-      "moyens"=>[],
-      'realisations'=>[]
-    ];
-    foreach ($array_compares as $key => $value) {
-      foreach ($value as $k => $v) {
-        $compare_title[$key][$k] = $v['title'];
-      }
-    }
+      "moyens"=>[
+        "etp" => "Nombre d'ETP",
+        "benevole" => "Nombre de bénévoles",
+        "partenaire" => "Nombre de partenaires publics / privés",
+        "superficie" => "Superficie du lieu (m2)"
+      ],
+      'realisations'=>[
+        "ouverture" => "Nombre d'heures d'ouverture",
+        "event" => "Nombre d'événements publics / privés",
+        "struct_hebergee" => "Nombre de structures hébergées",
+        "visiteur" => "Nombre de visiteurs par an"]
+      ];
 
    foreach ($places as $place) {
       $data = '{"moyens":{"etp":{"nombre":'.
@@ -355,13 +359,13 @@ class Place extends Model
               ',"title":"Nombre de partenaires publics / privés"},"superficie":{"nombre":'
               . $place->get('blocs->presentation->donnees->surface').
               ',"title":"Superficie du lieu (m2)"}},"realisations":{"ouverture":{"nombre":'
-              .$place->get('blocs->data_territoire->donnees->compare->realisations->ouverture->nombre').
+              .$place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre').
               ',"title":"Nombre d\'heures d\'ouverture"},"event":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->compare->realisations->event->nombre').
+              $place->get('blocs->data_territoire->donnees->realisations->event->nombre').
               ',"title":"Nombre d\'événements publics / privés"},"struct_hebergee":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->compare->realisations->struct_hebergee->nombre').
+              $place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre').
               ',"title":"Nombre de structures hébergées"},"visiteur":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->compare->realisations->visiteur->nombre').
+              $place->get('blocs->data_territoire->donnees->realisations->visiteur->nombre').
               ',"title":"Nombre de visiteurs par an"}}}';
 
       $compare_data[$place->get('name')] = json_decode($data,true);
