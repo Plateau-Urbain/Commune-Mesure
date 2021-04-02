@@ -249,6 +249,10 @@ class Place extends Model
     return $tabVisibility;
   }
 
+  public function getVisibilitybySection($section){
+    $tab = $this->getVisibility();
+    return $tab[$section];
+  }
 
   public function getIsEmpty(){
     $tabSections = ["accessibilite","valeurs","moyens","composition","impact_social","galerie"];
