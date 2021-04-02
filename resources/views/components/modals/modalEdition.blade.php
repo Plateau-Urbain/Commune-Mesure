@@ -32,29 +32,25 @@
         @endif
 
         @php ($valueChemin = $place->get($chemin)) @endphp
-
         @if(is_array($valueChemin))
           @if (isset($type) && $type =='text')
             @foreach( $valueChemin as $value)
-            <input name="champ{{array_search($value,$valueChemin)}}"  value="{{ $value }}"/>
-            <br>
+            <input class='input' type='text' name="champ{{array_search($value,$valueChemin)}}"  value="{{ $value }}"/>
             @endforeach
-            <input name="champ{{count($valueChemin)}}"></input>
-            <br>
-            <input name="champ{{count($valueChemin)+1}}"></input>
+            <input class='input' type='text' name="champ{{count($valueChemin)}}"></input>
+            <input class='input' type='text' name="champ{{count($valueChemin)+1}}"></input>
             <input hidden name="type" value="{{$type}}"></input>
           @endif
         @elseif(is_object($valueChemin) && isset($type) && $type == "checkbox")
           @php $i=0; @endphp
           @foreach($valueChemin as $value => $check)
-            <label>{{$value}} : </label>
-            @if($check)
-              <input type="checkbox" name="{{$i}}" checked>
-              <br>
-            @else
-              <input type="checkbox" name="{{$i}}">
-              <br>
-            @endif
+              @if($check)
+                <input type="checkbox" name="{{$i}}" checked>
+              @else
+                <input type="checkbox" name="{{$i}}">
+              @endif
+              <label class="checkbox"> {{$value}} </label>
+            <br>
             @php $i++; @endphp
             <input hidden name="type" value="{{$type}}"></input>
           @endforeach
