@@ -48,17 +48,17 @@
       "visible":1,
       "donnees":{
         "publics": {
-          "Famille":1,
-          "Personnes âgées": 0,
+          "Chercheurs d'emplois":0,
           "Enfants":1,
           "Étudiants":1,
-          "Personnes travaillant le site":1,
-          "Personnes visitant le site":1,
-          "Chercheurs d'emplois":0,
-          "Personnes habitant sur le site":0,
-          "Personnes visants le site":0,
-          "Personnes":0,
+          "Famille":1,
           "Handicapés":0,
+          "Personnes":0,
+          "Personnes âgées": 0,
+          "Personnes habitant sur le site":0,
+          "Personnes travaillant sur le site":1,
+          "Personnes visitant le site":1,
+          "Personnes visants le site":0,
           "Tout le monde":1
         },
         "accessibilite":{
@@ -89,7 +89,8 @@
       "donnees":{
         "investissement":{
             "Fonds publics" : 600,
-            "Fonds privés": 19400
+            "Fonds privés": 19400,
+            "Fonds apportés": 0
         },
         "fonctionnement":{
             "Subventions": 0,
