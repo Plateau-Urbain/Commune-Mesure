@@ -61,15 +61,15 @@
 
 <div class="columns is-gapless is-mobile" id="container">
 
-  <div class="column is-10 is-offset-1">
+  <div class="column is-full">
 
     <section class="section " id="section01">
-
       <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+        <hr style='background-color:black;margin:0'>
         <div>
           <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
         </div>
-        <h2 class="ribbon-banner is-5 has-text-centered">Présentation du lieu</h2>
+        <h2 class="sous-banner is-5 has-text-centered">Présentation du lieu</h2>
         <div class="has-text-centered pt-2">
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
@@ -89,6 +89,7 @@
           </div>
       </x-edit-section>
     </section>
+    <br>
     <section class="section">
       <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <aside id="info-box" class="mb-2">

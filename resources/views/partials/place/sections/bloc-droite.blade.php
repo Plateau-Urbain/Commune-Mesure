@@ -1,31 +1,34 @@
 <div class="bloc-note">
   <div class="header-bloc-note">
     <figure class="image">
-      <img src="/images/bloc_noteAsset.png">
+      <img src="/images/Porte_bloc.png">
     </figure>
   </div>
   <div class="bloc-note-body">
+    <br>
     <div class="content">
       @if($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
           <div>
-            <strong>Les acteurs publics : </strong>
+            <h5>LES ACTEURS PUBLICS : </h5>
             <span class="is-block is-size-7">
               {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','type' => 'text','titre'=>"Modifier Les acteurs publics",'description'=>"Qui sont les acteurs publics ?"])
             </span>
           </div>
+          <br>
       @endif
       @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
           <div>
-            <strong>Les acteurs privés : </strong>
+            <h5>LES ACTEURS PRIVÉS : </h5>
             <span class="is-block is-size-7">
               {{ $place->get('blocs->presentation->donnees->acteurs_prives') }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','type' => 'text','titre'=>"Modifier Les acteurs privés",'description'=>"Qui sont les acteurs privés ?"])
             </span>
           </div>
+          <br>
       @endif
-        <div class="">
-          <strong class="">Nature des partenariats :</strong>
+        <div>
+          <h5>NATURE DES PARTENARIATS :</h5>
           <div class="is-size-7">
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
               <div> Publics : <span class="font-color-theme">

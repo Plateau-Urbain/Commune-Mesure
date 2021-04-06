@@ -77,6 +77,21 @@ h2.title{
     border-width: $rear-y-offset $rear-x-offset 0 0;
   }
 }
+
+.sous-banner {
+  font-size: 2em;
+  max-width: 20%;
+  position: relative;
+  background: linear-gradient(to left, #ec6e68, #e85048, #ec6e68);
+  color: #fff;
+  text-align: center;
+  padding: .3em 1em .3em;
+  margin: 0em auto 1.25em;
+  text-shadow: 0 1px 3px #e32d24;
+}
+.section{
+  padding:0;
+}
 div.tooltip {
     position: relative;
     text-align: left;
@@ -552,29 +567,37 @@ p.partenaires_text{
   padding:20%;
 }
 .header-bloc-note{
-  display: flex;
   align-items: center;
   width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 .header-bloc-note .image img{
-    margin-bottom: -10px;
+    margin-bottom: -30px;
 }
 .bloc-note-body{
-  border: 0.4em solid #dbdbdb;
-  height:20em;
-  width:100%;
+  border-top: 2.2em solid #c1c1c1;
+	border-bottom: 1.5em solid #c1c1c1;
+	border-left: 1em solid #c1c1c1;
+	border-right: 1em solid #c1c1c1;
+  height: 25em;
+  width: 100%;
   background-color: #fff;
   overflow: auto;
-}
+  text-align: justify;
+  padding: 0px 20px; }
 
+.bloc-note-body h4{
+  color:#e32d24 !important;
+  margin-bottom: 0px !important;
+}
+.bloc-note-body h5{
+  font-size: 1em;
+  color:#e32d24 !important;
+  margin-bottom: 0px !important;
+}
 .bloc-note-body div{
   margin: 2% 2% 0% 2%;
-}
-div.bloc-note{
-  background-image: url('/images/bloc_note_rotate.svg');
-  background-repeat:round;
 }
 .home-head{
   width:100%;
