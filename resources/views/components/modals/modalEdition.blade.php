@@ -57,7 +57,7 @@
         @elseif(is_object($valueChemin) && isset($type) && $type == "number")
           @php $i=0; @endphp
           @foreach($valueChemin as $k => $v)
-            <label>{{$k}} : </label>
+            <label class ="labelpopup">{{$k}} : </label>
             <input class='input-number' type="number" name="{{$i}}" value="{{$v}}">
             <br>
             @php $i++; @endphp
