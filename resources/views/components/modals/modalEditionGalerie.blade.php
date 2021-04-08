@@ -11,7 +11,7 @@
           Modifier la galerie
          </h2>
       </div>
-       <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"><button class="delete modal-croix" aria-label="close"></button></a>
+       <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]])}}#section07"><button class="delete modal-croix" aria-label="close"></button></a>
        <br>
 
     </header>
@@ -47,7 +47,7 @@
         <br>
         <span class="container">
           <span class="field is-grouped is-grouped-left">
-            <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}"><input class="button" type='button' value="Fermer"/></button></a>
+            <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}#section07"><input class="button" type='button' value="Fermer"/></button></a>
           </span>
         </span>
 

@@ -2,12 +2,11 @@
   @php return @endphp
 @endif
 <span class="icon-edit">
-    <i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i>
+    <a class='crayons'href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer la section"></i></a>
 </span>
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
   <div class="modal-card">
-
     <header class="modal-card-head">
       <div class="modal-card-title">
         <h2 >
@@ -21,7 +20,7 @@
 
     </header>
 
-    <form method="POST" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}">
+    <form method="POST" action="{{route('place.update',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin, 'id_section' => $id_section])}}">
 
       <section class="modal-card-body">
         @if(isset($description))
