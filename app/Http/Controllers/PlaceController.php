@@ -205,15 +205,13 @@ class PlaceController extends Controller
         $edit = true;
         $chemin = 'photos';
 
-        if(isset($_POST['supprimer'])){
-
+        if(isset($_POST['supprimer']) && ctype_digit($_POST['supprimer'])){
           $place->deletePhoto($_POST['supprimer']);
           $place->save();
-
           return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections')));
         }
 
-        elseif(isset($_POST['ajouter'])){
+        elseif(isset($_POST['ajouter']) && ctype_digit($_POST['ajouter'])){
           if( (!in_array( get_extension($_FILES['image']['name']), $extensions)))
           {
             // echo("Ce n'est pas une image");
