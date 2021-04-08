@@ -1,12 +1,14 @@
-<h2 class="ribbon-banner title is-5 has-text-centered">Les valeurs</h2>
+<div class="fond-fil" id="fond-fil-4">
+  <h2 class="sous-banner sous-banner-fil sos is-5 has-text-centered">LES VALEURS</h2>
+</div>
 <br>
 <div class="columns">
     @foreach($place->get('blocs->valeurs->donnees') as $valeur => $tabExemples)
     @if(count($tabExemples)>0 || isset($edit))
       <div class="column">
-        <p class = 'has-text-centered'>
+        <p>
           <strong class="valeurs">{{$valeur}}</strong>
-          @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','titre'=>"Modifier Les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp;
+          @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','id_section'=>'section03','titre'=>"Modifier Les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp;
         <p>
         <div>
           <ul>

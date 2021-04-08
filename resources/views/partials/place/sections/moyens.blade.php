@@ -1,10 +1,10 @@
-<h2 class="ribbon-banner title is-5">Les moyens</h2>
+<h2 class="sous-banner sous-banner-composition is-5">LES MOYENS</h2>
   <div class="field has-text-centered">
       <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
-      @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','type'=>'number','titre'=>"Modifier L'Investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
+      @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'section04','type'=>'number','titre'=>"Modifier L'Investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
       <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
       <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
-      @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','type'=>'number','titre'=>"Modifier Le fonctionnement"])
+      @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'section04','type'=>'number','titre'=>"Modifier Le fonctionnement"])
 
   </div>
 <canvas id="financement-budget-doughnut" ></canvas>
@@ -14,7 +14,7 @@
   @if(!empty($place->get('blocs->presentation->donnees->etp')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
-        <span class="title is-1">{{$place->get('blocs->presentation->donnees->etp')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->etp','type'=>'number','titre'=>"Modifier Le nombre d'ETP"])
+        <span class="title is-1">{{$place->get('blocs->presentation->donnees->etp')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->etp','id_section'=>'section04','type'=>'number','titre'=>"Modifier Le nombre d'ETP"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         @if($place->get('blocs->presentation->donnees->etp') >= 10)

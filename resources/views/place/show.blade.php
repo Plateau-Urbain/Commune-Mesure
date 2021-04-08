@@ -63,13 +63,12 @@
 
   <div class="column is-full">
 
-    <section class="section " id="section01">
-      <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-        <hr style='background-color:black;margin:0'>
+    <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section section-place " id="section01">
         <div>
           <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
         </div>
-        <h2 class="sous-banner is-5 has-text-centered">Présentation du lieu</h2>
+        <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
@@ -87,22 +86,23 @@
               @include('partials.place.sections.bloc-droite')
             </div>
           </div>
-      </x-edit-section>
-    </section>
-    <br>
-    <section class="section">
-      <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+        </section>
+    </x-edit-section>
+    <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section section-place">
         <aside id="info-box" class="mb-2">
           <div>
             <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
           </div>
-          <h3 class="info-box-header">Localisation</h3>
+          <div class='sous-banner sous-banner-localisation'>
+            <h3 class="is-5 has-text-centered">LOCALISATION </h3>
+            <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+          </div>
           <div class="info-box-content">
               <div id="info-box-map" class="info-box-map"></div>
-              <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
           </div>
         </aside>
-        <div class="columns has-text-centered">
+        <div class="columns has-text-centered accessibilite">
           @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
             <div class="column">
               @include('partials.place.sections.public')

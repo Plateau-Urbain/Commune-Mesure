@@ -1,4 +1,6 @@
-<h2 class="ribbon-banner title is-5 has-text-centered">Le lieu dans son territoire</h2>
+<div class='fond-fil' id="fond-fil-2">
+  <h2 class="sous-banner sous-banner-fil is-5 has-text-centered">LE LIEU DANS SON TERRITOIRE</h2>
+</div>
 <div class="section">
   <div class="columns">
     <div class="column">

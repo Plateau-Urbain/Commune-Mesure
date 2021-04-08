@@ -35,7 +35,7 @@ $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminControl
 
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
-$router->post('/place/{slug}/{auth:[a-z0-9]+}/update', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
+$router->post('/place/{slug}/{auth:[a-z0-9]+}/update/{id_section}', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/editGalerie', ['uses' => 'PlaceController@editGalerie', 'as' => 'place.editGalerie']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/updateGalerie', ['uses' => 'PlaceController@updateGalerie', 'as' => 'place.updateGalerie']);
 

@@ -96,9 +96,8 @@ class PlaceController extends Controller
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
     }
 
-    public function update(Request $request,$slug,$auth){
+    public function update(Request $request,$slug,$auth,$id_section){
        $place = Place::find($slug);
-
        if ($place->check($auth) === false) {
          abort(403, 'Wrong authentication string');
        }
@@ -125,9 +124,8 @@ class PlaceController extends Controller
            $place->setOnArray(($request->chemin),$j,$request->{'champ'.$j});
          }
          $place->set($request->chemin,array_values(array_filter($place->get($request->chemin))));
-
          $place->save();
-         return redirect(route('place.edit', compact('slug', 'auth')));
+         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
 
 
@@ -144,7 +142,7 @@ class PlaceController extends Controller
            $place->save();
            $i++;
          }
-         return redirect(route('place.edit', compact('slug', 'auth')));
+         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
        if ( is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "number"){
          $i=0;
@@ -153,16 +151,14 @@ class PlaceController extends Controller
            $place->save();
            $i++;
          }
-         return redirect(route('place.edit', compact('slug', 'auth')));
+         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
-
-
 
        $place->set($request->chemin,$request->champ);
 
        $place->save();
 
-       return redirect(route('place.edit', compact('slug', 'auth')));
+       return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
     }
 
     public function editGalerie($slug,$auth){
