@@ -17,22 +17,26 @@
         <span class="title is-1">{{$place->get('blocs->presentation->donnees->etp')}}</span><br /><span class="title is-5">ETP </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->etp','id_section'=>'section04','type'=>'number','titre'=>"Modifier Le nombre d'ETP"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-        @if($place->get('blocs->presentation->donnees->etp') >= 10)
-          {{-- fix pour le cas spécial 10 --}}
-          @if($place->get('blocs->presentation->donnees->etp') == 10)
-            @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-          @endif
-
-          @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') - 10; $i = $i+10)
-            @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+        {{-- fix pour le cas spécial 10 --}}
+        @if($place->get('blocs->presentation->donnees->etp') == 10)
+          <img class='icone-moyen' src='/images/10personnes.png'/>
+        @endif
+        @if($place->get('blocs->presentation->donnees->etp') >= 100)
+          @for($i=0; $i< 10; $i++)
+            <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
-
+          <img class='icone-moyen' src='/images/personnes.png'/>
+        @endif
+        @if($place->get('blocs->presentation->donnees->etp') > 10 && $place->get('blocs->presentation->donnees->etp') < 100)
+          @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') - 10; $i = $i+10)
+            <img class='icone-moyen' src='/images/10personnes.png'/>
+          @endfor
           @if ($place->get('blocs->presentation->donnees->etp') % 10 == 0)
-            @svg('assets/images/body.svg', 'tiny narrow')
+          <img class='icone-moyen' src='/images/10personnes.png'/>
           @endif
         @endif
         @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') % 10; $i++)
-          @svg('assets/images/body.svg', 'tiny narrow')
+          <img class='icone-moyen' src='/images/1personne.png' />
         @endfor
       </div>
     </div>
@@ -40,25 +44,29 @@
   @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
-        <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','type'=>'number','titre'=>"Modifier Le nombre de bénévoles"])
+        <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'section04','type'=>'number','titre'=>"Modifier Le nombre de bénévoles"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
-        @if($place->get('blocs->moyens->donnees->benevoles') >= 10)
-          {{-- fix pour le cas spécial 10 --}}
-          @if($place->get('blocs->moyens->donnees->benevoles') == 10)
-            @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
-          @endif
-
-          @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') - 10; $i = $i+10)
-            @svg('assets/images/body.svg', 'tiny narrow')<span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
+        {{-- fix pour le cas spécial 10 --}}
+        @if($place->get('blocs->moyens->donnees->benevoles') == 10)
+          <img class='icone-moyen' src='/images/10personnes.png'/>
+        @endif
+        @if($place->get('blocs->moyens->donnees->benevoles') >= 100)
+          @for($i=0; $i< 10; $i++)
+            <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
-
+          <img class='icone-moyen' src='/images/personnes.png'/>
+        @endif
+        @if($place->get('blocs->moyens->donnees->benevoles') > 10 && $place->get('blocs->moyens->donnees->benevoles') < 100 )
+          @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') - 10; $i = $i+10)
+            <img class='icone-moyen' src='/images/10personnes.png'/>
+          @endfor
           @if ($place->get('blocs->moyens->donnees->benevoles') % 10 == 0)
-            @svg('assets/images/body.svg', 'tiny narrow')
+            <img class='icone-moyen' src='/images/10personnes.png'/>
           @endif
         @endif
         @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
-          @svg('assets/images/body.svg', 'tiny narrow')
+          <img class='icone-moyen' src='/images/1personne.png' />
         @endfor
       </div>
     </div>
