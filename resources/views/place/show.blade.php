@@ -89,7 +89,7 @@
         </section>
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place">
+      <section class="section section-place fond-bleu">
         <aside id="info-box" class="mb-2">
           <div>
             <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
@@ -168,7 +168,7 @@
 
 
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-        <section  class="section section-place">
+        <section  class="section section-place fond-bleu">
         <div>
           <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
         </div>
