@@ -117,6 +117,13 @@ class PlaceController extends Controller
          if($request->{'champ'.$i}!=""){
            $place->setOnArray(($request->chemin),$i,$request->{'champ'.$i});
          }
+         $j=$i+1;
+         if($request->{'champ'.$j}!="" && $request->{'champ'.$i} == ""){
+           $place->setOnArray(($request->chemin),$i,$request->{'champ'.$j});
+         }
+         if($request->{'champ'.$j}!="" && $request->{'champ'.$i} != ""){
+           $place->setOnArray(($request->chemin),$j,$request->{'champ'.$j});
+         }
          $place->set($request->chemin,array_values(array_filter($place->get($request->chemin))));
 
          $place->save();
