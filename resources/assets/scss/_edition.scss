@@ -1,5 +1,5 @@
 .edit {
-    border: 1px $black dotted;
+    border: 1px dotted #e85048;
 
     &.hidden {
         opacity: 0.5;
@@ -22,4 +22,7 @@
 
 .edit .icon-edit:hover i.fa.fa-eye::before {
     content: "\f070";
+}
+.crayons {
+  color:inherit;
 }

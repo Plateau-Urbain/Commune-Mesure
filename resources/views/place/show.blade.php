@@ -119,25 +119,25 @@
             </div>
           @endif
         </div>
-      </x-edit-section>
-    </section>
-
-    <section class="section">
-      <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      </section>
+    </x-edit-section>
+    <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section section-place">
+        <div class='column'>
+            <div>
+              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
+            </div>
+            @include('partials.place.sections.values')
         <div>
-          <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
-        </div>
-        @include('partials.place.sections.values')
-      </x-edit-section>
-    </section>
+      </section>
+    </x-edit-section>
 
-    <section  class="section">
+    <section class="section section-place">
       <div class="columns">
         @php $class="" @endphp
         @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
           @php $class="is-6 is-offset-3" @endphp
         @endif
-
         <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
             <div>
@@ -155,7 +155,7 @@
           @include('partials.place.sections.moyens')
         </x-edit-section>
 
-        <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+        <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
             <div>
               <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
@@ -166,36 +166,38 @@
       </div>
     </section>
 
-    <section  class="section">
-      <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+
+    <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+        <section  class="section section-place">
         <div>
           <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
         </div>
         @include('partials.place.sections.impact-social')
-      </x-edit-section>
-    </section>
+        </section>
+    </x-edit-section>
 
-    <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section anchor section-place">
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
         </div>
         @include('partials.place.sections.territoire')
-      </x-edit-section>
-    </section>
-    <section class="section anchor">
-      <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-        @if(isset($edit))
-          <span class="icon-edit">
-            <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>
-          </span>
-        @endif
-        <div>
-          <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
-        </div>
-        @include('partials.place.sections.carousel')
-      </x-edit-section>
-    </section>
+      </section>
+    </x-edit-section>
+    <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section anchor section-place">
+          @if(isset($edit))
+            <span class="icon-edit">
+              <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>
+            </span>
+          @endif
+          <div>
+            <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
+          </div>
+          @include('partials.place.sections.carousel')
+
+      </section>
+    </x-edit-section>
         </div>
   </div>
   <script type="text/javascript" src="/js/easyScrollDots.min.js"></script>
