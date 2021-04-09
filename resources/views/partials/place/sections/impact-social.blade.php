@@ -37,9 +37,6 @@
       </div>
     </div>
   </div>
-
-  <img width="200" src="/images/Impact_individuel.png"/>
-
   {{-- Droite --}}
   <div  class="column has-text-centered" style="position: relative;">
 
