@@ -55,14 +55,11 @@
           "Enfants":1,
           "Étudiants":1,
           "Famille":1,
-          "Personnes":0,
           "Handicapés":1,
           "Personnes âgées": 0,
           "Personnes habitant sur le site":1,
           "Personnes travaillant sur le site":0,
-          "Personnes visitant le site":1,
-          "Personnes visants le site":0,
-          "Tout le monde":1
+          "Personnes visitant le site":1
         },
         "accessibilite":{
           "Handicapés":1,
@@ -71,6 +68,8 @@
         "transports":{
             "Bus":1,
             "Métro":1,
+            "Train":0,
+            "Vélo":0,
             "Voiture":1
         }
       }

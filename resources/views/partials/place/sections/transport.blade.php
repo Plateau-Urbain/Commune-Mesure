@@ -12,6 +12,12 @@
     @if($transport == 'Métro' && $check)
       <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="cm-icons metro font-color-theme mr-1"></i></span>
     @endif
+    @if($transport == 'Train' && $check)
+      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Train"><i class="cm-icons train font-color-theme mr-1"></i></span>
+    @endif
+    @if($transport == 'Vélo' && $check)
+      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Vélo"><i class="cm-icons velo font-color-theme mr-1"></i></span>
+    @endif
     @if($transport == 'Voiture' && $check)
       <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="cm-icons voiture font-color-theme mr-1"></i></span>
     @endif
