@@ -59,7 +59,7 @@
 
   @if($place->getVisibilitybySection('accessibilite') && !isset($edit) || isset($edit))
 
-      var smallmap = mapjs.create('info-box-map')
+      var smallmap = mapjs.create('info-box-map',{gestureHandling: true})
     L.marker([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}]).addTo(smallmap)
       smallmap.setView([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}], 9)
   @endif
