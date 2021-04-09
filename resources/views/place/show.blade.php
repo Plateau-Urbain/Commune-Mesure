@@ -131,41 +131,41 @@
         <div>
       </section>
     </x-edit-section>
-
-    <section class="section section-place">
-      <div class="columns">
-        @php $class="" @endphp
-        @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
-          @php $class="is-6 is-offset-3" @endphp
-        @endif
-        <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-          @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
-            <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
-            </div>
-          @elseif(isset($edit))
-            <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
-            </div>
-          @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
-            <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
-            </div>
+    @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
+      <section class="section section-place">
+        <div class="columns">
+          @php $class="" @endphp
+          @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
+            @php $class="is-6 is-offset-3" @endphp
           @endif
-          @include('partials.place.sections.moyens')
-        </x-edit-section>
+          <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
+              <div>
+                <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
+              </div>
+            @elseif(isset($edit))
+              <div>
+                <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
+              </div>
+            @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
+              <div>
+                <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
+              </div>
+            @endif
+            @include('partials.place.sections.moyens')
+          </x-edit-section>
 
-        <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-          @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
-            <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
-            </div>
-          @endif
-          @include('partials.place.sections.composition')
-        </x-edit-section>
-      </div>
-    </section>
-
+          <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
+            @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
+              <div>
+                <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
+              </div>
+            @endif
+            @include('partials.place.sections.composition')
+          </x-edit-section>
+        </div>
+      </section>
+    @endif
 
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <section  class="section section-place fond-bleu">
