@@ -26,13 +26,13 @@
         @if($place->get('blocs->presentation->donnees->etp') == 10)
           <img class='icone-moyen' src='/images/10personnes.png'/>
         @endif
-        @if($place->get('blocs->presentation->donnees->etp') >= 100)
+        @if($place->get('blocs->presentation->donnees->etp') > 100)
           @for($i=0; $i< 10; $i++)
             <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
           <img class='icone-moyen' src='/images/personnes.png'/>
         @endif
-        @if($place->get('blocs->presentation->donnees->etp') > 10 && $place->get('blocs->presentation->donnees->etp') < 100)
+        @if($place->get('blocs->presentation->donnees->etp') > 10 && $place->get('blocs->presentation->donnees->etp') <= 100)
           @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') - 10; $i = $i+10)
             <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
@@ -43,7 +43,11 @@
             <img class='icone-moyen' src='/images/1personne.png' />
           @endfor
         @endif
-
+        @if($place->get('blocs->presentation->donnees->etp') < 10)
+          @for($i = 0; $i < $place->get('blocs->presentation->donnees->etp') % 10; $i++)
+            <img class='icone-moyen' src='/images/1personne.png' />
+          @endfor
+        @endif
 
       </div>
     </div>
@@ -58,19 +62,24 @@
         @if($place->get('blocs->moyens->donnees->benevoles') == 10)
           <img class='icone-moyen' src='/images/10personnes.png'/>
         @endif
-        @if($place->get('blocs->moyens->donnees->benevoles') >= 100)
+        @if($place->get('blocs->moyens->donnees->benevoles') > 100)
           @for($i=0; $i< 10; $i++)
             <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
           <img class='icone-moyen' src='/images/personnes.png'/>
         @endif
-        @if($place->get('blocs->moyens->donnees->benevoles') > 10 && $place->get('blocs->moyens->donnees->benevoles') < 100 )
+        @if($place->get('blocs->moyens->donnees->benevoles') > 10 && $place->get('blocs->moyens->donnees->benevoles') <= 100 )
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') - 10; $i = $i+10)
             <img class='icone-moyen' src='/images/10personnes.png'/>
           @endfor
           @if ($place->get('blocs->moyens->donnees->benevoles') % 10 == 0)
             <img class='icone-moyen' src='/images/10personnes.png'/>
           @endif
+          @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
+            <img class='icone-moyen' src='/images/1personne.png' />
+          @endfor
+        @endif
+        @if($place->get('blocs->presentation->donnees->etp') < 10)
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
             <img class='icone-moyen' src='/images/1personne.png' />
           @endfor

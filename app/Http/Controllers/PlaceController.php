@@ -154,7 +154,13 @@ class PlaceController extends Controller
          return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
 
-       $place->set($request->chemin,$request->champ);
+       if(empty($request->champ) && $request->type == "number"){
+         $new = 0;
+       }
+       else{
+         $new = $request->champ;
+       }
+       $place->set($request->chemin,$new);
 
        $place->save();
 
