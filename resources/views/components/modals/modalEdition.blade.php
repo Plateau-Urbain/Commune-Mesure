@@ -44,15 +44,19 @@
           @php $i=0; @endphp
           @foreach($valueChemin as $value => $check)
               @if($check)
-                <input type="checkbox" name="{{$i}}" checked>
+                <input class='check' type="checkbox" name="{{$i}}" checked>
               @else
-                <input type="checkbox" name="{{$i}}">
+                <input class='check' type="checkbox" name="{{$i}}">
               @endif
               <label class="checkbox"> {{$value}} </label>
             <br>
             @php $i++; @endphp
             <input hidden name="type" value="{{$type}}"></input>
           @endforeach
+          <br>
+          <input type="checkbox" onClick="toggle(this)"/>
+          <label class="checkbox">Tout cocher</label>
+          <br>
         @elseif(is_object($valueChemin) && isset($type) && $type == "number")
           @php $i=0; @endphp
           @foreach($valueChemin as $k => $v)
