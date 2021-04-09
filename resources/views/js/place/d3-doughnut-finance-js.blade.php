@@ -52,8 +52,20 @@ var financeChart = charts.create(canvasFinancesId, "doughnut",
         display: true,
       },
     }
-
   );
+
+@if(!$place->isEmptyInvestissement() && $place->isEmptyFonctionnement())
+  var financeChart = charts.create(canvasFinancesId, "doughnut",
+      getLabels("investissement"), getDataChart("investissement"), ['#8e44ad', '#3498db', '#1abc9c', '#96043e'],
+      {
+        legend: {
+          display: true,
+        },
+      }
+    );
+@endif
+
+
 
   var dataCompo = charts.create("composition-chart-doughnut", "doughnut",
       getLabels("composition"), getDataChart("composition"), ['#DEEBEE', '#ff5728', '#1abc9c', '#96043e'],
