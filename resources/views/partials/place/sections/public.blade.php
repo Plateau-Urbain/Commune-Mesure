@@ -15,8 +15,23 @@
       @if($public == 'Famille' && $check)
         <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="cm-icons familles font-color-theme mr-1"></i></span>
       @endif
+      @if($public == 'Handicapés' && $check)
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Handicapés"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>
+      @endif
+      @if($public == "Chercheurs d'emplois" && $check)
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Chercheurs d'emplois"><i class="cm-icons chercheur-emploi font-color-theme mr-1"></i></span>
+      @endif
       @if($public == 'Personnes âgées' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes âgées"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes âgées"><i class="cm-icons personnes-agees font-color-theme mr-1"></i></span>
+      @endif
+      @if($public == 'Personnes habitant sur le site' && $check)
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes habitant sur le site"><i class="cm-icons habitant font-color-theme mr-1"></i></span>
+      @endif
+      @if($public == 'Personnes visitant le site' && $check)
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes visitant le site"><i class="cm-icons visiteur font-color-theme mr-1"></i></span>
+      @endif
+      @if($public == 'Personnes travaillant sur le site' && $check)
+        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes travaillant sur le site"><i class="cm-icons travailleur font-color-theme mr-1"></i></span>
       @endif
     @endforeach
 </div>
