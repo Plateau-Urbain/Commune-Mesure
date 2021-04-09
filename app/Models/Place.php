@@ -283,8 +283,34 @@ class Place extends Model
     return true;
   }
 
-  public function isEmpty($section){
+  public function isEmptyInvestissement(){
+    $tab = json_decode(json_encode($this->get('blocs->moyens->donnees->investissement')),true);
+    foreach($tab as $k => $v){
+      if(!empty($v)){
+        return false;
+      }
+    }
+    return true;
+  }
 
+  public function isEmptyFonctionnement(){
+    $tab = json_decode(json_encode($this->get('blocs->moyens->donnees->fonctionnement')),true);
+    foreach($tab as $k => $v){
+      if(!empty($v)){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public function isEmpty($section){
+    if($section == "moyens"){
+      if($this->isEmptyFonctionnement() && $this->isEmptyInvestissement()){
+        return true;
+      }
+      return false;
+    }
+    
     if($section == "accessibilite"){  //cas particulier 0/1
       return $this->isEmptyAccessibility();
     }
