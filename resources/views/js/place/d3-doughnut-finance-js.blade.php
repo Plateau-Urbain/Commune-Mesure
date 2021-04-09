@@ -1,6 +1,18 @@
 <script>
-var hi = {{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés')}}
-var finances = {"composition":[{"name":"Entreprises","size":{{ $place->get('blocs->composition->donnees->type->Entreprises') }}},{"name":"Associations","size":{{ $place->get('blocs->composition->donnees->type->Associations') }}},{"name":"Artistes","size":{{ $place->get('blocs->composition->donnees->type->Artistes') }}},{"name":"Autres structures","size":{{ $place->get('blocs->composition->donnees->type->Autres structures') }}}],"investissement":[{"name":"Fonds publics","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds publics')}}},{"name":"Fonds priv\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds privés')}}},,{"name":"Fonds apport\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés')}}}],"fonctionnement":[{"name":"Subventions","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Subventions')}}},{"name":"Aides priv\u00e9es","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Aides privées')}}},{"name":"Recettes","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes')}}}]};
+var finances = {"composition":[{"name":"Entreprises","size":{{ $place->get('blocs->composition->donnees->type->Entreprises') }}},
+                               {"name":"Associations","size":{{ $place->get('blocs->composition->donnees->type->Associations') }}},
+                               {"name":"Artistes","size":{{ $place->get('blocs->composition->donnees->type->Artistes') }}},
+                               {"name":"Autres structures","size":{{ $place->get('blocs->composition->donnees->type->Autres structures') }}}
+                              ],
+                "investissement":[{"name":"Fonds publics","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds publics')}}},
+                                  {"name":"Fonds priv\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds privés')}}},
+                                  {"name":"Fonds apport\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés')}}}
+                                ],
+                "fonctionnement":[{"name":"Subventions","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Subventions')}}},
+                                  {"name":"Aides priv\u00e9es","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Aides privées')}}},
+                                  {"name":"Recettes","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes')}}}
+                                ]
+                };
 var inputChoice = document.querySelector("input#switchRoundedSuccess");
 var canvasFinancesId = 'financement-budget-doughnut'
 
