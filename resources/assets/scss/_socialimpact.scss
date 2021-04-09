@@ -1,6 +1,6 @@
 .impact_item {
     position: absolute;
-
+    display: flex;
     &.impact_disabled {
         opacity: 0.5;
     }
