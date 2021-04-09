@@ -210,8 +210,7 @@ class PlaceController extends Controller
           $place->save();
           return redirect(route('place.editGalerie',compact('place', 'slug','auth','edit','chemin','auths','sections')));
         }
-
-        elseif(isset($_POST['ajouter']) && ctype_digit($_POST['ajouter'])){
+        if(isset($_POST['ajouter']) && $_POST['ajouter']=="ajouter"){
           if( (!in_array( get_extension($_FILES['image']['name']), $extensions)))
           {
             // echo("Ce n'est pas une image");
