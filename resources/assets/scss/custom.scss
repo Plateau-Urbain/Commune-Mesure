@@ -56,25 +56,23 @@ h2.title{
   width: 40% !important;
 }
 
-.banner-image-and-fil {
-    .banner-image {
-        width: 33%;
-        margin: auto;
-        margin-bottom: -66px;
+.banner-image {
+    width: 33%;
+    margin: auto;
+    margin-bottom: -66px;
 
-        img {
-            z-index: 1;
-            position: relative;
-        }
+    img {
+        z-index: 1;
+        position: relative;
     }
+}
 
-    .banner-fil {
-        background-size: cover;
+.banner-fil {
+    background-size: cover;
+}
 
-        .sous-banner {
-            margin-top: 0 !important;
-        }
-    }
+.banner-image-and-fil .banner-fil .sous-banner {
+    margin-top: 0 !important;
 }
 
 .fil-4{
