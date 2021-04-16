@@ -44,15 +44,6 @@ h2.title{
   background-size: cover;
   height: 130px;
 }
-#fond-fil-4{
-  background-image: url('/images/Ligne4.svg');
-}
-#fond-fil-2{
-  background-image: url('/images/Ligne2.svg');
-}
-#fond-fil-5{
-  background-image: url('/images/Ligne5.svg');
-}
 .sous-banner-localisation{
   position:absolute;
   z-index:3;
@@ -64,6 +55,40 @@ h2.title{
 .sous-banner-composition{
   width: 40% !important;
 }
+
+.banner-image-and-fil {
+    .banner-image {
+        width: 33%;
+        margin: auto;
+        margin-bottom: -66px;
+
+        img {
+            z-index: 100000;
+            position: relative;
+        }
+    }
+
+    .banner-fil {
+        background-size: cover;
+
+        .sous-banner {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.fil-4{
+    background-image: url('/images/Ligne4.svg');
+}
+
+.fil-2{
+    background-image: url('/images/Ligne2.svg');
+}
+
+.fil-5{
+    background-image: url('/images/Ligne5.svg');
+}
+
 .sous-banner a {
   color:white;
   font-size: 0.7em;

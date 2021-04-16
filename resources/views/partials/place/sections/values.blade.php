@@ -1,5 +1,10 @@
-<div class="fond-fil" id="fond-fil-4">
-  <h2 class="sous-banner sous-banner-fil sos is-5 has-text-centered">LES VALEURS</h2>
+<div class="banner-image-and-fil">
+  <div class="banner-image">
+    <img src="/images/Les_valeurs.png">
+  </div>
+  <div class="banner-fil fil-4">
+    <h2 class="sous-banner sous-banner-fil is-5 has-text-centered">LES VALEURS</h2>
+  </div>
 </div>
 <br>
 <div class="columns">
