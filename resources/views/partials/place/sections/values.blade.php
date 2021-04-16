@@ -3,7 +3,7 @@
     <img src="/images/Les_valeurs.png">
   </div>
   <div class="banner-fil fil-4">
-    <h2 class="sous-banner">Les valeurs</h2>
+    <h2 class="sous-banner has-image-attached">Les valeurs</h2>
   </div>
 </div>
 <br>

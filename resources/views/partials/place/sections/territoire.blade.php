@@ -1,5 +1,5 @@
-<div class='fond-fil' id="fond-fil-2">
-  <h2 class="sous-banner sous-banner-fil is-5 has-text-centered">LE LIEU DANS SON TERRITOIRE</h2>
+<div class='banner-fil fil-2'>
+  <h2 class="sous-banner">Le lieu dans son territoire</h2>
 </div>
 <div class="section">
   <div class="columns">

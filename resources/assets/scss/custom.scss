@@ -37,10 +37,7 @@ h2.title{
   border-bottom: 5px solid #9c0000;
   text-transform: uppercase;
 }
-.fond-fil{
-  background-size: cover;
-  height: 130px;
-}
+
 .sous-banner-localisation{
   position:absolute;
   z-index:3;
@@ -66,10 +63,16 @@ h2.title{
 
 .banner-fil {
     background-size: cover;
-}
+    background-clip: border-box;
 
-.banner-image-and-fil .banner-fil .sous-banner {
-    margin-top: 0 !important;
+    .sous-banner {
+        margin-top: 1.25em;
+        line-height: 2.25em;
+
+        &.has-image-attached {
+            margin-top: 0 !important;
+        }
+    }
 }
 
 .fil-4{

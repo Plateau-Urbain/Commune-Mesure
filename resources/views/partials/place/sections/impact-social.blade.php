@@ -1,5 +1,5 @@
-<div class='fond-fil' id="fond-fil-5">
-    <h1 class="is-half sous-banner sous-banner-fil is-5 has-text-centered">L'IMPACT SOCIAL</h1>
+<div class="banner-fil fil-5">
+    <h2 class="sous-banner">L'impact social</h1>
 </div>
 <div class="columns" style="margin-top: 100px;">
   {{-- Gauche --}}
