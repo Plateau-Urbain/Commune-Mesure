@@ -1,7 +1,7 @@
 <div class="has-text-centered">
   <p class="mb-5">
     <strong>Accessibilité</strong>
-    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->accessibilite','id_section'=>'section02','type' => 'checkbox','titre' => "Modifier l'Accessibilité"])
+    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->accessibilite','id_section'=>'section02','type' => 'checkbox','titre' => "Modifier l'accessibilité"])
   </p>
 </div>
 <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">

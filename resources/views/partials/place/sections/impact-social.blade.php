@@ -17,7 +17,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact en rapport avec le réseau",'description'=>'En rapport avec le Réseau'])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact en rapport avec le réseau",'description'=>'En rapport avec le Réseau'])
       </div>
     </div>
     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
@@ -33,7 +33,7 @@
         </svg>
       </div>
       <div>
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact social",'description'=>"En rapport avec l'Appartenance et l'exclusion"])
+         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec l'Appartenance et l'exclusion"])
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact social",'description'=>"En rapport avec la Santé et le Bien être"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec la Santé et le Bien être"])
       </div>
     </div>
 
@@ -71,7 +71,7 @@
         </svg>
       </div>
       <div>
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact social",'description'=>"En rapport avec l'Insertion professionnelle"])
+         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec l'Insertion professionnelle"])
       </div>
     </div>
 
@@ -87,7 +87,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact social",'description'=>"En rapport avec le lien social"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec le lien social"])
       </div>
     </div>
 
@@ -103,7 +103,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier L'impact social",'description'=>"En rapport avec la Capacité à agir"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'section05','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec la Capacité à agir"])
       </div>
     </div>
 
