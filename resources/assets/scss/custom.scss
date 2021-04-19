@@ -51,9 +51,9 @@ h2.title{
 }
 
 .banner-image {
-    width: 33%;
+    width: 32.7%;
     margin: auto;
-    margin-bottom: -66px;
+    margin-bottom: -71px;
 
     img {
         z-index: 1;
@@ -69,6 +69,8 @@ h2.title{
         margin-top: 1.25em;
         line-height: 2.25em;
 
+        margin: 2em auto 1.25em;
+        padding: 0.7em 32px;
         &.has-image-attached {
             margin-top: 0 !important;
         }
