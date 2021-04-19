@@ -1,14 +1,14 @@
 <h2 class="sous-banner sous-banner-composition is-5">LES MOYENS</h2>
   <div class="field has-text-centered">
       @if((!$place->isEmptyInvestissement() && !isset($edit)) || isset($edit))
-        <label class="is-size-5"for="switchRoundedSuccess" id="label_investissement">Investissement</label>
+        <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_investissement" >Investissement</label>
         @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'section04','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
       @endif
       @if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
       @endif
       @if((!$place->isEmptyFonctionnement() && !isset($edit)) || isset($edit))
-        <label class="is-size-5" for="switchRoundedSuccess" id="label_fonctionnement">Fonctionnement</label>
+        <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_fonctionnement" >Fonctionnement</label>
         @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'section04','type'=>'number','titre'=>"Modifier le fonctionnement"])
       @endif
   </div>
