@@ -1,4 +1,9 @@
 <script>
+  @if($place->getVisibilitybySection('accessibilite') && !isset($edit) || isset($edit))
+    var mapplace = mapjs.create('section-map', {gestureHandling: true})
+    L.marker([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}]).addTo(mapplace)
+    mapplace.setView([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}], 9)
+  @endif
 
   var i = 0;
   var values;
@@ -57,12 +62,6 @@
   var colors = ["#F1F1F1", "#E85048", "#fdf498", "#7bc043", "#0392cf",
   "#d11141", "#f37735", "#7e8d98", "#29a8ab", "#3d1e6d", "#c68642", "#d2e7ff"];
 
-  @if($place->getVisibilitybySection('accessibilite') && !isset($edit) || isset($edit))
-
-      var smallmap = mapjs.create('info-box-map',{gestureHandling: true})
-    L.marker([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}]).addTo(smallmap)
-      smallmap.setView([{{ $place->get('blocs->data_territoire->donnees->geo->lat') }}, {{ $place->get('blocs->data_territoire->donnees->geo->lon') }}], 9)
-  @endif
 function animateBar(){
   elements = document.querySelectorAll(".myBar")
   elements.forEach(function (element) {
