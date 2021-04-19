@@ -77,7 +77,9 @@ var financeChart = charts.create(canvasFinancesId, "doughnut",
 
     );
 
-document.querySelector("input#switchRoundedSuccess").addEventListener('change', switchChart);
+@if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
+  document.querySelector("input#switchRoundedSuccess").addEventListener('change', switchChart);
+@endif
 
 function switchChart(){
   financeChart.destroy();
