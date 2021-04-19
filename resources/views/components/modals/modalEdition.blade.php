@@ -66,6 +66,20 @@
             @php $i++; @endphp
             <input hidden name="type" value="{{$type}}"></input>
           @endforeach
+        @elseif(is_object($valueChemin) && isset($type) && $type == "select")
+          @php $choix = json_decode(json_encode($valueChemin),true) @endphp
+            <div class="select">
+              <select name='champ'>
+                @foreach($choix as $k => $v)
+                @if($v == 1)
+                  <option selected>{{$k}}</option>
+                @else
+                  <option>{{$k}} </option>
+                @endif
+                @endforeach
+              </select>
+            </div>
+            <input hidden name="type" value="{{$type}}"></input>
         @elseif( isset($type) && $type== 'text' )
           <textarea name='champ' class="textarea">{{ $valueChemin }}</textarea>
         @elseif( isset($type) && $type== 'number')

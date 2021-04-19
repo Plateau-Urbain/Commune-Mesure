@@ -27,9 +27,9 @@
         "donnees": {
           "ouverture":{
             "En permanence":1,
-            "Plusieurs jours par semaine":1,
-            "Une fois par semaine ou moins":1,
-            "Lors d'évènements ponctuels seulement":1
+            "Plusieurs jours par semaine":0,
+            "Une fois par semaine ou moins":0,
+            "Lors d'évènements ponctuels seulement":0
             },
           "idee_fondatrice":"Un lieu d'espace de travail aux multiples usages.",
           "nombre_occupants":200 ,

@@ -27,9 +27,9 @@
         "donnees": {
           "ouverture":{
             "En permanence":1,
-            "Plusieurs jours par semaine":1,
-            "Une fois par semaine ou moins":1,
-            "Lors d'évènements ponctuels seulement":1
+            "Plusieurs jours par semaine":0,
+            "Une fois par semaine ou moins":0,
+            "Lors d'évènements ponctuels seulement":0
             },
           "idee_fondatrice":"La Maison Montreau est un tiers-lieu inclusif et éco-responsable, proumouvant un tourisme social et solidaire grâce à son activité hôtelière. Egalement structure d'insertion, elle accompagne des personnes éloignées de l'emploi dans leur transition professionnelle. La Maison Montreau met en valeur les talents et savoir-faire locaux, et propose des activités socio-culturelles aux habitants des quartiers populaire du Nord de Montreuil.",
           "nombre_occupants":2 ,

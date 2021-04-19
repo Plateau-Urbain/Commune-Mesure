@@ -418,5 +418,15 @@ class Place extends Model
     return json_decode(json_encode($this->get('blocs->accessibilite->donnees->transports')),true);
   }
 
+  public function getOuverture(){
+    $ouverture = json_decode(json_encode($this->get('blocs->presentation->donnees->ouverture')),true);
+    foreach( $ouverture as $k => $v){
+      if($v == 1){
+        return $k;
+      }
+    }
+    return "";
+  }
+
 
 }

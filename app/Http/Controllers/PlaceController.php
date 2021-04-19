@@ -154,6 +154,20 @@ class PlaceController extends Controller
          return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
 
+       if ( is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "select"){
+         foreach($place->get($request->chemin) as $k => $v){  //mettre a 0 tous les trucs disponible si $k == $request->champ mettre 1
+          var_dump($k);
+          if($k == $request->champ){
+            $place->get($request->chemin)->{$k} = 1;
+          }
+          else{
+            $place->get($request->chemin)->{$k} = 0;
+          }
+         }
+         $place->save();
+         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
+       }
+
        if(empty($request->champ) && $request->type == "number"){
          $new = 0;
        }

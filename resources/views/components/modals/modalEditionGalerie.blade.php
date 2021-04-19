@@ -73,8 +73,19 @@
         </div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
+          <strong> Tags : </strong>
+          @foreach($place->getData()->tags as $tag)
+            <li class="tags">{{$tag}}</li>
+          @endforeach
+          @if(isset($edit))
+             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'section01','type' => 'text','titre'=>"Modifier les tags"])
+          @endif
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
-          <strong>Ouverture : </strong><span class="font-color-theme">En permanence</span>
+          <strong>Ouverture  : </strong>
+            <span class="font-color-theme">{{ $place->getOuverture()}}</span>
+          @if(isset($edit))
+             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'section01','type' => 'text','titre'=>"Modifier les tags"])
+          @endif
           </p>
         </div>
         <div class="section pt-5" style="padding-bottom:0;">
