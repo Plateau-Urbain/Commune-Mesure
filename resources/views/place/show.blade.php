@@ -103,16 +103,6 @@
         </section>
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place">
-        <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
-        <div class='sous-banner sous-banner-localisation'>
-          <h3 class="is-5 has-text-centered">LOCALISATION </h3>
-          <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
-        </div>
-        <div class="">
-            <div id="section-map" class="map-fullwidth"></div>
-        </div>
-      </section>
       <section class="fond-bleu">
         <div class="columns has-text-centered accessibilite" style='margin:0'>
           @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
@@ -132,17 +122,19 @@
           @endif
         </div>
       </section>
-    </x-edit-section>
-    <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place">
-        <div class='column'>
-            <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
-            </div>
-            @include('partials.place.sections.values')
-        <div>
+        <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
+        <div class='sous-banner sous-banner-localisation'>
+          <h3 class="is-5 has-text-centered">LOCALISATION </h3>
+          <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+        </div>
+        <div class="">
+            <div id="section-map" class="map-fullwidth"></div>
+        </div>
       </section>
+
     </x-edit-section>
+
     @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
       <section class="section section-place">
         <div class="columns">
@@ -179,6 +171,17 @@
       </section>
     @endif
 
+    <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      <section class="section section-place">
+        <div class='column'>
+            <div>
+              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
+            </div>
+            @include('partials.place.sections.values')
+        <div>
+      </section>
+    </x-edit-section>
+
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <section  class="section section-place fond-bleu">
         <div>
@@ -187,6 +190,7 @@
         @include('partials.place.sections.impact-social')
         </section>
     </x-edit-section>
+
 
     <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section anchor section-place">
