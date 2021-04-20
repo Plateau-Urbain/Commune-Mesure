@@ -103,7 +103,7 @@
         </section>
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place">
+      <section class="section section-place fond-bleu">
         <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
         <div class='sous-banner sous-banner-localisation'>
           <h3 class="is-5 has-text-centered">LOCALISATION </h3>
