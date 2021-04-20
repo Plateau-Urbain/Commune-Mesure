@@ -56,10 +56,12 @@
                           </button>
                         </td>
                         <td>
-                            <button class="button is-success" disabled title="Télécharger le csv">
+                            <button class="button is-success" title="Télécharger le csv">
+                              <a style='color: white' href="{{ route('place.csv', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
                                 <span class="icon is-small">
                                     <i class="fas fa-download"></i>
                                 </span>
+                              </a>
                             </button>
                             <button class="button is-warning" disabled title="Renouveller la clé secrète">
                                 <span class="icon is-small">

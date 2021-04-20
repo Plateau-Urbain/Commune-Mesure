@@ -268,6 +268,39 @@ class PlaceController extends Controller
       return redirect(route('place.edit', compact('slug', 'auth')));
     }
 
+
+    public function jsonToCsv(Request $request,$slug,$auth){
+      $place = Place::find($slug);
+      if ($place->check($auth) === false) {
+        abort(403, 'Wrong authentication string');
+      }
+      if ($auth === str_repeat('a', 64)) {
+          throw new \LogicException('Exiting, default admin hash');
+      }
+
+      header("Content-type: text/csv");
+      header("Content-disposition: attachment; filename =".$slug.".csv");
+
+  		$fichier_csv = fopen('/tmp/'.$slug.'.csv', 'w');
+
+      fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'nom',$place->getSlug()));
+      fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'page_admin',route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auth])));
+      fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'clé',$auth));
+
+      if($place->get('publish')){
+        $status='visible';
+      }
+      else{
+        $status='non visible';
+      }
+      fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'status',$status));
+      // fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),,));
+
+  		fclose($fichier_csv);
+      readfile("/tmp/".$slug.".csv");
+      exit;
+    }
+
     protected function sortDataInsee($place){
         //Sort insee object data on each zone map
         $insee = $place->blocs->data_territoire->donnees->insee;

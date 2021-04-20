@@ -50,11 +50,14 @@
         </a>
       <?php endif ?>
     </button>
-    <button style='margin: 0px 20px 0px 20px;'class="button is-success" disabled title="Télécharger le csv">
-      <span class="icon">
-        <i class="fas fa-download"></i>
-      </span>
-    </button>
+    <a style='color: white' href="{{ route('place.csv', ['slug' => $slug, 'auth' => $auth]) }}">
+      <button style='margin: 0px 20px 0px 20px;'class="button is-success" title="Télécharger le csv">
+        <span class="icon">
+          <i class="fas fa-download"></i>
+        </span>
+      </button>
+    </a>
+
     <span style="padding: 5px 20px 0px 20px;color:red;float:right" class=" has-text-right"><a href="{{ route('place.show', ['slug' => $slug]) }}"><i class='fas fa-times'></i></a></span>
   </div>
 @endisset

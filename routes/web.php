@@ -43,6 +43,8 @@ $router->post('/place/{slug}/{auth:[a-z0-9]+}/updateGalerie', ['uses' => 'PlaceC
 
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'PlaceController@publish', 'as' => 'place.publish']);
 
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/csv', ['uses' => 'PlaceController@jsonToCsv', 'as' => 'place.csv']);
+
 
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);
 
