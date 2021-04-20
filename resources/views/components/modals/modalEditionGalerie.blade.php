@@ -84,7 +84,7 @@
           <strong>Ouverture  : </strong>
             <span class="font-color-theme">{{ $place->getOuverture()}}</span>
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'section01','type' => 'text','titre'=>"Modifier l'ouverture"])
+             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'section01','type' => 'select','titre'=>"Modifier l'ouverture"])
           @endif
           </p>
         </div>
