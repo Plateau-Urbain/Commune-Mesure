@@ -281,7 +281,7 @@ class PlaceController extends Controller
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename =".$slug.".csv");
 
-  		$fichier_csv = fopen("php://temp", 'w');
+  		$fichier_csv = fopen("php://memory", 'w');
 
       fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'nom',$place->getSlug()));
       fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'page_admin',route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auth])));
@@ -296,8 +296,8 @@ class PlaceController extends Controller
       fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'status',$status));
       // fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),,));
 
-  		fclose($fichier_csv);
-      readfile("/tmp/".$slug.".csv");
+      rewind($fichier_csv);
+      echo stream_get_contents($fichier_csv);
       exit;
     }
 
