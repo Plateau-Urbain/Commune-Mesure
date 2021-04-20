@@ -49,7 +49,7 @@ class AdminController extends Controller
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename = global.csv");
 
-      $fichier_csv = fopen("global.csv", 'w');
+      $fichier_csv = fopen("php://memory", 'w');
 
       foreach ($list as $place){
         fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'nom',$place->getSlug()));
@@ -64,9 +64,8 @@ class AdminController extends Controller
         fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'status',$status));
         // fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),,));
       }
-
-      fclose($fichier_csv);
-      readfile("global.csv");
+      rewind($fichier_csv);
+      echo stream_get_contents($fichier_csv);
       exit;
     }
 
