@@ -103,7 +103,7 @@
         </section>
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place fond-bleu">
+      <section class="section section-place">
         <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
         <div class='sous-banner sous-banner-localisation'>
           <h3 class="is-5 has-text-centered">LOCALISATION </h3>
@@ -113,8 +113,8 @@
             <div id="section-map" class="map-fullwidth"></div>
         </div>
       </section>
-      <section class="">
-        <div class="columns has-text-centered accessibilite">
+      <section class="fond-bleu">
+        <div class="columns has-text-centered accessibilite" style='margin:0'>
           @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
             <div class="column">
               @include('partials.place.sections.public')
