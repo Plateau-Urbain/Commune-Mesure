@@ -33,7 +33,7 @@
           "date_ouverture":"2013-09-01",
           "date_creation":"2013-06-01",
           "surface":500 ,
-          "etp":6.25,
+          "emplois directs":6.25,
           "acteurs_publics":"Etat, Région, Département, Municipalité, DRAC",
           "acteurs_prives":"Promoteur, SMAC, Associations culturelles, Associations de l'économie sociale et solidaire",
           "natures_partenariats":{

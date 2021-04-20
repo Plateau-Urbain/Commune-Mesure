@@ -13,13 +13,13 @@ class Place extends Model
   const STAT_CITIES = "cities";
   const STAT_SURFACE = "surface";
   const STAT_EVENTS = "evenements";
-  const STAT_ETP = "etp";
+  const STAT_EMPLOIS_DIRECTS = "emplois directs";
   const STAT_VISITORS = "visiteurs";
 
   protected $stats = [
       self::STAT_SURFACE => 0,
       self::STAT_EVENTS => 0,
-      self::STAT_ETP => 0,
+      self::STAT_EMPLOIS_DIRECTS => 0,
       self::STAT_VISITORS => 0
   ];
     public $incrementing = false;
@@ -102,7 +102,7 @@ class Place extends Model
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
         $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
         $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
-        $this->stats[self::STAT_ETP] += ($place->get('blocs->presentation->donnees->etp')) ? $place->get('blocs->presentation->donnees->etp') : 0 ;
+        $this->stats[self::STAT_EMPLOIS_DIRECTS] += ($place->get('blocs->presentation->donnees->emplois directs')) ? $place->get('blocs->presentation->donnees->emplois directs') : 0 ;
         $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
         $this->stats[self::STAT_CITIES] = count($this->cities);
       }
@@ -363,7 +363,7 @@ class Place extends Model
     $compare_place_name = [];
     $compare_title = [
       "moyens"=>[
-        "etp" => "Nombre d'ETP",
+        "emplois directs" => "Nombre d'emplois directs",
         "benevole" => "Nombre de bénévoles",
         "partenaire" => "Nombre de partenaires publics / privés",
         "superficie" => "Superficie du lieu (m2)"
@@ -376,9 +376,9 @@ class Place extends Model
       ];
 
    foreach ($places as $place) {
-      $data = '{"moyens":{"etp":{"nombre":'.
-              $place->get('blocs->presentation->donnees->etp').
-              ',"title":"Nombre d\'ETP"},"benevole":{"nombre":'.
+      $data = '{"moyens":{"emplois directs":{"nombre":'.
+              $place->get('blocs->presentation->donnees->emplois directs').
+              ',"title":"Nombre d\'emplois directs"},"benevole":{"nombre":'.
               $place->get('blocs->moyens->donnees->benevoles').
               ',"title":"Nombre de bénévoles"},"partenaire":{"nombre":'
               . $place->get('blocs->moyens->donnees->partenaires').

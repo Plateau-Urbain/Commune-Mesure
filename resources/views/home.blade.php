@@ -38,14 +38,16 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="title animate-value is-1" id="animate-etp" data-total={{ $stats['etp'] }}>{{ $stats['etp'] }}</p>
-                        <p class="heading title is-4">ETP</p>
+                        <p class="title animate-value is-1" id="animate-emplois directs" data-total={{ $stats['emplois directs'] }}>{{ $stats['emplois directs'] }}</p>
+                        <p class="heading title is-4">Emplois</p>
+                        <p class="heading title is-4">directs</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="title animate-value is-1" id="animate-events" data-total={{ $stats['evenements'] }}>{{ $stats['evenements'] }}</p>
                         <p class="heading title is-4">ÉVÉNEMENTS</p>
+                        <p class="heading title is-4">organisés</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
