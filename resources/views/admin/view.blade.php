@@ -7,6 +7,15 @@
                 <h1 class="title is-1 has-text-centered">Administration de lieux</h1>
             </section>
         </div>
+        <div>
+          <button class="button is-success is-pulled-right" title="Télécharger le csv global">
+            <a style='color: white' href="{{ route('admin.globalCsv') }}">
+              <span class="icon is-small">
+                  <i class="fas fa-download"></i>
+              </span>
+            </a>
+          </button>
+        </div>
         <div class="section">
             <table class="table is-fullwidth">
                 <thead>

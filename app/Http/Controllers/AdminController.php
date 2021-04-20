@@ -38,8 +38,36 @@ class AdminController extends Controller
       }
       $place->set('publish', !$place->get('publish'));
       $place->save();
-      
+
       return redirect(route('admin.view', compact('list', 'auths')));
+    }
+
+    public function globalCsv(Request $request, Place $place){
+      $list = $place->retrivePlaces();
+      $auths = $place->getAuth();
+
+      header("Content-type: text/csv");
+      header("Content-disposition: attachment; filename = global.csv");
+
+      $fichier_csv = fopen("global.csv", 'w');
+
+      foreach ($list as $place){
+        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'nom',$place->getSlug()));
+        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'page_admin',route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]])));
+        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'clé',$auths[$place->getSlug()]));
+        if($place->get('publish')){
+          $status='visible';
+        }
+        else{
+          $status='non visible';
+        }
+        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'status',$status));
+        // fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),,));
+      }
+
+      fclose($fichier_csv);
+      readfile("global.csv");
+      exit;
     }
 
 }

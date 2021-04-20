@@ -31,6 +31,8 @@ $router->get('/les-lieux[/{sortBy}]', ['uses' => 'PlaceController@list', 'as' =>
 
 $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminController@publish', 'as' => 'admin.publish']);
+$router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
+
 
 
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
