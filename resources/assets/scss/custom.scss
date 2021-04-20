@@ -40,7 +40,7 @@ h2.title{
 
 .sous-banner-localisation{
   position:absolute;
-  z-index:3;
+  z-index: 462; // Leaflet z-index = 461
   width: 40%;
   left: 50%;
   margin-left: -20%;
@@ -681,6 +681,11 @@ p.partenaires_text{
 
 #map-insee {
 	position: sticky!important;
+}
+
+.map-fullwidth {
+    width: 100%;
+    min-height: 500px;
 }
 
 .scroll-indicator-controller span {

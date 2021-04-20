@@ -103,19 +103,17 @@
         </section>
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place fond-bleu">
-        <aside id="info-box" class="mb-2">
-          <div>
-            <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
-          </div>
-          <div class='sous-banner sous-banner-localisation'>
-            <h3 class="is-5 has-text-centered">LOCALISATION </h3>
-            <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
-          </div>
-          <div class="info-box-content">
-              <div id="info-box-map" class="info-box-map"></div>
-          </div>
-        </aside>
+      <section class="section section-place">
+        <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
+        <div class='sous-banner sous-banner-localisation'>
+          <h3 class="is-5 has-text-centered">LOCALISATION </h3>
+          <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
+        </div>
+        <div class="">
+            <div id="section-map" class="map-fullwidth"></div>
+        </div>
+      </section>
+      <section class="">
         <div class="columns has-text-centered accessibilite">
           @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
             <div class="column">
