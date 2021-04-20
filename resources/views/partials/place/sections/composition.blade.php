@@ -7,7 +7,6 @@
 
 
 @if(!empty($place->get('blocs->composition->donnees->structures_crees')) && !isset($edit) || isset($edit))
-  <h3 class="no-border is-4 has-text-centered mt-6 is-size-4">Création</h3>
   <div class="columns">
     <div class="column is-offset-2 is-3">
       <span class="title is-1">{{ $place->get('blocs->composition->donnees->structures_crees') }}</span> <br />

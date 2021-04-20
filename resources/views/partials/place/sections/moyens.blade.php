@@ -15,7 +15,6 @@
 <canvas id="financement-budget-doughnut" ></canvas>
 
 @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || !empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit) )
-  <h3 class="no-border is-size-4 has-text-centered mt-6">Humains</h3>
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
