@@ -70,7 +70,6 @@
       <section class="section section-place " id="section01">
         <div>
           <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
-          <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="Présentation"></div>
         </div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
@@ -106,7 +105,6 @@
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place">
         <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
-        <div class="scroll-indicator" id="accessibilite" data-scroll-indicator-title="Localisation"></div>
         <div class='sous-banner sous-banner-localisation'>
           <h3 class="is-5 has-text-centered">LOCALISATION </h3>
           <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
@@ -115,9 +113,7 @@
             <div id="section-map" class="map-fullwidth"></div>
         </div>
       </section>
-
       <section class="fond-bleu">
-
         <div class="columns has-text-centered accessibilite" style='margin:0'>
           @if(!$place->isEmptyAccessibilityBySection('publics') && !isset($edit) || isset($edit))
             <div class="column">
@@ -142,14 +138,11 @@
         <div class='column'>
             <div>
               <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
-              <div class="scroll-indicator" id="valeurs" data-scroll-indicator-title="Les valeurs"></div>
             </div>
             @include('partials.place.sections.values')
         <div>
-
       </section>
     </x-edit-section>
-
     @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
       <section class="section section-place">
         <div class="columns">
@@ -161,17 +154,14 @@
             @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
               <div>
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens"></div>
               </div>
             @elseif(isset($edit))
               <div>
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens / La composition"></div>
               </div>
             @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
               <div>
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens / La composition"></div>
               </div>
             @endif
             @include('partials.place.sections.moyens')
@@ -181,7 +171,6 @@
             @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
               <div>
                 <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
-                <div class="scroll-indicator" id="composition" data-scroll-indicator-title="La composition"></div>
               </div>
             @endif
             @include('partials.place.sections.composition')
@@ -194,8 +183,6 @@
         <section  class="section section-place fond-bleu">
         <div>
           <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
-          <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="L'impact social"></div>
-
         </div>
         @include('partials.place.sections.impact-social')
         </section>
@@ -205,8 +192,6 @@
       <section class="section anchor section-place">
         <div>
           <div class="scroll-indicator" id="section06" data-scroll-indicator-title="Le territoire"></div>
-          <div class="scroll-indicator" id="data_territoire" data-scroll-indicator-title="Le territoire"></div>
-
         </div>
         @include('partials.place.sections.territoire')
       </section>
@@ -220,7 +205,6 @@
           @endif
           <div>
             <div class="scroll-indicator" id="section07" data-scroll-indicator-title="Galerie"></div>
-            <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="Galerie"></div>
           </div>
           @include('partials.place.sections.carousel')
 
