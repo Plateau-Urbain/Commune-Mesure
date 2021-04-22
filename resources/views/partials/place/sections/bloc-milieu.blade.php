@@ -15,8 +15,13 @@
       @endif
       @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->date_ouverture','id_section'=>'section01','type' => 'date','titre'=>"Modifier la date d'ouverture",'description'=>"Quand a été ouvert votre lieu ?"])</div>
       <div class="window very-small edit-milieu">Surface de {{ $place->get('blocs->presentation->donnees->surface') }}m<sup>2</sup>  @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->surface','id_section'=>'section01','type' => 'decimal','titre'=>"Modifier la surface",'description'=>"Quelle est la surface de votre lieu ?"])</div>
-      <div class="window very-small edit-milieu">{{ $place->get('blocs->presentation->donnees->emplois directs') }} emplois directs @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'section01','type' => 'decimal','titre'=>"Modifier le nombre d'emplois directs"])</div>
-
+      <div class="window very-small edit-milieu">{{ $place->get('blocs->presentation->donnees->emplois directs') }}
+        @if ($place->get('blocs->presentation->donnees->emplois directs') > 1)
+          emplois directs
+        @else
+          emploi direct
+        @endif
+        @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'section01','type' => 'decimal','titre'=>"Modifier le nombre d'emplois directs"])</div>
       <div class="home-door">
         <figure class="image">
           <img src="/images/foot_home.svg">

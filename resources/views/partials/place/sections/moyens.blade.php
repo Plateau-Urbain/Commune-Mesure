@@ -18,7 +18,13 @@
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
-        <span class="title is-1">{{$place->get('blocs->presentation->donnees->emplois directs')}}</span><br /><span class="title is-5">Emplois directs</span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'section04','type'=>'number','titre'=>"Modifier le nombre d'emplois directs"])
+        <span class="title is-1">{{$place->get('blocs->presentation->donnees->emplois directs')}}</span><br /><span class="title is-5">
+          @if ($place->get('blocs->presentation->donnees->emplois directs') > 1)
+            Emplois directs
+          @else
+            Emploi direct
+          @endif
+        </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'section04','type'=>'number','titre'=>"Modifier le nombre d'emplois directs"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}
@@ -54,7 +60,13 @@
   @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
-        <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5"> Bénévoles</span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'section04','type'=>'number','titre'=>"Modifier le nombre de bénévoles"])
+        <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5">
+          @if ($place->get('blocs->moyens->donnees->benevoles') > 1)
+            Bénévoles
+          @else
+            Bénévole
+          @endif
+        </span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'section04','type'=>'number','titre'=>"Modifier le nombre de bénévoles"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}
