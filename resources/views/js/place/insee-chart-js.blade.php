@@ -37,29 +37,21 @@ annotations: {
 },
 
 xaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
     show:false,
-  },
-  axisTicks: {
-    show: false,
-  },
-  labels:{
-    show:false,
-  }
-},
-
-yaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
-    show:false,
-  },
+    categories:['Niveau national','Niveau '+document.getElementById("selectGeo").value],
+    axisBorder:{
+        show:false,
+    },
+    axisTicks: {
+        show: false,
+    },
+    labels:{
+      show:false,
+    }
 },
 
 tooltip: {
-  x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
+  x: { formatter: function (val) { if (val == "Niveau national") return "Niveau national"; return "Niveau "+select_zone;}},
   y: {
     formatter: function (val) {
       return val.toFixed(2) + "%"
@@ -117,7 +109,7 @@ var options = {
 
     xaxis: {
         show:false,
-        category:[''],
+        categories:['Niveau national','Niveau '+document.getElementById("selectGeo").value],
         axisBorder:{
             show:false,
         },
@@ -129,16 +121,8 @@ var options = {
         }
     },
 
-    yaxis: {
-        show:false,
-        category:[''],
-        axisBorder:{
-            show:false,
-        },
-    },
-
     tooltip: {
-        x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
+        x: { formatter: function (val) { if (val == "Niveau national") return "Niveau national"; return "Niveau "+select_zone;}},
         y: {
             formatter: function (val) {
                 return val.toFixed(2) + "%"
@@ -212,29 +196,21 @@ annotations: {
 },
 
 xaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
     show:false,
-  },
-  axisTicks: {
-    show: false,
-  },
-  labels:{
-    show:false,
-  }
-},
-
-yaxis: {
-  show:false,
-  category:[''],
-  axisBorder:{
-    show:false,
-  },
+    categories:['Niveau national','Niveau '+document.getElementById("selectGeo").value],
+    axisBorder:{
+        show:false,
+    },
+    axisTicks: {
+        show: false,
+    },
+    labels:{
+        show:false,
+    }
 },
 
 tooltip: {
-  x: { formatter: function (val) { if (val == 1) return "Niveau national"; return "Niveau "+select_zone;}},
+  x: { formatter: function (val) { if (val == "Niveau national") return "Niveau national"; return "Niveau "+select_zone;}},
   y: {
     formatter: function (val) {
       return val.toFixed(2) + "%"

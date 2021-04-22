@@ -79,6 +79,60 @@
   var select = document.getElementById("selectGeo");
   select.addEventListener('change', function (event) {
     var zone = event.target.value;
+    actifChart.updateOptions(
+      {
+        xaxis: {
+          show:false,
+          categories:['Niveau national','Niveau '+zone],
+          axisBorder:{
+              show:false,
+          },
+          axisTicks: {
+              show: false,
+          },
+          labels:{
+              show:false,
+          }
+
+        },
+      }
+    );
+    cspChart.updateOptions(
+      {
+        xaxis: {
+          show:false,
+          categories:['Niveau national','Niveau '+zone],
+          axisBorder:{
+              show:false,
+          },
+          axisTicks: {
+              show: false,
+          },
+          labels:{
+              show:false,
+          }
+
+        },
+      }
+    );
+    immobilierChart.updateOptions(
+      {
+        xaxis: {
+          show:false,
+          categories:['Niveau national','Niveau '+zone],
+          axisBorder:{
+              show:false,
+          },
+          axisTicks: {
+              show: false,
+          },
+          labels:{
+              show:false,
+          }
+
+        },
+      }
+    );
     var currentDataZone = placeData.insee[zone];
     setCaptionDataBar(currentDataZone, zone);
     setInseeChartData(currentDataZone,zone);
