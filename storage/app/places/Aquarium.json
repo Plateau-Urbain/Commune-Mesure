@@ -24,7 +24,8 @@
             "En permanence":1,
             "Plusieurs jours par semaine":0,
             "Une fois par semaine ou moins":0,
-            "Lors d'évènements ponctuels seulement":0
+            "Lors d'évènements ponctuels seulement":0,
+            "Ouverture prochaine":0
             },
           "idee_fondatrice":"L'Aquarium est un lieu de rencontre et de création pour et par les femmes du quartier.",
           "nombre_occupants": 1,

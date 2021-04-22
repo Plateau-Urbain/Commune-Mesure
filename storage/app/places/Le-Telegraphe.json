@@ -29,7 +29,8 @@
             "En permanence":1,
             "Plusieurs jours par semaine":0,
             "Une fois par semaine ou moins":0,
-            "Lors d'évènements ponctuels seulement":0
+            "Lors d'évènements ponctuels seulement":0,
+            "Ouverture prochaine":0
             },
           "idee_fondatrice":"Rassembler, être lieu de vie et de partage.",
           "nombre_occupants":5 ,

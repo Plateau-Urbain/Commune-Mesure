@@ -27,7 +27,8 @@
             "En permanence":1,
             "Plusieurs jours par semaine":0,
             "Une fois par semaine ou moins":0,
-            "Lors d'évènements ponctuels seulement":0
+            "Lors d'évènements ponctuels seulement":0,
+            "Ouverture prochaine":0
             },
           "idee_fondatrice":"Le projet Coco Velten est une expérimentation initiée par la Préfecture de Région, qui consiste à utiliser un bâtiment public temporairement disponible pour créer de l’accueil d’urgence, encourager l’entrepreneuriat social et contribuer aux dynamiques locales.",
           "nombre_occupants": 38,
