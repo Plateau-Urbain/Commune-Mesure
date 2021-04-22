@@ -11,7 +11,7 @@
             @foreach ($places as $place)
                 <div class="box box-lieu content">
                     <div class="columns is-bordered places-block">
-                        <div class="column is-clickable" style="position:relative; height:250px;">
+                        <div class="column" style="position:relative; height:250px;">
                             <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}">{{ $place->get('name') }}</a><br />
                             <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</span></p>
                             <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
