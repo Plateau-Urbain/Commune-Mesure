@@ -429,5 +429,23 @@ class Place extends Model
     return "";
   }
 
+  public function exportCsv($fichier_csv,$auth){
+    $link = route('place.show',['slug' => $this->getSlug() ]);
+    $name = $this->getSlug();
+
+    fputcsv($fichier_csv,array($link,$name,'nom',$this->getSlug()));
+    fputcsv($fichier_csv,array($link,$name,'page_admin',route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])));
+    fputcsv($fichier_csv,array($link,$name,'clé',$auth));
+    if($this->get('publish')){
+      $status='visible';
+    }
+    else{
+      $status='non visible';
+    }
+    fputcsv($fichier_csv,array($link,$name,'status',$status));
+    
+    return $fichier_csv;
+  }
+
 
 }

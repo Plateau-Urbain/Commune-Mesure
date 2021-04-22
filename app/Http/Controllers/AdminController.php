@@ -52,18 +52,9 @@ class AdminController extends Controller
       $fichier_csv = fopen("php://memory", 'w');
 
       foreach ($list as $place){
-        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'nom',$place->getSlug()));
-        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'page_admin',route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]])));
-        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'clé',$auths[$place->getSlug()]));
-        if($place->get('publish')){
-          $status='visible';
-        }
-        else{
-          $status='non visible';
-        }
-        fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),'status',$status));
-        // fputcsv($fichier_csv,array(route('place.show',['slug' => $place->getSlug() ]),$place->getSlug(),,));
+        $place->exportCsv($fichier_csv,$auths[$place->getSlug()]);
       }
+
       rewind($fichier_csv);
       echo stream_get_contents($fichier_csv);
       exit;
