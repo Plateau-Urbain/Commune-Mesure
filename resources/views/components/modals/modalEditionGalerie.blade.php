@@ -69,7 +69,7 @@
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place " id="presentation">
         <div>
-          <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="Présentation"></div>
+          <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="PRESENTATION"></div>
         </div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
@@ -212,15 +212,15 @@
         <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
             <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens"></div>
+              <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens"></div>
             </div>
           @elseif(isset($edit))
             <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
+              <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
           @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
             <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="Les moyens / La composition"></div>
+              <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="Les moyens / La composition"></div>
             </div>
           @endif
           @include('partials.place.sections.moyens')
@@ -229,7 +229,7 @@
         <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
           @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
             <div>
-              <div class="scroll-indicator" id="section04" data-scroll-indicator-title="La composition"></div>
+              <div class="scroll-indicator" id="composition" data-scroll-indicator-title="La composition"></div>
             </div>
           @endif
           @include('partials.place.sections.composition')
