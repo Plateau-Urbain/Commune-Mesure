@@ -67,9 +67,9 @@
   <div class="column is-full">
 
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place " id="section01">
+      <section class="section section-place " id="presentation">
         <div>
-          <div class="scroll-indicator" id="section01" data-scroll-indicator-title="Présentation"></div>
+          <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="Présentation"></div>
         </div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
@@ -78,13 +78,13 @@
             <li class="tags">{{$tag}}</li>
           @endforeach
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'section01','type' => 'text','titre'=>"Modifier les tags"])
+             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentaion','type' => 'text','titre'=>"Modifier les tags"])
           @endif
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture  : </strong>
             <span class="font-color-theme">{{ $place->getOuverture()}}</span>
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'section01','type' => 'select','titre'=>"Modifier l'ouverture"])
+             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'presentation','type' => 'select','titre'=>"Modifier l'ouverture"])
           @endif
           </p>
         </div>
@@ -114,7 +114,7 @@
               Modifier la galerie
              </h2>
           </div>
-           <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]])}}#section07"><button class="delete modal-croix" aria-label="close"></button></a>
+           <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]])}}#galerie"><button class="delete modal-croix" aria-label="close"></button></a>
            <br>
         </header>
 
@@ -149,7 +149,7 @@
             <br>
             <span class="container">
               <span class="field is-grouped is-grouped-left">
-                <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}#section07"><input class="button" type='button' value="Fermer"/></button></a>
+                <a href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}#galerie"><input class="button" type='button' value="Fermer"/></button></a>
               </span>
             </span>
 
@@ -163,7 +163,7 @@
       <section class="section section-place">
         <aside id="info-box" class="mb-2">
           <div>
-            <div class="scroll-indicator" id="section02" data-scroll-indicator-title="Localisation"></div>
+            <div class="scroll-indicator" id="accessibilite" data-scroll-indicator-title="Localisation"></div>
           </div>
           <div class='sous-banner sous-banner-localisation'>
             <h3 class="is-5 has-text-centered">LOCALISATION </h3>
@@ -196,7 +196,7 @@
       <section class="section section-place">
         <div class='column'>
             <div>
-              <div class="scroll-indicator" id="section03" data-scroll-indicator-title="Les valeurs"></div>
+              <div class="scroll-indicator" id="valeurs" data-scroll-indicator-title="Les valeurs"></div>
             </div>
             @include('partials.place.sections.values')
         <div>
@@ -239,7 +239,7 @@
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <section  class="section section-place">
         <div>
-          <div class="scroll-indicator" id="section05" data-scroll-indicator-title="L'impact social"></div>
+          <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="L'impact social"></div>
         </div>
         @include('partials.place.sections.impact-social')
         </section>

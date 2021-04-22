@@ -1,7 +1,7 @@
 <h2 class="sous-banner sous-banner-composition is-5 has-text-centered">LA COMPOSITION</h2>
 <div class="field has-text-centered">
   <label class="is-size-5" style="font-weight: bold;" >Type de structures présentes dans le projet</label>
-  @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'section04','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelles sont les types de structures et quelles sont leurs effectifs ?"])
+  @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelles sont les types de structures et quelles sont leurs effectifs ?"])
 </div>
 <canvas id="composition-chart-doughnut" ></canvas>
 
@@ -16,7 +16,7 @@
         @else
           structure créée
         @endif
-        @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'section04','type' => 'number','titre'=>"Modifier le nombre de structures créées"])
+        @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'composition','type' => 'number','titre'=>"Modifier le nombre de structures créées"])
       </span>
     </div>
 

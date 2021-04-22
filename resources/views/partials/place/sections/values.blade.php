@@ -25,7 +25,7 @@
       <div class="column">
         <p class="has-text-centered">
           <strong class="valeurs">{{$valeur}}</strong>
-          @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','id_section'=>'section03','titre'=>"Modifier les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp;
+          @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->$valeur",'type'=>'text','id_section'=>'valeurs','titre'=>"Modifier les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp;
         <p>
         <div class='valeurs-exemples' style='width:{{$i}}0%;'>
           <ul>

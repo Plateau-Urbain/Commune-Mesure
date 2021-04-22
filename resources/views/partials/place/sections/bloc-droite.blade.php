@@ -12,7 +12,7 @@
             <h5>LES ACTEURS PUBLICS : </h5>
             <span class="is-block is-size-7">
               {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
-              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','id_section'=>'section01','type' => 'text','titre'=>"Modifier les acteurs publics",'description'=>"Qui sont les acteurs publics ?"])
+              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs publics",'description'=>"Qui sont les acteurs publics ?"])
             </span>
           </div>
           <br>
@@ -22,7 +22,7 @@
             <h5>LES ACTEURS PRIVÉS : </h5>
             <span class="is-block is-size-7">
               {{ $place->get('blocs->presentation->donnees->acteurs_prives') }}
-              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','id_section'=>'section01','type' => 'text','titre'=>"Modifier les acteurs privés",'description'=>"Qui sont les acteurs privés ?"])
+              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs privés",'description'=>"Qui sont les acteurs privés ?"])
             </span>
           </div>
           <br>
@@ -36,7 +36,7 @@
                     {{ $nature }}@if(! $loop->last), @endif
                   @endforeach
                 </span>
-                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->public','id_section'=>'section01','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du publics ?'])
+                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->public','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du publics ?'])
               </div>
             @endif
             @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
@@ -45,7 +45,7 @@
                   {{ $nature}}@if(! $loop->last), @endif
                 @endforeach
                 </span>
-                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','id_section'=>'section01','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du privé ?'])
+                @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Quelles sont les natures de partenariats avec les acteurs du privé ?'])
               </div>
             @endif
           </div>
