@@ -13,7 +13,7 @@
           <select style="display: inline-block;" name="1" id="titleCmpLeft" class="is-focused" >
             @php $tab = [
                   "moyens"=>[
-                    "etp" => "Nombre d'ETP",
+                    "emplois directs" => "Nombre d'emplois directs",
                     "benevole" => "Nombre de bénévoles",
                     "partenaire" => "Nombre de partenaires publics / privés",
                     "superficie" => "Superficie du lieu (m2)"
@@ -22,13 +22,13 @@
                     "ouverture" => "Nombre d'heures d'ouverture",
                     "event" => "Nombre d'événements publics / privés",
                     "struct_hebergee" => "Nombre de structures hébergées",
-                    "visiteur" => "Nombre de visiteurs par an"]
+                    "personnes accueillies" => "Nombre de personnes accueillies par an"]
                   ];
             @endphp
             @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )
-                  <option @if($key_prog_name == "etp") id="stats_selectedLeftValue"
+                  <option @if($key_prog_name == "emplois directs") id="stats_selectedLeftValue"
                     selected
                   @endif
                  value="{{ $key_prog_name }}" >{{ $programmation }}</option>

@@ -14,13 +14,13 @@ class Place extends Model
   const STAT_SURFACE = "surface";
   const STAT_EVENTS = "evenements";
   const STAT_EMPLOIS_DIRECTS = "emplois directs";
-  const STAT_VISITORS = "visiteurs";
+  const STAT_PERSONNES_ACCUEILLIES = "personnes accueillies";
 
   protected $stats = [
       self::STAT_SURFACE => 0,
       self::STAT_EVENTS => 0,
       self::STAT_EMPLOIS_DIRECTS => 0,
-      self::STAT_VISITORS => 0
+      self::STAT_PERSONNES_ACCUEILLIES => 0
   ];
     public $incrementing = false;
 
@@ -103,9 +103,10 @@ class Place extends Model
         $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
         $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
         $this->stats[self::STAT_EMPLOIS_DIRECTS] += ($place->get('blocs->presentation->donnees->emplois directs')) ? $place->get('blocs->presentation->donnees->emplois directs') : 0 ;
-        $this->stats[self::STAT_VISITORS] += ($place->get('evenements->prives->nombre_visiteurs') + $place->get('evenements->publics->nombre_visiteurs'));
+        $this->stats[self::STAT_PERSONNES_ACCUEILLIES] += ($place->get('evenements->prives->personnes accueillies') + $place->get('evenements->publics->personnes accueillies'));
         $this->stats[self::STAT_CITIES] = count($this->cities);
       }
+
       return $this->stats;
     }
 
@@ -372,7 +373,7 @@ class Place extends Model
         "ouverture" => "Nombre d'heures d'ouverture",
         "event" => "Nombre d'événements publics / privés",
         "struct_hebergee" => "Nombre de structures hébergées",
-        "visiteur" => "Nombre de visiteurs par an"]
+        "personnes accueillies" => "Nombre de personnes accueillies par an"]
       ];
 
    foreach ($places as $place) {
@@ -390,9 +391,9 @@ class Place extends Model
               $place->get('blocs->data_territoire->donnees->realisations->event->nombre').
               ',"title":"Nombre d\'événements publics / privés"},"struct_hebergee":{"nombre":'.
               $place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre').
-              ',"title":"Nombre de structures hébergées"},"visiteur":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->visiteur->nombre').
-              ',"title":"Nombre de visiteurs par an"}}}';
+              ',"title":"Nombre de structures hébergées"},"personnes accueillies":{"nombre":'.
+              $place->get('blocs->data_territoire->donnees->realisations->personnes accueillies->nombre').
+              ',"title":"Nombre de personnes accueillies par an"}}}';
 
       $compare_data[$place->get('name')] = json_decode($data,true);
       $compare_place_name[$place->get('name')] = $place->get('name');

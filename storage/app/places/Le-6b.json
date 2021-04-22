@@ -2708,9 +2708,9 @@
               "nombre":200,
               "title":"Nombre de structures hébergées"
             },
-            "visiteur":{
+            "personnes accueillies":{
               "nombre":9000,
-              "title":"Nombre de visiteurs par an"
+              "title":"Nombre de personnes accueillies par an"
             }
           }
         }
@@ -2733,11 +2733,11 @@
     "evenements":{
       "publics":{
         "nombre":35,
-        "nombre_visiteurs":6000
+        "personnes accueillies":6000
       },
       "prives":{
         "nombre":27,
-        "nombre_visiteurs":3000
+        "personnes accueillies":3000
       }
     }
 }

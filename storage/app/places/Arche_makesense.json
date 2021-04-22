@@ -2418,9 +2418,9 @@
               "nombre":4,
               "title":"Nombre de structures hébergées"
             },
-            "visiteur":{
+            "personnes accueillies":{
               "nombre":70,
-              "title":"Nombre de visiteurs par an"
+              "title":"Nombre de personnes accueillies par an"
             }
           }
         }
@@ -2443,11 +2443,11 @@
     "evenements":{
       "publics":{
         "nombre":95,
-        "nombre_visiteurs":15
+        "personnes accueillies":15
       },
       "prives":{
         "nombre":70,
-        "nombre_visiteurs":30
+        "personnes accueillies":30
       }
     }
 }

@@ -23,8 +23,9 @@ function animateValue(obj) {
             current += increment;
             obj.innerHTML = current;
             if (parseInt(current) == parseInt(end)) {
-              obj.innerHTML = current + plus;
-                clearInterval(timer);
+              var nombre = current + plus;
+              obj.innerHTML = nombre.toLocaleString();
+              clearInterval(timer);
             }
         }, Math.abs(interval));
     }
