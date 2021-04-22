@@ -27,7 +27,7 @@
     <div class="column " style="width: 100%; height: 35em;">
       <div id="map-insee"></div>
     </div>
-    <div class="column is-7">
+    <div class="column is-two-thirds">
       <div class="columns">
         <div class="column">
           <div id="actifsChart"></div>
