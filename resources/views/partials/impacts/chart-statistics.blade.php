@@ -63,11 +63,6 @@
       },
       legend: {
         show:false,
-      },
-      markers: {
-        onClick: function(e) {
-          console.log(document.getElementById((((this.parentElement).parentElement).parentElement).id));  
-        }
       }
     };
 

@@ -281,12 +281,8 @@ class PlaceController extends Controller
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename =".$slug.".csv");
 
-  		$fichier_csv = fopen("php://memory", 'w');
-
-      $place->exportCsv($fichier_csv,$auth);
-
-      rewind($fichier_csv);
-      echo stream_get_contents($fichier_csv);
+      $csv = "";
+      echo($place->exportCsv($csv,$auth));
       exit;
     }
 

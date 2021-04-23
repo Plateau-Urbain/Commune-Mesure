@@ -48,15 +48,12 @@ class AdminController extends Controller
 
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename = global.csv");
-
-      $fichier_csv = fopen("php://memory", 'w');
+      $csv = "";
 
       foreach ($list as $place){
-        $place->exportCsv($fichier_csv,$auths[$place->getSlug()]);
+        $csv = $place->exportCsv($csv,$auths[$place->getSlug()]);
       }
-
-      rewind($fichier_csv);
-      echo stream_get_contents($fichier_csv);
+      echo ($csv);
       exit;
     }
 
