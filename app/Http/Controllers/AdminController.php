@@ -27,9 +27,6 @@ class AdminController extends Controller
     public function publish(Request $request,$slug,$auth){
       $place = Place::find($slug);
 
-      $list = $place->retrivePlaces();
-      $auths = $place->getAuth();
-
       if ($place->check($auth) === false) {
         abort(403, 'Wrong authentication string');
       }
@@ -39,11 +36,11 @@ class AdminController extends Controller
       $place->set('publish', !$place->get('publish'));
       $place->save();
 
-      return redirect(route('admin.view', compact('list', 'auths')));
+      return redirect(route('admin.view');
     }
 
     public function globalCsv(Request $request, Place $place){
-      $list = $place->retrivePlaces();
+      $list = Place::retrivePlaces();
       $auths = $place->getAuth();
 
       header("Content-type: text/csv");
