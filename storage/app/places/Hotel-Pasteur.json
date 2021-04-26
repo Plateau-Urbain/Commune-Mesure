@@ -62,7 +62,7 @@
         },
         "accessibilite":{
           "Handicapés":0,
-          "Mal_voyants":1
+          "Mal voyants":1
         },
         "transports":{
             "Bus":1,
@@ -76,23 +76,23 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "activites":{
+        "activités":{
             "check":1,
             "donnees":["Expérimentation"]
         },
-        "art-et-creation":{
+        "art et création":{
             "check":1,
             "donnees":["Expérimentation"]
           },
-        "bien-etre":{
+        "bien être":{
             "check":1,
             "donnees":["Hospitalité","Confiance","Prendre soin","Co-working"]
           },
-        "developpement-durable":{
+        "développement durable":{
             "check":1,
             "donnees":["Expérimentation","Émancipation"]
           },
-        "education":{
+        "éducation":{
             "check":1,
             "donnees":["Émancipation","Responsabilisation","Transmission"]
           },
@@ -100,7 +100,7 @@
             "check":1,
             "donnees":["Responsabilisation"]
           },
-        "solidarite":{
+        "solidarité":{
             "check":1,
             "donnees":["Transmission","Réciprocité","Contribution"]
           }

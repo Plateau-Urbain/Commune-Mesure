@@ -59,7 +59,7 @@
         },
         "accessibilite":{
           "Handicapés":0,
-          "Mal_voyants":1
+          "Mal voyants":1
         },
         "transports":{
             "Bus":1,
@@ -73,23 +73,23 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "activites":{
+        "activités":{
             "check":1,
             "donnees":["Lieu d'initiative féminine"]
           },
-        "art-et-creation":{
+        "art et création":{
             "check":1,
             "donnees":["Lieu d'initiative féminine"]
           },
-        "bien-etre": {
+        "bien être": {
             "check" : 1,
             "donnees":["Lieu de ressource féminin","Lieu de confiance féminin"]
           },
-        "developpement-durable":{
+        "développement durable":{
             "check":0,
             "donnees": []
           },
-        "education":{
+        "éducation":{
             "check":0,
             "donnees":[]
           },
@@ -97,7 +97,7 @@
             "check":0,
             "donnees":[]
           },
-        "solidarite":{
+        "solidarité":{
             "check":1,
             "donnees":["Lieu de ressource féminin","Lieu de confiance féminin"]
           }

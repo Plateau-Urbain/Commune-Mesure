@@ -64,7 +64,7 @@
         },
         "accessibilite":{
           "Handicapés":1,
-          "Mal_voyants":1
+          "Mal voyants":1
         },
         "transports":{
             "Bus":1,
@@ -78,24 +78,23 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-
-        "activites":{
+        "activités":{
             "check":1,
             "donnees":["Innovation économique"]
         },
-        "art-et-creation":{
+        "art et création":{
             "check":1,
             "donnees":["Innovation sociale"]
           },
-        "bien-etre":{
+        "bien être":{
             "check":1,
             "donnees":["Vivre ensemble","Laïcité","Cantine Freegan","Co-working"]
           },
-        "developpement-durable":{
+        "développement durable":{
             "check":1,
             "donnees":["Innovation économique","Innovation sociale"]
           },
-        "education":{
+        "éducation":{
             "check":1,
             "donnees":["Citoyenneté","Formation des individus","Vivre ensemble","Laïcité","Cantine Freegan","Co-working"]
           },
@@ -103,7 +102,7 @@
             "check":1,
             "donnees":["Innovation sociale"]
           },
-        "solidarite":{
+        "solidarité":{
             "check":1,
             "donnees":["Citoyenneté","Innovation sociale"]
           }

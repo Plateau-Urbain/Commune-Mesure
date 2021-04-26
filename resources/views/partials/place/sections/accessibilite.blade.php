@@ -9,7 +9,7 @@
       @if($accessibilite == 'Handicapés' && $check)
         <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Fauteuils roulants"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>
       @endif
-      @if ($accessibilite == 'Mal_voyants' && $check)
+      @if ($accessibilite == 'Mal voyants' && $check)
         <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Mal-voyants"><i class="cm-icons mal-voyant font-color-theme mr-1"></i></span>
       @endif
     @endforeach
