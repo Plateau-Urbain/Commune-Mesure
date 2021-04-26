@@ -23,7 +23,7 @@
                         <th>Status</th>
                         <th>Nom</th>
                         <th>Page d'administration</th>
-                        <th>Accéder</th>
+                        <th>Administrer</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
