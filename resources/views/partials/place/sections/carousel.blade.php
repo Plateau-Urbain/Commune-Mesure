@@ -1,7 +1,7 @@
 <h2 class="sous-banner">GALERIE
   @if(isset($edit))
     <span class="icon-edit">
-      <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i class="fa fa-pen modal-crayon" title="Éditer la section"></i></a>
+      <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i class="fa fa-pen modal-crayon" title="Éditer"></i></a>
     </span>
   @endif
 </h2>
