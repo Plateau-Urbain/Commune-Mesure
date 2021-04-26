@@ -1,4 +1,10 @@
-<h2 class="sous-banner">GALERIE</h2>
+<h2 class="sous-banner">GALERIE
+  @if(isset($edit))
+    <span class="icon-edit">
+      <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i class="fa fa-pen modal-crayon" title="Éditer la section"></i></a>
+    </span>
+  @endif
+</h2>
 <div class="container carousel-container with-padding column is-6 has-text-centered">
     @php $array_photos = $place->getPhotos(); @endphp
     @unless(empty($array_photos))

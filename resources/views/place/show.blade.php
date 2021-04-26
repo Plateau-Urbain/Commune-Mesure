@@ -187,14 +187,8 @@
     </x-edit-section>
     <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section anchor section-place">
-          @if(isset($edit))
-            <span class="icon-edit">
-              <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>
-            </span>
-          @endif
           <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="&nbsp;&nbsp;GALERIE"></div>
           @include('partials.place.sections.carousel')
-
       </section>
     </x-edit-section>
         </div>
