@@ -688,8 +688,9 @@ p.partenaires_text{
 }
 
 .scroll-indicator-controller span {
-	background-color:#deebee;
+	background-color:#e85048;
 	border-radius: 4px;
+  color:white;
 }
 .input-number{
   padding:10px;
@@ -730,4 +731,14 @@ p.partenaires_text{
 .partners-footer{
   font-weight:bold;
   color:#e85048;
+}
+
+.scroll-indicator-controller > div span::after{
+  padding:20px;
+}
+
+.scroll-indicator-controller > div span{
+  color:white;
+  font-weight: bold;
+  line-height: 25px !important;
 }
