@@ -68,9 +68,7 @@
 
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place " id="presentation">
-        <div>
-          <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
-        </div>
+        <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
           <strong> Tags : </strong>
@@ -102,6 +100,7 @@
           </div>
         </section>
     </x-edit-section>
+
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="fond-bleu">
         <div class="scroll-indicator" id="accessibilite" data-scroll-indicator-title="&nbsp;&nbsp;LOCALISATION"></div>
@@ -128,11 +127,10 @@
           <h3 class="is-5 has-text-centered">LOCALISATION </h3>
           <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
         </div>
-        <div class="">
+        <div>
             <div id="section-map" class="map-fullwidth"></div>
         </div>
       </section>
-
     </x-edit-section>
 
     @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
@@ -142,35 +140,24 @@
           @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
             @php $class="is-6 is-offset-3" @endphp
           @endif
+
           <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-            @if (!isset($edit) && (!$sections['composition']) || !$sections['composition'])
-              <div>
+            @if (!isset($edit) && !$sections['composition'])
                 <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;LES MOYENS"></div>
                 <div id="composition"></div>
-              </div>
-            @elseif(isset($edit))
-              <div>
+            @elseif(isset($edit) || (!isset($edit) && $sections['composition'] && $sections['moyens'] ))
                 <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;MOYENS / COMPOSITION"></div>
                 <div id="composition"></div>
-
-              </div>
-            @elseif(!isset($edit) && ($sections['composition'] || $sections['composition']) && $sections['moyens'] || $sections['moyens'])
-              <div>
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;MOYENS / COMPOSITION"></div>
-                <div  id="composition"></div>
-              </div>
             @endif
             @include('partials.place.sections.moyens')
           </x-edit-section>
-
           <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-            @if (!isset($edit) && (!$sections['moyens'] || !$sections['moyens']))
-              <div>
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;LA COMPOSITION"></div>
-              </div>
+            @if (!isset($edit) && (!$sections['moyens']))
+              <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;LA COMPOSITION"></div>
             @endif
             @include('partials.place.sections.composition')
           </x-edit-section>
+
         </div>
       </section>
     @endif
@@ -178,9 +165,7 @@
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place">
         <div class='column'>
-            <div>
-              <div class="scroll-indicator" id="valeurs" data-scroll-indicator-title="&nbsp;&nbsp;LES VALEURS PORTÉES"></div>
-            </div>
+            <div class="scroll-indicator" id="valeurs" data-scroll-indicator-title="&nbsp;&nbsp;LES VALEURS PORTÉES"></div>
             @include('partials.place.sections.values')
         <div>
       </section>
@@ -188,9 +173,7 @@
 
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <section  class="section section-place fond-bleu">
-        <div>
-          <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="&nbsp;&nbsp;L'IMPACT SOCIAL"></div>
-        </div>
+        <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="&nbsp;&nbsp;L'IMPACT SOCIAL"></div>
         @include('partials.place.sections.impact-social')
         </section>
     </x-edit-section>
@@ -198,9 +181,7 @@
 
     <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section anchor section-place">
-        <div>
-          <div class="scroll-indicator" id="data_territoire" data-scroll-indicator-title="&nbsp;&nbsp;LE TERRITOIRE"></div>
-        </div>
+        <div class="scroll-indicator" id="data_territoire" data-scroll-indicator-title="&nbsp;&nbsp;LE TERRITOIRE"></div>
         @include('partials.place.sections.territoire')
       </section>
     </x-edit-section>
@@ -211,9 +192,7 @@
               <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i style="color:black" class="fa fa-pen modal-crayon" title="Éditer la section" style="position:absolute;margin-top:-13px;"></i></a>
             </span>
           @endif
-          <div>
-            <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="&nbsp;&nbsp;GALERIE"></div>
-          </div>
+          <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="&nbsp;&nbsp;GALERIE"></div>
           @include('partials.place.sections.carousel')
 
       </section>

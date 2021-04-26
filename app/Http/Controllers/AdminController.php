@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function view(Place $place)
     {
-        $list = $place->retrivePlaces();
+        $list = PLace::retrivePlaces();
         $auths = $place->getAuth();
         return view('admin.view', compact('list', 'auths'));
     }
@@ -36,7 +36,7 @@ class AdminController extends Controller
       $place->set('publish', !$place->get('publish'));
       $place->save();
 
-      return redirect(route('admin.view');
+      return redirect(route('admin.view'));
     }
 
     public function globalCsv(Request $request, Place $place){
