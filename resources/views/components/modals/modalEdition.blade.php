@@ -43,20 +43,50 @@
         @elseif(is_object($valueChemin) && isset($type) && $type == "checkbox")
           @php $i=0; @endphp
           @foreach($valueChemin as $value => $check)
-              @if($check)
-                <input class='check' type="checkbox" name="{{$i}}" checked>
+              @if(is_object($check))
+                @php $maxCheck = 3;@endphp
+                @if($check->check)
+                  <input class='check checkbox-limitee' type="checkbox" name="{{$i}}" checked>
+                @else
+                  <input class='check checkbox-limitee' type="checkbox" name="{{$i}}">
+                @endif
               @else
-                <input class='check' type="checkbox" name="{{$i}}">
+                @if($check)
+                  @php $all=true; @endphp
+                  <input class='check' type="checkbox" name="{{$i}}" checked>
+                @else
+                  <input class='check' type="checkbox" name="{{$i}}">
+                @endif
               @endif
               <label class="checkbox"> {{$value}} </label>
             <br>
             @php $i++; @endphp
             <input hidden name="type" value="{{$type}}"></input>
           @endforeach
-          <br>
-          <input type="checkbox" onClick="toggle(this)"/>
-          <label class="checkbox">Tout cocher</label>
-          <br>
+
+          @if(isset($all))
+            <br>
+            <input type="checkbox" onClick="toggle(this)"/>
+            <label class="checkbox">Tout cocher</label>
+            <br>
+          @elseif(isset($maxCheck))
+          <script>
+          var checkbox = document.getElementsByClassName('checkbox-limitee');
+          	for (var i = 0; i < checkbox.length; i++) {
+          		checkbox[i].onclick = function() {
+          			var checkedcount = 0;
+          				for (var i = 0; i < checkbox.length; i++) {
+          				checkedcount += (checkbox[i].checked) ? 1 : 0;
+          			}
+          			if (checkedcount > {{$maxCheck}}) {
+          				alert("Vous pouvez séléctionner au maximum " + {{$maxCheck}} +" valeurs.");
+          				this.checked = false;
+          			}
+          		}
+          	}
+          </script>
+          @endif
+
         @elseif(is_object($valueChemin) && isset($type) && $type == "number")
           @php $i=0; @endphp
           @foreach($valueChemin as $k => $v)

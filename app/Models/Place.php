@@ -304,6 +304,16 @@ class Place extends Model
     return true;
   }
 
+  public function isEmptyValeurs(){
+    $tab = json_decode(json_encode($this->get('blocs->valeurs->donnees')),true);
+    foreach ($tab as $valeur => $k){
+        if($k['check']){
+          return false;
+        }
+    }
+    return true;
+  }
+
   public function isEmpty($section){
     if($section == "moyens"){
       if($this->isEmptyFonctionnement() && $this->isEmptyInvestissement()){
@@ -311,9 +321,13 @@ class Place extends Model
       }
       return false;
     }
-    
+
     if($section == "accessibilite"){  //cas particulier 0/1
       return $this->isEmptyAccessibility();
+    }
+
+    if($section == "valeurs"){
+      return $this->isEmptyValeurs();
     }
 
     $tab = json_decode(json_encode($this->get('blocs->'.$section.'->donnees')),true);
@@ -324,9 +338,7 @@ class Place extends Model
             return false;
           }
         }
-        if($section != 'valeurs'){  //Cas particulier ou on ne regarde que les données dans des tableaux//
-          return true;
-        }
+        return true;
       }
       if(!empty($v)){
         return false;

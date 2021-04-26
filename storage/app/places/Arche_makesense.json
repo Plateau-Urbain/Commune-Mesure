@@ -75,13 +75,34 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "bien-etre": ["Bienveillance"],
-        "environnement":["Innovation sociale"],
-        "developpement-durable":[],
-        "solidarite":["Bienveillance","Partage"],
-        "education":["Partage"],
-        "art-et-creation":["Lieu d'initiative féminine"],
-        "activites":["Practice what you preach","No bullshit Just impact","C'est en faisant que l'on sait faire"]
+        "activites":{
+            "check":1,
+            "donnees":["Practice what you preach","No bullshit Just impact","C'est en faisant que l'on sait faire"]
+          },
+        "art-et-creation":{
+            "check":1,
+            "donnees":["Lieu d'initiative féminine"]
+          },
+        "bien-etre": {
+            "check" : 1,
+            "donnees":["Bienveillance"]
+          },
+        "developpement-durable":{
+            "check":0,
+            "donnees": []
+          },
+        "education":{
+            "check":1,
+            "donnees":["Partage"]
+          },
+        "environnement":{
+            "check":1,
+            "donnees":["Innovation sociale"]
+          },
+        "solidarite":{
+            "check":1,
+            "donnees":["Bienveillance","Partage"]
+          }
       }
     },
     "moyens":{

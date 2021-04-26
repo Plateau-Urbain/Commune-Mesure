@@ -75,13 +75,34 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "bien-etre": ["Partage","Autonomie"],
-        "environnement":[],
-        "developpement-durable":[],
-        "solidarite":["Partage"],
-        "education":[],
-        "art-et-creation":[],
-        "activites":[]
+        "activites":{
+            "check":0,
+            "donnees":[]
+          },
+        "art-et-creation":{
+            "check":0,
+            "donnees":[]
+          },
+        "bien-etre":{
+            "check":1,
+            "donnees":["Partage","Autonomie"]
+          },
+        "developpement-durable":{
+            "check":0,
+            "donnees":[]
+          },
+        "education":{
+            "check":0,
+            "donnees":[]
+          },
+        "environnement":{
+            "check":0,
+            "donnees":[]
+          },
+        "solidarite":{
+            "check":0,
+            "donnees":[]
+          }
       }
     },
     "moyens":{

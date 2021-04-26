@@ -76,13 +76,34 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "bien-etre": ["Hospitalité","Confiance","Prendre soin","Co-working"],
-        "environnement":["Responsabilisation"],
-        "developpement-durable":["Expérimentation","Émancipation"],
-        "solidarite":["Transmission","Réciprocité","Contribution"],
-        "education":["Émancipation","Responsabilisation","Transmission"],
-        "art-et-creation":["Expérimentation"],
-        "activites":["Expérimentation"]
+        "activites":{
+            "check":1,
+            "donnees":["Expérimentation"]
+        },
+        "art-et-creation":{
+            "check":1,
+            "donnees":["Expérimentation"]
+          },
+        "bien-etre":{
+            "check":1,
+            "donnees":["Hospitalité","Confiance","Prendre soin","Co-working"]
+          },
+        "developpement-durable":{
+            "check":1,
+            "donnees":["Expérimentation","Émancipation"]
+          },
+        "education":{
+            "check":1,
+            "donnees":["Émancipation","Responsabilisation","Transmission"]
+          },
+        "environnement":{
+            "check":1,
+            "donnees":["Responsabilisation"]
+          },
+        "solidarite":{
+            "check":1,
+            "donnees":["Transmission","Réciprocité","Contribution"]
+          }
       }
     },
     "moyens":{

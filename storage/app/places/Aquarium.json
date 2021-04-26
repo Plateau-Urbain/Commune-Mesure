@@ -73,13 +73,34 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "bien-etre": ["Lieu de ressource féminin","Lieu de confiance féminin"],
-        "environnement":[],
-        "developpement-durable":[],
-        "solidarite":["Lieu de ressource féminin","Lieu de confiance féminin"],
-        "education":[],
-        "art-et-creation":["Lieu d'initiative féminine"],
-        "activites":["Lieu d'initiative féminine"]
+        "activites":{
+            "check":1,
+            "donnees":["Lieu d'initiative féminine"]
+          },
+        "art-et-creation":{
+            "check":1,
+            "donnees":["Lieu d'initiative féminine"]
+          },
+        "bien-etre": {
+            "check" : 1,
+            "donnees":["Lieu de ressource féminin","Lieu de confiance féminin"]
+          },
+        "developpement-durable":{
+            "check":0,
+            "donnees": []
+          },
+        "education":{
+            "check":0,
+            "donnees":[]
+          },
+        "environnement":{
+            "check":0,
+            "donnees":[]
+          },
+        "solidarite":{
+            "check":1,
+            "donnees":["Lieu de ressource féminin","Lieu de confiance féminin"]
+          }
       }
     },
     "moyens":{

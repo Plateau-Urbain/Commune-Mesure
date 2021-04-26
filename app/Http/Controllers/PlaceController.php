@@ -128,19 +128,32 @@ class PlaceController extends Controller
          return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }
 
-
        if ( is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "checkbox"){
          $i=0;
          foreach($place->get($request->chemin) as $value => $check) {
-           if($request->{$i} == "on"){
-             $on = 1;
+           if(is_object($check)){
+             var_dump($check);
+             if($request->{$i} == "on"){
+               $on = 1;
+             }
+             else{
+               $on = 0;
+             }
+             $place->get($request->chemin)->{$value}->check = $on;
+             $place->save();
+             $i++;
            }
            else{
-             $on = 0;
+             if($request->{$i} == "on"){
+               $on = 1;
+             }
+             else{
+               $on = 0;
+             }
+             $place->get($request->chemin)->{$value} = $on;
+             $place->save();
+             $i++;
            }
-           $place->get($request->chemin)->{$value} = $on;
-           $place->save();
-           $i++;
          }
          return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
        }

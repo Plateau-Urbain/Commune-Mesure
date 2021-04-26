@@ -73,13 +73,34 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "bien-etre": ["Liberté d'action","Ouverture d'esprit","Tolérance"],
-        "environnement":[],
-        "developpement-durable":[],
-        "solidarite":["Tolérance"],
-        "education":["Ouverture d'esprit","Tolérance"],
-        "art-et-creation":[],
-        "activites":[]
+        "activites":{
+            "check":0,
+            "donnees":[]
+        },
+        "art-et-creation":{
+            "check":0,
+            "donnees":[]
+          },
+        "bien-etre":{
+            "check":1,
+            "donnees":["Liberté d'action","Ouverture d'esprit","Tolérance"]
+          },
+        "developpement-durable":{
+            "check":0,
+            "donnees":[]
+          },
+        "education":{
+            "check":1,
+            "donnees":["Ouverture d'esprit","Tolérance"]
+          },
+        "environnement":{
+            "check":0,
+            "donnees":[]
+          },
+        "solidarite":{
+            "check":1,
+            "donnees":["Tolérance"]
+          }
       }
     },
     "moyens":{
