@@ -24,7 +24,7 @@ function animateValue(obj) {
             obj.innerHTML = current;
             if (parseInt(current) == parseInt(end)) {
               var nombre = current + plus;
-              obj.innerHTML = nombre.toLocaleString();
+              obj.innerHTML = (nombre.toLocaleString()).replace(',',' ');
               clearInterval(timer);
             }
         }, Math.abs(interval));
