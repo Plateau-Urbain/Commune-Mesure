@@ -78,7 +78,7 @@
             <li class="tags">{{$tag}}</li>
           @endforeach
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentaion','type' => 'text','titre'=>"Modifier les tags"])
+             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentaion','type' => 'text','titre'=>"Modifier les tags",'description'=>"Les mots-clefs qui identifient aisément le lieu lors d'une recherche"])
           @endif
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture  : </strong>
@@ -120,6 +120,11 @@
 
         <form method="POST" action="{{route('place.updateGalerie',['slug' => $slug, 'auth' => $auth , 'chemin'=>$chemin])}}" enctype="multipart/form-data">
             <section class="modal-card-body">
+                <small style='margin-left:10px'>
+                   Des photos du lieu !
+                </small>
+                <hr style='border:1px solid #dbdbdb'>
+
               @php $array_photos = $place->getPhotos();@endphp
                 @unless(empty($array_photos))
                 <div class="carousel" data-navigation=1>

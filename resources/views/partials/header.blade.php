@@ -26,7 +26,7 @@
             Commune Mesure
             </h1>
             <h2 class="subtitle">
-                Les lieux et leurs impacts
+                La plateforme ressource des tiers-lieux et lieux hybrides
             </h2>
             @show
         </div>

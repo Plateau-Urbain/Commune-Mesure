@@ -75,33 +75,32 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "activités":{
-            "check":1,
-            "donnees":["Practice what you preach","No bullshit Just impact","C'est en faisant que l'on sait faire"]
+        "Accueil":{
+            "check":0
           },
-        "art et création":{
-            "check":1,
-            "donnees":["Lieu d'initiative féminine"]
+        "Convivialité":{
+            "check":0
           },
-        "bien être": {
-            "check" : 1,
-            "donnees":["Bienveillance"]
+        "Coopération": {
+            "check" : 0
           },
-        "développement durable":{
-            "check":0,
-            "donnees": []
+        "Créativité":{
+            "check":1
           },
-        "éducation":{
-            "check":1,
-            "donnees":["Partage"]
+        "Durabilité":{
+            "check":0
           },
-        "environnement":{
-            "check":1,
-            "donnees":["Innovation sociale"]
+        "Environnement ":{
+            "check":1
           },
-        "solidarité":{
-            "check":1,
-            "donnees":["Bienveillance","Partage"]
+        "Inclusivité":{
+            "check":0
+          },
+        "Partage":{
+            "check":0
+          },
+        "Transmission":{
+            "check":0
           }
       }
     },

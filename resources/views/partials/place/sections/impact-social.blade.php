@@ -1,6 +1,8 @@
 <div class="banner-fil fil-5">
     <h2 class="sous-banner">L'impact social</h1>
 </div>
+<p class='description-section' style="width: 80%;"> La qualification de l'impact social est le fruit d'un processus d'interaction ; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu. Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les effets  sur les personnes, les groupes de personnes et le territoire. Les réponses affichées sont issues des porteurs de projet.</p>
+
 <div class="columns" style="margin-top: 100px;">
   {{-- Gauche --}}
   <div class="column has-text-centered is-relative">
@@ -17,7 +19,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact en rapport avec le réseau",'description'=>'En rapport avec le Réseau'])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact en rapport avec le réseau",'description'=>'les réseaux de personnes qui se sont constitués sur le lieu'])
       </div>
     </div>
     <div class="impact_item top right" id="impact_item_appartenance" data-aos="fade-right">
@@ -33,7 +35,7 @@
         </svg>
       </div>
       <div>
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec l'Appartenance et l'exclusion"])
+         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception de l'inclusion ou de l'exclusion des personnes sur le lieu"])
       </div>
     </div>
   </div>
@@ -54,7 +56,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec la Santé et le Bien être"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception de l'évolution de la santé des personnes qui fréquentent le lieu"])
       </div>
     </div>
 
@@ -71,7 +73,8 @@
         </svg>
       </div>
       <div>
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec l'Insertion professionnelle"])
+         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"accès à l'emploi grâce à la présence des personnes qui fréquentent le lieu
+Des personnes ou des activités mises en place sur le lieu ?"])
       </div>
     </div>
 
@@ -87,7 +90,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec le lien social"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"interactions entre les personnes sur le site"])
       </div>
     </div>
 
@@ -103,7 +106,7 @@
         </svg>
       </div>
       <div>
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"En rapport avec la Capacité à agir"])
+        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception des Effets de la fréquentation du lieu sur la capacité à agir des personnes"])
       </div>
     </div>
 

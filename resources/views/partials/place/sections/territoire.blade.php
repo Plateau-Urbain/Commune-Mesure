@@ -1,6 +1,7 @@
 <div class='banner-fil fil-2'>
   <h2 class="sous-banner">Le lieu dans son territoire</h2>
 </div>
+<p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
 <div class="section">
   <div class="columns">
     <div class="column">
@@ -38,4 +39,3 @@
     </div>
   </div>
 </div>
-

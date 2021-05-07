@@ -10,7 +10,7 @@
     <div class="container section">
         <div class="content has-text-centered">
             <p class='is-size-4'>
-              Un outil en commun pour révéler leurs impacts sur les personnes et les territoires
+              Les lieux et leurs impacts
             </p>
         </div>
     </div>
@@ -106,7 +106,7 @@
                       ces lieux hybrides pour :
                     </p>
                     <p class="accueil-paragraphe">
-                      Montrer le caractère innovant de ces lieux tant au niveau des solutions qu’ils apportent que sur le model
+                      Montrer le caractère innovant de ces lieux tant au niveau des solutions qu’ils apportent que sur le modèle
                       économique.
                     </p>
                     <p class="accueil-paragraphe">

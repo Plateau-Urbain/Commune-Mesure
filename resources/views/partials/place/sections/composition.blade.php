@@ -1,7 +1,8 @@
 <h2 class="sous-banner sous-banner-composition is-5 has-text-centered">LA COMPOSITION</h2>
+<p class='description-section'>Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu</p>
 <div class="field has-text-centered">
-  <label class="is-size-5" style="font-weight: bold;" >Type de structures présentes dans le projet</label>
-  @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelles sont les types de structures et quelles sont leurs effectifs ?"])
+  <label class="is-size-5" style="font-weight: bold;" >Type de structures participant au projet</label>
+  @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
 </div>
 <canvas id="composition-chart-doughnut" ></canvas>
 
@@ -16,7 +17,7 @@
         @else
           structure créée
         @endif
-        @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'composition','type' => 'number','titre'=>"Modifier le nombre de structures créées"])
+        @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'composition','type' => 'number','titre'=>"Modifier le nombre de structures créées","description" =>"Le nombre de structures qui ont été créées au sein du lieu ou dont la création a été permise par le lieu"])
       </span>
     </div>
 

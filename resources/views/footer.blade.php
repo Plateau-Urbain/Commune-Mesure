@@ -25,7 +25,7 @@
         <div class="column">
           <div class="write-us">
               <p> Le projet s'inscrit dans le programme <span class='partners-footer'> French Impact </span>.</p>
-              <img style="width:50%;" src="{{ url('/images/partenaires/Copie de LogoPionnierLFI.png') }}" alt="">
+              <img src="{{ url('/images/partenaires/french_impact.png') }}" alt="">
               <p>avec le soutien de <span class='partners-footer'>la banque des territoires</span>.</p>
               <img src="{{ url('/images/partenaires/Banque_des_territoires.png') }}">
           </div>

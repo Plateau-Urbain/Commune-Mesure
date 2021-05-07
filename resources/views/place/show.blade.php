@@ -76,13 +76,13 @@
             <li class="tags">{{$tag}}</li>
           @endforeach
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les tags"])
+             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les tags",'description'=>"Les mots-clefs qui identifient aisément le lieu lors d'une recherche"])
           @endif
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture  : </strong>
             <span class="font-color-theme">{{ $place->getOuverture()}}</span>
           @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'presentation','type' => 'select','titre'=>"Modifier l'ouverture"])
+             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'presentation','type' => 'select','titre'=>"Modifier l'ouverture","description"=>"Les modalités d'ouverture du lieu"])
           @endif
           </p>
         </div>

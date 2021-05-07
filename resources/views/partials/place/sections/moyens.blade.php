@@ -1,15 +1,17 @@
 <h2 class="sous-banner sous-banner-composition is-5">LES MOYENS</h2>
+<p class='description-section'> Les moyens humains et financiers mis en oeuvre pour assurer le fonctionnement du lieu</p>
+
   <div class="field has-text-centered">
       @if((!$place->isEmptyInvestissement() && !isset($edit)) || isset($edit))
         <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_investissement" >Investissement</label>
-        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Qui ont investi et combien ils ont investi pour votre lieu ?"])&nbsp; &nbsp;
+        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu"])&nbsp; &nbsp;
       @endif
       @if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
         <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
       @endif
       @if((!$place->isEmptyFonctionnement() && !isset($edit)) || isset($edit))
         <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_fonctionnement" >Fonctionnement</label>
-        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement"])
+        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
       @endif
   </div>
 <canvas id="financement-budget-doughnut" ></canvas>
@@ -24,7 +26,7 @@
           @else
             Emploi direct
           @endif
-        </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le nombre d'emplois directs"])
+        </span> @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le nombre d'emplois directs","description"=>"Nombre d'emplois directement créés par le lieu pour son fonctionnement"])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}
@@ -66,7 +68,7 @@
           @else
             Bénévole
           @endif
-        </span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le nombre de bénévoles"])
+        </span>@include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le nombre de bénévoles","description" => " Le nombre de bénévoles permettant le fonctionnement du lieu "])
       </div>
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}

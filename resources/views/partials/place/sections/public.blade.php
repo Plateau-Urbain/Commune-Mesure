@@ -1,7 +1,7 @@
 <div class="has-text-centered">
   <p class="mb-5">
     <strong>Publics</strong>
-    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->publics','id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics'])
+    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->publics','id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
   </p>
 </div>
 <div class="columns is-multiline fontSize0-8em" style="justify-content:center;">

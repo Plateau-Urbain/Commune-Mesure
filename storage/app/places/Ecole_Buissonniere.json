@@ -75,33 +75,32 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "activités":{
-            "check":0,
-            "donnees":[]
-        },
-        "art et création":{
-            "check":0,
-            "donnees":[]
+        "Accueil":{
+            "check":0
           },
-        "bien être":{
-            "check":0,
-            "donnees":[]
+        "Convivialité":{
+            "check":0
           },
-        "développement durable":{
-            "check":0,
-            "donnees":[]
+        "Coopération": {
+            "check" : 0
           },
-        "éducation":{
-            "check":0,
-            "donnees":[]
+        "Créativité":{
+            "check":0
           },
-        "environnement":{
-            "check":0,
-            "donnees":[]
+        "Durabilité":{
+            "check":0
           },
-        "solidarité":{
-            "check":0,
-            "donnees":[]
+        "Environnement ":{
+            "check":0
+          },
+        "Inclusivité":{
+            "check":0
+          },
+        "Partage":{
+            "check":0
+          },
+        "Transmission":{
+            "check":0
           }
       }
     },

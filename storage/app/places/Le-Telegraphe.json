@@ -78,33 +78,32 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "activités":{
-            "check":1,
-            "donnees":["Innovation économique"]
-        },
-        "art et création":{
-            "check":1,
-            "donnees":["Innovation sociale"]
+        "Accueil":{
+            "check":0
           },
-        "bien être":{
-            "check":1,
-            "donnees":["Vivre ensemble","Laïcité","Cantine Freegan","Co-working"]
+        "Convivialité":{
+            "check":0
           },
-        "développement durable":{
-            "check":1,
-            "donnees":["Innovation économique","Innovation sociale"]
+        "Coopération": {
+            "check" : 0
           },
-        "éducation":{
-            "check":1,
-            "donnees":["Citoyenneté","Formation des individus","Vivre ensemble","Laïcité","Cantine Freegan","Co-working"]
+        "Créativité":{
+            "check":1
           },
-        "environnement":{
-            "check":1,
-            "donnees":["Innovation sociale"]
+        "Durabilité":{
+            "check":0
           },
-        "solidarité":{
-            "check":1,
-            "donnees":["Citoyenneté","Innovation sociale"]
+        "Environnement ":{
+            "check":1
+          },
+        "Inclusivité":{
+            "check":0
+          },
+        "Partage":{
+            "check":0
+          },
+        "Transmission":{
+            "check":0
           }
       }
     },
