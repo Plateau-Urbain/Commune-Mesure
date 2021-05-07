@@ -1,5 +1,5 @@
 <h2 class="sous-banner sous-banner-composition is-5">LES MOYENS</h2>
-<p class='description-section'> Les moyens humains et financiers mis en oeuvre pour assurer le fonctionnement du lieu</p>
+<p class='description-section' style="width:40%"> Les moyens humains et financiers mis en oeuvre pour assurer le fonctionnement du lieu</p>
 
   <div class="field has-text-centered">
       @if((!$place->isEmptyInvestissement() && !isset($edit)) || isset($edit))

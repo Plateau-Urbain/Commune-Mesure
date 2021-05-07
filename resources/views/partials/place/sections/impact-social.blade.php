@@ -1,7 +1,7 @@
 <div class="banner-fil fil-5">
     <h2 class="sous-banner">L'impact social</h1>
 </div>
-<p class='description-section' style="width: 25%;text-align:justify"> La qualification de l'impact social est le fruit d'un processus d'interaction; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu. Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les effets  sur les personnes, les groupes de personnes et le territoire. Les réponses affichées sont issues des porteurs de projet.</p>
+<p class='description-section'> La qualification de l'impact social est le fruit d'un processus d'interaction; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu. Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les effets  sur les personnes, les groupes de personnes et le territoire. Les réponses affichées sont issues des porteurs de projet.</p>
 
 <div class="columns" style="margin-top: 100px;">
   {{-- Gauche --}}
