@@ -10,7 +10,7 @@
       @if($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
           <div>
             <h5>LES ACTEURS PUBLICS : </h5>
-            <span class="is-block is-size-7">
+            <span class="is-block is-size-6">
               {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs publics",'description'=>"Les acteurs publics partenaires ou soutien du projet"])
             </span>
@@ -20,7 +20,7 @@
       @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
           <div>
             <h5>LES ACTEURS PRIVÉS : </h5>
-            <span class="is-block is-size-7">
+            <span class="is-block is-size-6">
               {{ $place->get('blocs->presentation->donnees->acteurs_prives') }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs privés",'description'=>"Les acteurs privés partenaires ou soutien du projet"])
             </span>
@@ -29,7 +29,7 @@
       @endif
         <div>
           <h5>NATURE DES PARTENARIATS :</h5>
-          <div class="is-size-7">
+          <div class="is-size-6">
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
               <div> Publics : <span class="font-color-theme">
                   @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)

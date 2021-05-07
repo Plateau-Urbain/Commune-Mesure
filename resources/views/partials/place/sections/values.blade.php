@@ -20,18 +20,7 @@
       <div class="column">
         <p class="has-text-centered">
           <strong class="valeurs">{{$valeur}}</strong>
-          <!-- @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees->".$valeur."->donnees",'type'=>'text','id_section'=>'valeurs','titre'=>"Modifier les valeurs",'description'=>"Donner des exemples en rapport avec la valeur : ".$valeur])&nbsp; &nbsp; -->
         <p>
-        <!-- @if(isset($tabExemples->donnees) && count($tabExemples->donnees) >0)
-          <div class='valeurs-exemples' style='width:30%;'>
-            <ul>
-            @foreach($tabExemples->donnees as $exemple)
-              <li><strong>- {{ $exemple}}</strong></li>
-            @endforeach
-            </ul>
-          </div>
-        @endif -->
-
       </div>
       @endif
     @endforeach

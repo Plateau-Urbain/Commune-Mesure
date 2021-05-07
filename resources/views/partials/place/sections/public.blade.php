@@ -4,7 +4,7 @@
     @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->publics','id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
   </p>
 </div>
-<div class="columns is-multiline fontSize0-8em" style="justify-content:center;">
+<div class="columns is-multiline fontSize1em" style="justify-content:center;">
     @foreach($place->getPublics() as $public => $check)
       @if($public == 'Enfants' && $check )
         <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="cm-icons enfants font-color-theme mr-1"></i></span>
