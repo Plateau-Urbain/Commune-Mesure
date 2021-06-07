@@ -142,7 +142,13 @@
         "reseaux":"Création de radio bernard, du journal l'Autre monde, du festival de quartier les Babelsunciades",
         "capacite_agir":"Échanges d'espaces, mis à dispo de matériel et compétences,",
         "sante_bien_être":"Résidents présents lors des évènements, conseil de vie, qui participent à la vie du lieu, intégré à l'équipe.",
-        "lien_social": "Conseil de vie, table ronde dans le cadre de la programmation, évènements gd public"
+        "lien_social": "Conseil de vie, table ronde dans le cadre de la programmation, évènements gd public",
+        "solidarite":"échanges d'espaces, mis à dispo de matériel et compétences,",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {

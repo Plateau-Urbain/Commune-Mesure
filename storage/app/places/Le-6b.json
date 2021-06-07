@@ -144,7 +144,13 @@
         "reseaux":"Création d'un réseau informel de voisins & habitués du tiers-lieu qui se sont rencontrées grâce à la programmation musicale (concerts, moments de convivalité) ; création d'une web radio avec le centre social et des associations de quartier pour fédérer les habitants du quartier et garder le lien pendant la crise ; création d'une collecte et distribution alimentaire pendant la crise",
         "capacite_agir":"Mutualisation des ressources et des moyens entre résidents, mises à disposition de matériel ou d'espaces, transferts de compétences",
         "sante_bien_être":"",
-        "lien_social":"Rencontres, synergies, collectifs, projet commun des résidents, débat et rencontres des habitants et acteurs associatif avec les résidents"
+        "lien_social":"Rencontres, synergies, collectifs, projet commun des résidents, débat et rencontres des habitants et acteurs associatif avec les résidents",
+        "solidarite":"mutualisation des ressources et des moyens entre résidents, mises à disposition de matériel ou d'espaces, transferts de compétences",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {

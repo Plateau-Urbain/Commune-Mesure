@@ -139,7 +139,13 @@
         "reseaux":"Création d'un incubateur ESS",
         "capacite_agir":"Projet en cours d'une bibliothèque d'objet; Échanges de compétences régulier entre coworkers; Bibliothèque participative",
         "sante_bien_être":"Un usager sans domicile fixe, qui est monté en compétence, a repris confiance et a trouvé un logement 2 sessions labellisées Grands École du numérique qui ont permis à des personnes de reprendre confiance et de s'impliquer dans la vie du projet",
-        "lien_social":"mixité sociale"
+        "lien_social":"mixité sociale",
+        "solidarite":"Projet en cours d'une bibliothèque d'objet. Échanges de compétences régulier entre coworkers. Bibliothèque participative",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {

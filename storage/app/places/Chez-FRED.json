@@ -141,7 +141,13 @@
         "reseaux":"Il y a une aide pour les personnes en difficulté pour les accompagner dans leurs projets ou actions",
         "capacite_agir":"Cuisine collective",
         "sante_bien_être":"Isolation phonique",
-        "lien_social": "Café pris ensemble avec les voisins et voisines du quartier, les personnes travaillant sur le site font de la cuisine ensemble"
+        "lien_social": "Café pris ensemble avec les voisins et voisines du quartier, les personnes travaillant sur le site font de la cuisine ensemble",
+        "solidarite":"cuisine collective",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {

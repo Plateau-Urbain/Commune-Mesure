@@ -144,7 +144,13 @@
         "reseaux":"Le Telegraphe est un lieu qui rassemble, avec à l'origine la création d'un système d'abonnement qui a fédéré un noyau encore resserré.",
         "capacite_agir":"",
         "sante_bien_être":"",
-        "lien_social":"Proposition de rencontres avec échanges avec le public, de quartier libre, etc."
+        "lien_social":"Proposition de rencontres avec échanges avec le public, de quartier libre, etc.",
+        "solidarite":"",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {

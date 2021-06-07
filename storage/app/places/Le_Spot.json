@@ -139,7 +139,13 @@
         "reseaux":"Synergie constante",
         "capacite_agir":"Mutualisation de poste, de moyens",
         "sante_bien_être":"Réunions qui font débats sur différents projets / éthique",
-        "lien_social":"Personnes porteuses de handicap ou en grande précarité sociale (lieu situé en QPV) qui côtoient un public de classe moyenne"
+        "lien_social":"Personnes porteuses de handicap ou en grande précarité sociale (lieu situé en QPV) qui côtoient un public de classe moyenne",
+        "solidarite":"Mutualisation de poste, de moyens",
+        "egalite_homme_femme":"",
+        "cadre_de_vie":"",
+        "entretien_des_espaces":"",
+        "services_publics":"",
+        "innovation_publique":""
       }
     },
     "data_territoire": {
