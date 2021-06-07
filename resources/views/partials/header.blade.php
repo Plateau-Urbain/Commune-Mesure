@@ -8,11 +8,11 @@
         <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/">Accueil</a>
-                <a class="navbar-item" href="{{ route("places") }}">Les lieux</a>
-                <a class="navbar-item" href="{{ route('impacts.show') }}">Les données</a>
+                <a class="navbar-item" href="{{ route("places") }}">L’ensemble des lieux recensés</a>
                 <a class="navbar-item" href="https://communemesure.fr/demarche-en-detail/">La démarche en détail</a>
                 <a class="navbar-item" href="{{ route('partners') }}">Les partenaires</a>
-                <a class="navbar-item" href="https://communemesure.fr/publications/">Publications</a>
+                <a class="navbar-item" href="https://communemesure.fr/publications/">La Documentation</a>
+                <a class="navbar-item" href="{{ route('impacts.show') }}">Le Lab des données</a>
                 <a class="navbar-item" href="https://communemesure.fr/contact/">Contact</a>
             </div>
         </div>

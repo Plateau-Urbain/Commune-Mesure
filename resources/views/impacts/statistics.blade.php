@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="section container">
-    <h1 class="title is-1 has-text-centered">Les statistiques</h1>
+    <h1 class="title is-1 has-text-centered">Le Lab des données</h1>
   </div>
 
 

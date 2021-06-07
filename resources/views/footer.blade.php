@@ -12,11 +12,11 @@
                     Commune Mesure
                 </p>
                 <ul class="menu-list ">
-                    <a href="/les-lieux">Les lieux</a>
-                    <a href="/les-statistiques-et-donnees-des-lieux">Les données</a>
+                    <a href="/les-lieux">L’ensemble des lieux recensés</a>
                     <a href="https://communemesure.fr/demarche-en-detail/">La démarche en détail</a>
                     <a href="/les-partenaires">Les partenaires</a>
-                    <a href="https://communemesure.fr/publications/">Publications</a>
+                    <a href="https://communemesure.fr/publications/">La Documentation</a>
+                    <a href="/les-statistiques-et-donnees-des-lieux">Le Lab des données</a>
                     <a href="https://communemesure.fr/contact/">Contact</a>
                 </ul>
             </div>

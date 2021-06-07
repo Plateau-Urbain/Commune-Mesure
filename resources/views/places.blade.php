@@ -4,7 +4,7 @@
     <div class="container">
         <div class="hero is-large is-light">
             <section class="section">
-                <h1 class="title is-1 has-text-centered">Les lieux</h1>
+                <h1 class="title is-1 has-text-centered">L’ensemble des lieux recensés</h1>
             </section>
         </div>
         <div class="section">
