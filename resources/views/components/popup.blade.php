@@ -15,7 +15,7 @@
             <p class='subtitle is-6'>{{ $city }} ({{ $departement }})</p>
             <p>{{ $description }}</p>
             <br/><br/>
-            <a href='{{ route('place.show', ['slug' => $name]) }}' class='btn-voir-lieu button is-default'>Voir ce lieu</a>
+            <a href='{{ route('place.show', ['slug' => $name]) }}' class='btn-voir-lieu button is-default'>Voir son data panorama</a>
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
                               <li class="tags">{{$tag}}</li>
                             @endforeach
                             </ul>
-                            <a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}" class="btn-voir-lieu button is-default">Voir ce lieu</a>
+                            <a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}" class="btn-voir-lieu button is-default">Voir son data panorama</a>
                         </div>
                         <div class="column is-one-third has-text-centered">
                             <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
