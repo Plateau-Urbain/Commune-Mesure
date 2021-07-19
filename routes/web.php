@@ -26,6 +26,7 @@ if (!empty($proxy_schema)) {
 }
 
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
+$router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
 
 $router->get('/les-lieux[/{sortBy}]', ['uses' => 'PlaceController@list', 'as' => 'places']);
 
