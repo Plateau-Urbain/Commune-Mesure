@@ -71,7 +71,6 @@ function animateBar(){
 }
 
 function setCaptionDataBar(currentDataZone, zone){
-  // console.log(currentDataZone)
   var totalActif = 0;
   var totalCsp = 0;
   var totalLogement = 0;
@@ -85,7 +84,7 @@ function setCaptionDataBar(currentDataZone, zone){
   Object.values(currentDataZone.csp).forEach(function(val){
     totalCsp += val.nb;
   });
-  // console.log(totalActif)
+
   var actifBarElements = document.querySelectorAll(".actifBar")
   var actifCaption = document.querySelectorAll(".actifCaption")
   var actifTitle = document.querySelectorAll(".actifTitle")
@@ -141,6 +140,7 @@ function setCaptionDataBar(currentDataZone, zone){
 
   })
 }
+
 var select_zone;
 function setInseeChartData(currentDataZone,zone){
   select_zone = zone;
@@ -236,7 +236,89 @@ function setInseeChartData(currentDataZone,zone){
     ]);
 }
 
+// Génération des graphs
+var options = {
+    colors:[],
+    title:{
+      text:''
+    },
+    series: [{
+        name: '',
+        data: [0]
+      }],
+    chart: {
+        type: 'bar',
+        height: 175,
+        stacked: true,
+        stackType: '100%',
+        toolbar:{
+            show:false,
+          },
+      },
+    plotOptions: {
+        bar: {
+            horizontal: true,
+          },
+      },
+    stroke: {
+        width: 1,
+        colors: ['#fff']
+      },
+    grid: {
+        show:false,
+      },
+    annotations: {
+      },
+    xaxis: {
+        show:false,
+        categories:['Niveau national','Niveau '+document.getElementById("selectGeo").value],
+        axisBorder:{
+            show:false,
+          },
+        axisTicks: {
+            show: false,
+          },
+        labels:{
+            show:false,
+          }
+      },
+    tooltip: {
+  x: { formatter: function (val) { if (val == "Niveau national") return "Niveau national"; return "Niveau "+select_zone;}},
+        y: {
+            formatter: function (val) {
+                return val.toFixed(2) + "%"
+              }
+          }
+      },
+    fill: {
+        opacity: 1
+
+      },
+    legend: {
+        show:true,
+        position: 'bottom',
+        horizontalAlign: 'right',
+        showForZeroSeries: false,
+      }
+  };
+
+  options.colors = ['#F05F3B','#f07d60','#A5C5C3', '#429F9E', '#007872']
+  options.title.text = 'Population'
+  var actifChart = new ApexCharts(document.querySelector("#actifsChart"), options);
+
+  options.colors = ['#bf607e', '#ca4a3d', '#e3a7a1','#fcd2bb','#c7dfec','#81b8d6','#3680b6','#1b519c']
+  options.title.text = 'Catégories socioprofessionnelles'
+  var cspChart = new ApexCharts(document.querySelector("#cateChart"), options);
+
+  options.colors = ['#E1E1E1', '#456EB8', '#F3771B']
+  options.title.text = 'Immobilier'
+  var immobilierChart = new ApexCharts(document.querySelector("#immoChart"), options);
+
   window.onload = (event) => {//TODO move in index.js
+    actifChart.render();
+    cspChart.render();
+    immobilierChart.render();
+
     setCaptionDataBar(placeData.insee.iris, "iris");
     setInseeChartData(placeData.insee.iris,"iris")
     animateBar();

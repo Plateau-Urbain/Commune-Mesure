@@ -23,7 +23,6 @@
   @include('js.place.insee-graph')
   @include('js.place.map-insee-js')
   @include('js.place.charts-doughnut')
-  @include('js.place.insee-chart-js')
   @include('js.place.modals')
 @endsection
 
