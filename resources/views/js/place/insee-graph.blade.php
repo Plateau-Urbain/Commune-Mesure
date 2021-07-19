@@ -159,18 +159,10 @@ function setInseeChartData(currentDataZone,zone){
   });
   Object.values(currentDataZone.logement).forEach(function(val){
     totalLogement += val.nb;
-    // console.log(totalLogement);
-
   });
   Object.values(currentDataZone.csp).forEach(function(val){
     totalCsp += val.nb;
   });
-
-  // console.log(tabActifTitle)
-  // console.log(tabActifData)
-
-    // let data = Object.entries(currentDataZone.activites)[i][1];
-    // let percent = data.nb * 100 / totalActif;
 
     actifChart.updateSeries([
       {
@@ -243,46 +235,6 @@ function setInseeChartData(currentDataZone,zone){
       },
     ]);
 }
-
-  // function updateBar(currentDataZone, zone){
-  //   var totalActif = 0;
-  //   var totalCsp = 0;
-  //   var totalLogement = 0;
-  //   Object.values(currentDataZone.activites).forEach(function(val){
-  //     totalActif += val.nb;
-  //   });
-  //   Object.values(currentDataZone.logement).forEach(function(val){
-  //     totalLogement += val.nb;
-  //   });
-  //   Object.values(currentDataZone.csp).forEach(function(val){
-  //     totalCsp += val.nb;
-  //   });
-  //   for (var i = 0; i < 5; i++) {
-  //     let data = Object.entries(currentDataZone.activites)[i][1];
-  //     let percent = data.nb * 100 / totalActif;
-  //     actifChart.appendSeries({
-  //       name: data.title,
-  //       data: [percent.toFixed(1)]
-  //     });
-  //   }
-  //   for (var j = 0; j < 8; j++) {
-  //     let data = Object.entries(currentDataZone.csp)[j][1];
-  //     let percent = data.nb * 100 / totalCsp;
-  //     categoryChart.appendSeries({
-  //       name: data.title,
-  //       data: [percent.toFixed(1)]
-  //     });
-  //   }
-  //   for (var k = 0; k < 3; k++) {
-  //     let data = Object.entries(currentDataZone.logement)[k][1];
-  //     let percent = data.nb * 100 / totalLogement;
-  //     immobilierChart.appendSeries({
-  //       name: data.title,
-  //       data: [percent.toFixed(1)]
-  //     });
-  //   }
-  // }
-
 
   window.onload = (event) => {//TODO move in index.js
     setCaptionDataBar(placeData.insee.iris, "iris");
