@@ -12,7 +12,6 @@ L.Icon.Default.mergeOptions({
 });
 
 import Chart from 'chart.js';
-import './js/tabs.js';
 
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 const carousels = bulmaCarousel.attach('.carousel', {
