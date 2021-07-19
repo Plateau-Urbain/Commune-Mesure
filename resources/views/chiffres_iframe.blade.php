@@ -2,7 +2,6 @@
 <html>
     <head>
         @section('head_css')
-            <link rel="stylesheet" href="/css/aos.css" />
             <link rel="stylesheet" href="/css/app.css" />
         @show
     </head>

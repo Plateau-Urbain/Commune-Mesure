@@ -26,4 +26,5 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "_socialimpact";
 @import "_cmicons";
 @import "_places";
-@import "easyScrollDots.min.css";
+@import "vendors/easyScrollDots.min.css";
+@import "vendors/aos.css";

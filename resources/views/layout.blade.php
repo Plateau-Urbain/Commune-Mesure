@@ -6,7 +6,6 @@
         <title>Commune Mesure</title>
         <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')
-            <link rel="stylesheet" href="/css/aos.css" />
             <link rel="stylesheet" href="/css/app.css" />
         @show
     </head>
