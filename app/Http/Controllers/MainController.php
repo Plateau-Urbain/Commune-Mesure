@@ -9,7 +9,7 @@ class MainController extends Controller
 {
     public function map(Place $place)
     {
-        $places= $place->retrivePlaces();
+        $places= Place::retrievePlaces();
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);

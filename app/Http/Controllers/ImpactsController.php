@@ -13,7 +13,7 @@ class ImpactsController extends Controller
 {
     public function show(Place $place)
     {
-        $places = $place->retrivePlaces();
+        $places = Place::retrievePlaces();
         $compares = $place->getCompares($places);
         return view('impacts.show', compact('places', 'compares'));
     }

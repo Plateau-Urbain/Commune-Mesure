@@ -57,7 +57,7 @@ class Place extends Model
         return $place;
     }
 
-    public static function retrivePlaces(){
+    public static function retrievePlaces(){
       $places = DB::table('places')
           ->select('place as slug')
           ->where('deleted_at', null)
@@ -96,7 +96,7 @@ class Place extends Model
 
     public function getStats(){
 
-      $places = $this->retrivePlaces();
+      $places = self::retrievePlaces();
 
       foreach($places as $place){
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];

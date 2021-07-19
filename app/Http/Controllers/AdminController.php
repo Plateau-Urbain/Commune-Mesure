@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function view(Place $place)
     {
-        $list = Place::retrivePlaces();
+        $list = Place::retrievePlaces();
         $auths = $place->getAuth();
         return view('admin.view', compact('list', 'auths'));
     }
@@ -40,7 +40,7 @@ class AdminController extends Controller
     }
 
     public function globalCsv(Request $request, Place $place){
-      $list = Place::retrivePlaces();
+      $list = Place::retrievePlaces();
       $auths = $place->getAuth();
 
       header("Content-type: text/csv");

@@ -29,7 +29,7 @@ class PlaceController extends Controller
 
     public function list(Place $place, $sortBy = null)
     {
-        $places = $place->retrivePlaces();
+        $places = Place::retrievePlaces();
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
