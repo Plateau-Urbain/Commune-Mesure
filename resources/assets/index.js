@@ -11,7 +11,8 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'images/marker-shadow.png'
 });
 
-import Chart from 'chart.js';
+import Chart from 'chart.js/auto';
+global.Chart = Chart;
 import './js/tabs.js';
 
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
