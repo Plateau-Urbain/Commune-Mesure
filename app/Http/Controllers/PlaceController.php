@@ -27,7 +27,7 @@ class PlaceController extends Controller
         return view('place.show', compact('place', 'sections','isEmpty'));
     }
 
-    public function list(Place $place, $sortBy = null)
+    public function list(Place $place)
     {
         $places = Place::retrievePlaces();
 
