@@ -40,7 +40,7 @@
     <div class="hero">
         <div class="section" id="block-map">
             <h1 class="title has-text-centered">L'ensemble des lieux</h1>
-            <div id="mapid"></div>
+            @include('partials.external.map', ['coordinates' => $coordinates, 'popup' => $popup])
         </div>
     </div>
     <div class="container">
@@ -70,37 +70,3 @@
 
 @endsection
 
-@section('script_js')
-    @parent
-    <script>
-        var homemap = mapjs.create('mapid', {gestureHandling: true})
-        var markersCluster = L.markerClusterGroup();
-        var groupMarker = [];
-        var markerIcon = L.divIcon({
-            className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive marker-icon-custom',
-            html: "<div><span>1</span></div>",
-            iconSize: [40, 40],
-        });
-
-        @foreach($coordinates as $name => $points)
-            var point = [{{ $points['geo']['lat'] }}, {{ $points['geo']['lon'] }}];
-            @php
-            $popupview = str_replace(["\r\n", "\n", '  '], '',
-            view('components/popup',
-            ['name' => $popup[$name]['name'],
-            'title'=>$popup[$name]['title'],
-            'description'=>$popup[$name]['description'],
-            'departement' => $popup[$name]['departement'],
-            'city' => $popup[$name]['city'],
-            'images' => $popup[$name]['images']
-            ])->render());
-            @endphp
-            var marker = L.marker(point, {icon: markerIcon}).bindPopup("{!! $popupview !!}");
-            groupMarker.push(marker);
-            markersCluster.addLayer(marker);
-        @endforeach
-        homemap.addLayer(markersCluster);
-        var featureGroup = L.featureGroup(groupMarker);
-        homemap.fitBounds(featureGroup.getBounds());
-    </script>
-@endsection
