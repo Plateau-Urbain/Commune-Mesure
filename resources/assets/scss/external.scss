@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+// Variables
+$light-blue: #deebee;
+$red-theme: #e85048;
+$black: #413f4b;
+
+// Import fonts
+@import "_mixins";
+@font-face { font-family: "Renner Bold"; src: url("../fonts/renner-bold.otf") format("opentype"); }
+
+// Variables bulma
+$text: $black;
+$text-strong: $black;
+
+@import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/helpers/_all.sass";
+@import "~bulma/sass/layout/hero.sass";
+@import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/components/level.sass";
+@import "~bulma/sass/elements/title.sass";
+@import "~bulma/sass/elements/other.sass";
+
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "~leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+
+// Custom scss
+.block-data-stat > div{
+    margin: 1em;
+    height: 10em;
+    line-height: 0em ;
+}
+
+.is-primary-light {
+    background-color: $light-blue;
+    font-family: "Renner Bold";
+}
+
+.animate-value {
+    color: $red-theme;
+}

@@ -11,5 +11,7 @@ Homestead.yaml
 !/storage/app/places/example.json
 /public/fonts/
 /public/js/bundle.js
+/public/js/external.js
 /public/css/app.css
+/public/css/external.css
 /database/*.sqlite

@@ -2,12 +2,13 @@
 <html>
     <head>
         @section('head_css')
-            <link rel="stylesheet" href="/css/app.css" />
+            <link rel="stylesheet" href="/css/external.css" />
         @show
     </head>
     <body>
       @include($partial, $params)
       @section('script_js')
+         <script src="/js/external.js"></script>
          <script src="/js/animate.js"></script>
       @show
     </body>

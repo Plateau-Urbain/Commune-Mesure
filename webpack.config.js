@@ -3,10 +3,15 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  entry: './resources/assets/index.js',
+  entry: {
+      'app': './resources/assets/index.js',
+      'external': './resources/assets/scss/external.scss',
+  },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'js/bundle.js',
+    filename: (pathData) => {
+        return pathData.chunk.name === 'app' ? 'js/bundle.js' : 'js/[name].js';
+    }
   },
   mode: 'development',
   module: {
@@ -50,7 +55,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/app.css'
+      filename: 'css/[name].css'
     }),
   ]
 };
