@@ -6,7 +6,7 @@
         @show
     </head>
     <body>
-      @include('partials.external.chiffres', ["stats" => $stats, "coordinates" => $coordinates])
+      @include($partial, $params)
       @section('script_js')
          <script src="/js/animate.js"></script>
       @show
