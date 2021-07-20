@@ -32,6 +32,7 @@ $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminControl
 $router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
 
 $router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
+$router->get('/external/map', ['uses' => 'ExternalController@map', 'as' => 'external.map']);
 
 $router->get('/les-lieux', ['uses' => 'PlaceController@list', 'as' => 'places']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);

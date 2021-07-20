@@ -9,7 +9,6 @@
       @include($partial, $params)
       @section('script_js')
          <script src="/js/external.js"></script>
-         <script src="/js/animate.js"></script>
       @show
     </body>
 </html>

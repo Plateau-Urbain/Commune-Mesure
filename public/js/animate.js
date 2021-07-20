@@ -1,4 +1,4 @@
-function animateValue(obj) {
+export function animateValue(obj) {
     var end = parseInt(obj.dataset.total);
     var start = 0;
     var range = end - start;
@@ -29,11 +29,4 @@ function animateValue(obj) {
             }
         }, Math.abs(interval));
     }
-}
-
-window.onload = (event) => {
-    var values = document.querySelectorAll(".animate-value")
-    values.forEach(function (v) {
-        animateValue(v)
-    })
 }
