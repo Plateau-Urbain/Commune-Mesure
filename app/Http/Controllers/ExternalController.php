@@ -9,19 +9,9 @@ class ExternalController extends Controller
 {
     public function chiffres(Place $place)
     {
-        $places = Place::retrievePlaces();
-
-        $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
-            return $place->getCoordinates($item);
-        });
-
+        $coordinates = Place::retrievePlaces();
         $stats = $place->getStats();
-
-        $popup = $places->mapWithKeys(function ($item, $key) use ($place) {
-            return $place->getInfoPopup($item);
-        });
 
         return view('chiffres_iframe', compact('coordinates', 'stats'));
     }
-
 }
