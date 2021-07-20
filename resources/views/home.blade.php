@@ -1,11 +1,5 @@
 @extends('layout')
 
-@section('head_css')
-    @parent
-
-    <link rel="stylesheet" href="/css/map.css">
-@endsection
-
 @section('content')
     <div class="container section">
         <div class="content has-text-centered">
