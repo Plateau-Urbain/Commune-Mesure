@@ -12,6 +12,6 @@ class ExternalController extends Controller
         $coordinates = Place::retrievePlaces();
         $stats = $place->getStats();
 
-        return view('chiffres_iframe', compact('coordinates', 'stats'));
+        return view('iframe_layout', compact('coordinates', 'stats'));
     }
 }
