@@ -80,6 +80,75 @@ window.onload = (event) => {
         mapplace.setView([placeLatLon.lat, placeLatLon.lon], 9)
     }
 
+    if (document.getElementById('map-insee')) {
+      var markerPoint = new L.LatLng(geoDataPlace.lat, geoDataPlace.lon);
+      var mapInsee = mapjs.create('map-insee', {gestureHandling: true})
+      mapInsee.setView(markerPoint, zoomDefault);
+
+      var myIcon = L.icon({
+        iconUrl: "/images/marker-icon.png",
+        iconSize: [0, 0],
+      });
+
+      var select = document.getElementById("selectGeo");
+
+      /**
+       * Load data geoJson in function of zoom level
+       */
+      function loadGeoJson(zone){
+        mygeojson = L.geoJSON(
+          geoJsonFeatures[zone],
+          {
+            style: styleObjet,
+            onEachFeature: onEachFeature
+          }
+        ).addTo(mapInsee);
+      }
+
+      function onEachFeature(feature, layer) {
+        if(marker === undefined){
+          marker = L.marker(markerPoint, {icon: myIcon}).addTo(mapInsee)
+            .bindPopup("<div><h3 class='font-color-theme'>"+placeName+"</h3>"
+              +"<h4>"+address.city+"("+address.postalcode.slice(0,2)+")</h4></div>")
+            .openPopup();
+        }
+      }
+
+      select.addEventListener('change', function (event) {
+        var zone = event.target.value;
+        actifChart.updateOptions(
+          {
+            xaxis: {
+              categories:['Niveau national','Niveau '+zone]
+            },
+          }
+        );
+        cspChart.updateOptions(
+          {
+            xaxis: {
+              categories:['Niveau national','Niveau '+zone]
+            },
+          }
+        );
+        immobilierChart.updateOptions(
+          {
+            xaxis: {
+              categories:['Niveau national','Niveau '+zone]
+            },
+          }
+        );
+
+        var currentDataZone = placeData.insee[zone];
+        setCaptionDataBar(currentDataZone, zone);
+        setInseeChartData(currentDataZone,zone);
+        mygeojson.remove();
+        loadGeoJson(zone)
+        mapInsee.fitBounds(mygeojson.getBounds())
+      }, false)
+
+      loadGeoJson(starting_zone);
+      mapInsee.fitBounds(mygeojson.getBounds())
+    }
 
     if(document.getElementById('data_territoire')) {
         actifChart.render();
