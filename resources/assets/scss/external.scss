@@ -55,3 +55,7 @@ $link: $red-theme;
 .leaflet-container a.button {
 	color: $red-theme;
 }
+
+body {
+    scrollbar-width: none;
+}
