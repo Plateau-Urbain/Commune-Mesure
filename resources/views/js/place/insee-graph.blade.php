@@ -314,15 +314,6 @@ var options = {
   options.title.text = 'Immobilier'
   var immobilierChart = new ApexCharts(document.querySelector("#immoChart"), options);
 
-  window.onload = (event) => {//TODO move in index.js
-    actifChart.render();
-    cspChart.render();
-    immobilierChart.render();
 
-    setCaptionDataBar(placeData.insee.iris, "iris");
-    setInseeChartData(placeData.insee.iris,"iris")
-    animateBar();
-
-  }
 
 </script>

@@ -74,4 +74,14 @@ window.onload = (event) => {
         mapPlace.dragging.disable()
     })
 
+
+    if(document.getElementById('data_territoire')) {
+        actifChart.render();
+        cspChart.render();
+        immobilierChart.render();
+
+        setCaptionDataBar(placeData.insee.iris, "iris");
+        setInseeChartData(placeData.insee.iris,"iris")
+        animateBar();
+    }
 }
