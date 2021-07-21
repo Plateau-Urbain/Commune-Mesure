@@ -74,6 +74,12 @@ window.onload = (event) => {
         mapPlace.dragging.disable()
     })
 
+    if (document.getElementById('section-map')) {
+        var mapplace = mapjs.create('section-map', {gestureHandling: true})
+        L.marker([placeLatLon.lat, placeLatLon.lon]).addTo(mapplace)
+        mapplace.setView([placeLatLon.lat, placeLatLon.lon], 9)
+    }
+
 
     if(document.getElementById('data_territoire')) {
         actifChart.render();
