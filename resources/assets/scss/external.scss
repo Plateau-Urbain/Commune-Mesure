@@ -12,6 +12,7 @@ $black: #413f4b;
 // Variables bulma
 $text: $black;
 $text-strong: $black;
+$link: $red-theme;
 
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/utilities/_all.sass";
@@ -21,6 +22,8 @@ $text-strong: $black;
 @import "~bulma/sass/components/level.sass";
 @import "~bulma/sass/elements/title.sass";
 @import "~bulma/sass/elements/other.sass";
+@import "~bulma/sass/components/card.sass";
+@import "~bulma/sass/elements/button.sass";
 
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
@@ -44,4 +47,11 @@ $text-strong: $black;
 
 .animate-value {
     color: $red-theme;
+}
+
+.leaflet-container a {
+	color: $red-theme;
+}
+.leaflet-container a.button {
+	color: $red-theme;
 }
