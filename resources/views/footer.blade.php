@@ -32,3 +32,4 @@
         </div>
     </div>
 </div>
+@include('generate.footer')
