@@ -40,9 +40,13 @@ class ScrapeCommuneMesure extends Command
      */
     public function handle()
     {
-        $response = Http::get('https://communemesure.fr/blog/export');
+        $this->scrapeFooter();
+    }
 
-        $dom = new DOMDocument();
+    private function scrapeFooter()
+    {
+        $response = Http::get('https://communemesure.fr/blog/export');
+        $this->dom = new DOMDocument();
         libxml_use_internal_errors(true);
 
         $dom->loadHtml($response->body());
@@ -50,8 +54,6 @@ class ScrapeCommuneMesure extends Command
 
         $query = '//footer';
 
-        $footer = $xpath->query($query);
-
-
+        $footer = $xpath->query($query)->item(0);
     }
 }
