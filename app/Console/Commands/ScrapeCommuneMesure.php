@@ -14,7 +14,7 @@ class ScrapeCommuneMesure extends Command
      *
      * @var string
      */
-    protected $signature = 'scrape:communemesure';
+    protected $signature = 'scrape:header-footer';
 
     /**
      * The console command description.
@@ -40,20 +40,36 @@ class ScrapeCommuneMesure extends Command
      */
     public function handle()
     {
-        $this->scrapeFooter();
-    }
-
-    private function scrapeFooter()
-    {
         $response = Http::get('https://communemesure.fr/blog/export');
-        $this->dom = new DOMDocument();
+        $dom = new DOMDocument();
         libxml_use_internal_errors(true);
 
         $dom->loadHtml($response->body());
         $xpath = new DOMXPath($dom);
+        $this->scrapeFooter($xpath);
+        $header = $this->scrapeFooter($xpath);
 
+        $queryHeader = '//header';
+        $header = $xpath->query($queryHeader);
+
+        $queryHeadLink = "//head/link[@rel='stylesheet']";
+        $queryHeadStyle = "//head/style";
+
+        $headLink = $xpath->query($queryHeadLink)->item(0);
+        $headStyle = $xpath->query($queryHeadStyle)->item(0);
+
+        $queryFooterScript = "//body/script";
+        $queryFooterStyle = "//body/style";
+
+        $footerScript = $xpath->query($queryFooterScript)->item(0);
+        $footerScript = $xpath->query($queryFooterStyle)->item(0);
+    }
+
+
+    private function scrapeFooter($xpath)
+    {
         $query = '//footer';
 
-        $footer = $xpath->query($query)->item(0);
+        return $xpath->query($query)->item(0);
     }
 }
