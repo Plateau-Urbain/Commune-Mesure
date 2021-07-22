@@ -14,7 +14,7 @@ class ScrapeCommuneMesure extends Command
      *
      * @var string
      */
-    protected $signature = 'scrape:footer';
+    protected $signature = 'scrape:communemesure';
 
     /**
      * The console command description.
