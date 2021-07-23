@@ -7,6 +7,7 @@
         <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')
             <link rel="stylesheet" href="/css/app.css" />
+            <link rel="stylesheet" href="/css/divi-style.css" />
         @show
     </head>
     <body>
