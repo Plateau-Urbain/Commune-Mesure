@@ -11,14 +11,13 @@ for section in "${_SECTIONS[@]}"; do
 
     curl "${_HOST}/blog/export/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
 
+    sed -i 's/<header id="main-header"/<header id="main-header" class="navbar is-fixed-top"/' "$tempfile"
+    sed -i 's/et-waypoint //' "$tempfile"
+
     mv "$tempfile" "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
 done
 
-# CSS
+# Fonts
 
-tempfile=`mktemp`
 wget 'https://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.ttf' -O "$_WORKINGDIR/../public/fonts/modules.ttf"
 wget 'https://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.woff' -O "$_WORKINGDIR/../public/fonts/modules.woff"
-wget 'https://communemesure.fr/wp-content/themes/Divi/style.css?ver=5.5.1' -O "$tempfile"
-
-sed 's/font-family//' "$tempfile" | sed 's#core/admin/#../#g' > "$_WORKINGDIR/../public/css/divi-style.css"

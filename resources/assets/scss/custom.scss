@@ -403,12 +403,13 @@ h6.title:not(.header-title):not(.no-border) {
 }
 
 header {
-    .title {
-        color: $primary;
-    }
-
-    .banner {
+    +.banner {
         background-color: $light-blue;
+
+        .title {
+            color: $primary;
+        }
+
     }
 }
 

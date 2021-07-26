@@ -1,0 +1,115 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmRduz8A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+header#main-header {
+    font-family: 'Source Sans Pro';
+    line-height : 23px;
+    font-weight: 500;
+
+    .container {
+        width: 80%;
+        max-width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .logo_container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            span.logo_helper {
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+                width: 0;
+            }
+        }
+    }
+
+    .et_search_outer {
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+
+        .container.et_search_form_container {
+            position: relative;
+            opacity: 0;
+        }
+    }
+
+    &.navbar > .container {
+        display: block;
+        min-height: unset;
+    }
+}
+
+#logo {
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    margin-bottom: 0;
+    max-height: 54%;
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+}
+
+#et-top-navigation {
+    padding-left: 168px;
+    padding-top: 20px;
+
+    float: right;
+    font-weight: 500;
+
+    #top-menu-nav {
+        float: left;
+        display: block;
+
+        ul {
+            list-style: none;
+
+            li {
+                display: inline-block;
+                font-size: 14px;
+                padding-right: 22px;
+                word-wrap: break-word;
+
+                a {
+                    color: #413f4b;
+                    padding-bottom: 20px;
+                    text-decoration: none;
+                    display: block;
+                    position: relative;
+                    &:hover { opacity: .7 }
+                }
+
+                &.current-menu-item {
+                    a {
+                        color: #e85048;
+                        &:hover { opacity: .7 }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#et_mobile_nav_menu {
+    float: right;
+    display: none;
+}
