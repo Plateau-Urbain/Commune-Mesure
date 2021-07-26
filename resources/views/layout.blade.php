@@ -7,7 +7,6 @@
         <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')
             <link rel="stylesheet" href="/css/app.css" />
-            <link rel="stylesheet" href="/css/divi-style.css" />
         @show
     </head>
     <body>
@@ -25,8 +24,6 @@
              <script src="/js/bundle.js"></script>
              <script src="/js/charts.js"></script>
          @show
-    <footer>
-        @include("footer")
-    </footer>
+         @include("footer")
     </body>
 </html>

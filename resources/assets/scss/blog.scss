@@ -14,6 +14,29 @@
   src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* latin-ext */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNq7lqDY.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7l.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family:ETmodules;
+    font-weight:400;
+    font-style:normal;
+    src: url('/fonts/modules.woff') format('woff');
+}
 
 header#main-header {
     font-family: 'Source Sans Pro';
@@ -74,7 +97,7 @@ header#main-header {
     padding-top: 20px;
 
     float: right;
-    font-weight: 500;
+    font-weight: 600;
 
     #top-menu-nav {
         float: left;
@@ -112,4 +135,142 @@ header#main-header {
 #et_mobile_nav_menu {
     float: right;
     display: none;
+}
+
+.et_pb_section_0_tb_footer.et_pb_section {
+    padding-top: 0px;
+    padding-right: 27px;
+    padding-bottom: 0px;
+    padding-left: 27px;
+}
+
+.et_pb_with_border {
+    border: 0 solid #333;
+    position: relative;
+}
+
+.et_pb_row_0_tb_footer {
+    border-bottom-width: 1px;
+    border-bottom-color: #f9f7f4;
+}
+
+.et_pb_row {
+    padding: 40px 0 0 0;
+    width: 100% !important;
+    max-width: 1080px;
+    margin: auto;
+    border-bottom: 1px solid;
+
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+        width: 0;
+    }
+
+    &.et_pb_row_0_tb_footer {
+        padding-bottom: 0px !important;
+        margin-top: -9px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        padding-bottom: 0px;
+    }
+
+    &.et_pb_row_1_tb_footer {
+        font-family: 'Source Sans Pro';
+        padding-top: 44px !important;
+        margin-top: -9px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}
+
+.et_pb_image_0_tb_footer {
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 200px;
+    text-align: left;
+    margin-left: 0;
+
+    &.et_pb_module {
+        margin-left: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 2.75%;
+    }
+}
+
+.dsm_menu {
+    margin-left: 15px;
+    font-size: 17px;
+
+    &.dsm_menu_0_tb_footer,
+    &.dsm_menu_1_tb_footer {
+        border-bottom: 1px dashed;
+
+        ul {
+            line-height: 26px;
+            padding: 0 0 23px 1em;
+
+            li {
+                margin: 0;
+                padding: 0;
+
+                a {
+                    font-weight: 600;
+                    color: #f9f7f4;
+                }
+            }
+        }
+    }
+
+    &.dsm_menu_2_tb_footer {
+        margin-left: 0;
+
+        #menu-reseaux {
+            padding-left: 0;
+        }
+
+        a {
+            font-weight: 400;
+            color: #f9f7f4;
+        }
+    }
+
+}
+
+.et_pb_divider {
+    padding-bottom: 9.27%;
+}
+
+.et_pb_column {
+    float: left;
+}
+
+.et_pb_column_1_3 {
+    width: 29.6667%;
+    margin-right: 5.5%;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    h4 {
+        color: #e85048;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+}
+
+.et_pb_text_0_tb_footer {
+    font-size: 21px;
+    color: #f9f7f4;
+    line-height: 25.5px;
+}
+
+.et-pb-icon {
+    font-family: 'ETmodules';
+    font-size: 36px;
 }

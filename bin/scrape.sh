@@ -13,6 +13,7 @@ for section in "${_SECTIONS[@]}"; do
 
     sed -i 's/<header id="main-header"/<header id="main-header" class="navbar is-fixed-top"/' "$tempfile"
     sed -i 's/et-waypoint //' "$tempfile"
+    sed -i 's/et-l et-l--footer/footer/' "$tempfile"
 
     mv "$tempfile" "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
 done
