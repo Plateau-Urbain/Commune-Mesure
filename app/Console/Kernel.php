@@ -5,7 +5,6 @@ namespace App\Console;
 use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
-use App\Console\Commands\ScrapeCommuneMesure;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -20,7 +19,6 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
-        ScrapeCommuneMesure::class
     ];
 
     /**
