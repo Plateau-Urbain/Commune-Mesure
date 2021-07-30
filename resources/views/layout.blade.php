@@ -24,8 +24,6 @@
              <script src="/js/bundle.js"></script>
              <script src="/js/charts.js"></script>
          @show
-    <footer>
-        @include("footer")
-    </footer>
+         @include("footer")
     </body>
 </html>

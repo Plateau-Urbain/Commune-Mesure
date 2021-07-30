@@ -3,6 +3,7 @@
 // Import fonts
 @import "_mixins";
 @font-face { font-family: "Renner Bold"; src: url("../fonts/renner-bold.otf") format("opentype"); }
+@font-face { font-family: "Renner Black"; src: url("../fonts/renner-black.otf") format("opentype"); }
 
 $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
@@ -29,3 +30,6 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "_map";
 @import "vendors/easyScrollDots.min.css";
 @import "vendors/aos.css";
+
+// CSS pour le header et footer
+@import "blog"

@@ -8,6 +8,7 @@ $black: #413f4b;
 // Import fonts
 @import "_mixins";
 @font-face { font-family: "Renner Bold"; src: url("../fonts/renner-bold.otf") format("opentype"); }
+@font-face { font-family: "Renner Black"; src: url("../fonts/renner-black.otf") format("opentype"); }
 
 // Variables bulma
 $text: $black;
