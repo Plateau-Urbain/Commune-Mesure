@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
-        ScrapeCommuneMesure::class
+        ImportTypeForm::class
     ];
 
     /**

@@ -1,0 +1,191 @@
+{
+  "name": "fl785vLXdAeG|uvxOlDNS2UBd|short_text|value",
+  "status": "fl785vLXdAeG|07QMSMt7pTBB|multiple_choice|choices",
+  "iris_code": 930010101,
+  "address": {
+    "city": "93001",
+    "address": "fl785vLXdAeG|wegtfhlpAxx9|long_text|value",
+    "postalcode": "fl785vLXdAeG|aPsD3XE1T79k|number|value"
+  },
+  "badges": [
+    "France"
+  ],
+  "tags": [
+    "Île-de-France",
+    "Seine-Saint-Denis",
+    "Non-voyant"
+  ],
+  "publish": true,
+  "blocs": {
+    "presentation": {
+      "visible": 1,
+      "donnees": {
+        "ouverture": {
+          "En permanence": "xztSD2Mp5EyC|hRjaKaHNmMWX|multiple_choice|choices",
+          "Plusieurs jours par semaine": 0,
+          "Une fois par semaine ou moins": 0,
+          "Lors d'évènements ponctuels seulement": 0,
+          "Ouverture prochaine": 0
+        },
+        "idee_fondatrice": "fl785vLXdAeG|jFeWBHX8LkZY|long_text|value",
+        "nombre_occupants": "fzsbr9WEujZQ|N5roaVP5q24I|number|value",
+        "noms_occupants": "fl785vLXdAeG|nV3u0NzqLQHD|short_text|value",
+        "nb_manager": "fzsbr9WEujZQ|0gtebqNp0GzS|number|value",
+        "date_ouverture": "fl785vLXdAeG|8VzL9g4SDyzY|date|value",
+        "date_creation": "fl785vLXdAeG|6VH5xDDCNuao|date|value",
+        "surface": "xztSD2Mp5EyC|ra8TVKu7zYVf+r9BD5Qib0eCe|number|value",
+        "emplois directs": 0,
+        "acteurs_publics": "fzsbr9WEujZQ|yici2D4DqhaX|long_text|value",
+        "acteurs_prives": "fzsbr9WEujZQ|8Xmv6Cck82CB|long_text|value",
+        "natures_partenariats": {
+          "public": "fzsbr9WEujZQ|6hlzKEgTo7xK|multiple_choice|choices",
+          "prive": "fzsbr9WEujZQ|M0cFEFMZpA0F|multiple_choice|choices"
+        }
+      }
+    },
+    "accessibilite": {
+      "visible": 1,
+      "donnees": {
+        "publics": {
+          "Chercheurs d'emplois": "9ZTr98YUYiFf|aANGxMDYwGC2|multiple_choice|choices",
+          "Enfants": 0,
+          "Étudiants": 0,
+          "Famille": 1,
+          "Handicapés": 1,
+          "Personnes âgées": 1,
+          "Personnes habitant sur le site": 0,
+          "Personnes travaillant sur le site": 0,
+          "Personnes visitant le site": 0
+        },
+        "accessibilite": {
+          "Handicapés": "xztSD2Mp5EyC|DOAhque2Lsri|yes_no|value",
+          "Mal voyants": 1
+        },
+        "transports": {
+          "Bus": 1,
+          "Métro": 1,
+          "Train": 0,
+          "Vélo": 0,
+          "Voiture": 1
+        }
+      }
+    },
+    "valeurs": {
+      "visible": 1,
+      "donnees": {
+        "Accueil": {
+          "check": 0
+        },
+        "Convivialité": {
+          "check": 0
+        },
+        "Coopération": {
+          "check": 0
+        },
+        "Créativité": {
+          "check": 1
+        },
+        "Durabilité": {
+          "check": 0
+        },
+        "Environnement ": {
+          "check": 0
+        },
+        "Inclusivité": {
+          "check": 0
+        },
+        "Partage": {
+          "check": 0
+        },
+        "Transmission": {
+          "check": 0
+        }
+      }
+    },
+    "moyens": {
+      "visible": 1,
+      "donnees": {
+        "investissement": {
+          "Fonds publics": "180KKnWqF927|CGTLxVpHcDxf|number|value",
+          "Fonds privés": "180KKnWqF927|HPekPE0SMUBL|number|value",
+          "Fonds apportés": 0
+        },
+        "fonctionnement": {
+          "Subventions": "180KKnWqF927|xokxHiQ2GL5F|number|value",
+          "Aides privées": "180KKnWqF927|2kU59uglO1kC+1mBUuJycEykU|number|value",
+          "Recettes": "180KKnWqF927|q40E89SPPjZh|number|value"
+        },
+        "benevoles": "fa8efNkcBzYw|Xr7CcO4WrVLW|multiple_choice|choices",
+        "partenaires": "fzsbr9WEujZQ|8Xmv6Cck82CB+yici2D4DqhaX|long_text|value"
+      }
+    },
+    "composition": {
+      "visible": 1,
+      "donnees": {
+        "type": {
+          "Entreprises": "fzsbr9WEujZQ|JMHULah82H18|number|value",
+          "Associations": "fzsbr9WEujZQ|GFz0890DkNNa|number|value",
+          "Artistes": "fzsbr9WEujZQ|J3J9rnKFMWpP|number|value",
+          "Autres structures": "fzsbr9WEujZQ|DCpOZ4HpaDkR|number|value"
+        },
+        "structures_crees": "fzsbr9WEujZQ|LNt7wPgFJFYN|number|value"
+      }
+    },
+    "impact_social": {
+      "visible": 1,
+      "donnees": {
+        "insertion_professionnelle": "pntLADdWQhm5|iSDvjPc2F1qR|long_text|value",
+        "appartenance_exclusion": "pntLADdWQhm5|ijQKCG1VeAqx|long_text|value",
+        "reseaux": "pntLADdWQhm5|JmjkQfE5OQjr|multiple_choice|choices",
+        "capacite_agir": "pntLADdWQhm5|yTeHNN5U8zVx|multiple_choice|choices",
+        "sante_bien_être": "pntLADdWQhm5|KgpIva1nW2l6|long_text|value",
+        "lien_social": "pntLADdWQhm5|tMb7UD6eK94L|long_text|value",
+        "solidarite": "pntLADdWQhm5|xvAdDqf382rZ|long_text|value",
+        "egalite_homme_femme": "pntLADdWQhm5|avabX5mVgLKT|multiple_choice|choices",
+        "cadre_de_vie": "pntLADdWQhm5|LNLPZRhlkJY3|multiple_choice|choices",
+        "entretien_des_espaces": "pntLADdWQhm5|uG1d4069VCCT|multiple_choice|choices",
+        "services_publics": "9ZTr98YUYiFf|DwK4iT01SI2U|long_text|value",
+        "innovation_publique": "pntLADdWQhm5|85xd5SCZAp5U|long_text|value"
+      }
+    },
+    "galerie": {
+      "visible": 1,
+      "donnees": []
+    }
+  },
+  "reseaux_sociaux": {
+    "visible": 1,
+    "donnees": [
+      {
+        "name": "web",
+        "link": "fl785vLXdAeG|ayk9ZSeSLiJv|website|value"
+      },
+      {
+        "name": "facebook",
+        "link": "fl785vLXdAeG|U0PL8bPtgaTm|website|value"
+      },
+      {
+        "name": "twitter",
+        "link": "fl785vLXdAeG|DzaERdJm38Fb|website|value"
+      },
+      {
+        "name": "instagram",
+        "link": "fl785vLXdAeG|Oxat7JdLq7Dw|website|value"
+      },
+      {
+        "name": "linkedin",
+        "link": "fl785vLXdAeG|p77hPlvFs4pY|website|value"
+      }
+    ]
+  },
+  "evenements": {
+    "publics": {
+      "nombre": "n4Vdx42uSdT6|IjD174xRGCFY|number|value",
+      "personnes accueillies": "n4Vdx42uSdT6|2nfm8VgbqniP|number|value"
+    },
+    "prives": {
+      "nombre": "n4Vdx42uSdT6|IXuOZhbXRRbA|number|value",
+      "personnes accueillies": "n4Vdx42uSdT6|RHP4XSk3xRTN|number|value"
+    }
+  }
+}
