@@ -25,17 +25,24 @@ h2.title{
 }
 
 .sous-banner {
-  font-size: 2em;
-  width: 30%;
+  font-size: 1.6em;
   position: relative;
-  background: linear-gradient(to left, #ec6e68, #e85048, #ec6e68);
+  background: $red-theme;
   color: #fff;
   text-align: center;
-  padding: .3em 1em .3em;
+  padding: 1em 1.6em 1em;
   margin: 0em auto 1.25em;
-  text-shadow: 0 1px 3px #e32d24;
   border-bottom: 5px solid #9c0000;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: fit-content;
+
+  a {
+      color:white;
+      font-size: 0.7em;
+      text-transform : initial;
+      letter-spacing:0;
+  }
 }
 
 .sous-banner-localisation{
@@ -46,18 +53,15 @@ h2.title{
   margin-left: -20%;
 }
 
-.sous-banner-composition{
-  width: 40% !important;
-}
-
 .banner-image {
-    width: 32.7%;
+    width: 455px;
     margin: auto;
     margin-bottom: -71px;
 
     img {
         z-index: 1;
         position: relative;
+        margin-left: 9.5px;
     }
 }
 
@@ -72,27 +76,30 @@ h2.title{
         margin: 2em auto 1.25em;
         padding: 0.7em 32px;
         &.has-image-attached {
-            margin-top: 0 !important;
+            margin-top: 20px !important;
+            width: 412px;
         }
     }
 }
 
 .fil-4{
     background-image: url('/images/Ligne4.svg');
+    width:100vw;
+    margin-left:-0.75rem;
 }
 
 .fil-2{
     background-image: url('/images/Ligne2.svg');
+    width:100vw;
+    margin-left:-0.75rem;
 }
 
 .fil-5{
     background-image: url('/images/Ligne5.svg');
+    width:100vw;
+    margin-left:-0.75rem;
 }
 
-.sous-banner a {
-  color:white;
-  font-size: 0.7em;
-}
 .section-place{
   padding: 0;
   padding-bottom: 30px;
@@ -181,12 +188,14 @@ p.cspTitle,div.cspCaption{
     margin: 1%;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Renner Bold';
+    font-family: 'Renner Black';
 }
 
 .impacts >h1, .impacts >h2, .app-name > h1{
-    font-family: 'Renner Bold';
-    font-size: 5em;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing:0.1em;
+    margin:40px;
 }
 
 .font-color-theme{
@@ -757,4 +766,8 @@ p.partenaires_text{
 }
 .img-impact-social{
   opacity: 0.8;
+}
+.PAA{
+  padding-top:20px;
+  padding-bottom:20px;
 }
