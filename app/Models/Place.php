@@ -372,7 +372,6 @@ class Place extends Model
 
 
   public function getCompares($places){
-    $array_compares = json_decode(json_encode($places->first()->get('blocs->data_territoire->donnees->compare')),true);
     $compare_data = [];
     $compare_place_name = [];
     $compare_title = [
