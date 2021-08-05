@@ -20,7 +20,8 @@ class Place extends Model
       self::STAT_SURFACE => 0,
       self::STAT_EVENTS => 0,
       self::STAT_EMPLOIS_DIRECTS => 0,
-      self::STAT_PERSONNES_ACCUEILLIES => 0
+      self::STAT_PERSONNES_ACCUEILLIES => 0,
+      self::STAT_CITIES => 0
   ];
     public $incrementing = false;
 
