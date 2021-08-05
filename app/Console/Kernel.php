@@ -18,8 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
-        KeyGenerateCommand::class,
-        ImportTypeForm::class
+        KeyGenerateCommand::class
     ];
 
     /**
