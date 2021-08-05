@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_HOST="https://communemesure.fr"
+_HOST="http://communemesure.fr"
 _WORKINGDIR="$(dirname "$0")"
 _SECTIONS=("header" "footer")
 
@@ -16,9 +16,11 @@ for section in "${_SECTIONS[@]}"; do
     sed -i 's/et-l et-l--footer/footer/' "$tempfile"
 
     mv "$tempfile" "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
+    chmod g+rw "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
+    chmod o+r "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
 done
 
 # Fonts
 
-wget 'https://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.ttf' -O "$_WORKINGDIR/../public/fonts/modules.ttf"
-wget 'https://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.woff' -O "$_WORKINGDIR/../public/fonts/modules.woff"
+wget 'http://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.ttf' -O "$_WORKINGDIR/../public/fonts/modules.ttf"
+wget 'http://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.woff' -O "$_WORKINGDIR/../public/fonts/modules.woff"
