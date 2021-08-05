@@ -44,7 +44,7 @@ window.onload = (event) => {
             markersCluster.addLayer(marker);
         });
 
-        if (markersCluster.getChildCount > 0) {
+        if (markersCluster.getChildCount() > 0) {
             homemap.addLayer(markersCluster);
             var featureGroup = L.featureGroup(groupMarker);
             homemap.fitBounds(featureGroup.getBounds());
