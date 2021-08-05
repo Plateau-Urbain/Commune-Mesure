@@ -6,7 +6,7 @@
         <title>Commune Mesure</title>
         <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')
-            <link rel="stylesheet" href="/css/app.css" />
+            <link rel="stylesheet" href="{{ url('/css/app.css') }}" />
         @show
     </head>
     <body>
@@ -20,9 +20,9 @@
 
         <div id="modal_container"></div>
          @section('script_js')
-             <script src="/js/global.js"></script>
-             <script src="/js/bundle.js"></script>
-             <script src="/js/charts.js"></script>
+             <script src="{{ url('/js/global.js') }}"></script>
+             <script src="{{ url('/js/bundle.js') }}"></script>
+             <script src="{{ url('/js/charts.js') }}"></script>
          @show
          @include("footer")
     </body>

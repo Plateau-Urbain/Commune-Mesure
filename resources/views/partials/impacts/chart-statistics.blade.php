@@ -1,4 +1,4 @@
-<script src="/js/apexcharts.min.js"></script>
+<script src="{{ url('/js/apexcharts.min.js') }}"></script>
 <script>
     var leftTitle;
     var rightTitle;

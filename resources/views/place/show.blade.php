@@ -193,7 +193,7 @@
     </x-edit-section>
         </div>
   </div>
-  <script type="text/javascript" src="/js/easyScrollDots.min.js"></script>
+  <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
 
   <script>
     easyScrollDots({
