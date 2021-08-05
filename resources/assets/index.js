@@ -44,9 +44,11 @@ window.onload = (event) => {
             markersCluster.addLayer(marker);
         });
 
-        homemap.addLayer(markersCluster);
-        var featureGroup = L.featureGroup(groupMarker);
-        homemap.fitBounds(featureGroup.getBounds());
+        if (markersCluster.getChildCount > 0) {
+            homemap.addLayer(markersCluster);
+            var featureGroup = L.featureGroup(groupMarker);
+            homemap.fitBounds(featureGroup.getBounds());
+        }
     }
 
     var values = document.querySelectorAll(".animate-value")
