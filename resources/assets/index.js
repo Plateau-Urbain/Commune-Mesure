@@ -48,6 +48,8 @@ window.onload = (event) => {
             homemap.addLayer(markersCluster);
             var featureGroup = L.featureGroup(groupMarker);
             homemap.fitBounds(featureGroup.getBounds());
+        } else {
+            homemap.setView(L.latLng(0,0), 1);
         }
     }
 
