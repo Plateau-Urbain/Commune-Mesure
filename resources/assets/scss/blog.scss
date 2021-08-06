@@ -128,6 +128,36 @@ header#main-header {
                         &:hover { opacity: .7 }
                     }
                 }
+
+                ul {
+                    position: absolute;
+                    padding: 20px 0;
+                    z-index: 9999;
+                    width: 240px;
+                    background: #f9f7f4;
+                    visibility: hidden;
+                    opacity: 0;
+                    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+                    -moz-box-shadow: 0 2px 5px rgba(0,0,0,.1);
+                    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.1);
+                    -webkit-transform: translateZ(0);
+                    text-align: left;
+                }
+
+                &:hover ul {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                li {
+                    position: relative;
+                    line-height: 2em;
+                    padding: 0 20px;
+
+                    a {
+                        padding: 6px 1px;
+                    }
+                }
             }
         }
     }
