@@ -28,7 +28,7 @@ class Place extends Model
     protected $keyType = 'string';
     protected $popup = [];
     protected $cities = [];
-    protected $places = [];
+    protected static $places = [];
     protected $withPopup = false;
 
     private $data;
@@ -59,6 +59,10 @@ class Place extends Model
     }
 
     public static function retrievePlaces(){
+        if (! empty(self::$places)) {
+            return self::$places;
+        }
+
       $places = DB::table('places')
           ->select('place as slug')
           ->where('deleted_at', null)
@@ -69,8 +73,8 @@ class Place extends Model
           $p = self::find($place->slug);
           $array_place[] =$p;
       }
-      $return = collect($array_place);
-      return $return;
+      self::$places = collect($array_place);
+      return self::$places;
     }
 
     public function setData($data){
