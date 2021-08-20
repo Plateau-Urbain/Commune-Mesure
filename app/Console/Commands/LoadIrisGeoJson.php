@@ -44,6 +44,39 @@ class LoadIrisGeoJson extends Command
             }
         }
 
+        $poplineid = 0;
+        $popcsv = [];
+        if ($file = fopen("storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv", "r")) {
+            //Output lines until EOF is reached
+            while(! feof($file)) {
+                $line = fgets($file);
+                if ($poplineid++ == 4) {
+                    $popcsv[] = str_getcsv($line, ';');
+                }
+                if (strpos($line, $iris_json->properties->complete_code) === 0) {
+                    $popcsv[] = str_getcsv($line, ';');
+                    break;
+                }
+            }
+        }else{
+            echo "WARNING: storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv missing\n";
+            echo "\tcsv converted from the official xls downloaded from https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip\n";
+            echo "\tle code iris complet DDCCCIIIII (D = département, C = commune insee, I = Iris) attendu en première colonne\n";
+            echo "\tseparateur ;\n";
+        }
+        if ($popcsv) {
+            if ($popcsv[0][53] == 'Pop 15 ans ou plus Agriculteurs exploitants en 2016 (compl)' && $popcsv[0][59] == 'Pop 15 ans ou plus Retraités en 2016 (compl)') {
+                $data['insee']['iris']['csp']['agriculteur'] = array('nb' => $popcsv[1][53], 'title' => 'Agriculteurs exploitants');
+                $data['insee']['iris']['csp']['artisant'] = array('nb' => $popcsv[1][54], 'title' => 'Artisans, Comm., Chefs entr.');
+                $data['insee']['iris']['csp']['cadre'] = array('nb' => $popcsv[1][55], 'title' => 'Cadres, Prof. intel. sup.');
+                $data['insee']['iris']['csp']['prof_int'] = array('nb' => $popcsv[1][56], 'title' => 'Prof. intermédiaires');
+                $data['insee']['iris']['csp']['employe'] = array('nb' => $popcsv[1][57], 'title' => 'Employés');
+                $data['insee']['iris']['csp']['ouvrier'] = array('nb' => $popcsv[1][58], 'title' => 'Ouvriers');
+                $data['insee']['iris']['csp']['retraite'] = array('nb' => $popcsv[1][59], 'title' => 'Retraités');
+                $data['insee']['iris']['csp']['autre'] = array('nb' => $popcsv[1][60], 'title' => 'Autres');
+            }
+
+        }
         print_r(json_encode($data));
     }
 }
