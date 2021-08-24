@@ -99,11 +99,83 @@ class LoadIrisGeoJson extends Command
         $this->data['insee']['iris']['activites']['autre'] = array("title" => "Autre inactif", "nb" => $activites->autre_inactif);
     }
 
+    public function parse_insee($url) {
+        if ($file = fopen($url, "r")) {
+            //Output lines until EOF is reached
+            $table_name = '';
+            $line_name = '';
+            $tdid = '';
+            $htmldata = array();
+            while(! feof($file)) {
+                $line = fgets($file);
+                if (strpos($line, 'POP T5 - Population de 15 ans') !== false) {
+                    $table_name = 'population';
+                }
+                if (strpos($line, 'EMP T1 - Population de 15') !== false) {
+                    $table_name = 'activites';
+                }
+                if (strpos($line, 'LOG T2 - Catégories et types de logements') !== false) {
+                    $table_name = 'logements';
+                }
+                if ($table_name && strpos($line, '</tbody>') !== false) {
+                    $table_name = '';
+                }
+                if ($table_name && strpos($line, '<th ') !== false) {
+                    $line_name = self::strip_line($line);
+                    $tdid = 0;
+                }
+                if ($line_name && strpos($line, '</tr>') !== false) {
+                    $line_name = '';
+                    $tdid = 0;
+                }
+                if ($line_name && strpos($line, '<td ') !== false) {
+                    $htmldata[$table_name][$line_name][$tdid] = self::strip_line($line);
+                    $tdid++;
+                }
+            }
+            return $htmldata;
+        }
+    }
+
+    public static function strip_line($s) {
+        $s = strip_tags($s);
+        $s = preg_replace('/^ */', '', $s);
+        $s = str_replace('&nbsp;', '', $s);
+        $s = preg_replace('/[\n ]*$/', '', $s);
+        if (preg_match('/^[0-9]/', $s)) {
+            $s = str_replace(',', '.', $s);
+        }
+        return $s;
+    }
+
+    public function handle_insee($geocode, $insee_geotype) {
+        $data = $this->parse_insee("https://www.insee.fr/fr/statistiques/2011101?geo=".$geocode);
+        $this->data['insee'][$insee_geotype]['csp']['agriculteur'] = array('title' => 'Agriculteurs exploitants', 'nb' => $data['population']['Agriculteurs exploitants'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['artisant'] = array('title' => 'Artisans, Comm., Chefs entr.', 'nb' => $data['population']["Artisans, commerçants, chefs d'entreprise"][4]);
+        $this->data['insee'][$insee_geotype]['csp']['cadre'] = array('title' => 'Cadres, Prof. intel. sup.', 'nb' => $data['population']['Cadres et professions intellectuelles supérieures'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['prof_int'] = array('title' => 'Prof. intermédiaires', 'nb' => $data['population']['Professions intermédiaires'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['employe'] = array('title' => 'Employés', 'nb' => $data['population']['Employés'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['ouvrier'] = array('title' => 'Ouvriers', 'nb' => $data['population']['Ouvriers'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['retraite'] = array('title' => 'Retraités', 'nb' => $data['population']['Retraités'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['autre'] = array('title' => 'Autres', 'nb' => $data['population']['Autres personnes sans activité professionnelle'][4]);
+        $this->data['insee'][$insee_geotype]['logement']['house'] = array('title' => 'Maison', 'nb' => $data['logements']['Maisons'][4]);
+        $this->data['insee'][$insee_geotype]['logement']['appartment'] = array('title' => 'Appartement', 'nb' => $data['logements']['Appartements'][4]);
+        $this->data['insee'][$insee_geotype]['logement']['unoccupied'] = array("title" => "Appart/Maison inoccupé", "nb" => $data['logements']['Logements vacants'][4]);
+        $this->data['insee'][$insee_geotype]['activites']['chomeur'] = array('title' => 'Chômeur (Actif inoccupé)', 'nb' => $data['activites']['Chômeurs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+        $this->data['insee'][$insee_geotype]['activites']['actif'] = array('title' => 'Actif occupé', 'nb' => $data['activites']['Actifs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+        $this->data['insee'][$insee_geotype]['activites']['etudiant'] = array("title" => "Élèves, étudiants et stagiaires non rémunérés", "nb" => $data['activites']['Élèves, étudiants et stagiaires non rémunérés en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+        $this->data['insee'][$insee_geotype]['activites']['retraite'] = array("title" => "Retraités ou préretraités", "nb" => $data['activites']['Retraités ou préretraités en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+        $this->data['insee'][$insee_geotype]['activites']['autre'] = array("title" => "Autre inactif", "nb" => $data['activites']['Autres inactifs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+    }
+
     public function handle()
     {
         $this->handle_geo_adresse();
         $this->handle_geo_json();
         $this->handle_iris_data();
+        $this->handle_insee('COM-'.$this->city_code, 'commune');
+        $this->handle_insee('DEP-'.$this->departement_code, 'departement');
+        $this->handle_insee('REG--'.$this->region_code, 'region');
 
         print_r(json_encode($this->data));
     }
