@@ -128,60 +128,75 @@ class ImportTypeForm extends Command
         $new_place->blocs->moyens->visible = 1;
         $new_place->blocs->moyens->donnees = new stdClass;
         $new_place->blocs->moyens->donnees->investissement = new stdClass;
-        //$new_place->blocs->moyens->donnees->investissement->
+        $new_place->blocs->moyens->donnees->investissement->{"Fonds publics"} = $this->extract_val($schema->blocs->moyens->donnees->investissement->{"Fonds publics"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->investissement->{"Fonds privés"} = $this->extract_val($schema->blocs->moyens->donnees->investissement->{"Fonds privés"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->investissement->{"Fonds apportés"} = 0;
         $new_place->blocs->moyens->donnees->fonctionnement = new stdClass;
+        $new_place->blocs->moyens->donnees->fonctionnement->{"Subventions"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Subventions"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides privées"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides privées"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->fonctionnement->{"Recettes"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Recettes"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->benevoles = $this->extract_val($schema->blocs->moyens->donnees->benevoles, $import_file->answers);
+        $new_place->blocs->moyens->donnees->partenaires = $this->extract_val($schema->blocs->moyens->donnees->partenaires, $import_file->answers);
+
+        // composition
+        $new_place->blocs->composition = new stdClass;
+        $new_place->blocs->composition->visible = 1;
+        $new_place->blocs->composition->donnees = new stdClass;
+        $new_place->blocs->composition->donnees->type = new stdClass;
+        $new_place->blocs->composition->donnees->type->Entreprises = $this->extract_val($schema->blocs->composition->donnees->type->Entreprises, $import_file->answers);
+        $new_place->blocs->composition->donnees->type->Associations = $this->extract_val($schema->blocs->composition->donnees->type->Associations, $import_file->answers);
+        $new_place->blocs->composition->donnees->type->Artistes = $this->extract_val($schema->blocs->composition->donnees->type->Artistes, $import_file->answers);
+        $new_place->blocs->composition->donnees->type->{"Autres structures"} = $this->extract_val($schema->blocs->composition->donnees->type->{"Autres structures"}, $import_file->answers);
+        $new_place->blocs->composition->donnees->structures_crees = $this->extract_val($schema->blocs->composition->donnees->structures_crees, $import_file->answers);
+
+        // impact social
+        $new_place->blocs->impact_social = new stdClass;
+        $new_place->blocs->impact_social->visible = 1;
+        $new_place->blocs->impact_social->donnees = new stdClass;
+        $new_place->blocs->impact_social->donnees->insertion_professionnelle = $this->extract_val($schema->blocs->impact_social->donnees->insertion_professionnelle, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->appartenance_exclusion = $this->extract_val($schema->blocs->impact_social->donnees->appartenance_exclusion, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->reseaux = $this->extract_val($schema->blocs->impact_social->donnees->reseaux, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->capacite_agir = $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->sante_bien_être = $this->extract_val($schema->blocs->impact_social->donnees->sante_bien_être, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->lien_social = $this->extract_val($schema->blocs->impact_social->donnees->lien_social, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->solidarite = $this->extract_val($schema->blocs->impact_social->donnees->solidarite, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->cadre_de_vie = $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->services_publics = $this->extract_val($schema->blocs->impact_social->donnees->services_publics, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->innovation_publique = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique, $import_file->answers);
+
+        // galerie
+        $new_place->blocs->galerie = new stdClass;
+        $new_place->blocs->galerie->visible = 1;
+        $new_place->blocs->galerie->donnees = [];
+
+        // reseaux sociaux
+        $new_place->reseaux_sociaux = new stdClass;
+        $new_place->reseaux_sociaux->visible = 1;
+        $new_place->reseaux_sociaux->donnees = [];
+
+        foreach ($schema->reseaux_sociaux->donnees as $k => $reseau) {
+            $new_place->reseaux_sociaux->donnees[] = [
+                'name' => $reseau->name,
+                'link' => $this->extract_val($schema->reseaux_sociaux->donnees[$k]->link, $import_file->answers)
+            ];
+        }
+
+        // evenements
+        $new_place->evenements = new stdClass;
+        $new_place->evenements->publics = new stdClass;
+        $new_place->evenements->publics->nombre = $this->extract_val($schema->evenements->publics->nombre, $import_file->answers);
+        $new_place->evenements->publics->{"personnes accueillies"} = $this->extract_val($schema->evenements->publics->{"personnes accueillies"}, $import_file->answers);
+        $new_place->evenements->prives = new stdClass;
+        $new_place->evenements->prives->nombre = $this->extract_val($schema->evenements->prives->nombre, $import_file->answers);
+        $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"}, $import_file->answers);
 
         echo PHP_EOL;
         echo json_encode($new_place);
         echo PHP_EOL;
-        exit;
-
-
-        //moyens
-
-        $new_place->blocs->moyens->donnees->investissement->{"Fonds publics"} = fill_val("blocs|moyens|donnees|investissement|Fonds publics", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->investissement->{"Fonds privés"} = fill_val("blocs|moyens|donnees|investissement|Fonds privés", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->fonctionnement->Subventions = fill_val("blocs|moyens|donnees|fonctionnement|Subventions", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides privées"} = fill_val("blocs|moyens|donnees|fonctionnement|Aides privées", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->fonctionnement->Recettes = fill_val("blocs|moyens|donnees|fonctionnement|Recettes", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->benevoles = fill_val("blocs|moyens|donnees|benevoles", $example_json, $results_raw_t);
-        $new_place->blocs->moyens->donnees->partenaires = fill_val("blocs|moyens|donnees|partenaires", $example_json, $results_raw_t);
-
-        //composition
-        $new_place->blocs->composition->donnees->type->Entreprises = fill_val("blocs|composition|donnees|type|Entreprises", $example_json, $results_raw_t);
-        $new_place->blocs->composition->donnees->type->Associations = fill_val("blocs|composition|donnees|type|Associations", $example_json, $results_raw_t);
-        $new_place->blocs->composition->donnees->type->Artistes = fill_val("blocs|composition|donnees|type|Artistes", $example_json, $results_raw_t);
-        $new_place->blocs->composition->donnees->type->{"Autres structures"} = fill_val("blocs|composition|donnees|type|Autres structures", $example_json, $results_raw_t);
-        $new_place->blocs->composition->donnees->structures_crees = fill_val("blocs|composition|donnees|structures_crees", $example_json, $results_raw_t);
-
-        //impact_social
-        $new_place->blocs->impact_social->donnees->insertion_professionnelle = fill_val("blocs|impact_social|donnees|insertion_professionnelle", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->appartenance_exclusion = fill_val("blocs|impact_social|donnees|appartenance_exclusion", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->reseaux = fill_val("blocs|impact_social|donnees|reseaux", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->capacite_agir = fill_val("blocs|impact_social|donnees|capacite_agir", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->sante_bien_être = fill_val("blocs|impact_social|donnees|sante_bien_être", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->lien_social = fill_val("blocs|impact_social|donnees|lien_social", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->solidarite = fill_val("blocs|impact_social|donnees|solidarite", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->egalite_homme_femme = fill_val("blocs|impact_social|donnees|egalite_homme_femme", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->cadre_de_vie = fill_val("blocs|impact_social|donnees|cadre_de_vie", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->entretien_des_espaces = fill_val("blocs|impact_social|donnees|entretien_des_espaces", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->services_publics = fill_val("blocs|impact_social|donnees|services_publics", $example_json, $results_raw_t);
-        $new_place->blocs->impact_social->donnees->innovation_publique = fill_val("blocs|impact_social|donnees|innovation_publique", $example_json, $results_raw_t);
-
-        //reseaux_sociaux
-        foreach ($new_place->reseaux_sociaux->donnees as $key => $value) {
-            $new_place->reseaux_sociaux->donnees[$key]->link = fill_val("reseaux_sociaux|donnees|$key|link", $example_json, $results_raw_t);
-        }
-
-        //evenements
-        $new_place->evenements->publics->nombre = fill_val("evenements|publics|nombre", $example_json, $results_raw_t);
-        $new_place->evenements->publics->{"personnes accueillies"} = fill_val("evenements|publics|personnes accueillies", $example_json, $results_raw_t);
-        $new_place->evenements->prives->nombre = fill_val("evenements|prives|nombre", $example_json, $results_raw_t);
-        $new_place->evenements->prives->{"personnes accueillies"} = fill_val("evenements|prives|personnes accueillies", $example_json, $results_raw_t);
 
         $place_file = str_replace(" ", "_", $new_place->name);
-        file_put_contents("$place_file.json", json_encode($new_place));
-
     }
 
     public function extract_val($keys, $file)
