@@ -137,46 +137,6 @@ class ImportTypeForm extends Command
         exit;
 
 
-
-        $new_place->name = fill_val("name", $new_place, $import_file);
-        $new_place->status = fill_val("status", $example_json, $results_raw_t);
-        $new_place->address->address = fill_val("address|address", $example_json, $results_raw_t);
-        $new_place->address->postalcode = fill_val("address|postalcode", $example_json, $results_raw_t);
-
-        //presentation
-        $res_opening = fill_val("blocs|presentation|donnees|ouverture|En permanence", $example_json, $results_raw_t);
-        if(count($res_opening)){
-            foreach ($res_opening as $key => $value) {
-                $new_placeblocs->presentation->donnees->ouverture->$value = 1;
-            }
-        }else {
-            $new_place->blocs->presentation->donnees->ouverture->{"En permanence"} = 0;
-        }
-
-        $new_place->blocs->presentation->donnees->idee_fondatrice = fill_val("blocs|presentation|donnees|idee_fondatrice", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->nombre_occupants = fill_val("blocs|presentation|donnees|nombre_occupants", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->noms_occupants = fill_val("blocs|presentation|donnees|noms_occupants", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->nb_manager = fill_val("blocs|presentation|donnees|nb_manager", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->date_ouverture = fill_val("blocs|presentation|donnees|date_ouverture", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->date_creation = fill_val("blocs|presentation|donnees|date_creation", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->surface = fill_val("blocs|presentation|donnees|surface", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->acteurs_publics = fill_val("blocs|presentation|donnees|acteurs_publics", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->acteurs_prives = fill_val("blocs|presentation|donnees|acteurs_prives", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->natures_partenariats->public = fill_val("blocs|presentation|donnees|natures_partenariats|public", $example_json, $results_raw_t);
-        $new_place->blocs->presentation->donnees->natures_partenariats->prive = fill_val("blocs|presentation|donnees|natures_partenariats|prive", $example_json, $results_raw_t);
-
-        //accessibilite
-        $res_public_access = fill_val("blocs|accessibilite|donnees|publics|Chercheurs d'emplois", $example_json, $results_raw_t);
-        $new_place->blocs->accessibilite->donnees->publics->{"Chercheurs d'emplois"} = 0;
-        foreach ($res_public_access as $key => $value) {
-            $new_place->blocs->accessibilite->donnees->publics->$value = 1;
-        }
-
-        $res_handicap = fill_val("blocs|accessibilite|donnees|accessibilite|Handicapés", $example_json, $results_raw_t);
-        if($res_handicap === "Yes"){
-            $new_place->blocs->accessibilite->donnees->accessibilite->{"Handicapés"} = 1;
-        }
-
         //moyens
 
         $new_place->blocs->moyens->donnees->investissement->{"Fonds publics"} = fill_val("blocs|moyens|donnees|investissement|Fonds publics", $example_json, $results_raw_t);
@@ -257,59 +217,5 @@ class ImportTypeForm extends Command
                 return $question->{$key[2]}->{$key[3]};
             }
         }
-    }
-
-    public function insert($array) {
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
-                echo $key. '¬'.PHP_EOL;
-                $this->insert($value);
-            } else {
-                echo $key . ': '.$value.PHP_EOL;
-            }
-        }
-    }
-
-    function transform_id_to_key($responses_raw){
-        $out = [];
-
-        foreach ($responses_raw->answers as $answers) {
-            foreach ($answers->group->answers as $answer) {
-                $out[$answers->id][$answer->id] = $answer;
-            }
-        }
-        return $out;
-    }
-
-    function fill_val($name_attr, $example_json, $results_raw_t){
-        $name_path = $example_json;
-        $out = null;
-        foreach (explode("|", $name_attr) as $key => $value) {
-
-            if(is_numeric($value)){
-                $name_path = $name_path[$value];
-            }else{
-                $name_path = $name_path->$value;
-            }
-
-        }
-
-        [$group_id, $response_id, $type_response, $res_val] = explode("|", $name_path);
-        $res = explode("+", $response_id);
-
-        if(count($res) > 1){
-            foreach ($res as $key => $value) {
-                $val = $results_raw_t[$group_id][$value]->$type_response->$res_val;
-                if(is_numeric($val)){
-                    $out = $out + $val;
-                }else{
-                    $out .= " ".$out;
-                }
-
-            }
-        }else{
-            $out = $results_raw_t[$group_id][$response_id]->$type_response->$res_val;
-        }
-        return $out;
     }
 }
