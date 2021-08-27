@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use \stdClass;
 use App\Models\Place;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
 class ImportTypeForm extends Command
