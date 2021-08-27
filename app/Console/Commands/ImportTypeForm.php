@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use \stdClass;
+use App\Models\Place;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 
 class ImportTypeForm extends Command
@@ -196,7 +198,15 @@ class ImportTypeForm extends Command
         echo json_encode($new_place);
         echo PHP_EOL;
 
-        $place_file = str_replace(" ", "_", $new_place->name);
+        DB::table('places')->insert([
+            'id' => $import_file->token,
+            'place' => Str::of($new_place->name)->slug('-'),
+            'data' => json_encode($new_place)
+        ]);
+
+        $this->call('admin:generate-hash', [
+            'place' => $import_file->token
+        ]);
     }
 
     public function extract_val($keys, $file)
