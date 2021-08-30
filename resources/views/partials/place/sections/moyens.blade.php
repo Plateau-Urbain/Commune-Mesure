@@ -16,7 +16,6 @@
   </div>
 <canvas id="financement-budget-doughnut" ></canvas>
 
-@if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || !empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit) )
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
     <div class="columns">
       <div class="column is-3 is-offset-2">
@@ -100,4 +99,3 @@
       </div>
     </div>
   @endif
-@endif
