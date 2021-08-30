@@ -61,6 +61,17 @@ class ImportTypeForm extends Command
         $schema = json_decode(file_get_contents(storage_path().$this->schema));
         $import_file = json_decode(file_get_contents($f));
 
+        $ids = DB::select('select id from places');
+        $tokens = array();
+        foreach($ids as $id => $i){
+          $tokens[] = $i->id;
+        }
+
+        if (in_array($import_file->token,$tokens)){
+          throw new \Exception("Déjà importé");
+        }
+
+
         $new_place = new stdClass;
         $new_place->name = $this->extract_val($schema->name, $import_file->answers);
         $new_place->status = $this->extract_val($schema->status, $import_file->answers);
