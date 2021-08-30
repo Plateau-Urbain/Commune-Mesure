@@ -63,7 +63,7 @@ class ImportTypeForm extends Command
 
         $exist = DB::table('places')->where('id',$import_file->token)->get();
 
-        if (count($exist)){
+        if ($exist->count()){
           throw new \Exception("Déjà importé");
         }
 
