@@ -248,6 +248,10 @@ class ImportTypeForm extends Command
                 echo PHP_EOL;
                 echo PHP_EOL;
 
+                if ($key[2] === "number" and $question->{$key[2]}->{$key[3]} === "") {
+                    return 0;
+                }
+
                 return $question->{$key[2]}->{$key[3]};
             }
         }
