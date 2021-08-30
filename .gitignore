@@ -9,6 +9,7 @@ Homestead.yaml
 .phpunit.result.cache
 /resources/*.xlsx
 !/storage/app/places/example.json
+/storage/app/
 /public/fonts/
 /public/js/bundle.js
 /public/js/external.js
