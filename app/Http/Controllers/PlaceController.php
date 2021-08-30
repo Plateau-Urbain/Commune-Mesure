@@ -301,6 +301,10 @@ class PlaceController extends Controller
 
     protected function sortDataInsee($place){
         //Sort insee object data on each zone map
+        if (property_exists($place->blocs, 'data_territoire') === false) {
+            return;
+        }
+
         $insee = $place->blocs->data_territoire->donnees->insee;
         foreach ($insee as $zone => $datas) {
             foreach ($datas as $key => $data) {

@@ -335,7 +335,9 @@ class Place extends Model
       return $this->isEmptyValeurs();
     }
 
-    $tab = json_decode(json_encode($this->get('blocs->'.$section.'->donnees')),true);
+    $tab = $this->get('blocs->'.$section.'->donnees');
+    if (! $tab) {return true;}
+
     foreach($tab as $v){
       if(is_array($v)){
         foreach($v as $k){
