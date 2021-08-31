@@ -11,7 +11,7 @@ for section in "${_SECTIONS[@]}"; do
 
     curl "${_HOST}/blog/export/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
 
-    sed -i 's/<header id="main-header"/<header id="main-header" class="navbar is-fixed-top"/' "$tempfile"
+    sed -i 's/<header id="main-header"/<header id="main-header" class="main-navbar navbar is-fixed-top"/' "$tempfile"
     sed -i 's/et-waypoint //' "$tempfile"
     sed -i 's/et-l et-l--footer/footer/' "$tempfile"
 
