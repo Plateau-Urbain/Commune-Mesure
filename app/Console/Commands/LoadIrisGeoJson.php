@@ -55,7 +55,18 @@ class LoadIrisGeoJson extends Command
     public function handle_iris_data() {
         $poplineid = 0;
         $popcsv = [];
-        if ($file = fopen("storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv", "r")) {
+        $file = null;
+        try {
+            $file = fopen("storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv", "r");
+        } catch (\Exception $e) {
+            $this->warn("WARNING: storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv missing");
+            $this->warn("\tcsv converted from the official xls downloaded from https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip");
+            $this->warn("\tle code iris complet DDCCCIIIII (D = département, C = commune insee, I = Iris) attendu en première colonne");
+            $this->warn("\tseparateur ;");
+            $this->newLine();
+            $this->warn("Skipping population...");
+        }
+        if ($file) {
             //Output lines until EOF is reached
             while(! feof($file)) {
                 $line = fgets($file);
@@ -67,11 +78,6 @@ class LoadIrisGeoJson extends Command
                     break;
                 }
             }
-        }else{
-            echo "WARNING: storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv missing\n";
-            echo "\tcsv converted from the official xls downloaded from https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip\n";
-            echo "\tle code iris complet DDCCCIIIII (D = département, C = commune insee, I = Iris) attendu en première colonne\n";
-            echo "\tseparateur ;\n";
         }
         if ($popcsv) {
             if ($popcsv[0][53] == 'Pop 15 ans ou plus Agriculteurs exploitants en 2016 (compl)' && $popcsv[0][59] == 'Pop 15 ans ou plus Retraités en 2016 (compl)') {
