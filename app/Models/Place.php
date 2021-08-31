@@ -25,6 +25,8 @@ class Place extends Model
   ];
     public $incrementing = false;
 
+    protected $fillable = ['place'];
+
     protected $keyType = 'string';
     protected $popup = [];
     protected $cities = [];
