@@ -217,7 +217,7 @@ class ImportTypeForm extends Command
             'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
         ], $output);
 
-        $new_place->blocs->data_territoire->donnees = $output->fetch();
+        $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
 
         echo PHP_EOL;
         echo json_encode($new_place);
