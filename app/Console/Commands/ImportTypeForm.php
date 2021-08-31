@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use \stdClass;
 use App\Models\Place;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class ImportTypeForm extends Command
 {
@@ -204,6 +206,18 @@ class ImportTypeForm extends Command
         $new_place->evenements->prives = new stdClass;
         $new_place->evenements->prives->nombre = $this->extract_val($schema->evenements->prives->nombre, $import_file->answers);
         $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"}, $import_file->answers);
+
+        // geojson
+        $new_place->blocs->data_territoire = new stdClass;
+        $new_place->blocs->data_territoire->visible = 1;
+        $new_place->blocs->data_territoire->donnees = '';
+
+        $output = new BufferedOutput();
+        Artisan::call('iris:load', [
+            'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
+        ], $output);
+
+        $new_place->blocs->data_territoire->donnees = $output->fetch();
 
         echo PHP_EOL;
         echo json_encode($new_place);

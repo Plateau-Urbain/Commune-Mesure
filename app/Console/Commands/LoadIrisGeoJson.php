@@ -184,6 +184,7 @@ class LoadIrisGeoJson extends Command
         $this->handle_insee('DEP-'.$this->departement_code, 'departement');
         $this->handle_insee('REG--'.$this->region_code, 'region');
 
-        print_r(json_encode($this->data));
+        $json = json_encode($this->data);
+        $this->line($json);
     }
 }
