@@ -15,7 +15,9 @@ class ImportTypeForm extends Command
      *
      * @var string
      */
-    protected $signature = 'import:typeform {file : json contenant les réponses d\'un répondant}';
+    protected $signature = 'import:typeform
+                                {file : json contenant les réponses d\'un répondant}
+                                {--force}';
 
     /**
      * The console command description.
@@ -63,7 +65,7 @@ class ImportTypeForm extends Command
 
         $exist = DB::table('places')->where('id',$import_file->token)->get();
 
-        if ($exist->count()){
+        if ($exist->count() && $this->option('force') === false){
           throw new \Exception("Déjà importé");
         }
 
