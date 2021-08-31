@@ -61,6 +61,7 @@ class LoadIrisGeoJson extends Command
         } catch (\Exception $e) {
             $this->warn("WARNING: storage/framework/cache/data/base-ic-evol-struct-pop-2016.csv missing");
             $this->warn("\tcsv converted from the official xls downloaded from https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip");
+            $this->warn("\tlibreoffice --headless --convert-to csv:\"Text - txt - csv (StarCalc)\":59,34,0,1,1 /tmp/base-ic-evol-struct-pop-2016.xls --outdir storage/framework/cache/data/");
             $this->warn("\tle code iris complet DDCCCIIIII (D = département, C = commune insee, I = Iris) attendu en première colonne");
             $this->warn("\tseparateur ;");
             $this->newLine();
