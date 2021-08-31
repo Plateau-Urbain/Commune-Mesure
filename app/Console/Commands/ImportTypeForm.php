@@ -226,7 +226,9 @@ class ImportTypeForm extends Command
         DB::table('places')->insert([
             'id' => $import_file->token,
             'place' => Str::of($new_place->name)->slug('-'),
-            'data' => json_encode($new_place)
+            'data' => json_encode($new_place),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         $this->call('admin:generate-hash', [
