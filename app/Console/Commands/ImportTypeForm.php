@@ -263,11 +263,11 @@ class ImportTypeForm extends Command
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()
             ]);
-        }
 
-        $this->call('admin:generate-hash', [
-            'place' => $import_file->token
-        ]);
+            $this->call('admin:generate-hash', [
+                'place' => $import_file->token
+            ]);
+        }
     }
 
     public function extract_val($keys, $file)
