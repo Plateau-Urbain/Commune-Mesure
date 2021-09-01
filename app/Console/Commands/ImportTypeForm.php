@@ -248,13 +248,22 @@ class ImportTypeForm extends Command
         echo json_encode($new_place);
         echo PHP_EOL;
 
-        DB::table('places')->insert([
-            'id' => $import_file->token,
-            'place' => Str::of($new_place->name)->slug('-'),
-            'data' => json_encode($new_place),
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
-        ]);
+        if ($exist->count() && $this->option('force') === true) {
+            DB::table('places')->where('id', $import_file->token)
+                               ->update([
+                                   'place' => Str::of($new_place->name)->slug('-'),
+                                   'data' => json_encode($new_place),
+                                   'updated_at' => \Carbon\Carbon::now()
+                               ]);
+        } else {
+            DB::table('places')->insert([
+                'id' => $import_file->token,
+                'place' => Str::of($new_place->name)->slug('-'),
+                'data' => json_encode($new_place),
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
+        }
 
         $this->call('admin:generate-hash', [
             'place' => $import_file->token
