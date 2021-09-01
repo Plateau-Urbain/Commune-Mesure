@@ -339,7 +339,7 @@ class Place extends Model
     if (! $tab) {return true;}
 
     foreach($tab as $v){
-      if(is_array($v)){
+      if(is_object($v)){
         foreach($v as $k){
           if(!empty($k)){
             return false;
