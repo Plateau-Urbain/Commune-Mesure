@@ -245,6 +245,8 @@ class ImportTypeForm extends Command
         echo json_encode($new_place);
         echo PHP_EOL;
 
+        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
+
         DB::table('places')->insert([
             'id' => $import_file->token,
             'place' => Str::of($new_place->name)->slug('-'),
