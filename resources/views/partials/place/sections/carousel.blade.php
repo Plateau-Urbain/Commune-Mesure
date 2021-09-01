@@ -12,8 +12,8 @@
     <div id="place-carousel" class="carousel" data-navigation=1>
       @foreach ($array_photos as $photo)
         @if($photo)
-          <div class="item-{{ $loop->iteration }}">
-            <figure class="image is-covered">
+          <div class="item-{{ $loop->iteration }}" >
+            <figure class="image is-covered images-lieu">
               <img src="/images/lieux/{{ $photo }}">
             </figure>
           </div>
