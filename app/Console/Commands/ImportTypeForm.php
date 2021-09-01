@@ -170,7 +170,7 @@ class ImportTypeForm extends Command
         $new_place->blocs->moyens->donnees->fonctionnement = new stdClass;
         $new_place->blocs->moyens->donnees->fonctionnement->{"Autres Subventions"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Autres Subventions"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->fonctionnement->{"Aides privées"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides privées"}, $import_file->answers);
-        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides publics"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides publics"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides publiques"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides publiques"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->fonctionnement->{"Recettes"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Recettes"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->benevoles = $this->extract_val($schema->blocs->moyens->donnees->benevoles, $import_file->answers);
         $new_place->blocs->moyens->donnees->partenaires = $this->extract_val($schema->blocs->moyens->donnees->partenaires, $import_file->answers);
