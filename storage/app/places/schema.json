@@ -116,16 +116,16 @@
       "donnees": {
         "insertion_professionnelle": "pntLADdWQhm5|iSDvjPc2F1qR|long_text|value",
         "appartenance_exclusion": "pntLADdWQhm5|ijQKCG1VeAqx|long_text|value",
-        "reseaux": "pntLADdWQhm5|JmjkQfE5OQjr|multiple_choice|choices",
-        "capacite_agir": "pntLADdWQhm5|yTeHNN5U8zVx|multiple_choice|choices",
+        "reseaux": "pntLADdWQhm5|FZCSOda0z54e|long_text|value",
+        "capacite_agir": "pntLADdWQhm5|6C3JaISfHXjV|long_text|value",
         "sante_bien_être": "pntLADdWQhm5|KgpIva1nW2l6|long_text|value",
         "lien_social": "pntLADdWQhm5|tMb7UD6eK94L|long_text|value",
         "solidarite": "pntLADdWQhm5|xvAdDqf382rZ|long_text|value",
-        "egalite_homme_femme": "pntLADdWQhm5|avabX5mVgLKT|multiple_choice|choices",
-        "cadre_de_vie": "pntLADdWQhm5|LNLPZRhlkJY3|multiple_choice|choices",
-        "entretien_des_espaces": "pntLADdWQhm5|uG1d4069VCCT|multiple_choice|choices",
-        "services_publics": "9ZTr98YUYiFf|DwK4iT01SI2U|long_text|value",
-        "innovation_publique": "pntLADdWQhm5|85xd5SCZAp5U|long_text|value"
+        "egalite_homme_femme": "pntLADdWQhm5|HKVgodpFxb4K|long_text|value",
+        "cadre_de_vie": "pntLADdWQhm5|jbiRx3o3ZkNc|long_text|value",
+        "entretien_des_espaces": "pntLADdWQhm5|0MZNpGvgHyry|long_text|value",
+        "services_publics": "9ZTr98YUYiFf|85xd5SCZAp5U|long_text|value",
+        "innovation_publique": "pntLADdWQhm5|fTtTZSvbsVSh|long_text|value"
       }
     },
     "galerie": {
