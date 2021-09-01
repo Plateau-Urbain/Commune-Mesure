@@ -9,6 +9,7 @@
         </div>
         <div class="section">
             @foreach ($places as $place)
+              @if($place->isPublish())
                 <div class="box box-lieu content">
                     <div class="columns is-bordered places-block">
                         <div class="column" style="position:relative; height:250px;">
@@ -34,6 +35,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
               @endforeach
 
         </div>
