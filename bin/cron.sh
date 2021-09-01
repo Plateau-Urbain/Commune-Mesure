@@ -13,10 +13,14 @@ mkdir -p "$_DEST"
 cd "$_TMP"
 
 for url in "${_URLS[@]}"; do
-    wget --page-requisites \
+    echo "wget: http://${_HOST}/external/${url}"
+    wget --quiet --page-requisites \
          --convert-links \
          "https://${_HOST}/external/${url}"
 
+    echo "rsync: \"${_TMP}${_HOST}/\" \"${_DEST}\""
     rsync -r "${_TMP}${_HOST}/" "${_DEST}"
+
+    echo "rm -r \"${_TMP}${_HOST}\""
     rm -r "${_TMP}${_HOST}"
 done
