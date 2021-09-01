@@ -118,6 +118,7 @@ class ImportTypeForm extends Command
         $new_place->blocs->accessibilite->visible = 1;
         $new_place->blocs->accessibilite->donnees = new stdClass;
         $new_place->blocs->accessibilite->donnees->publics = $schema->blocs->accessibilite->donnees->publics;
+        $new_place->blocs->accessibilite->donnees->publics->{"Chercheurs d'emplois"} = 0;
 
         foreach ($public_choices as $pc) {
             $new_place->blocs->accessibilite->donnees->publics->$pc = 1;
