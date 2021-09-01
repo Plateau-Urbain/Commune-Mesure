@@ -8,9 +8,10 @@ var finances = {"composition":[{"name":"Entreprises","size":{{ $place->get('bloc
                                   {"name":"Fonds priv\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds privés')}}},
                                   {"name":"Fonds apport\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés')}}}
                                 ],
-                "fonctionnement":[{"name":"Subventions","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Subventions')}}},
+                "fonctionnement":[{"name":"Aides publics","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Aides publics')}}},
                                   {"name":"Aides priv\u00e9es","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Aides privées')}}},
-                                  {"name":"Recettes","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes')}}}
+                                  {"name":"Recettes","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes')}}},
+                                  {"name":"Autres subventions","size":{{ $place->get('blocs->moyens->donnees->fonctionnement->Autres Subventions')}}}
                                 ]
                 };
 var inputChoice = document.querySelector("input#switchRoundedSuccess");

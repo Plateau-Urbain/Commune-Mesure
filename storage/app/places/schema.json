@@ -93,7 +93,8 @@
           "Fonds apportés": 0
         },
         "fonctionnement": {
-          "Subventions": "180KKnWqF927|xokxHiQ2GL5F|number|value",
+          "Autres Subventions": "180KKnWqF927|xokxHiQ2GL5F|number|value",
+          "Aides publics": "180KKnWqF927|2kU59uglO1kC|number|value",
           "Aides privées": "180KKnWqF927|1mBUuJycEykU|number|value",
           "Recettes": "180KKnWqF927|q40E89SPPjZh|number|value"
         },
