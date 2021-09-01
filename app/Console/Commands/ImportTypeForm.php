@@ -192,14 +192,14 @@ class ImportTypeForm extends Command
         $new_place->blocs->impact_social->donnees = new stdClass;
         $new_place->blocs->impact_social->donnees->insertion_professionnelle = $this->extract_val($schema->blocs->impact_social->donnees->insertion_professionnelle, $import_file->answers);
         $new_place->blocs->impact_social->donnees->appartenance_exclusion = $this->extract_val($schema->blocs->impact_social->donnees->appartenance_exclusion, $import_file->answers);
-        $new_place->blocs->impact_social->donnees->reseaux = implode(', ', $this->extract_val($schema->blocs->impact_social->donnees->reseaux, $import_file->answers));
-        $new_place->blocs->impact_social->donnees->capacite_agir = implode(', ', $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir, $import_file->answers));
+        $new_place->blocs->impact_social->donnees->reseaux = $this->extract_val($schema->blocs->impact_social->donnees->reseaux, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->capacite_agir = $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir, $import_file->answers);
         $new_place->blocs->impact_social->donnees->sante_bien_être = $this->extract_val($schema->blocs->impact_social->donnees->sante_bien_être, $import_file->answers);
         $new_place->blocs->impact_social->donnees->lien_social = $this->extract_val($schema->blocs->impact_social->donnees->lien_social, $import_file->answers);
         $new_place->blocs->impact_social->donnees->solidarite = $this->extract_val($schema->blocs->impact_social->donnees->solidarite, $import_file->answers);
-        $new_place->blocs->impact_social->donnees->egalite_homme_femme = implode(', ', $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme, $import_file->answers));
-        $new_place->blocs->impact_social->donnees->cadre_de_vie = implode(', ', $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie, $import_file->answers));
-        $new_place->blocs->impact_social->donnees->entretien_des_espaces = implode(', ', $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces, $import_file->answers));
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->cadre_de_vie = $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie, $import_file->answers);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces, $import_file->answers);
         $new_place->blocs->impact_social->donnees->services_publics = $this->extract_val($schema->blocs->impact_social->donnees->services_publics, $import_file->answers);
         $new_place->blocs->impact_social->donnees->innovation_publique = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique, $import_file->answers);
 
@@ -241,23 +241,33 @@ class ImportTypeForm extends Command
 
         $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
 
+        // on récupere l'info de la ville dans les données geojson de l'insee
+        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
+
         echo PHP_EOL;
         echo json_encode($new_place);
         echo PHP_EOL;
 
-        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
+        if ($exist->count() && $this->option('force') === true) {
+            DB::table('places')->where('id', $import_file->token)
+                               ->update([
+                                   'place' => Str::of($new_place->name)->slug('-'),
+                                   'data' => json_encode($new_place),
+                                   'updated_at' => \Carbon\Carbon::now()
+                               ]);
+        } else {
+            DB::table('places')->insert([
+                'id' => $import_file->token,
+                'place' => Str::of($new_place->name)->slug('-'),
+                'data' => json_encode($new_place),
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
 
-        DB::table('places')->insert([
-            'id' => $import_file->token,
-            'place' => Str::of($new_place->name)->slug('-'),
-            'data' => json_encode($new_place),
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
-        ]);
-
-        $this->call('admin:generate-hash', [
-            'place' => $import_file->token
-        ]);
+            $this->call('admin:generate-hash', [
+                'place' => $import_file->token
+            ]);
+        }
     }
 
     public function extract_val($keys, $file)
