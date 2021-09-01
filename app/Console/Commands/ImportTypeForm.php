@@ -241,11 +241,12 @@ class ImportTypeForm extends Command
 
         $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
 
+        // on récupere l'info de la ville dans les données geojson de l'insee
+        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
+
         echo PHP_EOL;
         echo json_encode($new_place);
         echo PHP_EOL;
-
-        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
 
         DB::table('places')->insert([
             'id' => $import_file->token,
