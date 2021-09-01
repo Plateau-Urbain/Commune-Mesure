@@ -43,9 +43,9 @@
         @elseif(is_object($valueChemin) && isset($type) && $type == "checkbox")
           @php $i=0; @endphp
           @foreach($valueChemin as $value => $check)
-              @if(is_object($check))
+              @if($id_section == "valeurs")
                 @php $maxCheck = 3;@endphp
-                @if($check->check)
+                @if($check)
                   <input class='check checkbox-limitee' type="checkbox" name="{{$i}}" checked>
                 @else
                   <input class='check checkbox-limitee' type="checkbox" name="{{$i}}">

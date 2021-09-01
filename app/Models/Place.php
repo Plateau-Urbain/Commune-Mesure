@@ -309,16 +309,6 @@ class Place extends Model
     return true;
   }
 
-  public function isEmptyValeurs(){
-    $tab = json_decode(json_encode($this->get('blocs->valeurs->donnees')),true);
-    foreach ($tab as $valeur => $k){
-        if($k['check']){
-          return false;
-        }
-    }
-    return true;
-  }
-
   public function isEmpty($section){
     if($section == "moyens"){
       if($this->isEmptyFonctionnement() && $this->isEmptyInvestissement()){
@@ -329,10 +319,6 @@ class Place extends Model
 
     if($section == "accessibilite"){  //cas particulier 0/1
       return $this->isEmptyAccessibility();
-    }
-
-    if($section == "valeurs"){
-      return $this->isEmptyValeurs();
     }
 
     $tab = $this->get('blocs->'.$section.'->donnees');

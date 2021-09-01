@@ -73,33 +73,15 @@
     "valeurs": {
       "visible": 1,
       "donnees": {
-        "Accueil": {
-          "check": 0
-        },
-        "Convivialité": {
-          "check": 0
-        },
-        "Coopération": {
-          "check": 0
-        },
-        "Créativité": {
-          "check": 1
-        },
-        "Durabilité": {
-          "check": 0
-        },
-        "Environnement ": {
-          "check": 0
-        },
-        "Inclusivité": {
-          "check": 0
-        },
-        "Partage": {
-          "check": 0
-        },
-        "Transmission": {
-          "check": 0
-        }
+        "Accueil": "fl785vLXdAeG|IxrsyzzxFUoB|multiple_choice|choices",
+        "Convivialité":0,
+        "Coopération":0,
+        "Créativité":1,
+        "Durabilité":0,
+        "Environnement":0,
+        "Inclusivité":0,
+        "Partage":0,
+        "Transmission":0
       }
     },
     "moyens": {

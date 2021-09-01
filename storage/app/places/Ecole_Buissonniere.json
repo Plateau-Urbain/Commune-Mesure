@@ -75,33 +75,15 @@
     "valeurs":{
       "visible":1,
       "donnees":{
-        "Accueil":{
-            "check":0
-          },
-        "Convivialité":{
-            "check":0
-          },
-        "Coopération": {
-            "check" : 0
-          },
-        "Créativité":{
-            "check":0
-          },
-        "Durabilité":{
-            "check":0
-          },
-        "Environnement ":{
-            "check":0
-          },
-        "Inclusivité":{
-            "check":0
-          },
-        "Partage":{
-            "check":0
-          },
-        "Transmission":{
-            "check":0
-          }
+        "Accueil":0,
+        "Convivialité":0,
+        "Coopération":0,
+        "Créativité":0,
+        "Durabilité":0,
+        "Environnement":0,
+        "Inclusivité":0,
+        "Partage":0,
+        "Transmission":0
       }
     },
     "moyens":{

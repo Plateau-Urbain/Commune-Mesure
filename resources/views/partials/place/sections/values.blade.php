@@ -16,7 +16,7 @@
 <br>
 <div class="columns">
     @foreach($place->get('blocs->valeurs->donnees') as $valeur => $tabExemples)
-      @if ($tabExemples->check)
+      @if($tabExemples)
       <div class="column">
         <p class="has-text-centered">
           <strong class="valeurs">{{$valeur}}</strong>
