@@ -134,10 +134,18 @@ class ImportTypeForm extends Command
         $new_place->blocs->accessibilite->donnees->transports = $schema->blocs->accessibilite->donnees->transports;
 
         // valeurs
+        $valeurs_choices = [];
+        $valeurs_choices = $this->extract_val($schema->blocs->valeurs->donnees->Accueil, $import_file->answers);
+
         $new_place->blocs->valeurs = new stdClass;
         $new_place->blocs->valeurs->visible = 1;
         $new_place->blocs->valeurs->donnees = new stdClass;
         $new_place->blocs->valeurs->donnees = $schema->blocs->valeurs->donnees;
+        $new_place->blocs->valeurs->donnees->Accueil = 0;
+
+        foreach ($valeurs_choices as $vc) {
+            $new_place->blocs->valeurs->donnees->{$vc} = 1;
+        }
 
         // moyens
         $new_place->blocs->moyens = new stdClass;
