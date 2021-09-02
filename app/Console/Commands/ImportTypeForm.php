@@ -235,6 +235,7 @@ class ImportTypeForm extends Command
         $new_place->blocs->data_territoire->donnees = '';
 
         // images
+        $new_place->blocs->galerie->donnees = [];
         $info_photo = $this->extract_val($schema->blocs->galerie->donnees, $import_file->answers);
         $file_path = implode(DIRECTORY_SEPARATOR, [
             storage_path('import'),
@@ -249,6 +250,8 @@ class ImportTypeForm extends Command
         $photo = fopen($file_path, "w");
         $this->curl($info_photo->file_url, $photo);
         fclose($photo);
+
+        $new_place->blocs->galerie->donnees[] = dirname($file_path);
 
         // insee
         $output = new BufferedOutput();
