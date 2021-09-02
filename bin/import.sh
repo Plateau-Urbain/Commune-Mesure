@@ -25,5 +25,5 @@ fi
 # tache d'import
 for i in "$CHEMIN"jsonFromTypeForm/*.json
   do
-    php artisan import:typeform "$i"
+    yes | php artisan import:typeform "$i"
   done
