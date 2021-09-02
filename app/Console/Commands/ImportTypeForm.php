@@ -237,23 +237,26 @@ class ImportTypeForm extends Command
         // images
         $new_place->blocs->galerie->donnees = [];
         $info_photo = $this->extract_val($schema->blocs->galerie->donnees, $import_file->answers);
-        $file_path = implode(DIRECTORY_SEPARATOR, [
-            storage_path('import'),
-            Str::of($new_place->name)->slug('-'),
-            $info_photo->file_name
-        ]);
 
-        if (! is_dir(dirname($file_path))) {
-            mkdir(dirname($file_path), 0755, true);
+        if ($info_photo->file_url) {
+            $file_path = implode(DIRECTORY_SEPARATOR, [
+                storage_path('import'),
+                Str::of($new_place->name)->slug('-'),
+                $info_photo->file_name
+            ]);
+
+            if (! is_dir(dirname($file_path))) {
+                mkdir(dirname($file_path), 0755, true);
+            }
+
+            $photo = fopen($file_path, "w");
+            $this->curl($info_photo->file_url, $photo);
+            fclose($photo);
+
+            $new_place->blocs->galerie->donnees[] = basename($file_path);
+
+            rename($file_path, base_path()."/public/images/lieux/".basename($info_photo->file_name));
         }
-
-        $photo = fopen($file_path, "w");
-        $this->curl($info_photo->file_url, $photo);
-        fclose($photo);
-
-        $new_place->blocs->galerie->donnees[] = basename($file_path);
-
-        rename($file_path, base_path()."/public/images/lieux/".basename($info_photo->file_name));
 
         // insee
         $output = new BufferedOutput();
