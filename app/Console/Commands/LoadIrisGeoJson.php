@@ -157,14 +157,14 @@ class LoadIrisGeoJson extends Command
 
     public function handle_insee($geocode, $insee_geotype) {
         $data = $this->parse_insee("https://www.insee.fr/fr/statistiques/2011101?geo=".$geocode);
-        $this->data['insee'][$insee_geotype]['csp']['agriculteur'] = array('title' => 'Agriculteurs exploitants', 'nb' => $data['population']['Agriculteurs exploitants'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['artisant'] = array('title' => 'Artisans, Comm., Chefs entr.', 'nb' => $data['population']["Artisans, commerçants, chefs d'entreprise"][4]);
-        $this->data['insee'][$insee_geotype]['csp']['cadre'] = array('title' => 'Cadres, Prof. intel. sup.', 'nb' => $data['population']['Cadres et professions intellectuelles supérieures'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['prof_int'] = array('title' => 'Prof. intermédiaires', 'nb' => $data['population']['Professions intermédiaires'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['employe'] = array('title' => 'Employés', 'nb' => $data['population']['Employés'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['ouvrier'] = array('title' => 'Ouvriers', 'nb' => $data['population']['Ouvriers'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['retraite'] = array('title' => 'Retraités', 'nb' => $data['population']['Retraités'][4]);
-        $this->data['insee'][$insee_geotype]['csp']['autre'] = array('title' => 'Autres', 'nb' => $data['population']['Autres personnes sans activité professionnelle'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['agriculteur'] = array('title' => 'Agriculteurs exploitants', 'nb' => (isset($data['population']))? $data['population']['Agriculteurs exploitants'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['artisant'] = array('title' => 'Artisans, Comm., Chefs entr.', 'nb' => (isset($data['population']))? $data['population']["Artisans, commerçants, chefs d'entreprise"][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['cadre'] = array('title' => 'Cadres, Prof. intel. sup.', 'nb' => (isset($data['population']))? $data['population']['Cadres et professions intellectuelles supérieures'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['prof_int'] = array('title' => 'Prof. intermédiaires', 'nb' => (isset($data['population']))? $data['population']['Professions intermédiaires'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['employe'] = array('title' => 'Employés', 'nb' => (isset($data['population']))? $data['population']['Employés'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['ouvrier'] = array('title' => 'Ouvriers', 'nb' => (isset($data['population']))? $data['population']['Ouvriers'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['retraite'] = array('title' => 'Retraités', 'nb' => (isset($data['population']))? $data['population']['Retraités'][4] : 0);
+        $this->data['insee'][$insee_geotype]['csp']['autre'] = array('title' => 'Autres', 'nb' => (isset($data['population']))? $data['population']['Autres personnes sans activité professionnelle'][4] : 0);
         $this->data['insee'][$insee_geotype]['logement']['house'] = array('title' => 'Maison', 'nb' => $data['logements']['Maisons'][4]);
         $this->data['insee'][$insee_geotype]['logement']['appartment'] = array('title' => 'Appartement', 'nb' => $data['logements']['Appartements'][4]);
         $this->data['insee'][$insee_geotype]['logement']['unoccupied'] = array("title" => "Appart/Maison inoccupé", "nb" => $data['logements']['Logements vacants'][4]);
