@@ -236,6 +236,19 @@ class ImportTypeForm extends Command
 
         // images
         $info_photo = $this->extract_val($schema->blocs->galerie->donnees, $import_file->answers);
+        $file_path = implode(DIRECTORY_SEPARATOR, [
+            storage_path('import'),
+            Str::of($new_place->name)->slug('-'),
+            $info_photo->file_name
+        ]);
+
+        if (! is_dir(dirname($file_path))) {
+            mkdir(dirname($file_path), 0755, true);
+        }
+
+        $photo = fopen($file_path, "w");
+        $this->curl($info_photo->file_url, $photo);
+        fclose($photo);
 
         $output = new BufferedOutput();
         Artisan::call('iris:load', [
@@ -314,5 +327,18 @@ class ImportTypeForm extends Command
                 return $question->{$key[2]}->{$key[3]};
             }
         }
+    }
+
+    public function curl($url, $path = null)
+    {
+        $c = curl_init($url);
+        curl_setopt($c, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.getenv('TYPEFORM_TOKEN')]);
+
+        if ($path) {
+            curl_setopt($c, CURLOPT_FILE, $path);
+        }
+
+        curl_exec($c);
+        curl_close($c);
     }
 }
