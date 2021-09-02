@@ -119,7 +119,7 @@
           <input class='input-number'step="any" name='champ' type='number' value = "{{ $valueChemin }}"/>
           <input hidden name="type" value="number"></input>
         @elseif ( isset($type) && $type == 'date')
-          <input class='input-number' name='champ' value = "{{ $valueChemin }}" type="date" />
+          <input class='input-number' name='champ' value="{{ $valueChemin }}" type="date" />
         @endif
         <br>
         <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
