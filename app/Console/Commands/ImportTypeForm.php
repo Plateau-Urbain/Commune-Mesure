@@ -250,6 +250,7 @@ class ImportTypeForm extends Command
         $this->curl($info_photo->file_url, $photo);
         fclose($photo);
 
+        // insee
         $output = new BufferedOutput();
         Artisan::call('iris:load', [
             'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
