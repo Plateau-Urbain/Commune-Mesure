@@ -69,7 +69,7 @@ class ImportTypeForm extends Command
         $exist = DB::table('places')->where('id',$import_file->token)->get();
 
         if ($exist->count() && $this->option('force') === false){
-          throw new \Exception("Déjà importé");
+            die($this->extract_val($schema->name, $import_file->answers)." already imported. Use --force to overwrite");
         }
 
         $new_place = new stdClass;
