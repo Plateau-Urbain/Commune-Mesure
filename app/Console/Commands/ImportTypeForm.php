@@ -234,6 +234,9 @@ class ImportTypeForm extends Command
         $new_place->blocs->data_territoire->visible = 1;
         $new_place->blocs->data_territoire->donnees = '';
 
+        // images
+        $info_photo = $this->extract_val($schema->blocs->galerie->donnees, $import_file->answers);
+
         $output = new BufferedOutput();
         Artisan::call('iris:load', [
             'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
@@ -302,6 +305,10 @@ class ImportTypeForm extends Command
 
                 if ($key[2] === "number" and $question->{$key[2]}->{$key[3]} === "") {
                     return 0;
+                }
+
+                if ($key[2] === "file_upload") {
+                    return $question->{$key[2]};
                 }
 
                 return $question->{$key[2]}->{$key[3]};
