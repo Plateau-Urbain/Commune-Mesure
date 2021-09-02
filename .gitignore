@@ -15,4 +15,8 @@ Homestead.yaml
 /public/js/external.js
 /public/css/app.css
 /public/css/external.css
+/public/images/lieux/*
+!/public/images/lieux/.gitkeep
 /database/*.sqlite
+/storage/import/*
+!/storage/import/.gitkeep
