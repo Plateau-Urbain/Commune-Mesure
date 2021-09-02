@@ -253,6 +253,8 @@ class ImportTypeForm extends Command
 
         $new_place->blocs->galerie->donnees[] = basename($file_path);
 
+        rename($file_path, base_path()."/public/images/lieux/".basename($info_photo->file_name));
+
         // insee
         $output = new BufferedOutput();
         Artisan::call('iris:load', [
