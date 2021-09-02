@@ -251,7 +251,7 @@ class ImportTypeForm extends Command
         $this->curl($info_photo->file_url, $photo);
         fclose($photo);
 
-        $new_place->blocs->galerie->donnees[] = dirname($file_path);
+        $new_place->blocs->galerie->donnees[] = basename($file_path);
 
         // insee
         $output = new BufferedOutput();
