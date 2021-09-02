@@ -155,8 +155,16 @@ class ImportTypeForm extends Command
         $new_place->blocs->valeurs->donnees = $schema->blocs->valeurs->donnees;
         $new_place->blocs->valeurs->donnees->Accueil = 0;
 
+        $count = 0;
         foreach ($valeurs_choices as $vc) {
+          echo($vc);
+          if($count > 3){
+            continue;
+          }
+          if(array_key_exists($vc,json_decode(json_encode($new_place->blocs->valeurs->donnees), true))){
             $new_place->blocs->valeurs->donnees->{$vc} = 1;
+            $count++;
+          }
         }
 
         // moyens
@@ -170,7 +178,7 @@ class ImportTypeForm extends Command
         $new_place->blocs->moyens->donnees->fonctionnement = new stdClass;
         $new_place->blocs->moyens->donnees->fonctionnement->{"Autres Subventions"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Autres Subventions"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->fonctionnement->{"Aides privées"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides privées"}, $import_file->answers);
-        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides publics"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides publics"}, $import_file->answers);
+        $new_place->blocs->moyens->donnees->fonctionnement->{"Aides publiques"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides publiques"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->fonctionnement->{"Recettes"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Recettes"}, $import_file->answers);
         $new_place->blocs->moyens->donnees->benevoles = $this->extract_val($schema->blocs->moyens->donnees->benevoles, $import_file->answers);
         $new_place->blocs->moyens->donnees->partenaires = $this->extract_val($schema->blocs->moyens->donnees->partenaires, $import_file->answers);
