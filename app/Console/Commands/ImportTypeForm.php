@@ -155,8 +155,16 @@ class ImportTypeForm extends Command
         $new_place->blocs->valeurs->donnees = $schema->blocs->valeurs->donnees;
         $new_place->blocs->valeurs->donnees->Accueil = 0;
 
+        $count = 0;
         foreach ($valeurs_choices as $vc) {
+          echo($vc);
+          if($count > 3){
+            continue;
+          }
+          if(array_key_exists($vc,json_decode(json_encode($new_place->blocs->valeurs->donnees), true))){
             $new_place->blocs->valeurs->donnees->{$vc} = 1;
+            $count++;
+          }
         }
 
         // moyens
