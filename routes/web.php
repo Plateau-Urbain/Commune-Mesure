@@ -55,7 +55,7 @@ $router->get('/les-partenaires', ['as' => 'partners', function () {
 }]);
 
 if (! App::environment('production')) {
-    Route::get('/mailable/import-success/{slug}', function ($slug) {
+    Route::get('/_debug/mail/import-success/{slug}', function ($slug) {
         $place = Place::find($slug);
 
         if ($place === false) {
