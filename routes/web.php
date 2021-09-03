@@ -59,7 +59,7 @@ if (! App::environment('production')) {
         $place = Place::find($slug);
 
         if ($place === false) {
-            abort(404);
+            abort(404, "Le lieu [$slug] n'existe pas");
         }
 
         Mail::to('admin@localhost')->send(new ImportSuccess($place));
