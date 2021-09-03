@@ -55,8 +55,12 @@ $router->get('/les-partenaires', ['as' => 'partners', function () {
 }]);
 
 if (! App::environment('production')) {
-    Route::get('/mailable/import-success', function () {
-        $place = Place::find('ymca-paris');
+    Route::get('/mailable/import-success/{slug}', function ($slug) {
+        $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
 
         Mail::to('admin@localhost')->send(new ImportSuccess($place));
         return new ImportSuccess($place);
