@@ -33,6 +33,7 @@ class ImportSuccess extends Mailable
      */
     public function build()
     {
+        $this->subject('Import du lieu: '.$this->place->get('name'));
         return $this->text('emails.import.success');
     }
 }
