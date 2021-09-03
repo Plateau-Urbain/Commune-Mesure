@@ -6,7 +6,7 @@ IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
 
 cd $PUPPETEER_DIR
-#node "$PUPPETEER_DIR/typeform.js"
+node "$PUPPETEER_DIR/typeform.js"
 cd -
 
 #appel script split
