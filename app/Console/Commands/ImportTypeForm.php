@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use \stdClass;
 use App\Models\Place;
+use App\Mail\ImportSuccess;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -306,6 +308,15 @@ class ImportTypeForm extends Command
             $this->call('admin:generate-hash', [
                 'place' => $import_file->token
             ]);
+
+            $place = Place::find(Str::of($new_place->name)->slug('-'));
+
+            try {
+                Mail::to($new_place->creator->email)
+                    ->send(new ImportSuccess($place));
+            } catch (ErrorException $e) {
+                die("Can't sent email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
+            }
         }
     }
 
