@@ -255,7 +255,7 @@ class ImportTypeForm extends Command
         $info_photo = $this->extract_val($schema->blocs->galerie->donnees, $import_file->answers);
 
         if ($info_photo->file_url) {
-            $filename = Str::of($new_place->name.$info_photo->file_name)->slug('-');
+            $filename = Str::of($new_place->name.'-'.pathinfo($info_photo->file_name)['filename'])->slug('-');
             $file_path = implode(DIRECTORY_SEPARATOR, [
                 storage_path('import'),
                 Str::of($new_place->name)->slug('-'),
