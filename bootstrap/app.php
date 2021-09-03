@@ -109,6 +109,10 @@ if (env('APP_DEBUG')) {
     $app->configure('debugbar');
 }
 
+if (env('APP_ENV') !== 'production') {
+    $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
