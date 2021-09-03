@@ -1,4 +1,4 @@
-Bonjour {{ $place->get('name') }},
+Bonjour {{ $place->get('creator->name') }},
 
 Comme vous avez répondu au questionnaire Typeform mis en place par {{ getenv('APP_NAME') }},
 votre lieu vient d'être importé automatiquement sur la plateforme :
