@@ -153,7 +153,7 @@ class Place extends Model
         $query = DB::table('places');
 
         if ($place) {
-            $query->where('place', $place);
+            $query->where('place', $place->getSlug());
         }
 
         return $query->pluck('hash_admin', 'place');

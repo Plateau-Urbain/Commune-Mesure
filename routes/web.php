@@ -2,6 +2,11 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Place;
+use App\Mail\ImportSuccess;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -48,3 +53,12 @@ $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsContr
 $router->get('/les-partenaires', ['as' => 'partners', function () {
     return view('partenaires');
 }]);
+
+if (! App::environment('production')) {
+    Route::get('/mailable/import-success', function () {
+        $place = Place::find('ymca-paris');
+
+        Mail::to('admin@localhost')->send(new ImportSuccess($place));
+        return new ImportSuccess($place);
+    });
+}
