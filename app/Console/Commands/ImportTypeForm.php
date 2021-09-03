@@ -81,6 +81,11 @@ class ImportTypeForm extends Command
         $new_place->address->address = $this->extract_val($schema->address->address, $import_file->answers);
         $new_place->address->postalcode = $this->extract_val($schema->address->postalcode, $import_file->answers);
 
+        // Createur
+        $new_place->creator = new stdClass;
+        $new_place->creator->name = $this->extract_val($schema->creator->name, $import_file->answers);
+        $new_place->creator->email = $this->extract_val($schema->creator->email, $import_file->answers);
+
         //presentation
         $new_place->blocs = new stdClass;
         $new_place->blocs->presentation = new stdClass;
