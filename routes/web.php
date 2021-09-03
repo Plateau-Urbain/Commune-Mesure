@@ -62,7 +62,9 @@ if (! App::environment('production')) {
             abort(404, "Le lieu [$slug] n'existe pas");
         }
 
-        Mail::to('admin@localhost')->send(new ImportSuccess($place));
+        Mail::to($place->get('creator->email'))
+            ->send(new ImportSuccess($place));
+
         return new ImportSuccess($place);
     });
 }
