@@ -258,7 +258,7 @@ class ImportTypeForm extends Command
             $file_path = implode(DIRECTORY_SEPARATOR, [
                 storage_path('import'),
                 Str::of($new_place->name)->slug('-'),
-                $info_photo->file_name
+                Str::of($info_photo->file_name)->slug('-')
             ]);
 
             if (! is_dir(dirname($file_path))) {
