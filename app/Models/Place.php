@@ -63,18 +63,16 @@ class Place extends Model
             return self::$places;
         }
 
-      $places = DB::table('places')
-          ->select('place as slug')
-          ->where('deleted_at', null)
-          ->get();
+        $places = DB::table('places')
+            ->select('place as slug')
+            ->where('deleted_at', null)
+            ->get();
 
-      $array_place = [];
-      foreach($places as $place){
-          $p = self::find($place->slug);
-          $array_place[] =$p;
-      }
-      self::$places = collect($array_place);
-      return self::$places;
+        self::$places = $places->map(function ($place, $key) {
+            return self::find($place->slug);
+        });
+
+        return self::$places;
     }
 
     public function setData($data){
