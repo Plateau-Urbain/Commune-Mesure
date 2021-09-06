@@ -31,5 +31,3 @@ do
     echo "$i"
     yes | php artisan import:typeform "$i"
 done
-
-bash bin/resize_place_img.sh

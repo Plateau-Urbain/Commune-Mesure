@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use \Carbon\Carbon;
 
 class ImportTypeForm extends Command
@@ -256,6 +258,8 @@ class ImportTypeForm extends Command
 
         if ($info_photo->file_url && substr($info_photo->file_url, -4) !== '.pdf') {
             $filename = Str::of($new_place->name.'-'.pathinfo($info_photo->file_name)['filename'])->slug('-').'.'.pathinfo($info_photo->file_name)['extension'];
+            $dest_dir = base_path()."/public/images/lieux/originals/";
+
             $file_path = implode(DIRECTORY_SEPARATOR, [
                 storage_path('import'),
                 Str::of($new_place->name)->slug('-'),
@@ -272,7 +276,20 @@ class ImportTypeForm extends Command
 
             $new_place->blocs->galerie->donnees[] = $filename;
 
-            rename($file_path, base_path()."/public/images/lieux/originals/".$filename);
+            if (! is_dir($dest_dir)) {
+                mkdir($dest_dir, 0755, true);
+            }
+
+            rename($file_path, $dest_dir.$filename);
+
+            $process = new Process(['bash', base_path().'/bin/resize_place_img.sh', $filename]);
+            $process->run();
+
+            // executes after the command finishes
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+
         }
 
         // insee
