@@ -14,7 +14,7 @@
         @if($photo)
           <div class="item-{{ $loop->iteration }}" >
             <figure class="image is-covered images-lieu">
-              <img src="/images/lieux/{{ $photo }}">
+              <img src="{{ url('/images/lieux/') }}/{{$photo }}">
             </figure>
           </div>
         @endif

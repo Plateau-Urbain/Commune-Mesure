@@ -1,6 +1,6 @@
 <div class="home-head">
   <figure class="image">
-    <img src="/images/roofing.svg">
+    <img src="{{ url('/images/roofing.svg') }}">
   </figure>
 </div>
 <div class="column home-body">
@@ -22,17 +22,17 @@
         @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'presentation','type' => 'decimal','titre'=>"Modifier le nombre d'emplois directs","description"=>"Nombre d'emplois directement créés par le lieu pour son fonctionnement"])</div>
       <div class="home-door">
         <figure class="image">
-          <img src="/images/foot_home.svg">
+          <img src="{{ url('/images/foot_home.svg') }}">
         </figure>
       </div>
     </div>
 
     <div class="column is-one-third has-text-centered home-body-right">
     <figure class="image">
-          <img src="/images/groupe_windows.svg">
+          <img src="{{ url('/images/groupe_windows.svg') }}">
         </figure>
         <figure class="image">
-          <img src="/images/groupe_windows.svg">
+          <img src="{{ url('/images/groupe_windows.svg') }}">
         </figure>
     </div>
   </div>

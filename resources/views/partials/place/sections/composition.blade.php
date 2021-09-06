@@ -24,12 +24,12 @@
     <div class="column is-5 my-3" style="overflow-y: auto; ">
       @if( $place->get('blocs->composition->donnees->structures_crees') <= 50)
         @for ($i = 0; $i < $place->get('blocs->composition->donnees->structures_crees'); $i++)
-          <img class='icone-moyen' src='/images/structure.png'/>
+          <img class='icone-moyen' src='{{ url('/images/structure.png') }}'/>
         @endfor
       @endif
       @if( $place->get('blocs->composition->donnees->structures_crees') > 50)
         @for ($i = 0; $i < 50; $i++)
-          <img class='icone-moyen' src='/images/structure.png'/>
+          <img class='icone-moyen' src='{{ url('/images/structure.png') }}'/>
         @endfor
           <span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
       @endif

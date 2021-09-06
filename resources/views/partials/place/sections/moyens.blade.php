@@ -30,28 +30,28 @@
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}
         @if($place->get('blocs->presentation->donnees->emplois directs') == 10)
-          <img class='icone-moyen' src='/images/10personnes.png'/>
+          <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
         @endif
         @if($place->get('blocs->presentation->donnees->emplois directs') > 100)
           @for($i=0; $i< 10; $i++)
-            <img class='icone-moyen' src='/images/10personnes.png'/>
+            <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endfor
-          <img class='icone-moyen' src='/images/personnes.png'/>
+          <img class='icone-moyen' src='{{ url('/images/personnes.png') }}'/>
         @endif
         @if($place->get('blocs->presentation->donnees->emplois directs') > 10 && $place->get('blocs->presentation->donnees->emplois directs') <= 100)
           @for($i = 0; $i < $place->get('blocs->presentation->donnees->emplois directs') - 10; $i = $i+10)
-            <img class='icone-moyen' src='/images/10personnes.png'/>
+            <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endfor
           @if ($place->get('blocs->presentation->donnees->emplois directs') % 10 == 0)
-          <img class='icone-moyen' src='/images/10personnes.png'/>
+          <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endif
           @for($i = 0; $i < $place->get('blocs->presentation->donnees->emplois directs') % 10; $i++)
-            <img class='icone-moyen' src='/images/1personne.png' />
+            <img class='icone-moyen' src='{{ url('/images/1personne.png') }}' />
           @endfor
         @endif
         @if($place->get('blocs->presentation->donnees->emplois directs') < 10)
           @for($i = 0; $i < $place->get('blocs->presentation->donnees->emplois directs') % 10; $i++)
-            <img class='icone-moyen' src='/images/1personne.png' />
+            <img class='icone-moyen' src='{{ url('/images/1personne.png') }}' />
           @endfor
         @endif
 
@@ -72,28 +72,28 @@
       <div class="column is-5 my-3" style="overflow-y: hidden; max-height: 200px;">
         {{-- fix pour le cas spécial 10 --}}
         @if($place->get('blocs->moyens->donnees->benevoles') == 10)
-          <img class='icone-moyen' src='/images/10personnes.png'/>
+          <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
         @endif
         @if($place->get('blocs->moyens->donnees->benevoles') > 100)
           @for($i=0; $i< 10; $i++)
-            <img class='icone-moyen' src='/images/10personnes.png'/>
+            <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endfor
-          <img class='icone-moyen' src='/images/personnes.png'/>
+          <img class='icone-moyen' src='{{ url('/images/personnes.png') }}'/>
         @endif
         @if($place->get('blocs->moyens->donnees->benevoles') > 10 && $place->get('blocs->moyens->donnees->benevoles') <= 100 )
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') - 10; $i = $i+10)
-            <img class='icone-moyen' src='/images/10personnes.png'/>
+            <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endfor
           @if ($place->get('blocs->moyens->donnees->benevoles') % 10 == 0)
-            <img class='icone-moyen' src='/images/10personnes.png'/>
+            <img class='icone-moyen' src='{{ url('/images/10personnes.png') }}'/>
           @endif
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
-            <img class='icone-moyen' src='/images/1personne.png' />
+            <img class='icone-moyen' src='{{ url('/images/1personne.png') }}' />
           @endfor
         @endif
         @if($place->get('blocs->moyens->donnees->benevoles') < 10)
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
-            <img class='icone-moyen' src='/images/1personne.png' />
+            <img class='icone-moyen' src='{{ url('/images/1personne.png') }}' />
           @endfor
         @endif
       </div>

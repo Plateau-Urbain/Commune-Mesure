@@ -1,7 +1,7 @@
 <div class="bloc-note">
   <div class="header-bloc-note">
     <figure class="image">
-      <img src="/images/Porte_bloc.png">
+      <img src="{{ url('/images/Porte_bloc.png') }}">
     </figure>
   </div>
   <div class="bloc-note-body">

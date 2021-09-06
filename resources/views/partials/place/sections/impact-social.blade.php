@@ -7,7 +7,7 @@
     {{-- Gauche --}}
   <div class="column has-text-centered is-relative">
 
-    <img class="img-impact-social" width="200" src="/images/Impact_individuel.png"/>
+    <img class="img-impact-social" width="200" src="{{ url('/images/Impact_individuel.png') }}"/>
 
     <div class="impact_item bottom left" id="impact_item_lien" data-aos="fade-in">
       @php $impact_lien_text = $place->get('blocs->impact_social->donnees->lien_social') @endphp
@@ -68,7 +68,7 @@ Des personnes ou des activités mises en place sur le lieu ?"])
   {{-- Milieu --}}
   <div class="column has-text-centered is-relative">
 
-    <img class="img-impact-social" width="300" src="/images/Impact_collectif.png"/>
+    <img class="img-impact-social" width="300" src="{{ url('/images/Impact_collectif.png') }}"/>
 
     <div class="impact_item top right" id="impact_item_reseaux" data-aos="fade-in">
         @php $impact_reseau_text = $place->get('blocs->impact_social->donnees->reseaux') @endphp
@@ -126,7 +126,7 @@ Des personnes ou des activités mises en place sur le lieu ?"])
   {{-- Droite --}}
   <div  class="column has-text-centered" style="position: relative;">
 
-    <img class="img-impact-social" width="200" src="/images/Impacts_territoriaux.png"/>
+    <img class="img-impact-social" width="200" src="{{ url('/images/Impacts_territoriaux.png') }}"/>
 
     <div class="impact_item bottom left" id="impact_item_cadre_de_vie" data-aos="fade-in">
       @php $impact_cadre_de_vie_text = $place->get('blocs->impact_social->donnees->cadre_de_vie') @endphp
