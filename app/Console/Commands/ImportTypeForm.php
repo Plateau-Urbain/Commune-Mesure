@@ -272,7 +272,7 @@ class ImportTypeForm extends Command
 
             $new_place->blocs->galerie->donnees[] = $filename;
 
-            rename($file_path, base_path()."/public/images/lieux/".$filename);
+            rename($file_path, base_path()."/public/images/lieux/originals/".$filename);
         }
 
         // insee
