@@ -1,9 +1,9 @@
 @extends('layout')
 @section('title')
   <h1 class="title header-title">
-    {{ "Le data panorama" }}
+    Le data panorama
     <br>
-    {{ "de ".$place->get('name') }}
+    de {{ $place->get('name') }}
   </h1>
   <h2 class="subtitle">
     {{ $place->get('address->city') }}
