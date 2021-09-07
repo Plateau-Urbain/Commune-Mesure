@@ -72,13 +72,6 @@
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
           <p><span class="has-text-weight-bold">Site web :</span> <a href="{{ $place->get('reseaux_sociaux->donnees[0]->link') }}">{{ $place->get('reseaux_sociaux->donnees[0]->link') }}</a></p>
-          <strong> Tags : </strong>
-          @foreach($place->getData()->tags as $tag)
-            <li class="tags">{{$tag}}</li>
-          @endforeach
-          @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'tags','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les tags",'description'=>"Les mots-clefs qui identifient aisément le lieu lors d'une recherche"])
-          @endif
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture  : </strong>
             <span class="font-color-theme">{{ $place->getOuverture()}}</span>
