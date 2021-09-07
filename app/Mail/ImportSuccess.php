@@ -33,7 +33,7 @@ class ImportSuccess extends Mailable
      */
     public function build()
     {
-        $this->subject('Import du lieu: '.$this->place->get('name'));
+        $this->subject("Votre datapanorama est prêt à être édité et publié sur Commune Mesure !");
         $this->to($this->place->get('creator->email'), $this->place->get('creator->name'));
         $this->cc(getenv('MAIL_FROM_ADDRESS'), getenv('MAIL_FROM_NAME'));
 
