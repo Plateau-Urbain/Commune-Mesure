@@ -71,6 +71,7 @@
         <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
+          <p><span class="has-text-weight-bold">Site web :</span> <a href="{{ $place->get('reseaux_sociaux->donnees[0]->link') }}">{{ $place->get('reseaux_sociaux->donnees[0]->link') }}</a></p>
           <strong> Tags : </strong>
           @foreach($place->getData()->tags as $tag)
             <li class="tags">{{$tag}}</li>
