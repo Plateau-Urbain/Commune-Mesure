@@ -71,9 +71,15 @@
         <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
-          @if (($link = $place->get('reseaux_sociaux->donnees[0]->link')) || isset($edit))
-            <p><span class="has-text-weight-bold">Site web :</span> <a href="{{ $link }}">{{ $link }}</a></p>
+          <p>
+          @if (($link = $place->get('reseaux_sociaux->donnees->web')) || isset($edit))
+            <i class="fa fa-globe has-text-primary mr-1"></i> <span class="has-text-weight-bold">Site web :</span> <a href="{{ $link }}">{{ $link }}</a>
           @endif
+          @if(isset($edit))
+            @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->web', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier le site web", "description" => "Le site internet du lieu"])
+          @endif
+          </p>
+
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
           <strong>Ouverture  : </strong>
             <span class="font-color-theme">{{ $place->getOuverture()}}</span>

@@ -229,13 +229,10 @@ class ImportTypeForm extends Command
         // reseaux sociaux
         $new_place->reseaux_sociaux = new stdClass;
         $new_place->reseaux_sociaux->visible = 1;
-        $new_place->reseaux_sociaux->donnees = [];
+        $new_place->reseaux_sociaux->donnees = new stdClass;
 
         foreach ($schema->reseaux_sociaux->donnees as $k => $reseau) {
-            $new_place->reseaux_sociaux->donnees[] = [
-                'name' => $reseau->name,
-                'link' => $this->extract_val($schema->reseaux_sociaux->donnees[$k]->link, $import_file->answers)
-            ];
+            $new_place->reseaux_sociaux->donnees->$k = $this->extract_val($schema->reseaux_sociaux->donnees->$k, $import_file->answers);
         }
 
         // evenements

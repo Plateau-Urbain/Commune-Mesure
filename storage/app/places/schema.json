@@ -139,28 +139,13 @@
   },
   "reseaux_sociaux": {
     "visible": 1,
-    "donnees": [
-      {
-        "name": "web",
-        "link": "fl785vLXdAeG|ayk9ZSeSLiJv|website|value"
-      },
-      {
-        "name": "facebook",
-        "link": "fl785vLXdAeG|U0PL8bPtgaTm|website|value"
-      },
-      {
-        "name": "twitter",
-        "link": "fl785vLXdAeG|DzaERdJm38Fb|website|value"
-      },
-      {
-        "name": "instagram",
-        "link": "fl785vLXdAeG|Oxat7JdLq7Dw|website|value"
-      },
-      {
-        "name": "linkedin",
-        "link": "fl785vLXdAeG|p77hPlvFs4pY|website|value"
-      }
-    ]
+    "donnees": {
+        "web": "fl785vLXdAeG|ayk9ZSeSLiJv|website|value",
+        "facebook": "fl785vLXdAeG|U0PL8bPtgaTm|website|value",
+        "twitter": "fl785vLXdAeG|DzaERdJm38Fb|website|value",
+        "instagram": "fl785vLXdAeG|Oxat7JdLq7Dw|website|value",
+        "linkedin": "fl785vLXdAeG|p77hPlvFs4pY|website|value"
+    }
   },
   "evenements": {
     "publics": {

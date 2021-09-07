@@ -196,9 +196,9 @@ class Place extends Model
       return $result;
   }
 
-  public static function getHeadObjectChemin($place,$chemin){
-    $array=explode('->',$chemin);
-    $result=$place;
+  public static function getHeadObjectChemin($place, $chemin){
+    $array = explode('->',$chemin);
+    $result = $place;
     for($i=0 ; $i < count($array)-1; $i++){
       $result=$result->{$array[$i]};
     }
