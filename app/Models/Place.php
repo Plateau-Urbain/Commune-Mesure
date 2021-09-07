@@ -235,8 +235,7 @@ class Place extends Model
   public function toggleVisibility($section){
     $sections = $this->getVisibility();
     $visibility = $sections[$section];
-    return !$visibility;
-
+    $this->set('blocs->'.$section.'->visible', !$visibility);
   }
 
   public function getVisibility(){

@@ -88,8 +88,7 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $v = $place->toggleVisibility($section);
-        $place->set('blocs->'.$section.'->visible',$v);
+        $place->toggleVisibility($section);
         $res = $place->save();
 
         $flash = ['success' => $res, 'section' => $section];
