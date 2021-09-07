@@ -327,8 +327,7 @@ class ImportTypeForm extends Command
             $place = Place::find(Str::of($new_place->name)->slug('-'));
 
             try {
-                Mail::to($new_place->creator->email)
-                    ->send(new ImportSuccess($place));
+                Mail::send(new ImportSuccess($place));
             } catch (ErrorException $e) {
                 die("Can't sent email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
