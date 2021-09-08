@@ -6,6 +6,9 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use \Carbon\Carbon;
+
 
 class Place extends Model
 {
@@ -455,5 +458,11 @@ class Place extends Model
     return $csv;
   }
 
-
+    public function updateHash()
+    {
+        return DB::table('places')->where('place', $this->slug)->update([
+            'hash_admin' => hash('sha256', $this->slug.Str::random(32).config('app.key')),
+            'updated_at' => Carbon::now()
+        ]);
+    }
 }

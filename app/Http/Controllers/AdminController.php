@@ -54,4 +54,21 @@ class AdminController extends Controller
       exit;
     }
 
+    public function rehash(Request $request, $slug, $auth)
+    {
+        $place = Place::find($slug);
+
+        if ($place->check($auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+
+        $res = $place->updateHash();
+
+        //$request->session()->flash('update', 'Hash mise à jour');
+        return redirect(route('admin.view'))->with('hash_update', 'Hash mise à jour');
+    }
 }

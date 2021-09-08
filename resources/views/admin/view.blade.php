@@ -72,10 +72,12 @@
                                 </span>
                               </a>
                             </button>
-                            <button class="button is-warning" disabled title="Renouveller la clé secrète">
+                            <button class="button is-warning" title="Renouveller la clé secrète">
+                              <a href="{{ route('admin.rehash', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
                                 <span class="icon is-small">
                                     <i class="fas fa-redo"></i>
                                 </span>
+                              </a>
                             </button>
                             <button class="button is-danger is-outlined" disabled title="Suppression du lieu">
                                 <span class="icon is-small">

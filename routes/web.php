@@ -34,6 +34,7 @@ $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 
 $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminController@publish', 'as' => 'admin.publish']);
+$router->get('/_admin/{slug}/{auth:[a-z0-9]+}/rehash', ['uses' => 'AdminController@rehash', 'as' => 'admin.rehash']);
 $router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
 
 $router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
