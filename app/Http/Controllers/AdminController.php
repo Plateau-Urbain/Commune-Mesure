@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function view(Place $place)
     {
-        $list = Place::retrievePlaces();
+        $list = Place::retrievePlaces('latest');
         $auths = $place->getAuth();
         return view('admin.view', compact('list', 'auths'));
     }

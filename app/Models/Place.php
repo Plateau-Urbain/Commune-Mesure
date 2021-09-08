@@ -55,18 +55,25 @@ class Place extends Model
         $place->setSlug($db->slug);
         $place->setData(json_decode($db->data));
 
+        //Cache::put('place.'.$slug, $place, 10);
+
         return $place;
     }
 
-    public static function retrievePlaces(){
+    public static function retrievePlaces($sort = null){
         if (! empty(self::$places)) {
             return self::$places;
         }
 
         $places = DB::table('places')
             ->select('place as slug')
-            ->where('deleted_at', null)
-            ->get();
+            ->where('deleted_at', null);
+
+        if (in_array($sort, ['latest', 'oldest'], true)) {
+            $places->$sort();
+        }
+
+        $places = $places->get();
 
         self::$places = $places->map(function ($place, $key) {
             return self::find($place->slug);
