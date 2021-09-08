@@ -25,7 +25,7 @@
                           @if ($place->isPublish())
                             <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
                           @else
-                            <p class="is-italic">Ce lieu voudrait vous en dire plus sur lui, mais son propriétaire ne l'a pas encore publié.</p>
+                            <p class="is-italic">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
                           @endif
 
                             <ul class="tags_container">
