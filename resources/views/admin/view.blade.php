@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="container">
+      @if (request()->session()->has('update'))
+        <section class="section">
+        <div class="message is-success">
+          <div class="message-body">
+            {{ request()->session()->get('update') }}
+          </div>
+        </div>
+        </section>
+      @endif
         <div class="hero is-large">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">Administration de lieux</h1>

@@ -68,7 +68,7 @@ class AdminController extends Controller
 
         $res = $place->updateHash();
 
-        //$request->session()->flash('update', 'Hash mise à jour');
-        return redirect(route('admin.view'))->with('hash_update', 'Hash mise à jour');
+        $request->session()->flash('update', 'Hash mise à jour');
+        return redirect(route('admin.view'));
     }
 }
