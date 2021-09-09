@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="container">
+      @if (request()->session()->has('error'))
+        <section class="section">
+        <div class="message is-danger">
+          <div class="message-body">
+            {{ request()->session()->get('error') }}
+          </div>
+        </div>
+        </section>
+      @endif
       @if (request()->session()->has('update'))
         <section class="section">
         <div class="message is-success">
