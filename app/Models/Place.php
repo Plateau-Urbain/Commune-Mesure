@@ -465,4 +465,12 @@ class Place extends Model
             'updated_at' => Carbon::now()
         ]);
     }
+
+    public function delete()
+    {
+        return DB::table('places')->where('place', $this->slug)->update([
+            'deleted_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    }
 }

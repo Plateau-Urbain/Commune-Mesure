@@ -97,11 +97,13 @@
                                 </span>
                               </a>
                             </button>
-                            <button class="button is-danger is-outlined" disabled title="Suppression du lieu">
-                                <span class="icon is-small">
-                                    <i class="fas fa-times"></i>
-                                </span>
-                            </button>
+                            <a href="{{ route('admin.delete', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                              <button class="button is-danger is-outlined" title="Suppression du lieu">
+                                  <span class="icon is-small">
+                                      <i class="fas fa-times"></i>
+                                  </span>
+                              </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

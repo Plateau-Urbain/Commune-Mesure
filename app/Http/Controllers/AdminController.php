@@ -76,4 +76,27 @@ class AdminController extends Controller
 
         return redirect(route('admin.view'));
     }
+
+    public function delete(Request $request, $slug, $auth)
+    {
+        $place = Place::find($slug);
+
+        if ($place->check($auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+
+        $res = $place->delete();
+
+        if ($res) {
+            $request->session()->flash('update', $place->get('name') . ' à bien été supprimé.');
+        } else {
+            $request->session()->flash('error', 'Erreur dans la suppression de la hash : ' . $place->get('name'));
+        }
+
+        return redirect(route('admin.view'));
+    }
 }
