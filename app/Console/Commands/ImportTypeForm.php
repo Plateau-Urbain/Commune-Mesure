@@ -102,6 +102,12 @@ class ImportTypeForm extends Command
         $new_place->blocs->presentation->donnees->date_ouverture = Carbon::createFromIsoFormat('L', $this->extract_val($schema->blocs->presentation->donnees->date_ouverture, $import_file->answers), null, config('app.locale'));
         $new_place->blocs->presentation->donnees->date_creation = Carbon::createFromIsoFormat('L', $this->extract_val($schema->blocs->presentation->donnees->date_creation, $import_file->answers), null, config('app.locale'));
         $new_place->blocs->presentation->donnees->surface = $this->extract_val($schema->blocs->presentation->donnees->surface, $import_file->answers);
+        $new_place->blocs->presentation->donnees->{"emplois directs"} = 0;
+
+        foreach ($schema->blocs->presentation->donnees->{"emplois directs"} as $answer) {
+            $new_place->blocs->presentation->donnees->{"emplois directs"} += $this->extract_val($answer, $import_file->answers);
+        }
+
         $new_place->blocs->presentation->donnees->acteurs_publics = $this->extract_val($schema->blocs->presentation->donnees->acteurs_publics, $import_file->answers);
         $new_place->blocs->presentation->donnees->acteurs_prives = $this->extract_val($schema->blocs->presentation->donnees->acteurs_prives, $import_file->answers);
 

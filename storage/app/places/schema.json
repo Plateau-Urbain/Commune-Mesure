@@ -35,7 +35,11 @@
         "date_ouverture": "fl785vLXdAeG|8VzL9g4SDyzY|date|value",
         "date_creation": "fl785vLXdAeG|6VH5xDDCNuao|date|value",
         "surface": "xztSD2Mp5EyC|ra8TVKu7zYVf|number|value",
-        "emplois directs": 0,
+        "emplois directs": [
+            "fa8efNkcBzYw|1AIl8uOoVEtR|short_text|value",
+            "fa8efNkcBzYw|3wtwTYQkgdWH|short_text|value",
+            "fa8efNkcBzYw|hR6jliZnr92n|number|value"
+        ],
         "acteurs_publics": "fzsbr9WEujZQ|yici2D4DqhaX|long_text|value",
         "acteurs_prives": "fzsbr9WEujZQ|8Xmv6Cck82CB|long_text|value",
         "natures_partenariats": {
