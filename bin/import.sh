@@ -5,6 +5,9 @@ PUPPETEER_DIR="../puppeteer_scripts"
 IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
 
+FORCE=
+[ $# -eq 1 ] && FORCE="--force"
+
 cd $PUPPETEER_DIR
 node "$PUPPETEER_DIR/typeform.js"
 cd -
@@ -29,5 +32,5 @@ fi
 for i in "$OUTPUT_DIR"/*.json
 do
     echo "$i"
-    yes | php artisan import:typeform "$i"
+    yes | php artisan import:typeform "$i" $FORCE
 done
