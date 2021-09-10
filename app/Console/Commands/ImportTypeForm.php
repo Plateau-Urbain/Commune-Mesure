@@ -343,7 +343,7 @@ class ImportTypeForm extends Command
             try {
                 Mail::send(new ImportSuccess($place));
             } catch (ErrorException $e) {
-                die("Can't sent email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
+                die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
         }
     }
