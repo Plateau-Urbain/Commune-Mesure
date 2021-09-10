@@ -92,7 +92,7 @@ class AdminController extends Controller
         $res = $place->delete();
 
         if ($res) {
-            $request->session()->flash('update', $place->get('name') . ' à bien été supprimé.');
+            $request->session()->flash('update', $place->get('name') . ' à bien été mis à la corbeille.');
         } else {
             $request->session()->flash('error', 'Erreur dans la suppression de la hash : ' . $place->get('name'));
         }
