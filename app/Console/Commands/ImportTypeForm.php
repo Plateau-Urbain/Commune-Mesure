@@ -113,7 +113,10 @@ class ImportTypeForm extends Command
         $new_place->blocs->presentation->donnees->{"emplois directs"} = 0;
 
         foreach ($schema->blocs->presentation->donnees->{"emplois directs"} as $answer) {
-            $new_place->blocs->presentation->donnees->{"emplois directs"} += $this->extract_val($answer);
+            $val = str_replace(',', '.', $this->extract_val($answer));
+            if (is_numeric($val)) {
+                $new_place->blocs->presentation->donnees->{"emplois directs"} += $val;
+            }
         }
 
         $new_place->blocs->presentation->donnees->acteurs_publics = $this->extract_val($schema->blocs->presentation->donnees->acteurs_publics);
