@@ -287,22 +287,23 @@ class ImportTypeForm extends Command
             $this->curl($info_photo->file_url, $photo);
             fclose($photo);
 
-            $new_place->blocs->galerie->donnees[] = $filename;
+            if (filesize($file_path) > 11 && exif_imagetype($file_path) !== false) {
+                $new_place->blocs->galerie->donnees[] = $filename;
 
-            if (! is_dir($dest_dir)) {
-                mkdir($dest_dir, 0755, true);
+                if (! is_dir($dest_dir)) {
+                    mkdir($dest_dir, 0755, true);
+                }
+
+                rename($file_path, $dest_dir.$filename);
+
+                $process = new Process(['bash', base_path().'/bin/resize_place_img.sh', $filename]);
+                $process->run();
+
+                // executes after the command finishes
+                if (!$process->isSuccessful()) {
+                    throw new ProcessFailedException($process);
+                }
             }
-
-            rename($file_path, $dest_dir.$filename);
-
-            $process = new Process(['bash', base_path().'/bin/resize_place_img.sh', $filename]);
-            $process->run();
-
-            // executes after the command finishes
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-
         }
 
         // insee
