@@ -338,7 +338,7 @@ class ImportTypeForm extends Command
             ]);
 
             $this->call('admin:generate-hash', [
-                'place' => $import_file->token
+                'place' => Str::of($new_place->name)->slug('-')
             ]);
 
             $place = Place::find(Str::of($new_place->name)->slug('-'));
