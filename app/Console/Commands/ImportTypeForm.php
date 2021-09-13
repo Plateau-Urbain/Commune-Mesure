@@ -5,8 +5,9 @@ namespace App\Console\Commands;
 use \stdClass;
 use App\Models\Place;
 use App\Mail\ImportSuccess;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
@@ -41,6 +42,13 @@ class ImportTypeForm extends Command
     protected $schema = '/app/places/schema.json';
 
     /**
+     * Logger
+     *
+     * @var Log
+     */
+    protected $logger;
+
+    /**
      * answers file
      *
      * @var string
@@ -54,6 +62,7 @@ class ImportTypeForm extends Command
      */
     public function __construct()
     {
+        $this->logger = Log::channel('import');
         parent::__construct();
     }
 
@@ -64,13 +73,18 @@ class ImportTypeForm extends Command
      */
     public function handle()
     {
+        $this->logger->info("Nouvel import");
+
         if (file_exists(storage_path().$this->schema) === false) {
+            $this->logger->alert("Schema file does not exists", ['schema' => storage_path().$this->schema]);
             throw new \Exception("Schema file does not exists : ".storage_path().$this->schema);
         }
 
         $f = $this->argument('file');
+        $this->logger->info("Chargement du fichier ".realpath($f));
 
         if (file_exists(realpath($f)) === false) {
+            $this->logger->alert("File does not exists", ['file' => realpath($f)]);
             throw new \Exception("File does not exists : ".realpath($f));
         }
 
@@ -80,12 +94,20 @@ class ImportTypeForm extends Command
 
         $exist = DB::table('places')->where('id',$import_file->token)->get();
 
+        $place_name = $this->extract_val($schema->name);
         if ($exist->count() && $this->option('force') === false){
-            die($this->extract_val($schema->name)." already imported. Use --force to overwrite\n");
+            $this->logger->notice($place_name." already imported. Use --force to overwrite.");
+            die($place_name." already imported. Use --force to overwrite\n");
+        }
+
+        $this->logger->withContext(['place' => $place_name]);
+
+        if ($this->option('force') === true) {
+            $this->logger->info('Force option used');
         }
 
         $new_place = new stdClass;
-        $new_place->name = $this->extract_val($schema->name);
+        $new_place->name = $place_name;
         $new_place->status = $this->extract_val($schema->status);
         $new_place->publish = false;
         $new_place->tags = [];
@@ -269,7 +291,11 @@ class ImportTypeForm extends Command
         $new_place->blocs->galerie->donnees = [];
         $info_photo = $this->extract_val($schema->blocs->galerie->donnees);
 
-        if ($info_photo->file_url && substr($info_photo->file_url, -4) !== '.pdf') {
+        $this->logger->info("Does it have a photo ?");
+
+        if ($info_photo->file_url && substr($info_photo->file_name, -4) !== '.pdf') {
+            $this->logger->info("Found !", ['filename' => $info_photo->file_name]);
+
             $filename = Str::of($new_place->name.'-'.pathinfo($info_photo->file_name)['filename'])->slug('-').'.'.pathinfo($info_photo->file_name)['extension'];
             $dest_dir = base_path()."/public/images/lieux/originals/";
 
@@ -279,34 +305,46 @@ class ImportTypeForm extends Command
                 $filename
             ]);
 
+            $this->logger->info("File will be saved to : ".$file_path);
+
             if (! is_dir(dirname($file_path))) {
                 mkdir(dirname($file_path), 0755, true);
             }
 
+            $this->logger->info("Downloading file... ".$info_photo->file_url);
             $photo = fopen($file_path, "w");
             $this->curl($info_photo->file_url, $photo);
             fclose($photo);
+            $this->logger->info("Done!");
 
             if (filesize($file_path) > 11 && exif_imagetype($file_path) !== false) {
                 $new_place->blocs->galerie->donnees[] = $filename;
+                $this->logger->info("Saving it into the json");
 
                 if (! is_dir($dest_dir)) {
                     mkdir($dest_dir, 0755, true);
                 }
 
+                $this->logger->info("Moving it to : ".$dest_dir.$filename);
                 rename($file_path, $dest_dir.$filename);
 
+                $this->logger->info("Resizing it...");
                 $process = new Process(['bash', base_path().'/bin/resize_place_img.sh', $filename]);
                 $process->run();
 
                 // executes after the command finishes
                 if (!$process->isSuccessful()) {
+                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode(), $process->getExitCodeText())]);
+                    $this->logger->emergency("Import aborted");
                     throw new ProcessFailedException($process);
                 }
-            }
-        }
+                $this->logger->info("Done resizing it.");
+
+            } else { $this->logger->notice('Wrong file format !'); }
+        } else { $this->logger->info('No'); }
 
         // insee
+        $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode]);
         $output = new BufferedOutput();
         Artisan::call('iris:load', [
             'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
@@ -317,18 +355,18 @@ class ImportTypeForm extends Command
         // on récupere l'info de la ville dans les données geojson de l'insee
         $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
 
-        echo PHP_EOL;
-        echo json_encode($new_place);
-        echo PHP_EOL;
-
         if ($exist->count() && $this->option('force') === true) {
+            $this->logger->info("Updating in database...");
             DB::table('places')->where('id', $import_file->token)
                                ->update([
                                    'place' => Str::of($new_place->name)->slug('-'),
                                    'data' => json_encode($new_place),
                                    'updated_at' => \Carbon\Carbon::now()
                                ]);
+
+            $this->logger->info($new_place->name . ' updated');
         } else {
+            $this->logger->info('Creating place '.$new_place->name);
             DB::table('places')->insert([
                 'id' => $import_file->token,
                 'place' => Str::of($new_place->name)->slug('-'),
@@ -336,7 +374,9 @@ class ImportTypeForm extends Command
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()
             ]);
+            $this->logger->info('Created');
 
+            $this->logger->info('Generating a new hash');
             $this->call('admin:generate-hash', [
                 'place' => Str::of($new_place->name)->slug('-')
             ]);
@@ -344,8 +384,11 @@ class ImportTypeForm extends Command
             $place = Place::find(Str::of($new_place->name)->slug('-'));
 
             try {
+                $this->logger->info('Sending mail to '.$new_place->creator->name);
                 Mail::send(new ImportSuccess($place));
+                $this->logger->info('Sent');
             } catch (ErrorException $e) {
+                $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
         }
@@ -353,7 +396,7 @@ class ImportTypeForm extends Command
 
     public function extract_val($keys)
     {
-        echo $keys.PHP_EOL;
+        $this->logger->info('Extracting values', ['keys' => $keys]);
 
         $key = explode('|', $keys);
         $file = $this->answers;
@@ -362,25 +405,25 @@ class ImportTypeForm extends Command
                 continue;
             }
 
-            echo $group_of_answers->title."\t";
+            $this->logger->info('Group : '.$group_of_answers->title, ['key' => $key[0]]);
 
             foreach ($group_of_answers->group->answers as $question) {
                 if ($question->id !== $key[1]) {
                     continue;
                 }
 
-                echo $question->title."\t";
+                $this->logger->info('Question : '.$question->title, ['key' => $key[1]]);
 
                 // DEBUG
                 if ($key[3] === "choices") {
+                    $this->logger->info('Answers type : choices', ['key' => $key[0].'|'.$key[1]]);
                     foreach ($question->{$key[2]}->{$key[3]} as $c) {
-                        echo $c." ";
+                        $this->logger->info('Answer: '.$c);
                     }
                 } else {
-                    echo "\t".$question->{$key[2]}->{$key[3]};
+                    $this->logger->info('Answers type : '.$key[2], ['key' => $key[0].'|'.$key[1]]);
+                    $this->logger->info('Answer : '.$question->{$key[2]}->{$key[3]});
                 }
-                echo PHP_EOL;
-                echo PHP_EOL;
 
                 if ($key[2] === "number" and $question->{$key[2]}->{$key[3]} === "") {
                     return 0;
