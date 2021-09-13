@@ -7,7 +7,6 @@
     "require": {
         "php": "^7.3",
         "doctrine/dbal": "^3.1",
-        "guzzlehttp/guzzle": "^7.3",
         "illuminate/mail": "^8.58",
         "laravel/lumen-framework": "^8.0"
     },
