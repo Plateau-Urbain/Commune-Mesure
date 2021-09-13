@@ -184,7 +184,6 @@ class ImportTypeForm extends Command
 
         $count = 0;
         foreach ($valeurs_choices as $vc) {
-          echo($vc);
           if($count > 3){
             continue;
           }
