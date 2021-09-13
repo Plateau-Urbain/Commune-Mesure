@@ -4,6 +4,7 @@
 PUPPETEER_DIR="../puppeteer_scripts"
 IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
+CRON_DIR='bin'
 
 FORCE=
 [ $# -eq 1 ] && FORCE="--force"
@@ -34,3 +35,6 @@ do
     echo "$i"
     yes | php artisan import:typeform "$i" $FORCE
 done
+
+# On met à jour la page d'accueil
+bash "$CRON_DIR"/cron.sh
