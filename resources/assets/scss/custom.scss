@@ -754,12 +754,18 @@ p.partenaires_text{
 }
 
 .description-section{
-  margin:auto;
   text-align: justify;
-  width:30%;
   font-size:1.1em;
   padding-bottom: 15px;
   margin: 0em auto 1.25em;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  @media screen and (min-width: $desktop) {
+    width: 30%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 .crayon-impact-social{
   padding-top: 50px;
