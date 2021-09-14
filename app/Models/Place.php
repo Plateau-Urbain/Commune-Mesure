@@ -421,7 +421,7 @@ class Place extends Model
                     'title' => 'Nombre de structures hébergées'
                 ],
                 'personnes accueillies' => [
-                    'nombre' => ($place->get('blocs->data_territoire->donnees->realisations->personnes accueillies->nombre')) ?: 0,
+                    'nombre' => (($place->get('evenements->publics->personnes accueillies')) ?: 0) + (($place->get('evenements->prives->personnes accueillies')) ?: 0),
                     'title' => 'Nombre de personnes accueillies par an'
                 ],
             ]
