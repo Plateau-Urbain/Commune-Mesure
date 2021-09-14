@@ -4,10 +4,10 @@
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
 <div class="section">
   <div class="columns">
-    <div class="column">
-      <label class="is-pulled-right pt-4">Choississez un découpage géographique: </label>
+    <div class="column has-text-right">
+      <label>Choississez un découpage géographique: </label>
     </div>
-    <div class="column is-pulled-left">
+    <div class="column">
       <div class="mb-5 control has-icons-left">
         <div class="select">
           <select id="selectGeo">
