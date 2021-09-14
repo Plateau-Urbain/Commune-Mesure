@@ -3,9 +3,9 @@
 </div>
 <p class='description-section'> La qualification de l'impact social est le fruit d'un processus d'interaction; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu. Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les effets  sur les personnes, les groupes de personnes et le territoire. Les réponses affichées sont issues des porteurs de projet.</p>
 
-<div class="columns" style="margin-top: 100px;">
+<div class="columns is-multiline" style="margin-top: 100px;">
     {{-- Gauche --}}
-  <div class="column has-text-centered is-relative">
+  <div class="column has-text-centered is-relative is-full-tablet my-6 is-half-desktop">
 
     <img class="img-impact-social" width="200" src="{{ url('/images/Impact_individuel.png') }}"/>
 
@@ -66,7 +66,7 @@ Des personnes ou des activités mises en place sur le lieu ?"])
 
   </div>
   {{-- Milieu --}}
-  <div class="column has-text-centered is-relative">
+  <div class="column has-text-centered is-relative is-full-tablet my-6 is-half-desktop">
 
     <img class="img-impact-social" width="300" src="{{ url('/images/Impact_collectif.png') }}"/>
 
@@ -124,7 +124,7 @@ Des personnes ou des activités mises en place sur le lieu ?"])
 
   </div>
   {{-- Droite --}}
-  <div  class="column has-text-centered" style="position: relative;">
+  <div  class="column has-text-centered is-relative is-full-tablet is-half-desktop is-offset-one-quarter-desktop">
 
     <img class="img-impact-social" width="200" src="{{ url('/images/Impacts_territoriaux.png') }}"/>
 
