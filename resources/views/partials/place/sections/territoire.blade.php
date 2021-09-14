@@ -22,11 +22,11 @@
     </div>
   </div>
 
-  <div class="columns card is-rounded">
-    <div class="column " style="width: 100%; height: 35em;">
+  <div class="columns is-multiline card is-rounded">
+    <div class="column is-full-mobile" style="width: 100%; height: 35em;">
       <div id="map-insee"></div>
     </div>
-    <div class="column is-two-thirds">
+    <div class="column is-two-thirds-desktop is-full-mobile">
       <div class="columns">
         <div class="column">
           <div id="actifsChart"></div>
