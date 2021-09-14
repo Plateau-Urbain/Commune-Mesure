@@ -9,7 +9,7 @@
       @endif
     >
         @if ($edit)
-        <div class="icon-edit">
+        <div class="icon-edit toggle">
           <a href="{{ route('place.toggle', [
             'slug' => $attributes->get('slug'),
             'auth' => $attributes->get('auth'),

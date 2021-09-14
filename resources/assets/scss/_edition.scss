@@ -9,7 +9,10 @@
         margin: 5px;
         text-align: left;
         display: inline-block;
-        position: absolute;
+
+        &.toggle {
+            position: absolute;
+        }
 
         i {
             cursor: pointer;
