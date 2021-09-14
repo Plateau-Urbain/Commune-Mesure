@@ -5,7 +5,7 @@
     </span>
   @endif
 </h2>
-<p class='description-section'>Des photos du lieu !</p>
+<p class='description-section has-text-centered'>Des photos du lieu !</p>
 <div class="container carousel-container with-padding column is-6 has-text-centered">
     @php $array_photos = $place->getPhotos(); @endphp
     @unless(empty($array_photos))
