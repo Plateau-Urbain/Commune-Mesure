@@ -387,34 +387,56 @@ class Place extends Model
         "personnes accueillies" => "Nombre de personnes accueillies par an"]
       ];
 
-   foreach ($places as $place) {
-      $data = '{"moyens":{"emplois directs":{"nombre":'.
-              $place->get('blocs->presentation->donnees->emplois directs').
-              ',"title":"Nombre d\'emplois directs"},"benevole":{"nombre":'.
-              $place->get('blocs->moyens->donnees->benevoles').
-              ',"title":"Nombre de bénévoles"},"partenaire":{"nombre":'
-              . $place->get('blocs->moyens->donnees->partenaires').
-              ',"title":"Nombre de partenaires publics / privés"},"superficie":{"nombre":'
-              . $place->get('blocs->presentation->donnees->surface').
-              ',"title":"Superficie du lieu (m2)"}},"realisations":{"ouverture":{"nombre":'
-              .$place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre').
-              ',"title":"Nombre d\'heures d\'ouverture"},"event":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->event->nombre').
-              ',"title":"Nombre d\'événements publics / privés"},"struct_hebergee":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre').
-              ',"title":"Nombre de structures hébergées"},"personnes accueillies":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->personnes accueillies->nombre').
-              ',"title":"Nombre de personnes accueillies par an"}}}';
+    foreach ($places as $place) {
+        $data = [
+            'moyens' => [
+                'emplois directs' => [
+                    'nombre' => ($place->get('blocs->presentation->donnees->emplois directs')) ?: 0,
+                    'title' => 'Nombre d\'emplois directs'
+                ],
+                'benevole' => [
+                    'nombre' => ($place->get('blocs->moyens->donnees->benevoles')) ?: 0,
+                    'title' => 'Nombre de bénévoles'
+                ],
+                'partenaire' => [
+                    'nombre' => ($place->get('blocs->moyens->donnees->partenaires')) ?: 0,
+                    'title' => 'Nombre de partenaires publics / privés'
+                ],
+                'superficie' => [
+                    'nombre' => ($place->get('blocs->presentation->donnees->surface')) ?: 0,
+                    'title' => 'Superficie du lieu (m²)'
+                ]
+            ],
+            'realisations' => [
+                'ouverture' => [
+                    'nombre' => ($place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre')) ?: 0,
+                    'title' => 'Nombre d\'heures d\'ouverture'
+                ],
+                'event' => [
+                    'nombre' => ($place->get('blocs->data_territoire->donnees->realisations->event->nombre')) ?: 0,
+                    'title' => 'Nombre d\'événements publics / privés'
+                ],
+                'struct_hebergee' => [
+                    'nombre' => ($place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre')) ?: 0,
+                    'title' => 'Nombre de structures hébergées'
+                ],
+                'personnes accueillies' => [
+                    'nombre' => ($place->get('blocs->data_territoire->donnees->realisations->personnes accueillies->nombre')) ?: 0,
+                    'title' => 'Nombre de personnes accueillies par an'
+                ],
+            ]
+        ];
 
-      $compare_data[$place->get('name')] = json_decode($data,true);
-      $compare_place_name[$place->get('name')] = $place->get('name');
+        $compare_data[$place->get('name')] = $data;
+        $compare_place_name[$place->get('name')] = $place->get('name');
     }
 
     $compares= [
-      "data" => $compare_data,
-      "titles" => $compare_title,
-      "names" => $compare_place_name
+        "data" => $compare_data,
+        "titles" => $compare_title,
+        "names" => $compare_place_name
     ];
+
     return json_encode($compares, JSON_HEX_APOS);
   }
 
