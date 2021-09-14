@@ -37,6 +37,10 @@ h2.title{
   letter-spacing: 0.1em;
   width: 30%;
 
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+  }
+
   a {
       color:white;
       font-size: 0.7em;
@@ -51,6 +55,12 @@ h2.title{
   width: 40%;
   left: 50%;
   margin-left: -20%;
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+    left: 0%;
+    margin-left: 0%;
+  }
 }
 
 .banner-image {
