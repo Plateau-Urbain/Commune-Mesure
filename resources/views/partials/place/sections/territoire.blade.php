@@ -4,12 +4,13 @@
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
 <div class="section">
   <div class="columns">
-    <div class="column has-text-right">
+    <div class="column has-text-centered is-half is-offset-one-quarter">
       <label>Choississez un découpage géographique: </label>
-    </div>
-    <div class="column">
       <div class="mb-5 control has-icons-left">
         <div class="select">
+          <span class="icon is-large is-left">
+            <i class="fas fa-map"></i>
+          </span>
           <select id="selectGeo">
             <option value="iris" selected>Proximité immédiate</option>
             <option value="commune">Commune</option>
@@ -17,9 +18,6 @@
             <option value="region">Région</option>
           </select>
         </div>
-        <span class="icon is-large is-left">
-          <i class="fas fa-map"></i>
-        </span>
       </div>
     </div>
   </div>
