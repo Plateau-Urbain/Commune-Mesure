@@ -27,4 +27,22 @@
     &.top {
         top: -45px;
     }
+
+    @media screen and (max-width: 769px) {
+        &.bottom {
+            bottom: -20%;
+        }
+
+        &.left {
+            left: 0%;
+        }
+
+        &.right {
+            right: 0%;
+        }
+
+        &.top {
+            top: -20%;
+        }
+    }
 }
