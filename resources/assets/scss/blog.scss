@@ -339,6 +339,12 @@ header#main-header {
         font-size: 18px;
         text-transform: uppercase;
     }
+
+    @media screen and (max-width: $tablet) {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
 }
 
 .et_pb_text_0_tb_footer {
