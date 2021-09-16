@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuMobile = document.getElementById('nav-mobile');
 
     menuItemsLi.forEach( li => {
-        const link = li.querySelector('a')
+        const link = li.querySelector('a').cloneNode(true)
         link.classList.add('navbar-item')
 
         if (li.classList.contains('menu-item-has-children')) {
@@ -209,8 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
             submenu.classList.add('navbar-dropdown')
 
             li.querySelectorAll('.sub-menu a').forEach( a => {
-                a.classList.add('navbar-item')
-                submenu.appendChild(a)
+                const aMobile = a.cloneNode(true)
+                aMobile.classList.add('navbar-item')
+                submenu.appendChild(aMobile)
             })
 
             dropdown.appendChild(submenu)
