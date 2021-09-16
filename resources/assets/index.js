@@ -164,3 +164,59 @@ window.onload = (event) => {
         animateBar();
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+    // Ajout des liens du menu dans le menu mobile
+    const menuItemsLi = document.querySelectorAll('#top-menu > li.menu-item');
+    const menuMobile = document.getElementById('nav-mobile');
+
+    menuItemsLi.forEach( li => {
+        const link = li.querySelector('a')
+        link.classList.add('navbar-item')
+
+        if (li.classList.contains('menu-item-has-children')) {
+            const dropdown = document.createElement('div')
+            dropdown.classList.add('navbar-item', 'has-dropdown', 'is-active')
+
+            link.classList.remove('navbar-item')
+            link.classList.add('navbar-link')
+            dropdown.appendChild(link)
+
+            const submenu = document.createElement('div')
+            submenu.classList.add('navbar-dropdown')
+
+            li.querySelectorAll('.sub-menu a').forEach( a => {
+                a.classList.add('navbar-item')
+                submenu.appendChild(a)
+            })
+
+            dropdown.appendChild(submenu)
+            menuMobile.firstElementChild.appendChild(dropdown)
+        } else {
+            menuMobile.firstElementChild.appendChild(link);
+        }
+    });
+});
