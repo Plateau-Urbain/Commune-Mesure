@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.classList.add('navbar-item', 'has-dropdown', 'is-active')
 
             link.classList.remove('navbar-item')
-            link.classList.add('navbar-link')
+            link.classList.add('navbar-link', 'is-arrowless')
             dropdown.appendChild(link)
 
             const submenu = document.createElement('div')
