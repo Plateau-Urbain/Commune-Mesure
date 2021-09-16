@@ -39,6 +39,38 @@
     src: url('../../../public/fonts/modules.woff') format('woff');
 }
 
+#nav-mobile {
+    border-top: $primary 3px solid;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    font-family: 'Source Sans Pro',Helvetica,Arial,Lucida,sans-serif;
+
+    a {
+        color: $blog-black;
+
+        &:hover {
+            background-color: rgba(0,0,0,.03);
+            opacity: .7;
+        }
+    }
+
+    a.navbar-item, a.navbar-link {
+        border-bottom: 1px solid rgba(0,0,0,.03);
+    }
+
+    .navbar-dropdown {
+        padding: 0 0 0 10px;
+
+        .navbar-item {
+            padding-left: 5%;
+            margin-left: 5%;
+        }
+    }
+}
+
 header#main-header {
     font-family: 'Source Sans Pro';
     line-height : 23px;
