@@ -117,6 +117,7 @@
 @endsection
 
 @section('script_js')
+  @parent
   <script>
     document.addEventListener('click', function(e) {
       for (var target = e.target; target && target != this; target = target.parentNode) {
