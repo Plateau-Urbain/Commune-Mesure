@@ -8,7 +8,7 @@
 
 
 @if(!empty($place->get('blocs->composition->donnees->structures_crees')) && !isset($edit) || isset($edit))
-  <div class="columns">
+  <div class="columns has-text-centered-mobile">
     <div class="column is-offset-2 is-3">
       <span class="title is-1">{{ $place->get('blocs->composition->donnees->structures_crees') }}</span> <br />
       <span class="title is-5">

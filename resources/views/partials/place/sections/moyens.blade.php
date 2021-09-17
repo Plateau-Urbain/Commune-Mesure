@@ -17,7 +17,7 @@
 <canvas id="financement-budget-doughnut" ></canvas>
 
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
-    <div class="columns">
+    <div class="columns has-text-centered-mobile">
       <div class="column is-3 is-offset-2">
         <span class="title is-1">{{$place->get('blocs->presentation->donnees->emplois directs')}}</span><br /><span class="title is-5">
           @if ($place->get('blocs->presentation->donnees->emplois directs') > 1)
@@ -59,7 +59,7 @@
     </div>
   @endif
   @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
-    <div class="columns">
+    <div class="columns has-text-centered-mobile">
       <div class="column is-3 is-offset-2">
         <span class="title is-1">{{$place->get('blocs->moyens->donnees->benevoles')}}</span><br /><span class="title is-5">
           @if ($place->get('blocs->moyens->donnees->benevoles') > 1)
