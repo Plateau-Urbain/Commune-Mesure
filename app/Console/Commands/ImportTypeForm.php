@@ -346,9 +346,14 @@ class ImportTypeForm extends Command
         // insee
         $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode]);
         $output = new BufferedOutput();
-        Artisan::call('iris:load', [
-            'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
-        ], $output);
+        try {
+            Artisan::call('iris:load', [
+                'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
+            ], $output);
+        } catch (\Exception $e) {
+            $this->logger->alert('Insee information failed : '.$e->getMessage());
+            $this->logger->emergency("Import aborted");
+        }
 
         $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
 
