@@ -9,10 +9,10 @@
     <div class="content">
       @if (isset($edit))
         <span class="is-block is-size-6">
+          <span class="is-size-7 has-text-grey-light">Utilisé pour les statistiques, non visible sur la page du lieu</span>
+          <br/>
           Nombre de partenaires: {{ $place->get('blocs->moyens->donnees->partenaires') ?? 0 }}
           @include('components.modals.modalEdition', ['chemin' => 'blocs->moyens->donnees->partenaires', 'id_section' => 'presentation', 'type' => 'number', 'titre' => "Modifier le nombre d'acteurs total", 'description'=>"Les acteurs publics et privés partenaires ou soutien du projet"])
-          <br/>
-          <span class="is-size-7 has-text-grey-light">Utilisé pour les statistiques, non visible sur la page du lieu</span>
         </span>
       @endif
       @if($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
