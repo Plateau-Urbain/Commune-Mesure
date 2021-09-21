@@ -8,7 +8,7 @@
     <br>
     <div class="content">
       @if (isset($edit))
-        <span class="is-block is-size-6">
+        <span class="is-block is-size-6 p-1" style="border: 1px dotted grey">
           <span class="is-size-7 has-text-grey-light">Utilisé pour les statistiques, non visible sur la page du lieu</span>
           <br/>
           Nombre de partenaires: {{ $place->get('blocs->moyens->donnees->partenaires') ?? 0 }}
