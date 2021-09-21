@@ -381,9 +381,9 @@ class Place extends Model
         "superficie" => "Superficie du lieu (m2)"
       ],
       'realisations'=>[
-        "ouverture" => "Nombre d'heures d'ouverture",
-        "event" => "Nombre d'événements publics / privés",
-        "struct_hebergee" => "Nombre de structures hébergées",
+        //"ouverture" => "Nombre d'heures d'ouverture",
+        //"event" => "Nombre d'événements publics / privés",
+        //"struct_hebergee" => "Nombre de structures hébergées",
         "personnes accueillies" => "Nombre de personnes accueillies par an"]
       ];
 
@@ -410,18 +410,18 @@ class Place extends Model
                 ]
             ],
             'realisations' => [
-                'ouverture' => [
-                    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre')) ?: 0,
-                    'title' => 'Nombre d\'heures d\'ouverture'
-                ],
-                'event' => [
-                    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->event->nombre')) ?: 0,
-                    'title' => 'Nombre d\'événements publics / privés'
-                ],
-                'struct_hebergee' => [
-                    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre')) ?: 0,
-                    'title' => 'Nombre de structures hébergées'
-                ],
+                //'ouverture' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre')) ?: 0,
+                //    'title' => 'Nombre d\'heures d\'ouverture'
+                //],
+                //'event' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->event->nombre')) ?: 0,
+                //    'title' => 'Nombre d\'événements publics / privés'
+                //],
+                //'struct_hebergee' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre')) ?: 0,
+                //    'title' => 'Nombre de structures hébergées'
+                //],
                 'personnes accueillies' => [
                     'nombre' => +(($place->get('evenements->publics->personnes accueillies')) ?: 0) + (($place->get('evenements->prives->personnes accueillies')) ?: 0),
                     'title' => 'Nombre de personnes accueillies par an'
