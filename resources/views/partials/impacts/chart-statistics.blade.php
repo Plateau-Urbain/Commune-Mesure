@@ -58,7 +58,7 @@
       },
       yaxis:{
         tickAmount: 10,
-        logarithmic: true,
+        logarithmic: false,
         min: undefined,
         max: undefined
       },
@@ -122,7 +122,7 @@
         yaxis:{
           tickAmount: 10,
           tickPlacement: 'between',
-          logarithmic: true,
+          logarithmic: false,
           min: undefined,
           max: undefined,
           title: { text: rightTitle }
