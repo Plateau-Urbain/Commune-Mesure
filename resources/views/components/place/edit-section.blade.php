@@ -22,7 +22,7 @@
             @endif
           </a>
           @if ($isEmpty)
-            <i class="fa fa-exclamation-triangle has-text-warning-dark" title="Les données sont vides"></i>
+            <i class="fa fa-exclamation-triangle has-text-warning-dark" title="Les données sont vides"></i> Les données sont vides
           @endif
         </div>
         @endif
