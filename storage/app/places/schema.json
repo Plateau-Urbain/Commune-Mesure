@@ -104,7 +104,10 @@
           "Recettes": "180KKnWqF927|q40E89SPPjZh|number|value"
         },
         "benevoles": "fa8efNkcBzYw|xRwpRA0LHLfQ|number|value",
-        "partenaires": "fzsbr9WEujZQ|8Xmv6Cck82CB+yici2D4DqhaX|long_text|value"
+        "partenaires": [
+            "fzsbr9WEujZQ|yici2D4DqhaX|long_text|value",
+            "fzsbr9WEujZQ|8Xmv6Cck82CB|long_text|value"
+        ]
       }
     },
     "composition": {

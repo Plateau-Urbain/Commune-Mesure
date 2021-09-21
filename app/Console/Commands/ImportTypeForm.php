@@ -229,7 +229,42 @@ class ImportTypeForm extends Command
         $new_place->blocs->moyens->donnees->fonctionnement->{"Aides publiques"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Aides publiques"});
         $new_place->blocs->moyens->donnees->fonctionnement->{"Recettes"} = $this->extract_val($schema->blocs->moyens->donnees->fonctionnement->{"Recettes"});
         $new_place->blocs->moyens->donnees->benevoles = $this->extract_val($schema->blocs->moyens->donnees->benevoles);
-        $new_place->blocs->moyens->donnees->partenaires = $this->extract_val($schema->blocs->moyens->donnees->partenaires);
+
+        $partenaires = 0;
+        $pubpriv = $this->extract_val($schema->blocs->moyens->donnees->partenaires);
+        if ($this->extract_val("fzsbr9WEujZQ|96UejUyeCROl|yes_no|value") === "Yes") {
+            $pub = $this->extract_val($pubpriv[0]); // public
+
+            if (strlen($pub) == 0) {
+                $partenaires += 0;
+            } elseif (strpos($pub, "\n")) {
+                $partenaires += count(explode("\n", $pub));
+            } elseif (strpos($pub, ", ")) {
+                $partenaires += count(explode(", ", $pub));
+            } elseif (strpos($pub, " - ")) {
+                $partenaires += count(explode(' - ', $pub));
+            } else {
+                $partenaires++;
+            }
+        }
+
+        if ($this->extract_val("fzsbr9WEujZQ|KY0NcflXUycv|yes_no|value") === "Yes") {
+            $priv = $this->extract_val($pubpriv[1]); // prive
+
+            if (strlen($priv) == 0) {
+                $partenaires += 0;
+            } elseif (strpos($priv, "\n")) {
+                $partenaires += count(explode("\n", $priv));
+            } elseif (strpos($priv, ", ")) {
+                $partenaires += count(explode(", ", $priv));
+            } elseif (strpos($priv, " - ")) {
+                $partenaires += count(explode(' - ', $priv));
+            } else {
+                $partenaires++;
+            }
+        }
+
+        $new_place->blocs->moyens->donnees->partenaires = $partenaires;
 
         // composition
         $new_place->blocs->composition = new stdClass;
