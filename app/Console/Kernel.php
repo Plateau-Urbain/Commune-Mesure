@@ -6,6 +6,7 @@ use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
+use App\Console\Commands\SetValue;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
-        ImportTypeForm::class
+        ImportTypeForm::class,
+        SetValue::class
     ];
 
     /**
