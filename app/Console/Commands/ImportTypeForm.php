@@ -231,7 +231,7 @@ class ImportTypeForm extends Command
         $new_place->blocs->moyens->donnees->benevoles = $this->extract_val($schema->blocs->moyens->donnees->benevoles);
 
         $partenaires = 0;
-        $pubpriv = $this->extract_val($schema->blocs->moyens->donnees->partenaires);
+        $pubpriv = $schema->blocs->moyens->donnees->partenaires;
         if ($this->extract_val("fzsbr9WEujZQ|96UejUyeCROl|yes_no|value") === "Yes") {
             $pub = $this->extract_val($pubpriv[0]); // public
 
