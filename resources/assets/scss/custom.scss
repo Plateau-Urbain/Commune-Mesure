@@ -35,7 +35,11 @@ h2.title{
   border-bottom: 5px solid #9c0000;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  width: 30%;
+  width: 60%;
+
+  @media screen and (max-width: $desktop) {
+    width: 80%;
+  }
 
   @media screen and (max-width: $tablet) {
     width: 100%;
