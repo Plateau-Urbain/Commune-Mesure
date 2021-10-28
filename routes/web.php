@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use App\Models\Place;
 use App\Mail\ImportSuccess;
 
