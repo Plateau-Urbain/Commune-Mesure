@@ -464,22 +464,24 @@ class Place extends Model
     return "";
   }
 
-  public function exportCsv($csv,$auth){
-    $separator =",";
-    $link = route('place.show',['slug' => $this->getSlug() ]);
-    $name = $this->getSlug();
-    $entete = $link.$separator.$name.$separator;
-    $csv = $csv.$entete.'nom'.$separator.$this->getSlug()."\n";
-    $csv = $csv.$entete.'page admin'.$separator.route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])."\n";
-    $csv = $csv.$entete.'clé'.$separator.$auth."\n";
-    if($this->get('publish')){
-      $status='publié';
-    }
-    else{
-      $status='non publié';
-    }
-    $csv = $csv.$entete.'status'.$separator.$status."\n";
-    return $csv;
+  public function exportCsv(string $auth) : \Generator
+  {
+      $csv = [];
+      $link = route('place.show',['slug' => $this->getSlug() ]);
+      $name = $this->getSlug();
+
+      $csv[] = [$link, $name, 'nom', $this->getSlug()];
+      $csv[] = [$link, $name, 'page admin', route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])];
+      $csv[] = [$link, $name, 'cle', $auth];
+
+      $status = ($this->get('publish')) ? 'publié' : 'non publié';
+
+      $csv[] = [$link, $name, 'status', $status];
+      $csv[] = [$link, $name, 'email', $this->get('creator->email')];
+
+      foreach ($csv as $line) {
+        yield $line;
+      }
   }
 
     public function updateHash()
