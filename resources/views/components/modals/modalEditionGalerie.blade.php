@@ -131,7 +131,7 @@
                     <div>
                       <button name="supprimer" style="z-index:1000;position:absolute;" class="button pull-right is-danger" type="submit" value="{{ array_search($photo,$array_photos) }}"><i class="fas fa-times"></i></button>
                       <figure class="image is-covered">
-                          <img src="/images/lieux/{{ $photo }}">
+                          <img src="{{ url('/images/lieux/') }}/{{ $photo }}">
                       </figure>
                     </div>
                   @endif

@@ -2,6 +2,24 @@
 
 @section('content')
     <div class="container">
+      @if (request()->session()->has('error'))
+        <section class="section">
+        <div class="message is-danger">
+          <div class="message-body">
+            {{ request()->session()->get('error') }}
+          </div>
+        </div>
+        </section>
+      @endif
+      @if (request()->session()->has('update'))
+        <section class="section">
+        <div class="message is-success">
+          <div class="message-body">
+            {{ request()->session()->get('update') }}
+          </div>
+        </div>
+        </section>
+      @endif
         <div class="hero is-large">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">Administration de lieux</h1>
@@ -9,13 +27,13 @@
         </div>
         <div class="section">
             <div>
-              <button class="button is-success is-pulled-right" title="Télécharger le csv global">
-                <a style='color: white' href="{{ route('admin.globalCsv') }}">
+              <a style='color: white' href="{{ route('admin.globalCsv') }}">
+                <button class="button is-success is-pulled-right" title="Télécharger le csv global">
                   <span class="icon is-small">
                       <i class="fas fa-file-csv"></i>
                   </span>
-                </a>
-              </button>
+                </button>
+              </a>
             </div>
             <table class="table is-fullwidth">
                 <thead>
@@ -56,32 +74,36 @@
                         </td>
 
                         <td>
-                          <button class="button" title="Administrer le lieu ">
-                            <a target="_blank" href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
-                                <span class="icon is-small">
+                          <a target="_blank" href="{{ route('place.edit', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                            <button class="button" title="Administrer le lieu ">
+                                <span class="icon is-small has-text-primary">
                                     <i class="fas fa-external-link-alt"></i>
                                 </span>
-                              </a>
-                          </button>
+                            </button>
+                          </a>
                         </td>
                         <td>
-                            <button class="button is-success" title="Télécharger le csv">
-                              <a style='color: white' href="{{ route('place.csv', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                            <a style='color: white' href="{{ route('place.csv', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                              <button class="button is-success" title="Télécharger le csv">
                                 <span class="icon is-small">
                                     <i class="fas fa-download"></i>
                                 </span>
-                              </a>
-                            </button>
-                            <button class="button is-warning" disabled title="Renouveller la clé secrète">
-                                <span class="icon is-small">
+                              </button>
+                            </a>
+                            <a href="{{ route('admin.rehash', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                              <button class="button is-warning" title="Renouveller la clé secrète">
+                                <span class="icon is-small has-text-primary">
                                     <i class="fas fa-redo"></i>
                                 </span>
-                            </button>
-                            <button class="button is-danger is-outlined" disabled title="Suppression du lieu">
-                                <span class="icon is-small">
-                                    <i class="fas fa-times"></i>
-                                </span>
-                            </button>
+                              </button>
+                            </a>
+                            <a href="{{ route('admin.delete', ['slug' => $place->getSlug(), 'auth' => $auths[$place->getSlug()]]) }}">
+                              <button class="button is-danger is-outlined" title="Suppression du lieu">
+                                  <span class="icon is-small">
+                                      <i class="fas fa-times"></i>
+                                  </span>
+                              </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
@@ -95,6 +117,7 @@
 @endsection
 
 @section('script_js')
+  @parent
   <script>
     document.addEventListener('click', function(e) {
       for (var target = e.target; target && target != this; target = target.parentNode) {

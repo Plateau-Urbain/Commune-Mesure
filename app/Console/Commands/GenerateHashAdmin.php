@@ -30,7 +30,7 @@ class GenerateHashAdmin extends Command
      *
      * @var string
      */
-    protected $field = 'id';
+    protected $field = 'place';
 
     /**
      * Create a new command instance.
@@ -53,12 +53,12 @@ class GenerateHashAdmin extends Command
             throw new \LogicException('Missing APP_KEY value in your .env');
         }
 
-        $id = $this->argument('place');
+        $slug = $this->argument('place');
 
         if ($this->confirm('This will erase existing hash. Continue ?')) {
             $total = 0;
 
-            if ($id === null) {
+            if ($slug === null) {
                 $places = DB::table('places')->select($this->field)->pluck($this->field);
 
                 foreach ($places as $place) {
@@ -66,12 +66,12 @@ class GenerateHashAdmin extends Command
                     $total++;
                 }
             } else {
-                if (DB::table('places')->select($this->field)->where($this->field, $id)->doesntExist()) {
+                if (DB::table('places')->select($this->field)->where($this->field, $slug)->doesntExist()) {
                     $this->error('Place doesn\'t exists');
                     exit;
                 }
 
-                $this->updateHash($id);
+                $this->updateHash($slug);
                 $total++;
             }
 

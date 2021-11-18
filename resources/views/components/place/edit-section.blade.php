@@ -9,7 +9,7 @@
       @endif
     >
         @if ($edit)
-        <div class="icon-edit">
+        <div class="icon-edit toggle">
           <a href="{{ route('place.toggle', [
             'slug' => $attributes->get('slug'),
             'auth' => $attributes->get('auth'),
@@ -22,7 +22,7 @@
             @endif
           </a>
           @if ($isEmpty)
-            <i class="fas fa-exclamation-triangle" style='color:orange' title="Les données sont vides"></i>
+            <i class="fa fa-exclamation-triangle has-text-warning-dark" title="Les données sont vides"></i> Les données sont vides
           @endif
         </div>
         @endif

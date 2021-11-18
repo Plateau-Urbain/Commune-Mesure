@@ -1,3 +1,4 @@
+@include("partials/header-mobile")
 @include("generate/header")
 <div class="banner hero">
     <div class="hero-body">

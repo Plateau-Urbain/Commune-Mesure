@@ -9,19 +9,34 @@
         </div>
         <div class="section">
             @foreach ($places as $place)
-              @if($place->isPublish())
                 <div class="box box-lieu content">
                     <div class="columns is-bordered places-block">
                         <div class="column" style="position:relative; height:250px;">
-                            <p class="title mb-4"><a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}">{{ $place->get('name') }}</a><br />
-                            <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</span></p>
+                          <p>
+                            @if ($place->isPublish())
+                              <span class="title mb-4"><a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}">{{ $place->get('name') }}</a></span>
+                            @else
+                              <span class="title mb-4 has-text-primary" style="cursor: not-allowed" title="Lieu non publié pour le moment">{{ $place->get('name') }}</span>
+                            @endif
+                            <br/>
+                            <span class="title_places-city is-size-4" style="font-weight: normal">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</span>
+                          </p>
+
+                          @if ($place->isPublish())
                             <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
+                          @else
+                            <p class="is-italic">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
+                          @endif
+
                             <ul class="tags_container">
                             @foreach($place->getData()->tags as $tag)
                               <li class="tags">{{$tag}}</li>
                             @endforeach
                             </ul>
+
+                          @if ($place->isPublish())
                             <a href="{{ route('place.show',['slug' => $place->getSlug() ]) }}" class="btn-voir-lieu button is-default">Voir son data panorama</a>
+                          @endif
                         </div>
                         <div class="column is-one-third has-text-centered">
                             <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
@@ -35,12 +50,8 @@
                         </div>
                     </div>
                 </div>
-                @endif
-              @endforeach
-
+            @endforeach
         </div>
-
-
     </div>
 
 @endsection

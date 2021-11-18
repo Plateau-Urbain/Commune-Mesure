@@ -19,9 +19,9 @@
                     "superficie" => "Superficie du lieu (m2)"
                   ],
                   "realisations"=>[
-                    "ouverture" => "Nombre d'heures d'ouverture",
-                    "event" => "Nombre d'événements publics / privés",
-                    "struct_hebergee" => "Nombre de structures hébergées",
+                    //"ouverture" => "Nombre d'heures d'ouverture",
+                    //"event" => "Nombre d'événements publics / privés",
+                    //"struct_hebergee" => "Nombre de structures hébergées",
                     "personnes accueillies" => "Nombre de personnes accueillies par an"]
                   ];
             @endphp
@@ -43,7 +43,7 @@
               @foreach ($tab as $key_name => $programmations )
               <optgroup label="{{ $key_name }}">
                 @foreach ($programmations as $key_prog_name => $programmation )
-                  <option value="{{ $key_prog_name }}" @if($key_prog_name == "event") id="stats_selectedRightValue"
+                  <option value="{{ $key_prog_name }}" @if($key_prog_name == "personnes accueillies") id="stats_selectedRightValue"
                     selected
                   @endif >{{ $programmation }}</option>
                 @endforeach

@@ -6,6 +6,9 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use \Carbon\Carbon;
+
 
 class Place extends Model
 {
@@ -55,26 +58,31 @@ class Place extends Model
         $place->setSlug($db->slug);
         $place->setData(json_decode($db->data));
 
+        //Cache::put('place.'.$slug, $place, 10);
+
         return $place;
     }
 
-    public static function retrievePlaces(){
+    public static function retrievePlaces($sort = null){
         if (! empty(self::$places)) {
             return self::$places;
         }
 
-      $places = DB::table('places')
-          ->select('place as slug')
-          ->where('deleted_at', null)
-          ->get();
+        $places = DB::table('places')
+            ->select('place as slug')
+            ->where('deleted_at', null);
 
-      $array_place = [];
-      foreach($places as $place){
-          $p = self::find($place->slug);
-          $array_place[] =$p;
-      }
-      self::$places = collect($array_place);
-      return self::$places;
+        if (in_array($sort, ['latest', 'oldest'], true)) {
+            $places->$sort();
+        }
+
+        $places = $places->get();
+
+        self::$places = $places->map(function ($place, $key) {
+            return self::find($place->slug);
+        });
+
+        return self::$places;
     }
 
     public function setData($data){
@@ -153,7 +161,7 @@ class Place extends Model
         $query = DB::table('places');
 
         if ($place) {
-            $query->where('place', $place);
+            $query->where('place', $place->getSlug());
         }
 
         return $query->pluck('hash_admin', 'place');
@@ -198,9 +206,9 @@ class Place extends Model
       return $result;
   }
 
-  public static function getHeadObjectChemin($place,$chemin){
-    $array=explode('->',$chemin);
-    $result=$place;
+  public static function getHeadObjectChemin($place, $chemin){
+    $array = explode('->',$chemin);
+    $result = $place;
     for($i=0 ; $i < count($array)-1; $i++){
       $result=$result->{$array[$i]};
     }
@@ -237,8 +245,7 @@ class Place extends Model
   public function toggleVisibility($section){
     $sections = $this->getVisibility();
     $visibility = $sections[$section];
-    return !$visibility;
-
+    $this->set('blocs->'.$section.'->visible', !$visibility);
   }
 
   public function getVisibility(){
@@ -374,40 +381,64 @@ class Place extends Model
         "superficie" => "Superficie du lieu (m2)"
       ],
       'realisations'=>[
-        "ouverture" => "Nombre d'heures d'ouverture",
-        "event" => "Nombre d'événements publics / privés",
-        "struct_hebergee" => "Nombre de structures hébergées",
+        //"ouverture" => "Nombre d'heures d'ouverture",
+        //"event" => "Nombre d'événements publics / privés",
+        //"struct_hebergee" => "Nombre de structures hébergées",
         "personnes accueillies" => "Nombre de personnes accueillies par an"]
       ];
 
-   foreach ($places as $place) {
-      $data = '{"moyens":{"emplois directs":{"nombre":'.
-              $place->get('blocs->presentation->donnees->emplois directs').
-              ',"title":"Nombre d\'emplois directs"},"benevole":{"nombre":'.
-              $place->get('blocs->moyens->donnees->benevoles').
-              ',"title":"Nombre de bénévoles"},"partenaire":{"nombre":'
-              . $place->get('blocs->moyens->donnees->partenaires').
-              ',"title":"Nombre de partenaires publics / privés"},"superficie":{"nombre":'
-              . $place->get('blocs->presentation->donnees->surface').
-              ',"title":"Superficie du lieu (m2)"}},"realisations":{"ouverture":{"nombre":'
-              .$place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre').
-              ',"title":"Nombre d\'heures d\'ouverture"},"event":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->event->nombre').
-              ',"title":"Nombre d\'événements publics / privés"},"struct_hebergee":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre').
-              ',"title":"Nombre de structures hébergées"},"personnes accueillies":{"nombre":'.
-              $place->get('blocs->data_territoire->donnees->realisations->personnes accueillies->nombre').
-              ',"title":"Nombre de personnes accueillies par an"}}}';
+    foreach ($places as $place) {
+        $data = [
+            // Le « + » est voulu : https://www.php.net/manual/en/language.operators.arithmetic.php
+            // pour caster les strings en int ou float automagiquement
+            'moyens' => [
+                'emplois directs' => [
+                    'nombre' => +($place->get('blocs->presentation->donnees->emplois directs')) ?: 0,
+                    'title' => 'Nombre d\'emplois directs'
+                ],
+                'benevole' => [
+                    'nombre' => +($place->get('blocs->moyens->donnees->benevoles')) ?: 0,
+                    'title' => 'Nombre de bénévoles'
+                ],
+                'partenaire' => [
+                    'nombre' => +($place->get('blocs->moyens->donnees->partenaires')) ?: 0,
+                    'title' => 'Nombre de partenaires publics / privés'
+                ],
+                'superficie' => [
+                    'nombre' => +($place->get('blocs->presentation->donnees->surface')) ?: 0,
+                    'title' => 'Superficie du lieu (m²)'
+                ]
+            ],
+            'realisations' => [
+                //'ouverture' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->ouverture->nombre')) ?: 0,
+                //    'title' => 'Nombre d\'heures d\'ouverture'
+                //],
+                //'event' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->event->nombre')) ?: 0,
+                //    'title' => 'Nombre d\'événements publics / privés'
+                //],
+                //'struct_hebergee' => [
+                //    'nombre' => +($place->get('blocs->data_territoire->donnees->realisations->struct_hebergee->nombre')) ?: 0,
+                //    'title' => 'Nombre de structures hébergées'
+                //],
+                'personnes accueillies' => [
+                    'nombre' => +(($place->get('evenements->publics->personnes accueillies')) ?: 0) + (($place->get('evenements->prives->personnes accueillies')) ?: 0),
+                    'title' => 'Nombre de personnes accueillies par an'
+                ],
+            ]
+        ];
 
-      $compare_data[$place->get('name')] = json_decode($data,true);
-      $compare_place_name[$place->get('name')] = $place->get('name');
+        $compare_data[$place->get('name')] = $data;
+        $compare_place_name[$place->get('name')] = $place->get('name');
     }
 
     $compares= [
-      "data" => $compare_data,
-      "titles" => $compare_title,
-      "names" => $compare_place_name
+        "data" => $compare_data,
+        "titles" => $compare_title,
+        "names" => $compare_place_name
     ];
+
     return json_encode($compares, JSON_HEX_APOS);
   }
 
@@ -433,23 +464,39 @@ class Place extends Model
     return "";
   }
 
-  public function exportCsv($csv,$auth){
-    $separator =",";
-    $link = route('place.show',['slug' => $this->getSlug() ]);
-    $name = $this->getSlug();
-    $entete = $link.$separator.$name.$separator;
-    $csv = $csv.$entete.'nom'.$separator.$this->getSlug()."\n";
-    $csv = $csv.$entete.'page admin'.$separator.route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])."\n";
-    $csv = $csv.$entete.'clé'.$separator.$auth."\n";
-    if($this->get('publish')){
-      $status='publié';
-    }
-    else{
-      $status='non publié';
-    }
-    $csv = $csv.$entete.'status'.$separator.$status."\n";
-    return $csv;
+  public function exportCsv(string $auth) : \Generator
+  {
+      $csv = [];
+      $link = route('place.show',['slug' => $this->getSlug() ]);
+      $name = $this->getSlug();
+
+      $csv[] = [$link, $name, 'nom', $this->getSlug()];
+      $csv[] = [$link, $name, 'page admin', route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])];
+      $csv[] = [$link, $name, 'cle', $auth];
+
+      $status = ($this->get('publish')) ? 'publié' : 'non publié';
+
+      $csv[] = [$link, $name, 'status', $status];
+      $csv[] = [$link, $name, 'email', $this->get('creator->email')];
+
+      foreach ($csv as $line) {
+        yield $line;
+      }
   }
 
+    public function updateHash()
+    {
+        return DB::table('places')->where('place', $this->slug)->update([
+            'hash_admin' => hash('sha256', $this->slug.Str::random(32).config('app.key')),
+            'updated_at' => Carbon::now()
+        ]);
+    }
 
+    public function delete()
+    {
+        return DB::table('places')->where('place', $this->slug)->update([
+            'deleted_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    }
 }

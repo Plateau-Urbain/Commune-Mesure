@@ -31,7 +31,7 @@
           }
         },
         dataLabels: {
-          enabled: true,
+          enabled: false,
           textAnchor: 'start',
           offsetX: 6,
           formatter: function(value, { seriesIndex, dataPointIndex, w }) {
@@ -58,7 +58,8 @@
       },
       yaxis:{
         tickAmount: 10,
-        min:undefined,
+        logarithmic: false,
+        min: undefined,
         max: undefined
       },
       legend: {
@@ -121,7 +122,8 @@
         yaxis:{
           tickAmount: 10,
           tickPlacement: 'between',
-          min:undefined,
+          logarithmic: false,
+          min: undefined,
           max: undefined,
           title: { text: rightTitle }
         }

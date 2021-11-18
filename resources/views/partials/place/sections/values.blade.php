@@ -1,6 +1,6 @@
 <div class="banner-image-and-fil">
   <div class="banner-image">
-    <img src="/images/Les_valeurs.png">
+    <img src="{{ url('/images/Les_valeurs.png') }}">
   </div>
   <div class="banner-fil fil-4">
     <div>

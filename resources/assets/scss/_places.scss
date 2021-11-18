@@ -42,3 +42,12 @@ li.tags{
   margin-top: 0;
   margin-left: 0;
 }
+
+.edit-banner {
+  position: fixed;
+  width: 100%;
+  top: 63px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+}

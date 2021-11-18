@@ -2,6 +2,12 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+use App\Models\Place;
+use App\Mail\ImportSuccess;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -29,6 +35,8 @@ $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
 
 $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminController@publish', 'as' => 'admin.publish']);
+$router->get('/_admin/{slug}/{auth:[a-z0-9]+}/rehash', ['uses' => 'AdminController@rehash', 'as' => 'admin.rehash']);
+$router->get('/_admin/{slug}/{auth:[a-z0-9]+}/delete', ['uses' => 'AdminController@delete', 'as' => 'admin.delete']);
 $router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
 
 $router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
@@ -48,3 +56,17 @@ $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsContr
 $router->get('/les-partenaires', ['as' => 'partners', function () {
     return view('partenaires');
 }]);
+
+if (! App::environment('production')) {
+    Route::get('/_debug/mail/import-success/{slug}', function ($slug) {
+        $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404, "Le lieu [$slug] n'existe pas");
+        }
+
+        Mail::send(new ImportSuccess($place));
+
+        return new ImportSuccess($place);
+    });
+}

@@ -1,29 +1,40 @@
 #!/bin/bash
 
-#appel script puppeteer
-DOSSIER_PUPPETEER="../puppeteer_scripts/"
-CHEMIN_IRIS_CSV="storage/framework/cache/data/"
-CHEMIN='storage/app/'
+# Config
+PUPPETEER_DIR="../puppeteer_scripts"
+IRIS_CSV_DIR="storage/framework/cache/data"
+OUTPUT_DIR='storage/import'
+CRON_DIR='bin'
 
-node "$DOSSIER_PUPPETEER"typeform.js
+FORCE=
+[ $# -eq 1 ] && FORCE="--force"
+
+cd $PUPPETEER_DIR
+node "$PUPPETEER_DIR/typeform.js"
+cd -
 
 #appel script split
 unset -v FICHIER_TYPE_FORM
-for file in "$DOSSIER_PUPPETEER"out/*.json; do   [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
+for file in "$PUPPETEER_DIR"/out/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
 bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM"
 
 #fichier pour iris ...
-if [ -e "$CHEMIN_IRIS_CSV"base-ic-evol-struct-pop-2016.csv ];
+if [ ! -f "$IRIS_CSV_DIR"/base-ic-evol-struct-pop-2016.csv ];
 then
-  echo "Le fichier base-ic-evol-struct-pop-2016.csv existe"
-else
-  wget https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip -O "$CHEMIN_IRIS_CSV"base-ic-evol-struct-pop-2016.zip
-  unzip "$CHEMIN_IRIS_CSV"base-ic-evol-struct-pop-2016.zip -d "$CHEMIN_IRIS_CSV"
-  rm base-ic-evol-struct-pop-2016.zip
+    echo "WARNING: $IRIS_CSV_DIR/base-ic-evol-struct-pop-2016.csv missing"
+    echo -e "\tcsv converted from the official xls downloaded from https://www.insee.fr/fr/statistiques/fichier/4228434/base-ic-evol-struct-pop-2016.zip"
+    echo -e "\tlibreoffice --headless --convert-to csv:\"Text - txt - csv (StarCalc)\":59,34,0,1,1 /tmp/base-ic-evol-struct-pop-2016.xls --outdir storage/framework/cache/data/"
+    echo -e "\tle code iris complet DDCCCIIIII (D = département, C = commune insee, I = Iris) attendu en première colonne"
+    echo -e "\tseparateur ;"
+    exit 1;
 fi
 
 # tache d'import
-for i in "$CHEMIN"jsonFromTypeForm/*.json
-  do
-    yes | php artisan import:typeform "$i"
-  done
+for i in "$OUTPUT_DIR"/*.json
+do
+    echo "$i"
+    yes | php artisan import:typeform "$i" $FORCE
+done
+
+# On met à jour la page d'accueil
+bash "$CRON_DIR"/cron.sh

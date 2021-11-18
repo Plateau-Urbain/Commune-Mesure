@@ -35,7 +35,15 @@ h2.title{
   border-bottom: 5px solid #9c0000;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  width: 30%;
+  width: 60%;
+
+  @media screen and (max-width: $desktop) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+  }
 
   a {
       color:white;
@@ -51,6 +59,12 @@ h2.title{
   width: 40%;
   left: 50%;
   margin-left: -20%;
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+    left: 0%;
+    margin-left: 0%;
+  }
 }
 
 .banner-image {
@@ -83,19 +97,19 @@ h2.title{
 }
 
 .fil-4{
-    background-image: url('/images/Ligne4.svg');
+    background-image: url('../images/Ligne4.svg');
     width:100vw;
     margin-left:-0.75rem;
 }
 
 .fil-2{
-    background-image: url('/images/Ligne2.svg');
+    background-image: url('../images/Ligne2.svg');
     width:100vw;
     margin-left:-0.75rem;
 }
 
 .fil-5{
-    background-image: url('/images/Ligne5.svg');
+    background-image: url('../images/Ligne5.svg');
     width:100vw;
     margin-left:-0.75rem;
 }
@@ -754,12 +768,18 @@ p.partenaires_text{
 }
 
 .description-section{
-  margin:auto;
   text-align: justify;
-  width:30%;
   font-size:1.1em;
   padding-bottom: 15px;
   margin: 0em auto 1.25em;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  @media screen and (min-width: $desktop) {
+    width: 30%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 .crayon-impact-social{
   padding-top: 50px;

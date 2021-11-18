@@ -88,8 +88,7 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        $v = $place->toggleVisibility($section);
-        $place->set('blocs->'.$section.'->visible',$v);
+        $place->toggleVisibility($section);
         $res = $place->save();
 
         $flash = ['success' => $res, 'section' => $section];
@@ -294,8 +293,13 @@ class PlaceController extends Controller
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename =".$slug.".csv");
 
-      $csv = "";
-      echo($place->exportCsv($csv,$auth));
+      $csv = fopen('php://output', 'w');
+
+      foreach ($place->exportCsv($auth) as $line) {
+          fputcsv($csv, $line);
+      }
+
+      fclose($csv);
       exit;
     }
 
