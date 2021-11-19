@@ -129,8 +129,14 @@ class ImportTypeForm extends Command
         $new_place->blocs->presentation->donnees->nombre_occupants = $this->extract_val($schema->blocs->presentation->donnees->nombre_occupants);
         $new_place->blocs->presentation->donnees->noms_occupants = $this->extract_val($schema->blocs->presentation->donnees->noms_occupants);
         $new_place->blocs->presentation->donnees->nb_manager = $this->extract_val($schema->blocs->presentation->donnees->nb_manager);
-        $new_place->blocs->presentation->donnees->date_ouverture = Carbon::createFromIsoFormat('L', $this->extract_val($schema->blocs->presentation->donnees->date_ouverture), null, config('app.locale'));
-        $new_place->blocs->presentation->donnees->date_creation = Carbon::createFromIsoFormat('L', $this->extract_val($schema->blocs->presentation->donnees->date_creation), null, config('app.locale'));
+
+        $date_ouverture = $this->extract_val($schema->blocs->presentation->donnees->date_ouverture);
+        $date_creation = $this->extract_val($schema->blocs->presentation->donnees->date_creation);
+        if (empty($date_creation)) {
+            $date_creation = $date_ouverture;
+        }
+        $new_place->blocs->presentation->donnees->date_ouverture = Carbon::createFromIsoFormat('L', $date_ouverture, null, config('app.locale'));
+        $new_place->blocs->presentation->donnees->date_creation = Carbon::createFromIsoFormat('L', $date_creation, null, config('app.locale'));
         $new_place->blocs->presentation->donnees->surface = $this->extract_val($schema->blocs->presentation->donnees->surface);
         $new_place->blocs->presentation->donnees->{"emplois directs"} = 0;
 
