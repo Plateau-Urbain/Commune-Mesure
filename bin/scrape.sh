@@ -15,12 +15,12 @@ for section in "${_SECTIONS[@]}"; do
     sed -i 's/et-waypoint //' "$tempfile"
     sed -i 's/et-l et-l--footer/footer/' "$tempfile"
 
-    mv "$tempfile" "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
-    chmod g+rw "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
-    chmod o+r "$_WORKINGDIR/../resources/views/generate/"${section}".blade.php"
+    mv "$tempfile" "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
+    chmod g+rw "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
+    chmod o+r "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
 done
 
 # Fonts
 
-wget "$_HOST/wp-content/themes/Divi/core/admin/fonts/modules.ttf" -O "$_WORKINGDIR/../public/fonts/modules.ttf"
-wget "$_HOST/wp-content/themes/Divi/core/admin/fonts/modules.woff" -O "$_WORKINGDIR/../public/fonts/modules.woff"
+wget "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.ttf" -O "${_WORKINGDIR}/../public/fonts/modules.ttf"
+wget "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.woff" -O "${_WORKINGDIR}/../public/fonts/modules.woff"
