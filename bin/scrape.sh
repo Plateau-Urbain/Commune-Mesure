@@ -22,5 +22,5 @@ done
 
 # Fonts
 
-wget "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.ttf" -O "${_WORKINGDIR}/../public/fonts/modules.ttf"
-wget "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.woff" -O "${_WORKINGDIR}/../public/fonts/modules.woff"
+curl --fail --silent --show-error "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.ttf" -o "${_WORKINGDIR}/../public/fonts/modules.ttf"
+curl --fail --silent --show-error "${_HOST}/wp-content/themes/Divi/core/admin/fonts/modules.woff" -o "${_WORKINGDIR}/../public/fonts/modules.woff"
