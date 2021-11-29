@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_HOST="http://communemesure.fr"
+_HOST="https://communemesure.fr"
 _WORKINGDIR="$(dirname "$0")"
 _SECTIONS=("header" "footer")
 
@@ -22,5 +22,5 @@ done
 
 # Fonts
 
-wget 'http://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.ttf' -O "$_WORKINGDIR/../public/fonts/modules.ttf"
-wget 'http://communemesure.fr/wp-content/themes/Divi/core/admin/fonts/modules.woff' -O "$_WORKINGDIR/../public/fonts/modules.woff"
+wget "$_HOST/wp-content/themes/Divi/core/admin/fonts/modules.ttf" -O "$_WORKINGDIR/../public/fonts/modules.ttf"
+wget "$_HOST/wp-content/themes/Divi/core/admin/fonts/modules.woff" -O "$_WORKINGDIR/../public/fonts/modules.woff"
