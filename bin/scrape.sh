@@ -9,7 +9,7 @@ _SECTIONS=("header" "footer")
 for section in "${_SECTIONS[@]}"; do
     tempfile=`mktemp`
 
-    curl "${_HOST}/contact/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
+    curl --fail --silent --show-error "${_HOST}/contact/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
 
     sed -i 's/<header id="main-header"/<header id="main-header" class="navbar is-fixed-top is-hidden-touch"/' "$tempfile"
     sed -i 's/et-waypoint //' "$tempfile"
