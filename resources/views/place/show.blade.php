@@ -23,6 +23,16 @@
   @include('js.place.map-insee-js')
   @include('js.place.charts-doughnut')
   @include('js.place.modals')
+  <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
+
+  <script>
+    easyScrollDots({
+          'fixedNav': true, // Set to true if you have a fixed nav.
+          'fixedNavId': 'main-header', // Set to the id of your navigation element if 'fixedNav' is true (easyScrollDots will measure the height of the element).
+          'fixedNavUpward': false, // Set to true if your nav is only sticky when the user is scrolling up (requires 'fixedNav' to be true and 'fixedNavId' to be a value).
+          'offset': 50 // Set to the amount of pixels you wish to offset the scroll amount by.
+        });
+  </script>
 @endsection
 
 @section('content')
@@ -200,14 +210,4 @@
     </x-edit-section>
         </div>
   </div>
-  <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
-
-  <script>
-    easyScrollDots({
-          'fixedNav': true, // Set to true if you have a fixed nav.
-          'fixedNavId': 'main-header', // Set to the id of your navigation element if 'fixedNav' is true (easyScrollDots will measure the height of the element).
-          'fixedNavUpward': false, // Set to true if your nav is only sticky when the user is scrolling up (requires 'fixedNav' to be true and 'fixedNavId' to be a value).
-          'offset': 50 // Set to the amount of pixels you wish to offset the scroll amount by.
-        });
-  </script>
 @endsection
