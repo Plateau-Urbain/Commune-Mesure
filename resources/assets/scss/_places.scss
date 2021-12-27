@@ -51,3 +51,16 @@ li.tags{
   display: inline-flex;
   align-items: center;
 }
+
+ul.list-dotted {
+    & > li {
+
+        display: inline-block;
+        margin: 0px 5px;
+
+        &:not(:last-child):after {
+            padding-left: 5px;
+            content: '●';
+        }
+    }
+}

@@ -83,12 +83,18 @@
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
         <div class="has-text-centered pt-2">
           <p>
-          @if (($link = $place->get('reseaux_sociaux->donnees->web')) || isset($edit))
-            <i class="fa fa-globe has-text-primary mr-1"></i> <span class="has-text-weight-bold">Site web :</span> <a href="{{ $link }}">{{ $link }}</a>
-          @endif
-          @if(isset($edit))
-            @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->web', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier le site web", "description" => "Le site internet du lieu"])
-          @endif
+            <ul class="list-dotted">
+              @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
+                @if ($link || isset($edit))
+                <li>
+                  <i class="fa fa-{{ $name }} has-text-primary mr-1"></i> <span class="has-text-weight-bold">{{ ucwords($name) }} :</span> <a href="{{ $link }}">{{ $link }}</a>
+                  @if(isset($edit))
+                    @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->'.$name, 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier l'adresse du réseau", "description" => "Modifier le réseau ".$name])
+                  @endif
+                </li>
+                @endif
+              @endforeach
+            </ul>
           </p>
 
           <p><i class="fas fa-clock font-color-theme mr-1"></i>
