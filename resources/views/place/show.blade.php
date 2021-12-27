@@ -4,6 +4,7 @@
     Le data panorama
     <br>
     de {{ $place->get('name') }}
+    @include('components.modals.modalEdition', ['chemin' => 'name', 'id_section' => 'top', 'type' => 'text', 'titre' => "Modifier le nom", "description" => "Le nom du lieu"])
   </h1>
   <h2 class="subtitle">
     {{ $place->get('address->city') }}
