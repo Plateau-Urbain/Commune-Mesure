@@ -7,7 +7,7 @@ document.querySelectorAll('.modal').forEach(function(modal) {
 document.addEventListener('click', function(e) {
     // loop parent nodes from the target to the delegation node
     for (var target = e.target; target && target != this; target = target.parentNode) {
-        if (target.matches('.modal-crayon')) {
+        if (target.matches('.modal-crayon') || target.matches('#modal-help-btn')) {
             ouvrirModale.call(target, e);
             break;
         }
@@ -15,7 +15,6 @@ document.addEventListener('click', function(e) {
 }, false)
 
 function ouvrirModale(target){
-  console.log(target)
   modal = target.target.dataset.modal
   document.getElementById(modal).classList.add('is-active')
 }

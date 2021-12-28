@@ -44,6 +44,9 @@
       Vous êtes en mode édition. Revenir à la <a href="{{ route('place.show', ['slug' => $slug]) }}">page consultation du lieu</a>.
       </p>
     </div>
+    <button class="button is-info mx-4" id="modal-help-btn" title="Aide" data-modal="modal-help">
+      <i class="fa fa-question"></i>
+    </button>
     <button
       <?php if($place->isPublish()):?>
           class="button is-danger is-light" title="Dé-publier le lieu">
@@ -217,4 +220,32 @@
     </x-edit-section>
         </div>
   </div>
+
+  @isset($edit)
+  <div class="modal is-active" id="modal-help" style="z-index: 100000;">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <h2 class="modal-card-title">Aide</h2>
+        <button class="delete modal-croix" aria-label="Close"></button>
+      </header>
+      <section class="modal-card-body">
+        <h4>Sens des icônes de la page :</h4>
+        <ul>
+          <li><i class="fa fa-eye has-text-primary" aria-label="Icone oeil" role="icone"></i> : Section visible dans la page publique. Cliquer pour cacher.</li>
+          <li><i class="fa fa-eye-slash has-text-primary" aria-label="Icone oeil" role="icone"></i> : Section non visible dans la page publique. Cliquer pour rendre visible.</li>
+          <li><i class="fa fa-exclamation-triangle has-text-warning-dark" aria-label="Icone warning" role="icone"></i> : La section n'a pas de donnée et ne sera pas affichée.</li>
+          <li><i class="fa fa-pen" aria-label="Icone crayon" role="icone"></i> : Édition de l'information.</li>
+        </ul>
+        <h4>Sens des icônes de la barre d'édition :</h4>
+        <ul>
+          <li><i class="fa fa-globe" aria-label="Icone publier" role="icone"></i> : Publier le lieu.</li>
+          <li><i class="fa fa-users-slash" aria-label="Icone depublier" role="icone"></i> : Dépublier le lieu.</li>
+          <li><i class="fa fa-download has-background-success p-1 has-text-white" aria-label="Icone téléchargement" role="icone"></i> : Télécharger les données du lieu.</li>
+          <li><i class="fa fa-question has-background-info p-1 has-text-white" aria-label="Icone aide" role="icone"></i> : Affiche cette aide.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  @endisset
 @endsection
