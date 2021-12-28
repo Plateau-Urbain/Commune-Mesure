@@ -13,7 +13,7 @@
       @php $impact_lien_text = $place->get('blocs->impact_social->donnees->lien_social') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->lien_social' @endphp
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"interactions entre les personnes sur le site"])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Entre quels publics pouvez-vous observer des interactions sur le site ? Merci de donner un exemple ou d'expliciter."])
       </div>
       <div @if(!empty($impact_lien_text)) data-tooltip="{{ $impact_lien_text }}" @endif class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_lien_text) impact_disabled @endisset">
         <svg  width="215" height="150" viewBox="20 20 75 40">
@@ -32,14 +32,14 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception de l'évolution de la santé des personnes qui fréquentent le lieu"])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous pu observer un changement des conditions physiques, sociales ou psychiques chez les bénéficiaires du projet, qui puisse être directement lié au projet ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
     <div class="impact_item top left" id="impact_item_insertion" data-aos="fade-in">
       @php $impact_insertion_text = $place->get('blocs->impact_social->donnees->insertion_professionnelle') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->insertion_professionnelle' @endphp
       <div class="crayon-impact-social">
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"Accès à l'emploi grâce à la présence des personnes qui fréquentent le lieu. Des personnes ou des activités mises en place sur le lieu ?"])
+         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous mis en place des actions de formation, d’accompagnement à la création d’activité ou à l’emploi ? Merci de donner au moins un exemple ou d'expliciter."])
       </div>
       <div @if(!empty($impact_insertion_text)) data-tooltip="{{ $impact_insertion_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_insertion_text) impact_disabled @endisset">
         <svg width="215" height="150" viewBox="20 20 75 40">
@@ -58,7 +58,7 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception des Effets de la fréquentation du lieu sur la capacité à agir des personnes"])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "De nouveaux projets ou actions (atelier, événement, marché...)imprévus et portés par les bénéficiaires ou occupants ont-il émergé dans le cadre du projet ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
 
@@ -78,7 +78,7 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>'les réseaux de personnes qui se sont constitués sur le lieu'])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous pu observer la création de réseaux de personnes ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
     <div class="impact_item bottom right" id="impact_item_appartenance" data-aos="fade-right">
@@ -91,14 +91,14 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>"votre perception de l'inclusion ou de l'exclusion des personnes sur le lieu"])
+         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type'=> 'text', 'titre' => "Modifier l'impact social", 'description' => "Diriez-vous que certaines personnes se sentent appartenir à un groupe, ou s'en sentent exclues? Merci de donner au moins un exemple ou d'expliciter."])
       </div>
     </div>
     <div class="impact_item top left" id="impact_item_solidarite" data-aos="fade-in">
       @php $impact_solidarite_text = $place->get('blocs->impact_social->donnees->solidarite') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->solidarite' @endphp
       <div class="crayon-impact-social">
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description'=>"Y-a-t-il des échanges, dons ou mutualisations entre personnes au sein du projet ? Merci de donner un exemple ou d'expliciter."])
       </div>
       <div @if(!empty($impact_solidarite_text)) data-tooltip="{{ $impact_solidarite_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_solidarite_text) impact_disabled @endisset">
         <svg width="215" height="150" viewBox="20 20 75 40">
@@ -110,7 +110,7 @@
       @php $impact_egalite_homme_femme_text = $place->get('blocs->impact_social->donnees->egalite_homme_femme') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->egalite_homme_femme' @endphp
       <div class="crayon-impact-social">
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Concernant les publics visitant le site, avez-vous l'impression que la répartition hommes / femmes diffère en fonction des horaires, des lieux, des activités ? Préciser."])
       </div>
       <div @if(!empty($impact_egalite_homme_femme_text)) data-tooltip="{{ $impact_egalite_homme_femme_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_egalite_homme_femme_text) impact_disabled @endisset">
         <svg width="215" height="150" viewBox="20 20 75 40">
@@ -131,7 +131,7 @@
       @php $impact_cadre_de_vie_text = $place->get('blocs->impact_social->donnees->cadre_de_vie') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->cadre_de_vie' @endphp
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous l'impression que le projet a fait évolué l'image du quartier ou du territoire ? Merci de donner un exemple ou d'expliciter."])
       </div>
       <div @if(!empty($impact_cadre_de_vie_text)) data-tooltip="{{ $impact_cadre_de_vie_text }}" @endif class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_cadre_de_vie_text) impact_disabled @endisset">
         <svg  width="215" height="150" viewBox="20 20 75 40">
@@ -150,14 +150,14 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin ,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Le projet a-t-il engendré des effets sur les espaces extérieurs du quartier ou sur l'environnement du site ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
     <div class="impact_item top left" id="impact_item_services_publics" data-aos="fade-in">
       @php $impact_services_publics_text = $place->get('blocs->impact_social->donnees->services_publics') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->services_publics' @endphp
       <div class="crayon-impact-social">
-         @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Le projet a-t-il permis de répondre à des besoins sociaux urgents du territoire ? Merci de donner au moins un exemple ou d'expliciter."])
       </div>
       <div @if(!empty($impact_services_publics_text)) data-tooltip="{{ $impact_services_publics_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_services_publics_text) impact_disabled @endisset">
         <svg width="215" height="150" viewBox="20 20 75 40">
@@ -176,7 +176,7 @@
         </svg>
       </div>
       <div class="crayon-impact-social">
-        @include('components.modals.modalEdition',['chemin'=>$impact_chemin,'id_section'=>'impact_social','type'=>'text','titre'=>"Modifier l'impact social",'description'=>""])
+        @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous pu constater que vos modalités de collaboration avec les partenaires publics et privés ont fait évoluer leurs pratiques professionnelles ? Merci de donner au moins un exemple ou d'expliciter."])
       </div>
     </div>
 
