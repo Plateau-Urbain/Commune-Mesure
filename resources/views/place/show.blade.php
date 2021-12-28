@@ -222,7 +222,7 @@
   </div>
 
   @isset($edit)
-  <div class="modal is-active" id="modal-help" style="z-index: 100000;">
+  <div class="modal" id="modal-help" style="z-index: 100000;">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
