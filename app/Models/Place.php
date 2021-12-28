@@ -45,7 +45,7 @@ class Place extends Model
     public static function find($slug)
     {
         $db = DB::table('places')
-                    ->select('place as slug', 'data')
+                    ->select(['place as slug', 'data'])
                     ->where('deleted_at', null)
                     ->where('place', $slug)
                     ->first();
