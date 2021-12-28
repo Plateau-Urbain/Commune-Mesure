@@ -47,6 +47,7 @@ class AdminController extends Controller
       header("Content-type: text/csv");
       header("Content-disposition: attachment; filename = global.csv");
       $csv = fopen('php://output', 'w');
+      fputcsv($csv, ['url', 'nom', 'clé', 'valeur']);
 
       foreach ($list as $place){
           foreach ($place->exportCsv($auths[$place->getSlug()]) as $line) {

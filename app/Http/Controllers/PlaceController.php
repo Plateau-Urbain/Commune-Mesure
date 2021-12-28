@@ -293,6 +293,7 @@ class PlaceController extends Controller
         header("Content-disposition: attachment; filename =".$slug.".csv");
 
         $csv = fopen('php://output', 'w');
+        fputcsv($csv, ['url', 'nom', 'clé', 'valeur']);
 
         foreach ($place->exportCsv($auth) as $line) {
             fputcsv($csv, $line);
