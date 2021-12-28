@@ -41,7 +41,7 @@ class AdminController extends Controller
 
     public function globalCsv(Request $request, Place $place)
     {
-      $list = Place::retrievePlaces();
+      $list = Place::retrievePlaces('latest');
       $auths = $place->getAuth();
 
       header("Content-type: text/csv");

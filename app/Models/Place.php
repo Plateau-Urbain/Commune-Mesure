@@ -472,6 +472,7 @@ class Place extends Model
       $name = $this->getSlug();
 
       $csv[] = [$link, $name, 'nom', $this->getSlug()];
+      $csv[] = [$link, $name, 'cree le', $this->getCreatedAt()];
       $csv[] = [$link, $name, 'page admin', route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth])];
       $csv[] = [$link, $name, 'cle', $auth];
 
@@ -484,6 +485,11 @@ class Place extends Model
         yield $line;
       }
   }
+
+    public function getCreatedAt()
+    {
+        return DB::table('places')->where('place', $this->slug)->value('created_at');
+    }
 
     public function updateHash()
     {
