@@ -1,5 +1,5 @@
 <script>
-  var finances = {
+  const finances = {
       "composition": [{"name":"Entreprises","size":{{ $place->get('blocs->composition->donnees->type->Entreprises') }}},
       {"name":"Associations","size":{{ $place->get('blocs->composition->donnees->type->Associations') }}},
       {"name":"Artistes","size":{{ $place->get('blocs->composition->donnees->type->Artistes') }}},
@@ -18,6 +18,8 @@
 
   const inputChoice = document.querySelector("input#switchRoundedSuccess");
   const canvasFinancesId = 'financement-budget-doughnut'
+  const optionsChart = {legend: {display: true}}
+  const labelInvestissement = document.querySelector("label#label_investissement")
   let typeChart = 'fonctionnement'
   let colorsChart = ['#ffc400', '#ff5728', '#c90035', '#96043e']
   let fontWeight = 'normal'
@@ -71,41 +73,44 @@
             }
 
         );
-      document.querySelector("label#label_investissement").style.fontWeight = fontWeight;
+      labelInvestissement.style.fontWeight = fontWeight;
     }
 
-  let financeChart = charts.create(canvasFinancesId, "doughnut",
-      getLabels("fonctionnement"), getDataChart("fonctionnement"), ['#ffc400', '#ff5728', '#c90035', '#96043e'],
-      {
-          legend: {
-              display: true,
-            },
-        }
-    );
+  let financeChart = charts.create(canvasFinancesId, 'doughnut', ['label'], [{data:{datasets: [{data:[1]}]}}], {})
 
-  @if(!$place->isEmptyInvestissement() && $place->isEmptyFonctionnement())
-    financeChart = charts.create(canvasFinancesId, "doughnut",
-        getLabels("investissement"), getDataChart("investissement"), ['#8e44ad', '#3498db', '#1abc9c', '#96043e'],
-        {
-            legend: {
-                display: true,
-              },
-          }
+  @if (! $place->isEmptyFonctionnement())
+    financeChart = charts.create(
+        canvasFinancesId,
+        "doughnut",
+        getLabels("fonctionnement"),
+        getDataChart("fonctionnement"),
+        ['#ffc400', '#ff5728', '#c90035', '#96043e'],
+        optionsChart
+    );
+    inputChoice.checked = true
+  @elseif(! $place->isEmptyInvestissement())
+    financeChart = charts.create(
+        canvasFinancesId,
+        "doughnut",
+        getLabels("investissement"),
+        getDataChart("investissement"),
+        ['#8e44ad', '#3498db', '#1abc9c', '#96043e'],
+        optionsChart
       );
+      inputChoice.checked = false
   @endif
 
-  const dataCompo = charts.create("composition-chart-doughnut", "doughnut",
-      getLabels("composition"), getDataChart("composition"), ['#DEEBEE', '#ff5728', '#1abc9c', '#96043e'],
-      {
-          legend: {
-              display: true,
-            },
-        }
-
+  const dataCompo = charts.create(
+      "composition-chart-doughnut",
+      "doughnut",
+      getLabels("composition"),
+      getDataChart("composition"),
+      ['#DEEBEE', '#ff5728', '#1abc9c', '#96043e'],
+      optionsChart
     );
 
   @if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
-    document.querySelector("input#switchRoundedSuccess").addEventListener('change', switchChart);
+    inputChoice.addEventListener('change', switchChart);
   @endif
 
 
