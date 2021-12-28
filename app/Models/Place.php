@@ -132,6 +132,7 @@ class Place extends Model
     public function getInfoPopup($place)
     {
       if ($place->withPopup()) {
+          $popup = [];
           $popup["name"] = $place->getSlug();
           $popup["title"] = $place ->get("name");
           $popup['description'] = json_encode($place->get('blocs->presentation->donnees->idee_fondatrice'));
@@ -234,6 +235,8 @@ class Place extends Model
       $place = DB::table('places')->select('hash_admin')
                                   ->where('place', $this->getSlug())
                                   ->first();
+
+      if ($place === null) return false;
 
       return $place->hash_admin === $auth;
   }
@@ -351,14 +354,13 @@ class Place extends Model
     $result = DB::table('places')
         ->where('place', $this->getSlug())
         ->update(array('data'=>json_encode($this->getData())));
-    return $result;
+    return $result > 0;
   }
 
   public function addPhoto($newPhoto){
     $photos=$this->getPhotos();
     array_push($photos,$newPhoto);
     $this->set('blocs->galerie->donnees',$photos);
-    var_dump($this->getPhotos());
   }
 
   public function deletePhoto($indexOfPhoto){
@@ -366,7 +368,6 @@ class Place extends Model
     unset($photos[$indexOfPhoto]);
     $photos = array_values($photos);
     $this->set('blocs->galerie->donnees',$photos);
-    var_dump($this->getPhotos());
   }
 
 
@@ -497,6 +498,6 @@ class Place extends Model
         return DB::table('places')->where('place', $this->slug)->update([
             'deleted_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ]);
+        ]) > 0;
     }
 }
