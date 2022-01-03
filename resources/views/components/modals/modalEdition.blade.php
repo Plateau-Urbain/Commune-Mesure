@@ -92,7 +92,7 @@
           @php $i=0; @endphp
           @foreach($valueChemin as $k => $v)
             <label class ="labelpopup">{{$k}} : </label>
-            <input class='input-number' type="number" name="{{$i}}" value="{{$v}}">
+            <input class='input-number' type="number" name="{{$i}}" value="{{$v}}" required>
             <br>
             @php $i++; @endphp
             <input hidden name="type" value="{{$type}}"></input>
