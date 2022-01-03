@@ -84,7 +84,7 @@
       <section class="section section-place " id="presentation">
         <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
-        <div class="has-text-centered pt-2">
+        <div class="has-text-centered pt-2 container">
           <p>
             <ul class="list-dotted">
               @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
