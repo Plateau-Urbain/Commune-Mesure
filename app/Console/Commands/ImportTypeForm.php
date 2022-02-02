@@ -135,8 +135,8 @@ class ImportTypeForm extends Command
         if (empty($date_creation)) {
             $date_creation = $date_ouverture;
         }
-        $new_place->blocs->presentation->donnees->date_ouverture = Carbon::createFromIsoFormat('L', $date_ouverture, null, config('app.locale'));
-        $new_place->blocs->presentation->donnees->date_creation = Carbon::createFromIsoFormat('L', $date_creation, null, config('app.locale'));
+        $new_place->blocs->presentation->donnees->date_ouverture = ($date_ouverture) ? Carbon::createFromIsoFormat('L', $date_ouverture, null, config('app.locale')) : '';
+        $new_place->blocs->presentation->donnees->date_creation = ($date_creation) ? Carbon::createFromIsoFormat('L', $date_creation, null, config('app.locale')) : '';
         $new_place->blocs->presentation->donnees->surface = $this->extract_val($schema->blocs->presentation->donnees->surface);
         $new_place->blocs->presentation->donnees->{"emplois directs"} = 0;
 
