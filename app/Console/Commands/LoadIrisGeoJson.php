@@ -9,7 +9,7 @@ class LoadIrisGeoJson extends Command
     protected $signature = 'iris:load {adresse}';
     protected $description = "Load iris";
 
-    protected array $data = [];
+    protected $data = [];
     protected $iris_json = '';
     protected $iris_code = '';
     protected $city_code = '';
