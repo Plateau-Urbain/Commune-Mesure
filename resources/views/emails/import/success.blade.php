@@ -24,7 +24,7 @@ personne ayant accès à cette page pourra modifier votre lieu.
 
 Une fois édité et validé, vous pouvez cliquer sur le petit globe pour rendre
 votre datapanorama public.
-Vous pouvez nous écrire pour nous faire part de vos retours et remarques à contact@communemesure.fr.
+Vous pouvez nous écrire pour nous faire part de vos retours et remarques à {{ getenv('MAIL_FROM_ADDRESS') }}.
 
 À bientôt !
 
