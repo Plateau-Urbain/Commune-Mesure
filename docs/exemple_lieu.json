@@ -1,0 +1,463 @@
+{
+  "name": "La Plateforme des XXXXXXXX",
+  "status": [
+    "Coopérative"
+  ],
+  "publish": true,
+  "tags": [],
+  "address": {
+    "address": "1 avenue XXXX XXXXXXX, Paris",
+    "postalcode": "75001",
+    "city": "Paris"
+  },
+  "creator": {
+    "name": "NXXXXXXX VXXXXX",
+    "email": "vxxxxx.nxxxxxxx@exemple.com"
+  },
+  "blocs": {
+    "presentation": {
+      "visible": true,
+      "donnees": {
+        "idee_fondatrice": "Créer xxxxxxxxxxx xxx xxxx xxxxxxxx !",
+        "nombre_occupants": "313",
+        "noms_occupants": "XXXXXXX",
+        "nb_manager": "100",
+        "date_ouverture": "2018-01-01T16:12:00.000000Z",
+        "date_creation": "2018-01-01T16:12:00.000000Z",
+        "surface": "2000",
+        "emplois directs": 11,
+        "acteurs_publics": "Région île-de-France",
+        "acteurs_prives": "Lycées, xxxxxx xxxxx",
+        "natures_partenariats": {
+          "public": [
+            "Économique"
+          ],
+          "prive": [
+            "En nature"
+          ]
+        },
+        "ouverture": {
+          "En permanence": 0,
+          "Plusieurs jours par semaine": 0,
+          "Une fois par semaine ou moins": 0,
+          "Lors d'évènements ponctuels seulement": 0,
+          "Ouverture prochaine": 0
+        }
+      }
+    },
+    "accessibilite": {
+      "visible": 1,
+      "donnees": {
+        "publics": {
+          "Chercheurs d'emplois": 0,
+          "Enfants": 0,
+          "Étudiants": 0,
+          "Famille": 0,
+          "Handicapés": 0,
+          "Personnes âgées": 0,
+          "Personnes habitant sur le site": 0,
+          "Personnes travaillant sur le site": 0,
+          "Personnes visitant le site": 0
+        },
+        "accessibilite": {
+          "Handicapés": 1,
+          "Mal voyants": 0
+        },
+        "transports": {
+          "Bus": 1,
+          "Métro": 0,
+          "Train": 0,
+          "Vélo": 0,
+          "Voiture": 0
+        }
+      }
+    },
+    "valeurs": {
+      "visible": 1,
+      "donnees": {
+        "Accueil": 0,
+        "Convivialité": 1,
+        "Coopération": 1,
+        "Créativité": 1,
+        "Durabilité": 0,
+        "Environnement": 0,
+        "Inclusivité": 0,
+        "Partage": 0,
+        "Transmission": 0
+      }
+    },
+    "moyens": {
+      "visible": 1,
+      "donnees": {
+        "investissement": {
+          "Fonds publics": "2",
+          "Fonds privés": "3",
+          "Fonds apportés": "1"
+        },
+        "fonctionnement": {
+          "Autres Subventions": "1",
+          "Aides privées": "0",
+          "Aides publiques": "0",
+          "Recettes": "0"
+        },
+        "benevoles": 0,
+        "partenaires": 4
+      }
+    },
+    "composition": {
+      "visible": 1,
+      "donnees": {
+        "type": {
+          "Entreprises": "11",
+          "Associations": "36",
+          "Artistes": "13",
+          "Autres structures": 0
+        },
+        "structures_crees": 0
+      }
+    },
+    "impact_social": {
+      "visible": 1,
+      "donnees": {
+        "insertion_professionnelle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec sem in purus pellentesque pharetra eget id nibh. Nulla et risus enim. Duis laoreet, neque at rutrum venenatis",
+        "appartenance_exclusion": "Aliquam tincidunt vel ex sit amet malesuada. Nulla placerat pretium diam, vel interdum libero vestibulum vitae.",
+        "reseaux": "Sed posuere lorem at elit vulputate rhoncus. Etiam mollis, orci vitae cursus ornare, lectus odio pellentesque turpis, vitae aliquet nisl dolor id erat.",
+        "capacite_agir": "Quisque quis vehicula orci.",
+        "sante_bien_être": "Sed nec nulla ultrices, blandit purus id, accumsan ligula.",
+        "lien_social": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac ultrices metus.",
+        "solidarite": "Nullam nec diam sed massa pulvinar faucibus at vel risus. Proin imperdiet est mauris, a congue lacus pretium ac",
+        "egalite_homme_femme": "Morbi euismod, tellus nec fringilla egestas, magna urna interdum sem.",
+        "cadre_de_vie": "Aenean eu justo gravida, mattis felis eget, gravida tortor.",
+        "entretien_des_espaces": "Etiam non mi nulla. Vivamus pretium suscipit pharetra.",
+        "services_publics": "Suspendisse potenti. Maecenas tellus tellus, vestibulum at pulvinar ac, cursus sit amet nibh.",
+        "innovation_publique": "Quisque eget neque metus. Proin maximus nisl odio."
+      }
+    },
+    "galerie": {
+      "visible": 1,
+      "donnees": [
+        "image.jpg"
+      ]
+    },
+    "data_territoire": {
+      "visible": 1,
+      "donnees": {
+        "geo": {
+          "lat": 48.85341,
+          "lon": 2.3488,
+          "geo_json": {}
+        },
+        "insee": {
+          "iris": {
+            "csp": {
+              "agriculteur": {
+                "nb": "0",
+                "title": "Agriculteurs exploitants"
+              },
+              "artisant": {
+                "nb": "6",
+                "title": "Artisans, Comm., Chefs entr."
+              },
+              "cadre": {
+                "nb": "45",
+                "title": "Cadres, Prof. intel. sup."
+              },
+              "prof_int": {
+                "nb": "94",
+                "title": "Prof. intermédiaires"
+              },
+              "employe": {
+                "nb": "25",
+                "title": "Employés"
+              },
+              "ouvrier": {
+                "nb": "13",
+                "title": "Ouvriers"
+              },
+              "retraite": {
+                "nb": "47",
+                "title": "Retraités"
+              },
+              "autre": {
+                "nb": "7",
+                "title": "Autres"
+              }
+            },
+            "logement": {
+              "house": {
+                "title": "Maison",
+                "nb": 52.3657
+              },
+              "appartment": {
+                "title": "Appartement",
+                "nb": 62.656
+              },
+              "unoccupied": {
+                "title": "Appart/Maison inoccupé",
+                "nb": 5.98403
+              }
+            },
+            "activites": {
+              "chomeur": {
+                "title": "Chômeur (Actif inoccupé)",
+                "nb": 10.64494
+              },
+              "actif": {
+                "title": "Actif occupé",
+                "nb": 11.323106
+              },
+              "etudiant": {
+                "title": "Élèves, étudiants et stagiaires non rémunérés",
+                "nb": 19.25413
+              },
+              "retraite": {
+                "title": "Retraités ou préretraités",
+                "nb": 7.94351
+              },
+              "autre": {
+                "title": "Autre inactif",
+                "nb": 6.6113
+              }
+            }
+          },
+          "commune": {
+            "csp": {
+              "agriculteur": {
+                "title": "Agriculteurs exploitants",
+                "nb": "1"
+              },
+              "artisant": {
+                "title": "Artisans, Comm., Chefs entr.",
+                "nb": "137"
+              },
+              "cadre": {
+                "title": "Cadres, Prof. intel. sup.",
+                "nb": "146"
+              },
+              "prof_int": {
+                "title": "Prof. intermédiaires",
+                "nb": "76"
+              },
+              "employe": {
+                "title": "Employés",
+                "nb": "744"
+              },
+              "ouvrier": {
+                "title": "Ouvriers",
+                "nb": "21"
+              },
+              "retraite": {
+                "title": "Retraités",
+                "nb": "118"
+              },
+              "autre": {
+                "title": "Autres",
+                "nb": "43"
+              }
+            },
+            "logement": {
+              "house": {
+                "title": "Maison",
+                "nb": "920"
+              },
+              "appartment": {
+                "title": "Appartement",
+                "nb": "166"
+              },
+              "unoccupied": {
+                "title": "Appart/Maison inoccupé",
+                "nb": "1"
+              }
+            },
+            "activites": {
+              "chomeur": {
+                "title": "Chômeur (Actif inoccupé)",
+                "nb": 37.202
+              },
+              "actif": {
+                "title": "Actif occupé",
+                "nb": 54.956
+              },
+              "etudiant": {
+                "title": "Élèves, étudiants et stagiaires non rémunérés",
+                "nb": 81.54
+              },
+              "retraite": {
+                "title": "Retraités ou préretraités",
+                "nb": 232
+              },
+              "autre": {
+                "title": "Autre inactif",
+                "nb": 3014
+              }
+            }
+          },
+          "departement": {
+            "csp": {
+              "agriculteur": {
+                "title": "Agriculteurs exploitants",
+                "nb": "21"
+              },
+              "artisant": {
+                "title": "Artisans, Comm., Chefs entr.",
+                "nb": "420"
+              },
+              "cadre": {
+                "title": "Cadres, Prof. intel. sup.",
+                "nb": "312"
+              },
+              "prof_int": {
+                "title": "Prof. intermédiaires",
+                "nb": "298"
+              },
+              "employe": {
+                "title": "Employés",
+                "nb": "184"
+              },
+              "ouvrier": {
+                "title": "Ouvriers",
+                "nb": "539"
+              },
+              "retraite": {
+                "title": "Retraités",
+                "nb": "247"
+              },
+              "autre": {
+                "title": "Autres",
+                "nb": "268"
+              }
+            },
+            "logement": {
+              "house": {
+                "title": "Maison",
+                "nb": "7"
+              },
+              "appartment": {
+                "title": "Appartement",
+                "nb": "698"
+              },
+              "unoccupied": {
+                "title": "Appart/Maison inoccupé",
+                "nb": "45"
+              }
+            },
+            "activites": {
+              "chomeur": {
+                "title": "Chômeur (Actif inoccupé)",
+                "nb": 1302
+              },
+              "actif": {
+                "title": "Actif occupé",
+                "nb": 1274
+              },
+              "etudiant": {
+                "title": "Élèves, étudiants et stagiaires non rémunérés",
+                "nb": 194
+              },
+              "retraite": {
+                "title": "Retraités ou préretraités",
+                "nb": 5012
+              },
+              "autre": {
+                "title": "Autre inactif",
+                "nb": 1.44
+              }
+            }
+          },
+          "region": {
+            "csp": {
+              "agriculteur": {
+                "title": "Agriculteurs exploitants",
+                "nb": "5"
+              },
+              "artisant": {
+                "title": "Artisans, Comm., Chefs entr.",
+                "nb": "31"
+              },
+              "cadre": {
+                "title": "Cadres, Prof. intel. sup.",
+                "nb": "1764"
+              },
+              "prof_int": {
+                "title": "Prof. intermédiaires",
+                "nb": "157"
+              },
+              "employe": {
+                "title": "Employés",
+                "nb": "161"
+              },
+              "ouvrier": {
+                "title": "Ouvriers",
+                "nb": "80"
+              },
+              "retraite": {
+                "title": "Retraités",
+                "nb": "1900"
+              },
+              "autre": {
+                "title": "Autres",
+                "nb": "179"
+              }
+            },
+            "logement": {
+              "house": {
+                "title": "Maison",
+                "nb": "158"
+              },
+              "appartment": {
+                "title": "Appartement",
+                "nb": "483"
+              },
+              "unoccupied": {
+                "title": "Appart/Maison inoccupé",
+                "nb": "39"
+              }
+            },
+            "activites": {
+              "chomeur": {
+                "title": "Chômeur (Actif inoccupé)",
+                "nb": 1102
+              },
+              "actif": {
+                "title": "Actif occupé",
+                "nb": 98
+              },
+              "etudiant": {
+                "title": "Élèves, étudiants et stagiaires non rémunérés",
+                "nb": 1446
+              },
+              "retraite": {
+                "title": "Retraités ou préretraités",
+                "nb": 47633
+              },
+              "autre": {
+                "title": "Autre inactif",
+                "nb": 96
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "reseaux_sociaux": {
+    "visible": 1,
+    "donnees": {
+      "web": "",
+      "facebook": "https://facebook.com",
+      "twitter": "https://twitter.com",
+      "instagram": "https://www.instagram.com/",
+      "linkedin": ""
+    }
+  },
+  "evenements": {
+    "publics": {
+      "nombre": "33",
+      "personnes accueillies": "30"
+    },
+    "prives": {
+      "nombre": 0,
+      "personnes accueillies": 0
+    }
+  }
+}
