@@ -34,6 +34,18 @@
           'offset': 50 // Set to the amount of pixels you wish to offset the scroll amount by.
         });
   </script>
+
+  @isset($edit)
+    <script>
+      const popupHelpOpener = document.getElementById('modal-help-btn')
+      const popupHelp = document.getElementById(popupHelpOpener.dataset.modal)
+      const storage = window.localStorage
+      if (! storage.getItem('_admin_help_popup_opened')) {
+        popupHelp.classList.add('is-active')
+        storage.setItem('_admin_help_popup_opened', Date())
+      }
+    </script>
+  @endisset
 @endsection
 
 @section('content')
