@@ -242,20 +242,25 @@
         <button class="delete modal-croix" aria-label="Close"></button>
       </header>
       <section class="modal-card-body">
-        <h4>Sens des icônes de la page :</h4>
+        <div class="content">
+          <h3>Bienvenu sur le datapanorama de votre lieu !</h3>
+          <p>Il vous propose des visualisations de certaines des données que vous avez renseignées dans le questionnaire.</br> Quelques informations pour vous aider à mieux naviguer sur la page et à éditer vos informations :</p>
+        <h6>Sens des icônes de la page :</h6>
         <ul>
           <li><i class="fa fa-eye has-text-primary" aria-label="Icone oeil" role="icone"></i> : Section visible dans la page publique. Cliquer pour cacher.</li>
           <li><i class="fa fa-eye-slash has-text-primary" aria-label="Icone oeil" role="icone"></i> : Section non visible dans la page publique. Cliquer pour rendre visible.</li>
           <li><i class="fa fa-exclamation-triangle has-text-warning-dark" aria-label="Icone warning" role="icone"></i> : La section n'a pas de donnée et ne sera pas affichée.</li>
           <li><i class="fa fa-pen" aria-label="Icone crayon" role="icone"></i> : Édition de l'information.</li>
         </ul>
-        <h4>Sens des icônes de la barre d'édition :</h4>
+        <h6>Sens des icônes de la barre d'édition :</h6>
         <ul>
           <li><i class="fa fa-globe" aria-label="Icone publier" role="icone"></i> : Publier le lieu.</li>
           <li><i class="fa fa-users-slash" aria-label="Icone depublier" role="icone"></i> : Dépublier le lieu.</li>
           <li><i class="fa fa-download has-background-success p-1 has-text-white" aria-label="Icone téléchargement" role="icone"></i> : Télécharger les données du lieu.</li>
           <li><i class="fa fa-question has-background-info p-1 has-text-white" aria-label="Icone aide" role="icone"></i> : Affiche cette aide.</li>
         </ul>
+        <p>N'oubliez pas que vous pouvez modifier votre datapanorama à tout moment, même après sa publication.</p>
+        </div>
       </section>
     </div>
   </div>
