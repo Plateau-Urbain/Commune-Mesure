@@ -112,12 +112,10 @@
             </ul>
           </p>
 
-          <p><i class="fas fa-clock font-color-theme mr-1"></i>
-          <strong>Ouverture  : </strong>
-            <span class="font-color-theme">{{ $place->getOuverture()}}</span>
-          @if(isset($edit))
-             @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->ouverture','id_section'=>'presentation','type' => 'select','titre'=>"Modifier l'ouverture","description"=>"Les modalités d'ouverture du lieu"])
-          @endif
+          <p>
+            <strong><i class="fas fa-clock font-color-theme mr-1"></i> Ouverture :</strong>
+            <span class="font-color-theme">{{ $place->getOuverture() }}</span>
+            @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->ouverture', 'id_section' => 'presentation', 'type' => 'select', 'titre' => "Modifier l'ouverture", "description" => "Les modalités d'ouverture du lieu"])
           </p>
         </div>
         <div class="section pt-5" style="padding-bottom:0;">
