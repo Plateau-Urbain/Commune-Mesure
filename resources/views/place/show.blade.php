@@ -90,7 +90,7 @@
               @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
                 @if ($link || isset($edit))
                 <li>
-                  <i class="fab fa-{{ $name }} has-text-primary mr-1"></i> <span class="has-text-weight-bold"><a href="{{ ($link) ?: '#' }}">{{ ucwords($name) }}</a></span>
+                  <i class="fab fa-{{ $name }} has-text-primary mr-1"></i> <span class="has-text-weight-bold"{!! (! $link) ? ' style="opacity: 0.5"' : '' !!}><a href="{{ ($link) ?: '#' }}">{{ ucwords($name) }}</a></span>
                   @if(isset($edit))
                     @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->'.$name, 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier l'adresse du réseau", "description" => "Modifier le réseau ".$name])
                   @endif
