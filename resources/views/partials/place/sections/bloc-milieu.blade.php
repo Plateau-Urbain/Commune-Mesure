@@ -15,6 +15,21 @@
         {{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->locale(config('app.locale'))->isoFormat("LL") }}
         @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->date_ouverture', 'id_section' => 'presentation', 'type' => 'date', 'titre' => "Modifier la date d'ouverture", 'description'=>"La date d'ouverture du lieu"])
       </div>
+
+      @if (isset($edit) || $place->get('blocs->presentation->donnees->date_fermeture'))
+      <div class="window very-small edit-milieu">
+        @php $date = \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_fermeture')) @endphp
+        @php $now = \Carbon\Carbon::now(); @endphp
+        @if (isset($edit) || $date)
+          @if ($date < $now) Fermé depuis le @else Fermeture prévue le @endif
+          @if ($place->get('blocs->presentation->donnees->date_fermeture'))
+            {{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_fermeture'))->locale(config('app.locale'))->isoFormat("LL") }}
+          @endif
+        @endif
+        @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->date_fermeture', 'id_section' => 'presentation', 'type' => 'date', 'titre' => "Modifier la date de fermeture", 'description'=>"La date de fermeture du lieu. Laisser vide pour ne pas l'afficher."])
+      </div>
+      @endif
+
       <div class="window very-small edit-milieu">Surface de {{ $place->get('blocs->presentation->donnees->surface') }}m<sup>2</sup>  @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->surface','id_section'=>'presentation','type' => 'decimal','titre'=>"Modifier la surface",'description'=>"La superficie du lieu en m2"])</div>
       <div class="window very-small edit-milieu">{{ $place->get('blocs->presentation->donnees->emplois directs') }}
         @if ($place->get('blocs->presentation->donnees->emplois directs') > 1)
