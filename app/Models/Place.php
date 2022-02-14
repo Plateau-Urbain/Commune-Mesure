@@ -353,7 +353,10 @@ class Place extends Model
   public function save(array $options = Array()){
     $result = DB::table('places')
         ->where('place', $this->getSlug())
-        ->update(array('data'=>json_encode($this->getData())));
+        ->update([
+            'data' => json_encode($this->getData()),
+            'updated_at' => Carbon::now()
+        ]);
     return $result > 0;
   }
 
