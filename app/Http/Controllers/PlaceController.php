@@ -97,7 +97,7 @@ class PlaceController extends Controller
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$section);
     }
 
-    public function update(Request $request, $slug, $auth, $id_section)
+    public function update(Request $request, $slug, $auth, $hash, $id_section)
     {
         $place = Place::find($slug);
         if ($place->check($auth) === false) {
