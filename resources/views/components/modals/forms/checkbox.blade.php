@@ -7,6 +7,8 @@
 </div>
 @endforeach
 
+<input type="hidden" name="type" value="checkbox">
+
 <label class="checkbox">
   <input type="checkbox">
   Tout cocher

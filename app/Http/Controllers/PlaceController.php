@@ -100,90 +100,55 @@ class PlaceController extends Controller
     public function update(Request $request, $slug, $auth, $hash, $id_section)
     {
         $place = Place::find($slug);
+
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
+
         if ($auth === str_repeat('a', 64)) {
             throw new \LogicException('Exiting, default admin hash');
         }
 
-        if (is_array($place->get($request->chemin)) && isset($request->type) && $request->type == "text") {   // plusieurs champs textuel dans le modal
+        $type = $request->input('type', null);
+        $inputs = $request->all();
+        $dirty = [];
 
-            $tab = $place->get($request->chemin);
-            $i=0;
-            foreach ($tab as $champ) {
-                $place->setOnArray(($request->chemin), array_search($champ, $tab), $request->{'champ'.$i});
-                $i++;
+        foreach ($inputs as $chemin => $value) {
+            if ($chemin === 'type') {
+                continue;
             }
-            if ($request->{'champ'.$i}!="") {
-                $place->setOnArray(($request->chemin), $i, $request->{'champ'.$i});
-            }
-            $j=$i+1;
-            if ($request->{'champ'.$j}!="" && $request->{'champ'.$i} == "") {
-                $place->setOnArray(($request->chemin), $i, $request->{'champ'.$j});
-            }
-            if ($request->{'champ'.$j}!="" && $request->{'champ'.$i} != "") {
-                $place->setOnArray(($request->chemin), $j, $request->{'champ'.$j});
-            }
-            $place->set($request->chemin, array_values(array_filter($place->get($request->chemin))));
-            $place->save();
-            return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
-        }
 
-        if (is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "checkbox") {
-            $i=0;
-            foreach ($place->get($request->chemin) as $value => $check) {
-                if (is_object($check)) {
-                    if ($request->{$i} == "on") {
-                        $on = 1;
-                    } else {
-                        $on = 0;
-                    }
-                    $place->get($request->chemin)->{$value}->check = $on;
-                    $place->save();
-                    $i++;
-                } else {
-                    if ($request->{$i} == "on") {
-                        $on = 1;
-                    } else {
-                        $on = 0;
-                    }
-                    $place->get($request->chemin)->{$value} = $on;
-                    $place->save();
-                    $i++;
+            // TODO: ne plus utiliser $hash.
+            // TODO: fix espaces dans $chemin
+            //$to_edit = $place->get(str_replace('__', '->', $chemin));
+            $to_edit = $place->get(urldecode($hash));
+
+            if ($type === 'select') {
+                $dirty = (array) $to_edit;
+                array_walk($dirty, function (&$v) {
+                    $v = 0;
+                });
+
+                $dirty[$value] = 1;
+                $dirty = (object) $dirty;
+            } elseif (is_array($to_edit) || is_object($to_edit)) {
+                $dirty = array_merge((array) $to_edit, array_filter($value, 'strlen'));
+
+                if ($type === 'checkbox') {
+                    array_walk($dirty, function (&$v) {
+                        $v = ($v === "on") ? 1 : 0;
+                    });
                 }
-            }
-            return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
-        }
-        if (is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "number") {
-            $i=0;
-            foreach ($place->get($request->chemin) as $k => $v) {
-                $place->get($request->chemin)->{$k} = $request->{$i};
-                $place->save();
-                $i++;
-            }
-            return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
-        }
 
-        if (is_object($place->get($request->chemin)) && isset($request->type) && $request->type == "select") {
-            foreach ($place->get($request->chemin) as $k => $v) {  //mettre a 0 tous les trucs disponible si $k == $request->champ mettre 1
-                if ($k == $request->champ) {
-                    $place->get($request->chemin)->{$k} = 1;
-                } else {
-                    $place->get($request->chemin)->{$k} = 0;
+                if (is_object($to_edit)) {
+                    $dirty = (object) $dirty;
                 }
+            } else {
+                $dirty = $value;
             }
-            $place->save();
-            return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
         }
 
-        if (empty($request->champ) && $request->type == "number") {
-            $new = 0;
-        } else {
-            $new = $request->champ;
-        }
-        $place->set($request->chemin, $new);
-
+        $place->set(urldecode($hash), $dirty);
         $place->save();
 
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
