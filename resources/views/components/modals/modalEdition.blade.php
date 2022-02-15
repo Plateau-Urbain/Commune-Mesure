@@ -27,7 +27,6 @@
           <hr class="is-primary-light"/>
         @endisset
 
-        @php $valueChemin = $place->get($chemin) @endphp
         @include('components.modals.forms.'.$type ?? 'text', [
           'value' => $place->get($chemin),
           'path' => $chemin,
@@ -35,7 +34,7 @@
         ])
 
         <br>
-        <span style="opacity: 0.2;">$place->{{ $chemin }}</span>
+        <code style="opacity: 0.2;">$place->{{ $chemin }}</code>
       </section>
       <footer class="modal-card-foot">
         <input type="button" class="button modal-croix" value="Annuler"/>
