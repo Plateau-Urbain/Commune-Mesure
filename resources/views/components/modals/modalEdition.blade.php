@@ -20,7 +20,7 @@
 
     </header>
 
-    <form method="POST" action="{{ route('place.update', ['slug' => $slug, 'auth' => $auth, 'hash' => $chemin, 'id_section' => $id_section])}}">
+    <form method="POST" action="{{ route($action ?? 'place.update', ['slug' => $slug, 'auth' => $auth, 'hash' => $chemin, 'id_section' => $id_section]) }}"@if($type === 'file') enctype="multipart/form-data" @endif>
       <section class="modal-card-body">
         @isset($description)
           <small>{{ $description }}</small>

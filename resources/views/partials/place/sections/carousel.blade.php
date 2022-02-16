@@ -1,7 +1,7 @@
 <h2 class="sous-banner">GALERIE
   @if(isset($edit))
     <span class="icon-edit">
-      <a href="{{ route('place.editGalerie', ['slug' => $slug, 'auth' => $auth]) }}"> <i class="fa fa-pen modal-crayon" title="Éditer"></i></a>
+      @include('components.modals.modalEdition', ['action' => 'photo.add', 'chemin' => 'galerie->donnees', 'id_section' => 'galerie', 'type' => 'file', 'titre' => "Modifier la galerie", 'description' => "Ajoutez ou supprimez des photos du lieu"])
     </span>
   @endif
 </h2>

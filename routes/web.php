@@ -44,13 +44,15 @@ $router->get('/external/map', ['uses' => 'ExternalController@map', 'as' => 'exte
 
 $router->get('/les-lieux', ['uses' => 'PlaceController@list', 'as' => 'places']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
+
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
-$router->get('/place/{slug}/{auth:[a-z0-9]+}/editGalerie', ['uses' => 'PlaceController@editGalerie', 'as' => 'place.editGalerie']);
-$router->post('/place/{slug}/{auth:[a-z0-9]+}/updateGalerie', ['uses' => 'PlaceController@updateGalerie', 'as' => 'place.updateGalerie']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'PlaceController@publish', 'as' => 'place.publish']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/csv', ['uses' => 'PlaceController@jsonToCsv', 'as' => 'place.csv']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);
+
+$router->post('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/add', ['uses' => 'PhotoController@add', 'as' => 'photo.add']);
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/delete', ['uses' => 'PhotoController@delete', 'as' => 'photo.delete']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {
