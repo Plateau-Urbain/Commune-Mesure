@@ -2,11 +2,11 @@
   @php return @endphp
 @endif
 <span class="icon-edit">
-    <a class='crayons' href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer"></i></a>
+    <a class='crayons' href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{ str_replace('->', '__', $chemin) }}" title="Éditer"></i></a>
 </span>
 
 @push('modals')
-<div class="modal" id="{{$chemin}}" style="z-index: 100000;">
+<div class="modal" id="{{ str_replace('->', '__', $chemin) }}" style="z-index: 1000000000">
   <div class="modal-background" ></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -22,8 +22,9 @@
 
     </header>
 
+    <div class="modal-card-body">
     <form method="POST" action="{{ route($action ?? 'place.update', ['slug' => $slug, 'auth' => $auth, 'hash' => $chemin, 'id_section' => $id_section]) }}"@if($type === 'file') enctype="multipart/form-data" @endif>
-      <section class="modal-card-body">
+      <section>
         @isset($description)
           <small>{{ $description }}</small>
           <hr class="is-primary-light"/>
@@ -47,6 +48,7 @@
         </span>
       </footer>
     </form>
+    </div>
   </div>
 </div>
 @endpush

@@ -3,25 +3,26 @@
 @empty($photos)
   <p class="has-text-centered">Il n'y a pas encore de photo</p>
 @else
-  <div class="container carousel-container">
-    <div class="carousel" data-navigation="1">
-      @foreach($photos as $photo)
-        <div class="item-{{ $loop->iteration }}">
-          <figure class="image is-covered images-lieu">
-            <img src="{{ url('/images/lieux/') }}/{{ $photo }}">
-          </figure>
+  <div class="columns is-multiline">
+    @foreach($photos as $photo)
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{ url('/images/lieux/') }}/{{ $photo }}" alt="Image du lieu">
+            </figure>
+          </div>
+          <footer class="card-footer has-background-danger">
+            <a href="{{ route('photo.delete', ['slug' => $slug, 'auth' => $auth, 'index' => $loop->index, 'id_section' => $id_section]) }}"
+             class="card-footer-item has-text-white">
+               <i class="fa fa-times mr-1"></i> Supprimer
+          </a>
+          </footer>
         </div>
-      @endforeach
-    </div>
+      </div>
+    @endforeach
   </div>
 @endempty
-      @foreach($photos as $photo)
-        <div class="file-galerie-delete">
-          <a href="{{ route('photo.delete', ['slug' => $slug, 'auth' => $auth, 'index' => $loop->index, 'id_section' => 'galerie']) }}"
-             class="button is-danger">
-             <i class="fa fa-times"></i>
-          </a>
-      @endforeach
 
 <hr class="is-primary-light">
 
