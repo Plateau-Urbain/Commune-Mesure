@@ -18,12 +18,16 @@
             @yield('content')
         </div>
 
-        <div id="modal_container"></div>
-         @section('script_js')
-             <script src="{{ url('/js/global.js') }}"></script>
-             <script src="{{ url('/js/bundle.js') }}"></script>
-             <script src="{{ url('/js/charts.js') }}"></script>
-         @show
-         @include("footer")
+        @include("footer")
+
+        <div id="modal_container">
+          @stack('modals')
+        </div>
+
+        @section('script_js')
+          <script src="{{ url('/js/global.js') }}"></script>
+          <script src="{{ url('/js/bundle.js') }}"></script>
+          <script src="{{ url('/js/charts.js') }}"></script>
+        @show
     </body>
 </html>

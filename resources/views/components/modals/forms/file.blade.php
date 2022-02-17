@@ -42,6 +42,8 @@
   </label>
 </div>
 
+@section('script_js')
+@parent
 <script>
   const fileInput = document.querySelector('#file-galerie-add input[type=file]');
   fileInput.onchange = () => {
@@ -51,3 +53,4 @@
     }
   }
 </script>
+@endsection

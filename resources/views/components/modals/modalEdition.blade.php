@@ -4,6 +4,8 @@
 <span class="icon-edit">
     <a class='crayons' href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{$chemin}}" title="Éditer"></i></a>
 </span>
+
+@push('modals')
 <div class="modal" id="{{$chemin}}" style="z-index: 100000;">
   <div class="modal-background" ></div>
   <div class="modal-card">
@@ -47,3 +49,4 @@
     </form>
   </div>
 </div>
+@endpush

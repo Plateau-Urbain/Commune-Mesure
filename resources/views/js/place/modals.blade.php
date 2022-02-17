@@ -1,9 +1,4 @@
 <script>
-
-document.querySelectorAll('.modal').forEach(function(modal) {
-  document.getElementById('modal_container').insertAdjacentElement('beforeend',modal);
-});
-
 document.addEventListener('click', function(e) {
     // loop parent nodes from the target to the delegation node
     for (var target = e.target; target && target != this; target = target.parentNode) {

@@ -13,13 +13,7 @@ L.Icon.Default.mergeOptions({
 });
 
 import Chart from 'chart.js';
-
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
-const carousels = bulmaCarousel.attach('.carousel', {
-  navigation: false,
-  slidesToScroll: 1,
-  slidesToShow: 1
-});
 
 import { animateValue } from '../../public/js/animate.js';
 var values = document.querySelectorAll(".animate-value")
@@ -163,6 +157,12 @@ window.onload = (event) => {
         setInseeChartData(placeData.insee.iris,"iris")
         animateBar();
     }
+
+    const carousels = bulmaCarousel.attach('.carousel', {
+      navigation: false,
+      slidesToScroll: 1,
+      slidesToShow: 1
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
