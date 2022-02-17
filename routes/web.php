@@ -52,7 +52,7 @@ $router->get('/place/{slug}/{auth:[a-z0-9]+}/csv', ['uses' => 'PlaceController@j
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);
 
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/add', ['uses' => 'PhotoController@add', 'as' => 'photo.add']);
-$router->get('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/delete', ['uses' => 'PhotoController@delete', 'as' => 'photo.delete']);
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/{index}/delete', ['uses' => 'PhotoController@delete', 'as' => 'photo.delete']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'ImpactsController@show', 'as' => 'impacts.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {

@@ -12,7 +12,6 @@ use \Carbon\Carbon;
 
 class Place extends Model
 {
-
   const STAT_CITIES = "cities";
   const STAT_SURFACE = "surface";
   const STAT_EVENTS = "evenements";
@@ -360,18 +359,18 @@ class Place extends Model
     return $result > 0;
   }
 
-  public function addPhoto($newPhoto){
-    $photos=$this->getPhotos();
-    array_push($photos,$newPhoto);
-    $this->set('blocs->galerie->donnees',$photos);
-  }
+    public function addPhoto($newPhoto) {
+      $photos = $this->getPhotos();
+      array_push($photos, $newPhoto);
+      $this->set('blocs->galerie->donnees', $photos);
+    }
 
-  public function deletePhoto($indexOfPhoto){
-    $photos = $this->getPhotos();
-    unset($photos[$indexOfPhoto]);
-    $photos = array_values($photos);
-    $this->set('blocs->galerie->donnees',$photos);
-  }
+    public function deletePhoto($index) {
+        $photos = $this->getPhotos();
+        unset($photos[$index]);
+        $photos = array_values($photos);
+        $this->set('blocs->galerie->donnees', $photos);
+    }
 
 
   public function getCompares($places){

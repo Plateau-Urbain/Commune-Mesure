@@ -15,6 +15,13 @@
     </div>
   </div>
 @endempty
+      @foreach($photos as $photo)
+        <div class="file-galerie-delete">
+          <a href="{{ route('photo.delete', ['slug' => $slug, 'auth' => $auth, 'index' => $loop->index, 'id_section' => 'galerie']) }}"
+             class="button is-danger">
+             <i class="fa fa-times"></i>
+          </a>
+      @endforeach
 
 <hr class="is-primary-light">
 
