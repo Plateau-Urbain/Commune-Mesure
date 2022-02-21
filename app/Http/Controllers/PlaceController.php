@@ -135,7 +135,9 @@ class PlaceController extends Controller
 
                 $dirty[$value] = 1;
                 $dirty = (object) $dirty;
-            } elseif (is_array($to_edit) || is_object($to_edit)) {
+            } elseif (is_array($to_edit)) {
+                $dirty = array_values(array_filter(array_unique($value), 'strlen'));
+            } elseif (is_object($to_edit)) {
                 $dirty = array_merge((array) $to_edit, array_filter($value, 'strlen'));
 
                 if ($type === 'checkbox') {
@@ -144,9 +146,7 @@ class PlaceController extends Controller
                     });
                 }
 
-                if (is_object($to_edit)) {
-                    $dirty = (object) $dirty;
-                }
+                $dirty = (object) $dirty;
             } else {
                 $dirty = $value;
             }
