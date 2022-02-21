@@ -220,11 +220,6 @@ class Place extends Model
     return ($array[count($array)-1]);
   }
 
-
-  public function setOnArray($chemin,$index,$newValue){
-    return (self::getHeadObjectChemin($this->getData(),$chemin)->{self::getLastChemin($chemin)}[$index]= $newValue);
-  }
-
   public function set($chemin,$newValue){
     return (self::getHeadObjectChemin($this->getData(),$chemin)->{self::getLastChemin($chemin)}= $newValue);
   }
