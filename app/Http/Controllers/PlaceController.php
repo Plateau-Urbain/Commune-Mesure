@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use App\Models\Section;
+use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Laravel\Lumen\Http\Redirector;
@@ -60,6 +61,9 @@ class PlaceController extends Controller
         $isEmpty = $place->getIsEmpty();
         $this->sortDataInsee($place->getData());
 
+        if (env('APP_DEBUG')) {
+            Debugbar::debug($place->getData());
+        }
 
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
