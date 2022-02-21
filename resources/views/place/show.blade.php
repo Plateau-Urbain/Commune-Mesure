@@ -121,6 +121,17 @@
       <section class="section section-place " id="presentation">
         <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
+
+        @if (isset($edit) || ! empty($place->get('blocs->presentation->donnees->description')) )
+        <div class="has-text-centered pt-2 container mb-6">
+          <h4 class="title is-4 no-border">À propos du lieu</h4>
+          @include('components.modals.modalEdition', ['chemin'=> 'blocs->presentation->donnees->description', 'id_section' => 'presentation', 'type' => 'text', 'titre' => 'Une courte description du lieu', 'description' => "Décrivze en quelques mots votre lieu. Ce texte se retrouvera également dans les encarts de publications sur les réseaux sociaux."])
+          <p class="content">
+            {{ $place->get('blocs->presentation->donnees->description') }}
+          </p>
+        </div>
+        @endif
+
         <div class="has-text-centered pt-2 container">
           <p>
             <ul class="list-dotted">
