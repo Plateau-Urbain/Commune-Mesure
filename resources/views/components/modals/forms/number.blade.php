@@ -6,11 +6,11 @@
       </div>
       <div class="field-body">
         <p class="control is-expanded">
-          <input class="input" type="number" name="{{ $name }}[{{ $key }}]" value="{{ $v }}">
+          <input class="input" type="number" min=0 name="{{ $name }}[{{ $key }}]" value="{{ $v }}">
         </p>
       </div>
     </div>
   @endforeach
 @else
-  <input class='input-number' name="{{ $name }}" type='number' value="{{ $value }}"/>
+  <input class='input-number' min=0 name="{{ $name }}" type='number' value="{{ $value }}"/>
 @endif

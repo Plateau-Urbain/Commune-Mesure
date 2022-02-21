@@ -1,1 +1,1 @@
-<input class="input-number" step="any" name="{{ $name }}" type="number" value="{{ $value }}">
+<input class="input-number" step="any" min=0 name="{{ $name }}" type="number" value="{{ $value }}">
