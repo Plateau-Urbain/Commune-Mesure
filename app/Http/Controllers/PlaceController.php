@@ -150,9 +150,10 @@ class PlaceController extends Controller
             } else {
                 $dirty = $value;
             }
+
+            $place->set(urldecode($hash), $dirty);
         }
 
-        $place->set(urldecode($hash), $dirty);
         $place->save();
 
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
