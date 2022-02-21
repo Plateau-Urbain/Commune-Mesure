@@ -222,6 +222,9 @@ class ImportTypeForm extends Command
           }
         }
 
+        // texte des valeurs
+        $new_place->blocs->valeurs->texte = new stdClass;
+
         // moyens
         $new_place->blocs->moyens = new stdClass;
         $new_place->blocs->moyens->visible = 1;
