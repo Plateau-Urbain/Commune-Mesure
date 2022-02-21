@@ -32,7 +32,12 @@
     <meta property="og:image:type" content="{{ mime_content_type($imagepath) }}">
     <meta property="og:image:alt" content="Image du site">
   @endif
-  <meta property="og:description" content="Indicateurs sur le lieux {{ $place->get('name') }} situé à {{ $place->get('address->city') }}">
+  <meta property="og:description" content="@if ($place->get('blocs->presentation->donnees->description'))
+    {{ $place->get('blocs->presentation->donnees->description') }}
+  @else
+    Indicateurs sur le lieux {{ $place->get('name') }} situé à {{ $place->get('address->city') }}
+  @endif
+  ">
   <meta property="og:locale" content="fr_FR">
 @endsection
 
