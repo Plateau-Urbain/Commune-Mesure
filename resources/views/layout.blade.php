@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        @section('opengraph')
+        @show
         <title>Commune Mesure</title>
         <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
         @section('head_css')

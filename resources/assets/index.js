@@ -15,6 +15,8 @@ L.Icon.Default.mergeOptions({
 import Chart from 'chart.js';
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 
+import './images/Commune-Mesure-1.png'
+
 import { animateValue } from '../../public/js/animate.js';
 var values = document.querySelectorAll(".animate-value")
 values.forEach(function (v) {
