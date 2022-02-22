@@ -476,7 +476,7 @@ class Place extends Model
         }
 
         $path = Storage::putFile(
-            storage_path('app'),
+            'screenshots',
             new File('./out/screenshot/'.$this->getSlug().'.jpg')
         );
 
