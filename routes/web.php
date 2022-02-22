@@ -44,6 +44,7 @@ $router->get('/external/map', ['uses' => 'ExternalController@map', 'as' => 'exte
 
 $router->get('/les-lieux', ['uses' => 'PlaceController@list', 'as' => 'places']);
 $router->get('/place/{slug}', ['uses' => 'PlaceController@show', 'as' => 'place.show']);
+$router->get('/place/{slug}/export[/{to}]', ['uses' => 'PlaceController@export', 'as' => 'place.export']);
 
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'PlaceController@update', 'as' => 'place.update']);

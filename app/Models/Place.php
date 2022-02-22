@@ -5,9 +5,13 @@ namespace App\Models;
 use App\Models\Section;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Place extends Model
 {
@@ -460,6 +464,24 @@ class Place extends Model
     }
     return "";
   }
+
+    public function export($type)
+    {
+        $process = new Process(['bash', base_path().'/bin/export.sh', $this->getSlug()]);
+        $process->run();
+
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            abort(500, $process->getExitCode().": ".$process->getErrorOutput());
+        }
+
+        $path = Storage::putFile(
+            storage_path('app'),
+            new File('./out/screenshot/'.$this->getSlug().'.jpg')
+        );
+
+        return $path;
+    }
 
   public function exportCsv(string $auth) : \Generator
   {

@@ -8,7 +8,8 @@
         "php": "^7.3",
         "doctrine/dbal": "^3.1",
         "illuminate/mail": "^8.58",
-        "laravel/lumen-framework": "^8.0"
+        "laravel/lumen-framework": "^8.0",
+        "league/flysystem": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.5.1",

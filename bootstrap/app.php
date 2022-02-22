@@ -71,6 +71,8 @@ $app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 $app->configure('session');
 
+$app->configure('filesystems');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware

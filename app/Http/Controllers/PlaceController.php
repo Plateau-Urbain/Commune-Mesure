@@ -7,10 +7,13 @@ use App\Models\Section;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Lumen\Http\Redirector;
 
 class PlaceController extends Controller
 {
+    const export = ['image', 'pdf'];
+
     public function show($slug)
     {
         $place = Place::find($slug);
@@ -188,6 +191,30 @@ class PlaceController extends Controller
         return redirect(route('place.edit', compact('slug', 'auth')));
     }
 
+    /**
+     * @param $to string image|pdf
+     *
+     */
+    public function export(Request $request, $slug, $to = 'image')
+    {
+        $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
+
+        if ($place->isPublish() === false) {
+            return view('place.unpublished', compact('place'));
+        }
+
+        if (in_array($to, self::export) === false) {
+            abort(400, 'Export type not supported');
+        }
+
+        $file = $place->export($to);
+
+        return Storage::download($file);
+    }
 
     public function jsonToCsv(Request $request, $slug, $auth)
     {
