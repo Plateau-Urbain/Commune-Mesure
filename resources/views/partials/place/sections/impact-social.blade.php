@@ -9,7 +9,7 @@
 
     <img class="img-impact-social" width="200" src="{{ url('/images/Impact_individuel.png') }}"/>
 
-    <div class="impact_item bottom left" id="impact_item_lien" data-aos="fade-in">
+    <div class="impact_item bottom left" id="impact_item_lien">
       @php $impact_lien_text = $place->get('blocs->impact_social->donnees->lien_social') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->lien_social' @endphp
       <div class="crayon-impact-social">
@@ -22,7 +22,7 @@
         </svg>
       </div>
     </div>
-    <div class="impact_item top right" id="impact_item_sante" data-aos="fade-right">
+    <div class="impact_item top right" id="impact_item_sante">
       @php $impact_sante_text = $place->get('blocs->impact_social->donnees->sante_bien_être') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->sante_bien_être' @endphp
       <div @if(!empty($impact_sante_text)) data-tooltip="{{ $impact_sante_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_sante_text) impact_disabled @endisset">
@@ -35,7 +35,7 @@
         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous pu observer un changement des conditions physiques, sociales ou psychiques chez les bénéficiaires du projet, qui puisse être directement lié au projet ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
-    <div class="impact_item top left" id="impact_item_insertion" data-aos="fade-in">
+    <div class="impact_item top left" id="impact_item_insertion">
       @php $impact_insertion_text = $place->get('blocs->impact_social->donnees->insertion_professionnelle') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->insertion_professionnelle' @endphp
       <div class="crayon-impact-social">
@@ -48,7 +48,7 @@
         </svg>
       </div>
     </div>
-    <div class="impact_item bottom right" id="impact_item_capacite" data-aos="fade-in">
+    <div class="impact_item bottom right" id="impact_item_capacite">
       @php $impact_capacite_text = $place->get('blocs->impact_social->donnees->capacite_agir') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->capacite_agir' @endphp
       <div @if(!empty($impact_capacite_text)) data-tooltip="{{ $impact_capacite_text }}" @endif class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_capacite_text) impact_disabled @endisset">
@@ -69,7 +69,7 @@
 
     <img class="img-impact-social" width="300" src="{{ url('/images/Impact_collectif.png') }}"/>
 
-    <div class="impact_item top right" id="impact_item_reseaux" data-aos="fade-in">
+    <div class="impact_item top right" id="impact_item_reseaux">
         @php $impact_reseau_text = $place->get('blocs->impact_social->donnees->reseaux') @endphp
         @php $impact_chemin='blocs->impact_social->donnees->reseaux' @endphp
       <div @if(!empty($impact_reseau_text)) data-tooltip="{{ $impact_reseau_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_reseau_text) impact_disabled @endisset">
@@ -81,7 +81,7 @@
         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Avez-vous pu observer la création de réseaux de personnes ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
-    <div class="impact_item bottom right" id="impact_item_appartenance" data-aos="fade-right">
+    <div class="impact_item bottom right" id="impact_item_appartenance">
       @php $impact_appartenance_text = $place->get('blocs->impact_social->donnees->appartenance_exclusion') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->appartenance_exclusion' @endphp
       <div @if(!empty($impact_appartenance_text)) data-tooltip="{{ $impact_appartenance_text }}" @endif class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_appartenance_text) impact_disabled @endisset">
@@ -94,7 +94,7 @@
          @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type'=> 'text', 'titre' => "Modifier l'impact social", 'description' => "Diriez-vous que certaines personnes se sentent appartenir à un groupe, ou s'en sentent exclues? Merci de donner au moins un exemple ou d'expliciter."])
       </div>
     </div>
-    <div class="impact_item top left" id="impact_item_solidarite" data-aos="fade-in">
+    <div class="impact_item top left" id="impact_item_solidarite">
       @php $impact_solidarite_text = $place->get('blocs->impact_social->donnees->solidarite') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->solidarite' @endphp
       <div class="crayon-impact-social">
@@ -106,7 +106,7 @@
         </svg>
       </div>
     </div>
-    <div class="impact_item bottom left" id="impact_item_egalite_homme_femme" data-aos="fade-in">
+    <div class="impact_item bottom left" id="impact_item_egalite_homme_femme">
       @php $impact_egalite_homme_femme_text = $place->get('blocs->impact_social->donnees->egalite_homme_femme') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->egalite_homme_femme' @endphp
       <div class="crayon-impact-social">
@@ -127,7 +127,7 @@
 
     <img class="img-impact-social" width="200" src="{{ url('/images/Impacts_territoriaux.png') }}"/>
 
-    <div class="impact_item bottom left" id="impact_item_cadre_de_vie" data-aos="fade-in">
+    <div class="impact_item bottom left" id="impact_item_cadre_de_vie">
       @php $impact_cadre_de_vie_text = $place->get('blocs->impact_social->donnees->cadre_de_vie') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->cadre_de_vie' @endphp
       <div class="crayon-impact-social">
@@ -140,7 +140,7 @@
         </svg>
       </div>
     </div>
-    <div class="impact_item top right" id="impact_item_entretien_des_espaces" data-aos="fade-right">
+    <div class="impact_item top right" id="impact_item_entretien_des_espaces">
       @php $impact_entretien_des_espaces_text = $place->get('blocs->impact_social->donnees->entretien_des_espaces') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->entretien_des_espaces' @endphp
       <div @if(!empty($impact_entretien_des_espaces_text)) data-tooltip="{{ $impact_entretien_des_espaces_text }}" @endif class="impact_tooltip has-tooltip-bottom has-tooltip-multiline @empty($impact_entretien_des_espaces_text) impact_disabled @endisset">
@@ -153,7 +153,7 @@
         @include('components.modals.modalEdition', ['chemin' => $impact_chemin, 'id_section' => 'impact_social', 'type' => 'text', 'titre' => "Modifier l'impact social", 'description' => "Le projet a-t-il engendré des effets sur les espaces extérieurs du quartier ou sur l'environnement du site ? Merci de donner un exemple ou d'expliciter."])
       </div>
     </div>
-    <div class="impact_item top left" id="impact_item_services_publics" data-aos="fade-in">
+    <div class="impact_item top left" id="impact_item_services_publics">
       @php $impact_services_publics_text = $place->get('blocs->impact_social->donnees->services_publics') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->services_publics' @endphp
       <div class="crayon-impact-social">
@@ -166,7 +166,7 @@
         </svg>
       </div>
     </div>
-    <div class="impact_item bottom right" id="impact_item_innovation_publique" data-aos="fade-in">
+    <div class="impact_item bottom right" id="impact_item_innovation_publique">
       @php $impact_innovation_publique_text = $place->get('blocs->impact_social->donnees->innovation_publique') @endphp
       @php $impact_chemin='blocs->impact_social->donnees->innovation_publique' @endphp
       <div @if(!empty($impact_innovation_publique_text)) data-tooltip="{{ $impact_innovation_publique_text }}" @endif class="impact_tooltip has-tooltip-top has-tooltip-multiline @empty($impact_innovation_publique_text) impact_disabled @endisset">

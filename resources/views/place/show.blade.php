@@ -48,8 +48,6 @@
 @section('script_js')
   @parent
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {{-- Graphs insee --}}
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> {{-- animate on scroll impact --}}
-  <script>AOS.init();</script>
   @include('js.place.insee-graph')
   @include('js.place.map-insee-js')
   @include('js.place.charts-doughnut')
