@@ -45,16 +45,16 @@ class PlaceController extends Controller
     {
         $place = Place::find($slug);
 
+        if ($place === false) {
+            abort(404);
+        }
+
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
 
         if ($auth === str_repeat('a', 64)) {
             throw new \LogicException('Exiting, default admin hash');
-        }
-
-        if ($place === false) {
-            abort(404);
         }
 
         $sections = $place->getVisibility();
@@ -86,6 +86,10 @@ class PlaceController extends Controller
     {
         $place = Place::find($slug);
 
+        if ($place === false) {
+            abort(404);
+        }
+
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
@@ -104,6 +108,10 @@ class PlaceController extends Controller
     public function update(Request $request, $slug, $auth, $hash, $id_section)
     {
         $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
 
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
@@ -162,12 +170,19 @@ class PlaceController extends Controller
     public function publish(Request $request, $slug, $auth)
     {
         $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
+
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
+
         if ($auth === str_repeat('a', 64)) {
             throw new \LogicException('Exiting, default admin hash');
         }
+
         $place->set('publish', !$place->get('publish'));
         $place->save();
         return redirect(route('place.edit', compact('slug', 'auth')));
@@ -177,9 +192,15 @@ class PlaceController extends Controller
     public function jsonToCsv(Request $request, $slug, $auth)
     {
         $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
+
         if ($place->check($auth) === false) {
             abort(403, 'Wrong authentication string');
         }
+
         if ($auth === str_repeat('a', 64)) {
             throw new \LogicException('Exiting, default admin hash');
         }
