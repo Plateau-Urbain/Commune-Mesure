@@ -475,9 +475,12 @@ class Place extends Model
             abort(500, $process->getExitCode().": ".$process->getErrorOutput());
         }
 
+        $lastoutput = array_filter(explode("\n", $process->getOutput()));
+        $lastoutput = end($lastoutput);
+
         $path = Storage::putFile(
             'screenshots',
-            new File('./out/screenshot/'.$this->getSlug().'.jpg')
+            new File($lastoutput)
         );
 
         return $path;
