@@ -148,6 +148,24 @@
                 </li>
                 @endif
               @endforeach
+
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button is-small has-text-primary" aria-haspopup="true" aria-controls="dropdown-menu">
+                    <i class="fa fa-share-alt mr-1" aria-hidden="true"></i> Partagez-moi
+                  </button>
+                </div>
+                <div class="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug()]) }}">
+                      <i class="fa fa-image mr-1" aria-hidden="true"></i> En image
+                    </a>
+                    <div class="dropdown-item">
+                      <pre>{{ route('place.show', ['slug' => $place->getSlug()]) }}</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </ul>
           </p>
 
