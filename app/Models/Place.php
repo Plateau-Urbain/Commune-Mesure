@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Exception;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use \Carbon\Carbon;
 
 
 class Place extends Model
