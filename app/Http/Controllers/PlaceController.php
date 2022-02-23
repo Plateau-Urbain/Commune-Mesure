@@ -124,6 +124,9 @@ class PlaceController extends Controller
             throw new \LogicException('Exiting, default admin hash');
         }
 
+        $validateAgainst = $place->getValidator($request->all(), $hash);
+        $this->validate($request, $validateAgainst);
+
         $place->updateData($hash, $request->all());
         $place->save();
 

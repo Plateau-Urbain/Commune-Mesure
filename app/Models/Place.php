@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -20,6 +21,11 @@ class Place extends Model
   const STAT_EVENTS = "evenements";
   const STAT_EMPLOIS_DIRECTS = "emplois directs";
   const STAT_PERSONNES_ACCUEILLIES = "personnes accueillies";
+
+    const OUVERTURES = [
+        'En permanence', 'Plusieurs jours par semaine', 'Une fois par semaine ou moins',
+        "Lors d'évènements ponctuels seulement"
+    ];
 
   protected $stats = [
       self::STAT_SURFACE => 0,
@@ -581,6 +587,63 @@ class Place extends Model
             $this->set(urldecode($hash), $dirty);
         }
 
+    }
+
+    // TODO: ne plus utiliser $hash.
+    // TODO: fix espaces dans $chemin
+    //$to_edit = $place->get(str_replace('__', '->', $chemin));
+    public function getValidator(array $inputs, string $hash)
+    {
+        $validator = [];
+        $type = $inputs['type'] ?? null;
+
+        foreach ($inputs as $chemin => $value) {
+            if ($chemin === 'type') {
+                continue;
+            }
+
+            $rules = [];
+
+            if ($type === 'select') {
+                $rules[] = Rule::in(self::OUVERTURES);
+            }
+
+            $to_edit = $this->get(urldecode($hash));
+            if (is_array($to_edit) || is_object($to_edit)) {
+                $validator[$chemin] = 'array';
+            }
+
+            if ($type) {
+                switch ($type) {
+                    case 'checkbox':
+                        $rules[] = 'array';
+                        break;
+                    case 'select':
+                        $rules[] = Rule::in(self::OUVERTURES);
+                        break;
+                    case 'number':
+                        $rules[] = 'numeric';
+                        $rules[] = 'min:0';
+                        break;
+                    case 'date':
+                        $rules[] = 'date';
+                        break;
+                    default:
+                        $rules[] = 'min:1';
+                        break;
+                }
+            } else {
+                $rules[] = 'string';
+            }
+
+            if (is_array($to_edit) || is_object($to_edit)) {
+                $validator[$chemin.'.*'] = implode('|', $rules);
+            } else {
+                $validator[$chemin] = implode('|', $rules);
+            }
+        }
+
+        return $validator;
     }
 
     public function updateHash()

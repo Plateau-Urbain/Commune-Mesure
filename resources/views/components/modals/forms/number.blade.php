@@ -14,3 +14,4 @@
 @else
   <input class='input-number' min=0 name="{{ $name }}" type='number' value="{{ $value }}"/>
 @endif
+<input type="hidden" value="number" name="type">
