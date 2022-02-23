@@ -483,6 +483,10 @@ class Place extends Model
             new File($lastoutput)
         );
 
+        if ($path === false) {
+            abort(500, 'Error writing jpg file on disk');
+        }
+
         if ($type === 'image') {
             return $path;
         }
@@ -501,6 +505,10 @@ class Place extends Model
             'screenshots',
             new File($lastoutput)
         );
+
+        if ($path === false) {
+            abort(500, 'Error writing pdf file on disk');
+        }
 
         return $path;
     }
