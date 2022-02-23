@@ -539,6 +539,50 @@ class Place extends Model
         return DB::table('places')->where('place', $this->slug)->value('created_at');
     }
 
+    public function updateData(string $hash, array $inputs = [])
+    {
+        $type = $inputs['type'] ?? null;
+        $dirty = [];
+
+        foreach ($inputs as $chemin => $value) {
+            if ($chemin === 'type') {
+                continue;
+            }
+
+            // TODO: ne plus utiliser $hash.
+            // TODO: fix espaces dans $chemin
+            //$to_edit = $place->get(str_replace('__', '->', $chemin));
+            $to_edit = $this->get(urldecode($hash));
+
+            if ($type === 'select') {
+                $dirty = (array) $to_edit;
+                array_walk($dirty, function (&$v) {
+                    $v = 0;
+                });
+
+                $dirty[$value] = 1;
+                $dirty = (object) $dirty;
+            } elseif (is_array($to_edit)) {
+                $dirty = array_values(array_filter(array_unique($value), 'strlen'));
+            } elseif (is_object($to_edit)) {
+                $dirty = array_merge((array) $to_edit, array_filter($value, 'strlen'));
+
+                if ($type === 'checkbox') {
+                    array_walk($dirty, function (&$v) {
+                        $v = ($v === "on") ? 1 : 0;
+                    });
+                }
+
+                $dirty = (object) $dirty;
+            } else {
+                $dirty = $value;
+            }
+
+            $this->set(urldecode($hash), $dirty);
+        }
+
+    }
+
     public function updateHash()
     {
         return DB::table('places')->where('place', $this->slug)->update([
