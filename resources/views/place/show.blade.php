@@ -160,7 +160,7 @@
                     <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug()]) }}">
                       <i class="fa fa-image mr-1" aria-hidden="true"></i> En image
                     </a>
-                    <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug(), 'type' => 'pdf']) }}">
+                    <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug(), 'to' => 'pdf']) }}">
                       <i class="fa fa-file-pdf mr-1" aria-hidden="true"></i> Au format pdf
                     </a>
                     <div class="dropdown-item">
