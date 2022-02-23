@@ -472,7 +472,7 @@ class Place extends Model
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
-            abort(500, $process->getExitCode().": ".$process->getErrorOutput());
+            abort(500, $process->getExitCode().": ".$process->getOutput());
         }
 
         $lastoutput = array_filter(explode("\n", $process->getOutput()));
