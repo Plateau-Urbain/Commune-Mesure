@@ -483,6 +483,25 @@ class Place extends Model
             new File($lastoutput)
         );
 
+        if ($type === 'image') {
+            return $path;
+        }
+
+        $process = new Process(['bash', base_path().'/bin/export_pdf.sh', Storage::path($path)]);
+        $process->run();
+
+        if (! $process->isSuccessful()) {
+            abort(500, $process->getExitCode().": ".$process->getOutput());
+        }
+
+        $lastoutput = array_filter(explode("\n", $process->getOutput()));
+        $lastoutput = end($lastoutput);
+
+        $path = Storage::putFile(
+            'screenshots',
+            new File($lastoutput)
+        );
+
         return $path;
     }
 
