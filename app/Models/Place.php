@@ -593,6 +593,21 @@ class Place extends Model
             $this->set(urldecode($hash), $dirty);
         }
 
+        // Cas où `type === checkbox` et zéro checkbox coché
+        // ie. la boucle ne passe pas au dessus outre $chemin === type
+        if ($type === 'checkbox' && empty($dirty)) {
+            $to_edit = $this->get(urldecode($hash));
+            $dirty = (array) $to_edit;
+
+            array_walk($dirty, function (&$v) {
+                $v = 0;
+            });
+
+            $dirty = (object) $dirty;
+            $this->set(urldecode($hash), $dirty);
+        }
+
+
     }
 
     // TODO: ne plus utiliser $hash.
