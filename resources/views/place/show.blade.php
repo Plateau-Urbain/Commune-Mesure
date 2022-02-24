@@ -149,7 +149,7 @@
                 @endif
               @endforeach
 
-              <div class="dropdown is-hoverable">
+              <div class="dropdown is-hoverable is-right">
                 <div class="dropdown-trigger">
                   <button class="button is-small has-text-primary" aria-haspopup="true" aria-controls="dropdown-menu">
                     <i class="fa fa-share-alt mr-1" aria-hidden="true"></i> Partagez-moi
