@@ -616,7 +616,7 @@ class Place extends Model
             if ($type) {
                 switch ($type) {
                     case 'checkbox':
-                        $rules[] = 'array';
+                        $rules[] = 'accepted';
                         break;
                     case 'select':
                         $rules[] = Rule::in(self::OUVERTURES);
