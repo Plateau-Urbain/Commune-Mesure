@@ -555,6 +555,12 @@ class Place extends Model
                 continue;
             }
 
+            // Dans certaines versions, $request->all() (ou le parametre $inputs)
+            // renvoie aussi l'url dans le tableau
+            if (strpos($chemin, '/place/') !== false) {
+                continue;
+            }
+
             // TODO: ne plus utiliser $hash.
             // TODO: fix espaces dans $chemin
             //$to_edit = $place->get(str_replace('__', '->', $chemin));
@@ -599,6 +605,12 @@ class Place extends Model
 
         foreach ($inputs as $chemin => $value) {
             if ($chemin === 'type') {
+                continue;
+            }
+
+            // Dans certaines versions, $request->all() (ou le parametre $inputs)
+            // renvoie aussi l'url dans le tableau
+            if (strpos($chemin, '/place/') !== false) {
                 continue;
             }
 
