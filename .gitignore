@@ -10,7 +10,8 @@ Homestead.yaml
 /resources/*.xlsx
 !/storage/app/places/example.json
 /storage/app/
-/public/fonts/
+/public/fonts/*
+!/public/fonts/.gitkeep
 /public/js/bundle.js
 /public/js/external.js
 /public/css/app.css
