@@ -301,7 +301,7 @@
       </header>
       <section class="modal-card-body">
         <div class="content">
-          <h3>Bienvenu sur le datapanorama de votre lieu !</h3>
+          <h3>Bienvenue sur le datapanorama de votre lieu !</h3>
           <p>Il vous propose des visualisations de certaines des données que vous avez renseignées dans le questionnaire.</br> Quelques informations pour vous aider à mieux naviguer sur la page et à éditer vos informations :</p>
         <h6>Sens des icônes de la page :</h6>
         <ul>
