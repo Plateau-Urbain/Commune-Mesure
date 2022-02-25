@@ -127,39 +127,7 @@
 
         <div class="has-text-centered pt-2 container">
           <p>
-            <ul class="list-dotted">
-              @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
-                @if ($link || isset($edit))
-                <li>
-                  <i class="fab fa-{{ $name }} has-text-primary mr-1"></i> <span class="has-text-weight-bold"{!! (! $link) ? ' style="opacity: 0.5"' : '' !!}><a href="{{ ($link) ?: '#' }}" target='_blank'>{{ ucwords($name) }}</a></span>
-                  @if(isset($edit))
-                    @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->'.$name, 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier l'adresse du réseau", "description" => "Modifier le réseau ".$name])
-                  @endif
-                </li>
-                @endif
-              @endforeach
-
-              <div class="dropdown is-hoverable is-right">
-                <div class="dropdown-trigger">
-                  <button class="button is-small has-text-primary" aria-haspopup="true" aria-controls="dropdown-menu">
-                    <i class="fa fa-share-alt mr-1" aria-hidden="true"></i> Partagez-moi
-                  </button>
-                </div>
-                <div class="dropdown-menu" role="menu">
-                  <div class="dropdown-content">
-                    <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug()]) }}">
-                      <i class="fa fa-image mr-1" aria-hidden="true"></i> En image
-                    </a>
-                    <a class="dropdown-item" href="{{ route('place.export', ['slug' => $place->getSlug(), 'to' => 'pdf']) }}">
-                      <i class="fa fa-file-pdf mr-1" aria-hidden="true"></i> Au format pdf
-                    </a>
-                    <div class="dropdown-item">
-                      <pre>{{ route('place.show', ['slug' => $place->getSlug()]) }}</pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ul>
+          @include('partials.place.reseaux-sociaux')
           </p>
 
           <p>
