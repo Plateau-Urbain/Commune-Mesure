@@ -1,10 +1,10 @@
 .is-visible-print {
-    display: none;
+    display: none !important;
 }
 
 @media print {
     .is-hidden-print {
-        display: none;
+        display: none !important;
     }
 
     .is-visible-print {
