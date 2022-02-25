@@ -14,13 +14,15 @@
   <p class='description-section'>Les valeurs fondamentales autour desquelles le projet du lieu s'est construit</p>
 </div>
 <br>
-  <div class="columns is-multiline">
+  <div class="columns is-multiline is-centered">
     @foreach($place->get('blocs->valeurs->donnees') as $valeur => $active)
       @if($active)
-      <div class="column is-one-third-tablet is-one-quarter-desktop has-text-centered">
-        <p><strong class="valeurs has-text-primary">{{$valeur}}</strong></p>
+      <div class="column is-one-third-tablet is-one-quarter-desktop">
+        <p class="has-text-centered"><strong class="valeurs has-text-primary">{{$valeur}}</strong></p>
         <p>
           {{ $place->get('blocs->valeurs->texte->'.$valeur) }}
+        </p>
+        <p class="has-text-centered">
           @include('components.modals.modalEdition', ['chemin' => 'blocs->valeurs->texte->'.$valeur, 'id_section' => 'valeurs', 'type' => 'text', 'titre' => 'Valeur : '.$valeur, 'description' => 'Le texte apparaitera sous la valeur.'])
         </p>
       </div>
