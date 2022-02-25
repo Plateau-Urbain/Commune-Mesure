@@ -112,7 +112,7 @@
           </p>
         </div>
         <div class="section pt-5" style="padding-bottom:0;">
-          <div class="columns is-centered is-hidden-desktop is-hidden-mobile">
+          <div class="columns is-centered is-hidden-desktop is-hidden-mobile is-hidden-print">
             <div class="column is-half">
               @include('partials.place.sections.bloc-milieu')
             </div>
