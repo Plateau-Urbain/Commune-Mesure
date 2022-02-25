@@ -1,0 +1,18 @@
+.is-visible-print {
+    display: none;
+}
+
+@media print {
+    .is-hidden-print {
+        display: none;
+    }
+
+    .is-visible-print {
+        display: block;
+    }
+
+    html.has-navbar-fixed-top,
+    body.has-navbar-fixed-top {
+        padding-top: 0;
+    }
+}
