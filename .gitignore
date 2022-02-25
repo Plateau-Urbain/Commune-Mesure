@@ -8,6 +8,7 @@ Homestead.yaml
 .env
 .phpunit.result.cache
 /resources/*.xlsx
+/resources/views/generate/
 !/storage/app/places/example.json
 /storage/app/
 /public/fonts/*
