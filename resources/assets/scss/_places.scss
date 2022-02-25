@@ -64,3 +64,9 @@ ul.list-dotted {
         }
     }
 }
+
+a[target="_blank"]::after {
+    margin-left: 0.5em;
+    font-family: 'normal 900 1em/1 "Font Awesome 6 Free"';
+    content: "\f35d";
+}
