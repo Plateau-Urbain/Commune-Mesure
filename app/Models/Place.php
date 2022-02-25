@@ -630,13 +630,11 @@ class Place extends Model
             }
 
             $rules = [];
+            $to_edit = $this->get(urldecode($hash));
 
             if ($type === 'select') {
                 $rules[] = Rule::in(self::OUVERTURES);
-            }
-
-            $to_edit = $this->get(urldecode($hash));
-            if (is_array($to_edit) || is_object($to_edit)) {
+            } elseif (is_array($to_edit) || is_object($to_edit)) {
                 $validator[$chemin] = 'array';
             }
 
