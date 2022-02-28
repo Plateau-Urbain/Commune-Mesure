@@ -152,7 +152,7 @@
           @endif
         </div>
       </section>
-      <section class="section section-place">
+      <section class="section section-place" id="section-localisation">
         <div class='sous-banner sous-banner-localisation'>
           <h3 class="is-5 has-text-centered">LOCALISATION </h3>
           <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">{{ $place->get('address->address') }}, {{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</a>
