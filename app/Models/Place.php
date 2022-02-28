@@ -489,9 +489,10 @@ class Place extends Model
         $lastoutput = array_filter(explode("\n", $process->getOutput()));
         $lastoutput = end($lastoutput);
 
-        $path = Storage::putFile(
+        $path = Storage::putFileAs(
             'screenshots',
-            new File($lastoutput)
+            new File($lastoutput),
+            pathinfo($lastoutput)['basename']
         );
 
         if ($path === false) {
