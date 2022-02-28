@@ -1,4 +1,4 @@
-<ul class="list-dotted">
+<ul class="list-dotted is-hidden-print">
   @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
     @if ($link || isset($edit))
       <li>
@@ -12,7 +12,7 @@
 </ul>
 
 {{-- https://github.com/bradvin/social-share-urls --}}
-<div class="dropdown is-hoverable">
+<div class="dropdown is-hoverable is-hidden-print">
   <div class="dropdown-trigger">
     <button class="button is-small has-background-primary has-text-white" aria-haspopup="true" aria-controls="dropdown-menu">
       <i class="fa fa-share-alt mr-1" aria-hidden="true"></i> Partagez-moi
