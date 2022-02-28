@@ -1,5 +1,6 @@
 @include('generate.footer')
 
+@if (request()->is('place/*'))
 <footer class="footer is-visible-print">
   <div class="columns is-vcentered">
     <div class="column is-one-third">
@@ -16,3 +17,4 @@
     </div>
   </div>
 </footer>
+@endif
