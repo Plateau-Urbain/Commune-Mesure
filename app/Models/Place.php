@@ -471,9 +471,14 @@ class Place extends Model
     return "";
   }
 
-    public function export($type)
+    public function export($type, $fullpage = false)
     {
-        $process = new Process(['bash', base_path().'/bin/export.sh', $this->getSlug()]);
+        $processArgs = ['bash', base_path().'/bin/export.sh', $this->getSlug()];
+        if (! $fullpage) {
+            $processArgs[] = true;
+        }
+
+        $process = new Process($processArgs);
         $process->run();
 
         // executes after the command finishes

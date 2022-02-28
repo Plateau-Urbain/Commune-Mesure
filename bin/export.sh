@@ -9,11 +9,12 @@ if [ $# -eq 0 ]
 fi
 
 PLACE=$1
+TOP=$2
 
 cd $PUPPETEER_DIR
-node screenshot.js $1
+node screenshot.js $PLACE $TOP
 _NODE_SUCCESS=$?
-cd -
+# cd -
 
 if [ $_NODE_SUCCESS -eq 1 ] # Si 404 / 500
     then echo "Place $PLACE not found" && exit 1
