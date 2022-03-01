@@ -482,10 +482,10 @@ class Place extends Model
             ->generate($text);
     }
 
-    public function export($type, $fullpage = false)
+    public function export($type, $croped = false)
     {
         $processArgs = ['bash', base_path().'/bin/export.sh', $this->getSlug()];
-        if (! $fullpage) {
+        if ($croped) {
             $processArgs[] = true;
         }
 
