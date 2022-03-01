@@ -1,5 +1,7 @@
-.is-visible-print {
-    display: none !important;
+@media screen {
+    .is-visible-print {
+        display: none !important;
+    }
 }
 
 @media print {
