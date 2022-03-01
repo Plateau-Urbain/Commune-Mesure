@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -470,6 +471,16 @@ class Place extends Model
     }
     return "";
   }
+
+    public function getQrCode(string $text)
+    {
+        return QrCode::size(150)
+            ->margin(2)
+            ->eyeColor(0, 232, 80, 72, 156, 0, 0)
+            ->eyeColor(1, 232, 80, 72, 156, 0, 0)
+            ->eyeColor(2, 232, 80, 72, 156, 0, 0)
+            ->generate($text);
+    }
 
     public function export($type, $fullpage = false)
     {

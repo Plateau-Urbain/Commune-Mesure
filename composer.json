@@ -6,10 +6,12 @@
     "type": "project",
     "require": {
         "php": "^7.3",
+        "ext-gd": "*",
         "doctrine/dbal": "^3.1",
         "illuminate/mail": "^8.58",
         "laravel/lumen-framework": "^8.0",
-        "league/flysystem": "^1.1"
+        "league/flysystem": "^1.1",
+        "simplesoftwareio/simple-qrcode": "~4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.5.1",
