@@ -43,6 +43,10 @@ class Place extends Model
     protected static $places = [];
     protected $withPopup = false;
 
+    public static $exportCsvColumnHeaders = [
+        'identifiant', 'nom', 'url', 'url_administration', 'publie', 'email', 'creation'
+    ];
+
     private $data;
     private $slug;
 
@@ -556,6 +560,19 @@ class Place extends Model
         yield $line;
       }
   }
+
+    public function exportCsvColumns(string $auth)
+    {
+        return [
+            $this->getSlug(),
+            $this->get('name'),
+            route('place.show', ['slug' => $this->getSlug()]),
+            route('place.edit', ['slug' => $this->getSlug(), 'auth' => $auth]),
+            ($this->isPublish()) ? 'OUI' : 'NON',
+            $this->get('creator->email'),
+            $this->getCreatedAt()
+        ];
+    }
 
     public function getCreatedAt()
     {

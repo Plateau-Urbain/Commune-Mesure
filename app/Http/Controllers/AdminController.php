@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
@@ -57,6 +58,33 @@ class AdminController extends Controller
 
       fclose($csv);
       exit;
+    }
+
+    public function csv(Request $request, Place $place)
+    {
+        $places = Place::retrievePlaces('latest');
+        $auths = $place->getAuth();
+
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=export-lieux.csv',
+            'Expires'             => '0',
+            'Pragma'              => 'public'
+        ];
+
+        $response = new StreamedResponse(function () use ($places, $place, $auths) {
+            $output = fopen('php://output', 'w');
+            fputcsv($output, $place::$exportCsvColumnHeaders);
+
+            foreach ($places as $place) {
+                fputcsv($output, $place->exportCsvColumns($auths[$place->getSlug()]));
+            }
+
+            fclose($output);
+        }, 200, $headers);
+
+        return $response->send();
     }
 
     public function rehash(Request $request, $slug, $auth)

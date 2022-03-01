@@ -38,6 +38,7 @@ $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminControl
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/rehash', ['uses' => 'AdminController@rehash', 'as' => 'admin.rehash']);
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/delete', ['uses' => 'AdminController@delete', 'as' => 'admin.delete']);
 $router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
+$router->get('/_admin/csv', ['uses' => 'AdminController@csv', 'as' => 'admin.csv']);
 
 $router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
 $router->get('/external/map', ['uses' => 'ExternalController@map', 'as' => 'external.map']);
