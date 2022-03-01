@@ -44,7 +44,13 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/import.log'),
             'level' => 'debug',
-            'days' => 0
+            'days' => 60
+        ],
+
+        'update' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/update-place.log'),
+            'level' => 'info'
         ],
 
         'single' => [

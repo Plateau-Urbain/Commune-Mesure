@@ -613,7 +613,7 @@ class Place extends Model
             $this->set(urldecode($hash), $dirty);
         }
 
-
+        return $dirty;
     }
 
     // TODO: ne plus utiliser $hash.

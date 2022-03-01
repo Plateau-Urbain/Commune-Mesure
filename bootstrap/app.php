@@ -61,6 +61,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('logging');
 
 $app->configure('mail');
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
@@ -108,7 +109,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Illuminate\Session\SessionServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 
 if (env('APP_DEBUG')) {
     $app->register(Barryvdh\Debugbar\LumenServiceProvider::class);

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PlaceUpdate;
 use App\Models\Place;
 use App\Models\Section;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Lumen\Http\Redirector;
 
@@ -127,8 +129,11 @@ class PlaceController extends Controller
         $validateAgainst = $place->getValidator($request->all(), $hash);
         $this->validate($request, $validateAgainst);
 
-        $place->updateData($hash, $request->all());
+        $old = $place->get(urldecode($hash));
+        $new = $place->updateData($hash, $request->all());
         $place->save();
+
+        Event::dispatch(new PlaceUpdate($place, urldecode($hash), $old, $new));
 
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
     }
