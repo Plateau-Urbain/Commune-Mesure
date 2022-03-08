@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use \Carbon\Carbon;
@@ -398,6 +399,9 @@ class ImportTypeForm extends Command
         } catch (\Exception $e) {
             $this->logger->alert('Insee information failed : '.$e->getMessage());
             $this->logger->emergency("Import aborted");
+            $stderr = (new ConsoleOutput())->getErrorOutput();
+            $stderr->writeln("Downloading insee information failed for : ".$new_place->name);
+            exit;
         }
 
         $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
