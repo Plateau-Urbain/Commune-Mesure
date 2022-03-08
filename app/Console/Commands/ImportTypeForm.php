@@ -396,18 +396,17 @@ class ImportTypeForm extends Command
             Artisan::call('iris:load', [
                 'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
             ], $output);
+
+            $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
+
+            // on récupere l'info de la ville dans les données geojson de l'insee
+            $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
         } catch (\Exception $e) {
             $this->logger->alert('Insee information failed : '.$e->getMessage());
             $this->logger->emergency("Import aborted");
             $stderr = (new ConsoleOutput())->getErrorOutput();
             $stderr->writeln("Downloading insee information failed for : ".$new_place->name);
-            exit;
         }
-
-        $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
-
-        // on récupere l'info de la ville dans les données geojson de l'insee
-        $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
 
         if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");

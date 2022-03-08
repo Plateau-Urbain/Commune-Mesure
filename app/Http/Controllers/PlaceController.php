@@ -221,7 +221,7 @@ class PlaceController extends Controller
             return;
         }
 
-        $insee = $place->blocs->data_territoire->donnees->insee;
+        $insee = $place->blocs->data_territoire->donnees->insee ?? [];
         foreach ($insee as $zone => $datas) {
             foreach ($datas as $key => $data) {
                 $inseeDataArray = (array) $data;
