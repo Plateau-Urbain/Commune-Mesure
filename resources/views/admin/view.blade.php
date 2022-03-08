@@ -26,11 +26,18 @@
             </section>
         </div>
         <div class="section">
-            <div>
-              <a style='color: white' href="{{ route('admin.globalCsv') }}">
-                <button class="button is-success is-pulled-right" title="Télécharger le csv global">
+            <div id="download-csv" class="has-text-right clearfix has-text-white">
+              <a href="{{ route('admin.globalCsv') }}">
+                <button class="button is-success" title="Télécharger le csv global">
                   <span class="icon is-small">
                       <i class="fas fa-file-csv"></i>
+                  </span>
+                </button>
+              </a>
+              <a href="{{ route('admin.csv') }}">
+                <button class="button is-info" title="Télécharger le csv en colonne">
+                  <span class="icon is-small">
+                    <i class="fas fa-table-columns"></i>
                   </span>
                 </button>
               </a>
