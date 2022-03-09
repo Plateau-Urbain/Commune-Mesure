@@ -117,6 +117,10 @@ class Place extends Model
 
     public function getCoordinates($place)
     {
+        if ($place->get('blocs->data_territoire->donnees->geo->lat') === null || $place->get('blocs->data_territoire->donnees->geo->lon') === null) {
+            return [];
+        }
+
         return [$place->getSlug() => ['geo' => ['lat' => $place->get('blocs->data_territoire->donnees->geo->lat'), 'lon' => $place->get('blocs->data_territoire->donnees->geo->lon')]]];
     }
 
