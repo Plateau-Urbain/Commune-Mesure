@@ -46,6 +46,26 @@ class PlaceController extends Controller
         return view('places', compact('places', 'coordinates'));
     }
 
+    public function search(Request $request, Place $place)
+    {
+        if ($request->filled('q') === false) {
+            return response()->json([
+                'success' => true, 'count' => 0, 'results' => []
+            ]);
+        }
+
+        // TODO: $this->validate()
+
+        $search_results = Place::search($request->input('q'));
+        $search_results->transform(function ($item) {
+                $item->url = route('place.show', ['slug' => $item->slug]);
+                return $item;
+        });
+
+        $response = ['success' => true, 'count' => count($search_results), 'results' => $search_results];
+        return response()->json($response);
+    }
+
     public function edit($slug, $auth)
     {
         $place = Place::find($slug);

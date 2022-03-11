@@ -98,6 +98,31 @@ class Place extends Model
         return self::$places;
     }
 
+    /**
+     * Search place into into the db
+     *
+     * @param string $query the slug or description
+     * @return \Illuminate\Support\Collection
+     */
+    public static function search(string $query)
+    {
+        $places = DB::table('places')
+            ->select([
+                'data->name as title',
+                'place as slug',
+                'data->blocs->presentation->donnees->idee_fondatrice as description'
+            ])
+            ->where('deleted_at', null)
+            ->where(function ($q) use ($query) {
+                $q->where('place', 'like', '%'.$query.'%')
+                  ->orWhere('data->blocs->presentation->donnees->idee_fondatrice', 'like', '%'.$query.'%')
+                  ->orWhere('data->name', 'like', '%'.$query.'%');
+            })
+            ->get();
+
+        return $places;
+    }
+
     public function setData($data){
       $this->data = $data;
     }
