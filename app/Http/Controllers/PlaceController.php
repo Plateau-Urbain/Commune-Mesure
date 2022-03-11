@@ -64,7 +64,7 @@ class PlaceController extends Controller
                 return $item;
         });
 
-        $response = ['success' => true, 'count' => count($search_results), 'results' => $search_results];
+        $response = ['success' => true, 'request' => $request->input('q'), 'count' => count($search_results), 'results' => $search_results];
         return response()->json($response);
     }
 
