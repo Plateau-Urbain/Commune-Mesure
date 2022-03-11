@@ -54,7 +54,9 @@ class PlaceController extends Controller
             ]);
         }
 
-        // TODO: $this->validate()
+        $this->validate($request, [
+            'q' => 'required|filled|string|min:1|max:255'
+        ]);
 
         $search_results = Place::search($request->input('q'));
         $search_results->transform(function ($item) {
