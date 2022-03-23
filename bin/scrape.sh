@@ -7,7 +7,7 @@ _SECTIONS=("header" "footer")
 # Sections
 
 for section in "${_SECTIONS[@]}"; do
-    tempfile=`mktemp`
+    tempfile=$(mktemp)
 
     curl --fail --silent --show-error "${_HOST}/contact/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
 
@@ -16,9 +16,9 @@ for section in "${_SECTIONS[@]}"; do
     sed -i 's/et-l et-l--footer/footer/' "$tempfile"
     sed -i 's/ class="footer"/ class="footer is-hidden-print"/' "$tempfile"
 
-    mv "$tempfile" "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
-    chmod g+rw "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
-    chmod o+r "${_WORKINGDIR}/../resources/views/generate/"${section}".blade.php"
+    mv "$tempfile" "${_WORKINGDIR}/../resources/views/generate/${section}.blade.php"
+    chmod g+rw "${_WORKINGDIR}/../resources/views/generate/${section}.blade.php"
+    chmod o+r "${_WORKINGDIR}/../resources/views/generate/${section}.blade.php"
 done
 
 # Fonts

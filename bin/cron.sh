@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Scrape les pages « external » avec wget
 
@@ -10,7 +10,7 @@ _DEST=""
 mkdir -p "$_TMP"
 mkdir -p "$_DEST"
 
-cd "$_TMP"
+cd "$_TMP" || exit
 
 for url in "${_URLS[@]}"; do
     echo "wget: http://${_HOST}/external/${url}"

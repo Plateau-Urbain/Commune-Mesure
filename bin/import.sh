@@ -9,9 +9,9 @@ CRON_DIR='bin'
 FORCE=
 [ $# -eq 1 ] && FORCE="--force"
 
-cd $PUPPETEER_DIR
+cd "$PUPPETEER_DIR" || exit
 node "$PUPPETEER_DIR/typeform.js"
-cd -
+cd - || exit
 
 #appel script split
 unset -v FICHIER_TYPE_FORM

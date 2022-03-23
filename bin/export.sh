@@ -11,8 +11,8 @@ fi
 PLACE=$1
 TOP=$2
 
-cd $PUPPETEER_DIR
-node screenshot.js $PLACE $TOP
+cd "$PUPPETEER_DIR" || exit
+node screenshot.js "$PLACE" "$TOP"
 _NODE_SUCCESS=$?
 # cd -
 

@@ -9,7 +9,7 @@ then
 fi
 
 NOMBREDELIEU=$(jq length "$1")
-TAILLEJSON=$(($NOMBREDELIEU-1))
+TAILLEJSON=$((NOMBREDELIEU-1))
 
 if [ ! -d "$CHEMIN" ]
 then
@@ -18,6 +18,6 @@ fi
 
 for i in $(seq 0 $TAILLEJSON);
 do
-    FICHIER=$(jq .[$i] "$1" | jq .answers[1].group.answers[0].short_text.value | sed "s/\"//g" |sed "s/ /_/g"| sed "s#/#_#g" | sed "s#'#_#g")
-    jq .[$i] "$1" > "$CHEMIN"/"$FICHIER".json
+    FICHIER=$(jq .["$i"] "$1" | jq .answers[1].group.answers[0].short_text.value | sed "s/\"//g" |sed "s/ /_/g"| sed "s#/#_#g" | sed "s#'#_#g")
+    jq .["$i"] "$1" > "$CHEMIN"/"$FICHIER".json
 done

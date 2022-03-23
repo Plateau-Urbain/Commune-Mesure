@@ -16,9 +16,7 @@ fi
 
 PDF_FILE="$(dirname "${FILE}")/$(basename "${FILE}" .jpg).pdf"
 
-convert "$FILE" -quality 95 "$PDF_FILE"
-
-if [ $? -ne 0 ]
+if ! convert "$FILE" -quality 95 "$PDF_FILE"
     then echo "Conversion to pdf failed" && exit 32
 fi
 
