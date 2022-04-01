@@ -23,4 +23,10 @@ class MainController extends Controller
 
         return view('home', compact('coordinates', 'stats', 'popup'));
     }
+
+    public function search(Request $request, Place $place)
+    {
+        $result = null;
+        return view('search', compact('result'));
+    }
 }

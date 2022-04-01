@@ -32,6 +32,7 @@ if (!empty($proxy_schema)) {
 }
 
 $router->get('/', ['uses' => 'MainController@map', 'as' => 'map']);
+$router->get('/search', ['uses' => 'MainController@search', 'as' => 'search']);
 
 $router->get('/_admin', ['uses' => 'AdminController@view', 'as' => 'admin.view']);
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'AdminController@publish', 'as' => 'admin.publish']);

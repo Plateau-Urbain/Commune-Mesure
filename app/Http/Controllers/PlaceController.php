@@ -46,10 +46,6 @@ class PlaceController extends Controller
         return view('places', compact('places', 'coordinates'));
     }
 
-    public function search(Request $request, Place $place)
-    {
-    }
-
     public function edit($slug, $auth)
     {
         $place = Place::find($slug);
