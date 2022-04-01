@@ -27,6 +27,21 @@ class MainController extends Controller
     public function search(Request $request, Place $place)
     {
         $search = $request->input('q', null);
-        return view('search', compact('search'));
+        $results = [];
+
+        if ($search) {
+            // TODO: better validation handling
+            $this->validate($request, [
+                'q' => 'required|filled|string|min:1|max:255'
+            ]);
+
+            $results = Place::search($request->input('q'));
+            $results->transform(function ($item) {
+                    $item->url = route('place.show', ['slug' => $item->slug]);
+                    return $item;
+            });
+        }
+
+        return view('search', compact('search', 'results'));
     }
 }
