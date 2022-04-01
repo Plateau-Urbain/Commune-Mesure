@@ -26,7 +26,7 @@ class MainController extends Controller
 
     public function search(Request $request, Place $place)
     {
-        $result = null;
-        return view('search', compact('result'));
+        $search = $request->input('q', null);
+        return view('search', compact('search'));
     }
 }
