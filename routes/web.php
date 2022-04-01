@@ -61,7 +61,7 @@ $router->get('/les-partenaires', ['as' => 'partners', function () {
     return view('partenaires');
 }]);
 
-$router->get('/api/search/places', ['uses' => 'PlaceController@search', 'as' => 'search.places']);
+$router->get('/api/search/places', ['uses' => 'Api\Search@place', 'as' => 'api.search.places']);
 
 if (! App::environment('production')) {
     Route::get('/_debug/mail/import-success/{slug}', function ($slug) {
