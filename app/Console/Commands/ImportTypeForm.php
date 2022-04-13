@@ -331,7 +331,7 @@ class ImportTypeForm extends Command
         // geojson
         $new_place->blocs->data_territoire = new stdClass;
         $new_place->blocs->data_territoire->visible = 1;
-        $new_place->blocs->data_territoire->donnees = '';
+        $new_place->blocs->data_territoire->donnees = new stdClass;
 
         // images
         $new_place->blocs->galerie->donnees = [];
@@ -406,6 +406,15 @@ class ImportTypeForm extends Command
             $this->logger->emergency("Import aborted");
             $stderr = (new ConsoleOutput())->getErrorOutput();
             $stderr->writeln("Downloading insee information failed for : ".$new_place->name);
+
+            $adresse = ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode];
+            $this->logger->info('Fallback...', $adresse);
+            $geogouv = json_decode(file_get_contents("https://api-adresse.data.gouv.fr/search/?q=".urlencode(implode($adresse))));
+            $new_place->blocs->data_territoire->donnees->geo = [
+                'lat' => $geogouv->features[0]->geometry->coordinates[1],
+                'lon' => $geogouv->features[0]->geometry->coordinates[0]
+            ];
+            $new_place->address->city = $geogouv->features[0]->properties->city;
         }
 
         if ($exist->count() && $this->option('force') === true) {
