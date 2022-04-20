@@ -24,7 +24,10 @@
           <article class="media">
             <figure class="media-left">
               <p class="image is-128x128">
-                <a href="{{ $result->url }}"><img src="https://bulma.io/images/placeholders/128x128.png"></a>
+                <a href="{{ $result->url }}"><img src="{{
+                  (empty($result->photo)) ? url('images/').'/Commune-Mesure-1.png'
+                                          : url('images/lieux/').'/'.$result->photo[0];
+                }}"></a>
               </p>
             </figure>
             <div class="media-content">

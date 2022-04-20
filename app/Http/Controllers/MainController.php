@@ -38,6 +38,7 @@ class MainController extends Controller
             $results = Place::search($request->input('q'));
             $results->transform(function ($item) {
                     $item->url = route('place.show', ['slug' => $item->slug]);
+                    $item->photo = json_decode($item->photo);
                     return $item;
             });
         }

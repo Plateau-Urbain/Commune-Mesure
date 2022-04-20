@@ -110,7 +110,8 @@ class Place extends Model
             ->select([
                 'data->name as title',
                 'place as slug',
-                'data->blocs->presentation->donnees->idee_fondatrice as description'
+                'data->blocs->presentation->donnees->idee_fondatrice as description',
+                'data->blocs->galerie->donnees as photo'
             ])
             ->where('deleted_at', null)
             ->where(function ($q) use ($query) {
