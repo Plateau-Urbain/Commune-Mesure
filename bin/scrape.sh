@@ -12,6 +12,8 @@ for section in "${_SECTIONS[@]}"; do
     curl --fail --silent --show-error "${_HOST}/contact/" | tr -d '\n' | tr -d '\t' | sed "s#</${section}>.*#</${section}>#" | sed "s#.*<${section}#<${section}#" > "$tempfile"
 
     sed -i 's/<header id="main-header"/<header id="main-header" class="navbar is-fixed-top is-hidden-touch is-hidden-print"/' "$tempfile"
+    sed -i 's#<div class="et_search_outer">.*</header>#</header>#' "$tempfile"
+    sed -i 's#<span id="et_search_icon"></span>#<a href="/app/search"><span id="et_search_icon"></span></a>#' "$tempfile"
     sed -i 's/et-waypoint //' "$tempfile"
     sed -i 's/et-l et-l--footer/footer/' "$tempfile"
     sed -i 's/ class="footer"/ class="footer is-hidden-print"/' "$tempfile"

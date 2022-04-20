@@ -140,11 +140,41 @@ header#main-header {
 }
 
 #et-top-navigation {
-    padding-left: 168px;
+    padding-left: 165px;
     padding-top: 20px;
 
     float: right;
     font-weight: 600;
+
+    #et_top_search {
+        float: right;
+        margin: 3px 0 0 22px;
+        position: relative;
+        display: block;
+        width: 18px;
+    }
+
+    #et_search_icon::before {
+        font-family: ETmodules !important;
+        speak: none;
+        font-style: normal;
+        font-weight: 400;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-shadow: 0 0;
+
+        content: "\55";
+        font-size: 17px;
+        left: 0;
+        position: absolute;
+        top: -3px;
+        cursor: pointer;
+    }
 
     #top-menu-nav {
         float: left;
