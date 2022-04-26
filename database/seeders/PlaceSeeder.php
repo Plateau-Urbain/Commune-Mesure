@@ -9,6 +9,8 @@ use App\Models\Place;
 
 class PlaceSeeder extends Seeder
 {
+    const JSON_EXAMPLE = __DIR__.'/../../docs/exemple_lieu.json';
+
     /**
      * Run the database seeds.
      *
@@ -16,17 +18,16 @@ class PlaceSeeder extends Seeder
      */
     public function run()
     {
-        $storage = getenv('STORAGE_PATH').'places/';
+        $faker = \Faker\Factory::create();
+        $json = file_get_contents(self::JSON_EXAMPLE);
 
-        foreach (glob($storage.'*.json') as $lieu) {
-            $name = basename($lieu, '.json');
-            $json = file_get_contents($lieu);
-
-            DB::table('places')->insert([
-                'id' => Str::orderedUuid(),
-                'place' => $name,
-                'data' => $json
-            ]);
-        }
+        DB::table('places')->insert([
+            'id' => $faker->md5(),
+            'hash_admin' => $faker->sha256(),
+            'place' => 'place-1',
+            'data' => json_encode($json),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+        ]);
     }
 }
