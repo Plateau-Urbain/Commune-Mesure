@@ -10,14 +10,16 @@ class PlaceTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
-    }
-
     public function testPlaceExists()
     {
+        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
         $this->seeInDatabase('places', ['place' => 'place-1']);
+    }
+
+    public function testUniquePlace()
+    {
+        $this->expectException('PDOException');
+        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
     }
 }
