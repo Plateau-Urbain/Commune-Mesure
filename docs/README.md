@@ -14,7 +14,7 @@ Chaque json est ensuite passé à la tâche d'import.
 
 ## Tâche d'import
 
-La tâche d'import regarde si le lieu à déjà été importé, puis, grâce a un [schema](../storage/places/schema.json), convertit les réponses du json dans le [format](./exemple_lieu.json) stocké en base.
+La tâche d'import regarde si le lieu à déjà été importé, puis, grâce a un [schema](../storage/app/places/schema.json), convertit les réponses du json dans le [format](./exemple_lieu.json) stocké en base.
 
 Elle va également rechercher les données geojson et insee de l'iris, la commune, le département et la région du lieu.
 
