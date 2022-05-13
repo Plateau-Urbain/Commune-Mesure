@@ -45,8 +45,8 @@ class PlaceFactory extends Factory
 
     public function hasName(string $name)
     {
-        return $this->state(function () use ($name) {
-            return ['place' => $name];
-        });
+        return $this->state([
+            'place' => $name
+        ]);
     }
 }
