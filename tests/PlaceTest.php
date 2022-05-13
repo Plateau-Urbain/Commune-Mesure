@@ -38,13 +38,9 @@ class PlaceTest extends TestCase
 
     public function testUpdatePlace()
     {
-        Place::factory()->hasName('place-1')->create();
-        $place = Place::find("place-1");
-
+        $place = Place::factory()->hasName('place-1')->make();
         $this->assertEquals("La Plateforme des XXXXXXXX", $place->get('name'));
-
         $place->set('name', "La Plateforme des tests");
-        $place->save();
 
         $this->assertEquals("La Plateforme des tests", $place->get('name'));
     }
