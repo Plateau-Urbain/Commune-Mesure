@@ -22,6 +22,12 @@ class PlaceTest extends TestCase
         Place::factory()->hasName('place-1')->count(2)->create();
     }
 
+    public function testSaveMultiple()
+    {
+        $places = Place::factory()->count(3)->create();
+        $this->assertCount(3, $places);
+    }
+
     public function testIsModel()
     {
         Place::factory()->hasName('place-1')->create();
