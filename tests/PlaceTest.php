@@ -22,4 +22,12 @@ class PlaceTest extends TestCase
         $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
         $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
     }
+
+    public function testIsModel()
+    {
+        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        $place = Place::find("place-1");
+
+        $this->assertTrue($place instanceof Place);
+    }
 }
