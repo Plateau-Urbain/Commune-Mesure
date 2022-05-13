@@ -3,7 +3,6 @@
 use App\Console\Commands\ImportTypeForm;
 use App\Events\PlaceUpdate;
 use App\Models\Place;
-use Database\Seeders\PlaceSeeder;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
