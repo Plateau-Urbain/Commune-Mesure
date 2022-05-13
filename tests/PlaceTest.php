@@ -4,7 +4,6 @@ use App\Console\Commands\ImportTypeForm;
 use App\Events\PlaceUpdate;
 use App\Models\Place;
 use Database\Seeders\PlaceSeeder;
-use Illuminate\Support\Facades\Event;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -47,13 +46,11 @@ class PlaceTest extends TestCase
 
     public function testEventDispatched()
     {
-        Event::fake();
+        $this->expectsEvents(PlaceUpdate::class);
 
         Place::factory()->hasName('place-1')->create();
         $place = Place::find("place-1");
         $place->set('name', "La Plateforme des tests");
         $place->save();
-
-        Event::assertDispatched(PlaceUpdate::class);
     }
 }
