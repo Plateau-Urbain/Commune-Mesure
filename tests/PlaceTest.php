@@ -30,4 +30,17 @@ class PlaceTest extends TestCase
 
         $this->assertTrue($place instanceof Place);
     }
+
+    public function testUpdatePlace()
+    {
+        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        $place = Place::find("place-1");
+
+        $this->assertEquals("La Plateforme des XXXXXXXX", $place->get('name'));
+
+        $place->set('name', "La Plateforme des tests");
+        $place->save();
+
+        $this->assertEquals("La Plateforme des tests", $place->get('name'));
+    }
 }

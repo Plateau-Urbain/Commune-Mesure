@@ -25,7 +25,7 @@ class PlaceSeeder extends Seeder
             'id' => $faker->md5(),
             'hash_admin' => $faker->sha256(),
             'place' => 'place-1',
-            'data' => json_encode($json),
+            'data' => $json,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
