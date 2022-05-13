@@ -18,7 +18,7 @@ class PlaceTest extends TestCase
 
     public function testUniquePlace()
     {
-        $this->expectException('PDOException');
+        $this->expectException(PDOException::class);
         $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
         $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
     }
