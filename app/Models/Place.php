@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Section;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,8 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Place extends Model
 {
+    use HasFactory;
+
   const STAT_CITIES = "cities";
   const STAT_SURFACE = "surface";
   const STAT_EVENTS = "evenements";
@@ -397,6 +400,12 @@ class Place extends Model
         ]);
     return $result > 0;
   }
+
+    /** hack sauvegarde pour les tests pour la factory */
+    public function parentSave()
+    {
+        return parent::save();
+    }
 
     public function addPhoto($newPhoto) {
       $photos = $this->getPhotos();

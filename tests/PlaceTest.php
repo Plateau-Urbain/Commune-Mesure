@@ -14,20 +14,19 @@ class PlaceTest extends TestCase
 
     public function testPlaceExists()
     {
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        $place = Place::factory()->hasName('place-1')->create();
         $this->seeInDatabase('places', ['place' => 'place-1']);
     }
 
     public function testUniquePlace()
     {
         $this->expectException(PDOException::class);
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        Place::factory()->hasName('place-1')->count(2)->create();
     }
 
     public function testIsModel()
     {
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        Place::factory()->hasName('place-1')->create();
         $place = Place::find("place-1");
 
         $this->assertTrue($place instanceof Place);
@@ -35,7 +34,7 @@ class PlaceTest extends TestCase
 
     public function testUpdatePlace()
     {
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        Place::factory()->hasName('place-1')->create();
         $place = Place::find("place-1");
 
         $this->assertEquals("La Plateforme des XXXXXXXX", $place->get('name'));
@@ -50,7 +49,7 @@ class PlaceTest extends TestCase
     {
         Event::fake();
 
-        $this->artisan('db:seed', ['--class' => 'PlaceSeeder']);
+        Place::factory()->hasName('place-1')->create();
         $place = Place::find("place-1");
         $place->set('name', "La Plateforme des tests");
         $place->save();
