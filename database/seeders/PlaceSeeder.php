@@ -22,7 +22,7 @@ class PlaceSeeder extends Seeder
         $impact = $places->map(function ($place) {
             $item = clone $place;
             $item->type_donnees = 'impact';
-            $item->data = '{}';
+            $item->data = '{"impact": {"solidarite": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "reseaux": "Nulla at vestibulum nibh. Vivamus eu libero lacus."}}';
 
             return $item;
         });

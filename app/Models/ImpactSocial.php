@@ -18,6 +18,16 @@ class ImpactSocial extends Model
     protected $keyType = 'string';
 
     protected $casts = [
-        'data' => 'array'
+        //'data' => 'array'
     ];
+
+    public function getDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function setDataAttribute($value)
+    {
+        $this->attribute['data'] = json_encode($value);
+    }
 }

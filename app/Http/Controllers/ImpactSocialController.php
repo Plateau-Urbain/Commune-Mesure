@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\ImpactSocialRepositoryInterface;
 use Illuminate\Http\Request;
-//use Illuminate\Http\JsonResponse;
 
 class ImpactSocialController extends Controller
 {
@@ -17,8 +16,12 @@ class ImpactSocialController extends Controller
 
     public function show($slug)
     {
-        return response()->json(
-            $this->impactSocialRepository->getData($slug)
-        );
+        // Tous les champs
+        $place = $this->impactSocialRepository->get($slug);
+
+        // Uniquement la colonne `data`
+        //$place = $this->impactSocialRepository->getData($slug);
+
+        return view('impactsocial.show', compact('place'));
     }
 }
