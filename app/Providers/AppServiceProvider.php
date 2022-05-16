@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\ImpactSocialRepositoryInterface;
+use App\Repositories\ImpactSocialRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(ImpactSocialRepositoryInterface::class, ImpactSocialRepository::class);
     }
 }
