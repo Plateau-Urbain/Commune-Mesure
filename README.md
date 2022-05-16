@@ -29,7 +29,7 @@ Remplir le fichier .env :
 
 Création de la base de données :
 * Si sqlite est utilisé, alors il faut créer la base de données : `touch database/database.sqlite`
-* Lancer les migrations : `php artisan migrate`
+* Lancer les migrations : `php artisan migrate --seed`
 
 
 Pour lancer le projet: 
