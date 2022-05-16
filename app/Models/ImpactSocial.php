@@ -28,6 +28,6 @@ class ImpactSocial extends Model
 
     public function setDataAttribute($value)
     {
-        $this->attribute['data'] = json_encode($value);
+        $this->attributes['data'] = json_encode($value);
     }
 }

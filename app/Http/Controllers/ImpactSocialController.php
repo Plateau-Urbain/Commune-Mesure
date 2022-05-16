@@ -24,4 +24,15 @@ class ImpactSocialController extends Controller
 
         return view('impactsocial.show', compact('place'));
     }
+
+    public function update(Request $request, $slug)
+    {
+        $place = $this->impactSocialRepository->get($slug);
+        $data = $place->data;
+        $data->impact->solidarite = $request->get('solidarite', 'lorem ipsum');
+        $place->data = $data;
+        $place->save();
+
+        return redirect(route('impacts.show', compact('slug')));
+    }
 }

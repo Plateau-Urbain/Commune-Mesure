@@ -58,6 +58,7 @@ $router->post('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/add', ['uses' => 'Pho
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/{index}/delete', ['uses' => 'PhotoController@delete', 'as' => 'photo.delete']);
 
 $router->get('/impacts/{slug}', ['uses' => 'ImpactSocialController@show', 'as' => 'impacts.show']);
+$router->post('/impacts/{slug}/update', ['uses' => 'ImpactSocialController@update', 'as' => 'impacts.update']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'LabController@show', 'as' => 'lab.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {
