@@ -31,6 +31,9 @@ class Place extends Model
         "Lors d'évènements ponctuels seulement"
     ];
 
+    const TYPE_DONNEES_DATAPANORAMA = 'datapanorama';
+    const TYPE_DONNEES_IMPACT = 'impact';
+
   protected $stats = [
       self::STAT_SURFACE => 0,
       self::STAT_EVENTS => 0,
@@ -63,6 +66,7 @@ class Place extends Model
         $db = DB::table('places')
                     ->select(['place as slug', 'data'])
                     ->where('deleted_at', null)
+                    ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
                     ->where('place', $slug)
                     ->first();
 
@@ -86,6 +90,7 @@ class Place extends Model
 
         $places = DB::table('places')
             ->select('place as slug')
+            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
             ->where('deleted_at', null);
 
         if (in_array($sort, ['latest', 'oldest'], true)) {
@@ -117,6 +122,7 @@ class Place extends Model
                 'data->blocs->galerie->donnees as photo'
             ])
             ->where('deleted_at', null)
+            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
             ->where(function ($q) use ($query) {
                 $q->where('place', 'like', '%'.$query.'%')
                   ->orWhere('data->blocs->presentation->donnees->idee_fondatrice', 'like', '%'.$query.'%')
@@ -206,6 +212,7 @@ class Place extends Model
     public function getAuth($place = null)
     {
         $query = DB::table('places');
+        $query->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA);
 
         if ($place) {
             $query->where('place', $place->getSlug());
@@ -275,6 +282,7 @@ class Place extends Model
   {
       $place = DB::table('places')->select('hash_admin')
                                   ->where('place', $this->getSlug())
+                                  ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
                                   ->first();
 
       if ($place === null) return false;
@@ -283,7 +291,7 @@ class Place extends Model
   }
 
   public function getId(){
-    return Place::where('place', $this->getSlug())->value('id');
+    return Place::where('place', $this->getSlug())->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)->value('id');
   }
 
   public function toggleVisibility($section){
@@ -394,6 +402,7 @@ class Place extends Model
   public function save(array $options = Array()){
     $result = DB::table('places')
         ->where('place', $this->getSlug())
+        ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
         ->update([
             'data' => json_encode($this->getData()),
             'updated_at' => Carbon::now()
@@ -615,7 +624,9 @@ class Place extends Model
 
     public function getCreatedAt()
     {
-        return DB::table('places')->where('place', $this->slug)->value('created_at');
+        return DB::table('places')->where('place', $this->slug)
+                                  ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
+                                  ->value('created_at');
     }
 
     public function updateData(string $hash, array $inputs = [])
