@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use \stdClass;
 use App\Models\Place;
+use App\Models\ImpactSocial;
 use App\Mail\ImportSuccess;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -454,6 +455,19 @@ class ImportTypeForm extends Command
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
         }
+
+        // Import pour la partie Impact Social
+        $impact_social_data = $this->build_impact_social_data($schema);
+
+        $place = DB::table('places')->where('id', $import_file->token)->first();
+        $impact = new ImpactSocial;
+        $impact->place = $place->place;
+        $impact->hash_admin = $place->hash_admin;
+        $impact->id = $place->id;
+        $impact->type_donnees = 'impact';
+        $impact->data = $impact_social_data;
+
+        $impact->save();
     }
 
     public function extract_val($keys)
@@ -498,6 +512,18 @@ class ImportTypeForm extends Command
                 return $question->{$key[2]}->{$key[3]};
             }
         }
+    }
+
+    public function build_impact_social_data($schema)
+    {
+        $data = new stdClass;
+        $answers = $this->answers;
+
+        $data->impact = new stdClass;
+        $data->impact->solidarite = "Lorem Ipsum";
+        // ...
+
+        return $data;
     }
 
     public function curl($url, $path = null)
