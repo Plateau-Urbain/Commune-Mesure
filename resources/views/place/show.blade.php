@@ -221,8 +221,8 @@
           @include('partials.place.sections.carousel')
       </section>
     </x-edit-section>
-        </div>
   </div>
+</div>
 
   @isset($edit)
   <div class="modal" id="modal-help" style="z-index: 100000;">
