@@ -137,10 +137,11 @@ class AdminController extends Controller
     {
         $data = [
             'salaire' => ['value' => 30, 'name' => 'Salaire'],
-            'proprio' => ['value' => 40, 'name' => 'Remboursement propriétaire'],
+            'proprio' => ['value' => 40, 'name' => 'Charges remboursement propriétaire'],
             'pret' => ['value' => 20, 'name' => 'Remboursement prêt']
         ];
         $total = array_sum(array_column($data, 'value'));
-        return view('admin.experiments', compact('data', 'total'));
+        $couleurs = ['salade', 'steak', 'tomate'];
+        return view('admin.experiments', compact('data', 'total', 'couleurs'));
     }
 }

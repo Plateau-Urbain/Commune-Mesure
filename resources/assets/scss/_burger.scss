@@ -3,7 +3,7 @@
 
     .burger-pain {
         background-color: #bf5b07;
-        width: 95%;
+        width: 90%;
         min-height: 1.5em;
         margin: auto;
 
@@ -21,6 +21,11 @@
         text-align: center;
         color: white;
         min-height: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        padding: 0 5px;
 
         &.burger-salade {
             background-color: #e4e441;
