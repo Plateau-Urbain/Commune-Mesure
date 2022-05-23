@@ -13,3 +13,13 @@
     </div>
   </div>
 </section>
+
+@section('script_js')
+  @parent
+
+  <script>
+    (document.querySelectorAll('.burger-tranche') || []).forEach(($tranche) => {
+      $tranche.style.height = ($tranche.dataset.value * 100 / {{ $total }}) + "px"
+    });
+  </script>
+@endsection
