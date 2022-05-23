@@ -1,0 +1,38 @@
+.burger {
+    display: block;
+
+    .burger-pain {
+        background-color: #bf5b07;
+        width: 95%;
+        min-height: 1.5em;
+        margin: auto;
+
+        &:first-child {
+            border-radius: 30px 30px 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 0 30px 30px;
+        }
+    }
+
+    .burger-tranche {
+        border-radius: 6px;
+        text-align: center;
+        color: white;
+        min-height: 1em;
+
+        &.burger-salade {
+            background-color: #e4e441;
+            color: #000000;
+        }
+
+        &.burger-steak {
+            background-color: #803b3e;
+        }
+
+        &.burger-tomate {
+            background-color: #e52f1d;
+        }
+    }
+}

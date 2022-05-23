@@ -132,4 +132,9 @@ class AdminController extends Controller
 
         return redirect(route('admin.view'));
     }
+
+    public function experiments(Request $request)
+    {
+        return view('admin.experiments');
+    }
 }
