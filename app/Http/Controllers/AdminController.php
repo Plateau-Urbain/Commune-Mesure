@@ -135,6 +135,12 @@ class AdminController extends Controller
 
     public function experiments(Request $request)
     {
-        return view('admin.experiments');
+        $data = [
+            'salaire' => ['value' => 30, 'name' => 'Salaire'],
+            'proprio' => ['value' => 40, 'name' => 'Remboursement propriétaire'],
+            'pret' => ['value' => 20, 'name' => 'Remboursement prêt']
+        ];
+        $total = array_sum(array_column($data, 'value'));
+        return view('admin.experiments', compact('data', 'total'));
     }
 }
