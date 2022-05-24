@@ -57,40 +57,43 @@
       el.dataset.current = parts[part][0]
     });
 
-    (document.querySelectorAll('.switch.switch-prev') || []).forEach(($switch) => {
-      $switch.addEventListener('click', () => {
-        const current = $switch.nextElementSibling.dataset.current
-        const part = $switch.dataset.part
-        const roles = parts[part]
+    (document.querySelectorAll('.switch.switch-prev, .switch.switch-next') || []).forEach((arrow) => {
+        arrow.addEventListener('click', (e) => {
+          const el = e.target;
+          const sens = (e.target.classList.contains('switch-next')) ? 'next' : 'prev';
 
-        const index = roles.indexOf(current)
+          switchName(el, sens)
+        });
+    });
+
+    function switchName(el, sens) {
+      let current = undefined
+      if (sens === 'prev') {
+        current = el.nextElementSibling.dataset.current
+      } else {
+        current = el.previousElementSibling.dataset.current
+      }
+
+      const roles = parts[el.dataset.part]
+      const index = roles.indexOf(current)
+
+      if (sens === 'prev') {
         if (index === 0) {
-          $switch.nextElementSibling.innerHTML = roles[roles.length - 1]
-          $switch.nextElementSibling.dataset.current = roles[roles.length - 1]
+          el.nextElementSibling.innerHTML = roles[roles.length - 1]
+          el.nextElementSibling.dataset.current = roles[roles.length - 1]
         } else {
-          $switch.nextElementSibling.innerHTML = roles[index - 1]
-          $switch.nextElementSibling.dataset.current = roles[index - 1]
+          el.nextElementSibling.innerHTML = roles[index - 1]
+          el.nextElementSibling.dataset.current = roles[index - 1]
         }
-
-      });
-    });
-
-    (document.querySelectorAll('.switch.switch-next') || []).forEach(($switch) => {
-      $switch.addEventListener('click', () => {
-        const current = $switch.previousElementSibling.dataset.current
-        const part = $switch.dataset.part
-        const roles = parts[part]
-
-        const index = roles.indexOf(current)
+      } else {
         if (index === roles.length - 1) {
-          $switch.previousElementSibling.innerHTML = roles[0]
-          $switch.previousElementSibling.dataset.current = roles[0]
+          el.previousElementSibling.innerHTML = roles[0]
+          el.previousElementSibling.dataset.current = roles[0]
         } else {
-          $switch.previousElementSibling.innerHTML = roles[index + 1]
-          $switch.previousElementSibling.dataset.current = roles[index + 1]
+          el.previousElementSibling.innerHTML = roles[index + 1]
+          el.previousElementSibling.dataset.current = roles[index + 1]
         }
-
-      });
-    });
+      }
+    };
   </script>
 @endsection
