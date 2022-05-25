@@ -18,13 +18,13 @@
       <div class="columns has-text-centered box">
         <div class="column is-flex is-flex-direction-column is-justify-content-center">
           <div class="columns">
-            <div class="column is-2 switch switch-prev" data-part="head">
+            <div class="column is-2 switch switch-prev">
               ←
             </div>
             <div class="column switch switch-value" data-part="head">
               chargement...
             </div>
-            <div class="column is-2 switch switch-next" data-part="head">
+            <div class="column is-2 switch switch-next">
               →
             </div>
           </div>
@@ -45,13 +45,13 @@
       <div class="columns has-text-centered box">
         <div class="column is-flex is-flex-direction-column is-justify-content-center">
           <div class="columns">
-            <div class="column is-2 switch switch-prev" data-part="body">
+            <div class="column is-2 switch switch-prev">
               ←
             </div>
             <div class="column switch switch-value" data-part="body">
               chargement...
             </div>
-            <div class="column is-2 switch switch-next" data-part="body">
+            <div class="column is-2 switch switch-next">
               →
             </div>
           </div>
@@ -96,56 +96,36 @@
 
     (document.querySelectorAll('.switch.switch-prev, .switch.switch-next') || []).forEach((arrow) => {
         arrow.addEventListener('click', (e) => {
-          const el = e.target;
-          const sens = (e.target.classList.contains('switch-next')) ? 'next' : 'prev';
+          const fleche = e.target;
+          const sens = (fleche.classList.contains('switch-next')) ? 'next' : 'prev';
+          const el = (sens === 'prev') ? fleche.nextElementSibling : fleche.previousElementSibling;
 
-          switchName(el, sens)
-          switchPicture(el, sens)
+          const roles = parts[el.dataset.part]
+          const currentindex = roles.indexOf(el.dataset.current)
+          let newindex = undefined
+
+          if (sens === 'prev') {
+            newindex = (currentindex === 0) ? roles.length - 1 : currentindex - 1;
+          } else {
+            newindex = (currentindex === roles.length - 1) ? 0 : currentindex + 1;
+          }
+
+          setPartName(el, newindex)
+          setPicture(el, newindex)
         });
     });
 
-    function switchName(el, sens) {
-      let current = undefined
-      if (sens === 'prev') {
-        current = el.nextElementSibling.dataset.current
-      } else {
-        current = el.previousElementSibling.dataset.current
-      }
-
+    function setPartName(el, newindex) {
       const roles = parts[el.dataset.part]
-      const index = roles.indexOf(current)
-
-      if (sens === 'prev') {
-        if (index === 0) {
-          el.nextElementSibling.innerHTML = roles[roles.length - 1]
-          el.nextElementSibling.dataset.current = roles[roles.length - 1]
-        } else {
-          el.nextElementSibling.innerHTML = roles[index - 1]
-          el.nextElementSibling.dataset.current = roles[index - 1]
-        }
-      } else {
-        if (index === roles.length - 1) {
-          el.previousElementSibling.innerHTML = roles[0]
-          el.previousElementSibling.dataset.current = roles[0]
-        } else {
-          el.previousElementSibling.innerHTML = roles[index + 1]
-          el.previousElementSibling.dataset.current = roles[index + 1]
-        }
-      }
+      el.innerHTML = roles[newindex]
+      el.dataset.current = roles[newindex]
     };
 
-    function switchPicture(el, sens) {
-      let current = undefined
-      if (sens === 'prev') {
-        current = el.nextElementSibling.dataset.current
-      } else {
-        current = el.previousElementSibling.dataset.current
-      }
-      const part = el.dataset.part
-      const index = parts[part].indexOf(current)
+    function setPicture(el, newindex) {
+      const part = el.dataset.part;
 
       (document.querySelectorAll("#"+part+">figure") || []).forEach((child) => child.style.display = "none")
-      document.querySelector("#"+part+">figure:nth-child("+(index+1)+")").style.display = 'block'
+      document.querySelector("#"+part+">figure:nth-child("+(newindex+1)+")").style.display = 'block'
     }
   </script>
 @endsection
