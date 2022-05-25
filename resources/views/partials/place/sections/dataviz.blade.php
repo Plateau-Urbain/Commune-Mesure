@@ -92,6 +92,9 @@
       const part = el.dataset.part
       el.innerHTML = parts[part][0]
       el.dataset.current = parts[part][0]
+
+      setPartName(el, 0)
+      setPicture(el, 0)
     });
 
     (document.querySelectorAll('.switch.switch-prev, .switch.switch-next') || []).forEach((arrow) => {
