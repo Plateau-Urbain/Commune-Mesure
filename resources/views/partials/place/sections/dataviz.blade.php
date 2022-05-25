@@ -16,7 +16,7 @@
     {{-- Livre --}}
     <div class="column is-6">
       <div class="columns has-text-centered box">
-        <div class="column">
+        <div class="column is-flex is-flex-direction-column is-justify-content-center">
           <div class="columns">
             <div class="column is-2 switch switch-prev" data-part="head">
               ←
@@ -33,7 +33,7 @@
       </div>
 
       <div class="columns has-text-centered box">
-        <div class="column">
+        <div class="column is-flex is-flex-direction-column is-justify-content-center">
           <div class="columns">
             <div class="column is-2 switch switch-prev" data-part="body">
               ←
