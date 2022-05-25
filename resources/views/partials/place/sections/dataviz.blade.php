@@ -31,8 +31,24 @@
         </div>
         <div class="column">⋅</div>
       </div>
-    </div>
 
+      <div class="columns has-text-centered box">
+        <div class="column">
+          <div class="columns">
+            <div class="column is-2 switch switch-prev" data-part="body">
+              ←
+            </div>
+            <div class="column switch switch-value" data-part="body">
+              chargement...
+            </div>
+            <div class="column is-2 switch switch-next" data-part="body">
+              →
+            </div>
+          </div>
+        </div>
+        <div class="column">⋅</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -47,7 +63,8 @@
 
   <script>
     const parts = {
-      head: ['coiffeur', 'cuisinier', 'jardinier']
+      head: ['coiffeur', 'cuisinier', 'jardinier'],
+      body: ['plombier', 'peintre', 'pizzaiolo']
     };
 
     // init
