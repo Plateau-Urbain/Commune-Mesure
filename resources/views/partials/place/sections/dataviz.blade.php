@@ -69,6 +69,11 @@
         </div>
       </div>
     </div>
+
+    <dviv class="column is-4">
+      <canvas id="surfaces-graph"></canvas>
+    </div>
+
   </div>
 </section>
 
@@ -130,5 +135,45 @@
       (document.querySelectorAll("#"+part+">figure") || []).forEach((child) => child.style.display = "none")
       document.querySelector("#"+part+">figure:nth-child("+(newindex+1)+")").style.display = 'block'
     }
+  </script>
+
+  <script>
+    const config = {
+      type: 'treemap',
+      data: {
+        datasets: [
+          {
+            tree: [
+              {type: "Extérieur", value: 15},
+              {type: "Intérieur", value: 8},
+              {type: "Eau", value: 6}
+            ],
+            key: "value",
+            groups: ['type'],
+            labels: {
+              display: true,
+              formatter: (ctx) => ctx.raw.g + ' : ' + ctx.raw.v + ' m²'
+            },
+            borderColor: 'green',
+            borderWidth: 1,
+            spacing: 1,
+            fontColor: "#000000",
+            backgroundColor: "#EEE"
+          }
+        ],
+      },
+      options: {
+        plugins: {
+          maintainAspectRatio: false,
+          title: {
+            display: true,
+            text: 'Répartition des surfaces'
+          },
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
+      }
+    };
+    const surfaceGraph = new Chart("surfaces-graph", config)
   </script>
 @endsection

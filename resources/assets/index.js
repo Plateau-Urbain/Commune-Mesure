@@ -13,6 +13,8 @@ L.Icon.Default.mergeOptions({
 });
 
 import Chart from 'chart.js/auto';
+import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
+Chart.register(TreemapController, TreemapElement);
 window.Chart = Chart
 
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
