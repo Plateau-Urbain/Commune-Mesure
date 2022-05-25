@@ -1,16 +1,9 @@
 <section class="section">
   <div class="columns">
+
     {{-- Burger --}}
-    <div class="column is-2">
-      <div class="burger">
-        <div class="burger-pain"></div>
-        @foreach ($data as $tranche)
-        <div title="{{ $tranche['name'] }}" class="burger-tranche burger-{{ array_pop($couleurs) }}" data-value="{{ $tranche['value'] }}">
-          {{ $tranche['name'] }}
-        </div>
-        @endforeach
-        <div class="burger-pain"></div>
-      </div>
+    <div class="column is-4">
+      <canvas id="surfaces-graph"></canvas>
     </div>
 
     {{-- Livre --}}
@@ -70,8 +63,16 @@
       </div>
     </div>
 
-    <dviv class="column is-4">
-      <canvas id="surfaces-graph"></canvas>
+    <div class="column is-2">
+      <div class="burger">
+        <div class="burger-pain"></div>
+        @foreach ($data as $tranche)
+        <div title="{{ $tranche['name'] }}" class="burger-tranche burger-{{ array_pop($couleurs) }}" data-value="{{ $tranche['value'] }}">
+          {{ $tranche['name'] }}
+        </div>
+        @endforeach
+        <div class="burger-pain"></div>
+      </div>
     </div>
 
   </div>
@@ -144,15 +145,15 @@
         datasets: [
           {
             tree: [
-              {type: "Extérieur", value: 15},
-              {type: "Intérieur", value: 8},
-              {type: "Eau", value: 6}
+              {type: "Charges remboursement propriétaire", value: 15},
+              {type: "Salaire", value: 8},
+              {type: "Remboursement prêt", value: 6}
             ],
             key: "value",
             groups: ['type'],
             labels: {
               display: true,
-              formatter: (ctx) => ctx.raw.g + ' : ' + ctx.raw.v + ' m²'
+              formatter: (ctx) => ctx.raw.g + ' : ' + ctx.raw.v + ' €'
             },
             borderColor: 'green',
             borderWidth: 1,
@@ -167,7 +168,7 @@
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: 'Répartition des surfaces'
+            text: 'Répartition des charges'
           },
           legend: { display: false },
           tooltip: { enabled: false }
