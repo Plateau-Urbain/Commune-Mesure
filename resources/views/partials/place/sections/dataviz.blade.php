@@ -61,6 +61,33 @@
           </figure>
         </div>
       </div>
+
+      <div class="columns has-text-centered box">
+        <div class="column is-flex is-flex-direction-column is-justify-content-center">
+          <div class="columns">
+            <div class="column is-2 switch switch-prev">
+              ←
+            </div>
+            <div class="column switch switch-value" data-part="pieds">
+              chargement...
+            </div>
+            <div class="column is-2 switch switch-next">
+              →
+            </div>
+          </div>
+        </div>
+        <div class="column" id="pieds">
+          <figure class="m-auto has-background-primary image is-128x128">
+            <img src="{{ url("images/pieds-livre.jpeg") }}">
+          </figure>
+          <figure class="m-auto has-background-warning image is-128x128">
+            <img src="{{ url("images/pieds-livre.jpeg") }}">
+          </figure>
+          <figure class="m-auto has-background-success image is-128x128">
+            <img src="{{ url("images/pieds-livre.jpeg") }}">
+          </figure>
+        </div>
+      </div>
     </div>
 
     <div class="column is-2">
@@ -90,7 +117,8 @@
   <script>
     const parts = {
       head: ['coiffeur', 'cuisinier', 'jardinier'],
-      body: ['plombier', 'peintre', 'pizzaiolo']
+      body: ['plombier', 'peintre', 'pizzaiolo'],
+      pieds: ['plombier', 'peintre', 'pizzaiolo']
     };
 
     // init
