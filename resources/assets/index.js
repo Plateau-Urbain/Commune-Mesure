@@ -12,7 +12,9 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'images/marker-shadow.png'
 });
 
-import Chart from 'chart.js';
+import Chart from 'chart.js/auto';
+window.Chart = Chart
+
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 
 import './images/Commune-Mesure-1.png'

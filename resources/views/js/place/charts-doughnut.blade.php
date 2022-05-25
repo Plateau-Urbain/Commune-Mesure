@@ -79,6 +79,7 @@
   let financeChart = charts.create(canvasFinancesId, 'doughnut', ['label'], [{data:{datasets: [{data:[1]}]}}], {})
 
   @if (! $place->isEmptyFonctionnement())
+    financeChart.destroy()
     financeChart = charts.create(
         canvasFinancesId,
         "doughnut",
@@ -89,6 +90,7 @@
     );
     inputChoice.checked = true
   @elseif(! $place->isEmptyInvestissement())
+    financeChart.destroy()
     financeChart = charts.create(
         canvasFinancesId,
         "doughnut",
