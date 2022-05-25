@@ -46,7 +46,17 @@
             </div>
           </div>
         </div>
-        <div class="column">⋅</div>
+        <div class="column" id="body">
+          <figure class="m-auto has-background-primary image is-48x48">
+            1
+          </figure>
+          <figure class="m-auto has-background-warning image is-48x48">
+            2
+          </figure>
+          <figure class="m-auto has-background-success image is-48x48">
+            3
+          </figure>
+        </div>
       </div>
     </div>
   </div>
@@ -80,6 +90,7 @@
           const sens = (e.target.classList.contains('switch-next')) ? 'next' : 'prev';
 
           switchName(el, sens)
+          switchPicture(el, sens)
         });
     });
 
@@ -112,5 +123,19 @@
         }
       }
     };
+
+    function switchPicture(el, sens) {
+      let current = undefined
+      if (sens === 'prev') {
+        current = el.nextElementSibling.dataset.current
+      } else {
+        current = el.previousElementSibling.dataset.current
+      }
+      const part = el.dataset.part
+      const index = parts[part].indexOf(current)
+
+      (document.querySelectorAll("#"+part+">figure") || []).forEach((child) => child.style.display = "none")
+      document.querySelector("#"+part+">figure:nth-child("+(index+1)+")").style.display = 'block'
+    }
   </script>
 @endsection
