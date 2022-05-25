@@ -29,7 +29,17 @@
             </div>
           </div>
         </div>
-        <div class="column">⋅</div>
+        <div class="column" id="head">
+          <figure class="m-auto has-background-primary image is-48x48">
+            1
+          </figure>
+          <figure class="m-auto has-background-warning image is-48x48">
+            2
+          </figure>
+          <figure class="m-auto has-background-success image is-48x48">
+            3
+          </figure>
+        </div>
       </div>
 
       <div class="columns has-text-centered box">
