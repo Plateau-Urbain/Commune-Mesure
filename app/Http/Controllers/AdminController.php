@@ -135,13 +135,17 @@ class AdminController extends Controller
 
     public function experiments(Request $request)
     {
+        $place = Place::find('ymca-paris');
+
         $data = [
             'salaire' => ['value' => 30, 'name' => 'Salaire'],
             'proprio' => ['value' => 40, 'name' => 'Charges remboursement propriétaire'],
             'pret' => ['value' => 20, 'name' => 'Remboursement prêt']
         ];
+
         $total = array_sum(array_column($data, 'value'));
         $couleurs = ['salade', 'steak', 'tomate'];
-        return view('admin.experiments', compact('data', 'total', 'couleurs'));
+
+        return view('admin.experiments', compact('data', 'total', 'couleurs', 'place'));
     }
 }

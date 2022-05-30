@@ -116,9 +116,9 @@
 
   <script>
     const parts = {
-      head: ['coiffeur', 'cuisinier', 'jardinier'],
-      body: ['plombier', 'peintre', 'pizzaiolo'],
-      pieds: ['plombier', 'peintre', 'pizzaiolo']
+      head: @json($place->get('activites')),
+      body: @json($place->get('activites')),
+      pieds: @json($place->get('activites'))
     };
 
     // init
