@@ -136,6 +136,7 @@ class AdminController extends Controller
     public function experiments(Request $request)
     {
         $place = Place::find('ymca-paris');
+        $activites = ($place->get('activites')) ?: [];
 
         $data = [
             'salaire' => ['value' => 30, 'name' => 'Salaire'],
@@ -146,6 +147,6 @@ class AdminController extends Controller
         $total = array_sum(array_column($data, 'value'));
         $couleurs = ['salade', 'steak', 'tomate'];
 
-        return view('admin.experiments', compact('data', 'total', 'couleurs', 'place'));
+        return view('admin.experiments', compact('data', 'total', 'couleurs', 'activites'));
     }
 }

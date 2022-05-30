@@ -116,9 +116,9 @@
 
   <script>
     const parts = {
-      head: @json($place->get('activites')),
-      body: @json($place->get('activites')),
-      pieds: @json($place->get('activites'))
+      head: @json($activites),
+      body: @json($activites),
+      pieds: @json($activites)
     };
 
     // init
