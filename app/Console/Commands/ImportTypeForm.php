@@ -329,6 +329,9 @@ class ImportTypeForm extends Command
         $new_place->evenements->prives->nombre = $this->extract_val($schema->evenements->prives->nombre);
         $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"});
 
+        // activites
+        $new_place->activites = $this->extract_val($schema->activites);
+
         // geojson
         $new_place->blocs->data_territoire = new stdClass;
         $new_place->blocs->data_territoire->visible = 1;
