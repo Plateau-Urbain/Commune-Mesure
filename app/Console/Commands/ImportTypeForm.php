@@ -463,7 +463,7 @@ class ImportTypeForm extends Command
         $impact_social_data = $this->build_impact_social_data($schema);
 
         $place = DB::table('places')->where('id', $import_file->token)->first();
-        $impact = new ImpactSocial;
+        $impact = ImpactSocial::firstOrNew(['id' => $import_file->token, 'type_donnees' => 'impact']);
         $impact->place = $place->place;
         $impact->hash_admin = $place->hash_admin;
         $impact->id = $place->id;
