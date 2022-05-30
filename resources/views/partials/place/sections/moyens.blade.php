@@ -14,7 +14,11 @@
         @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
       @endif
   </div>
-<canvas id="financement-budget-doughnut" ></canvas>
+  <div class="chart-container mx-auto" style="height:500px; width:500px">
+    <canvas id="financement-budget-doughnut" width="400" height="400" aria-label="Répartition budget fonctionnement / investissement" role="img">
+      <p>Graphique répartition budget fonctionnement / investissement</p>
+    </canvas>
+  </div>
 
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
     <div class="columns has-text-centered-mobile">
