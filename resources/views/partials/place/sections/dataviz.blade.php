@@ -1,13 +1,7 @@
 <section class="section">
   <div class="columns">
-
-    {{-- Burger --}}
-    <div class="column is-4">
-      <canvas id="surfaces-graph"></canvas>
-    </div>
-
     {{-- Livre --}}
-    <div class="column is-6">
+    <div class="column is-6 is-offset-3">
       <div class="columns has-text-centered box">
         <div class="column is-flex is-flex-direction-column is-justify-content-center">
           <div class="columns">
@@ -89,31 +83,13 @@
         </div>
       </div>
     </div>
-
-    <div class="column is-2">
-      <div class="burger">
-        <div class="burger-pain"></div>
-        @foreach ($data as $tranche)
-        <div title="{{ $tranche['name'] }}" class="burger-tranche burger-{{ array_pop($couleurs) }}" data-value="{{ $tranche['value'] }}">
-          {{ $tranche['name'] }}
-        </div>
-        @endforeach
-        <div class="burger-pain"></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 @section('script_js')
   @parent
 
-  <script>
-    (document.querySelectorAll('.burger-tranche') || []).forEach(($tranche) => {
-      $tranche.style.height = ($tranche.dataset.value * 100 / {{ $total }}) + "px"
-    });
-  </script>
-
+  {{-- js livre --}}
   <script>
     const parts = {
       head: @json($activites),
@@ -164,45 +140,5 @@
       (document.querySelectorAll("#"+part+">figure") || []).forEach((child) => child.style.display = "none")
       document.querySelector("#"+part+">figure:nth-child("+(newindex+1)+")").style.display = 'block'
     }
-  </script>
-
-  <script>
-    const config = {
-      type: 'treemap',
-      data: {
-        datasets: [
-          {
-            tree: [
-              {type: "Charges remboursement propriétaire", value: 15},
-              {type: "Salaire", value: 8},
-              {type: "Remboursement prêt", value: 6}
-            ],
-            key: "value",
-            groups: ['type'],
-            labels: {
-              display: true,
-              formatter: (ctx) => ctx.raw.g + ' : ' + ctx.raw.v + ' €'
-            },
-            borderColor: 'green',
-            borderWidth: 1,
-            spacing: 1,
-            fontColor: "#000000",
-            backgroundColor: "#EEE"
-          }
-        ],
-      },
-      options: {
-        plugins: {
-          maintainAspectRatio: false,
-          title: {
-            display: true,
-            text: 'Répartition des charges'
-          },
-          legend: { display: false },
-          tooltip: { enabled: false }
-        }
-      }
-    };
-    const surfaceGraph = new Chart("surfaces-graph", config)
   </script>
 @endsection

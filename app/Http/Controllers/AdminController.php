@@ -138,15 +138,6 @@ class AdminController extends Controller
         $place = Place::find('ymca-paris');
         $activites = ($place->get('activites')) ?: [];
 
-        $data = [
-            'salaire' => ['value' => 30, 'name' => 'Salaire'],
-            'proprio' => ['value' => 40, 'name' => 'Charges remboursement propriétaire'],
-            'pret' => ['value' => 20, 'name' => 'Remboursement prêt']
-        ];
-
-        $total = array_sum(array_column($data, 'value'));
-        $couleurs = ['salade', 'steak', 'tomate'];
-
-        return view('admin.experiments', compact('data', 'total', 'couleurs', 'activites'));
+        return view('admin.experiments', compact('activites'));
     }
 }
