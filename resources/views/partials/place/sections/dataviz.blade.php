@@ -113,6 +113,10 @@
   </div>
 </section>
 
+<iframe src="{{ url('/static/donut.html') }}" width="600" height="600"></iframe>
+<iframe src="{{ url('/static/poportionalarea.html') }}" width="600" height="600"></iframe>
+<iframe src="{{ url('/static/waffle.html') }}" width="600" height="600"></iframe>
+
 @section('script_js')
   @parent
 
