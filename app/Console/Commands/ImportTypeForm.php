@@ -424,6 +424,7 @@ class ImportTypeForm extends Command
         if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");
             DB::table('places')->where('id', $import_file->token)
+                               ->where('type_donnees', 'datapanorama')
                                ->update([
                                    'place' => Str::of($new_place->name)->slug('-'),
                                    'data' => json_encode($new_place),
@@ -437,6 +438,7 @@ class ImportTypeForm extends Command
                 'id' => $import_file->token,
                 'place' => Str::of($new_place->name)->slug('-'),
                 'data' => json_encode($new_place),
+                'type_donnees' => 'datapanorama',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()
             ]);
@@ -462,8 +464,8 @@ class ImportTypeForm extends Command
         // Import pour la partie Impact Social
         $impact_social_data = $this->build_impact_social_data($schema);
 
-        $place = DB::table('places')->where('id', $import_file->token)->first();
-        $impact = ImpactSocial::firstOrNew(['id' => $import_file->token, 'type_donnees' => 'impact']);
+        $place = DB::table('places')->where('id', $import_file->token)->where('type_donnees', 'datapanorama')->first();
+        $impact = ImpactSocial::where('id', $import_file->token)->where('type_donnees', 'impact')->firstOrNew();
         $impact->place = $place->place;
         $impact->hash_admin = $place->hash_admin;
         $impact->id = $place->id;
