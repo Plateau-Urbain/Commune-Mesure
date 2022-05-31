@@ -21,6 +21,8 @@ class ImpactSocial extends Model
         //'data' => 'array'
     ];
 
+    protected $fillable = ['id'];
+
     public function getDataAttribute($value)
     {
         return json_decode($value);
