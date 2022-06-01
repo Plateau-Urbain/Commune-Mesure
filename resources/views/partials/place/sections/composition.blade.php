@@ -4,10 +4,8 @@
   <label class="is-size-5" style="font-weight: bold;" >Type de structures participant au projet</label>
   @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
 </div>
-  <div class="chart-container mx-auto" style="height:500px; width:500px">
-    <canvas id="composition-chart-doughnut" width="400" height="400" aria-label="Répartition structures" role="img">
-      <p>Graphique répartition par structure</p>
-    </canvas>
+  <div class="chart-container has-text-centered">
+    <svg id="waffle" width=500 height=500 aria-label="Graphique répartition par structure" role="img"></svg>
   </div>
 
 

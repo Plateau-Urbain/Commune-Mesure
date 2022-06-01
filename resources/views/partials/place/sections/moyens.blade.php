@@ -2,23 +2,26 @@
 <p class='description-section'> Les moyens humains et financiers mis en oeuvre pour assurer le fonctionnement du lieu</p>
 
   <div class="field has-text-centered">
-      @if((!$place->isEmptyInvestissement() && !isset($edit)) || isset($edit))
-        <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_investissement" >Investissement</label>
-        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu"])&nbsp; &nbsp;
-      @endif
-      @if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
-        <input id="switchRoundedSuccess" type="checkbox" name="switchRoundedSuccess" class="switch is-rounded is-success" checked="checked">
-      @endif
-      @if((!$place->isEmptyFonctionnement() && !isset($edit)) || isset($edit))
-        <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_fonctionnement" >Fonctionnement</label>
-        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
-      @endif
+    @if(! $place->isEmptyFonctionnement() || isset($edit))
+      <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_fonctionnement" >Fonctionnement</label>
+      @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
+
+      <div class="chart-container mx-auto mb-5" style="width: 400px; height: 400px">
+        <canvas id="financement-budget-doughnut" width="400" height="400" aria-label="Répartition budget fonctionnement / investissement" role="img">
+          <p>Graphique répartition budget fonctionnement / investissement</p>
+        </canvas>
+      </div>
+    @endif
+
+    @if(! $place->isEmptyInvestissement() || isset($edit))
+      <div class="has-text-weight-bold is-size-5">
+        Investissement
+        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu"])
+      </div>
+      <svg id="investissement-graph" width="500" height="500" aria-label="Répartition investissement" role="img"></svg>
+    @endif
   </div>
-  <div class="chart-container mx-auto" style="height:500px; width:500px">
-    <canvas id="financement-budget-doughnut" width="400" height="400" aria-label="Répartition budget fonctionnement / investissement" role="img">
-      <p>Graphique répartition budget fonctionnement / investissement</p>
-    </canvas>
-  </div>
+
 
   @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
     <div class="columns has-text-centered-mobile">
