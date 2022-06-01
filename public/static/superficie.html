@@ -6,7 +6,7 @@
             text-anchor: middle;
             dominant-baseline: middle;
         }
-        .superficie_interieure_contour rect{
+        rect.superficie_interieure_contour {
             stroke-width: 5;
             stroke:rgb(0,0,0);
         }
@@ -27,8 +27,8 @@
     </div>
     <script>
         var superficie_totale = 2000;
-        var superficie_exterieure = 500;
-        var superficie_bureaux = 700;
+        var superficie_exterieure = 800;
+        var superficie_bureaux = 600;
         var superficie_ateliers = 400;
 
         var superficie_interieure = superficie_totale - superficie_exterieure;
@@ -143,32 +143,27 @@
             d3.select(this)
                 .attr('fill', function(d) { return function_fill(d).brighter();} );
 
-            d3.select('.'+d+' text')
+            d3.select('#text_'+d)
                 .attr('class', 'highlight');
         }
 
         var rect_onmouseout = function(d, i) {
-            console.log('out  '+d+' : '+function_fill(d));
             d3.select(this)
                 .attr('fill', function_fill);
 
-            d3.select('.'+d+' text')
-                .attr('class', '');
+            d3.select('#text_'+d)
+                .attr('class', 'normal');
         }
 
-        var parties = d3.select("#graph_superficie")
-            .selectAll('g')
-            .data(names)
-            .attr('class', function(d) {return d})
-            .attr('x', function_x )
-            .attr('y', function_y )
-            .enter()
+        var figures = d3.select("#graph_superficie")
             .append('g')
-            .attr('class', function(d) {return d})
-            .attr('x', function_x )
-            .attr('y', function_y )
+            .attr('class', 'figures')
 
-        var rects = parties.append('rect')
+        var rects = figures.selectAll('rect')
+            .data(names)
+            .enter()
+            .append('rect')
+            .attr('class', (d) => d)
             .attr('fill', function_fill )
             .attr('width', function_width )
             .attr('height', function_height )
@@ -177,7 +172,15 @@
             .on("mouseover", rect_onmouseover)
             .on("mouseout", rect_onmouseout)
 
-        var texts = parties.append('text')
+        var gtexts = d3.select("#graph_superficie")
+            .append('g')
+            .attr('class', 'texts')
+
+        var texts = gtexts.selectAll('text')
+            .data(names)
+            .enter()
+            .append('text')
+            .attr('id', (d) => 'text_'+d)
             .attr('x', function_text_x )
             .attr('y', function_text_y )
 
