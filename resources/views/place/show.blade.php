@@ -16,10 +16,6 @@
   @include('partials.place.meta.twitter')
 @endsection
 
-@section('head_css')
-  @parent
-@endsection
-
 @section('script_js')
   @parent
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {{-- Graphs insee --}}
