@@ -23,6 +23,7 @@
   @include('js.place.map-insee-js')
   @include('js.place.charts-doughnut')
   @include('js.place.modals')
+  @include('js.place.d3')
   <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
 
   <script>

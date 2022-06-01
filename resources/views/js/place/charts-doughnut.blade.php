@@ -1,10 +1,5 @@
 <script>
   const finances = {
-      "composition": [{"name":"Entreprises","size":{{ $place->get('blocs->composition->donnees->type->Entreprises') }}},
-      {"name":"Associations","size":{{ $place->get('blocs->composition->donnees->type->Associations') }}},
-      {"name":"Artistes","size":{{ $place->get('blocs->composition->donnees->type->Artistes') }}},
-      {"name":"Autres structures","size":{{ $place->get('blocs->composition->donnees->type->Autres structures') }}}
-    ],
       "investissement":[{"name":"Fonds publics","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds publics')}}},
           {"name":"Fonds priv\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds privés')}}},
           {"name":"Fonds apport\u00e9s","size":{{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés')}}}
@@ -101,15 +96,6 @@
       );
       inputChoice.checked = false
   @endif
-
-  const dataCompo = charts.create(
-      "composition-chart-doughnut",
-      "doughnut",
-      getLabels("composition"),
-      getDataChart("composition"),
-      ['#DEEBEE', '#ff5728', '#1abc9c', '#96043e'],
-      optionsChart
-    );
 
   @if((!$place->isEmptyInvestissement() && !$place->isEmptyFonctionnement()  && !isset($edit)) || isset($edit))
     inputChoice.addEventListener('change', switchChart);
