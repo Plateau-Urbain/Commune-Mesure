@@ -8,7 +8,7 @@
             </p>
         </div>
     </div>
-    @include('partials.external.chiffres', ["stats" => $stats, "coordinates" => $coordinates])
+    @include('partials.external.chiffres', ["stats" => $stats])
     <div class="container section">
         <div class="columns">
             <div class="column">

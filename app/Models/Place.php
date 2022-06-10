@@ -172,6 +172,8 @@ class Place extends Model
         $this->stats[self::STAT_CITIES] = count($this->cities);
       }
 
+      $this->stats['places'] = count($places);
+
       return $this->stats;
     }
 

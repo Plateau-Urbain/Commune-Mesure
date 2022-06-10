@@ -4,7 +4,7 @@
         <div class="level block-data-stat">
             <div class="level-item level-item-home has-text-centered">
                 <div>
-                    <p class="title animate-value is-1" id="animate-place" data-total={{ count($coordinates) }}>{{ str_replace(","," ",number_format(count($coordinates))) }}</p>
+                    <p class="title animate-value is-1" id="animate-place" data-total={{ $stats['places'] }}>{{ str_replace(",", " ", number_format($stats['places'])) }}</p>
                     <p class="heading title is-4">Lieux</p>
                 </div>
             </div>
