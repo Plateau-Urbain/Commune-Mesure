@@ -36,6 +36,16 @@ class PlaceTest extends TestCase
         $this->assertTrue($place instanceof Place);
     }
 
+    public function testHasGeoJson()
+    {
+        Place::factory()->hasName('place-1')->create();
+        $place = Place::find('place-1');
+        $this->assertNull($place->get('blocs->data_territoire->donnees->geo->geo_json'));
+
+        $place = Place::find('place-1', false);
+        $this->assertIsObject($place->get('blocs->data_territoire->donnees->geo->geo_json'));
+    }
+
     public function testUpdatePlace()
     {
         $place = Place::factory()->hasName('place-1')->make();
