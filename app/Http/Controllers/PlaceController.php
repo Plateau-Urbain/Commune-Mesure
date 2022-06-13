@@ -18,7 +18,7 @@ class PlaceController extends Controller
 
     public function show($slug)
     {
-        $place = Place::find($slug);
+        $place = Place::find($slug, false);
 
         if ($place === false) {
             abort(404);
@@ -48,7 +48,7 @@ class PlaceController extends Controller
 
     public function edit($slug, $auth)
     {
-        $place = Place::find($slug);
+        $place = Place::find($slug, false);
 
         if ($place === false) {
             abort(404);
