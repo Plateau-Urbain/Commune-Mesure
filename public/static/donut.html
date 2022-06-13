@@ -10,21 +10,34 @@
         </svg>
     </div>
     <script type="text/javascript">
-        const donut_data = [{name: "Artiste", count: 50}, {name: "Association", count: 25}, {name: "Entreprise", count: 4}]
-        const colors = ['#c92a2a', '#fa5252', '#ffa8a8']
+        const svg    = d3.select('svg#donut')
+        const width  = svg.node().getBoundingClientRect().width
+        const height = svg.node().getBoundingClientRect().height
+        const margin = 40
 
-        const pieArcData = d3.pie().value(d => d.count)(donut_data)
-        const arc = d3.arc().innerRadius(210).outerRadius(310).padRadius(300).padAngle(5/300)
+        const radius = Math.min(width, height) / 2 - margin
 
-        const svg = d3.select('#donut')
-        svg.attr('viewBox', "-320 -320 640 640")
+        const donut_data = [{name: "Artiste", count: 50}, {name: "Association", count: 25}, {name: "Entreprise", count: 4}, {name: "Autre", count: 1}]
+        const color = d3.scaleOrdinal()
+            .domain(donut_data.map(d => d.name))
+            .range(d3.schemeDark2)
+
+        const pieArcData = d3.pie()
+            .value(d => d.count)(donut_data)
+        const arc = d3.arc()
+            .innerRadius(radius * 0.5)
+            .outerRadius(radius * 0.8)
+            .padRadius(200)
+            .padAngle(5/300)
+
+        svg.attr('viewBox', [-width / 2, -height / 2, width, height])
             .append('g')
               .selectAll('path')
               .data(pieArcData)
               .enter()
               .append('path')
                 .attr('d', (d) => arc(d))
-                .attr('fill', (d, i) => colors[i])
+                .attr('fill', (d) => color(d.data.name))
 
         svg.append('g')
           .attr("font-family", "sans-serif")
