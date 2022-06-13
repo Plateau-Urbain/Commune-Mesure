@@ -15,51 +15,38 @@
         </svg>
     </div>
     <script type="text/javascript">
-        let parea_fond_data = [
-            200,
-            130,
-            80,
-        ]
-        let parea_fond_name = [
-            'fonds prives',
-            'fonds propres',
-            'fonds publics',
-        ]
-        let width = 500;
-        let height = 500;
+        const svg = d3.select('svg')
 
-        let total = 0;
-        parea_data = [];
-        for(let k in parea_fond_name) {
-            total += parea_fond_data[k];
-            parea_data.push({'name': parea_fond_name[k], 'value': parea_fond_data[k] });
-        }
-        parea_fond_data.sort();
-        parea_fond_data.reverse();
-        total -= parea_fond_data[0];
+        const parea_data = [
+            {name: "Fonds privés", value: 60},
+            {name: "Fonds propres", value: 80},
+            {name: "Fonds publics", value: 72}
+        ]
 
-        for(let i = 0 ; i < parea_data.length ; i ++) {
-            parea_data[i]['pc'] = parea_data[i]['value'] / total;
-            parea_data[i]['id'] = i;
-        }
+        const width = svg.node().getBoundingClientRect().width;
+        const height = svg.node().getBoundingClientRect().height;
+        const total = parea_data.reduce((accum, item) => accum + item.value, 0);
+
+        const color = d3.scaleOrdinal()
+            .domain(parea_data.map(d => d.name))
+            .range(["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02","#a6761d","#666666"])
+
+        parea_data.forEach(function (element, index) {
+            element['pc'] = element.value / total
+            element['id'] = index
+            element['width'] = height * element['pc'];
+            element['height'] = height * element['pc'];
+            element['fill'] = color(index)
+        })
+
         parea_data[0]['x'] =  10;
         parea_data[0]['y'] =  height - height * parea_data[0]['pc'];
-        parea_data[0]['width'] =  height * parea_data[0]['pc'];
-        parea_data[0]['height'] =  height * parea_data[0]['pc'];
-        parea_data[0]['fill'] =  '#ff5728';
         parea_data[1]['x'] = 20 + height * parea_data[0]['pc'];
         parea_data[1]['y'] = height - height * parea_data[1]['pc'];
-        parea_data[1]['width'] = height * parea_data[1]['pc'];
-        parea_data[1]['height'] = height * parea_data[1]['pc'];
-        parea_data[1]['fill'] = '#1abc9c';
         parea_data[2]['x'] = parea_data[1]['x'];
         parea_data[2]['y'] = - 10 + parea_data[1]['y'] - height * parea_data[2]['pc'] ;
-        parea_data[2]['width'] = height * parea_data[2]['pc'];
-        parea_data[2]['height'] = height * parea_data[2]['pc'];
-        parea_data[2]['fill'] = '#96043e';
 
-        d3.select('svg')
-            .selectAll('rect')
+        svg.selectAll('rect')
             .data(parea_data)
             .enter()
             .append('rect')
