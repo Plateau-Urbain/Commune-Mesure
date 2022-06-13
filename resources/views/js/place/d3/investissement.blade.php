@@ -12,16 +12,13 @@
   const height = svg.node().getBoundingClientRect().height;
   const total = parea_data.reduce((accum, item) => accum + item.value, 0);
 
-  const color = d3.scaleOrdinal()
-      .domain(parea_data.map(d => d.name))
-      .range(["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02","#a6761d","#666666"])
+  color.domain(parea_data.map(d => d.name))
 
   parea_data.forEach(function (element, index) {
       element['pc'] = element.value / total
       element['id'] = index
       element['width'] = height * element['pc'];
       element['height'] = height * element['pc'];
-      element['fill'] = color(index)
   })
 
   parea_data[0]['x'] =  10;
@@ -40,7 +37,7 @@
     .attr('y', function(d) { return d.y})
     .attr('width', function(d) { return d.width})
     .attr('height', function(d) { return d.height})
-    .attr('fill', function(d) { return d.fill})
+    .attr('fill', function(d) { return color(d.name)})
 
   let texts = d3.select(svg_investissement_id)
     .selectAll('text')
