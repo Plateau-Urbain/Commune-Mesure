@@ -65,6 +65,7 @@
       </div>
     </div>
   @endif
+
   @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
     <div class="columns has-text-centered-mobile">
       <div class="column is-3 is-offset-2">
@@ -102,6 +103,36 @@
           @for($i = 0; $i < $place->get('blocs->moyens->donnees->benevoles') % 10; $i++)
             <img class='icone-moyen' src='{{ url('/images/1personne.png') }}' />
           @endfor
+        @endif
+      </div>
+    </div>
+  @endif
+
+  @if(!empty($place->get('blocs->composition->donnees->structures_crees')) && !isset($edit) || isset($edit))
+    <div class="columns has-text-centered-mobile">
+      <div class="column is-offset-2 is-3">
+        <span class="title is-1">{{ $place->get('blocs->composition->donnees->structures_crees') }}</span> <br />
+        <span class="title is-5">
+          @if ($place->get('blocs->composition->donnees->structures_crees') > 1)
+            structures créées
+          @else
+            structure créée
+          @endif
+          @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'composition','type' => 'number','titre'=>"Modifier le nombre de structures créées","description" =>"Le nombre de structures qui ont été créées au sein du lieu ou dont la création a été permise par le lieu"])
+        </span>
+      </div>
+
+      <div class="column is-5 my-3" style="overflow-y: auto; ">
+        @if( $place->get('blocs->composition->donnees->structures_crees') <= 50)
+          @for ($i = 0; $i < $place->get('blocs->composition->donnees->structures_crees'); $i++)
+            <img class='icone-moyen' src='{{ url('/images/structure.png') }}'/>
+          @endfor
+        @endif
+        @if( $place->get('blocs->composition->donnees->structures_crees') > 50)
+          @for ($i = 0; $i < 50; $i++)
+            <img class='icone-moyen' src='{{ url('/images/structure.png') }}'/>
+          @endfor
+            <span class="has-text-primary">&nbsp;&bull;&bull;&bull;</span>
         @endif
       </div>
     </div>
