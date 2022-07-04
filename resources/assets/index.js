@@ -12,11 +12,6 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'images/marker-shadow.png'
 });
 
-import Chart from 'chart.js/auto';
-import {TreemapController, TreemapElement} from 'chartjs-chart-treemap';
-Chart.register(TreemapController, TreemapElement);
-window.Chart = Chart
-
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 
 import './images/Commune-Mesure-1.png'
