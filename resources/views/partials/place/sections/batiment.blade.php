@@ -96,12 +96,12 @@ for($i = 0 ; $i < 3 ; $i++):
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-34.849449,-159.82525)"
        id="text24635"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-100"
        y="0"><tspan
-         x="-163.38574"
-         y="650.58663"
-         id="tspan1129"><?php echo $t; ?></tspan></text>
+         x="-170"
+         y="650"
+         id="tspan1129"><?php echo strtoupper($t); ?></tspan></text>
 <?php endif; ?>
   </g>
 <?php endfor; ?>

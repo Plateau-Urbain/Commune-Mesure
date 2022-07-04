@@ -109,7 +109,7 @@
           </p>
         </div>
         <div class="section pt-5" style="padding-bottom:0;">
-          <div class="columns is-centered">
+          <div class="columns is-centered" style="background-color: white;">
             <div class="column is-half">
               @include('partials.place.sections.batiment')
             </div>
