@@ -172,5 +172,27 @@
       "personnes accueillies": "n4Vdx42uSdT6|RHP4XSk3xRTN|number|value"
     }
   },
-  "activites": "fl785vLXdAeG|vl4Po9Wq6neT|multiple_choice|choices"
+  "activites": {
+      "donnees": {
+          "hebergement": {"present": "n4Vdx42uSdT6|5rU3ZT7ki5vE|yes_no|value"},
+          "evenement_public": {"present": "n4Vdx42uSdT6|QVnunPJCnI15|yes_no|value"},
+          "evenement_prive": {"present": "n4Vdx42uSdT6|yySgjUJjp3qO|yes_no|value"},
+          "espace_bureau": {"present": "n4Vdx42uSdT6|brVvcBwoZKkt|yes_no|value"},
+          "espace_atelier": {"present": "n4Vdx42uSdT6|Pzbl6GTxGZsx|yes_no|value"},
+          "espace_agriculture": {"present": "n4Vdx42uSdT6|2789V8KFQrAR|yes_no|value"},
+          "loisir": {"present": "n4Vdx42uSdT6|akgUjqSITYF5|yes_no|value"},
+          "artistique": {"present": "n4Vdx42uSdT6|Df6h5Qk6AUgk|yes_no|value"},
+          "sportive": {"present": "n4Vdx42uSdT6|nHnE5w7V2teD|yes_no|value"},
+          "fablab": {"present": "n4Vdx42uSdT6|4rKjKWUsJtL1|yes_no|value"},
+          "ressourcerie": {"present": "n4Vdx42uSdT6|vzjmc6rMf8Z4|yes_no|value"},
+          "circuit_court": {"present": "n4Vdx42uSdT6|D76Vf4AdQhEG|yes_no|value"},
+          "mediateur": {"present": "9ZTr98YUYiFf|jIyijGQOtEet|yes_no|value"},
+          "conciergerie": {"present": "9ZTr98YUYiFf|EGhF49pvijOA|yes_no|value"},
+          "activite_gratuite": {"present": "9ZTr98YUYiFf|TGpztlTVBAC1|yes_no|value"},
+          "activite_tarif_adapte": {"present": "9ZTr98YUYiFf|SwgifJ0GpFzI|yes_no|value"},
+          "structures_sociales": {"present": "9ZTr98YUYiFf|H2QYmrRWpojs|yes_no|value"},
+          "service_proximite": {"present": "9ZTr98YUYiFf|INbCkfZNmYEc|yes_no|value"},
+          "accueil_precarite": {"present": "9ZTr98YUYiFf|VSX8Gxwxsijg|yes_no|value"}
+      }
+  }
 }

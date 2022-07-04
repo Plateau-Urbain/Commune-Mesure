@@ -40,10 +40,10 @@ class PlaceTest extends TestCase
     {
         Place::factory()->hasName('place-1')->create();
         $place = Place::find('place-1');
-        $this->assertNull($place->get('blocs->data_territoire->donnees->geo->geo_json'));
+        $this->assertIsObject($place->get('blocs->data_territoire->donnees->geo->geo_json'));
 
         $place = Place::find('place-1', false);
-        $this->assertIsObject($place->get('blocs->data_territoire->donnees->geo->geo_json'));
+        $this->assertNull($place->get('blocs->data_territoire->donnees->geo->geo_json'));
     }
 
     public function testUpdatePlace()
