@@ -216,11 +216,9 @@ d3.select("#graph_superficie")
       .attr('fill', 'black')
       .text(function(d) {
         if (d == 'superficie_exterieur') return 'Superficie extérieure';
-        if (d == 'superficie_autres') return 'Autres';
+        if (d == 'superficie_autres') return 'Autres superficies';
         if (d == 'superficie_bureaux') return 'Superficie de bureaux';
         if (d == 'superficie_ateliers') return "Superficie d'ateliers";
       })
-
-
 
 </script>
