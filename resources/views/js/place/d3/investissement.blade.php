@@ -28,6 +28,13 @@
   parea_data[2]['x'] = parea_data[1]['x'];
   parea_data[2]['y'] = - 10 + parea_data[1]['y'] - graph_height * parea_data[2]['pc'] ;
 
+  const tooltip_invest_id = 'tooltip-waffle';
+
+  d3.select('body')
+    .append('div')
+    .attr('id', tooltip_invest_id)
+    .attr('style', 'position: absolute; opacity: 0;');
+
   d3.select(svg_investissement_id)
     .selectAll('rect')
     .data(parea_data)
@@ -38,6 +45,24 @@
     .attr('width', function(d) { return d.width})
     .attr('height', function(d) { return d.height})
     .attr('fill', function(d) { return color(d.name)})
+    .on("mouseover", function(d) {
+      d3.select('#'+tooltip_invest_id)
+        .style('opacity', ! isNaN(d.value) * 1 )
+        .text( function(a) {
+          if (d.value)
+            return d.name+' : '+d.value+' €';
+        })
+    } )
+    .on('mousemove', function(d) {
+      d3.select('#'+tooltip_invest_id)
+        .style('left', (d3.event.pageX + 25) + 'px')
+        .style('top', (d3.event.pageY + 25) + 'px')
+    })
+    .on("mouseout", function(d) {
+      d3.select('#'+tooltip_invest_id)
+        .style('opacity', 0);
+    } )
+
 
   let texts = d3.select(svg_investissement_id)
     .selectAll('text')
