@@ -29,3 +29,32 @@
       @endif
     @endforeach
   </div>
+
+  <br>
+  <br>
+
+  <div class="field has-text-centered">
+    <label class="is-size-5" style="font-weight: bold;" >La programmation du lieu</label>
+  </div>
+
+  <br>
+
+  <style>
+      #wordcloud { text-align: center; vertical-align: middle;display: table-cell;}
+      .word { font-size: 30px;}
+      .word:nth-of-type(6n){color: #cb4f4a;}
+      .word:nth-of-type(6n+1){color: #df9f8d;}
+      .word:nth-of-type(6n+2){color: #f6e6de;}
+      .word:nth-of-type(6n+3){color: #c2c0c6;}
+      .word:nth-of-type(6n+4){color: #64616c;}
+      .word:nth-of-type(6n+5){color: #262631;}
+  </style>
+  <div class="columns is-multiline is-centered">
+    <div class="has-text-centered" style="width:500px; height:300px" id="wordcloud">
+      <span class="word">Occupation&nbsp;temporaire</span> &nbsp;
+      <span class="word">Agriculture&nbsp;urbaine</span> &nbsp;
+      <span class="word">Écologie</span> &nbsp;
+      <span class="word">Culture</span> &nbsp;
+      <span class="word">Hébergement&nbsp;d'urgence</span>
+    </div>
+  </div>
