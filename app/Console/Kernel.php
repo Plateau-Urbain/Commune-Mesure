@@ -7,6 +7,7 @@ use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
 use App\Console\Commands\ImportOneValueTypeForm;
+use App\Console\Commands\ImportForAll;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\MailSendImportSuccess;
 use Illuminate\Console\Scheduling\Schedule;
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
         KeyGenerateCommand::class,
         ImportTypeForm::class,
         ImportOneValueTypeForm::class,
+        ImportForAll::class,
         SetValue::class,
         MailSendImportSuccess::class
     ];
