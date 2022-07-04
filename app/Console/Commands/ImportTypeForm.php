@@ -168,6 +168,8 @@ class ImportTypeForm extends Command
             $new_place->blocs->presentation->donnees->ouverture->$oc = 1;
         }
 
+        $new_place->blocs->presentation->donnees->thematiques = $this->extract_val($schema->blocs->presentation->donnees->thematiques);
+
         // Accessibilite
         $public_choices = [];
         $public_choices = $this->extract_val($schema->blocs->accessibilite->donnees->publics->{"Chercheurs d'emplois"});
