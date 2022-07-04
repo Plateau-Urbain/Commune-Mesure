@@ -9,6 +9,7 @@ use App\Console\Commands\ImportTypeForm;
 use App\Console\Commands\ImportOneValueTypeForm;
 use App\Console\Commands\ImportForAll;
 use App\Console\Commands\SetValue;
+use App\Console\Commands\SetValueForAll;
 use App\Console\Commands\MailSendImportSuccess;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
         ImportOneValueTypeForm::class,
         ImportForAll::class,
         SetValue::class,
+        SetValueForAll::class,
         MailSendImportSuccess::class
     ];
 
