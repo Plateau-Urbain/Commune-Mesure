@@ -1,7 +1,6 @@
 <script type="text/javascript">
   const tooltip_waffle_id = 'tooltip-waffle';
-  const svg_id = 'svg#waffle';
-  const svg_waffle = d3.select(svg_id)
+  const svg_waffle = d3.select('svg#waffle')
 
   const width_waffle = svg_waffle.node().getBoundingClientRect().width;
   const height_waffle = svg_waffle.node().getBoundingClientRect().height - 100;
@@ -9,19 +8,19 @@
   const waffle_structure = {
     'entreprises': {
       'data': {{ $place->get('blocs->composition->donnees->type->Entreprises') ?: 0 }},
-      'text': 'entreprises'
+      'text': 'Entreprises'
     },
     'associations': {
       'data': {{ $place->get('blocs->composition->donnees->type->Associations') ?: 0 }},
-      'text': 'associations'
+      'text': 'Associations'
     },
     'artistes': {
       'data': {{ $place->get('blocs->composition->donnees->type->Artistes') ?: 0 }},
-      'text': 'artistes'
+      'text': 'Artistes'
     },
     'autres': {
       'data': {{ $place->get('blocs->composition->donnees->type->Autres structures') ?: 0 }},
-      'text': 'autres'
+      'text': 'Autres'
     }
   }
 
@@ -32,8 +31,8 @@
   carreau_num = Math.floor(Math.sqrt(total_structures)) + 1;
   carreau_size = Math.floor(height_waffle / carreau_num);
 
-  Object.values(waffle_structure).forEach(function (el) {
-    const a = Array(el.data).fill(el.text, 0)
+  Object.keys(waffle_structure).forEach(function (k) {
+    const a = Array(waffle_structure[k].data).fill(k, 0)
     waffle_data.push(...a)
   })
 
@@ -48,6 +47,8 @@
     .attr('id', tooltip_waffle_id)
     .attr('style', 'position: absolute; opacity: 0;');
 
+  center_x = Math.floor(( width_waffle - carreau_num * carreau_size ) / 2);
+
   svg_waffle.selectAll('rect')
     .data(waffle_data)
     .enter()
@@ -55,11 +56,10 @@
     .attr('width', carreau_size - 2)
     .attr('height', carreau_size - 2)
     .attr('x', function(d, i) {
-      center = Math.floor(( width_waffle - carreau_num * carreau_size ) / 2) ;
       if (Math.floor(i / carreau_num) % 2) {
-        return center + (carreau_num - 1 - i % carreau_num) * carreau_size;
+        return center_x + (carreau_num - 1 - i % carreau_num) * carreau_size;
       }
-      return center + (i % carreau_num) * carreau_size;
+      return center_x + (i % carreau_num) * carreau_size;
     })
     .attr('y', function(d, i) {return Math.floor(Math.floor(i / carreau_num) * carreau_size) })
     .attr('fill', function(d) { if ([d]) return color(d) })
