@@ -1,7 +1,7 @@
-<?php
+@php  $decors = ['CHIEN', 'CYCLISTE', 'FENETRE']; @endphp
+@php  $themes = $place->get('blocs->presentation->donnees->thematiques'); @endphp
 
-  $decors = ['CHIEN', 'CYCLISTE', 'FENETRE'];
-  $themes = ["Convivialité", "Recyclage", "Éducation"];
+<?php
 
   shuffle($decors);
 
