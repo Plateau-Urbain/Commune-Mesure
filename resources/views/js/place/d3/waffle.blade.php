@@ -81,5 +81,26 @@
     .on("mouseout", function(d) {
       d3.select('#'+tooltip_waffle_id)
         .style('opacity', 0);
-    } )
+    });
+
+    svg_waffle
+      .selectAll('legend')
+      .data(Object.keys(waffle_structure))
+      .enter()
+      .append('circle')
+      .attr('cx', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
+      .attr('cy', function(d, i) { return height_waffle + 30 * (1 + Math.floor( i / 2 )) })
+      .attr('r', function(d) { return 10})
+      .attr('fill', d => color(d)); //function(d) { return color(d.name)})
+
+    svg_waffle
+      .selectAll('legend-text')
+      .data(Object.keys(waffle_structure))
+      .enter()
+      .append('text')
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 30})
+      .attr('y', function(d, i) { return height_waffle + 33 * (1 + Math.floor( i / 2 )) })
+      .attr('fill', 'black')
+      .text(function(d) { return waffle_structure[d].text; })
+
 </script>
