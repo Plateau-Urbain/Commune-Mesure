@@ -1,4 +1,6 @@
 <script type="text/javascript">
+const tooltip_superficie_id = 'tooltip-superficie';
+
 var superficie_totale = 2000;
 var superficie_exterieure = 800;
 var superficie_bureaux = 600;
@@ -10,8 +12,8 @@ var superficie_pc_interieur = superficie_interieure / superficie_totale;
 var superficie_pc_bureaux = superficie_bureaux / superficie_interieure;
 var superficie_pc_ateliers = superficie_ateliers / superficie_interieure;
 var superficie_pc_autres = superficie_autres / superficie_interieure;
-var superficie_width = 500;
-var superficie_height = 500;
+var superficie_width = svg_waffle.node().getBoundingClientRect().width;
+var superficie_height = svg_waffle.node().getBoundingClientRect().height - 100;
 var superficie_names = [
     'superficie_exterieur',
     'superficie_interieure_fond',
@@ -20,6 +22,13 @@ var superficie_names = [
     'superficie_bureaux',
     'superficie_ateliers'
 ]
+
+var superficie_human_keys = [
+  'superficie_exterieur',
+  'superficie_bureaux',
+  'superficie_ateliers',
+  'superficie_autres',
+];
 
 var function_superficie_width = function(d) {
     if (d == 'superficie_exterieur') return superficie_width - 20;
@@ -112,6 +121,22 @@ var function_superficie_text_y = function(d) {
 }
 
 var superficie_rect_onmouseover = function(d, i) {
+    d3.select('#'+tooltip_superficie_id)
+      .style('opacity', function(a) {
+          if (d == 'superficie_exterieur')  { return 1; }
+          if (d == 'superficie_interieure') { return 1; }
+          if (d == 'superficie_autres')     { return 1; }
+          if (d == 'superficie_bureaux')    { return 1; }
+          if (d == 'superficie_ateliers')   { return 1; }
+          console.log('not opacity: '+d);
+          return 0;
+      } )
+     .text( function(a) {
+        if (d == 'superficie_exterieur') return 'Extérieurs : '+parseInt(superficie_exterieure) + ' m²';;
+        if (d == 'superficie_autres') return 'Autres : '+ parseInt(superficie_autres) + ' m²';
+        if (d == 'superficie_bureaux') return 'Bureaux : '+ parseInt(superficie_bureaux) + ' m²';
+        if (d == 'superficie_ateliers') return 'Ateliers : '+ parseInt(superficie_ateliers) + ' m²';
+      })
     d3.select('#text_'+d)
         .attr('class', 'highlight');
 }
@@ -119,11 +144,19 @@ var superficie_rect_onmouseover = function(d, i) {
 var superficie_rect_onmouseout = function(d, i) {
     d3.select('#text_'+d)
         .attr('class', 'normal');
+    d3.select('#'+tooltip_superficie_id)
+      .style('opacity', 0);
 }
 
 var superficie_figures = d3.select("#graph_superficie")
     .append('g')
     .attr('class', 'figures')
+
+d3.select('body')
+    .append('div')
+    .attr('id', tooltip_superficie_id)
+    .attr('class', 'd3_tooltip')
+    .attr('style', 'position: absolute; opacity: 0;');
 
 var superficie_rects = superficie_figures.selectAll('rect')
     .data(superficie_names)
@@ -137,7 +170,11 @@ var superficie_rects = superficie_figures.selectAll('rect')
     .attr('y', function_superficie_y )
     .on("mouseover", superficie_rect_onmouseover)
     .on("mouseout", superficie_rect_onmouseout)
-
+    .on('mousemove', function(d) {
+      d3.select('#'+tooltip_superficie_id)
+        .style('left', (d3.event.pageX + 25) + 'px')
+        .style('top', (d3.event.pageY + 25) + 'px')
+    })
 var superficie_gtexts = d3.select("#graph_superficie")
     .append('g')
     .attr('class', 'texts')
@@ -158,5 +195,32 @@ superficie_texts.append('tspan')
     .attr('x', function_superficie_text_x )
     .attr('y', function_superficie_text_y )
     .attr('dy', '17' )
+
+d3.select("#graph_superficie")
+      .selectAll('legend')
+      .data(superficie_human_keys)
+      .enter()
+      .append('circle')
+      .attr('cx', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
+      .attr('cy', function(d, i) { return height_waffle + 30 * (1 + Math.floor( i / 2 )) })
+      .attr('r', function(d) { return 10})
+      .attr('fill', function_superficie_fill)
+
+d3.select("#graph_superficie")
+      .selectAll('legend-text')
+      .data(superficie_human_keys)
+      .enter()
+      .append('text')
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 30})
+      .attr('y', function(d, i) { return height_waffle + 33 * (1 + Math.floor( i / 2 )) })
+      .attr('fill', 'black')
+      .text(function(d) {
+        if (d == 'superficie_exterieur') return 'Superficie extérieure';
+        if (d == 'superficie_autres') return 'Autres';
+        if (d == 'superficie_bureaux') return 'Superficie de bureaux';
+        if (d == 'superficie_ateliers') return "Superficie d'ateliers";
+      })
+
+
 
 </script>

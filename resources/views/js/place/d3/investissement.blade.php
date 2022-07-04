@@ -33,6 +33,7 @@
   d3.select('body')
     .append('div')
     .attr('id', tooltip_invest_id)
+    .attr('class', 'd3_tooltip')
     .attr('style', 'position: absolute; opacity: 0;');
 
   d3.select(svg_investissement_id)
