@@ -168,6 +168,13 @@ class ImportTypeForm extends Command
             $new_place->blocs->presentation->donnees->ouverture->$oc = 1;
         }
 
+        $new_place->blocs->presentation->donnees->surfaces = new stdClass;
+        $new_place->blocs->presentation->donnees->surfaces->totale = $this->extract_val($schema->blocs->presentation->donnees->surfaces->totale);
+        $new_place->blocs->presentation->donnees->surfaces->exterieur = $this->extract_val($schema->blocs->presentation->donnees->surfaces->exterieur);
+        $new_place->blocs->presentation->donnees->surfaces->bureau = $this->extract_val($schema->blocs->presentation->donnees->surfaces->bureau);
+        $new_place->blocs->presentation->donnees->surfaces->atelier = $this->extract_val($schema->blocs->presentation->donnees->surfaces->atelier);
+        $new_place->blocs->presentation->donnees->surfaces->agriculture = $this->extract_val($schema->blocs->presentation->donnees->surfaces->agriculture);
+
         $new_place->blocs->presentation->donnees->thematiques = $this->extract_val($schema->blocs->presentation->donnees->thematiques);
 
         // Accessibilite
