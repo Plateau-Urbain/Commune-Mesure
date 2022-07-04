@@ -6,6 +6,7 @@ use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
+use App\Console\Commands\ImportOneValueTypeForm;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\MailSendImportSuccess;
 use Illuminate\Console\Scheduling\Schedule;
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
         ImportTypeForm::class,
+        ImportOneValueTypeForm::class,
         SetValue::class,
         MailSendImportSuccess::class
     ];
