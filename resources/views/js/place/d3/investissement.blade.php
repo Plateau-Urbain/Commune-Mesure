@@ -8,8 +8,8 @@
       {name: "Fonds publics", value: {{ $place->get('blocs->moyens->donnees->investissement->Fonds publics') ?: 0 }}}
   ]
 
-  const width = svg.node().getBoundingClientRect().width;
-  const height = svg.node().getBoundingClientRect().height;
+  const graph_width = svg.node().getBoundingClientRect().width;
+  const graph_height = svg.node().getBoundingClientRect().height - 100;
   const total = parea_data.reduce((accum, item) => accum + item.value, 0);
 
   color.domain(parea_data.map(d => d.name))
@@ -17,16 +17,16 @@
   parea_data.forEach(function (element, index) {
       element['pc'] = element.value / total
       element['id'] = index
-      element['width'] = height * element['pc'];
-      element['height'] = height * element['pc'];
+      element['width'] = graph_height * element['pc'];
+      element['height'] = graph_height * element['pc'];
   })
 
   parea_data[0]['x'] =  10;
-  parea_data[0]['y'] =  height - height * parea_data[0]['pc'];
-  parea_data[1]['x'] = 20 + height * parea_data[0]['pc'];
-  parea_data[1]['y'] = height - height * parea_data[1]['pc'];
+  parea_data[0]['y'] =  graph_height - graph_height * parea_data[0]['pc'];
+  parea_data[1]['x'] = 20 + graph_height * parea_data[0]['pc'];
+  parea_data[1]['y'] = graph_height - graph_height * parea_data[1]['pc'];
   parea_data[2]['x'] = parea_data[1]['x'];
-  parea_data[2]['y'] = - 10 + parea_data[1]['y'] - height * parea_data[2]['pc'] ;
+  parea_data[2]['y'] = - 10 + parea_data[1]['y'] - graph_height * parea_data[2]['pc'] ;
 
   d3.select(svg_investissement_id)
     .selectAll('rect')
@@ -49,11 +49,32 @@
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 20 })
     .attr('fill', 'white')
-    .text(function(d) { return d.value + ' €'})
+    .text(function(d) { if (d.width > 30)  return d.value + ' €'})
   texts.append('tspan')
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 40 })
     .attr('fill', 'white')
-    .text(function(d) { return d.name })
-</script>
+    .text(function(d) { if (d.width > 100) return d.name })
 
+  d3.select(svg_investissement_id)
+    .selectAll('legend')
+    .data(parea_data)
+    .enter()
+    .append('circle')
+    .attr('cx', function(d, i) { return i * graph_width / 3.5 + 10})
+    .attr('cy', function(d, i) { return graph_height + 55})
+    .attr('r', function(d) { return 10})
+    .attr('fill', function(d) { return color(d.name)})
+
+  d3.select(svg_investissement_id)
+    .selectAll('legend-text')
+    .data(parea_data)
+    .enter()
+    .append('text')
+    .attr('x', function(d, i) { return i * graph_width / 3.5 + 25 })
+    .attr('y', function(d, i) { return graph_height + 60 })
+    .attr('fill', 'black')
+    .text(function(d) { return d.name })
+
+
+</script>
