@@ -134,7 +134,13 @@ class ImportOneValueTypeForm extends Command
             throw new \Exception("File does not exists : ".$this->argument('place'));
         }
 
-        $new_value = $this->extract_val($schema->{$this->argument('key')});
+        $path = explode('->', $this->argument('key'));
+        $result = $schema;
+        foreach ($path as $noeud) {
+            $result = $result->{$noeud};
+        }
+
+        $new_value = $this->extract_val($result);
         $place->set($this->argument('key'), $new_value);
         $place->save();
     }
