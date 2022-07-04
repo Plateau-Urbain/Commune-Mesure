@@ -61,7 +61,7 @@ class Place extends Model
         return $this->belongsToMany(Section::class)->withTimestamps()->withPivot('visible');
     }
 
-    public static function find($slug, bool $withoutGeoJson = true)
+    public static function find($slug, bool $withGeoJson = true)
     {
         $db = DB::table('places')
                     ->select(['place as slug', 'data'])
@@ -76,7 +76,7 @@ class Place extends Model
 
         $place = new Place();
         $place->setSlug($db->slug);
-        $place->setData($db->data, $withoutGeoJson);
+        $place->setData($db->data, $withGeoJson);
 
         //Cache::put('place.'.$slug, $place, 10);
 
@@ -100,7 +100,7 @@ class Place extends Model
         $places = $places->get();
 
         self::$places = $places->map(function ($place, $key) {
-            return self::find($place->slug);
+            return self::find($place->slug, false);
         });
 
         return self::$places;
@@ -133,10 +133,10 @@ class Place extends Model
         return $places;
     }
 
-    public function setData($data, bool $withoutGeoJson = true){
+    public function setData($data, bool $withGeoJson = true){
         $data = json_decode($data);
 
-        if ($withoutGeoJson === true) {
+        if ($withGeoJson === false) {
             unset($data->blocs->data_territoire->donnees->geo->geo_json);
         }
 
