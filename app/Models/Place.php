@@ -272,6 +272,10 @@ class Place extends Model
     $array = explode('->',$chemin);
     $result = $place;
     for($i=0 ; $i < count($array)-1; $i++){
+        if (property_exists($result, $array[$i]) === false) {
+            $result->{$array[$i]} = new \stdClass;
+        }
+
       $result=$result->{$array[$i]};
     }
     return $result;
