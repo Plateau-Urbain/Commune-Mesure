@@ -50,11 +50,9 @@
       .word:nth-of-type(6n+5){color: #262631;}
   </style>
   <div class="columns is-multiline is-centered">
-    <div class="has-text-centered" style="width:500px; height:300px" id="wordcloud">
-      <span class="word">Occupation&nbsp;temporaire</span> &nbsp;
-      <span class="word">Agriculture&nbsp;urbaine</span> &nbsp;
-      <span class="word">Écologie</span> &nbsp;
-      <span class="word">Culture</span> &nbsp;
-      <span class="word">Hébergement&nbsp;d'urgence</span>
+    <div class="has-text-centered column is-half" style="" id="wordcloud">
+      @foreach ($place->get('activites') as $activite)
+        <span class="word">{{ $activite }}</span> &nbsp;
+      @endforeach
     </div>
   </div>
