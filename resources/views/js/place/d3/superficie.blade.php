@@ -1,8 +1,8 @@
 <script type="text/javascript">
-var superficie_totale = 2000;
-var superficie_exterieure = 800;
-var superficie_bureaux = 600;
-var superficie_ateliers = 400;
+var superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
+var superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
+var superficie_bureaux = {{ $place->get('blocs->presentation->donnees->surfaces->bureau') ?: 0 }};
+var superficie_ateliers = {{ $place->get('blocs->presentation->donnees->surfaces->atelier') ?: 0 }};
 
 var superficie_interieure = superficie_totale - superficie_exterieure;
 var superficie_autres = superficie_interieure - superficie_bureaux - superficie_ateliers;
