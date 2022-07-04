@@ -7,3 +7,4 @@
 @include('js.place.d3.waffle')
 @include('js.place.d3.investissement')
 @include('js.place.d3.superficie')
+@include('js.place.d3.fonctionnement')
