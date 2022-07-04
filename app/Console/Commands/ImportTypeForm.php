@@ -339,65 +339,15 @@ class ImportTypeForm extends Command
         $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"});
 
         // activites
-        $new_place->activites = new stdClass;
-        $new_place->activites->donnees = new stdClass;
-        $new_place->activites->donnees->hebergement = new stdClass;
-        $new_place->activites->donnees->hebergement->titre = 'Hébergement';
-        $new_place->activites->donnees->hebergement->present = $this->extract_val($schema->activites->donnees->hebergement->present);
-        $new_place->activites->donnees->evenement_public = new stdClass;
-        $new_place->activites->donnees->evenement_public->titre = 'Évenement public';
-        $new_place->activites->donnees->evenement_public->present = $this->extract_val($schema->activites->donnees->evenement_public->present);
-        $new_place->activites->donnees->evenement_prive = new stdClass;
-        $new_place->activites->donnees->evenement_prive->titre = 'Évenement privé';
-        $new_place->activites->donnees->evenement_prive->present = $this->extract_val($schema->activites->donnees->evenement_prive->present);
-        $new_place->activites->donnees->espace_bureau = new stdClass;
-        $new_place->activites->donnees->espace_bureau->titre = 'Bureau';
-        $new_place->activites->donnees->espace_bureau->present = $this->extract_val($schema->activites->donnees->espace_bureau->present);
-        $new_place->activites->donnees->espace_atelier = new stdClass;
-        $new_place->activites->donnees->espace_atelier->titre = 'Atelier';
-        $new_place->activites->donnees->espace_atelier->present = $this->extract_val($schema->activites->donnees->espace_atelier->present);
-        $new_place->activites->donnees->espace_agriculture = new stdClass;
-        $new_place->activites->donnees->espace_agriculture->titre = 'Agriculture';
-        $new_place->activites->donnees->espace_agriculture->present = $this->extract_val($schema->activites->donnees->espace_agriculture->present);
-        $new_place->activites->donnees->loisir = new stdClass;
-        $new_place->activites->donnees->loisir->titre = 'Activité loisir';
-        $new_place->activites->donnees->loisir->present = $this->extract_val($schema->activites->donnees->loisir->present);
-        $new_place->activites->donnees->artistique = new stdClass;
-        $new_place->activites->donnees->artistique->titre = 'Activité artistique';
-        $new_place->activites->donnees->artistique->present = $this->extract_val($schema->activites->donnees->artistique->present);
-        $new_place->activites->donnees->sportive = new stdClass;
-        $new_place->activites->donnees->sportive->titre = 'Activité sportive';
-        $new_place->activites->donnees->sportive->present = $this->extract_val($schema->activites->donnees->sportive->present);
-        $new_place->activites->donnees->fablab = new stdClass;
-        $new_place->activites->donnees->fablab->titre = 'Fablab';
-        $new_place->activites->donnees->fablab->present = $this->extract_val($schema->activites->donnees->fablab->present);
-        $new_place->activites->donnees->ressourcerie = new stdClass;
-        $new_place->activites->donnees->ressourcerie->titre = 'Ressourcerie';
-        $new_place->activites->donnees->ressourcerie->present = $this->extract_val($schema->activites->donnees->ressourcerie->present);
-        $new_place->activites->donnees->circuit_court = new stdClass;
-        $new_place->activites->donnees->circuit_court->titre = 'Circuit court';
-        $new_place->activites->donnees->circuit_court->present = $this->extract_val($schema->activites->donnees->circuit_court->present);
-        $new_place->activites->donnees->mediateur = new stdClass;
-        $new_place->activites->donnees->mediateur->titre = 'Médiateur';
-        $new_place->activites->donnees->mediateur->present = $this->extract_val($schema->activites->donnees->mediateur->present);
-        $new_place->activites->donnees->conciergerie = new stdClass;
-        $new_place->activites->donnees->conciergerie->titre = 'Conciergerie';
-        $new_place->activites->donnees->conciergerie->present = $this->extract_val($schema->activites->donnees->conciergerie->present);
-        $new_place->activites->donnees->activite_gratuite = new stdClass;
-        $new_place->activites->donnees->activite_gratuite->titre = 'Activité gratuite';
-        $new_place->activites->donnees->activite_gratuite->present = $this->extract_val($schema->activites->donnees->activite_gratuite->present);
-        $new_place->activites->donnees->activite_tarif_adapte = new stdClass;
-        $new_place->activites->donnees->activite_tarif_adapte->titre = 'Activité au tarif adapté';
-        $new_place->activites->donnees->activite_tarif_adapte->present = $this->extract_val($schema->activites->donnees->activite_tarif_adapte->present);
-        $new_place->activites->donnees->structures_sociales = new stdClass;
-        $new_place->activites->donnees->structures_sociales->titre = 'Structures sociales';
-        $new_place->activites->donnees->structures_sociales->present = $this->extract_val($schema->activites->donnees->structures_sociales->present);
-        $new_place->activites->donnees->service_proximite = new stdClass;
-        $new_place->activites->donnees->service_proximite->titre = 'Service de proximité';
-        $new_place->activites->donnees->service_proximite->present = $this->extract_val($schema->activites->donnees->service_proximite->present);
-        $new_place->activites->donnees->accueil_precarite = new stdClass;
-        $new_place->activites->donnees->accueil_precarite->titre = 'Accueil personnes précaires';
-        $new_place->activites->donnees->accueil_precarite->present = $this->extract_val($schema->activites->donnees->accueil_precarite->present);
+        $new_place->activites = [];
+
+        foreach ($schema->activites as $activite => $val) {
+            $present = $this->extract_val($val);
+
+            if ($present === 'Yes') {
+                $new_place->activites[] = $activite;
+            }
+        }
 
         // geojson
         $new_place->blocs->data_territoire = new stdClass;
