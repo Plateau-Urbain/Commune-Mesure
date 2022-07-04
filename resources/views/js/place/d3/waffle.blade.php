@@ -4,7 +4,7 @@
   const svg_waffle = d3.select(svg_id)
 
   const width_waffle = svg_waffle.node().getBoundingClientRect().width;
-  const height_waffle = svg_waffle.node().getBoundingClientRect().height;
+  const height_waffle = svg_waffle.node().getBoundingClientRect().height - 100;
 
   const waffle_structure = {
     'entreprises': {
@@ -30,7 +30,7 @@
 
   color.domain(Object.keys(waffle_structure))
   carreau_num = Math.floor(Math.sqrt(total_structures)) + 1;
-  carreau_size = Math.floor(Math.sqrt(height_waffle * width_waffle) / carreau_num);
+  carreau_size = Math.floor(height_waffle / carreau_num);
 
   Object.values(waffle_structure).forEach(function (el) {
     const a = Array(el.data).fill(el.text, 0)
@@ -55,12 +55,13 @@
     .attr('width', carreau_size - 2)
     .attr('height', carreau_size - 2)
     .attr('x', function(d, i) {
-      if (Math.floor(i / carreau_num) % 2 == 1 ) {
-        return (carreau_num - 1 - i % carreau_num) * carreau_size ;
+      center = Math.floor(( width_waffle - carreau_num * carreau_size ) / 2) ;
+      if (Math.floor(i / carreau_num) % 2) {
+        return center + (carreau_num - 1 - i % carreau_num) * carreau_size;
       }
-      return (i % carreau_num) * carreau_size ;
+      return center + (i % carreau_num) * carreau_size;
     })
-    .attr('y', function(d, i) {return Math.round(Math.floor(i / carreau_num) * height_waffle / width_waffle) * carreau_size })
+    .attr('y', function(d, i) {return Math.floor(Math.floor(i / carreau_num) * carreau_size) })
     .attr('fill', function(d) { if ([d]) return color(d) })
     .attr('opacity', function(d) { return ( d && (d != 'empty') && (waffle_structure[d]) && !isNaN(waffle_structure[d].data)) * 1; })
     .attr('class', function(d) {return 'waffle_'+d; })
