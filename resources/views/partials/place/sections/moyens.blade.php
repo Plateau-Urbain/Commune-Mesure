@@ -6,10 +6,9 @@
       <label class="is-size-5 label_moyens" for="switchRoundedSuccess" id="label_fonctionnement" >Fonctionnement</label>
       @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
 
-      <div class="chart-container mx-auto mb-5" style="width: 400px; height: 400px">
-        <canvas id="financement-budget-doughnut" width="400" height="400" aria-label="Répartition budget fonctionnement / investissement" role="img">
-          <p>Graphique répartition budget fonctionnement / investissement</p>
-        </canvas>
+      <div class="chart-container mx-auto mb-5" style="width: 500px; height: 500px">
+        <svg id="financement-budget-doughnut" width="500" height="500" aria-label="Répartition budget fonctionnement / investissement" role="img">
+        </svg>
       </div>
     @endif
 

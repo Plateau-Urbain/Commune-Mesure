@@ -16,7 +16,8 @@ class ImportOneValueTypeForm extends Command
     protected $signature = 'import:one-value-typeform
                                 {file : json contenant les réponses d\'un répondant}
                                 {key : clé de la nouvelle valeur dans le json}
-                                {place : le slug du lieu}';
+                                {place : le slug du lieu}
+                                {--multiple : L\'entrée est un array}';
 
     /**
      * The console command description.
@@ -140,8 +141,22 @@ class ImportOneValueTypeForm extends Command
             $result = $result->{$noeud};
         }
 
-        $new_value = $this->extract_val($result);
-        $place->set($this->argument('key'), $new_value);
+        if ($this->option('multiple') === true) {
+            $values = [];
+
+            foreach ($result as $k => $val) {
+                $new_value = $this->extract_val($val);
+                if ($new_value === 'Yes') {
+                    $values[] = $k;
+                }
+            }
+
+            $place->set($this->argument('key'), $values);
+        } else {
+            $new_value = $this->extract_val($result);
+            $place->set($this->argument('key'), $new_value);
+        }
+
         $place->save();
     }
 }

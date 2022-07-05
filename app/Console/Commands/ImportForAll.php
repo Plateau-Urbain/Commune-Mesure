@@ -14,7 +14,9 @@ class ImportForAll extends Command
      *
      * @var string
      */
-    protected $signature = 'import:value-for-all {key : la clé de la valeur à ajouter}';
+    protected $signature = 'import:value-for-all
+                                {key : la clé de la valeur à ajouter}
+                                {--multiple : L\'entrée est un array}';
 
     /**
      * The console command description.
@@ -52,7 +54,8 @@ class ImportForAll extends Command
             Artisan::call('import:one-value-typeform', [
                 'file' => $file,
                 'key' => $this->argument('key'),
-                'place' => $name
+                'place' => $name,
+                '--multiple' => $this->option('multiple')
             ]);
         }
     }

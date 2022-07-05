@@ -45,6 +45,7 @@
   d3.select('body')
     .append('div')
     .attr('id', tooltip_waffle_id)
+    .attr('class', 'd3_tooltip')
     .attr('style', 'position: absolute; opacity: 0;');
 
   center_x = Math.floor(( width_waffle - carreau_num * carreau_size ) / 2);

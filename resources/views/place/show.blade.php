@@ -21,7 +21,6 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {{-- Graphs insee --}}
   @include('js.place.insee-graph')
   @include('js.place.map-insee-js')
-  @include('js.place.charts-doughnut')
   @include('js.place.modals')
   @include('js.place.d3')
   <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
@@ -107,6 +106,13 @@
             <span class="font-color-theme">{{ $place->getOuverture() }}</span>
             @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->ouverture', 'id_section' => 'presentation', 'type' => 'select', 'titre' => "Modifier l'ouverture", "description" => "Les modalités d'ouverture du lieu"])
           </p>
+        </div>
+        <div class="section pt-5" style="padding-bottom:0;">
+          <div class="columns is-centered" style="background-color: white;">
+            <div class="column is-half">
+              @include('partials.place.sections.batiment')
+            </div>
+          </div>
         </div>
         <div class="section pt-5" style="padding-bottom:0;">
           <div class="columns is-centered is-hidden-desktop is-hidden-mobile is-hidden-print">
