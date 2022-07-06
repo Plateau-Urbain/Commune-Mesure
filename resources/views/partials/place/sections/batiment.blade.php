@@ -14,11 +14,15 @@
   ];
 
   $thematiques = [];
-  foreach($themes as $t) {
-    $thematiques[] = (isset($theme2key[$t])) ? $theme2key[$t] : $t;
+  if ($themes) {
+    foreach($themes as $t) {
+      $thematiques[] = (isset($theme2key[$t])) ? $theme2key[$t] : $t;
+    }
+  }
+  for ($i = count($thematiques) ; $i < 3 ; $i+++) [
+    $thematiques[] = '';
   }
   shuffle($thematiques);
-
  ?>
 <svg
    width="240mm"
