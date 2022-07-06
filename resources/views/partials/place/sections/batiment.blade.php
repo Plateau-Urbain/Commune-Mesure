@@ -19,7 +19,7 @@
       $thematiques[] = (isset($theme2key[$t])) ? $theme2key[$t] : $t;
     }
   }
-  for ($i = count($thematiques) ; $i < 3 ; $i+++) [
+  for ($i = count($thematiques) ; $i < 3 ; $i++ ) {
     $thematiques[] = '';
   }
   shuffle($thematiques);
