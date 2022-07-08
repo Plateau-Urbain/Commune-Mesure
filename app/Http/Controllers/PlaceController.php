@@ -37,7 +37,7 @@ class PlaceController extends Controller
 
     public function list(Place $place)
     {
-        $places = Place::retrievePlaces();
+        $places = Place::retrievePlaces('latest');
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
