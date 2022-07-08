@@ -52,7 +52,7 @@
   <div class="columns is-multiline is-centered">
     <div class="has-text-centered column is-half" style="" id="wordcloud">
       @foreach ($place->get('activites') as $activite)
-        <span class="word">{{ $activite }}</span> &nbsp;
+        <span class="word">{{ html_entity_decode(str_replace(' ', "&nbsp;", $activite)) }}</span> &nbsp;
       @endforeach
     </div>
   </div>
