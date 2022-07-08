@@ -82,14 +82,14 @@ var function_superficie_y = function(d) {
 }
 
 var function_superficie_text_1 = function(d) {
-    if (! function_superficie_width(d)) {
+    if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
-    if (d == 'superficie_exterieur') return 'Extérieurs : '+parseInt(superficie_exterieure) + ' m²';;
+    if (d == 'superficie_exterieur') return 'Extérieurs : '+function_get_superficie(d) + ' m²';;
     if (function_superficie_height(d) < 100) {
-        if (d == 'superficie_autres') return 'Autres : '+ parseInt(superficie_autres) + ' m²';
-        if (d == 'superficie_bureaux') return 'Bureaux : '+ parseInt(superficie_bureaux) + ' m²';
-        if (d == 'superficie_ateliers') return 'Ateliers : '+ parseInt(superficie_ateliers) + ' m²';
+        if (d == 'superficie_autres') return 'Autres : '+ function_get_superficie(d) + ' m²';
+        if (d == 'superficie_bureaux') return 'Bureaux : '+ function_get_superficie(d) + ' m²';
+        if (d == 'superficie_ateliers') return 'Ateliers : '+ function_get_superficie(d) + ' m²';
     }else {
         if (d == 'superficie_autres') return 'Autres :';
         if (d == 'superficie_bureaux') return 'Bureaux :';
@@ -98,14 +98,21 @@ var function_superficie_text_1 = function(d) {
     return ;
 }
 
+var function_get_superficie = function(d) {
+  if (d == 'superficie_autres') return parseInt(superficie_autres);
+  if (d == 'superficie_bureaux') return parseInt(superficie_bureaux);
+  if (d == 'superficie_ateliers') return parseInt(superficie_ateliers);
+  if (d == 'superficie_exterieur') return parseInt(superficie_exterieure);
+}
+
 var function_superficie_text_2 = function(d) {
-    if (! function_superficie_width(d)) {
+    if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
     if (function_superficie_height(d) >= 100) {
-        if (d == 'superficie_autres') return parseInt(superficie_autres) + ' m²';
-        if (d == 'superficie_bureaux') return parseInt(superficie_bureaux) + ' m²';
-        if (d == 'superficie_ateliers') return parseInt(superficie_ateliers) + ' m²';
+        if (d == 'superficie_autres') return function_get_superficie(d) + ' m²';
+        if (d == 'superficie_bureaux') return function_get_superficie(d) + ' m²';
+        if (d == 'superficie_ateliers') return function_get_superficie(d) + ' m²';
     }
 }
 
@@ -123,19 +130,21 @@ var function_superficie_text_y = function(d) {
 var superficie_rect_onmouseover = function(d, i) {
     d3.select('#'+tooltip_superficie_id)
       .style('opacity', function(a) {
+          if (!function_get_superficie(d)) {
+            return 0;
+          }
           if (d == 'superficie_exterieur')  { return 1; }
           if (d == 'superficie_interieure') { return 1; }
           if (d == 'superficie_autres')     { return 1; }
           if (d == 'superficie_bureaux')    { return 1; }
           if (d == 'superficie_ateliers')   { return 1; }
-          console.log('not opacity: '+d);
           return 0;
       } )
      .text( function(a) {
-        if (d == 'superficie_exterieur') return 'Extérieurs : '+parseInt(superficie_exterieure) + ' m²';;
-        if (d == 'superficie_autres') return 'Autres : '+ parseInt(superficie_autres) + ' m²';
-        if (d == 'superficie_bureaux') return 'Bureaux : '+ parseInt(superficie_bureaux) + ' m²';
-        if (d == 'superficie_ateliers') return 'Ateliers : '+ parseInt(superficie_ateliers) + ' m²';
+        if (d == 'superficie_exterieur') return 'Extérieurs : '+function_get_superficie(d) + ' m²';;
+        if (d == 'superficie_autres') return 'Autres : '+ function_get_superficie(d) + ' m²';
+        if (d == 'superficie_bureaux') return 'Bureaux : '+ function_get_superficie(d) + ' m²';
+        if (d == 'superficie_ateliers') return 'Ateliers : '+ function_get_superficie(d) + ' m²';
       })
     d3.select('#text_'+d)
         .attr('class', 'highlight');
@@ -201,7 +210,7 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('circle')
-      .attr('cx', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
+      .attr('cx', function(d, i) { return (i % 2)* width_waffle / 2.5 + 10})
       .attr('cy', function(d, i) { return height_waffle + 30 * (1 + Math.floor( i / 2 )) })
       .attr('r', function(d) { return 10})
       .attr('fill', function_superficie_fill)
@@ -211,7 +220,7 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 30})
+      .attr('x', function(d, i) { return (i % 2)* width_waffle / 2.5 + 30})
       .attr('y', function(d, i) { return height_waffle + 33 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .text(function(d) {
