@@ -1,6 +1,8 @@
 @import "bulma/bulma.sass";
 
 $impact-font: #3C3B4B;
+
+$blue-background: #DEEBEE;
 $gray-background: #FCFCFA;
 $orange: #F58352;
 $blue: #3B97A6;
@@ -11,7 +13,6 @@ $light-blue: #3B97A680;
 $light-darker-blue: #46768480;
 $quote-grey: #393B49;
 $title-gray: #3A3C49;
-$blue-background: #DEEBEE;
 
 .impact-title {
     max-width: 1080px;
@@ -75,6 +76,7 @@ $blue-background: #DEEBEE;
                 @include until($desktop) {
                     display: flex;
                     flex-wrap: wrap;
+                    margin-top: 50px;
                 }
                 margin: auto;
                 max-width: 1050px;
@@ -87,12 +89,15 @@ $blue-background: #DEEBEE;
 
                 @include until($tablet) {
                     flex-grow: initial !important;
+                    width: 100% !important;
+                    justify-content: flex-end;
                 }
 
                 @include until($desktop) {
                     position: initial;
                     flex-grow: 1;
                     height: 120px;
+                    width: 50%;
                     
                     img {
                         width: 100px !important;
