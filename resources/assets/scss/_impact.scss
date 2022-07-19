@@ -1,0 +1,379 @@
+@import "bulma/bulma.sass";
+
+$impact-font: #3C3B4B;
+
+$blue-background: #DEEBEE;
+$gray-background: #FCFCFA;
+$orange: #F58352;
+$blue: #3B97A6;
+$darker-blue: #457684;
+$red: #EE5A52;
+$light-orange: #F5835280;
+$light-blue: #3B97A680;
+$light-darker-blue: #46768480;
+$quote-grey: #393B49;
+$title-gray: #3A3C49;
+
+.impact-title {
+    max-width: 1080px;
+    margin: auto;
+
+    @include until($desktop) {
+        padding: 0 20px;
+    }
+    
+    h1 {
+        color: $red-theme;
+        text-transform: uppercase;
+        font-family: 'Renner Bold';
+        font-weight: normal;
+        font-size: 33pt;
+        margin-top: 50px;
+        position: relative;
+        line-height: 1.2em;
+
+        &::after {
+            content: '';
+            width: 20px;
+            height: 4px;
+            background-color: $blog-black;
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+        }
+    }
+}
+
+#impact-page {
+    font-family: 'Source Sans Pro';
+
+    section {
+
+        background: #FFFFFF;
+
+        @include until($desktop) {
+            padding: 0 20px;
+        }
+        color: $impact-font;
+
+        &#sommaire {
+            background-color: #F8F7F3;
+
+            img {
+                &.rounded {
+                    max-width: 150px;
+                    border-radius: 50%;
+                    align-self: center;
+                    transition: all .2s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+
+            .container {
+                @include until($desktop) {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: 50px;
+                }
+                margin: auto;
+                max-width: 1050px;
+            }
+
+            .valeur {
+                position: absolute;
+                display: flex;
+                height: 150px;
+
+                @include until($tablet) {
+                    flex-grow: initial !important;
+                    width: 100% !important;
+                    justify-content: flex-end;
+                }
+
+                @include until($desktop) {
+                    position: initial;
+                    flex-grow: 1;
+                    height: 120px;
+                    width: 50%;
+                    
+                    img {
+                        width: 100px !important;
+                    }
+                }
+
+                &.reverse {
+                    flex-direction: row-reverse;
+                }
+
+                &.individuel {
+                    top: 40px;
+                    left: -40px;
+                    h3 {
+                        color: $red
+                    }
+                    color: $red;
+
+                    img {
+                        border: 3px solid $red
+                    }
+                }
+
+                &.collectif {
+                    bottom: 45px;
+                    left: -50px;
+                    h3 {
+                        color: $orange
+                    }
+                    color: $orange;
+
+                    img {
+                        border: 3px solid $orange;
+                        width: 130px;
+                    }
+
+                    span {
+                        color: $light-orange;
+                    }
+                }
+
+                &.territorial {
+                    right: -75px;
+                    top: 105px;
+
+                    h3 {
+                        color: $blue
+                    }
+                    color: $blue;
+
+                    img {
+                        border: 3px solid $blue;
+                        width: 120px;
+                    }
+
+                    span {
+                        color: $light-blue;
+                    }
+                }
+
+                &.urbain {
+                    right: -80px;
+                    bottom: 20px;
+                    h3 {
+                        color: $darker-blue
+                    }
+                    color: $darker-blue;
+
+                    img {
+                        border: 3px solid $darker-blue;
+                        width: 110px;
+                    }
+
+                    span {
+                        color: $light-darker-blue;
+                    }
+                }
+
+                .text {
+                    align-self: center;
+                    padding-left: 20px;
+
+                    p {
+                        font-weight: bold;
+                        font-size: 18pt;
+                        letter-spacing: 1.8px;
+                    }
+
+                    &--right {
+                        text-align: right;
+                        padding-right: 20px;
+                        padding-left: 0;
+                    }
+                }
+            }
+
+            .individuel {
+                top: 0;
+            }
+        }
+
+        &>div {
+            max-width: 1080px;
+            margin: auto;
+        }
+
+        &.gray-background {
+            background-color: $gray-background;
+        }
+
+        &.blue-background {
+            background-color: $blue-background;
+        }
+
+        .custom-background {
+            background-image: url('../images/fond-effet-perso.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .more {
+            display: none;
+        }
+
+        .readmore {
+            font-style: italic;
+            color: $red;
+            text-decoration: underline;
+            background: none;
+            display: block;
+            border: none;
+            padding: 0px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .half-image {
+            display: flex;
+            padding-bottom: 40px;
+
+            @include until($tablet) {
+                img {
+                    max-width: 350px !important;
+                    padding-right: 0px;
+                }
+            }
+
+            @include until($desktop) {
+                flex-direction: column;
+                img {
+                    padding: none;
+                    max-width: 500px;
+                    padding: 40px 0;
+                    padding-right: 0px !important;
+                }
+            }
+
+            div {
+                flex: 1 1 0;
+                align-self: center;
+            }
+
+            img {
+                padding-right: 40px;
+            }
+        }
+
+        .image-start {
+            display: flex;
+            padding-bottom: 30px;
+
+            @include until($desktop) {
+                flex-direction: column;
+            }
+
+            div:first-child {
+                margin-left: 10px;
+            }
+
+            img {
+                width: 145px;
+                height: auto;
+                align-self: center;
+                margin-right: 30px;
+            }
+
+            div {
+                max-width: 715px;
+            }
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 1px solid $quote-grey;
+            padding-left: 10px;
+            margin: 10px 0;
+            color: $quote-grey;
+
+            &--text {
+                display: flex;
+            }
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+
+            @include until($desktop) {
+                flex-direction: column;
+            }
+
+            .image-start {
+                flex-direction: column;
+                padding-left: 25px;
+
+                @include until($desktop) {
+                    padding-left: 0px;
+                }
+
+                h3 {
+                    margin-bottom: 20px;
+                }
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                img {
+                    width: auto;
+                    height: 160px;
+                    align-self: center;
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    h2 {
+        color: $red;
+        text-transform: uppercase;
+        font-family: 'Renner Bold';
+        font-weight: normal;
+        font-size: 26pt;
+        padding: 40px 0;
+        line-height: 1.2em;
+
+        &.orange {
+            color: $orange;
+        }
+
+        &.quartier {
+            color: $blue;
+        }
+
+        &.urbain {
+            color: $darker-blue;
+        }
+
+        &.margin-image {
+            margin-left: 145px;
+            @include until($desktop) {
+                margin-left: 0px;
+            }
+        }
+
+        &.center {
+            text-align: center;
+        }
+    }
+
+    h3 {
+        color: $title-gray;
+        text-transform: uppercase;
+        font-family: 'Renner Bold';
+        font-weight: normal;
+        font-size: 18pt;
+        line-height: 1.2em;
+    }
+}

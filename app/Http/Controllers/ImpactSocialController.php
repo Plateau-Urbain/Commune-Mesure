@@ -2,37 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\ImpactSocialRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Models\Place;
 
 class ImpactSocialController extends Controller
 {
-    private ImpactSocialRepositoryInterface $impactSocialRepository;
-
-    public function __construct(ImpactSocialRepositoryInterface $impactSocialRepository)
-    {
-        $this->impactSocialRepository = $impactSocialRepository;
-    }
-
     public function show($slug)
     {
-        // Tous les champs
-        $place = $this->impactSocialRepository->get($slug);
+        $place = Place::find($slug);
 
-        // Uniquement la colonne `data`
-        //$place = $this->impactSocialRepository->getData($slug);
+        if ($place === false) {
+            abort(404);
+        }
+
+        if ($place->isPublish() === false) {
+            return view('place.unpublished', compact('place'));
+        }
 
         return view('impactsocial.show', compact('place'));
-    }
-
-    public function update(Request $request, $slug)
-    {
-        $place = $this->impactSocialRepository->get($slug);
-        $data = $place->data;
-        $data->impact->solidarite = $request->get('solidarite', 'lorem ipsum');
-        $place->data = $data;
-        $place->save();
-
-        return redirect(route('impacts.show', compact('slug')));
     }
 }
