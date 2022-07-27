@@ -100,7 +100,7 @@
         </div>
       </section>
 
-      <section class="gray-background">
+      <section class="gray-background topography-background">
         <div>
           <h2 class="orange center">effets collectifs</h2>
           <div class="row">
@@ -148,7 +148,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="topography-background">
         <div>
           <div class="half-image">
             <div>
