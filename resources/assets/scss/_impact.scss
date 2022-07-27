@@ -61,7 +61,7 @@ $title-gray: #3A3C49;
 
             img {
                 &.rounded {
-                    max-width: 150px;
+                    max-width: 130px;
                     border-radius: 50%;
                     align-self: center;
                     transition: all .2s ease-in-out;
@@ -150,7 +150,7 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $blue;
-                        width: 120px;
+                        width: 130px;
                     }
 
                     span {
@@ -168,7 +168,7 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $darker-blue;
-                        width: 110px;
+                        width: 130px;
                     }
 
                     span {
@@ -216,6 +216,13 @@ $title-gray: #3A3C49;
             background-image: url('../images/fond-effet-perso.png');
             background-size: contain;
             background-repeat: no-repeat;
+        }
+
+        &.topography-background {
+            background-image: url('../images/fond-2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-y: -90px;
         }
 
         .more {

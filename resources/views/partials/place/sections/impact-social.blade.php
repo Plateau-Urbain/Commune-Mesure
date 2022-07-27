@@ -1,7 +1,7 @@
 <div class="banner-fil fil-5">
     <h2 class="sous-banner">L'impact social</h1>
 </div>
-<p class='description-section'> La qualification de l'impact social est le fruit d'un processus d'interaction; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu. Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les effets  sur les personnes, les groupes de personnes et le territoire. Les réponses affichées sont issues des porteurs de projet.</p>
+<p class='description-section'>L’évaluation des effets sociaux est un processus collectif visant à qualifier l’ensemble des conséquences, négatives ou positives, prévues ou imprévues, d’un projet sur ses parties prenantes. Nous présentons ici 3 représentations simplifiées des effets à l’échelle individuelle, collective et territoriale. La visualisation des réponses détaillées, issues des porteurs de projet, sont accessibles sur la page <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}">voir ses effets sociaux</a>.</p>
 
 <div class="columns is-multiline" style="margin-top: 100px;">
     {{-- Gauche --}}
