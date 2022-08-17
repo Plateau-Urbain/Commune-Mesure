@@ -12,6 +12,7 @@
 @endsection
 
 @section('header.submenu')
+  @empty($edit)
   <div id="sticky" class="sticky">
     <div class="container has-text-centered app-name">
       <h1 class="title header-title">
@@ -19,6 +20,7 @@
       </h1>
     </div>
   </div>
+  @endempty
 @endsection
 
 @section('meta_share')
