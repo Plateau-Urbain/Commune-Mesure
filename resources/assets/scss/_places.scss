@@ -71,3 +71,27 @@ a[target="_blank"].social-link::after {
     font-family: "Font Awesome 6 Free";
     content: "\f35d";
 }
+
+.sticky {
+    position: sticky;
+    top: 53px;
+    z-index: 999;
+    display: none;
+    margin-bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    background-color: $light-blue;
+
+    h1 {
+        font-size: 1.25em;
+        margin: 0;
+
+        .sticky-separator {
+            color: $primary;
+        }
+
+        .sticky-section {
+            color: $primary;
+        }
+    }
+}

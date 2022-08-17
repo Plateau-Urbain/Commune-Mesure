@@ -11,6 +11,16 @@
   </h2>
 @endsection
 
+@section('header.submenu')
+  <div id="sticky" class="sticky">
+    <div class="container has-text-centered app-name">
+      <h1 class="title header-title">
+        {{ $place->get('name') }} <span class="sticky-separator">></span> <span class="sticky-section"></span>
+      </h1>
+    </div>
+  </div>
+@endsection
+
 @section('meta_share')
   @include('partials.place.meta.opengraph')
   @include('partials.place.meta.twitter')
@@ -23,6 +33,8 @@
   @include('js.place.map-insee-js')
   @include('js.place.modals')
   @include('js.place.d3')
+  @include('js.place.scrollspy')
+
   <script type="text/javascript" src="{{ url('/js/easyScrollDots.min.js') }}"></script>
 
   <script>

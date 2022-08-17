@@ -1,5 +1,6 @@
 @include("partials/header-mobile")
 @include("generate/header")
+
 <div id="top" class="banner hero">
     <div class="hero-body">
         <div class="container has-text-centered app-name">
@@ -13,7 +14,7 @@
             @show
         </div>
     </div>
-
-    @section('header.submenu')
-    @show
 </div>
+
+@section('header.submenu')
+@show
