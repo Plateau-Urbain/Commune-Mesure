@@ -42,7 +42,7 @@ class OriginalJsonExport
             throw new Exception($path.' is not a writable directory');
         }
 
-        $this->exportDir = $path;
+        $this->exportDir = $dir;
     }
 
     private function _extract($decoded)
