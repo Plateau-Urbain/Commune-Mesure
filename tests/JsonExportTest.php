@@ -93,4 +93,54 @@ class JsonExportTest extends TestCase
 
         $this->assertNotCount(0, $export->getDecoded());
     }
+
+    /**
+     * Test save sans exportDir
+     *
+     * @return void
+     */
+    public function testExportSaveNoExportDir()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
+
+        $this->expectException(LogicException::class);
+        $export->save();
+    }
+
+    /**
+     * Test save
+     *
+     * @return void
+     */
+    public function testExportSaveFilename()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
+        $export->setExportDir(sys_get_temp_dir());
+
+        $exportedFile = $export->save();
+        $this->assertEquals($exportedFile->getFilename(), 'Ground_Control.csv');
+        $this->assertEquals($exportedFile->getPathname(), '/tmp/Ground_Control.csv');
+    }
+
+    /**
+     * Test save contenu
+     *
+     * @return void
+     */
+    public function testExportSaveContenu()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
+        $export->setExportDir(sys_get_temp_dir());
+        $exportedFile = $export->save();
+        $exportedFile->setFlags(SplFileObject::READ_CSV);
+        $exportedFile->setCsvControl(";");
+        $exportedFile->rewind();
+
+        $firstRow = $exportedFile->current();
+        $this->assertIsArray($firstRow);
+        $this->assertCount(6, $firstRow);
+    }
 }

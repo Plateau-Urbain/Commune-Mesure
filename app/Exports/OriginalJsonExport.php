@@ -7,6 +7,7 @@ use JsonException;
 use SplFileObject;
 use SplFileInfo;
 use Exception;
+use LogicException;
 
 class OriginalJsonExport
 {
@@ -28,6 +29,7 @@ class OriginalJsonExport
             throw new JsonException($filename.' must be a valid json');
         }
 
+        $this->originalFilename = $filename;
         $this->_extract($decoded);
     }
 
@@ -43,6 +45,24 @@ class OriginalJsonExport
         }
 
         $this->exportDir = $dir;
+    }
+
+    public function save()
+    {
+        if (($this->exportDir instanceof SplFileInfo) === false) {
+            throw new LogicException("You must specify the exportDir first");
+        }
+
+        $originalFilename = new SplFileInfo($this->originalFilename);
+        $this->newFilename = $originalFilename->getBasename('.'.$originalFilename->getExtension()).'.csv';
+
+        $file = new SplFileObject($this->exportDir.DIRECTORY_SEPARATOR.$this->newFilename, 'w+');
+
+        foreach($this->getDecoded() as $line) {
+            $file->fputcsv($line, ";");
+        }
+
+        return $file;
     }
 
     public function getDecoded()
