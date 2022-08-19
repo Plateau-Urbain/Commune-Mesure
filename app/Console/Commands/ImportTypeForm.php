@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use \stdClass;
+use App\Exports\OriginalJsonExport;
 use App\Models\Place;
 use App\Models\ImpactSocial;
 use App\Mail\ImportSuccess;
@@ -472,6 +473,10 @@ class ImportTypeForm extends Command
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
                 Mail::send(new ImportSuccess($place));
                 $this->logger->info('Sent');
+
+                $export = new OriginalJsonExport($f);
+                $export->setExportDir(storage_path('exports'));
+                $export->save();
             } catch (ErrorException $e) {
                 $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
