@@ -44,16 +44,39 @@ class JsonExportTest extends TestCase
      *
      * @return void
      */
-    public function testExportDir()
+    public function testExportDirInvalid()
     {
         $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
         $export = new OriginalJsonExport($file->getPathname());
 
         $this->expectException(Exception::class);
         $export->setExportDir('/foo');
+    }
+
+    /**
+     * Test pour le répertoire d'export
+     *
+     * @return void
+     */
+    public function testExportDirNotWritable()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
 
         $this->expectException(Exception::class);
         $export->setExportDir('/');
+    }
+
+    /**
+     * Test pour le répertoire d'export
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
+    public function testExportDirNoException()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
 
         $export->setExportDir(sys_get_temp_dir());
     }
