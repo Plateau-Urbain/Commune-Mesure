@@ -47,8 +47,33 @@ class OriginalJsonExport
 
     private function _extract($decoded)
     {
-        foreach ($decoded->answers as $categories) {
-            echo $categories->title.PHP_EOL;
+        $currentCategorie = null;
+        $currentCategorieId = 0;
+
+        foreach ($decoded->answers as $categorie) {
+            $currentCategorieId = $categorie->id;
+            $currentCategorie   = $categorie->title;
+
+            foreach ($categorie->group->answers as $question) {
+                $typeQuestion = $question->type;
+
+                if ($typeQuestion === 'multiple_choice') {
+                    $reponse = implode(',', $question->{$typeQuestion}->choices);
+                } elseif ($typeQuestion === 'file_upload') {
+                    $reponse = $question->{$typeQuestion}->file_url;
+                } else {
+                    $reponse = $question->{$typeQuestion}->value;
+                }
+
+                $this->decoded[] = [
+                    $currentCategorieId,
+                    $currentCategorie,
+                    $question->id,
+                    $question->title,
+                    $typeQuestion,
+                    $reponse
+                ];
+            }
         }
     }
 }
