@@ -122,6 +122,7 @@ class JsonExportTest extends TestCase
         $exportedFile = $export->save();
         $this->assertEquals($exportedFile->getFilename(), 'Ground_Control.csv');
         $this->assertEquals($exportedFile->getPathname(), '/tmp/Ground_Control.csv');
+        $this->assertFileExists($exportedFile->getPathname());
     }
 
     /**
