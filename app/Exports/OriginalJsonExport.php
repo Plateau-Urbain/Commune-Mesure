@@ -45,6 +45,11 @@ class OriginalJsonExport
         $this->exportDir = $dir;
     }
 
+    public function getDecoded()
+    {
+        return $this->decoded;
+    }
+
     private function _extract($decoded)
     {
         $currentCategorie = null;

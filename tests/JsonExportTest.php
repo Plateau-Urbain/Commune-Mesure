@@ -57,4 +57,17 @@ class JsonExportTest extends TestCase
 
         $export->setExportDir(sys_get_temp_dir());
     }
+
+    /**
+     * Test extraction
+     *
+     * @return void
+     */
+    public function testExportExtract()
+    {
+        $file = new SplFileObject(storage_path('import').'/Ground_Control.json');
+        $export = new OriginalJsonExport($file->getPathname());
+
+        $this->assertNotCount(0, $export->getDecoded());
+    }
 }
