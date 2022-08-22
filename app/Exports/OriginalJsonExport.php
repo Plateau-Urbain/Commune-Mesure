@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use JsonException;
 use SplFileObject;
@@ -57,7 +58,7 @@ class OriginalJsonExport
         }
 
         $originalFilename = new SplFileInfo($this->originalFilename);
-        $this->newFilename = $originalFilename->getBasename('.'.$originalFilename->getExtension()).'.csv';
+        $this->_setNewFilename($originalFilename);
 
         $file = new SplFileObject($this->exportDir.DIRECTORY_SEPARATOR.$this->newFilename, 'w+');
 
@@ -71,6 +72,12 @@ class OriginalJsonExport
     public function getDecoded()
     {
         return $this->decoded;
+    }
+
+    private function _setNewFilename(SplFileInfo $originalFilename)
+    {
+        $f = $originalFilename->getBasename('.'.$originalFilename->getExtension());
+        $this->newFilename = Str::of($f)->slug('-').'.csv';
     }
 
     private function _extract($decoded)
