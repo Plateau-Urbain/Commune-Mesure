@@ -22,5 +22,7 @@ Homestead.yaml
 /database/*.sqlite
 /storage/import/*
 !/storage/import/.gitkeep
+/storage/exports/*
+!/storage/exports/.gitkeep
 /storage/framework/sessions/*
 *.swp

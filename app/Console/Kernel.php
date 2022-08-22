@@ -11,6 +11,7 @@ use App\Console\Commands\ImportForAll;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\SetValueForAll;
 use App\Console\Commands\MailSendImportSuccess;
+use App\Console\Commands\Export\OriginalToCsv;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -25,12 +26,17 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
+
         ImportTypeForm::class,
         ImportOneValueTypeForm::class,
         ImportForAll::class,
+
         SetValue::class,
         SetValueForAll::class,
-        MailSendImportSuccess::class
+
+        MailSendImportSuccess::class,
+
+        OriginalToCsv::class
     ];
 
     /**
