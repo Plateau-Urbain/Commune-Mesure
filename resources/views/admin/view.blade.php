@@ -27,6 +27,13 @@
         </div>
         <div class="section">
             <div id="download-csv" class="has-text-right clearfix has-text-white">
+
+              <a href="{{ Storage::disk('exports')->url('') }}">
+                <button class="button" title="Exports brut">
+                  Exports
+                </button>
+              </a>
+
               <a href="{{ route('admin.globalCsv') }}">
                 <button class="button is-success" title="Télécharger le csv global">
                   <span class="icon is-small">
