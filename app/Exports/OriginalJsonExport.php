@@ -77,7 +77,7 @@ class OriginalJsonExport
 
         foreach ($decoded->answers as $categorie) {
             $currentCategorieId = $categorie->id;
-            $currentCategorie   = $categorie->title;
+            $currentCategorie   = trim($categorie->title);
 
             foreach ($categorie->group->answers as $question) {
                 $typeQuestion = $question->type;
@@ -94,7 +94,7 @@ class OriginalJsonExport
                     $currentCategorieId,
                     $currentCategorie,
                     $question->id,
-                    $question->title,
+                    trim(str_replace("\n", ' ', $question->title)),
                     $typeQuestion,
                     $reponse
                 ];
