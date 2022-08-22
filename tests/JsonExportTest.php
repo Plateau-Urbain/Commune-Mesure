@@ -8,6 +8,17 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 class JsonExportTest extends TestCase
 {
     /**
+     * Clean des fichiers
+     *
+     * @doesNotPerformAssertions
+     * @return void
+     */
+    public function testClean()
+    {
+        array_map('unlink', glob(sys_get_temp_dir()."/CMTEST_*"));
+    }
+
+    /**
      * Test pour un non-fichier.
      *
      * @return void
