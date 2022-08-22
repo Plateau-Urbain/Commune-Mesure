@@ -4,6 +4,7 @@ use App\Exports\OriginalJsonExport;
 use InvalidArgumentException;
 use JsonException;
 use Exception;
+use Illuminate\Support\Str;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -120,8 +121,10 @@ class JsonExportTest extends TestCase
         $export->setExportDir(sys_get_temp_dir());
 
         $exportedFile = $export->save();
-        $this->assertEquals($exportedFile->getFilename(), 'Ground_Control.csv');
-        $this->assertEquals($exportedFile->getPathname(), '/tmp/Ground_Control.csv');
+
+        $expectedFilename = Str::of('Ground_Control')->slug('-').'.csv';
+        $this->assertEquals($exportedFile->getFilename(), $expectedFilename);
+        $this->assertEquals($exportedFile->getPathname(), sys_get_temp_dir().DIRECTORY_SEPARATOR.$expectedFilename);
         $this->assertFileExists($exportedFile->getPathname());
     }
 
