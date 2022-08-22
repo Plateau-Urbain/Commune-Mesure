@@ -60,6 +60,7 @@ class OriginalToCsv extends Command
         $export = new OriginalJsonExport($this->argument('json'));
         $export->setExportDir($this->exportDir);
 
-        $export->save();
+        $file = $export->save();
+        $this->line("File stored at: ".$file->getPathname());
     }
 }

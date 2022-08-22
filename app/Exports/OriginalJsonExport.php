@@ -47,6 +47,9 @@ class OriginalJsonExport
         $this->exportDir = $dir;
     }
 
+    /**
+     * @return SplFileObject
+     */
     public function save()
     {
         if (($this->exportDir instanceof SplFileInfo) === false) {
