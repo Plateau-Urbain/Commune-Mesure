@@ -106,7 +106,7 @@ class OriginalJsonExport
                     $question->id,
                     trim(str_replace("\n", ' ', $question->title)),
                     $typeQuestion,
-                    $reponse
+                    trim(str_replace("\n", ' ', $reponse))
                 ];
             }
         }
