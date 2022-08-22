@@ -17,6 +17,7 @@ class OriginalJsonExport
     private $originalFilename;
     private $newFilename;
     private $exportDir;
+    private $_headers = ['CategorieId', 'Categorie', 'QuestionId', 'Question', 'Type', 'Reponse'];
 
     public function __construct(string $filename)
     {
@@ -61,6 +62,8 @@ class OriginalJsonExport
         $this->_setNewFilename($originalFilename);
 
         $file = new SplFileObject($this->exportDir.DIRECTORY_SEPARATOR.$this->newFilename, 'w+');
+
+        $file->fputcsv($this->_headers, ';');
 
         foreach($this->getDecoded() as $line) {
             $file->fputcsv($line, ";");
