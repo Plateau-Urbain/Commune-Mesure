@@ -96,7 +96,7 @@ class BDDJsonExport
                 $split[0],
                 $split[1],
                 $split[2],
-                $reponse
+                trim(str_replace("\n", ' ', $reponse))
             ], ';');
         }
 
