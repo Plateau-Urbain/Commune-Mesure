@@ -12,6 +12,7 @@ use App\Console\Commands\SetValue;
 use App\Console\Commands\SetValueForAll;
 use App\Console\Commands\MailSendImportSuccess;
 use App\Console\Commands\Export\OriginalToCsv;
+use App\Console\Commands\Export\PlaceToCsv;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -36,7 +37,8 @@ class Kernel extends ConsoleKernel
 
         MailSendImportSuccess::class,
 
-        OriginalToCsv::class
+        OriginalToCsv::class,
+        PlaceToCsv::class
     ];
 
     /**
