@@ -85,7 +85,7 @@
   @for ($i = 0 ; $i < 3 ; $i++)
     @php
       $t = $thematiques[$i];
-      if ($t == 'VIDE') { continue;}
+      if ($t == '') { continue;}
     @endphp
 
     <g
@@ -95,7 +95,7 @@
          width="60"
          height="60"
          preserveAspectRatio="none"
-         xlink:href="{{ url('/images/batiment/') }}/{{ (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE': $t }}.jpg"
+         xlink:href="{{ url('/images/batiment/themes/') }}/{{ (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE.jpg': $t.'.svg' }}"
          id="image1011"
          x="-100"
          y="0" />
