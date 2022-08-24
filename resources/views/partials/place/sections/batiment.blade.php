@@ -3,6 +3,7 @@
 
 <?php
 
+  mt_srand(crc32($place->get('name')));
   shuffle($decors);
 
   $theme2key = [
