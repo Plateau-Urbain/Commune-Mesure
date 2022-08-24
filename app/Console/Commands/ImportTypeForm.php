@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Process\Process;
@@ -47,7 +48,7 @@ class ImportTypeForm extends Command
     /**
      * Logger
      *
-     * @var Log
+     * @var LoggerInterface
      */
     protected $logger;
 
@@ -72,7 +73,7 @@ class ImportTypeForm extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
