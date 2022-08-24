@@ -55,9 +55,16 @@ class ImportTypeForm extends Command
     /**
      * answers file
      *
-     * @var string
+     * @var object
      */
     protected $answers;
+
+    /**
+     * token typeform
+     *
+     * @var string
+     */
+    protected $typeformToken;
 
     /**
      * Create a new command instance.
@@ -67,6 +74,14 @@ class ImportTypeForm extends Command
     public function __construct()
     {
         $this->logger = Log::channel('import');
+
+        $token = getenv('TYPEFORM_TOKEN');
+        if ($token === false) {
+            throw new \LogicException('Token typeform non défini. Est-il renseigné dans le fichier .env ?');
+        }
+
+        $this->typeformToken = $token;
+
         parent::__construct();
     }
 
@@ -84,6 +99,7 @@ class ImportTypeForm extends Command
             throw new \Exception("Schema file does not exists : ".storage_path().$this->schema);
         }
 
+        /** @var string $f */
         $f = $this->argument('file');
         $this->logger->info("Chargement du fichier ".realpath($f));
 
@@ -365,7 +381,8 @@ class ImportTypeForm extends Command
         if ($info_photo->file_url && substr($info_photo->file_name, -4) !== '.pdf') {
             $this->logger->info("Found !", ['filename' => $info_photo->file_name]);
 
-            $filename = Str::of($new_place->name.'-'.pathinfo($info_photo->file_name)['filename'])->slug('-').'.'.pathinfo($info_photo->file_name)['extension'];
+            $pathinfo = pathinfo($info_photo->file_name);
+            $filename = Str::of($new_place->name.'-'.$pathinfo['filename'])->slug('-').'.'.($pathinfo['extension'] ?? str_replace('image/', '', mime_content_type($info_photo->filename)));
             $dest_dir = base_path()."/public/images/lieux/originals/";
 
             $file_path = implode(DIRECTORY_SEPARATOR, [
@@ -402,8 +419,8 @@ class ImportTypeForm extends Command
                 $process->run();
 
                 // executes after the command finishes
-                if (!$process->isSuccessful()) {
-                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode(), $process->getExitCodeText())]);
+                if (! $process->isSuccessful()) {
+                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode() ?? 999, $process->getExitCodeText() ?? 'Unknown exit code')]);
                     $this->logger->emergency("Import aborted");
                     throw new ProcessFailedException($process);
                 }
@@ -478,7 +495,7 @@ class ImportTypeForm extends Command
                 $export = new OriginalJsonExport($f);
                 $export->setExportDir(storage_path('exports'));
                 $export->save();
-            } catch (ErrorException $e) {
+            } catch (\ErrorException $e) {
                 $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
@@ -487,7 +504,7 @@ class ImportTypeForm extends Command
         // Import pour la partie Impact Social
         $impact_social_data = $this->build_impact_social_data($schema);
 
-        $place = DB::table('places')->where('id', $import_file->token)->where('type_donnees', 'datapanorama')->first();
+        $place = DB::table('places')->where('id', $import_file->token)->where('type_donnees', 'datapanorama')->firstOrFail();
         $impact = ImpactSocial::where('id', $import_file->token)->where('type_donnees', 'impact')->firstOrNew();
         $impact->place = $place->place;
         $impact->hash_admin = $place->hash_admin;
@@ -557,7 +574,7 @@ class ImportTypeForm extends Command
     public function curl($url, $path = null)
     {
         $c = curl_init($url);
-        curl_setopt($c, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.getenv('TYPEFORM_TOKEN')]);
+        curl_setopt($c, CURLOPT_HTTPHEADER, ['Authorization: Bearer '. $this->typeformToken]);
 
         if ($path) {
             curl_setopt($c, CURLOPT_FILE, $path);
