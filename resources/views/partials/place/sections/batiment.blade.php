@@ -1,10 +1,7 @@
-@php  $decors = ['CHIEN', 'CYCLISTE', 'FENETRE']; @endphp
-@php  $themes = $place->get('blocs->presentation->donnees->thematiques'); @endphp
-
-<?php
-
-  mt_srand(crc32($place->get('name')));
-  shuffle($decors);
+@php
+  $decors = glob(rtrim(app()->basePath('public/'), '/').'/images/batiment/decors/*.svg');
+  $decors = array_map('basename', $decors);
+  $themes = $place->get('blocs->presentation->donnees->thematiques');
 
   $theme2key = [
     'Accueil' => 'THEME_ACCUEIL',
@@ -23,8 +20,12 @@
   for ($i = count($thematiques) ; $i < 3 ; $i++ ) {
     $thematiques[] = '';
   }
+
+  mt_srand(crc32($place->get('name')));
   shuffle($thematiques);
- ?>
+  shuffle($decors);
+@endphp
+
 <svg
    width="240mm"
    height="180mm"
@@ -74,47 +75,52 @@
        width="60"
        height="60"
        preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment') }}/<?php echo $decors[0]; ?>.jpg"
+       xlink:href="{{ url('/images/batiment/decors/') }}/{{ $decors[0]; }}"
        id="decor gauche"
        x="-60"
        y="120"
        transform="scale(-1,1)"
     />
-<?php
-for($i = 0 ; $i < 3 ; $i++):
-        $t = $thematiques[$i];
-        if ($t == 'VIDE') { continue;}
-?>
-  <g
-     id="g929"
-     transform="translate(<?php echo ($i % 2 ) ? '160' : '220'; ?>,<?php echo intval($i / 2) ? 60 : 120; ?>)">
+
+  @for ($i = 0 ; $i < 3 ; $i++)
+    @php
+      $t = $thematiques[$i];
+      if ($t == 'VIDE') { continue;}
+    @endphp
+
+    <g
+       id="g929"
+       transform="translate({{ ($i % 2 ) ? '160' : '220' }},{{ intval($i / 2) ? 60 : 120 }})">
+      <image
+         width="60"
+         height="60"
+         preserveAspectRatio="none"
+         xlink:href="{{ url('/images/batiment/') }}/{{ (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE': $t }}.jpg"
+         id="image1011"
+         x="-100"
+         y="0" />
+
+      @if (strpos($t, 'THEME_') === false)
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-34.849449,-159.82525)"
+         id="text24635"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="-100"
+         y="0"><tspan
+           x="-170"
+           y="650"
+           id="tspan1129">{{ mb_strtoupper($t) }}</tspan></text>
+      @endif
+
+    </g>
+  @endfor
+
     <image
        width="60"
        height="60"
        preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment') }}/<?php echo (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE': $t; ?>.jpg"
-       id="image1011"
-       x="-100"
-       y="0" />
-<?php if (strpos($t, 'THEME_') === false): ?>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-34.849449,-159.82525)"
-       id="text24635"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-100"
-       y="0"><tspan
-         x="-170"
-         y="650"
-         id="tspan1129"><?php echo strtoupper($t); ?></tspan></text>
-<?php endif; ?>
-  </g>
-<?php endfor; ?>
-    <image
-       width="60"
-       height="60"
-       preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment') }}/<?php echo $decors[1]; ?>.jpg"
+       xlink:href="{{ url('/images/batiment/decors/') }}/{{ $decors[1] }}"
        id="image856"
        x="180.3804"
        y="120.59917"
