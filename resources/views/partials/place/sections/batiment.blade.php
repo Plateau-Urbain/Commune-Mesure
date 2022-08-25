@@ -1,5 +1,5 @@
 @php
-  $decors = glob(rtrim(app()->basePath('public/'), '/').'/images/batiment/decors/*.svg');
+  $decors = glob(rtrim(resource_path('assets/images/batiment/decors'), '/').'/*.svg');
   $decors = array_map('basename', $decors);
   $themes = $place->get('blocs->presentation->donnees->thematiques');
   $toits  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3', 'TOIT3 INVERSÉ'];
