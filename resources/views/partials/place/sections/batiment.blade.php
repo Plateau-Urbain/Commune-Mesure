@@ -80,28 +80,24 @@
       if ($t == '') { continue;}
     @endphp
 
-    <g
-       id="g929"
-       transform="translate({{ ($i % 2 ) ? '160' : '220' }},{{ intval($i / 2) ? 60 : 120 }})">
-      <image
-         width="60"
-         height="60"
-         preserveAspectRatio="none"
-         xlink:href="{{ url('/images/batiment/themes/') }}/{{ (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE.jpg': $t.'.svg' }}"
-         id="image1011"
-         x="-100"
-         y="0" />
+    <g id="g929">
+      @php
+        $x = ($i % 2) ? 60 : 120;
+        $y = intval($i / 2) ? 60 : 120;
+        $part = (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE' : $t;
+      @endphp
+      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" :transform="'translate('.$x.','.$y.')'" width=60 height=60 />
 
       @if (strpos($t, 'THEME_') === false)
       <text
          xml:space="preserve"
-         transform="matrix(0.26458333,0,0,0.26458333,-34.849449,-159.82525)"
          id="text24635"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="-100"
-         y="0"><tspan
-           x="-170"
-           y="650"
+         x="135"
+         y="72"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" >
+         <tspan
+           x="135"
+           y="72"
            id="tspan1129">{{ mb_strtoupper($t) }}</tspan></text>
       @endif
 
