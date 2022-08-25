@@ -2,6 +2,7 @@
   $decors = glob(rtrim(app()->basePath('public/'), '/').'/images/batiment/decors/*.svg');
   $decors = array_map('basename', $decors);
   $themes = $place->get('blocs->presentation->donnees->thematiques');
+  $toits  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3', 'TOIT3 INVERSÉ'];
 
   $theme2key = [
     'Accueil' => 'THEME_ACCUEIL',
@@ -24,6 +25,7 @@
   mt_srand(crc32($place->get('name')));
   shuffle($thematiques);
   shuffle($decors);
+  shuffle($toits);
 @endphp
 
 <svg
@@ -67,20 +69,10 @@
        height="20.994186"
        id="rect24637" />
   </defs>
-  <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <image
-       width="60"
-       height="60"
-       preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment/decors/') }}/{{ $decors[0]; }}"
-       id="decor gauche"
-       x="-60"
-       y="120"
-       transform="scale(-1,1)"
-    />
+
+  <g>
+    <x-svg :path="'assets/images/batiment/decors/'.$decors[0]" class="" transform="translate(0, 120)" width=60 height=60 />
+  </g>
 
   @for ($i = 0 ; $i < 3 ; $i++)
     @php
@@ -116,35 +108,9 @@
     </g>
   @endfor
 
-    <image
-       width="60"
-       height="60"
-       preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment/decors/') }}/{{ $decors[1] }}"
-       id="image856"
-       x="180.3804"
-       y="120.59917"
-       />
-    <image
-       width="60"
-       height="60"
-       preserveAspectRatio="none"
-       xlink:href="{{ url('/images/batiment/TOIT1.jpg') }}"
-       id="image928"
-       x="-180"
-       y="0"
-       transform="scale(-1,1)"
-      />
-     <image
-        width="60"
-        height="60"
-        preserveAspectRatio="none"
-        xlink:href="{{ url('/images/batiment/TOIT2.jpg') }}"
-        id="image928"
-        x="-120"
-        y="60"
-        transform="scale(-1,1)"
-    />
+  <x-svg :path="'assets/images/batiment/decors/'.$decors[1]" class="" transform="translate(180, 120)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$toits[0].'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$toits[1].'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
 
   </g>
 </svg>
