@@ -80,25 +80,23 @@
       if ($t == '') { continue;}
     @endphp
 
-    <g id="g929">
+    <g id="g929"
       @php
         $x = ($i % 2) ? 60 : 120;
         $y = intval($i / 2) ? 60 : 120;
         $part = (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE' : $t;
       @endphp
-      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" :transform="'translate('.$x.','.$y.')'" width=60 height=60 />
+       transform="translate({{ $x }},{{ $y }})"
+      >
+      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width=60 height=60 />
 
       @if (strpos($t, 'THEME_') === false)
       <text
          xml:space="preserve"
          id="text24635"
-         x="135"
-         y="72"
+         transform="translate(13, -8)"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" >
-         <tspan
-           x="135"
-           y="72"
-           id="tspan1129">{{ mb_strtoupper($t) }}</tspan></text>
+         {{ mb_strtoupper($t) }}</text>
       @endif
 
     </g>
