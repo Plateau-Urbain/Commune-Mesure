@@ -2,6 +2,9 @@
   <h2 class="sous-banner">Le lieu dans son territoire</h2>
 </div>
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
+
+<svg id="population-chart"></svg>
+
 <div class="section">
   <div class="columns">
     <div class="column has-text-centered is-half is-offset-one-quarter">
