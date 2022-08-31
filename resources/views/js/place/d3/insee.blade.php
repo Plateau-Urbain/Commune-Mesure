@@ -27,7 +27,7 @@
                 .range([0, w])
 
     const y = d3.scaleBand()
-                .range([0, h])
+                .range([0, 60])
                 .domain(groups)
 
     // normalisation (cent pour centage)
@@ -50,17 +50,10 @@
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // axe x
-    svg.append("g")
-      .attr("transform", "translate(0," + h + ")")
-      .call(d3.axisBottom(x))
-      .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
-
     // axe y
     svg.append("g")
-      .call(d3.axisLeft(y))
+      .call(d3.axisLeft(y).tickSize(0))
+      .select(".domain").remove()
 
     // bars
     svg.append("g")
@@ -73,8 +66,8 @@
          .enter().append("rect")
            .attr("x", function (d) { return x(d[0]) })
            .attr("y", function (d) { return y(d.data.zone) })
-           .attr("width", function (d) { return x(d[1]) - x(d[0]) })
-           .attr("height", 20)
+           .attr("width", function (d) { return x(d[1]) - x(d[0]) - 3 })
+           .attr("height", y.bandwidth() - 5)
 
   }
 </script>
