@@ -56,18 +56,30 @@
       .select(".domain").remove()
 
     // bars
-    svg.append("g")
+    const niveau = svg.append("g")
        .selectAll("g")
        .data(stacked)
        .enter().append("g")
-         .attr("fill", function (d) { return color(d.key) })
-         .selectAll("rect")
+         .attr("fill", function (d) { return color(d.key) });
+
+    const carres = niveau.selectAll("rect")
          .data(function (d) { return d })
          .enter().append("rect")
            .attr("x", function (d) { return x(d[0]) })
            .attr("y", function (d) { return y(d.data.zone) })
            .attr("width", function (d) { return x(d[1]) - x(d[0]) - 3 })
            .attr("height", y.bandwidth() - 5)
+           .attr("stroke", "black")
+           .attr("stroke-width", 1)
 
+    const texts = niveau.selectAll("text")
+       .data(function (d) { return d })
+       .enter()
+       .append('text').classed('stack', true)
+          .attr("x", function (d) { return x(d[1])} )
+          .attr("y", function (d) { return y(d.data.zone) + 20 })
+          .attr("text-anchor", "end") // text-align: right
+          .text(function (d) { return Math.round(d[1] - d[0]) + "%" })
+            .attr("fill", "#000")
   }
 </script>
