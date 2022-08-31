@@ -20,7 +20,7 @@ class UpdatePlaceTest extends TestCase
         Place::factory()->hasName('place-1')->create();
 
         $place = Place::find('place-1');
-        $this->assertEquals("[]", $place->get('activites'));
+        $this->assertEquals([], $place->get('activites'));
 
         Artisan::call('admin:set-value place-1 "activites" []');
         $place = Place::find('place-1');
