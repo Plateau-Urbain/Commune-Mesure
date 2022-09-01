@@ -79,7 +79,7 @@
           .attr("x", function (d) { return x(d[0]) + 5 } )
           .attr("y", function (d) { return y(d.data.zone) + 20 })
           .attr("text-anchor", "start") // text-align: right
-          .text(function (d) { return Math.round(d[1] - d[0]) + "%" })
+          .text(function (d) { const v = Math.round(d[1] - d[0]); return (v >= 10) ? v + "%" : '' })
             .attr("fill", "#000")
   }
 </script>
