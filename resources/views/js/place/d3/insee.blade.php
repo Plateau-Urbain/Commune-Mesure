@@ -10,7 +10,7 @@
     }
   ];
 
-  const chart = BarChart('svg#population-chart', population, {width: 400, height: 400})
+  const chart = BarChart('svg#population-chart', population, {width: 800, height: 400})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
@@ -76,9 +76,9 @@
        .data(function (d) { return d })
        .enter()
        .append('text').classed('stack', true)
-          .attr("x", function (d) { return x(d[1])} )
+          .attr("x", function (d) { return x(d[0]) + 5 } )
           .attr("y", function (d) { return y(d.data.zone) + 20 })
-          .attr("text-anchor", "end") // text-align: right
+          .attr("text-anchor", "start") // text-align: right
           .text(function (d) { return Math.round(d[1] - d[0]) + "%" })
             .attr("fill", "#000")
   }
