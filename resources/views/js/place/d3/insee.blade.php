@@ -20,7 +20,7 @@
     }
   ];
 
-  const chart = BarChart('svg#population-chart', population, {width: 800, height: 400})
+  const chart = BarChart('svg#population-chart', population, {width: 800, height: 150})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
