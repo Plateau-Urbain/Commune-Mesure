@@ -2,11 +2,21 @@
   const population = [
     {
       zone: "Niveau National",
-      subgroups: { actif: 12, chomeur: 34, retraite: 3, etudiant: 26 }
+      subgroups: {
+        actif: { value: 12, name: "Actifs"},
+        chomeur: { value: 34, name: "Chômeurs"},
+        retraite: { value: 3, name: "Retraités"},
+        etudiant: { value: 26, name: "Étudiants"}
+      }
     },
     {
       zone: "Niveau IRIS",
-      subgroups: { actif: 21, chomeur: 44, retraite: 6, etudiant: 55 }
+      subgroups: {
+        actif: { value: 21, name: "Actifs"},
+        chomeur: { value: 44, name: "Chômeurs"},
+        retraite: { value: 6, name: "Retraités"},
+        etudiant: { value: 55, name: "Étudiants"}
+      }
     }
   ];
 
@@ -17,7 +27,9 @@
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
+    // Les différents carrés de la barre
     const subgroups = Object.keys(data[0].subgroups)
+    // Les différentes barres
     const groups    = d3.map(data, function (d) { return d.zone }).keys()
 
     color.domain(subgroups)
@@ -33,14 +45,15 @@
     // normalisation (cent pour centage)
     data.forEach(function (d) {
       let total = 0
-      subgroups.forEach((s) => { total += +d.subgroups[s] })
-      subgroups.forEach((s) => { d.subgroups[s] = d.subgroups[s] / total * 100 })
+      subgroups.forEach((s) => { total += +d.subgroups[s].value })
+      subgroups.forEach((s) => { d.subgroups[s].value = d.subgroups[s].value / total * 100 })
     })
+
 
     // stackage
     const stacked = d3.stack()
                       .keys(subgroups)
-                      .value((d, k) => d.subgroups[k])
+                      .value((d, k) => d.subgroups[k].value)
                       (data)
 
     // creation svg
@@ -83,20 +96,19 @@
             .attr("fill", "#000")
 
     const legend = svg.selectAll('legend')
-      .data(Object.keys(data[0].subgroups))
+      .data(subgroups)
       .enter()
       .append('circle')
-        .attr('cx', (d, i) => i*125)
+        .attr('cx', (d, i) => i * (w / 4))
         .attr('cy', h)
         .attr('r', 10)
         .attr('fill', d => color(d))
 
-
     const legendlabel = svg.selectAll('label')
-      .data(Object.keys(data[0].subgroups))
+      .data(subgroups.map((s) => data[0].subgroups[s].name))
       .enter()
       .append('text')
-        .attr('x', (d, i) => 15 + i * 125)
+        .attr('x', (d, i) => 15 + i * (w / 4))
         .attr('y', h + 5)
         .text((d) => d)
           .attr("text-anchor", 'left')
