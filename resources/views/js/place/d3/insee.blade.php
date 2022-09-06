@@ -81,5 +81,25 @@
           .attr("text-anchor", "start") // text-align: right
           .text(function (d) { const v = Math.round(d[1] - d[0]); return (v >= 10) ? v + "%" : '' })
             .attr("fill", "#000")
+
+    const legend = svg.selectAll('legend')
+      .data(Object.keys(data[0].subgroups))
+      .enter()
+      .append('circle')
+        .attr('cx', (d, i) => i*125)
+        .attr('cy', h)
+        .attr('r', 10)
+        .attr('fill', d => color(d))
+
+
+    const legendlabel = svg.selectAll('label')
+      .data(Object.keys(data[0].subgroups))
+      .enter()
+      .append('text')
+        .attr('x', (d, i) => 15 + i * 125)
+        .attr('y', h + 5)
+        .text((d) => d)
+          .attr("text-anchor", 'left')
+          .style("alignment-baseline", "middle")
   }
 </script>
