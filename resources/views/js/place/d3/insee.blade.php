@@ -73,6 +73,7 @@
        .selectAll("g")
        .data(stacked)
        .enter().append("g")
+         .attr('transform', "translate(" + 10 + ",0)")
          .attr("fill", function (d) { return color(d.key) });
 
     const carres = niveau.selectAll("rect")
