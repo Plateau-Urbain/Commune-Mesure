@@ -2,6 +2,42 @@
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
 
+  const national = {
+    activites: {
+      zone: "national",
+      subgroups: [
+        {name: "Actif occupé", value: 63.70},
+        {name: "Autre inactif", value: 8.70},
+        {name: "Chômeur (Actif inoccupé)", value: 10.30},
+        {name: "Retraités ou préretraités", value: 6.70},
+        {name: "Élèves, étudiants et stagiaires non rémunérés", value: 10.60}
+      ]
+    },
+
+    logement: {
+      zone: "national",
+      subgroups: [
+        {name: "Appart/Maison inoccupé", value: 0},
+        {name: "Appartement", value: 43.71},
+        {name: "Maison", value: 56.29}
+      ]
+    },
+
+    csp: {
+      zone: "national",
+      subgroups: [
+        {name: "Agriculteurs exploitants", value: 0},
+        {name: "Artisans, Comm., Chefs entr.", value: 1.36},
+        {name: "Autres", value: 6.12},
+        {name: "Cadres, Prof. intel. sup.", value: 16.54},
+        {name: "Employés", value: 28.94},
+        {name: "Ouvriers", value: 21.83},
+        {name: "Prof. intermédiaires", value: 25.21},
+        {name: "Retraités", value: 0}
+      ]
+    }
+  }
+
   Object.entries(_DATA).forEach(function (zones) {
     const zone = zones[0]; // iris, commune, departement, region
 
@@ -23,9 +59,9 @@
     })
   })
 
-  const populationChart = BarChart('svg#population-chart', [insee.activites.iris], {width: 800, height: 150})
-  const socioChart = BarChart('svg#csp-chart', [insee.csp.iris], {width: 800, height: 150})
-  const immoChart = BarChart('svg#immobilier-chart', [insee.logement.iris], {width: 800, height: 150})
+  const populationChart = BarChart('svg#population-chart', [national.activites, insee.activites.iris], {width: 800, height: 150})
+  const socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp.iris], {width: 800, height: 150})
+  const immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement.iris], {width: 800, height: 150})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
