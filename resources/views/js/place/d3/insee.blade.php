@@ -1,26 +1,31 @@
 <script>
-  const population = [
-    {
-      zone: "Niveau National",
-      subgroups: {
-        actif: { value: 12, name: "Actifs"},
-        chomeur: { value: 34, name: "Chômeurs"},
-        retraite: { value: 3, name: "Retraités"},
-        etudiant: { value: 26, name: "Étudiants"}
-      }
-    },
-    {
-      zone: "Niveau IRIS",
-      subgroups: {
-        actif: { value: 21, name: "Actifs"},
-        chomeur: { value: 44, name: "Chômeurs"},
-        retraite: { value: 6, name: "Retraités"},
-        etudiant: { value: 55, name: "Étudiants"}
-      }
-    }
-  ];
+  const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
+  const insee = {}
 
-  const chart = BarChart('svg#population-chart', population, {width: 800, height: 150})
+  Object.entries(_DATA).forEach(function (zones) {
+    const zone = zones[0]; // iris, commune, departement, region
+
+    Object.entries(zones[1]).forEach(function (series) {
+      const type = series[0] // activites, logement, csp
+
+      if (typeof insee[type] === "undefined") {
+        insee[type] = {}
+      }
+
+      insee[type][zone] = {
+        zone: "Niveau "+zone,
+        subgroups: []
+      }
+
+      series[1].forEach(function (b) {
+        insee[type][zone].subgroups.push({name: b.title, value: b.nb})
+      })
+    })
+  })
+
+  const populationChart = BarChart('svg#population-chart', [insee.activites.iris], {width: 800, height: 150})
+  const socioChart = BarChart('svg#csp-chart', [insee.csp.iris], {width: 800, height: 150})
+  const immoChart = BarChart('svg#immobilier-chart', [insee.logement.iris], {width: 800, height: 150})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}

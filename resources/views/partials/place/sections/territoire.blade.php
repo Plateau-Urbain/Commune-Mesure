@@ -4,6 +4,8 @@
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
 
 <svg id="population-chart"></svg>
+<svg id="csp-chart"></svg>
+<svg id="immobilier-chart"></svg>
 
 <div class="section">
   <div class="columns">
