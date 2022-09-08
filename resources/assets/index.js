@@ -114,32 +114,8 @@ window.onload = (event) => {
       }
 
       select.addEventListener('change', function (event) {
-        var zone = event.target.value;
-        actifChart.updateOptions(
-          {
-            xaxis: {
-              categories:['Niveau national','Niveau '+zone]
-            },
-          }
-        );
-        cspChart.updateOptions(
-          {
-            xaxis: {
-              categories:['Niveau national','Niveau '+zone]
-            },
-          }
-        );
-        immobilierChart.updateOptions(
-          {
-            xaxis: {
-              categories:['Niveau national','Niveau '+zone]
-            },
-          }
-        );
+        const zone = event.target.value;
 
-        var currentDataZone = placeData.insee[zone];
-        setCaptionDataBar(currentDataZone, zone);
-        setInseeChartData(currentDataZone,zone);
         mygeojson.remove();
         loadGeoJson(zone)
         mapInsee.fitBounds(mygeojson.getBounds())
@@ -147,16 +123,6 @@ window.onload = (event) => {
 
       loadGeoJson(starting_zone);
       mapInsee.fitBounds(mygeojson.getBounds())
-    }
-
-    if(document.getElementById('data_territoire')) {
-        actifChart.render();
-        cspChart.render();
-        immobilierChart.render();
-
-        setCaptionDataBar(placeData.insee.iris, "iris");
-        setInseeChartData(placeData.insee.iris,"iris")
-        animateBar();
     }
 
     const carousels = bulmaCarousel.attach('.carousel', {

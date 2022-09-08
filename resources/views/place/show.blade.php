@@ -30,7 +30,6 @@
 
 @section('script_js')
   @parent
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {{-- Graphs insee --}}
   @include('js.place.insee-graph')
   @include('js.place.map-insee-js')
   @include('js.place.modals')
