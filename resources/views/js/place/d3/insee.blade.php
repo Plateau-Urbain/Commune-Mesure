@@ -1,6 +1,19 @@
 <script>
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
+  const select = document.getElementById("selectGeo");
+  let z = 'iris'
+
+  select.addEventListener('change', function (event) {
+    z = event.target.value;
+    populationChart.remove()
+    socioChart.remove()
+    immoChart.remove()
+
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: 800, height: 150})
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: 800, height: 150})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: 800, height: 150})
+  })
 
   const national = {
     activites: {
@@ -59,9 +72,9 @@
     })
   })
 
-  const populationChart = BarChart('svg#population-chart', [national.activites, insee.activites.iris], {width: 800, height: 150})
-  const socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp.iris], {width: 800, height: 150})
-  const immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement.iris], {width: 800, height: 150})
+  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: 800, height: 150})
+  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: 800, height: 150})
+  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: 800, height: 150})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
@@ -155,5 +168,7 @@
         .text((d) => d)
           .attr("text-anchor", 'left')
           .style("alignment-baseline", "middle")
+
+    return svg;
   }
 </script>
