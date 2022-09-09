@@ -3,10 +3,6 @@
 </div>
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
 
-<svg id="population-chart"></svg>
-<svg id="csp-chart"></svg>
-<svg id="immobilier-chart"></svg>
-
 <div class="section">
   <div class="columns">
     <div class="column has-text-centered is-half is-offset-one-quarter">
@@ -34,9 +30,9 @@
     <div class="column is-two-thirds-desktop is-full-mobile">
       <div class="columns">
         <div class="column">
-          <div id="actifsChart"></div>
-          <div id="cateChart"></div>
-          <div id="immoChart"></div>
+          <svg id="population-chart"></svg>
+          <svg id="csp-chart"></svg>
+          <svg id="immobilier-chart"></svg>
         </div>
       </div>
     </div>
