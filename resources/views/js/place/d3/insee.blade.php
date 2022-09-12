@@ -117,6 +117,12 @@
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    const tooltip = d3.select('body')
+                      .append('div')
+                      .attr('id', 'tooltip-barchar-'+Math.random().toString(36).slice(2))
+                      .attr('class', 'd3_tooltip')
+                      .attr('style', 'position: absolute; visibility: hidden');
+
     // axe y
     svg.append("g")
       .call(d3.axisLeft(y).tickSize(0))
@@ -139,6 +145,16 @@
            .attr("height", y.bandwidth() - 5)
            .attr("stroke", "black")
            .attr("stroke-width", 1)
+
+          .on("mouseover", function() { return tooltip.style("visibility", "visible") })
+          .on("mousemove", function(d) {
+            const subgroupkey = d3.select(this.parentNode).datum().key
+            return tooltip
+              .text(d.data.subgroups[subgroupkey].name + " : " + Math.round(d[1] - d[0]) + "%")
+              .style("top", (d3.event.pageY + 25)+"px")
+              .style("left", (d3.event.pageX + 25)+"px")
+          })
+          .on("mouseout", function(){ return tooltip.style("visibility", "hidden") });
 
     const texts = niveau.selectAll("text")
        .data(function (d) { return d })
