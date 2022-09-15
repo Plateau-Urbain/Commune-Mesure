@@ -1,10 +1,14 @@
 <script type="text/javascript">
 const tooltip_superficie_id = 'tooltip-superficie';
 
-var superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
-var superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
-var superficie_bureaux = {{ $place->get('blocs->presentation->donnees->surfaces->bureau') ?: 0 }};
-var superficie_ateliers = {{ $place->get('blocs->presentation->donnees->surfaces->atelier') ?: 0 }};
+const width = 500;
+const height = 500;
+const margin = {top: 10, right: 5, bottom: 10, left: 5}
+
+const superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
+const superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
+const superficie_bureaux = {{ $place->get('blocs->presentation->donnees->surfaces->bureau') ?: 0 }};
+const superficie_ateliers = {{ $place->get('blocs->presentation->donnees->surfaces->atelier') ?: 0 }};
 
 var superficie_interieure = superficie_totale - superficie_exterieure;
 var superficie_autres = superficie_interieure - superficie_bureaux - superficie_ateliers;
@@ -12,12 +16,8 @@ var superficie_pc_interieur = superficie_interieure / superficie_totale;
 var superficie_pc_bureaux = superficie_bureaux / superficie_interieure;
 var superficie_pc_ateliers = superficie_ateliers / superficie_interieure;
 var superficie_pc_autres = superficie_autres / superficie_interieure;
-var superficie_width = svg_waffle.node().getBoundingClientRect().width;
-var superficie_height = svg_waffle.node().getBoundingClientRect().height - 100;
 var superficie_names = [
     'superficie_exterieur',
-    'superficie_interieure_fond',
-    'superficie_interieure_contour',
     'superficie_autres',
     'superficie_bureaux',
     'superficie_ateliers'
@@ -31,29 +31,25 @@ var superficie_human_keys = [
 ];
 
 var function_superficie_width = function(d) {
-    if (d == 'superficie_exterieur') return superficie_width - 20;
+    if (d == 'superficie_exterieur') return width - margin.left - margin.right;
     if (d == 'superficie_interieure') return Math.sqrt(superficie_pc_interieur) * function_superficie_width('superficie_exterieur');
-    if (d == 'superficie_interieure_fond') return function_superficie_width('superficie_interieure') + 25;
-    if (d == 'superficie_interieure_contour') return function_superficie_width('superficie_interieure') + 25;
     if (d == 'superficie_autres') return function_superficie_width('superficie_interieure') * superficie_pc_autres;
     if (d == 'superficie_bureaux') return function_superficie_width('superficie_interieure') - function_superficie_width('superficie_autres');
     if (d == 'superficie_ateliers') return function_superficie_width('superficie_bureaux');
 }
 
 var function_superficie_height = function(d) {
-    if (d == 'superficie_exterieur') return superficie_height - 20;
+    if (d == 'superficie_exterieur') return height - margin.top - margin.bottom - 100;
     if (d == 'superficie_interieure') return Math.sqrt(superficie_pc_interieur) * function_superficie_height('superficie_exterieur');
-    if (d == 'superficie_interieure_fond') return function_superficie_height('superficie_interieure') + 25;
-    if (d == 'superficie_interieure_contour') return function_superficie_height('superficie_interieure') + 25;
-    if (d == 'superficie_autres') return function_superficie_height('superficie_interieure') + 5;
+    if (d == 'superficie_autres') return function_superficie_height('superficie_interieure');
     if (d == 'superficie_bureaux') return function_superficie_width('superficie_interieure') * function_superficie_height('superficie_interieure') * superficie_pc_bureaux / function_superficie_width('superficie_bureaux');
-    if (d == 'superficie_ateliers') return function_superficie_height('superficie_autres') - function_superficie_height('superficie_bureaux') - 5;
+    if (d == 'superficie_ateliers') return function_superficie_height('superficie_autres') - function_superficie_height('superficie_bureaux');
 }
 
-superficie_colors = ['#cb4f4a', '#df9f8d', '#f6e6de'];
+const superficie_colors = ['#e9c3b7', '#f5e6dd', '#ea7a6c'];
 
 var function_superficie_fill = function(d) {
-    if (d == 'superficie_exterieur') return d3.rgb('green');
+    if (d == 'superficie_exterieur') return d3.rgb('#90bd95');
     if (d == 'superficie_ateliers') return d3.rgb(superficie_colors[0]);
     if (d == 'superficie_bureaux') return d3.rgb(superficie_colors[1]);
     if (d == 'superficie_autres') return d3.rgb(superficie_colors[2]);
@@ -62,23 +58,19 @@ var function_superficie_fill = function(d) {
 
 var function_superficie_x = function(d) {
     if (d == 'superficie_exterieur') return 0;
-    if (d == 'superficie_interieure_fond') return function_superficie_x('superficie_interieure') - 20;
-    if (d == 'superficie_interieure_contour') return function_superficie_x('superficie_interieure') - 10;
     if (d == 'superficie_interieure') return (function_superficie_width('superficie_exterieur') - Math.sqrt(superficie_pc_interieur) * function_superficie_width('superficie_exterieur') ) ;
     if (d == 'superficie_bureaux') return function_superficie_x('superficie_interieure');
-    if (d == 'superficie_autres') return function_superficie_x('superficie_bureaux') + function_superficie_width('superficie_bureaux') + 5;
+    if (d == 'superficie_autres') return function_superficie_x('superficie_bureaux') + function_superficie_width('superficie_bureaux');
     if (d == 'superficie_ateliers') return function_superficie_x('superficie_bureaux');
 
 }
 
 var function_superficie_y = function(d) {
     if (d == 'superficie_exterieur') return 0;
-    if (d == 'superficie_interieure_fond') return function_superficie_y('superficie_interieure') - 20;
-    if (d == 'superficie_interieure_contour') return function_superficie_y('superficie_interieure') - 10;
     if (d == 'superficie_interieure') return (function_superficie_height('superficie_exterieur') - Math.sqrt(superficie_pc_interieur) * function_superficie_height('superficie_exterieur')) ;
     if (d == 'superficie_autres') return function_superficie_y('superficie_interieure');
     if (d == 'superficie_bureaux') return function_superficie_y('superficie_interieure');
-    if (d == 'superficie_ateliers') return function_superficie_y('superficie_interieure') + function_superficie_height('superficie_bureaux') + 5;
+    if (d == 'superficie_ateliers') return function_superficie_y('superficie_interieure') + function_superficie_height('superficie_bureaux');
 }
 
 var function_superficie_text_1 = function(d) {
@@ -117,7 +109,8 @@ var function_superficie_text_2 = function(d) {
 }
 
 var function_superficie_text_x = function(d) {
-    return function_superficie_x(d) + function_superficie_width(d) / 2;
+    const rect = d3.select('#rect_'+d)
+    return +rect.style('x').replace('px', '') + +rect.style('width').replace('px', '') / 2;
 }
 
 var function_superficie_text_y = function(d) {
@@ -158,8 +151,11 @@ var superficie_rect_onmouseout = function(d, i) {
 }
 
 var superficie_figures = d3.select("#graph_superficie")
+    .attr('width', width)
+    .attr('height', height)
     .append('g')
-    .attr('class', 'figures')
+      .attr('class', 'figures')
+      .attr('transform', "translate(" + margin.left + "," + margin.top + ")")
 
 d3.select('body')
     .append('div')
@@ -171,12 +167,15 @@ var superficie_rects = superficie_figures.selectAll('rect')
     .data(superficie_names)
     .enter()
     .append('rect')
+    .attr('id', (d) => 'rect_'+d)
     .attr('class', (d) => d)
     .attr('fill', function_superficie_fill )
     .attr('width', function_superficie_width )
     .attr('height', function_superficie_height )
     .attr('x', function_superficie_x )
     .attr('y', function_superficie_y )
+    .attr('stroke', 'black')
+    .attr('stroke-width', 2)
     .on("mouseover", superficie_rect_onmouseover)
     .on("mouseout", superficie_rect_onmouseout)
     .on('mousemove', function(d) {
@@ -195,6 +194,7 @@ var superficie_texts = superficie_gtexts.selectAll('text')
     .attr('id', (d) => 'text_'+d)
     .attr('x', function_superficie_text_x )
     .attr('y', function_superficie_text_y )
+    .attr('text-anchor', 'middle')
 
 superficie_texts.append('tspan')
     .text( function_superficie_text_1 )
@@ -210,8 +210,8 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('circle')
-      .attr('cx', function(d, i) { return (i % 2)* width_waffle / 2.5 + 10})
-      .attr('cy', function(d, i) { return height_waffle + 30 * (1 + Math.floor( i / 2 )) })
+      .attr('cx', function(d, i) { return (i % 2) * width / 2.5 + 20})
+      .attr('cy', function(d, i) { return height - 100 + 30 * (1 + Math.floor( i / 2 )) })
       .attr('r', function(d) { return 10})
       .attr('fill', function_superficie_fill)
 
@@ -220,8 +220,8 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return (i % 2)* width_waffle / 2.5 + 30})
-      .attr('y', function(d, i) { return height_waffle + 33 * (1 + Math.floor( i / 2 )) })
+      .attr('x', function(d, i) { return (i % 2) * width / 2.5 + 40})
+      .attr('y', function(d, i) { return height - 100 + 33 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .text(function(d) {
         if (d == 'superficie_exterieur') return 'Superficie extérieure';

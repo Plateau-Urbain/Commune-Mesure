@@ -9,9 +9,9 @@
   </div>
 
 <div class="field has-text-centered">
-  <label class="is-size-5" style="font-weight: bold;" >Répartition de la superifice</label>
+  <label class="is-size-5" style="font-weight: bold;" >Répartition de la superficie</label>
 </div>
 
   <div class="chart-container has-text-centered">
-    <svg id="graph_superficie" width=500 height=500 aria-label="Graphique de la répartition de la superifice" role="img"></svg>
+    <svg id="graph_superficie" width=500 height=500 aria-label="Graphique de la répartition de la superficie" role="img"></svg>
   </div>
