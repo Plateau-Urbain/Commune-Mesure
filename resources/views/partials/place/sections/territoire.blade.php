@@ -30,8 +30,11 @@
     <div class="column is-two-thirds-desktop is-full-mobile">
       <div class="columns">
         <div class="column">
-          <svg id="population-chart"></svg>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Population</h3>
+          <svg id="population-chart" class="mb-5"></svg>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Catégories Socioprofessionelles</h3>
           <svg id="csp-chart"></svg>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Immobilier</h3>
           <svg id="immobilier-chart"></svg>
         </div>
       </div>
