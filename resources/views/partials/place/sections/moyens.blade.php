@@ -15,7 +15,7 @@
     @if(! $place->isEmptyInvestissement() || isset($edit))
       <div class="has-text-weight-bold is-size-5">
         Investissement
-        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu"])
+        @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu (en %)"])
       </div>
       <svg id="investissement-graph" width="500" height="500" aria-label="Répartition investissement" role="img"></svg>
     @endif

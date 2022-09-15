@@ -1,6 +1,6 @@
 <script type="text/javascript">
   const svg_investissement_id = 'svg#investissement-graph'
-  const svg = d3.select('svg')
+  const svg = d3.select(svg_investissement_id)
 
   const parea_data = [
       {name: "Fonds privés", value: {{ $place->get('blocs->moyens->donnees->investissement->Fonds privés') ?: 0 }}},
@@ -11,6 +11,7 @@
   const graph_width = svg.node().getBoundingClientRect().width;
   const graph_height = svg.node().getBoundingClientRect().height - 100;
   const total = parea_data.reduce((accum, item) => accum + item.value, 0);
+  const bloc_margin = 10
 
   color.domain(parea_data.map(d => d.name))
 
@@ -21,14 +22,15 @@
       element['height'] = graph_height * element['pc'];
   })
 
-  parea_data[0]['x'] =  10;
-  parea_data[0]['y'] =  graph_height - graph_height * parea_data[0]['pc'];
-  parea_data[1]['x'] = 20 + graph_height * parea_data[0]['pc'];
-  parea_data[1]['y'] = graph_height - graph_height * parea_data[1]['pc'];
+  parea_data[0]['x'] = bloc_margin;
+  parea_data[1]['x'] = bloc_margin + parea_data[0]['x'] + parea_data[0]['width'];
   parea_data[2]['x'] = parea_data[1]['x'];
-  parea_data[2]['y'] = - 10 + parea_data[1]['y'] - graph_height * parea_data[2]['pc'] ;
 
-  const tooltip_invest_id = 'tooltip-waffle';
+  parea_data[0]['y'] = graph_height - (graph_height * parea_data[0]['pc']);
+  parea_data[1]['y'] = graph_height - (graph_height * parea_data[1]['pc']);
+  parea_data[2]['y'] = parea_data[1]['y'] - parea_data[2]['height'] - bloc_margin
+
+  const tooltip_invest_id = 'tooltip-invest';
 
   d3.select('body')
     .append('div')
@@ -74,12 +76,12 @@
   texts.append('tspan')
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 20 })
-    .attr('fill', 'white')
-    .text(function(d) { if (d.width > 30)  return d.value + ' €'})
+    .attr('fill', 'black')
+    .text(function(d) { if (d.width > 30)  return d.value + ' %'})
   texts.append('tspan')
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 40 })
-    .attr('fill', 'white')
+    .attr('fill', 'black')
     .text(function(d) { if (d.width > 100) return d.name })
 
   d3.select(svg_investissement_id)
