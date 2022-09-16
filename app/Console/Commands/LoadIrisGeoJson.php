@@ -107,7 +107,17 @@ class LoadIrisGeoJson extends Command
         $this->data['insee']['iris']['logement']['appartment'] = array('title' => 'Appartement', 'nb' => $logements->appartment);
         $this->data['insee']['iris']['logement']['unoccupied'] = array("title" => "Appart/Maison inoccupé", "nb" => $logements->unoccupied);
 
-        $activites = json_decode(file_get_contents("https://pyris.datajazz.io/api/insee/activite/".$this->iris_code));
+        try {
+            $activites = json_decode(file_get_contents("https://pyris.datajazz.io/api/insee/activite/".$this->iris_code));
+        } catch (\ErrorException $e) {
+            $activites = new \stdClass;
+            $activites->chomeur = 0;
+            $activites->actif = 0;
+            $activites->etudiant = 0;
+            $activites->retraite = 0;
+            $activites->autre_inactif = 0;
+        }
+
         $this->data['insee']['iris']['activites']['chomeur'] = array('title' => 'Chômeur (Actif inoccupé)', 'nb' => $activites->chomeur);
         $this->data['insee']['iris']['activites']['actif'] = array('title' => 'Actif occupé', 'nb' => $activites->actif);
         $this->data['insee']['iris']['activites']['etudiant'] = array("title" => "Élèves, étudiants et stagiaires non rémunérés", "nb" => $activites->etudiant);
