@@ -24,7 +24,21 @@
     </div>
   </div>
 
-  <div class="mx-auto">
+  <div class="mx-auto has-text-centered">
+    <label>Choississez un découpage géographique: </label>
+    <div class="mb-5 control has-icons-left">
+      <div class="select">
+        <span class="icon is-large is-left">
+          <i class="fas fa-map"></i>
+        </span>
+        <select id="selectGeo">
+          <option value="iris" selected>Proximité immédiate</option>
+          <option value="commune">Commune</option>
+          <option value="departement">Département</option>
+          <option value="region">Région</option>
+        </select>
+      </div>
+    </div>
     <h3 class="title is-5 no-border is-uppercase mb-0">Population</h3>
     <svg id="population-chart" class="mb-5"></svg>
     <h3 class="title is-5 no-border is-uppercase mb-0">Catégories Socioprofessionelles</h3>
