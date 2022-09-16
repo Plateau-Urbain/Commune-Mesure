@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column is-6">
       @include('partials.place.sections.carousel')
     </div>
   </div>
