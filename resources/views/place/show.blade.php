@@ -58,12 +58,9 @@
     @include('partials.place.sticky-edit')
   @endisset
 
-<div class="columns is-gapless is-mobile" id="container">
-
-  <div class="column is-full">
-
+<div id="container" @isset($edit) style="padding-top:50px" @endisset>
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place " id="presentation">
+      <section class="section-place" id="presentation">
         <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
         <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
 
@@ -196,7 +193,6 @@
       </section>
     </x-edit-section>
   </div>
-</div>
 
   @isset($edit)
   <div class="modal" id="modal-help" style="z-index: 100000;">
