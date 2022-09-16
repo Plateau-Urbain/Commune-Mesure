@@ -60,46 +60,7 @@
 
 <div id="container" @isset($edit) style="padding-top:50px" @endisset>
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section-place" id="presentation">
-        <div class="scroll-indicator" id="presentation" data-scroll-indicator-title="&nbsp;&nbsp;PRÉSENTATION"></div>
-        <h2 class="sous-banner is-5 has-text-centered">PRÉSENTATION DU LIEU</h2>
-
-        <div class="has-text-centered pt-2 container">
-          <p>
-          @include('partials.place.reseaux-sociaux')
-          </p>
-
-          <p>
-            <strong><i class="fas fa-clock font-color-theme mr-1"></i> Ouverture :</strong>
-            <span class="font-color-theme">{{ $place->getOuverture() }}</span>
-            @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->ouverture', 'id_section' => 'presentation', 'type' => 'select', 'titre' => "Modifier l'ouverture", "description" => "Les modalités d'ouverture du lieu"])
-          </p>
-        </div>
-        <div class="section pt-5" style="padding-bottom:0;">
-          <div class="columns is-centered" style="background-color: white;">
-            <div class="column is-half">
-              @include('partials.place.sections.batiment')
-            </div>
-          </div>
-        </div>
-        <div class="section pt-5" style="padding-bottom:0;">
-          <div class="columns is-centered is-hidden-desktop is-hidden-mobile is-hidden-print">
-            <div class="column is-half">
-              @include('partials.place.sections.bloc-milieu')
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column">
-              @include('partials.place.sections.bloc-gauche')
-            </div>
-            <div class="column is-hidden-tablet-only">
-              @include('partials.place.sections.bloc-milieu')
-            </div>
-            <div class="column">
-              @include('partials.place.sections.bloc-droite')
-            </div>
-          </div>
-        </section>
+      @include('partials.place.sections.presentation')
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
@@ -189,7 +150,6 @@
     <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section anchor section-place">
           <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="&nbsp;&nbsp;GALERIE"></div>
-          @include('partials.place.sections.carousel')
       </section>
     </x-edit-section>
   </div>
