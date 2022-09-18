@@ -20,11 +20,11 @@
       @foreach($place->get('blocs->valeurs->donnees') as $valeur => $active)
         @if($active)
         <div class="column is-one-third-tablet is-one-quarter-desktop">
-          <p class="has-text-centered"><strong class="valeurs">{{$valeur}}</strong></p>
+          <p class="subtitle"><strong class="valeurs">{{$valeur}}</strong></p>
           <p>
             {{ $place->get('blocs->valeurs->texte->'.$valeur) }}
           </p>
-          <p class="has-text-centered">
+          <p class="subtitle">
             @include('components.modals.modalEdition', ['chemin' => 'blocs->valeurs->texte->'.$valeur, 'id_section' => 'valeurs', 'type' => 'text', 'titre' => 'Valeur : '.$valeur, 'description' => 'Le texte apparaitera sous la valeur.'])
           </p>
         </div>
