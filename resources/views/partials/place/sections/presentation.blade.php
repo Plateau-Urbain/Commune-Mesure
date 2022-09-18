@@ -19,12 +19,13 @@
 
 <section class="section-place fond-bleu pt-5">
   <div class="columns">
-    <div class="column is-2"></div>
-    <div class="column is-4">
-      <h4 class="title has-text-primary no-border is-uppercase">Surface</h4>
-      <h6 class="subtitle">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}m² au total</h6>
-      <div class="chart-container">
-        <svg id="graph_superficie" width=500 height=500 aria-label="Graphique de la répartition de la superficie" role="img"></svg>
+    <div class="column is-6">
+      <div class="mx-auto is-block has-text-centered">
+        <h4 class="title has-text-primary no-border is-uppercase">Surface</h4>
+        <h6 class="subtitle">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}m² au total</h6>
+        <div class="chart-container">
+          <svg id="graph_superficie" width=500 height=500 aria-label="Graphique de la répartition de la superficie" role="img"></svg>
+        </div>
       </div>
     </div>
 
