@@ -71,6 +71,10 @@
       @include('partials.place.sections.valeurs')
     </x-edit-section>
 
+    <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      @include('partials.place.sections.composition')
+    </x-edit-section>
+
     @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
       <section class="section section-place">
         <div class="columns">
