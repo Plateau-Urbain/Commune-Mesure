@@ -75,35 +75,6 @@
       @include('partials.place.sections.composition')
     </x-edit-section>
 
-    @if((!isset($edit) && ($sections['moyens']) || $sections['composition']) || isset($edit))
-      <section class="section section-place">
-        <div class="columns">
-          @php $class="" @endphp
-          @if (!isset($edit) && (!$sections['moyens'] || !$sections['composition'] ))
-            @php $class="is-6 is-offset-3" @endphp
-          @endif
-
-          <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" class="column {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-            @if (!isset($edit) && !$sections['composition'])
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;LES MOYENS"></div>
-                <div id="composition"></div>
-            @elseif(isset($edit) || (!isset($edit) && $sections['composition'] && $sections['moyens'] ))
-                <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;MOYENS / COMPOSITION"></div>
-                <div id="composition"></div>
-            @endif
-            @include('partials.place.sections.moyens')
-          </x-edit-section>
-          <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" class="column border-composition {{ $class }}" :slug="$slug ?? false" :auth="$auth ?? false">
-            @if (!isset($edit) && (!$sections['moyens']))
-              <div class="scroll-indicator" id="moyens" data-scroll-indicator-title="&nbsp;&nbsp;LA COMPOSITION"></div>
-            @endif
-            @include('partials.place.sections.composition')
-          </x-edit-section>
-
-        </div>
-      </section>
-    @endif
-
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       <section class="section section-place">
         <div class='column'>
