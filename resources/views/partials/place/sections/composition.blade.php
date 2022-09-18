@@ -1,5 +1,5 @@
-<section class="p-5">
-  <div class="columns">
+<section class="p-5" style="height: 90vh">
+  <div class="columns" style="height: 100%;">
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-end">
       <h4 class="subtitle">Type de structures participant au projet</h4>
       <svg id="waffle" width=500 height=500 aria-label="Graphique répartition par structure" role="img"></svg>
