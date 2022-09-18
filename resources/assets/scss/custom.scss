@@ -718,10 +718,9 @@ p.partenaires_text{
 }
 
 .valeurs{
-  text-transform: uppercase;
-  // color:#e85048;
-  font-size:30px;
-  color:black;
+  font-size: 1.875rem;
+  color: $black;
+  font-weight: bold;
 }
 .labelpopup
 {

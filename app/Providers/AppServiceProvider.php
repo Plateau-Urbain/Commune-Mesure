@@ -5,11 +5,14 @@ namespace App\Providers;
 use App\Interfaces\ImpactSocialRepositoryInterface;
 use App\Repositories\ImpactSocialRepository;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        Carbon::setLocale(config('app.locale'));
+
         app('view');
         $blade = app('blade.compiler');
 
