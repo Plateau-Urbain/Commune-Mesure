@@ -77,6 +77,7 @@ window.onload = (event) => {
         var mapplace = mapjs.create('section-map', {gestureHandling: true})
         L.marker([placeLatLon.lat, placeLatLon.lon]).addTo(mapplace)
         mapplace.setView([placeLatLon.lat, placeLatLon.lon], 9)
+        mapplace.zoomControl.setPosition('topright')
     }
 
     if (document.getElementById('map-insee')) {
