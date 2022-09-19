@@ -72,9 +72,9 @@
     })
   })
 
-  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: 800, height: 150})
-  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: 800, height: 150})
-  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: 800, height: 150})
+  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: 1200, height: 150})
+  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: 1200, height: 150})
+  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: 1200, height: 150})
 
   function BarChart(element, data, {horizontal = true, width = 100, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
@@ -179,7 +179,9 @@
       .data(subgroups.map((s) => data[0].subgroups[s].name))
       .enter()
       .append('text')
-        .attr('x', (d, i) => 15 + i * (w / subgroups.length))
+        .attr('x', function (d, i) {
+          return 15 + i * (w / subgroups.length)
+        })
         .attr('y', h + 5)
         .text((d) => d)
           .attr("text-anchor", 'left')
