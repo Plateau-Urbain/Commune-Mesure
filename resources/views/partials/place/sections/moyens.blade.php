@@ -6,7 +6,7 @@
 
       <div class="section"></div>
 
-      <div class="columns">
+      <div class="columns is-centered">
         @if(! $place->isEmptyFonctionnement() || isset($edit))
           <div class="column is-half">
               <h4 class="subtitle is-5">
