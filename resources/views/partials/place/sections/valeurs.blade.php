@@ -6,7 +6,10 @@
     <p class="mb-5">{{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->format('j F Y') }}</p>
 
     <h4 class="title has-text-primary no-border is-uppercase">L'idée fondatrice</h4>
-    <p class="mb-5">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
+    <p class="mb-5">
+      {{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}
+      @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->idee_fondatrice', 'id_section' => 'valeurs', 'type' => 'text', 'titre' => "Modifier l'idée fondatrice", 'description'=>"L'idée fondatrice du lieu. Laisser vide pour ne pas l'afficher."])
+    </p>
 
     <div class="section"></div>
 
