@@ -1,4 +1,4 @@
-<section class="hero is-medium" id="section-localisation">
+<section class="hero is-medium" id="accessibilite">
   <div class="columns">
     <div class="column is-5 hero-body">
       <div>
