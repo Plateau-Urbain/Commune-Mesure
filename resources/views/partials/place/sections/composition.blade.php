@@ -1,8 +1,10 @@
 <section id="composition" class="p-5" style="height: 90vh">
   <div class="columns" style="height: 100%;">
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-end">
-      <h4 class="subtitle">Type de structures participant au projet</h4>
-      <svg id="waffle" width=500 height=500 aria-label="Graphique répartition par structure" role="img"></svg>
+      <div class="is-flex is-flex-direction-column is-align-items-center">
+        <svg id="waffle" width=500 height=500 aria-label="Graphique répartition par structure" role="img"></svg>
+        <h6 class="subtitle is-6">Type de structures participant au projet</h6>
+      </div>
     </div>
 
     <div class="column is-4 is-flex is-flex-direction-column is-justify-content-center">
