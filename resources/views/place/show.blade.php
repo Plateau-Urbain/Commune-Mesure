@@ -84,25 +84,9 @@
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-        <section  class="section section-place fond-bleu" style="padding-bottom: 100px;">
-        <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="&nbsp;&nbsp;L'IMPACT SOCIAL"></div>
         @include('partials.place.sections.impact-social')
-        </section>
     </x-edit-section>
-
-
-    <x-edit-section :edit="isset($edit)" section="data_territoire" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section anchor section-place">
-        <div class="scroll-indicator" id="data_territoire" data-scroll-indicator-title="&nbsp;&nbsp;LE TERRITOIRE"></div>
-        @include('partials.place.sections.territoire')
-      </section>
-    </x-edit-section>
-    <x-edit-section :edit="isset($edit)" section="galerie" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section anchor section-place">
-          <div class="scroll-indicator" id="galerie" data-scroll-indicator-title="&nbsp;&nbsp;GALERIE"></div>
-      </section>
-    </x-edit-section>
-  </div>
+</div>
 
   @isset($edit)
   <div class="modal" id="modal-help" style="z-index: 100000;">
