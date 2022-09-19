@@ -45,7 +45,7 @@
 
     <style>
         #wordcloud { vertical-align: middle;display: table-cell;}
-        .word { font-size: 30px; margin-right: 40px; text-transform: uppercase;}
+        .word { font-size: 30px; margin-right: 40px;}
         .word:nth-of-type(6n){color: #cb4f4a;}
         .word:nth-of-type(6n+1){color: #df9f8d;}
         .word:nth-of-type(6n+2){color: #64616c;}
