@@ -53,15 +53,15 @@ li.tags{
   align-items: center;
 }
 
-ul.list-dotted {
+ul.list-undotted {
     & > li {
 
         display: inline-block;
-        margin: 0px 5px;
+        margin: 0px 3px;
 
         &:not(:last-child):after {
-            padding-left: 5px;
-            content: '●';
+            padding-left: 3px;
+            content: ' ';
         }
     }
 }
