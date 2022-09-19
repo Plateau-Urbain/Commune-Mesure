@@ -76,12 +76,7 @@
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      <section class="section section-place">
-        <div class='column'>
-            <div class="scroll-indicator" id="valeurs" data-scroll-indicator-title="&nbsp;&nbsp;LES VALEURS PORTÉES"></div>
-            @include('partials.place.sections.values')
-        <div>
-      </section>
+      @include('partials.place.sections.reseau')
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
