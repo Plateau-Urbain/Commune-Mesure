@@ -79,6 +79,10 @@
       @include('partials.place.sections.reseau')
     </x-edit-section>
 
+    <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      @include('partials.place.sections.moyens')
+    </x-edit-section>
+
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         <section  class="section section-place fond-bleu" style="padding-bottom: 100px;">
         <div class="scroll-indicator" id="impact_social" data-scroll-indicator-title="&nbsp;&nbsp;L'IMPACT SOCIAL"></div>
