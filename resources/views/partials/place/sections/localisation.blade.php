@@ -1,6 +1,6 @@
-<section class="hero is-medium" id="accessibilite">
+<section id="accessibilite">
   <div class="columns">
-    <div class="column is-5 hero-body">
+    <div class="column is-5 is-flex is-align-self-center is-justify-content-end">
       <div>
         <h4 class="title is-4 has-text-primary no-border is-uppercase">Localisation</h4>
 
