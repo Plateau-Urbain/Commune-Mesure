@@ -153,6 +153,6 @@ class JsonExportTest extends TestCase
 
         $firstRow = $exportedFile->current();
         $this->assertIsArray($firstRow);
-        $this->assertCount(6, $firstRow);
+        $this->assertCount(7, $firstRow);
     }
 }

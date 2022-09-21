@@ -17,7 +17,7 @@ class OriginalJsonExport
     private $originalFilename;
     private $newFilename;
     private $exportDir;
-    private $_headers = ['CategorieId', 'Categorie', 'QuestionId', 'Question', 'Type', 'Reponse'];
+    private $_headers = ['Lieu', 'CategorieId', 'Categorie', 'QuestionId', 'Question', 'Type', 'Reponse'];
 
     public function __construct(string $filename)
     {
@@ -88,6 +88,8 @@ class OriginalJsonExport
         $currentCategorie = null;
         $currentCategorieId = 0;
 
+        $place = $decoded->answers[1]->group->answers[0]->short_text->value;
+
         foreach ($decoded->answers as $categorie) {
             $currentCategorieId = $categorie->id;
             $currentCategorie   = trim($categorie->title);
@@ -104,6 +106,7 @@ class OriginalJsonExport
                 }
 
                 $this->decoded[] = [
+                    Str::of($place)->slug('-'),
                     $currentCategorieId,
                     $currentCategorie,
                     $question->id,
