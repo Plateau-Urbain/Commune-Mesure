@@ -49,6 +49,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        // header et footer du wordpress
+        $schedule->exec('bash bin/scrape.sh > /dev/null')->everyThirtyMinutes()
+                                                         ->emailOutputOnFailure(env('CRON_MAIL'));
+
+        // import des lieux depuis Typeform
+        $schedule->exec('bash bin/import.sh > /dev/null')->hourly()
+                                                         ->withoutOverlapping()
+                                                         ->runInBackground()
+                                                         ->emailOutputOnFailure(env('CRON_MAIL'));
+
     }
 }
