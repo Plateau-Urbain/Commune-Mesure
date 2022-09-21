@@ -58,6 +58,6 @@ class BDDExportTest extends TestCase
 
         $firstRow = $exportedFile->current();
         $this->assertIsArray($firstRow);
-        $this->assertCount(4, $firstRow);
+        $this->assertCount(5, $firstRow);
     }
 }

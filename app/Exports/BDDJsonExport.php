@@ -20,7 +20,7 @@ class BDDJsonExport
 
     private $decoded = [];
 
-    private $_headers = ['CategorieId', 'QuestionId', 'Type', 'Reponse'];
+    private $_headers = ['Lieu', 'CategorieId', 'QuestionId', 'Type', 'Reponse'];
     private $newFilename;
     private $exportDir;
 
@@ -93,6 +93,7 @@ class BDDJsonExport
             }
 
             $file->fputcsv([
+                $this->place->getSlug(),
                 $split[0],
                 $split[1],
                 $split[2],
