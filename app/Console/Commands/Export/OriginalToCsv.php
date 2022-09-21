@@ -29,13 +29,6 @@ class OriginalToCsv extends Command
     protected $exportDir;
 
     /**
-     * The original json file
-     *
-     * @var string
-     */
-    protected $originalFile;
-
-    /**
      * Create a new command instance.
      *
      * @return void
