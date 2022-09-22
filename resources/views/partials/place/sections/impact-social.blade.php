@@ -9,26 +9,6 @@
       <p>
         <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
       </p>
-
-      <div class="section"></div>
-
-      <div class="columns">
-        <div class="column is-half">
-          <span class="is-size-1 has-text-primary has-text-weight-bold">
-            {{ $place->get('blocs->composition->donnees->structures_crees') }}
-          </span>
-          <br/>
-          <p>{{ $place->get('blocs->composition->donnees->structures_crees') > 1 ? 'structures créées' : 'structure créée' }}</p>
-        </div>
-
-        <div class="column is-half">
-          <span class="is-size-1 has-text-primary has-text-weight-bold">
-            {{  $place->get('blocs->presentation->donnees->emplois directs') }}
-          </span>
-          <br/>
-          <p>{{ $place->get('blocs->presentation->donnees->emplois directs') > 1 ? 'emplois directs' : 'emploi direct' }}</p>
-        </div>
-      </div>
     </div>
 
     <div class="column is-5 has-text-centered">
