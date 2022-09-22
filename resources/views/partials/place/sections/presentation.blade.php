@@ -8,7 +8,20 @@
       <h4 class="subtitle is-6">{{ $place->get('address->city') }}</h4>
       <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
 
-      <p class="is-size-5">Punchline sur deux lignes</p>
+      <p class="is-size-5">
+        @if (isset($edit))
+          @if ($place->get('blocs->presentation->donnees->punchline'))
+            {{ $place->get('blocs->presentation->donnees->punchline') }}
+          @else
+            Décrivez votre lieu en une ou deux phrases
+          @endif
+        @else
+          {{ $place->get('blocs->presentation->donnees->punchline') }}
+        @endif
+        <span class="icon-edit">
+          @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->punchline', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier la punchline", 'description' => "Décrivez votre lieu en quelques mots"])
+        </span>
+      </p>
       <p class="mt-6">
         @include('partials.place.reseaux-sociaux')
       </p>
