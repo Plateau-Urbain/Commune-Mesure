@@ -2,7 +2,8 @@
   $decors = glob(rtrim(resource_path('assets/images/batiment/decors'), '/').'/*.svg');
   $decors = array_map('basename', $decors);
   $themes = $place->get('blocs->presentation->donnees->thematiques');
-  $toits  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3', 'TOIT3 INVERSÉ'];
+  $toits_gauches  = ['TOIT1', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
+  $toits_droites  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
 
   $theme2key = [
     'Accueil' => 'THEME_ACCUEIL',
@@ -25,7 +26,8 @@
   mt_srand(crc32($place->get('name')));
   shuffle($thematiques);
   shuffle($decors);
-  shuffle($toits);
+  shuffle($toits_gauches);
+  shuffle($toits_droites);
 @endphp
 
 <svg
@@ -103,8 +105,8 @@
   @endfor
 
   <x-svg :path="'assets/images/batiment/decors/'.$decors[1]" class="" transform="translate(180, 120)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$toits[0].'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$toits[1].'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$toits_droites[0].'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$toits_gauches[0].'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
 
   </g>
 </svg>
