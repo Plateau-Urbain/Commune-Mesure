@@ -25,7 +25,11 @@
         <div class="column is-one-third-tablet is-one-quarter-desktop">
           <p class="subtitle"><strong class="valeurs">{{$valeur}}</strong></p>
           <p>
-            {{ $place->get('blocs->valeurs->texte->'.$valeur) }}
+            @if (isset($edit) && ! $place->get('blocs->valeurs->texte->'.$valeur))
+              Expliquez comment cette valeur s'incarne dans votre lieu.
+            @else
+              {{ $place->get('blocs->valeurs->texte->'.$valeur) }}
+            @endif
           </p>
           <p class="subtitle">
             @include('components.modals.modalEdition', ['chemin' => 'blocs->valeurs->texte->'.$valeur, 'id_section' => 'valeurs', 'type' => 'text', 'titre' => 'Valeur : '.$valeur, 'description' => 'Le texte apparaitera sous la valeur.'])
