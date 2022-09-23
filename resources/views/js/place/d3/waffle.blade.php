@@ -70,8 +70,10 @@
       d3.select('#'+tooltip_waffle_id)
         .style('opacity', ! isNaN(waffle_structure[d].data) * 1 )
         .text( function(a) {
-          if (waffle_structure[d])
-            return waffle_structure[d].data+' '+waffle_structure[d].text;
+          if (waffle_structure[d]) {
+            const t = (waffle_structure[d].data > 1) ? waffle_structure[d].text : waffle_structure[d].text.slice(0, waffle_structure[d].text.length - 1);
+            return waffle_structure[d].data + ' ' + t
+          }
         })
     } )
     .on('mousemove', function(d) {
