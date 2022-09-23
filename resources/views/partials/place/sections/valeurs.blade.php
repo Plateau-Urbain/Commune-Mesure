@@ -3,7 +3,7 @@
     <img class="is-pulled-right" src="{{ url('/images/IDÉE_FONDATRICE.svg') }}">
 
     <h4 class="subtitle is-4 mb-0">Inauguration</h4>
-    <p class="mb-5">{{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->format('j F Y') }}</p>
+    <p class="mb-5">{{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->isoFormat('LL') }}</p>
 
     <h4 class="title has-text-primary no-border is-uppercase">L'idée fondatrice</h4>
     <p class="mb-5">
