@@ -41,6 +41,18 @@
             @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->benevoles','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le nombre de bénévoles","description" => " Le nombre de bénévoles permettant le fonctionnement du lieu "])
           </span>
         @endif
+
+        @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
+          <br/>
+          <span class="title is-size-1 has-text-primary">
+            {{ $place->get('blocs->presentation->donnees->emplois directs') }}
+          </span>
+          <br/>
+          <span class="title is-5">
+            {{ $place->get('blocs->presentation->donnees->emplois directs') > 1 ? 'Emplois directs' : 'Emploi direct' }}
+            @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->emplois directs', 'id_section' => 'presentation', 'type' => 'decimal', 'titre' => "Modifier le nombre d'emplois directs", "description" => "Nombre d'emplois directement créés par le lieu pour son fonctionnement"])
+          </span>
+        @endif
       </div>
 
       <div>
