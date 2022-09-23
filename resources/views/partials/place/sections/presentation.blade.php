@@ -9,12 +9,8 @@
       <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
 
       <p class="is-size-5">
-        @if (isset($edit))
-          @if ($place->get('blocs->presentation->donnees->punchline'))
-            {{ $place->get('blocs->presentation->donnees->punchline') }}
-          @else
+        @if (isset($edit) && ! $place->get('blocs->presentation->donnees->punchline'))
             Décrivez votre lieu en une ou deux phrases
-          @endif
         @else
           {{ $place->get('blocs->presentation->donnees->punchline') }}
         @endif
