@@ -68,7 +68,7 @@
     .attr('class', function(d) {return 'waffle_'+d; })
     .on("mouseover", function(d) {
       d3.select('#'+tooltip_waffle_id)
-        .style('opacity', ! isNaN(waffle_structure[d].data) * 1 )
+        .style('opacity', typeof waffle_structure[d] !== 'undefined' && ! isNaN(waffle_structure[d].data) * 1 )
         .text( function(a) {
           if (waffle_structure[d]) {
             const t = (waffle_structure[d].data > 1) ? waffle_structure[d].text : waffle_structure[d].text.slice(0, waffle_structure[d].text.length - 1);
