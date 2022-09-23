@@ -76,7 +76,7 @@
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.reseau')
+      @include('partials.place.sections.acteurices')
     </x-edit-section>
 
     <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
