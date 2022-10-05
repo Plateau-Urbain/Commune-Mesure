@@ -22,6 +22,8 @@ values.forEach(function (v) {
     animateValue(v)
 })
 
+import './js/sticky.js'
+
 window.onload = (event) => {
     if (document.getElementById('mapid')) {
         var homemap = mapjs.create('mapid', {gestureHandling: true})

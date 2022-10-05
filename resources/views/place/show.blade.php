@@ -9,7 +9,7 @@
   <div id="sticky" class="sticky">
     <div class="container has-text-centered app-name">
       <h1 class="title header-title">
-        {{ $place->get('name') }} <span class="sticky-separator">></span> <span class="sticky-section"></span>
+        {{ $place->get('name') }} <span class="sticky-separator">></span> <span id="sticky-section"></span>
       </h1>
     </div>
   </div>
@@ -48,6 +48,7 @@
   @endisset
 
 <div id="container" @isset($edit) style="padding-top:50px" @endisset>
+  <div data-spy="Le lieu">
     <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.presentation')
     </x-edit-section>
@@ -55,11 +56,15 @@
     <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.localisation')
     </x-edit-section>
+  </div>
 
+  <div data-spy="La programmation">
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.valeurs')
     </x-edit-section>
+  </div>
 
+  <div data-spy="Les acteur.ices">
     <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.composition')
     </x-edit-section>
@@ -67,14 +72,19 @@
     <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.acteurices')
     </x-edit-section>
+  </div>
 
+  <div data-spy="Les moyens">
     <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.moyens')
     </x-edit-section>
+  </div>
 
+  <div data-spy="Les effets">
     <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
         @include('partials.place.sections.impact-social')
     </x-edit-section>
+  </div>
 </div>
 
   @isset($edit)
