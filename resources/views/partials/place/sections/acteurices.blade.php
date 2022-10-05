@@ -1,6 +1,8 @@
 <section class="fond-bleu p-5">
   <img class="image mx-auto" width="455px" src="{{ url('/images/Les_valeurs.png') }}">
-  <h4 class="title is-uppercase no-border has-text-primary has-text-centered">Les acteur.ices</h4>
+  <h4 class="title is-uppercase no-border has-text-primary has-text-centered bg-fil">
+    <span class="fond-bleu">Les acteur.ices</span>
+  </h4>
 
   <div class="columns">
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-end">
