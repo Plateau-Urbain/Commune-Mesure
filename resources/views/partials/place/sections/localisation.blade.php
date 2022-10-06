@@ -20,8 +20,7 @@
     </div>
 
     <div class="column is-7">
-      <img style="position: absolute; z-index: 435;" src="{{ url('/images/map-mask.png') }}">
-      <div id="section-map" class="map-fullwidth"></div>
+      <div id="section-map" class="map-fullwidth mask"></div>
     </div>
   </div>
 

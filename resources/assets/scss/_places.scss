@@ -99,3 +99,16 @@ a[target="_blank"].social-link::after {
 .bg-fil {
     background: url('../images/Ligne4.svg') center center no-repeat;
 }
+
+.mask {
+    &::before {
+        position: absolute;
+        content: '';
+        background: url('../images/map-mask.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        z-index: 435;
+    }
+}
