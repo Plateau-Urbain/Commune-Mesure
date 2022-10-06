@@ -486,10 +486,7 @@ svg {
         display: block;
     }
 }
-//icon public:hover
-.public-icons > i{
-  font-size: 2em;
-}
+
 #i-childText, #i-familyText, #i-graduateText{
   opacity: 0;
   transition:opacity .5s ease;
