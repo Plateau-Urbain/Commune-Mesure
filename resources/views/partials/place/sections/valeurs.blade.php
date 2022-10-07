@@ -47,14 +47,6 @@
 
     <br>
 
-    <style>
-        #wordcloud { vertical-align: middle;display: table-cell;}
-        .word { font-size: 30px; margin-right: 40px;}
-        .word:nth-of-type(6n){color: #cb4f4a;}
-        .word:nth-of-type(6n+1){color: #df9f8d;}
-        .word:nth-of-type(6n+2){color: #64616c;}
-        .word:nth-of-type(6n+3){color: #262631;}
-    </style>
     <div id="wordcloud">
       @foreach ($place->get('activites') as $activite)
         <span class="word subtitle">{{ html_entity_decode(str_replace(' ', "&nbsp;", $activite)) }}</span> &nbsp;
