@@ -4,12 +4,12 @@
       <div>
         <h4 class="title has-text-primary no-border is-uppercase">Localisation</h4>
 
-        <p class="has-text-left">
+        <p class="has-text-left is-size-5">
           <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">
             {{ $place->get('address->address') }}
           </a>
         </p>
-        <p>{{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</p>
+        <p class="is-size-5">{{ $place->get('address->postalcode') }} {{ $place->get('address->city') }}</p>
 
         <div class="mt-5">
           @if(!$place->isEmptyAccessibilityBySection('transports') && !isset($edit) || isset($edit))
