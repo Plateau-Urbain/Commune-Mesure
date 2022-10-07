@@ -10,6 +10,11 @@
     socioChart.remove()
     immoChart.remove()
 
+    const bars_tooltips = document.getElementsByClassName('d3_tooltip') || []
+    Array.from(bars_tooltips).forEach(function (tooltip) {
+      tooltip.remove()
+    })
+
     populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: 800, height: 150})
     socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: 800, height: 150})
     immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: 800, height: 150})
