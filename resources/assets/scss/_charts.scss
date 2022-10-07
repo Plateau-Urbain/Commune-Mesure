@@ -12,9 +12,8 @@
         font-size: $size-3;
         margin-right: $size-2;
 
-        &:nth-of-type(4n+1) { color: #cb4f4a; }
-        &:nth-of-type(4n+2) { color: #df9f8d; }
-        &:nth-of-type(4n+3) { color: #64616c; }
-        &:nth-of-type(4n+4) { color: #262631; }
+        &:nth-of-type(3n+1) { color: #cb4f4a; }
+        &:nth-of-type(3n+2) { color: #df9f8d; }
+        &:nth-of-type(3n+3) { color: #262631; }
     }
 }
