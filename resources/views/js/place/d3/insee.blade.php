@@ -145,6 +145,7 @@
            .attr("height", y.bandwidth() - 5)
            .attr("stroke", "black")
            .attr("stroke-width", 1)
+           .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
           .on("mouseover", function() { return tooltip.style("visibility", "visible") })
           .on("mousemove", function(d) {
@@ -165,6 +166,7 @@
           .attr("text-anchor", "start") // text-align: right
           .text(function (d) { const v = Math.round(d[1] - d[0]); return (v >= 10) ? v + "%" : '' })
             .attr("fill", "#000")
+            .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
     const legend = svg.selectAll('legend')
       .data(subgroups)
