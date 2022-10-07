@@ -13,7 +13,7 @@
 <div class="columns is-multiline">
     @foreach($place->getAccessibilite() as $accessibilite => $check)
       @if($check )
-        <span class="ml-3 cm-icons-container column is-2">
+        <span class="ml-3 cm-icons-container column is-3">
           <i class="cm-icons {{ $accessibilite_icons[$accessibilite] }} mr-1"></i>
           <br/>{{ $accessibilite }}
         </span>

@@ -13,17 +13,17 @@
 @endphp
 
 <h4 class="is-size-4 has-text-primary no-border is-uppercase">
-Publics
-@include('components.modals.modalEdition', ['chemin' => 'blocs->accessibilite->donnees->publics', 'id_section' => 'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
+  Publics
+  @include('components.modals.modalEdition', ['chemin' => 'blocs->accessibilite->donnees->publics', 'id_section' => 'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
 </h4>
 
 <div class="columns is-multiline">
-    @foreach($place->getPublics() as $public => $check)
-      @if($check )
-        <span class="ml-3 cm-icons-container column is-2">
-          <i class="cm-icons {{ $public_icons[$public] }} mr-1"></i>
-          <br/>{{ $public }}
-        </span>
-      @endif
-    @endforeach
+  @foreach($place->getPublics() as $public => $check)
+    @if($check )
+      <span class="ml-3 cm-icons-container column is-3">
+        <i class="cm-icons {{ $public_icons[$public] }} mr-1"></i>
+        <br/>{{ $public }}
+      </span>
+    @endif
+  @endforeach
 </div>
