@@ -1,8 +1,8 @@
 @isset ($place->get('reseaux_sociaux->donnees')->web)
-  <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link">Site web</a>
+  <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link is-size-5">Site web</a>
 @endif
 
-<ul class="list-undotted is-hidden-print">
+<ul class="list-undotted is-hidden-print is-size-5">
   <li>|</li>
   @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
     @if ($name === 'web') @continue @endif
