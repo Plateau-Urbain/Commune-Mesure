@@ -12,10 +12,10 @@
   ];
 @endphp
 
-<h4 class="is-size-4 has-text-primary no-border is-uppercase">
+<h5 class="is-size-5 has-text-primary no-border is-uppercase">
   Publics
   @include('components.modals.modalEdition', ['chemin' => 'blocs->accessibilite->donnees->publics', 'id_section' => 'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
-</h4>
+</h5>
 
 <div class="columns is-multiline">
   @foreach($place->getPublics() as $public => $check)

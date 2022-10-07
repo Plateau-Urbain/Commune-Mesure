@@ -8,7 +8,7 @@
     </div>
 
     <div class="column is-4 is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="is-size-4 has-text-primary no-border is-uppercase">La composition</h4>
+      <h4 class="title has-text-primary no-border is-uppercase">La composition</h4>
       <p>Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
       <div class="columns mt-2">
