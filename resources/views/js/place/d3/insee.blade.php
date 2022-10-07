@@ -10,7 +10,7 @@
     socioChart.remove()
     immoChart.remove()
 
-    const bars_tooltips = document.getElementsByClassName('d3_tooltip') || []
+    const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
     Array.from(bars_tooltips).forEach(function (tooltip) {
       tooltip.remove()
     })
@@ -125,7 +125,7 @@
     const tooltip = d3.select('body')
                       .append('div')
                       .attr('id', 'tooltip-barchar-'+Math.random().toString(36).slice(2))
-                      .attr('class', 'd3_tooltip')
+                      .attr('class', 'd3_tooltip bar')
                       .attr('style', 'position: absolute; visibility: hidden');
 
     // axe y
