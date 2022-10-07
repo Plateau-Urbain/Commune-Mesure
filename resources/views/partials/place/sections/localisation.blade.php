@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column is-5 is-flex is-align-self-center is-justify-content-end">
       <div>
-        <h4 class="title is-4 has-text-primary no-border is-uppercase">Localisation</h4>
+        <h4 class="title has-text-primary no-border is-uppercase">Localisation</h4>
 
         <p class="has-text-left">
           <a href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">
