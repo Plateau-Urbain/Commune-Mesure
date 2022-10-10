@@ -13,15 +13,8 @@ L.Icon.Default.mergeOptions({
 });
 
 import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
-
 import './images/Commune-Mesure-1.png'
-
-import { animateValue } from '../../public/js/animate.js';
-var values = document.querySelectorAll(".animate-value")
-values.forEach(function (v) {
-    animateValue(v)
-})
-
+import { animateValue } from './js/animate.js';
 import './js/sticky.js'
 
 window.onload = (event) => {

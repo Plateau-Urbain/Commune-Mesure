@@ -12,7 +12,7 @@ L.Icon.Default.mergeOptions({
 });
 
 import { mapjs } from './js/map.js'
-import { animateValue } from '../../public/js/animate.js'
+import { animateValue } from './js/animate.js'
 
 window.onload = (event) => {
     if (document.getElementById('mapid')) {
