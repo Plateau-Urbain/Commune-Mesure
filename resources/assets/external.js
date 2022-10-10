@@ -11,29 +11,29 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'images/marker-shadow.png'
 });
 
-import { mapjs } from '../../public/js/map.js'
+import { mapjs } from './js/map.js'
 import { animateValue } from '../../public/js/animate.js'
 
 window.onload = (event) => {
     if (document.getElementById('mapid')) {
-        var homemap = mapjs.create('mapid', {gestureHandling: true})
-        var markersCluster = L.markerClusterGroup();
-        var groupMarker = [];
-        var markerIcon = L.divIcon({
+        const homemap = mapjs.create('mapid', {gestureHandling: true})
+        const markersCluster = L.markerClusterGroup();
+        const groupMarker = [];
+        const markerIcon = L.divIcon({
             className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive marker-icon-custom',
             html: "<div><span>1</span></div>",
             iconSize: [40, 40],
         });
 
         point.forEach(function (item, index) {
-            var marker = L.marker(item, {icon: markerIcon}).bindPopup(popupviews[index]);
+            const marker = L.marker(item, {icon: markerIcon}).bindPopup(popupviews[index]);
             groupMarker.push(marker);
             markersCluster.addLayer(marker);
         });
 
         if (point.length > 0) {
             homemap.addLayer(markersCluster);
-            var featureGroup = L.featureGroup(groupMarker);
+            const featureGroup = L.featureGroup(groupMarker);
             homemap.fitBounds(featureGroup.getBounds());
         } else {
             homemap.setView(L.latLng(0,0), 1);
