@@ -17,9 +17,9 @@
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 150})
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 150})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 150})
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 200})
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 200})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 200})
   })
 
   const national = {
@@ -79,9 +79,9 @@
     })
   })
 
-  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 150})
-  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 150})
-  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 150})
+  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 200})
+  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 200})
+  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 200})
 
   function BarChart(element, data, {horizontal = true, width = 1200, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 90}
@@ -175,26 +175,49 @@
             .attr("fill", "#000")
             .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
-    const legend = svg.selectAll('legend')
+    const legends = svg.append('g')
+      .selectAll('g')
       .data(subgroups)
-      .enter()
-      .append('circle')
-        .attr('cx', (d, i) => i * (w / subgroups.length))
-        .attr('cy', h)
+      .enter().append('g')
+
+    const legendCircle = legends.append('circle')
         .attr('r', 10)
         .attr('fill', d => color(d))
 
-    const legendlabel = svg.selectAll('label')
-      .data(subgroups.map((s) => data[0].subgroups[s].name))
-      .enter()
-      .append('text')
-        .attr('x', function (d, i) {
-          return 15 + i * (w / subgroups.length)
-        })
-        .attr('y', h + 5)
-        .text((d) => d)
-          .attr("text-anchor", 'left')
-          .style("alignment-baseline", "middle")
+    const legendText = legends.append('text')
+      .text((d) => data[0].subgroups[d].name)
+        .attr('y', 5)
+        .attr('x', 20)
+        .attr("text-anchor", 'left')
+        .style("alignment-baseline", "middle")
+
+    let legends_width = 0
+    let legends_height = h
+
+    legends.each(function () {
+      el = d3.select(this)
+
+      el.attr('transform', function () {
+        const translate = 'translate(%x%,%y%)'
+        const prev = this.previousSibling
+
+        if (prev === null) {
+          legends_width = 0
+          legends_height = h
+          return translate.replace('%x%', 0).replace('%y%', h)
+        }
+
+        const bounds = d3.select(prev).node().getBBox()
+        legends_width += bounds.width + 20
+
+        if (legends_width + d3.select(this).node().getBBox().width > w) {
+          legends_width = 0
+          legends_height -= 30
+        }
+
+        return translate.replace('%x%', legends_width).replace('%y%', legends_height)
+      })
+    })
 
     return svg;
   }
