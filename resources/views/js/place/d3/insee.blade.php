@@ -5,14 +5,12 @@
   const svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
   const svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
 
+  let populationChart
+  let socioChart
+  let immoChart
   let z = 'iris'
 
-  select.addEventListener('change', function (event) {
-    z = event.target.value;
-    populationChart.remove()
-    socioChart.remove()
-    immoChart.remove()
-
+  function drawBars() {
     const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
     Array.from(bars_tooltips).forEach(function (tooltip) {
       tooltip.remove()
@@ -21,6 +19,15 @@
     populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight})
     socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight})
     immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight})
+  }
+
+  select.addEventListener('change', function (event) {
+    z = event.target.value;
+    populationChart.remove()
+    socioChart.remove()
+    immoChart.remove()
+
+    drawBars()
   })
 
   const national = {
@@ -80,9 +87,7 @@
     })
   })
 
-  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight})
-  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight})
-  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight})
+  drawBars()
 
   function BarChart(element, data, {horizontal = true, width = 1200, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 100}
