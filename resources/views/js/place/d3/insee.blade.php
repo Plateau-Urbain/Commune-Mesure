@@ -151,6 +151,7 @@
 
       svgTitle.append('tspan')
               .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 1rem; cursor: pointer')
+              .attr('data-modal', 'modal-insee')
               .classed('bars_param', true)
               .text('\uf013') // gear
 
@@ -246,3 +247,7 @@
     return svg;
   }
 </script>
+
+@push('modals')
+  @include('components/modals/modalInsee')
+@endpush

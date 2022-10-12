@@ -2,7 +2,7 @@
 document.addEventListener('click', function(e) {
     // loop parent nodes from the target to the delegation node
     for (var target = e.target; target && target != this; target = target.parentNode) {
-        if (target.matches('.modal-crayon') || target.matches('#modal-help-btn')) {
+        if (target.matches('.modal-crayon') || target.matches('#modal-help-btn') || target.matches('.bars_param')) {
             ouvrirModale.call(target, e);
             break;
         }
