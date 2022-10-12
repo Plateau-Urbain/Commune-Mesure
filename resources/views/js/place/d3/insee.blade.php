@@ -3,6 +3,7 @@
   const insee = {}
   const select = document.getElementById("selectGeo");
   const svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
+  const svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
 
   let z = 'iris'
 
@@ -17,9 +18,9 @@
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 200})
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 200})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 200})
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight})
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight})
   })
 
   const national = {
@@ -79,9 +80,9 @@
     })
   })
 
-  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: 200})
-  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: 200})
-  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: 200})
+  let populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight})
+  let socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight})
+  let immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight})
 
   function BarChart(element, data, {horizontal = true, width = 1200, height = 100} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 100}
@@ -136,7 +137,7 @@
       .select(".domain").remove()
 
     // bars
-    const niveau = svg.append("g")
+    const niveau = svg.append("g").classed('bars_group', true)
        .selectAll("g")
        .data(stacked)
        .enter().append("g")
@@ -191,8 +192,8 @@
         .attr("text-anchor", 'left')
         .style("alignment-baseline", "middle")
 
-    let legends_width = 0
-    let legends_height = h
+    const legends_width_start = 0
+    const legends_height_start = d3.select('.bars_group').node().getBBox().height + 30
 
     legends.each(function () {
       el = d3.select(this)
@@ -202,17 +203,17 @@
         const prev = this.previousSibling
 
         if (prev === null) {
-          legends_width = 0
-          legends_height = h
-          return translate.replace('%x%', 0).replace('%y%', h)
+          legends_width = legends_width_start
+          legends_height = legends_height_start
+          return translate.replace('%x%', 0).replace('%y%', legends_height)
         }
 
         const bounds = d3.select(prev).node().getBBox()
         legends_width += bounds.width + 20
 
         if (legends_width + d3.select(this).node().getBBox().width > w) {
-          legends_width = 0
-          legends_height -= 30
+          legends_width = legends_width_start
+          legends_height += 30
         }
 
         return translate.replace('%x%', legends_width).replace('%y%', legends_height)
