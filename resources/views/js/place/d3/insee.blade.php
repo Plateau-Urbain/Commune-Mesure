@@ -16,9 +16,9 @@
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight})
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight})
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: "Population"})
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: "Catégories socioprofessionnelles"})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: "Immobilier"})
   }
 
   select.addEventListener('change', function (event) {
@@ -89,10 +89,12 @@
 
   drawBars()
 
-  function BarChart(element, data, {width = 1200, height = 100} = {}) {
+  function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
     const margin = {top: 20, right: 30, bottom: 40, left: 100}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
+
+    const _title = title
 
     // Les différents carrés de la barre
     const subgroups = Object.keys(data[0].subgroups)
@@ -135,6 +137,17 @@
                       .attr('id', 'tooltip-barchar-'+Math.random().toString(36).slice(2))
                       .attr('class', 'd3_tooltip bar')
                       .attr('style', 'position: absolute; visibility: hidden');
+
+    // Titre
+    const svgTitle = svg.append('text')
+      .text(_title)
+      .attr('transform', 'translate(10,-5)')
+      .attr('text-anchor', 'left')
+      .style('font-size', '1.25rem')
+      .style('font-family', 'Renner Black')
+      .style('alignement-baseline', 'middle')
+      .style('text-transform', 'uppercase')
+      .attr('fill', '#262631')
 
     // axe y
     svg.append("g")

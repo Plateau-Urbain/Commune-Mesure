@@ -39,11 +39,11 @@
         </select>
       </div>
     </div>
-    <h3 class="title is-5 no-border is-uppercase mb-0">Population</h3>
+    <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Population</h3>
     <svg id="population-chart" class="mb-5" width="80%" height="30vh"></svg>
-    <h3 class="title is-5 no-border is-uppercase mb-0">Catégories Socioprofessionelles</h3>
+    <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Catégories Socioprofessionelles</h3>
     <svg id="csp-chart" width="80%" height="30vh"></svg>
-    <h3 class="title is-5 no-border is-uppercase mb-0">Immobilier</h3>
+    <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Immobilier</h3>
     <svg id="immobilier-chart" width="80%" height="30vh"></svg>
   </div>
 
