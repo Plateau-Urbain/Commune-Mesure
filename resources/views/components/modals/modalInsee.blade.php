@@ -23,6 +23,9 @@
         </div>
       </div>
     </section>
+    <footer class="modal-card-foot is-block">
+      <button class="button is-success is-pulled-right modal-croix">Fermer</button>
+    </footer>
   </div>
 </div>
 
