@@ -1,5 +1,7 @@
 <script type="text/javascript">
+const graph_superficie_id = 'graph_superficie'
 const tooltip_superficie_id = 'tooltip-superficie';
+const span_superficie_totale = document.getElementById('graph_superficie__superficie_totale')
 
 const width = parseInt(d3.select('svg#graph_superficie').style('width'), 10)
 const height = parseInt(d3.select('svg#graph_superficie').style('height'), 10)
@@ -9,6 +11,26 @@ const superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces
 const superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
 const superficie_bureaux = {{ $place->get('blocs->presentation->donnees->surfaces->bureau') ?: 0 }};
 const superficie_ateliers = {{ $place->get('blocs->presentation->donnees->surfaces->atelier') ?: 0 }};
+
+if (superficie_exterieure + superficie_bureaux + superficie_ateliers > superficie_totale) {
+  const msg = 'Le cumul des superficies ne peut pas dépasser le total'
+  d3.select('#'+graph_superficie_id)
+    .append('text')
+    .attr("x", "50%")
+    .attr("y", "50%")
+    .attr("dominant-baseline", "middle")
+    .attr("text-anchor", "middle")
+    .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 3rem;')
+    .text('\uf071')
+  d3.select('#'+graph_superficie_id)
+    .append('text')
+    .attr("x", "50%")
+    .attr("y", "60%")
+    .attr("dominant-baseline", "middle")
+    .attr("text-anchor", "middle")
+    .text(msg)
+  throw new Error(msg)
+}
 
 var superficie_interieure = superficie_totale - superficie_exterieure;
 var superficie_autres = superficie_interieure - superficie_bureaux - superficie_ateliers;
@@ -229,5 +251,12 @@ d3.select("#graph_superficie")
         if (d == 'superficie_bureaux') return 'Superficie de bureaux';
         if (d == 'superficie_ateliers') return "Superficie d'ateliers";
       })
+
+// On update la superficie totale du titre
+let superficie_totale_titre = 0
+superficie_names.forEach(function (s) {
+  superficie_totale_titre += function_get_superficie(s)
+})
+span_superficie_totale.textContent = superficie_totale_titre
 
 </script>

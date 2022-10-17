@@ -31,7 +31,7 @@
     <div class="column is-6">
       <div class="mx-auto is-block has-text-centered">
         <h4 class="title has-text-primary no-border is-uppercase">Surface</h4>
-        <h6 class="subtitle">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}m² au total</h6>
+        <h6 class="subtitle"><span id="graph_superficie__superficie_totale">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}</span>m² au total</h6>
         <div class="chart-container">
           <svg id="graph_superficie" width="80%" height="500" aria-label="Graphique de la répartition de la superficie" role="img"></svg>
         </div>

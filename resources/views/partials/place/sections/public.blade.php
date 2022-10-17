@@ -8,7 +8,8 @@
     'Personnes âgées' => 'personnes-agees',
     'Personnes habitant sur le site' => 'habitant',
     'Personnes visitant le site' => 'visiteur',
-    'Personnes travaillant sur le site' => 'travailleur'
+    'Personnes travaillant sur le site' => 'travailleur',
+    'Tout le monde' => ''
   ];
 @endphp
 
