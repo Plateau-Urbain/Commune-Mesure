@@ -24,7 +24,6 @@
 @section('script_js')
   @parent
   @include('js.place.insee-graph')
-  @include('js.place.map-insee-js')
   @include('js.place.modals')
   @include('js.place.d3')
   @include('js.place.scrollspy')
