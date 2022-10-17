@@ -1,4 +1,4 @@
-<section id="impact_social" class="fond-bleu is-flex is-flex-direction-column is-justify-content-center" style="min-height: 90vh">
+<section id="impact_social" class="fond-bleu is-flex is-flex-direction-column is-justify-content-center content-block">
   <div class="columns">
     <div class="column is-3 is-offset-2">
       <h4 class="is-size-4 has-text-primary no-border is-uppercase">L'impact social</h4>
