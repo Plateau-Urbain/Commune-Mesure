@@ -18,6 +18,7 @@ import { animateValue } from './js/animate.js';
 import './js/sticky.js'
 
 window.onload = (event) => {
+    // Carte page d'accueil
     if (document.getElementById('mapid')) {
         const homemap = mapjs.create('mapid', {gestureHandling: true})
         const markersCluster = L.markerClusterGroup();
@@ -48,6 +49,7 @@ window.onload = (event) => {
         animateValue(v)
     })
 
+    // Cartes listing des lieux
     document.querySelectorAll("div.map-place").forEach(nodeMap => {
         var id = nodeMap.getAttribute("id");
         var mapnode = document.getElementById(id);
@@ -68,6 +70,7 @@ window.onload = (event) => {
         mapPlace.dragging.disable()
     })
 
+    // Carte d'un lieu
     if (document.getElementById('section-map')) {
         var mapplace = mapjs.create('section-map', {
             gestureHandling: false,
