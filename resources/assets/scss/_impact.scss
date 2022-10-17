@@ -1,5 +1,3 @@
-@import "bulma/bulma.sass";
-
 $impact-font: #3C3B4B;
 
 $blue-background: #DEEBEE;
@@ -21,7 +19,7 @@ $title-gray: #3A3C49;
     @include until($desktop) {
         padding: 0 20px;
     }
-    
+
     h1 {
         color: $red-theme;
         text-transform: uppercase;
@@ -98,7 +96,7 @@ $title-gray: #3A3C49;
                     flex-grow: 1;
                     height: 120px;
                     width: 50%;
-                    
+
                     img {
                         width: 100px !important;
                     }
