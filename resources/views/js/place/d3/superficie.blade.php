@@ -46,14 +46,14 @@ var function_superficie_height = function(d) {
     if (d == 'superficie_ateliers') return function_superficie_height('superficie_autres') - function_superficie_height('superficie_bureaux');
 }
 
-const superficie_colors = ['#e9c3b7', '#f5e6dd', '#ea7a6c'];
+const superficie_colors = ['#90bd95','#e9c3b7', '#f5e6dd', '#ea7a6c', '#f9f7f4'];
 
 var function_superficie_fill = function(d) {
-    if (d == 'superficie_exterieur') return d3.rgb('#90bd95');
-    if (d == 'superficie_ateliers') return d3.rgb(superficie_colors[0]);
-    if (d == 'superficie_bureaux') return d3.rgb(superficie_colors[1]);
-    if (d == 'superficie_autres') return d3.rgb(superficie_colors[2]);
-    return d3.rgb('#f9f7f4');
+    if (d == 'superficie_exterieur') return d3.rgb(superficie_colors[0]);
+    if (d == 'superficie_ateliers') return d3.rgb(superficie_colors[1]);
+    if (d == 'superficie_bureaux') return d3.rgb(superficie_colors[2]);
+    if (d == 'superficie_autres') return d3.rgb(superficie_colors[3]);
+    return d3.rgb(superficie_colors[4]);
 }
 
 var function_superficie_x = function(d) {
