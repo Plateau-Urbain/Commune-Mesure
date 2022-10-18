@@ -3,7 +3,7 @@ import './scss/styles.scss';
 import { mapjs } from './js/map.js'
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import { GestureHandling } from 'leaflet-gesture-handling';
+import { gestureHandling } from 'leaflet-gesture-handling';
 
 L.Icon.Default.imagePath = '/';
 L.Icon.Default.mergeOptions({
@@ -17,7 +17,7 @@ import './images/Commune-Mesure-1.png'
 import { animateValue } from './js/animate.js';
 import './js/sticky.js'
 
-window.onload = (event) => {
+window.onload = () => {
     // Carte page d'accueil
     if (document.getElementById('mapid')) {
         const homemap = mapjs.create('mapid', {gestureHandling: true})
@@ -52,7 +52,6 @@ window.onload = (event) => {
     // Cartes listing des lieux
     document.querySelectorAll("div.map-place").forEach(nodeMap => {
         var id = nodeMap.getAttribute("id");
-        var mapnode = document.getElementById(id);
         var namePlace = id.replace("map_", '');
         if (!geoDataPlace[namePlace]) {
             console.log(namePlace+" not found ("+id+")");
