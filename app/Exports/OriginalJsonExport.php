@@ -80,7 +80,7 @@ class OriginalJsonExport
     private function _setNewFilename(SplFileInfo $originalFilename)
     {
         $f = $originalFilename->getBasename('.'.$originalFilename->getExtension());
-        $this->newFilename = Str::of($f)->slug('-').'.csv';
+        $this->newFilename = Str::of($f)->slug('-').'.typeform.csv';
     }
 
     private function _extract($decoded)
