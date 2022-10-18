@@ -36,5 +36,8 @@ do
     yes | php artisan import:typeform "$i" $FORCE
 done
 
+# On exécute l'export des fichiers
+bash ./concat_files.sh
+
 # On met à jour la page d'accueil
 bash "$CRON_DIR"/cron.sh
