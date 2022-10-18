@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use \stdClass;
+use App\Exports\BDDJsonExport;
 use App\Exports\OriginalJsonExport;
 use App\Models\Place;
 use App\Models\ImpactSocial;
@@ -492,9 +493,17 @@ class ImportTypeForm extends Command
                 Mail::send(new ImportSuccess($place));
                 $this->logger->info('Sent');
 
-                $export = new OriginalJsonExport($f);
-                $export->setExportDir(storage_path('exports'));
-                $export->save();
+                $exportOriginal = new OriginalJsonExport($f);
+                $exportOriginal->setExportDir(storage_path('exports'));
+                $exportOriginal->save();
+
+                $exportBDD = new BDDJsonExport($place->getSlug());
+                $exportBDD->setExportDir(storage_path('exports'));
+                $exportBDD->save();
+
+                $this->logger->info('Place exported to '.storage_path('exports'));
+            } catch (\InvalidArgumentException $e) {
+                $this->logger->emergency('Failed to export : '.$e->getMessage());
             } catch (\ErrorException $e) {
                 $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
@@ -504,7 +513,7 @@ class ImportTypeForm extends Command
         // Import pour la partie Impact Social
         $impact_social_data = $this->build_impact_social_data($schema);
 
-        $place = DB::table('places')->where('id', $import_file->token)->where('type_donnees', 'datapanorama')->firstOrFail();
+        $place = Place::where('id', $import_file->token)->where('type_donnees', 'datapanorama')->firstOrFail();
         $impact = ImpactSocial::where('id', $import_file->token)->where('type_donnees', 'impact')->firstOrNew();
         $impact->place = $place->place;
         $impact->hash_admin = $place->hash_admin;
