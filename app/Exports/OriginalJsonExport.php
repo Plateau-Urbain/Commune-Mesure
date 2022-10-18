@@ -94,6 +94,10 @@ class OriginalJsonExport
             $currentCategorieId = $categorie->id;
             $currentCategorie   = trim($categorie->title);
 
+            if (property_exists($categorie, 'group') === false) {
+                continue;
+            }
+
             foreach ($categorie->group->answers as $question) {
                 $typeQuestion = $question->type;
 
