@@ -78,7 +78,7 @@ class FusionOriginalEtBase extends Command
         // 2 : id, 4 : réponse
         $bdd_answer_indexed_by_id = array_column($array_bdd, 4, 2);
 
-        $export = new SplFileObject(storage_path('exports').'/'.$json->getBasename('.' . $json->getExtension()).'.diff.csv', 'w');
+        $export = new SplFileObject(storage_path('exports').'/'.$json->getBasename('.typeform.' . $json->getExtension()).'.diff.csv', 'w');
 
         foreach ($array_json as $line) {
             if ($line[0] === null) continue;
