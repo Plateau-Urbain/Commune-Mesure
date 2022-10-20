@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\PlaceUpdate;
 use App\Models\Place;
 use App\Models\Section;
+use App\Services\Batiment;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -15,6 +16,13 @@ use Laravel\Lumen\Http\Redirector;
 class PlaceController extends Controller
 {
     const export = ['image', 'pdf'];
+
+    private $batiment;
+
+    public function __construct(Batiment $batiment)
+    {
+        $this->batiment = $batiment;
+    }
 
     public function show($slug)
     {
@@ -32,7 +40,10 @@ class PlaceController extends Controller
         $isEmpty = $place->getIsEmpty();
         $this->sortDataInsee($place->getData());
 
-        return view('place.show', compact('place', 'sections', 'isEmpty'));
+        $batiment = $this->batiment;
+        $batiment->init($place);
+
+        return view('place.show', compact('place', 'sections', 'isEmpty', 'batiment'));
     }
 
     public function list(Place $place)
@@ -73,8 +84,10 @@ class PlaceController extends Controller
         // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
 
+        $batiment = $this->batiment;
+        $batiment->init($place);
 
-        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty'));
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment'));
     }
 
     /**

@@ -1,35 +1,3 @@
-@php
-  $decors = glob(rtrim(resource_path('assets/images/batiment/decors'), '/').'/*.svg');
-  $decors = array_map('basename', $decors);
-  $themes = $place->get('blocs->presentation->donnees->thematiques');
-  $toits_gauches  = ['TOIT1', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
-  $toits_droites  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
-
-  $theme2key = [
-    'Accueil' => 'THEME_ACCUEIL',
-    'Artisanat' => 'THEME_ARTISANAT',
-    'Convivialité' => 'THEME_CONVIVIALITE',
-    'Coworking' => 'THEME_COWORKING',
-    'Recyclage' => 'THEME_RECYCLAGE',
-  ];
-
-  $thematiques = [];
-  if ($themes) {
-    foreach($themes as $t) {
-      $thematiques[] = (isset($theme2key[$t])) ? $theme2key[$t] : $t;
-    }
-  }
-  for ($i = count($thematiques) ; $i < 3 ; $i++ ) {
-    $thematiques[] = '';
-  }
-
-  mt_srand(crc32($place->get('name')));
-  shuffle($thematiques);
-  shuffle($decors);
-  shuffle($toits_gauches);
-  shuffle($toits_droites);
-@endphp
-
 <svg
    width="240mm"
    height="180mm"
@@ -73,12 +41,12 @@
   </defs>
 
   <g>
-    <x-svg :path="'assets/images/batiment/decors/'.$decors[0]" class="" transform="translate(0, 120)" width=60 height=60 />
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(0)" class="" transform="translate(0, 120)" width=60 height=60 />
   </g>
 
   @for ($i = 0 ; $i < 3 ; $i++)
     @php
-      $t = $thematiques[$i];
+      $t = $batiment->getThematique($i);
       if ($t == '') { continue;}
     @endphp
 
@@ -104,9 +72,9 @@
     </g>
   @endfor
 
-  <x-svg :path="'assets/images/batiment/decors/'.$decors[1]" class="" transform="translate(180, 120)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$toits_droites[0].'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$toits_gauches[0].'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(1)" class="" transform="translate(180, 120)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$batiment->getToit('droite').'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
+  <x-svg :path="'assets/images/batiment/'.$batiment->getToit('gauche').'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
 
   </g>
 </svg>
