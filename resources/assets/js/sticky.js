@@ -7,10 +7,6 @@ const scrollspies = document.querySelectorAll('[data-spy]')
 // Span de texte à changer
 const scrolltitle = document.getElementById('sticky-section')
 
-if (scrolltitle === null) {
-    throw new Error('Section title not found')
-}
-
 const activate = function (elem) {
     // On met le titre du dataset dans la section
     const title = elem.dataset.spy
@@ -27,7 +23,7 @@ const callback = function(entries) {
     })
 }
 
-if (scrollspies.length > 0) {
+if (scrollspies.length > 0 && scrolltitle !== null) {
     const y = Math.round(window.innerHeight * ratio)
     const observer = new IntersectionObserver(callback, {
         // Ligne de 1 px de hauteur qui trigger l'intersection
