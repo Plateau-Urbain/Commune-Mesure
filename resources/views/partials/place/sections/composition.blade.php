@@ -1,15 +1,18 @@
 <section id="composition" class="content-block">
-  <div class="columns" style="height: 100%;">
+  <div class="columns">
+    <h4 class="title has-text-primary no-border is-uppercase is-hidden-tablet">La composition</h4>
+    <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
+
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-end">
       <div class="is-flex is-flex-direction-column is-align-items-center">
-        <svg id="waffle" width=500 height=500 aria-label="Graphique répartition par structure" role="img"></svg>
+        <svg id="waffle" width="100%" height=500 aria-label="Graphique répartition par structure" role="img"></svg>
         <h6 class="subtitle is-6">Type de structures participant au projet</h6>
       </div>
     </div>
 
-    <div class="column is-4 is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="title has-text-primary no-border is-uppercase">La composition</h4>
-      <p>Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
+    <div class="column is-5 is-flex is-flex-direction-column is-justify-content-center">
+      <h4 class="title has-text-primary no-border is-uppercase is-hidden-mobile">La composition</h4>
+      <p class="is-hidden-mobile">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
       <div class="columns mt-2">
         @if (isset($edit) || $place->get('blocs->presentation->donnees->nombre_occupants') > 0)

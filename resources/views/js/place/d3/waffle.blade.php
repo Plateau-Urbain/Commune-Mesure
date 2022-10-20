@@ -29,7 +29,8 @@
 
   color.domain(Object.keys(waffle_structure))
   carreau_num = Math.floor(Math.sqrt(total_structures)) + 1;
-  carreau_size = Math.floor(height_waffle / carreau_num);
+  if (height_waffle > width_waffle) { waffle_size = width_waffle } else { waffle_size = height_waffle }
+  carreau_size = Math.floor(waffle_size / carreau_num);
 
   Object.keys(waffle_structure).forEach(function (k) {
     const a = Array(waffle_structure[k].data).fill(k, 0)
