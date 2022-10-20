@@ -8,6 +8,7 @@ use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
 use App\Console\Commands\ImportOneValueTypeForm;
 use App\Console\Commands\ImportForAll;
+use App\Console\Commands\PlacesList;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\SetValueForAll;
 use App\Console\Commands\MailSendImportSuccess;
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
+
+        PlacesList::class,
 
         ImportTypeForm::class,
         ImportOneValueTypeForm::class,
