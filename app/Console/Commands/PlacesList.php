@@ -44,7 +44,7 @@ class PlacesList extends Command
             ->where('type_donnees', Place::TYPE_DONNEES_DATAPANORAMA)
             ->get();
 
-        foreach ($all->toArray() as $place) {
+        foreach ($all as $place) {
             $line = [$place->place, $place->name, ($place->deleted_at) ? 'deleted' : 'active'];
             $this->line(
                 implode(';', $line)
