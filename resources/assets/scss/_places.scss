@@ -104,7 +104,7 @@ a[target="_blank"].social-link::after {
     &::before {
         position: absolute;
         content: '';
-        background: url('../images/map-mask.png');
+        background: url('../images/map-mask.png') center center;
         background-size: cover;
         background-repeat: no-repeat;
         width: 100%;
