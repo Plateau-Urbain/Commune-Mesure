@@ -19,12 +19,24 @@
 </h5>
 
 <div class="columns is-multiline">
-  @foreach($place->getPublics() as $public => $check)
-    @if($check )
+  @php $publics = $place->getPublics() @endphp
+  @if (isset($publics['Tout le monde']) && $publics['Tout le monde'])
+    @foreach($public_icons as $public => $icone)
+      @if ($public === 'Tout le monde') continue @endif
+
       <span class="ml-3 cm-icons-container column is-3">
-        <i class="cm-icons {{ $public_icons[$public] }} mr-1"></i>
+        <i class="cm-icons {{ $icone }} mr-1"></i>
         <br/>{{ $public }}
       </span>
-    @endif
-  @endforeach
+    @endforeach
+  @else
+    @foreach($publics as $public => $check)
+      @if($check )
+        <span class="ml-3 cm-icons-container column is-3">
+          <i class="cm-icons {{ $public_icons[$public] }} mr-1"></i>
+          <br/>{{ $public }}
+        </span>
+      @endif
+    @endforeach
+  @endif
 </div>
