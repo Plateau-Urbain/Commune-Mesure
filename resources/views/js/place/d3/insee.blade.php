@@ -173,7 +173,11 @@
          .enter().append("rect")
            .attr("x", function (d) { return x(d[0]) })
            .attr("y", function (d) { return y(d.data.zone) })
-           .attr("width", function (d) { return x(d[1]) - x(d[0]) - 3 })
+           .attr("width", function (d) {
+              let rw = x(d[1]) - x(d[0]) - 3
+              if (rw < 0) rw += 3
+             return rw
+           })
            .attr("height", y.bandwidth() - 5)
            .attr("stroke", "black")
            .attr("stroke-width", 1)
