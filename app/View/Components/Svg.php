@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use DOMDocument;
 use Illuminate\View\Component;
 
 class Svg extends Component
@@ -25,7 +26,7 @@ class Svg extends Component
      */
     public function __construct($path, $class, $transform, $width, $height)
     {
-        $this->svg = new \DOMDocument();
+        $this->svg = new DOMDocument();
         $this->svg->load(resource_path($path));
         $this->svg->documentElement->setAttribute("class", $class);
         $this->svg->documentElement->setAttribute("transform", $transform);
@@ -40,6 +41,20 @@ class Svg extends Component
      */
     public function render()
     {
-        return $this->svg->saveXML($this->svg->documentElement);
+        return function (array $data) {
+            if ($data['slot']->isNotEmpty()) {
+                $el = new DOMDocument();
+                $el->loadXML($data['slot']->toHTML());
+
+                $new = $this->svg->importNode($el->documentElement, true);
+                $g = $this->svg->createElement('g');
+                $g->setAttribute("transform", "translate(80,200)");
+                $g->setAttribute("width", "50%");
+                $g->appendChild($new);
+
+                $this->svg->documentElement->appendChild($g);
+            }
+            return $this->svg->saveXML($this->svg->documentElement);//.$data['slot'];
+        };
     }
 }

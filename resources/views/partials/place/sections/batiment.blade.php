@@ -58,16 +58,18 @@
       @endphp
        transform="translate({{ $x }},{{ $y }})"
       >
-      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width=60 height=60 />
+      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width=60 height=60>
 
-      @if (strpos($t, 'THEME_') === false)
-      <text
-         xml:space="preserve"
-         id="text24635"
-         transform="translate(13, -8)"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3px;line-height:20.4545px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect24637);fill:#c9514a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" >
-         {{ mb_strtoupper($t) }}</text>
-      @endif
+        @if (strpos($t, 'THEME_') === false)
+          <text
+            textLength="80%"
+            style="font-size:3rem;font-weight:bold;text-align:center;fill:#c9514a;">
+            {{ mb_strtoupper($t) }}
+          </text>
+        @endif
+
+      </x-svg>
+
 
     </g>
   @endfor
