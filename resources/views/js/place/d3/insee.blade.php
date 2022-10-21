@@ -32,7 +32,7 @@
 
   const national = {
     activites: {
-      zone: "Données nationales",
+      zone: "Nationales",
       subgroups: [
         {name: "Actif occupé", value: 63.70},
         {name: "Autre inactif", value: 8.70},
@@ -43,7 +43,7 @@
     },
 
     logement: {
-      zone: "Données nationales",
+      zone: "Nationales",
       subgroups: [
         {name: "Appart/Maison inoccupé", value: 0},
         {name: "Appartement", value: 43.71},
@@ -52,7 +52,7 @@
     },
 
     csp: {
-      zone: "Données nationales",
+      zone: "Nationales",
       subgroups: [
         {name: "Agriculteurs exploitants", value: 0},
         {name: "Artisans, Comm., Chefs entr.", value: 1.36},
@@ -77,7 +77,7 @@
       }
 
       insee[type][zone] = {
-        zone: "Données "+zone,
+        zone: zone,
         subgroups: []
       }
 
