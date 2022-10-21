@@ -1,6 +1,6 @@
 <section class="section-place fond-bleu" id="presentation">
   <div class="columns">
-    <div class="is-hidden-desktop column is-flex is-flex-direction-column is-justify-content-center p-5">
+    <div class="is-hidden-tablet column is-flex is-flex-direction-column is-justify-content-center p-5">
       <h4 class="subtitle is-6">{{ $place->get('address->city') }}</h4>
       <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
 
@@ -40,11 +40,11 @@
 
     </div>
 
-    <div class="is-hidden-touch column">
+    <div class="is-hidden-mobile column is-8">
       @include('partials.place.sections.batiment')
     </div>
 
-    <div class="is-hidden-touch column is-4 is-flex is-flex-direction-column is-justify-content-center">
+    <div class="is-hidden-mobile column is-4 is-flex is-flex-direction-column is-justify-content-center">
       <h4 class="subtitle is-6">{{ $place->get('address->city') }}</h4>
       <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
 
