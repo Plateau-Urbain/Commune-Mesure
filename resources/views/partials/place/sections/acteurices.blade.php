@@ -5,7 +5,7 @@
   </h4>
 
   <div class="columns">
-    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-end">
+    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end">
       <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Gouvernance</h5>
       <p>
         partagée avec {{ $place->get('blocs->presentation->donnees->noms_occupants') }}

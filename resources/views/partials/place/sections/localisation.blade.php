@@ -1,6 +1,6 @@
 <section id="accessibilite" class="content-block">
   <div class="columns">
-    <div class="column is-5 is-flex is-align-self-center is-justify-content-end">
+    <div class="column is-5 is-flex is-align-self-center is-justify-content-flex-end">
       <div>
         <h4 class="title has-text-primary no-border is-uppercase">Localisation</h4>
 
