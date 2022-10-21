@@ -40,8 +40,8 @@
        id="rect24637" />
   </defs>
 
-  <g>
-    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(0)" class="" transform="translate(0, 120)" width=60 height=60 />
+  <g transform="translate(0, 120)">
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(0)" class="" transform="" width=60 height=60 />
   </g>
 
   @for ($i = 0 ; $i < 3 ; $i++)
@@ -72,9 +72,16 @@
     </g>
   @endfor
 
-  <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(1)" class="" transform="translate(180, 120)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$batiment->getToit('droite').'.svg'" class="" transform="translate(120, 0)" width=60 height=60 />
-  <x-svg :path="'assets/images/batiment/'.$batiment->getToit('gauche').'.svg'" class="" transform="translate(60, 60)" width=60 height=60 />
-
+  <g transform="translate(180,120)">
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(1)" class="" transform="" width=60 height=60 />
   </g>
+
+  <g transform="translate(120, 0)">
+    <x-svg :path="'assets/images/batiment/'.$batiment->getToit('droite').'.svg'" class="" transform="" width=60 height=60 />
+  </g>
+
+  <g transform="translate(60, 60)">
+    <x-svg :path="'assets/images/batiment/'.$batiment->getToit('gauche').'.svg'" class="" transform="" width=60 height=60 />
+  </g>
+
 </svg>
