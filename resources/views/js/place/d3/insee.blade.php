@@ -140,7 +140,7 @@
 
     // Titre
     const svgTitle = svg.append('text')
-      .text(_title + ' ')
+      .text(_title + '')
       .attr('transform', 'translate(10,-5)')
       .attr('text-anchor', 'left')
       .style('font-size', '1.25rem')
@@ -150,10 +150,19 @@
       .attr('fill', '#262631')
 
       svgTitle.append('tspan')
-              .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 1rem; cursor: pointer')
+              .attr('dx', '10')
+              .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 0.6rem; cursor: pointer')
               .attr('data-modal', 'modal-insee')
               .classed('bars_param', true)
               .text('\uf013') // gear
+
+      svgTitle.append('tspan')
+        .attr('dx', '1')
+        .attr('data-modal', 'modal-insee')
+        .classed('bars_param', true)
+        .style('font-size', '0.6rem')
+        .style('text-transform', 'unset')
+        .text('Configuration')
 
     // axe y
     svg.append("g")
