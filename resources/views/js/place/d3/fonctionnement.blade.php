@@ -1,8 +1,13 @@
 <script type="text/javascript">
   const svg_fonctionnement  = d3.select('svg#financement-budget-doughnut')
-  const fonctionnement_width               = svg_fonctionnement.node().getBoundingClientRect().width
-  const fonctionnement_height              = svg_fonctionnement.node().getBoundingClientRect().height - 100
-  const fonctionnement_margin              = 40
+
+  if (svg_fonctionnement.node() === null) {
+    throw new Error('No fonctionnement chart');
+  }
+
+  const fonctionnement_width  = svg_fonctionnement.node().getBoundingClientRect().width
+  const fonctionnement_height = svg_fonctionnement.node().getBoundingClientRect().height - 100
+  const fonctionnement_margin = 40
 
   const fonctionnement_radius = Math.min(fonctionnement_width, fonctionnement_height) / 2 - fonctionnement_margin
 

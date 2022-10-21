@@ -2,6 +2,10 @@
   const svg_investissement_id = 'svg#investissement-graph'
   const svg = d3.select(svg_investissement_id)
 
+  if (svg.node() === null) {
+    throw new Error('No investissement graph');
+  }
+
   const parea_data = [
       {name: "Fonds privés", value: {{ $place->get('blocs->moyens->donnees->investissement->Fonds privés') ?: 0 }}},
       {name: "Fonds propres", value: {{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés') ?: 0 }}},
