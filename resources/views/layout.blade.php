@@ -29,7 +29,6 @@
         @section('script_js')
           <script src="{{ url('/js/global.js') }}"></script>
           <script src="{{ url('/js/bundle.js') }}"></script>
-          <script src="{{ url('/js/charts.js') }}"></script>
         @show
     </body>
 </html>

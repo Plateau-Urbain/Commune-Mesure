@@ -32,12 +32,12 @@ class PlaceFactory extends Factory
             $attrs = $place->getAttributes();
 
             $place->setSlug($attrs['place']);
-            $place->setData(json_decode($attrs['data']));
+            $place->setData($attrs['data']);
         })->afterCreating(function (Place $place) {
             $attrs = $place->getAttributes();
 
             $place->setSlug($attrs['place']);
-            $place->setData(json_decode($attrs['data']));
+            $place->setData($attrs['data']);
 
             $place->parentSave();
         });

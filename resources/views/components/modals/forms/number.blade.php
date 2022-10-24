@@ -2,7 +2,7 @@
   @foreach($value as $key => $v)
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">{{ $key }} : </label>
+        <label class="label is-capitalized">{{ $key }} : </label>
       </div>
       <div class="field-body">
         <p class="control is-expanded">

@@ -1,8 +1,16 @@
-<ul class="list-dotted is-hidden-print">
+@isset ($place->get('reseaux_sociaux->donnees')->web)
+  <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link is-size-5">Site web</a>
+@endif
+
+<ul class="list-undotted is-hidden-print is-size-5">
+  <li>|</li>
   @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
+    @if ($name === 'web') @continue @endif
     @if ($link || isset($edit))
       <li>
-        <i class="fab fa-{{ $name }} has-text-primary mr-1"></i> <span class="has-text-weight-bold"{!! (! $link) ? ' style="opacity: 0.5"' : '' !!}><a href="{{ ($link) ?: '#' }}" class="social-link" target='_blank'>{{ ucwords($name) }}</a></span>
+        <a href="{{ ($link) ?: '#' }}" class="" target='_blank'>
+          <i class="fab fa-{{ $name }} has-text-primary mr-1"></i>
+        </a>
         @if(isset($edit))
           @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->'.$name, 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier l'adresse du réseau", "description" => "Modifier le réseau ".$name])
         @endif

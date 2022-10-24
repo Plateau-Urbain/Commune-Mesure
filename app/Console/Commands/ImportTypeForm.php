@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use \stdClass;
+use App\Exports\BDDJsonExport;
+use App\Exports\OriginalJsonExport;
 use App\Models\Place;
 use App\Models\ImpactSocial;
 use App\Mail\ImportSuccess;
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Process\Process;
@@ -46,16 +49,23 @@ class ImportTypeForm extends Command
     /**
      * Logger
      *
-     * @var Log
+     * @var LoggerInterface
      */
     protected $logger;
 
     /**
      * answers file
      *
-     * @var string
+     * @var object
      */
     protected $answers;
+
+    /**
+     * token typeform
+     *
+     * @var string
+     */
+    protected $typeformToken;
 
     /**
      * Create a new command instance.
@@ -65,13 +75,21 @@ class ImportTypeForm extends Command
     public function __construct()
     {
         $this->logger = Log::channel('import');
+
+        $token = getenv('TYPEFORM_TOKEN');
+        if ($token === false) {
+            throw new \LogicException('Token typeform non défini. Est-il renseigné dans le fichier .env ?');
+        }
+
+        $this->typeformToken = $token;
+
         parent::__construct();
     }
 
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -82,6 +100,7 @@ class ImportTypeForm extends Command
             throw new \Exception("Schema file does not exists : ".storage_path().$this->schema);
         }
 
+        /** @var string $f */
         $f = $this->argument('file');
         $this->logger->info("Chargement du fichier ".realpath($f));
 
@@ -167,6 +186,15 @@ class ImportTypeForm extends Command
         foreach ($ouvertures_choices as $oc) {
             $new_place->blocs->presentation->donnees->ouverture->$oc = 1;
         }
+
+        $new_place->blocs->presentation->donnees->surfaces = new stdClass;
+        $new_place->blocs->presentation->donnees->surfaces->totale = $this->extract_val($schema->blocs->presentation->donnees->surfaces->totale);
+        $new_place->blocs->presentation->donnees->surfaces->exterieur = $this->extract_val($schema->blocs->presentation->donnees->surfaces->exterieur);
+        $new_place->blocs->presentation->donnees->surfaces->bureau = $this->extract_val($schema->blocs->presentation->donnees->surfaces->bureau);
+        $new_place->blocs->presentation->donnees->surfaces->atelier = $this->extract_val($schema->blocs->presentation->donnees->surfaces->atelier);
+        $new_place->blocs->presentation->donnees->surfaces->agriculture = $this->extract_val($schema->blocs->presentation->donnees->surfaces->agriculture);
+
+        $new_place->blocs->presentation->donnees->thematiques = $this->extract_val($schema->blocs->presentation->donnees->thematiques);
 
         // Accessibilite
         $public_choices = [];
@@ -330,7 +358,15 @@ class ImportTypeForm extends Command
         $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"});
 
         // activites
-        $new_place->activites = $this->extract_val($schema->activites);
+        $new_place->activites = [];
+
+        foreach ($schema->activites as $activite => $val) {
+            $present = $this->extract_val($val);
+
+            if ($present === 'Yes') {
+                $new_place->activites[] = $activite;
+            }
+        }
 
         // geojson
         $new_place->blocs->data_territoire = new stdClass;
@@ -346,7 +382,8 @@ class ImportTypeForm extends Command
         if ($info_photo->file_url && substr($info_photo->file_name, -4) !== '.pdf') {
             $this->logger->info("Found !", ['filename' => $info_photo->file_name]);
 
-            $filename = Str::of($new_place->name.'-'.pathinfo($info_photo->file_name)['filename'])->slug('-').'.'.pathinfo($info_photo->file_name)['extension'];
+            $pathinfo = pathinfo($info_photo->file_name);
+            $filename = Str::of($new_place->name.'-'.$pathinfo['filename'])->slug('-').'.'.($pathinfo['extension'] ?? str_replace('image/', '', mime_content_type($info_photo->filename)));
             $dest_dir = base_path()."/public/images/lieux/originals/";
 
             $file_path = implode(DIRECTORY_SEPARATOR, [
@@ -383,8 +420,8 @@ class ImportTypeForm extends Command
                 $process->run();
 
                 // executes after the command finishes
-                if (!$process->isSuccessful()) {
-                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode(), $process->getExitCodeText())]);
+                if (! $process->isSuccessful()) {
+                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode() ?? 999, $process->getExitCodeText() ?? 'Unknown exit code')]);
                     $this->logger->emergency("Import aborted");
                     throw new ProcessFailedException($process);
                 }
@@ -455,7 +492,19 @@ class ImportTypeForm extends Command
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
                 Mail::send(new ImportSuccess($place));
                 $this->logger->info('Sent');
-            } catch (ErrorException $e) {
+
+                $exportOriginal = new OriginalJsonExport($f);
+                $exportOriginal->setExportDir(storage_path('exports'));
+                $exportOriginal->save();
+
+                $exportBDD = new BDDJsonExport($place->getSlug());
+                $exportBDD->setExportDir(storage_path('exports'));
+                $exportBDD->save();
+
+                $this->logger->info('Place exported to '.storage_path('exports'));
+            } catch (\InvalidArgumentException $e) {
+                $this->logger->emergency('Failed to export : '.$e->getMessage());
+            } catch (\ErrorException $e) {
                 $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
@@ -464,7 +513,7 @@ class ImportTypeForm extends Command
         // Import pour la partie Impact Social
         $impact_social_data = $this->build_impact_social_data($schema);
 
-        $place = DB::table('places')->where('id', $import_file->token)->where('type_donnees', 'datapanorama')->first();
+        $place = Place::where('id', $import_file->token)->where('type_donnees', 'datapanorama')->firstOrFail();
         $impact = ImpactSocial::where('id', $import_file->token)->where('type_donnees', 'impact')->firstOrNew();
         $impact->place = $place->place;
         $impact->hash_admin = $place->hash_admin;
@@ -534,7 +583,7 @@ class ImportTypeForm extends Command
     public function curl($url, $path = null)
     {
         $c = curl_init($url);
-        curl_setopt($c, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.getenv('TYPEFORM_TOKEN')]);
+        curl_setopt($c, CURLOPT_HTTPHEADER, ['Authorization: Bearer '. $this->typeformToken]);
 
         if ($path) {
             curl_setopt($c, CURLOPT_FILE, $path);

@@ -14,8 +14,6 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 
 @import "~bulma/bulma.sass";
 @import "~bulma-carousel/src/sass/index.sass";
-@import "~bulma-switch/src/sass/index.sass";
-@import "~@creativebulma/bulma-tooltip";
 @import "~leaflet/dist/leaflet.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
@@ -29,8 +27,8 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "_places";
 @import "_map";
 @import "_print";
-@import "vendors/easyScrollDots.min.css";
-@import "vendors/aos.css";
+@import "_charts";
+@import "_impact"; // page d'Impact social
 
 // CSS pour le header et footer
 @import "blog"

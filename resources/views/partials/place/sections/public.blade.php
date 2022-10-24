@@ -1,37 +1,42 @@
-<div class="has-text-centered">
-  <p class="mb-5">
-    <strong>Publics</strong>
-    @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->publics','id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
-  </p>
-</div>
-<div class="columns is-multiline fontSize1em" style="justify-content:center;">
-    @foreach($place->getPublics() as $public => $check)
-      @if($public == 'Enfants' && $check )
-        <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Enfants"><i class="cm-icons enfants font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Étudiants' && $check)
-        <span class="is-inline-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Étudiants"><i class="cm-icons student font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Famille' && $check)
-        <span class="is-block ml-3 public-icons has-tooltip-bottom" data-tooltip="Famille"><i class="cm-icons familles font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Handicapés' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Handicapés"><i class="cm-icons fauteuil-roulant font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == "Chercheurs d'emplois" && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Chercheurs d'emplois"><i class="cm-icons chercheur-emploi font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Personnes âgées' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes âgées"><i class="cm-icons personnes-agees font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Personnes habitant sur le site' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes habitant sur le site"><i class="cm-icons habitant font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Personnes visitant le site' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes visitant le site"><i class="cm-icons visiteur font-color-theme mr-1"></i></span>
-      @endif
-      @if($public == 'Personnes travaillant sur le site' && $check)
-        <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Personnes travaillant sur le site"><i class="cm-icons travailleur font-color-theme mr-1"></i></span>
+@php
+  $public_icons = [
+    'Enfants' => 'enfants',
+    'Étudiants' => 'student',
+    'Famille' => 'familles',
+    'Handicapés' => 'fauteuil-roulant',
+    'Chercheurs d\'emplois' => 'chercheur-emploi',
+    'Personnes âgées' => 'personnes-agees',
+    'Personnes habitant sur le site' => 'habitant',
+    'Personnes visitant le site' => 'visiteur',
+    'Personnes travaillant sur le site' => 'travailleur',
+    'Tout le monde' => ''
+  ];
+@endphp
+
+<h5 class="is-size-5 has-text-primary no-border is-uppercase">
+  Publics
+  @include('components.modals.modalEdition', ['chemin' => 'blocs->accessibilite->donnees->publics', 'id_section' => 'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
+</h5>
+
+<div class="columns is-multiline">
+  @php $publics = $place->getPublics() @endphp
+  @if (isset($publics['Tout le monde']) && $publics['Tout le monde'])
+    @foreach($public_icons as $public => $icone)
+      @if ($public === 'Tout le monde') @continue @endif
+
+      <span class="ml-3 cm-icons-container column is-3">
+        <i class="cm-icons {{ $icone }} mr-1"></i>
+        <br/>{{ $public }}
+      </span>
+    @endforeach
+  @else
+    @foreach($publics as $public => $check)
+      @if($check )
+        <span class="ml-3 cm-icons-container column is-3">
+          <i class="cm-icons {{ $public_icons[$public] }} mr-1"></i>
+          <br/>{{ $public }}
+        </span>
       @endif
     @endforeach
+  @endif
 </div>

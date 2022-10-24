@@ -117,7 +117,6 @@ h2.title{
 .section-place{
   padding: 0;
   padding-bottom: 30px;
-  border-top:2px solid black;
 }
 
 .accessibilite{
@@ -487,10 +486,7 @@ svg {
         display: block;
     }
 }
-//icon public:hover
-.public-icons > i{
-  font-size: 2em;
-}
+
 #i-childText, #i-familyText, #i-graduateText{
   opacity: 0;
   transition:opacity .5s ease;
@@ -700,10 +696,6 @@ p.partenaires_text{
 	color: #262631;
 }
 
-#map-insee {
-	position: sticky!important;
-}
-
 .map-fullwidth {
     width: 100%;
     min-height: 500px;
@@ -719,10 +711,9 @@ p.partenaires_text{
 }
 
 .valeurs{
-  text-transform: uppercase;
-  // color:#e85048;
-  font-size:30px;
-  color:black;
+  font-size: 1.875rem;
+  color: $black;
+  font-weight: bold;
 }
 .labelpopup
 {

@@ -1,25 +1,17 @@
-<div class="has-text-centered">
-  <p class="mb-5">
-  <strong>Accès</strong>
-  @include('components.modals.modalEdition',['chemin'=>'blocs->accessibilite->donnees->transports', 'id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les moyens de transports accessibles',"description"=>"L'accessibilité du lieu en transports en commun"])
-  </p>
-</div>
-<div class="columns is-multiline fontSize1em" style="justify-content:center;">
+@inject('str', Illuminate\Support\Str::class)
+
+<h4 class="subtitle is-5">
+  Accès
+  @include('components.modals.modalEdition', ['chemin'=>'blocs->accessibilite->donnees->transports', 'id_section'=>'accessibilite','type' => 'checkbox','titre' => 'Modifier les moyens de transports accessibles',"description"=>"L'accessibilité du lieu en transports en commun"])
+</h4>
+
+<div class="columns is-multiline">
   @foreach($place->getTransports() as $transport => $check)
-    @if($transport == 'Bus' && $check)
-      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Bus"><i class="cm-icons bus font-color-theme mr-1"></i></span>
-    @endif
-    @if($transport == 'Métro' && $check)
-      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Métro"><i class="cm-icons metro font-color-theme mr-1"></i></span>
-    @endif
-    @if($transport == 'Train' && $check)
-      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Train"><i class="cm-icons train font-color-theme mr-1"></i></span>
-    @endif
-    @if($transport == 'Vélo' && $check)
-      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Vélo"><i class="cm-icons velo font-color-theme mr-1"></i></span>
-    @endif
-    @if($transport == 'Voiture' && $check)
-      <span class="ml-3 public-icons has-tooltip-bottom" data-tooltip="Voiture"><i class="cm-icons voiture font-color-theme mr-1"></i></span>
+    @if ($check)
+      <span class="ml-3 cm-icons-container">
+        <i class="cm-icons {{ $str->slug($transport) }} mr-1"></i>
+        <br/>{{ $transport }}
+      </span>
     @endif
   @endforeach
 </div>

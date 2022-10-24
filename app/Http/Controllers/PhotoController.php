@@ -45,7 +45,7 @@ class PhotoController extends Controller
             abort(415, 'File too large. Max file size is : '.$file->getMaxFilesize());
         }
 
-        $filename = Str::slug($file->getFilename()).'-'.Str::random(6).'.'.$file->guessExtension();
+        $filename = Str::slug($file->getClientOriginalName()).'-'.Str::random(6).'.'.$file->guessExtension();
 
         try {
             $file->move(self::DEST_DIR, $filename);

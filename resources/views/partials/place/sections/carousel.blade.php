@@ -1,12 +1,12 @@
-<h2 class="sous-banner">GALERIE
+<p class='description-section has-text-centered'>
   @if(isset($edit))
     <span class="icon-edit">
-      @include('components.modals.modalEdition', ['action' => 'photo.add', 'chemin' => 'galerie->donnees', 'id_section' => 'galerie', 'type' => 'file', 'titre' => "Modifier la galerie", 'description' => "Ajoutez ou supprimez des photos du lieu"])
+      @include('components.modals.modalEdition', ['action' => 'photo.add', 'chemin' => 'galerie->donnees', 'id_section' => 'galerie', 'type' => 'file', 'titre' => "Modifier la galerie", 'description' => "Ajoutez ou supprimez des photos du lieu. (Taille minimale recommandée de 1000x500)"])
     </span>
   @endif
-</h2>
-<p class='description-section has-text-centered'>Des photos du lieu !</p>
-<div class="container carousel-container with-padding column is-6 has-text-centered">
+</p>
+
+<div class="container carousel-container m-0">
     @php $array_photos = $place->getPhotos(); @endphp
     @unless(empty($array_photos))
     <div id="place-carousel" class="carousel" data-navigation=1>

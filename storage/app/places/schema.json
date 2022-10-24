@@ -35,6 +35,13 @@
         "date_creation": "fl785vLXdAeG|6VH5xDDCNuao|date|value",
         "date_fermeture": "",
         "surface": "xztSD2Mp5EyC|ra8TVKu7zYVf|number|value",
+        "surfaces": {
+            "totale": "xztSD2Mp5EyC|ra8TVKu7zYVf|number|value",
+            "exterieur": "xztSD2Mp5EyC|r9BD5Qib0eCe|number|value",
+            "bureau": "n4Vdx42uSdT6|3OeKV6Jj0k3Q|number|value",
+            "atelier": "n4Vdx42uSdT6|RTYNfhVxaWu6|number|value",
+            "agriculture": "n4Vdx42uSdT6|glqWcbLZGTFx|number|value"
+        },
         "emplois directs": [
             "fa8efNkcBzYw|1AIl8uOoVEtR|short_text|value",
             "fa8efNkcBzYw|3wtwTYQkgdWH|short_text|value",
@@ -45,7 +52,8 @@
         "natures_partenariats": {
           "public": "fzsbr9WEujZQ|6hlzKEgTo7xK|multiple_choice|choices",
           "prive": "fzsbr9WEujZQ|M0cFEFMZpA0F|multiple_choice|choices"
-        }
+        },
+        "thematiques": "fl785vLXdAeG|vl4Po9Wq6neT|multiple_choice|choices"
       }
     },
     "accessibilite": {
@@ -164,5 +172,25 @@
       "personnes accueillies": "n4Vdx42uSdT6|RHP4XSk3xRTN|number|value"
     }
   },
-  "activites": "fl785vLXdAeG|vl4Po9Wq6neT|multiple_choice|choices"
+  "activites": {
+      "Hébergement": "n4Vdx42uSdT6|5rU3ZT7ki5vE|yes_no|value",
+      "Évènement public": "n4Vdx42uSdT6|QVnunPJCnI15|yes_no|value",
+      "Évènement privé": "n4Vdx42uSdT6|yySgjUJjp3qO|yes_no|value",
+      "Bureau": "n4Vdx42uSdT6|brVvcBwoZKkt|yes_no|value",
+      "Atelier": "n4Vdx42uSdT6|Pzbl6GTxGZsx|yes_no|value",
+      "Agriculture": "n4Vdx42uSdT6|2789V8KFQrAR|yes_no|value",
+      "Activité loisir": "n4Vdx42uSdT6|akgUjqSITYF5|yes_no|value",
+      "Activité artistique": "n4Vdx42uSdT6|Df6h5Qk6AUgk|yes_no|value",
+      "Activité sportive": "n4Vdx42uSdT6|nHnE5w7V2teD|yes_no|value",
+      "Fablab": "n4Vdx42uSdT6|4rKjKWUsJtL1|yes_no|value",
+      "Ressourcerie": "n4Vdx42uSdT6|vzjmc6rMf8Z4|yes_no|value",
+      "Circuit court": "n4Vdx42uSdT6|D76Vf4AdQhEG|yes_no|value",
+      "Médiateur": "9ZTr98YUYiFf|jIyijGQOtEet|yes_no|value",
+      "Conciergerie": "9ZTr98YUYiFf|EGhF49pvijOA|yes_no|value",
+      "Activité gratuite": "9ZTr98YUYiFf|TGpztlTVBAC1|yes_no|value",
+      "Activité au tarif adapté": "9ZTr98YUYiFf|SwgifJ0GpFzI|yes_no|value",
+      "Structures sociales": "9ZTr98YUYiFf|H2QYmrRWpojs|yes_no|value",
+      "Service de proximité": "9ZTr98YUYiFf|INbCkfZNmYEc|yes_no|value",
+      "Accueil personnes précaires": "9ZTr98YUYiFf|VSX8Gxwxsijg|yes_no|value"
+  }
 }

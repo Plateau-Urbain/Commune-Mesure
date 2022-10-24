@@ -47,7 +47,11 @@ class SetValue extends Command
         }
 
         $value = $this->argument('value');
-        if (is_file($value)) {
+
+        if ($value === '[]') {
+            $this->info('Transformation en array');
+            $value = [];
+        } elseif (is_array($value) === false && is_file($value)) {
             $value = json_decode(file_get_contents($value));
         }
 

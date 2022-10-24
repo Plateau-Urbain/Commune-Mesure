@@ -2,6 +2,7 @@
   <h2 class="sous-banner">Le lieu dans son territoire</h2>
 </div>
 <p class='description-section'> Les grandes données socio-économiques du territoire dans lequel le lieu s'inscrit</p>
+
 <div class="section">
   <div class="columns">
     <div class="column has-text-centered is-half is-offset-one-quarter">
@@ -29,9 +30,12 @@
     <div class="column is-two-thirds-desktop is-full-mobile">
       <div class="columns">
         <div class="column">
-          <div id="actifsChart"></div>
-          <div id="cateChart"></div>
-          <div id="immoChart"></div>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Population</h3>
+          <svg id="population-chart" class="mb-5"></svg>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Catégories Socioprofessionelles</h3>
+          <svg id="csp-chart"></svg>
+          <h3 class="title is-5 no-border is-uppercase mb-0">Immobilier</h3>
+          <svg id="immobilier-chart"></svg>
         </div>
       </div>
     </div>

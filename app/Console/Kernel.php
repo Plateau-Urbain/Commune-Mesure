@@ -6,8 +6,15 @@ use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
+use App\Console\Commands\ImportOneValueTypeForm;
+use App\Console\Commands\ImportForAll;
+use App\Console\Commands\PlacesList;
 use App\Console\Commands\SetValue;
+use App\Console\Commands\SetValueForAll;
 use App\Console\Commands\MailSendImportSuccess;
+use App\Console\Commands\Export\OriginalToCsv;
+use App\Console\Commands\Export\PlaceToCsv;
+use App\Console\Commands\Export\FusionOriginalEtBase;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -22,9 +29,21 @@ class Kernel extends ConsoleKernel
         LoadIrisGeoJson::class,
         GenerateHashAdmin::class,
         KeyGenerateCommand::class,
+
+        PlacesList::class,
+
         ImportTypeForm::class,
+        ImportOneValueTypeForm::class,
+        ImportForAll::class,
+
         SetValue::class,
-        MailSendImportSuccess::class
+        SetValueForAll::class,
+
+        MailSendImportSuccess::class,
+
+        OriginalToCsv::class,
+        PlaceToCsv::class,
+        FusionOriginalEtBase::class
     ];
 
     /**
@@ -35,6 +54,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        // header et footer du wordpress
+        $schedule->exec('bash bin/scrape.sh > /dev/null')->everyThirtyMinutes()
+                                                         ->emailOutputOnFailure(env('CRON_MAIL'));
+
+        // import des lieux depuis Typeform
+        $schedule->exec('bash bin/import.sh > /dev/null')->hourly()
+                                                         ->withoutOverlapping()
+                                                         ->runInBackground()
+                                                         ->emailOutputOnFailure(env('CRON_MAIL'));
+
     }
 }

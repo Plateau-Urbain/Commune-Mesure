@@ -8,9 +8,10 @@
 }
 
 .map-place {
-    display: inline-block;
-    height: 230px;
-    width: 345px;
+    display: block;
+    height: 250px;
+    width: 100%;
+    margin: auto;
 }
 
 li.tags{
@@ -52,15 +53,15 @@ li.tags{
   align-items: center;
 }
 
-ul.list-dotted {
+ul.list-undotted {
     & > li {
 
         display: inline-block;
-        margin: 0px 5px;
+        margin: 0px 3px;
 
         &:not(:last-child):after {
-            padding-left: 5px;
-            content: '●';
+            padding-left: 3px;
+            content: ' ';
         }
     }
 }
@@ -69,4 +70,49 @@ a[target="_blank"].social-link::after {
     margin-left: 0.5em;
     font-family: "Font Awesome 6 Free";
     content: "\f35d";
+}
+
+.sticky {
+    position: sticky;
+    top: 3.25rem;
+    z-index: 999;
+    display: none;
+    margin-bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    background-color: $light-blue;
+
+    h1 {
+        font-size: 1.25em;
+        margin: 0;
+
+        .sticky-separator {
+            color: $primary;
+        }
+
+        .sticky-section {
+            color: $primary;
+        }
+    }
+}
+
+.bg-fil {
+    background: url('../images/Ligne4.svg') center center no-repeat;
+}
+
+.mask {
+    &::before {
+        position: absolute;
+        content: '';
+        background: url('../images/map-mask.png') center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        z-index: 435;
+    }
+}
+
+section.content-block {
+    padding: 150px 1.5rem 2rem 1.5rem;
 }

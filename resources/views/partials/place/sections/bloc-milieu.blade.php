@@ -1,9 +1,4 @@
-<div class="home-head">
-  <figure class="image">
-    <img src="{{ url('/images/roofing.svg') }}">
-  </figure>
-</div>
-<div class="column home-body">
+<div class="column">
   <div class="columns is-mobile">
     <div class="column home-body-left">
       <div class="window very-small edit-milieu">{{ $place->get('blocs->presentation->donnees->nombre_occupants') }} structures occupantes @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->nombre_occupants','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures occupantes",'description' =>"Le nombre de structures exerçant leur activité ou  ayant leurs  locaux au sein du lieu"])</div>
@@ -38,21 +33,7 @@
           emploi direct
         @endif
         @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->emplois directs','id_section'=>'presentation','type' => 'decimal','titre'=>"Modifier le nombre d'emplois directs","description"=>"Nombre d'emplois directement créés par le lieu pour son fonctionnement"])</div>
-      <div class="home-door">
-        <figure class="image">
-          <img src="{{ url('/images/foot_home.svg') }}">
-        </figure>
-      </div>
     </div>
 
-    <div class="column is-one-third has-text-centered home-body-right">
-    <figure class="image">
-          <img src="{{ url('/images/groupe_windows.svg') }}">
-        </figure>
-        <figure class="image">
-          <img src="{{ url('/images/groupe_windows.svg') }}">
-        </figure>
-    </div>
   </div>
 </div>
-<div class="home-foot"></div>
