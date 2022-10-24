@@ -132,12 +132,4 @@ class AdminController extends Controller
 
         return redirect(route('admin.view'));
     }
-
-    public function experiments(Request $request)
-    {
-        $place = Place::find('ymca-paris');
-        $activites = ($place->get('activites')) ?: [];
-
-        return view('admin.experiments', compact('activites'));
-    }
 }

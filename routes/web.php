@@ -1,9 +1,10 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Laravel\Lumen\Routing\Router $router */
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use App\Models\Place;
 use App\Mail\ImportSuccess;
@@ -40,8 +41,6 @@ $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/rehash', ['uses' => 'AdminControll
 $router->get('/_admin/{slug}/{auth:[a-z0-9]+}/delete', ['uses' => 'AdminController@delete', 'as' => 'admin.delete']);
 $router->get('/_admin/globalCsv', ['uses' => 'AdminController@globalCsv', 'as' => 'admin.globalCsv']);
 $router->get('/_admin/csv', ['uses' => 'AdminController@csv', 'as' => 'admin.csv']);
-
-$router->get('/_admin/experiments', ['uses' => 'AdminController@experiments']);
 
 $router->get('/external/chiffres', ['uses' => 'ExternalController@chiffres', 'as' => 'chiffres']);
 $router->get('/external/map', ['uses' => 'ExternalController@map', 'as' => 'external.map']);
