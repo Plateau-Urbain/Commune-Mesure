@@ -27,9 +27,10 @@
 
               @if (strpos($t, 'THEME_') === false)
                 <text
-                   textLength="80%"
-                   style="font-size:3rem;font-weight:bold;text-align:center;fill:#c9514a;" >
-                   {{ mb_strtoupper($t) }}
+                  x="50%"
+                  dominant-baseline="middle" text-anchor="middle"
+                  style="font-size:3rem;font-weight:bold;fill:#c9514a;" >
+                  {{ mb_strtoupper($t) }}
                 </text>
               @endif
 
