@@ -17,7 +17,7 @@ import './images/Commune-Mesure-1.png'
 import { animateValue } from './js/animate.js';
 import './js/sticky.js'
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Carte page d'accueil
     if (document.getElementById('mapid')) {
         const homemap = mapjs.create('mapid', {gestureHandling: true})
@@ -86,9 +86,6 @@ window.onload = () => {
       slidesToScroll: 1,
       slidesToShow: 1
     });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
