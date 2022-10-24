@@ -9,7 +9,7 @@
   const fonctionnement_height = svg_fonctionnement.node().getBoundingClientRect().height - 100
   const fonctionnement_margin = 40
 
-  const fonctionnement_radius = Math.min(fonctionnement_width, fonctionnement_height) / 2 - fonctionnement_margin
+  const fonctionnement_radius = Math.min(fonctionnement_width, fonctionnement_height) / 1.4 - fonctionnement_margin
 
   const tooltip_fonctionnement_id = 'tooltip-fonctionnement';
 
@@ -69,7 +69,7 @@
       .data(pieArcData)
       .enter()
       .append('circle')
-      .attr('cx', function(d, i) { return 80 + (i % 2)* fonctionnement_width / 2.5 + 10})
+      .attr('cx', function(d, i) { return 10 + (i % 2)* fonctionnement_width / 2.5 + 10})
       .attr('cy', function(d, i) { return fonctionnement_height + 30 * (1 + Math.floor( i / 2 )) })
       .attr('r', function(d) { return 10})
       .attr('fill', function(d) { return color(d.data.name)})
@@ -79,7 +79,7 @@
       .data(pieArcData)
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return 100 + (i % 2)* fonctionnement_width / 2.5 + 10})
+      .attr('x', function(d, i) { return 25 + (i % 2)* fonctionnement_width / 2.5 + 10})
       .attr('y', function(d, i) { return fonctionnement_height + 33 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .text(function(d) { return d.data.name })
