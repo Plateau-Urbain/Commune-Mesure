@@ -88,8 +88,8 @@ var function_superficie_x = function(d) {
 }
 
 var function_superficie_y = function(d) {
-    if (d == 'superficie_exterieur') return 0;
-    if (d == 'superficie_interieure') return (function_superficie_height('superficie_exterieur') - Math.sqrt(superficie_pc_interieur) * function_superficie_height('superficie_exterieur')) ;
+    if (d == 'superficie_exterieur') return 0 + margin.top;
+    if (d == 'superficie_interieure') return (function_superficie_height('superficie_exterieur') - Math.sqrt(superficie_pc_interieur) * function_superficie_height('superficie_exterieur')) + margin.top;
     if (d == 'superficie_autres') return function_superficie_y('superficie_interieure');
     if (d == 'superficie_bureaux') return function_superficie_y('superficie_interieure');
     if (d == 'superficie_ateliers') return function_superficie_y('superficie_interieure') + function_superficie_height('superficie_bureaux');
@@ -137,7 +137,7 @@ var function_superficie_text_x = function(d) {
 
 var function_superficie_text_y = function(d) {
     if (d == 'superficie_exterieur') {
-        return ((function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') ) / 2 );
+        return ((function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') ) / 2 ) + margin.top;
     }
     return function_superficie_y(d) + function_superficie_height(d) / 2 ;
 }
