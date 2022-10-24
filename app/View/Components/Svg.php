@@ -48,7 +48,7 @@ class Svg extends Component
 
                 $new = $this->svg->importNode($el->documentElement, true);
                 $g = $this->svg->createElement('g');
-                $g->setAttribute("transform", "translate(80,200)");
+                $g->setAttribute("transform", "translate(0,200)");
                 $g->setAttribute("width", "50%");
                 $g->appendChild($new);
 
