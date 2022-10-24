@@ -22,7 +22,7 @@
   @php $publics = $place->getPublics() @endphp
   @if (isset($publics['Tout le monde']) && $publics['Tout le monde'])
     @foreach($public_icons as $public => $icone)
-      @if ($public === 'Tout le monde') continue @endif
+      @if ($public === 'Tout le monde') @continue @endif
 
       <span class="ml-3 cm-icons-container column is-3">
         <i class="cm-icons {{ $icone }} mr-1"></i>
