@@ -12,10 +12,13 @@
         @include('components.modals.modalEdition', ['chemin'=>'blocs->presentation->donnees->noms_occupants','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la gouvernance partagée","description" =>"Les différentes structures impliquées en cas de gouvernance partagée du lieu "])
       </p>
 
-      <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Réseaux</h5>
-      <p>
-        Nom du réseau
-      </p>
+      @if ($place->get('blocs->presentation->donnees->reseaux') || isset($edit))
+        <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Réseaux</h5>
+        <p>
+          {{ $place->get('blocs->presentation->donnees->reseaux') }}
+          @include('components.modals.modalEdition', ['chemin'=>'blocs->presentation->donnees->reseaux', 'id_section'=>'presentation', 'type' => 'text', 'titre' => "Modifier le réseau", 'description' => "Le ou les réseaux auxquels appartient le lieu."])
+        </p>
+      @endif
 
       @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
         <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>

@@ -53,7 +53,8 @@
           "public": "fzsbr9WEujZQ|6hlzKEgTo7xK|multiple_choice|choices",
           "prive": "fzsbr9WEujZQ|M0cFEFMZpA0F|multiple_choice|choices"
         },
-        "thematiques": "fl785vLXdAeG|vl4Po9Wq6neT|multiple_choice|choices"
+        "thematiques": "fl785vLXdAeG|vl4Po9Wq6neT|multiple_choice|choices",
+        "reseaux": "fzsbr9WEujZQ|fBgY8VEmczz6|long_text|value"
       }
     },
     "accessibilite": {
