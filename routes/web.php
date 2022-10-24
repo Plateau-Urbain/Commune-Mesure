@@ -1,9 +1,10 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Laravel\Lumen\Routing\Router $router */
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use App\Models\Place;
 use App\Mail\ImportSuccess;
