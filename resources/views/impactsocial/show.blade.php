@@ -7,7 +7,7 @@
 
 @section('script_js')
 @parent
-<script src="{{ url('/js/readmore.js') }}"></script>
+<script src="{{ url('/js/readmore.js') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}"></script>
 @endsection
 
 @section('content')
