@@ -6,9 +6,9 @@
         @section('meta_share')
         @show
         <title>Commune Mesure</title>
-        <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}" >
+        <link rel="shortcut icon" href="{{ url('/images/logos/commune-mesure-logo.png') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}" >
         @section('head_css')
-            <link rel="stylesheet" href="{{ url('/css/app.css') }}" />
+            <link rel="stylesheet" href="{{ url('/css/app.css') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}" />
         @show
     </head>
     <body>
@@ -27,9 +27,8 @@
         </div>
 
         @section('script_js')
-          <script src="{{ url('/js/global.js') }}"></script>
-          <script src="{{ url('/js/bundle.js') }}"></script>
-          <script src="{{ url('/js/charts.js') }}"></script>
+          <script src="{{ url('/js/global.js') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}"></script>
+          <script src="{{ url('/js/bundle.js') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}"></script>
         @show
     </body>
 </html>
