@@ -116,3 +116,16 @@ a[target="_blank"].social-link::after {
 section.content-block {
     padding: 150px 1.5rem 2rem 1.5rem;
 }
+
+
+.slider-container .slider-item .image.is-contained img {
+    object-fit: contain;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+}
+
+#page-listing-lieux .slider-container .slider-item .image.is-contained {
+    height: 250px;
+    width: auto;
+}

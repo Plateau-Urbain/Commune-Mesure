@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="container">
+    <div id="page-listing-lieux" class="container">
         <div class="hero is-large is-light">
             <section class="section">
                 <h1 class="title is-1 has-text-centered">L’ensemble des lieux recensés</h1>
@@ -16,7 +16,7 @@
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
-                          <figure class="image">
+                          <figure class="image is-contained">
                             <img src="{{ url('/') }}/images/lieux/{{ $photo }}">
                           </figure>
                         @endforeach
