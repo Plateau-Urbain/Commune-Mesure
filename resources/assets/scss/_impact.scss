@@ -29,6 +29,7 @@ $title-gray: #3A3C49;
         margin-top: 50px;
         position: relative;
         line-height: 1.2em;
+        text-align: center;
 
         &::after {
             content: '';
@@ -36,9 +37,15 @@ $title-gray: #3A3C49;
             height: 4px;
             background-color: $blog-black;
             position: absolute;
-            left: 0;
+            left: calc(50% - 10px);
             bottom: -20px;
         }
+    }
+
+    a {
+        width: 200px;
+        display: block;
+        margin: auto;
     }
 }
 

@@ -3,9 +3,11 @@
 <div class="impact-title">
     @section('title')
     <h1>
-        La mesure des impacts<br> sociaux et urbains de {{ $place->get('name') }}
+        Les effets sociaux et urbains<br>de {{ $place->get('name') }}
     </h1>
-    <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button mt-6">Voir son datapanorama</a>
+    <div>
+        <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button mt-6">Voir son datapanorama</a>
+    </div>
     @show
 
     @section('header.submenu')
