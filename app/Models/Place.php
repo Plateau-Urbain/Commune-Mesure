@@ -653,7 +653,7 @@ class Place extends Model
 
             // Dans certaines versions, $request->all() (ou le parametre $inputs)
             // renvoie aussi l'url dans le tableau
-            if (strpos($chemin, '/place/') !== false) {
+            if (strpos($chemin, '/place/') !== false || strpos($chemin, '/impacts/') !== false) {
                 continue;
             }
 

@@ -8,6 +8,7 @@
 @section('script_js')
 @parent
 <script src="{{ url('/js/readmore.js') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}"></script>
+  @include('js.place.modals')
 @endsection
 
 @section('content')
@@ -56,42 +57,54 @@
         <div class="custom-background">
           <h2 class="margin-image">effets individuels</h2>
           <div>
-            @if (!empty($place->get('blocs->impact_social->donnees->lien_social')))
+            @if (!empty($place->get('blocs->impact_social->donnees->lien_social')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/individuel-lien-social.png') }}" alt="lien individuel">
               <div>
                 <h3>Lien social</h3>
-                <p>Entre quels publics avez-vous pu observer des interactions sociales sur le site ?</p>
+                <p>
+                  Entre quels publics avez-vous pu observer des interactions sociales sur le site ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->lien_social', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du lien social", 'description' => "Décrivez le lien social en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->lien_social')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->sante_bien_être')))
+            @if (!empty($place->get('blocs->impact_social->donnees->sante_bien_être')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/sante.png') }}" alt="santé">
               <div>
                 <h3>Santé</h3>
-                <p>Avez-vous pu observer un changement des conditions physiques, sociales ou psychiques chez les bénéficiaires du projet, qui puissent être directement lié au projet ?</p>
+                <p>
+                  Avez-vous pu observer un changement des conditions physiques, sociales ou psychiques chez les bénéficiaires du projet, qui puissent être directement lié au projet ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->sante_bien_être', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la santé et du bien être", 'description' => "Décrivez la santé et le bien être en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->sante_bien_être')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->insertion_professionnelle')))
+            @if (!empty($place->get('blocs->impact_social->donnees->insertion_professionnelle')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/individuel-insertion-pro.png') }}" alt="insertion professionnelle">
               <div>
                 <h3>Insertion professionnelle</h3>
-                <p>Avez-vous mis en place des actions de formation, d’accompagnement à la création d’activité ou à l’emploi ?</p>
+                <p>
+                  Avez-vous mis en place des actions de formation, d’accompagnement à la création d’activité ou à l’emploi ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->insertion_professionnelle')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->capacite_agir')))
+            @if (!empty($place->get('blocs->impact_social->donnees->capacite_agir')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/individuel-capacite-agir.png') }}" alt="capacité à agir">
               <div>
                 <h3>Capacité à agir</h3>
-                <p>De nouveaux projets ou actions (atelier, événement, marché...) imprévus et portés par les bénéficiaires ou occupants ont-il émergé dans le cadre du projet ?</p>
+                <p>
+                  De nouveaux projets ou actions (atelier, événement, marché...) imprévus et portés par les bénéficiaires ou occupants ont-il émergé dans le cadre du projet ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->capacite_agir', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la capacité à agir", 'description' => "Décrivez la capacité à agir en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->capacite_agir')])
               </div>
             </div>
@@ -104,42 +117,54 @@
         <div>
           <h2 class="orange center">effets collectifs</h2>
           <div class="row">
-            @if (!empty($place->get('blocs->impact_social->donnees->solidarite')))
+            @if (!empty($place->get('blocs->impact_social->donnees->solidarite')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/collectif-solidarite.png') }}" alt="collectif solidarite">
               <div>
                 <h3>Solidarité</h3>
-                <p>Y-a-t-il des échanges, dons ou mutualisations entre personnes au sein du projet ?</p>
+                <p>
+                  Y-a-t-il des échanges, dons ou mutualisations entre personnes au sein du projet ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->solidarite', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la solidarité", 'description' => "Décrivez la solidarité en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->solidarite')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->reseaux')))
+            @if (!empty($place->get('blocs->impact_social->donnees->reseaux')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/collectif-reseau.png') }}" alt="effets collectifs">
               <div>
                 <h3>Réseau de personnes</h3>
-                <p>Avez-vous pu observer la création de réseaux de personnes ?</p>
+                <p>
+                  Avez-vous pu observer la création de réseaux de personnes ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du réseaux", 'description' => "Décrivez le réseaux en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->reseaux')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->appartenance_exclusion')))
+            @if (!empty($place->get('blocs->impact_social->donnees->appartenance_exclusion')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/inclusion-exclusion.png') }}" alt="inclusion exclusion">
               <div>
                 <h3>Sentiment d'inclusion ou d'exclusion</h3>
-                <p>Diriez-vous que certaines personnes se sentent faire partie d'un groupe, ou s'en sentent exclus ? Quelles sont les personnes qui pourraient se sentir exclues ?</p>
+                <p>
+                  Diriez-vous que certaines personnes se sentent faire partie d'un groupe, ou s'en sentent exclus ? Quelles sont les personnes qui pourraient se sentir exclues ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->appartenance_exclusion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'appartenance et l'exclusion", 'description' => "Décrivez l'appartenance et l'exclusion en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->appartenance_exclusion')])
               </div>
             </div>
             @endif
-            @if (!empty($place->get('blocs->impact_social->donnees->egalite_homme_femme')))
+            @if (!empty($place->get('blocs->impact_social->donnees->egalite_homme_femme')) || isset($edit))
             <div class="image-start">
               <img src="{{ url('/images/collectif-egalite.png') }}" alt="collectif solidarite">
               <div>
                 <h3>égalité femmes/hommes</h3>
-                <p>Diriez-vous qu'il y a plus, moins ou autant de femmes que d'hommes dans le lieu ?</p>
+                <p>
+                  Diriez-vous qu'il y a plus, moins ou autant de femmes que d'hommes dans le lieu ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme", 'description' => "Décrivez l'égalité homme femme en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->egalite_homme_femme')])
               </div>
             </div>
@@ -156,35 +181,47 @@
             </div>
             <div>
               <h2 class="quartier">effets sur le quartier et le territoire</h2>
-              @if (!empty($place->get('blocs->impact_social->donnees->entretien_des_espaces')))
+              @if (!empty($place->get('blocs->impact_social->donnees->cadre_de_vie')) || isset($edit))
                 <h3>Cadre de vie et attractivité du quartier</h3>
-                <p>Avez-vous l’impression que le projet a fait évoluer l’image du quartier ou du territoire ?</p>
+                <p>
+                  Avez-vous l’impression que le projet a fait évoluer l’image du quartier ou du territoire ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du cadre de vie", 'description' => "Décrivez le cadre de vie en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->cadre_de_vie')])
                 <br>
               @endif
-              @if (!empty($place->get('blocs->impact_social->donnees->entretien_des_espaces')))
+              @if (!empty($place->get('blocs->impact_social->donnees->entretien_des_espaces')) || isset($edit))
                 <h3>Entretien des espaces</h3>
-                <p>Le projet a-t-il modifié la gestion urbaine du quartier par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...) ?</p>
+                <p>
+                  Le projet a-t-il modifié la gestion urbaine du quartier par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...) ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'entretien des espaces", 'description' => "Décrivez l'entretien des espaces en quelques mots"])
+                </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->entretien_des_espaces')])
               @endif
             </div>
           </div>
-          @if (!empty($place->get('blocs->impact_social->donnees->services_publics')))
+          @if (!empty($place->get('blocs->impact_social->donnees->services_publics')) || isset($edit))
           <div class="image-start">
             <img src="{{ url('/images/quartier-service-proximite.png') }}" alt="service de proxmité">
             <div>
               <h3>Services publiques et de proximités</h3>
-              <p>Le projet a-t-il permis de répondre à des besoins sociaux urgents du territoire ?</p>
+              <p>
+                Le projet a-t-il permis de répondre à des besoins sociaux urgents du territoire ?
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des services publics", 'description' => "Décrivez les services publics en quelques mots"])
+              </p>
               @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->services_publics')])
             </div>
           </div>
           @endif
-          @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique')))
+          @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique')) || isset($edit))
           <div class="image-start">
             <img src="{{ url('/images/quartier-innovations.png') }}" alt="innovation publique">
             <div>
               <h3>Innovation publique</h3>
-              <p>Avez-vous pu constater que vos modalités de collaboration avec les partenaires publics et privés ont fait évoluer leurs pratiques professionnelles ?</p>
+              <p>
+                Avez-vous pu constater que vos modalités de collaboration avec les partenaires publics et privés ont fait évoluer leurs pratiques professionnelles ?
+                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'innovation_publique", 'description' => "Décrivez l'innovation publique en quelques mots"])
+              </p>
               @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])
             </div>
           </div>

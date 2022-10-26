@@ -8,6 +8,9 @@
 
       <p>
         <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
+        @isset($edit)
+          <a href="{{ route('impacts.edit',['slug' => $place->getSlug(), 'auth' => $auth ]) }}" class="button is-fullwidth mt-2">Éditer les effets sociaux</a>
+        @endisset
       </p>
     </div>
 
