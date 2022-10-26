@@ -13,7 +13,7 @@
       @foreach ($array_photos as $photo)
         @if($photo)
           <div class="item-{{ $loop->iteration }}" >
-            <figure class="image is-covered images-lieu">
+            <figure class="image is-contained images-lieu">
               <img src="{{ url('/images/lieux/') }}/{{$photo }}">
             </figure>
           </div>
