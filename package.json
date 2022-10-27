@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "webpack",
+    "dev": "webpack",
+    "build": "webpack --mode production",
     "watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
