@@ -116,6 +116,11 @@ $title-gray: #3A3C49;
                 &.individuel {
                     top: 40px;
                     left: -40px;
+
+                    @include desktop-only {
+                        left: 5px;
+                    }
+
                     h3 {
                         color: $red
                     }
@@ -129,6 +134,11 @@ $title-gray: #3A3C49;
                 &.collectif {
                     bottom: 45px;
                     left: -50px;
+
+                    @include desktop-only {
+                        left: 5px;
+                    }
+
                     h3 {
                         color: $orange
                     }
@@ -148,6 +158,10 @@ $title-gray: #3A3C49;
                     right: -75px;
                     top: 105px;
 
+                    @include desktop-only {
+                        right: 5px;
+                    }
+
                     h3 {
                         color: $blue
                     }
@@ -166,6 +180,11 @@ $title-gray: #3A3C49;
                 &.urbain {
                     right: -80px;
                     bottom: 20px;
+
+                    @include desktop-only {
+                        right: 5px;
+                    }
+
                     h3 {
                         color: $darker-blue
                     }
