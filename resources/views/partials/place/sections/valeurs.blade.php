@@ -1,6 +1,6 @@
 <section id="valeurs" class="is-clearfix fond-bleu content-block">
   <div class="column is-8 is-offset-2">
-    <img class="is-pulled-right" src="{{ url('/images/IDÉE_FONDATRICE.svg') }}">
+    <img class="is-pulled-right is-half" src="{{ url('/images/IDÉE_FONDATRICE.svg') }}">
 
     <h4 class="subtitle is-4 mb-0">Inauguration</h4>
     <p class="mb-5">{{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->isoFormat('LL') }}</p>
