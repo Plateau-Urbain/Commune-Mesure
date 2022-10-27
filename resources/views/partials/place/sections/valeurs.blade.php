@@ -22,7 +22,7 @@
     <div class="columns is-multiline is-centered mb-5">
       @foreach($place->get('blocs->valeurs->donnees') as $valeur => $active)
         @if($active)
-        <div class="column is-one-third-tablet is-one-quarter-desktop">
+        <div class="column is-half-tablet is-one-third-desktop">
           <p class="subtitle"><strong class="valeurs">{{$valeur}}</strong></p>
           <p>
             @if (isset($edit) && ! $place->get('blocs->valeurs->texte->'.$valeur))
