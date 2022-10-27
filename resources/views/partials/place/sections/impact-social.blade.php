@@ -3,7 +3,7 @@
     <div class="column is-3 is-offset-2">
       <h4 class="is-size-4 has-text-primary no-border is-uppercase">L'impact social</h4>
       <p>
-        La qualification de l'impact social est le fruit d'un processus d'interaction; il se base sur des relations directes et indirectes, prévues et imprévues entre des actions, des personnes et leur milieu.  Son estimation est nécessairement collective et propre à un contexte. Nous présentons ici 3 représentations simplifiées de l'impact social synthétisant les eﬀets sur les personnes, les groupes de personnes et le territoire. Les réponses aﬀichées sont issues des porteurs de projet.
+        L'évaluation des effets sociaux est un processus collectif visant à qualifier l'ensemble des conséquences, négatives ou positives, prévues ou imprévues, d'un projet sur ses parties prenantes. Nous présentons ici 3 représentations simplifiées des effets à l'échelle individuelle, collective et territoriale. La visualisation des réponses détaillées, issues des porteurs de projet, sont accessibles sur la page « voir ses effets sociaux »
       </p>
 
       <p>
