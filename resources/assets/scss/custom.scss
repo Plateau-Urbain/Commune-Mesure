@@ -121,6 +121,7 @@ header {
   font-size: 1.875rem;
   color: $black;
   font-weight: bold;
+  word-break: keep-all;
 }
 
 .input {
