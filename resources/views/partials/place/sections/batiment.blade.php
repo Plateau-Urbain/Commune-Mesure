@@ -1,6 +1,7 @@
 <svg
+   style="position: relative;"
    width="100%"
-   height="180mm"
+   height="150mm"
    viewBox="0 0 240 180"
    version="1.1"
    id="svg5"
@@ -41,7 +42,7 @@
   </defs>
 
   <g transform="translate(0, 120)">
-    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(0)" class="" transform="" width=60 height=60 />
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('gauche')" class="" transform="" width=60 height=60 />
   </g>
 
   @for ($i = 0 ; $i < 3 ; $i++)
@@ -61,12 +62,18 @@
       <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width=60 height=60>
 
         @if (strpos($t, 'THEME_') === false)
-          <text
-            x="50%"
-            dominant-baseline="middle" text-anchor="middle"
-            style="font-size:3rem;font-weight:bold;fill:#c9514a;">
-            {{ mb_strtoupper($t) }}
-          </text>
+          @if (mb_strlen($t) > 30)
+            <text x="50%" dominant-baseline="middle" text-anchor="middle" style="font-size:3rem;font-weight:bold;fill:#c9514a;">
+                <tspan x="50%" dy="-1.2em">{{ strtok(mb_strtoupper($t), ' ') }} {{ strtok(' ') }} {{ strtok(' ') }}</tspan>
+                @while($text = strtok(' '))
+                  <tspan x="50%" dy="1.2em">{{ $text }} {{ strtok(' ') }} {{ strtok(' ') }}</tspan>
+                @endwhile
+            </text>
+          @else
+            <text x="50%" dominant-baseline="middle" text-anchor="middle" style="font-size:3rem;font-weight:bold;fill:#c9514a;">
+              {{ mb_strtoupper($t) }}
+            </text>
+          @endif
         @endif
 
       </x-svg>
@@ -76,7 +83,7 @@
   @endfor
 
   <g transform="translate(180,120)">
-    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(1)" class="" transform="" width=60 height=60 />
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('droite')" class="" transform="" width=60 height=60 />
   </g>
 
   <g transform="translate(120, 0)">

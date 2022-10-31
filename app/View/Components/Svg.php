@@ -43,10 +43,14 @@ class Svg extends Component
     {
         return function (array $data) {
             if ($data['slot']->isNotEmpty()) {
+                // Texte supplémentaire
                 $el = new DOMDocument();
                 $el->loadXML($data['slot']->toHTML());
 
+                // On importe le noeud du texte dans notre svg à afficher
                 $new = $this->svg->importNode($el->documentElement, true);
+
+                // On insère un g pour insérer l'élément texte
                 $g = $this->svg->createElement('g');
                 $g->setAttribute("transform", "translate(0,200)");
                 $g->setAttribute("width", "50%");
