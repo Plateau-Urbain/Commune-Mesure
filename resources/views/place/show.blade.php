@@ -41,15 +41,14 @@
   @endisset
 
   <script>
-
     let updatePavement = function() {
       let pavementSVGTopRect = document.querySelector('#pavement-svg-top').getBoundingClientRect();
-      document.querySelector('#pavement-top').style.top = ((Math.round((pavementSVGTopRect.top - document.querySelector('#presentation').getBoundingClientRect().top + document.querySelector('#presentation').style.paddingTop) * 10 ) / 10) - 1) + 'px';
+      document.querySelector('#pavement-top').style.top = ((Math.round((pavementSVGTopRect.top - document.querySelector('#presentation').getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
       document.querySelector('#pavement-top').style.height = (Math.round(pavementSVGTopRect.height) + 1) + "px";
       document.querySelector('#pavement-top').style.display = 'block';
 
       let pavementSVGBottomRect = document.querySelector('#pavement-svg-bottom').getBoundingClientRect();
-      document.querySelector('#pavement-bottom').style.top = ((Math.round((pavementSVGBottomRect.top - document.querySelector('#presentation').getBoundingClientRect().top + document.querySelector('#presentation').style.paddingTop) * 10 ) / 10) - 1) + 'px';
+      document.querySelector('#pavement-bottom').style.top = ((Math.round((pavementSVGBottomRect.top - document.querySelector('#presentation').getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
       document.querySelector('#pavement-bottom').style.height = (Math.round(pavementSVGBottomRect.height) + 1) + "px";
       document.querySelector('#pavement-bottom').style.display = 'block';
     }
