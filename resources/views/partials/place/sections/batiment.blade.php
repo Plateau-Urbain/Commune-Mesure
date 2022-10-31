@@ -41,7 +41,7 @@
   </defs>
 
   <g transform="translate(0, 120)">
-    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(0)" class="" transform="" width=60 height=60 />
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('gauche')" class="" transform="" width=60 height=60 />
   </g>
 
   @for ($i = 0 ; $i < 3 ; $i++)
@@ -76,7 +76,7 @@
   @endfor
 
   <g transform="translate(180,120)">
-    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors(1)" class="" transform="" width=60 height=60 />
+    <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('droite')" class="" transform="" width=60 height=60 />
   </g>
 
   <g transform="translate(120, 0)">

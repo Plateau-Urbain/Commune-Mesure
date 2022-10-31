@@ -14,15 +14,19 @@ class Batiment
         'Recyclage' => 'THEME_RECYCLAGE',
     ];
 
-    private $decors = [];
+    private $decors_gauche = [];
+    private $decors_droite = [];
     private $thematiques = [];
     private $toits_gauches = ['TOIT1', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
     private $toits_droites  = ['TOIT1', 'TOIT1 INVERSÉ', 'TOIT2', 'TOIT2 INVERSÉ', 'TOIT3 INVERSÉ'];
 
     public function __construct()
     {
-        $this->decors = glob(rtrim(resource_path('assets/images/batiment/decors'), '/').'/*.svg');
-        $this->decors = array_map('basename', $this->decors);
+        $this->decors_gauche = glob(rtrim(resource_path('assets/images/batiment/decors/gauche'), '/').'/*.svg');
+        $this->decors_gauche = array_map('basename', $this->decors_gauche);
+
+        $this->decors_droite = glob(rtrim(resource_path('assets/images/batiment/decors/droite'), '/').'/*.svg');
+        $this->decors_droite = array_map('basename', $this->decors_droite);
     }
 
     public function init(Place $place)
@@ -39,17 +43,19 @@ class Batiment
             $this->thematiques[] = '';
         }
 
-        mt_srand(crc32($place->get('name')));
+        mt_srand(crc32($place->get('name')) + 1);
 
         shuffle($this->thematiques);
-        shuffle($this->decors);
+        shuffle($this->decors_gauche);
+        shuffle($this->decors_droite);
         shuffle($this->toits_gauches);
         shuffle($this->toits_droites);
     }
 
-    public function getDecors(int $index)
+    public function getDecors(string $side)
     {
-        return $this->decors[$index];
+        $decors = ($side === 'gauche') ? $this->decors_gauche : $this->decors_droite;
+        return $side.DIRECTORY_SEPARATOR.current($decors);
     }
 
     public function getThematique(int $index)
