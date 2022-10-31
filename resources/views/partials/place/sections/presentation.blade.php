@@ -21,10 +21,18 @@
       </p>
 
       <div class="has-text-centered mt-4">
+
+        <x-svg :path="'assets/images/batiment/'.$batiment->getToit('gauche').'.svg'" class="is-block" transform="" width="100%" height="240" />
+
         @for ($i = 0; $i < 3; $i++)
-          <svg height="240">
+          <svg height="240" width="100%" class="is-block mx-auto">
             @php $t = $batiment->getThematique($i); @endphp
             @php $part = (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE' : $t; @endphp
+
+            @if ($i === 2)
+              <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('gauche')" class="is-inline-block" transform="translate(-240, 0)" width="" height="240" />
+            @endif
+
             <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width="100%" height="100%">
 
               @if (strpos($t, 'THEME_') === false)
@@ -43,8 +51,13 @@
               @endif
 
             </x-svg>
+
+            @if ($i === 2)
+              <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('droite')" class="is-inline-block" transform="translate(240, 0)" width="" height="240" />
+            @endif
           </svg>
         @endfor
+
       </div>
 
     </div>
