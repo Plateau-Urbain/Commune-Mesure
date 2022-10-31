@@ -39,6 +39,19 @@
       }
     </script>
   @endisset
+
+  <script>
+  window.visualViewport.addEventListener("resize", function viewportHandler(event) {
+    isPavement();
+  });
+  function isPavement() {
+    let zoomLevel = Math.round(window.devicePixelRatio * 100);
+      document.querySelectorAll('.pavement').forEach(function(item) {
+        item.style.display = (zoomLevel > 100) ? 'none' : 'block';
+      });
+  }
+  isPavement();
+  </script>
 @endsection
 
 @section('content')

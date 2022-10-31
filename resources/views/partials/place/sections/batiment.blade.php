@@ -1,4 +1,5 @@
 <svg
+   style="position: relative;"
    width="100%"
    height="150mm"
    viewBox="0 0 240 180"
