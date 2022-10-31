@@ -9,6 +9,10 @@ h2.title{
 .section-place{
   padding: 0;
   padding-bottom: 30px;
+
+  &:first-child {
+      padding-top: 30px;
+  }
 }
 
 .fond-bleu{
