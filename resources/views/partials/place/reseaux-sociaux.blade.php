@@ -3,7 +3,7 @@
 @endif
 
 <ul class="list-undotted is-hidden-print is-size-5">
-  <li>|</li>
+  <li class="is-hidden-mobile">|</li>
   @foreach ($place->get('reseaux_sociaux->donnees') as $name => $link)
     @if ($name === 'web') @continue @endif
     @if ($link || isset($edit))
