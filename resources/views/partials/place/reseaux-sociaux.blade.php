@@ -20,7 +20,7 @@
 </ul>
 
 {{-- https://github.com/bradvin/social-share-urls --}}
-<div class="dropdown is-hoverable is-hidden-print is-align-self-flex-end">
+<div class="dropdown is-hoverable is-hidden-print social-share">
   <div class="dropdown-trigger">
     <button class="button is-small has-background-primary has-text-white" aria-haspopup="true" aria-controls="dropdown-menu">
       <i class="fa fa-share-alt mr-1" aria-hidden="true"></i> Partagez-moi

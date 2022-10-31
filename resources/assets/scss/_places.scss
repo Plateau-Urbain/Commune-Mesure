@@ -135,3 +135,9 @@ section.content-block {
         width: 50%;
     }
 }
+
+@include mobile {
+    .social-share {
+        align-self: center !important;
+    }
+}
