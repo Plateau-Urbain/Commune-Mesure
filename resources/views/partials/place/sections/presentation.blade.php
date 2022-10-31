@@ -26,12 +26,18 @@
             <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width="100%" height="100%">
 
               @if (strpos($t, 'THEME_') === false)
-                <text
-                  x="50%"
-                  dominant-baseline="middle" text-anchor="middle"
-                  style="font-size:3rem;font-weight:bold;fill:#c9514a;" >
-                  {{ mb_strtoupper($t) }}
-                </text>
+                @if (mb_strlen($t) > 30)
+                  <text x="50%" dominant-baseline="middle" text-anchor="middle" style="font-size:3rem;font-weight:bold;fill:#c9514a;">
+                  <tspan x="50%" dy="-1.2em">{{ strtok(mb_strtoupper($t), ' ') }} {{ strtok(' ') }} {{ strtok(' ') }}</tspan>
+                  @while($text = strtok(' '))
+                    <tspan x="50%" dy="1.2em">{{ $text }} {{ strtok(' ') }} {{ strtok(' ') }}</tspan>
+                  @endwhile
+                  </text>
+                @else
+                  <text x="50%" dominant-baseline="middle" text-anchor="middle" style="font-size:3rem;font-weight:bold;fill:#c9514a;" >
+                    {{ mb_strtoupper($t) }}
+                  </text>
+                @endif
               @endif
 
             </x-svg>
