@@ -11,7 +11,7 @@
           <div class="columns is-multiline">
             @foreach ($places as $place)
               <div class="column is-3">
-                <div class="card is-relative" style="height: 650px">
+                <div class="card" style="height: 100%;">
                   <div class="card-image">
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
                       @if (count($place->getPhotos()) > 0)
@@ -37,14 +37,12 @@
                         <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
                       @endif
                     </div>
-                    <div style="position: absolute; bottom: 0;">
-                      @if ($place->isPublish())
-                        <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth">Voir son datapanorama</a>
-                        <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
-                      @else
-                        <p class="is-italic">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
-                      @endif
-                    </div>
+                    @if ($place->isPublish())
+                      <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth">Voir son datapanorama</a>
+                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
+                    @else
+                      <p class="is-italic">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
+                    @endif
                   </div>
                 </div>
               </div>
