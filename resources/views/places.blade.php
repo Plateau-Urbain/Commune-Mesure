@@ -11,7 +11,7 @@
           <div class="columns is-multiline">
             @foreach ($places as $place)
               <div class="column is-3">
-                <div class="card" style="height: 700px">
+                <div class="card is-relative" style="height: 650px">
                   <div class="card-image">
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
                       @if (count($place->getPhotos()) > 0)
@@ -26,7 +26,7 @@
                     </div>
                   </div>
 
-                  <div class="card-content is-relative">
+                  <div class="card-content">
                     <a class="title has-text-primary"
                       @if ($place->isPublish()) href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" @else style="cursor: not-allowed" @endif
                     >{{ $place->get('name') }}</a>
