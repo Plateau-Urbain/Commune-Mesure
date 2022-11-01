@@ -11,7 +11,7 @@
           <div class="columns is-multiline">
             @foreach ($places as $place)
               <div class="column is-3">
-                <div class="card">
+                <div class="card" style="height: 700px">
                   <div class="card-image">
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container">
                       @if (count($place->getPhotos()) > 0)
@@ -26,7 +26,7 @@
                     </div>
                   </div>
 
-                  <div class="card-content">
+                  <div class="card-content is-relative">
                     <a class="title has-text-primary"
                       @if ($place->isPublish()) href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" @else style="cursor: not-allowed" @endif
                     >{{ $place->get('name') }}</a>
@@ -35,7 +35,10 @@
                     <div class="content mt-4">
                       @if ($place->isPublish())
                         <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
-
+                      @endif
+                    </div>
+                    <div style="position: absolute; bottom: 0;">
+                      @if ($place->isPublish())
                         <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth">Voir son datapanorama</a>
                         <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
                       @else
