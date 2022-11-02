@@ -46,7 +46,7 @@
       let pavementSVGTopRect = document.querySelector('#pavement-svg-top').getBoundingClientRect();
       let pavementTop = document.querySelector('#pavement-top');
       pavementTop.style.top = ((Math.round((pavementSVGTopRect.top - presentation.getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
-      pavementTop.style.display = 'block';
+      //pavementTop.style.display = 'block';
 
       let pavementSVGBottomRect = document.querySelector('#pavement-svg-bottom').getBoundingClientRect();
       let pavementBottom = document.querySelector('#pavement-bottom');
