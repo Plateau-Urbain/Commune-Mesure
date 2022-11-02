@@ -1,7 +1,7 @@
 <section class="section-place fond-bleu" id="presentation">
   <div class="columns is-relative">
-    <div id="pavement-top" style="position: absolute; display: none; height: 3px; background: #262631; width: 90%; left: 5%;"></div>
-    <div id="pavement-bottom" style="position: absolute; display: none; height: 1px; background: #262631; width: 90%; left: 5%;"></div>
+    <div id="pavement-top" style="position: absolute; display: none; height: 5px; background: #262631; width: 90%; left: 5%;"></div>
+    <div id="pavement-bottom" style="position: absolute; display: none; height: 2px; background: #262631; width: 90%; left: 5%;"></div>
     <div class="is-hidden-tablet column is-flex is-flex-direction-column is-justify-content-center p-5 has-text-centered">
       <h4 class="subtitle is-6">{{ $place->get('address->city') }}</h4>
       <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>

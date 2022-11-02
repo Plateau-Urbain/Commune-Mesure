@@ -42,21 +42,25 @@
 
   <script>
     let updatePavement = function() {
+      let presentation = document.querySelector('#presentation');
       let pavementSVGTopRect = document.querySelector('#pavement-svg-top').getBoundingClientRect();
-      document.querySelector('#pavement-top').style.top = ((Math.round((pavementSVGTopRect.top - document.querySelector('#presentation').getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
-      document.querySelector('#pavement-top').style.height = (Math.round(pavementSVGTopRect.height) + 1) + "px";
-      document.querySelector('#pavement-top').style.display = 'block';
+      let pavementTop = document.querySelector('#pavement-top');
+      pavementTop.style.top = ((Math.round((pavementSVGTopRect.top - presentation.getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
+      pavementTop.style.display = 'block';
 
       let pavementSVGBottomRect = document.querySelector('#pavement-svg-bottom').getBoundingClientRect();
-      document.querySelector('#pavement-bottom').style.top = ((Math.round((pavementSVGBottomRect.top - document.querySelector('#presentation').getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
-      document.querySelector('#pavement-bottom').style.height = (Math.round(pavementSVGBottomRect.height) + 1) + "px";
-      document.querySelector('#pavement-bottom').style.display = 'block';
+      let pavementBottom = document.querySelector('#pavement-bottom');
+      pavementBottom.style.top = ((Math.round((pavementSVGBottomRect.top - presentation.getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
+      pavementBottom.style.display = 'block';
     }
-    updatePavement();
 
-    window.addEventListener('resize', function(e) {
+    @empty($edit)
       updatePavement();
-    });
+
+      window.addEventListener('resize', function(e) {
+        updatePavement();
+      });
+    @endempty
   </script>
 @endsection
 
