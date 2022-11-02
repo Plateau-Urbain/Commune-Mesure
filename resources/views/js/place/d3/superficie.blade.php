@@ -29,6 +29,11 @@ if (superficie_exterieure + superficie_bureaux + superficie_ateliers > superfici
     .attr("dominant-baseline", "middle")
     .attr("text-anchor", "middle")
     .text(msg)
+
+  @if (! isset($edit))
+    document.querySelector('#'+graph_superficie_id).style.display = 'none'
+  @endif
+
   throw new Error(msg)
 }
 
