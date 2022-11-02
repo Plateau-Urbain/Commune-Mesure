@@ -21,7 +21,7 @@
       @endforeach
     </div>
     @else
-      <div>
+      <div class="has-text-centered">
         <p>Il n'y a pas encore de photo.</p>
       </div>
     @endunless
