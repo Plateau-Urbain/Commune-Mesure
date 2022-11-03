@@ -5,7 +5,7 @@ const span_superficie_totale = document.getElementById('graph_superficie__superf
 
 const width = parseInt(d3.select('svg#graph_superficie').style('width'), 10)
 const height = parseInt(d3.select('svg#graph_superficie').style('height'), 10)
-const margin = {top: 10, right: 5, bottom: 10, left: 5}
+const margin = {top: 20, right: 100, bottom: 20, left: 100}
 
 const superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
 const superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
@@ -137,7 +137,7 @@ var function_superficie_text_2 = function(d) {
 
 var function_superficie_text_x = function(d) {
     const rect = d3.select('#rect_'+d)
-    return +rect.style('x').replace('px', '') + +rect.style('width').replace('px', '') / 2;
+    return margin.left + +rect.style('x').replace('px', '') + +rect.style('width').replace('px', '') / 2;
 }
 
 var function_superficie_text_y = function(d) {
@@ -237,7 +237,7 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('circle')
-      .attr('cx', function(d, i) { return (i % 2) * width / 2.5 + 20})
+      .attr('cx', function(d, i) { return (i % 2) * width / 2.5 + 20 + margin.left})
       .attr('cy', function(d, i) { return height - 100 + 30 * (1 + Math.floor( i / 2 )) })
       .attr('r', function(d) { return 10})
       .attr('fill', function_superficie_fill)
@@ -247,7 +247,7 @@ d3.select("#graph_superficie")
       .data(superficie_human_keys)
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return (i % 2) * width / 2.5 + 40})
+      .attr('x', function(d, i) { return (i % 2) * width / 2.5 + 40 + margin.left})
       .attr('y', function(d, i) { return height - 100 + 33 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .text(function(d) {
