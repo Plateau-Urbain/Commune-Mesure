@@ -1,7 +1,7 @@
 <section id="moyens" class="content-block">
   <div class="columns">
     <div class="column is-8 is-offset-2">
-      <h4 class="is-size-4 has-text-primary no-border is-uppercase">Les moyens</h4>
+      <h4 class="title has-text-primary no-border is-uppercase">Les moyens</h4>
       <p>Les moyens financiers mis en oeuvre pour assurer le fonctionnement du lieu.</p>
 
       <div class="section"></div>
