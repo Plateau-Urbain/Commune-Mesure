@@ -18,7 +18,7 @@
   @include('components.modals.modalEdition', ['chemin' => 'blocs->accessibilite->donnees->publics', 'id_section' => 'accessibilite','type' => 'checkbox','titre' => 'Modifier les différents publics','description'=>"Les différentes catégories de public accueillies au sein du lieu"])
 </h5>
 
-<div class="">
+<div class="mb-3">
   @php $publics = $place->getPublics() @endphp
   @if (isset($publics['Tout le monde']) && $publics['Tout le monde'])
     @foreach($public_icons as $public => $icone)
