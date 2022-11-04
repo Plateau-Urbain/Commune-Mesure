@@ -7,7 +7,7 @@
 
 @section('script_js')
 @parent
-<script src="{{ url('/js/readmore.js') }}?{{ file_get_contents(base_path().'/.git/refs/heads/prod') }}"></script>
+<script src="{{ url('/js/readmore.js') }}@manifest"></script>
   @include('js.place.modals')
 @endsection
 
