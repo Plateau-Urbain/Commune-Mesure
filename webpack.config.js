@@ -2,6 +2,8 @@ const webpack = require("webpack");
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const ASSET_PATH = process.env.ASSET_PATH || '/'
+
 module.exports = {
   entry: {
       'app': './resources/assets/index.js',
@@ -37,7 +39,7 @@ module.exports = {
           options: {
             name: '[name].[ext]?[contenthash]',
             outputPath: '/fonts/',
-            publicPath: '/app/fonts/'
+            publicPath: ASSET_PATH + 'fonts/'
           }
         }
         ]
@@ -49,7 +51,7 @@ module.exports = {
           options: {
             name: '[name].[ext]?[contenthash]',
             outputPath: '/images/',
-            publicPath: '/images/'
+            publicPath: ASSET_PATH + 'images/'
           }
         }
       }
@@ -59,5 +61,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
+    new webpack.DefinePlugin({
+      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+    })
   ]
 };

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "webpack",
-    "build": "webpack --mode production",
+    "build": "ASSET_PATH=/app/ webpack --mode production",
     "watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
