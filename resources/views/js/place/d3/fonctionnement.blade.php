@@ -39,7 +39,7 @@
     .attr('width', fonctionnement_width)
     .attr('height', fonctionnement_height + 100)
     .append('g')
-    .attr("transform", "translate(" + fonctionnement_width / 2 + "," + fonctionnement_height / 2 + ")")
+    .attr("transform", "translate(" + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + "," + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + ")")
     .selectAll('path')
     .data(pieArcData)
     .enter()
@@ -64,7 +64,8 @@
         .style('opacity', 0);
     } )
 
-    svg_fonctionnement
+    const legends_pie = svg_fonctionnement.append('g');
+    legends_pie
       .selectAll('legend')
       .data(pieArcData)
       .enter()
@@ -74,7 +75,7 @@
       .attr('r', function(d) { return 10})
       .attr('fill', function(d) { return color(d.data.name)})
 
-    svg_fonctionnement
+    legends_pie
       .selectAll('legend-text')
       .data(pieArcData)
       .enter()
@@ -82,6 +83,7 @@
       .attr('x', function(d, i) { return 25 + (i % 2)* fonctionnement_width / 2.5 + 10})
       .attr('y', function(d, i) { return fonctionnement_height + 33 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
+      .style('font-size', '12px')
       .text(function(d) { return d.data.name })
 
 </script>
