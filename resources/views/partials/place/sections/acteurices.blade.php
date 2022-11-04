@@ -40,7 +40,7 @@
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-space-between">
       <div>
         @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
-          <span class="title is-1 has-text-primary">{{$place->get('blocs->moyens->donnees->benevoles')}}</span>
+          <span class="title is-1 has-text-primary font-renner-black">{{$place->get('blocs->moyens->donnees->benevoles')}}</span>
           <br />
           <span class="title is-5">
             @if ($place->get('blocs->moyens->donnees->benevoles') > 1)Bénévoles @else Bénévole @endif
@@ -50,7 +50,7 @@
 
         @if(!empty($place->get('blocs->presentation->donnees->emplois directs')) && !isset($edit) || isset($edit))
           <br/>
-          <span class="title is-size-1 has-text-primary">
+          <span class="title is-size-1 has-text-primary font-renner-black">
             {{ $place->get('blocs->presentation->donnees->emplois directs') }}
           </span>
           <br/>

@@ -26,11 +26,11 @@
 
   <div class="mx-auto has-text-centered">
     <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Population</h3>
-    <svg id="population-chart" class="mb-5" width="80%" height="300"></svg>
+    <svg id="population-chart" width="100%" height="250"></svg>
     <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Catégories Socioprofessionelles</h3>
-    <svg id="csp-chart" width="80%" height="300"></svg>
+    <svg id="csp-chart" width="100%" height="250"></svg>
     <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Immobilier</h3>
-    <svg id="immobilier-chart" width="80%" height="300"></svg>
+    <svg id="immobilier-chart" width="100%" height="250"></svg>
   </div>
 
 </section>

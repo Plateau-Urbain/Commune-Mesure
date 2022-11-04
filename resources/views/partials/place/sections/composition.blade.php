@@ -3,39 +3,42 @@
     <h4 class="title has-text-primary no-border is-uppercase is-hidden-tablet">La composition</h4>
     <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
-    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end">
+    <div class="column is-6-tablet is-3-desktop is-offset-3-desktop is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end">
       <div class="is-flex is-flex-direction-column is-align-items-center">
-        <svg id="waffle" width="100%" height=500 aria-label="Graphique répartition par structure" role="img"></svg>
-        <h6 class="subtitle is-6">Type de structures participant au projet</h6>
+        <svg id="waffle" width="100%" height="400" aria-label="Graphique répartition par structure" role="img"></svg>
+        <h6 class="subtitle is-6">
+          Type de structures participant au projet
+          @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
+        </h6>
       </div>
     </div>
 
-    <div class="column is-5 is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="title has-text-primary no-border is-uppercase is-hidden-mobile">La composition</h4>
+    <div class="column is-6-tablet is-3-desktop is-flex is-flex-direction-column is-justify-content-center">
+      <h4 class="title has-text-primary no-border is-uppercase is-hidden-mobile mb-0">La composition</h4>
       <p class="is-hidden-mobile">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
-      <div class="columns mt-2">
+      <div class="columns my-2">
         @if (isset($edit) || $place->get('blocs->presentation->donnees->nombre_occupants') > 0)
           <div class="column is-6">
-            <span class="is-size-1 has-text-primary has-text-weight-bold">
+            <span class="is-size-1 has-text-primary has-text-weight-bold font-renner-black">
               {{ $place->get('blocs->presentation->donnees->nombre_occupants') }}
             </span>
             <br/>
-            <p>
+            <p style="line-height: 1">
               {{ $place->get('blocs->presentation->donnees->nombre_occupants') > 1 ? 'structures occupantes' : 'structure occupante' }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->nombre_occupants','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures occupantes",'description' =>"Le nombre de structures exerçant leur activité ou  ayant leurs  locaux au sein du lieu"])
             </p>
           </div>
         @endif
 
-        @if (isset($edit) || $place->get('blocs->presentation->donnees->structures_crees') > 0)
+        @if (isset($edit) || $place->get('blocs->composition->donnees->structures_crees') > 0)
           <div class="column is-6">
-            <span class="is-size-1 has-text-primary has-text-weight-bold">
+            <span class="is-size-1 has-text-primary has-text-weight-bold font-renner-black">
               {{ $place->get('blocs->composition->donnees->structures_crees') }}
             </span>
             <br/>
-            <p>{{ $place->get('blocs->composition->donnees->structures_crees') > 1 ? 'structures créées' : 'structure créée' }}</p>
-            @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->nombre_occupants','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures occupantes",'description' =>"Le nombre de structures exerçant leur activité ou  ayant leurs  locaux au sein du lieu"])
+            <p style="line-height: 1">{{ $place->get('blocs->composition->donnees->structures_crees') > 1 ? 'structures créées' : 'structure créée' }}</p>
+            @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures créées",'description' =>"Le nombre de structures créées au sein du lieu"])
           </div>
         @endif
       </div>

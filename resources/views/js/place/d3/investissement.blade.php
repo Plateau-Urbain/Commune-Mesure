@@ -106,6 +106,7 @@
     .attr('x', function(d, i) { return i * graph_width / 3.5 + 25 })
     .attr('y', function(d, i) { return graph_height + 60 })
     .attr('fill', 'black')
+    .style('font-size', '12px')
     .text(function(d) { return d.name })
 
 

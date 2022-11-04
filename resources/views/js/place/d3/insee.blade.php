@@ -90,7 +90,7 @@
   drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 30, bottom: 40, left: 100}
+    const margin = {top: 20, right: 30, bottom: 40, left: 50}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
@@ -219,15 +219,16 @@
       .enter().append('g')
 
     const legendCircle = legends.append('circle')
-        .attr('r', 10)
+        .attr('r', 5)
         .attr('fill', d => color(d))
 
     const legendText = legends.append('text')
       .text((d) => data[0].subgroups[d].name)
-        .attr('y', 5)
-        .attr('x', 20)
+        .attr('y', 4)
+        .attr('dx', 10)
         .attr("text-anchor", 'left')
         .style("alignment-baseline", "middle")
+        .style("font-size", '12px')
 
     const legends_width_start = 0
     const legends_height_start = d3.select('.bars_group').node().getBBox().height + 30
@@ -246,16 +247,20 @@
         }
 
         const bounds = d3.select(prev).node().getBBox()
-        legends_width += bounds.width + 20
+        legends_width += bounds.width + 15
 
         if (legends_width + d3.select(this).node().getBBox().width > w) {
           legends_width = legends_width_start
-          legends_height += 30
+          legends_height += 20
         }
 
         return translate.replace('%x%', legends_width).replace('%y%', legends_height)
       })
     })
+
+    // on retaille la hauteur du svg
+    total_h = document.querySelector(element).attributes.getNamedItem('height');
+    total_h.value = svg.node().getBoundingClientRect().height + 20
 
     return svg;
   }
