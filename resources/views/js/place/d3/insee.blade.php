@@ -258,6 +258,10 @@
       })
     })
 
+    // on retaille la hauteur du svg
+    total_h = document.querySelector(element).attributes.getNamedItem('height');
+    total_h.value = svg.node().getBoundingClientRect().height + 20
+
     return svg;
   }
 </script>
