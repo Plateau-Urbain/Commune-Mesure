@@ -31,14 +31,14 @@
           </div>
         @endif
 
-        @if (isset($edit) || $place->get('blocs->presentation->donnees->structures_crees') > 0)
+        @if (isset($edit) || $place->get('blocs->composition->donnees->structures_crees') > 0)
           <div class="column is-6">
             <span class="is-size-1 has-text-primary has-text-weight-bold">
               {{ $place->get('blocs->composition->donnees->structures_crees') }}
             </span>
             <br/>
             <p>{{ $place->get('blocs->composition->donnees->structures_crees') > 1 ? 'structures créées' : 'structure créée' }}</p>
-            @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->nombre_occupants','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures occupantes",'description' =>"Le nombre de structures exerçant leur activité ou  ayant leurs  locaux au sein du lieu"])
+            @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->structures_crees','id_section'=>'presentation','type' => 'number','titre'=>"Modifier le nombre de structures créées",'description' =>"Le nombre de structures créées au sein du lieu"])
           </div>
         @endif
       </div>
