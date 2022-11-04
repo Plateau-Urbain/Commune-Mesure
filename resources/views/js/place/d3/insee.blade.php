@@ -90,7 +90,7 @@
   drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 30, bottom: 40, left: 100}
+    const margin = {top: 20, right: 30, bottom: 40, left: 50}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
