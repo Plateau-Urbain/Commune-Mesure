@@ -1,7 +1,12 @@
 <svg
-   style="width: 100%; position: relative;"
+   @if($is_mobile == 'false')
+   height="200mm"
+   viewBox="0 0 350 180"
+   @else
    height="150mm"
    viewBox="0 0 240 180"
+   @endif
+   style="width: 100%; position: relative;"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
@@ -39,6 +44,12 @@
        height="20.994186"
        id="rect24637" />
   </defs>
+
+  @if($is_mobile == 'false')
+  <g transform="translate(-89,120)">
+    <x-svg :path="'assets/images/batiment/decors/SOL_gauche.svg'" class="" transform="" width=120 height=60 />
+  </g>
+  @endif
 
   <g transform="translate(0, 120)">
     <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('gauche')" class="" transform="" width=60 height=60 />
@@ -84,6 +95,12 @@
   <g transform="translate(180,120)">
     <x-svg :path="'assets/images/batiment/decors/'.$batiment->getDecors('droite')" class="" transform="" width=60 height=60 />
   </g>
+
+  @if($is_mobile == 'false')
+  <g transform="translate(239.8,120)">
+    <x-svg :path="'assets/images/batiment/decors/SOL_droite.svg'" class="" transform="" width=120 height=60 />
+  </g>
+  @endif
 
   <g transform="translate(120, 0)">
     <x-svg :path="'assets/images/batiment/'.$batiment->getToit('droite').'.svg'" class="" transform="" width=60 height=60 />

@@ -91,7 +91,7 @@
 
     const legends = svg_waffle.append('g')
 
-    legends.attr('transform', 'translate(15,' + (rects.node().getBoundingClientRect().height + 10) + ')')
+    legends.attr('transform', 'translate(0,' + (rects.node().getBoundingClientRect().height + 10) + ')')
 
     legends
       .selectAll('legend')

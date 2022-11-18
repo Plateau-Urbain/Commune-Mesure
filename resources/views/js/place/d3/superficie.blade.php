@@ -5,7 +5,7 @@ const span_superficie_totale = document.getElementById('graph_superficie__superf
 
 const width = parseInt(d3.select('svg#graph_superficie').style('width'), 10)
 const height = parseInt(d3.select('svg#graph_superficie').style('height'), 10)
-const margin = {top: 20, right: 100, bottom: 20, left: 100}
+const margin = {top: 1, right: 1, bottom: 2, left: 1}
 
 const superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
 const superficie_exterieure = {{ $place->get('blocs->presentation->donnees->surfaces->exterieur') ?: 0 }};
@@ -66,7 +66,7 @@ var function_superficie_width = function(d) {
 }
 
 var function_superficie_height = function(d) {
-    if (d == 'superficie_exterieur') return height - margin.top - margin.bottom - 100;
+    if (d == 'superficie_exterieur') return height - margin.top - margin.bottom;
     if (d == 'superficie_interieure') return Math.sqrt(superficie_pc_interieur) * function_superficie_height('superficie_exterieur');
     if (d == 'superficie_autres') return function_superficie_height('superficie_interieure');
     if (d == 'superficie_bureaux') return function_superficie_width('superficie_interieure') * function_superficie_height('superficie_interieure') * superficie_pc_bureaux / function_superficie_width('superficie_bureaux');
@@ -104,6 +104,9 @@ var function_superficie_text_1 = function(d) {
     if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
+    if( function_get_superficie(d) < 31){
+      return;
+    }
     if (d == 'superficie_exterieur') return 'Extérieurs : '+function_get_superficie(d) + ' m²';;
     if (function_superficie_height(d) < 100) {
         if (d == 'superficie_autres') return 'Autres : '+ function_get_superficie(d) + ' m²';
@@ -128,6 +131,9 @@ var function_superficie_text_2 = function(d) {
     if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
+    if( function_get_superficie(d) < 31){
+      return;
+    }
     if (function_superficie_height(d) >= 100) {
         if (d == 'superficie_autres') return function_get_superficie(d) + ' m²';
         if (d == 'superficie_bureaux') return function_get_superficie(d) + ' m²';
@@ -142,7 +148,7 @@ var function_superficie_text_x = function(d) {
 
 var function_superficie_text_y = function(d) {
     if (d == 'superficie_exterieur') {
-        return ((function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') ) / 2 ) + margin.top;
+        return ((function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') ) / 2 ) + margin.top ;
     }
     return function_superficie_y(d) + function_superficie_height(d) / 2 ;
 }
@@ -213,6 +219,7 @@ var superficie_rects = superficie_figures.selectAll('rect')
 var superficie_gtexts = d3.select("#graph_superficie")
     .append('g')
     .attr('class', 'texts')
+    .attr('style','font-family:"Renner Bold";font-size:1rem')
 
 var superficie_texts = superficie_gtexts.selectAll('text')
     .data(superficie_names)
@@ -231,31 +238,6 @@ superficie_texts.append('tspan')
     .attr('x', function_superficie_text_x )
     .attr('y', function_superficie_text_y )
     .attr('dy', '17' )
-
-d3.select("#graph_superficie")
-      .selectAll('legend')
-      .data(superficie_human_keys)
-      .enter()
-      .append('circle')
-      .attr('cx', function(d, i) { return (i % 2) * width / 2.5 + 20 + margin.left})
-      .attr('cy', function(d, i) { return height - 100 + 30 * (1 + Math.floor( i / 2 )) })
-      .attr('r', function(d) { return 10})
-      .attr('fill', function_superficie_fill)
-
-d3.select("#graph_superficie")
-      .selectAll('legend-text')
-      .data(superficie_human_keys)
-      .enter()
-      .append('text')
-      .attr('x', function(d, i) { return (i % 2) * width / 2.5 + 40 + margin.left})
-      .attr('y', function(d, i) { return height - 100 + 33 * (1 + Math.floor( i / 2 )) })
-      .attr('fill', 'black')
-      .text(function(d) {
-        if (d == 'superficie_exterieur') return 'Superficie extérieure';
-        if (d == 'superficie_autres') return 'Autres superficies';
-        if (d == 'superficie_bureaux') return 'Superficie de bureaux';
-        if (d == 'superficie_ateliers') return "Superficie d'ateliers";
-      })
 
 // On update la superficie totale du titre
 let superficie_totale_titre = 0

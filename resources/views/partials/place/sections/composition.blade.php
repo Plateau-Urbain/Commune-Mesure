@@ -1,19 +1,21 @@
 <section id="composition" class="content-block">
   <div class="columns">
+      <div class="column is-8 is-offset-2">
+        <div class="columns">
     <h4 class="title has-text-primary no-border is-uppercase is-hidden-tablet">La composition</h4>
     <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
-    <div class="column is-6-tablet is-3-desktop is-offset-3-desktop is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end">
+    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
       <div class="is-flex is-flex-direction-column is-align-items-center">
         <svg id="waffle" width="100%" height="400" aria-label="Graphique répartition par structure" role="img"></svg>
-        <h6 class="subtitle is-6">
+        <h6 class="subtitle is-5">
           Type de structures participant au projet
           @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
         </h6>
       </div>
     </div>
 
-    <div class="column is-6-tablet is-3-desktop is-flex is-flex-direction-column is-justify-content-center">
+    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center">
       <h4 class="title has-text-primary no-border is-uppercase is-hidden-mobile mb-0">La composition</h4>
       <p class="is-hidden-mobile">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
@@ -50,6 +52,7 @@
       @if(!$place->isEmptyAccessibilityBySection('accessibilite')&& !isset($edit) || isset($edit))
         @include('partials.place.sections.accessibilite')
       @endif
+    </div>
     </div>
   </div>
 </section>

@@ -114,9 +114,8 @@ a[target="_blank"].social-link::after {
 }
 
 section.content-block {
-    padding: 150px 1.5rem 2rem 1.5rem;
+    padding: 150px 1.5rem 150px 1.5rem;
 }
-
 
 .slider-container .slider-item .image.is-contained img {
     object-fit: contain;
@@ -139,5 +138,8 @@ section.content-block {
 @include mobile {
     .social-share {
         align-self: center !important;
+    }
+    #bloc-surface {
+        text-align: center !important;
     }
 }

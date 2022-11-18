@@ -5,9 +5,11 @@
     throw new Error('No fonctionnement chart');
   }
 
+
   const fonctionnement_width  = svg_fonctionnement.node().getBoundingClientRect().width
-  const fonctionnement_height = svg_fonctionnement.node().getBoundingClientRect().height - 100
-  const fonctionnement_margin = 40
+  const fonctionnement_height = svg_fonctionnement.node().getBoundingClientRect().height
+
+  const fonctionnement_margin = 50
 
   const fonctionnement_radius = Math.min(fonctionnement_width, fonctionnement_height) / 1.4 - fonctionnement_margin
 
@@ -20,9 +22,9 @@
     .attr('style', 'position: absolute; opacity: 0;');
 
   const donut_data = [
-    {name: "Recettes", count: {{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes') }} },
     {name: "Aides publiques", count: {{ $place->get('blocs->moyens->donnees->fonctionnement->Aides publiques') }} },
     {name: "Aides privées", count: {{ $place->get('blocs->moyens->donnees->fonctionnement->Aides privées') }} },
+    {name: "Recettes", count: {{ $place->get('blocs->moyens->donnees->fonctionnement->Recettes') }} },
     {name: "Autres subventions", count: {{ $place->get('blocs->moyens->donnees->fonctionnement->Autres Subventions') }} }
   ]
   color.domain(donut_data.map(d => d.name))
@@ -64,26 +66,48 @@
         .style('opacity', 0);
     } )
 
-    const legends_pie = svg_fonctionnement.append('g');
-    legends_pie
-      .selectAll('legend')
+    const legends_pie = svg_fonctionnement.append('g')
+      .selectAll('g')
       .data(pieArcData)
-      .enter()
-      .append('circle')
-      .attr('cx', function(d, i) { return 10 + (i % 2)* fonctionnement_width / 2.5 + 10})
-      .attr('cy', function(d, i) { return fonctionnement_height + 30 * (1 + Math.floor( i / 2 )) })
-      .attr('r', function(d) { return 10})
-      .attr('fill', function(d) { return color(d.data.name)})
+      .enter().append('g')
 
-    legends_pie
-      .selectAll('legend-text')
-      .data(pieArcData)
-      .enter()
-      .append('text')
-      .attr('x', function(d, i) { return 25 + (i % 2)* fonctionnement_width / 2.5 + 10})
-      .attr('y', function(d, i) { return fonctionnement_height + 33 * (1 + Math.floor( i / 2 )) })
-      .attr('fill', 'black')
-      .style('font-size', '12px')
+    const legend_pie_Circle = legends_pie.append('circle')
+          .attr('r', 8)
+          .attr('fill', function(d) { return color(d.data.name)})
+
+    const legend_pie_Text = legends_pie.append('text')
       .text(function(d) { return d.data.name })
+        .attr('y', 4)
+        .attr('dx', 10)
+        .attr("text-anchor", 'left')
+        .style("alignment-baseline", "middle")
+        .style("font-size", '12px')
+
+    const legends_pie_width_start = 0
+    const legends_pie_height_start = fonctionnement_height + 30
+
+    legends_pie.each(function () {
+      el = d3.select(this)
+
+      el.attr('transform', function () {
+        const translate = 'translate(%x%,%y%)'
+        const prev = this.previousSibling
+
+        if (prev === null) {
+          legends_width = legends_pie_width_start
+          legends_height = legends_pie_height_start
+          return translate.replace('%x%', 10).replace('%y%', legends_height)
+        }
+        const bounds = d3.select(prev).node().getBBox()
+        legends_width += bounds.width + 15
+        const w = fonctionnement_width - margin.left - margin.right
+
+        if (legends_width + d3.select(this).node().getBBox().width > w) {
+          legends_width = legends_pie_width_start
+          legends_height += 20
+        }
+        return translate.replace('%x%', 10+legends_width).replace('%y%', legends_height)
+      })
+    })
 
 </script>
