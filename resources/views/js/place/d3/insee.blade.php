@@ -108,7 +108,7 @@
                 .range([0, w])
 
     const y = d3.scaleBand()
-                .range([0, 60])
+                .range([0, 70])
                 .domain(groups)
 
     // normalisation (cent pour centage)
@@ -162,11 +162,13 @@
         .classed('bars_param', true)
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
+	.style('cursor',  'pointer')
         .text('Configuration')
 
     // axe y
     svg.append("g")
       .call(d3.axisLeft(y).tickSize(0))
+      .attr('transform', "translate(0,5)")
       .select(".domain").remove()
 
     // bars
@@ -174,7 +176,7 @@
        .selectAll("g")
        .data(stacked)
        .enter().append("g")
-         .attr('transform', "translate(" + 10 + ",0)")
+         .attr('transform', "translate(10,10)")
          .attr("fill", function (d) { return color(d.key) });
 
     const carres = niveau.selectAll("rect")
@@ -183,13 +185,13 @@
            .attr("x", function (d) { return x(d[0]) })
            .attr("y", function (d) { return y(d.data.zone) })
            .attr("width", function (d) {
-              let rw = x(d[1]) - x(d[0]) - 3
-              if (rw < 0) rw += 3
+              let rw = x(d[1]) - x(d[0]) - 7
+              if (rw < 0) rw += 7
              return rw
            })
-           .attr("height", y.bandwidth() - 5)
-           .attr("stroke", "black")
-           .attr("stroke-width", 1)
+           .attr("height", y.bandwidth() - 10)
+           //.attr("stroke", "black")
+           //.attr("stroke-width", 1)
            .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
           .on("mouseover", function() { return tooltip.style("visibility", "visible") })

@@ -4,7 +4,7 @@ const tooltip_superficie_id = 'tooltip-superficie';
 const span_superficie_totale = document.getElementById('graph_superficie__superficie_totale')
 
 const width = parseInt(d3.select('svg#graph_superficie').style('width'), 10)
-const height = parseInt(d3.select('svg#graph_superficie').style('height'), 10)
+const height = parseInt(d3.select('svg#graph_superficie').style('width'), 10)
 const margin = {top: 1, right: 1, bottom: 2, left: 1}
 
 const superficie_totale = {{ $place->get('blocs->presentation->donnees->surfaces->totale') ?: 0 }};
