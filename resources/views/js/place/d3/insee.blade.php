@@ -162,7 +162,7 @@
         .classed('bars_param', true)
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
-	.style('cursor',  'pointer')
+        .style('cursor',  'pointer')
         .text('Configuration')
 
     // axe y
