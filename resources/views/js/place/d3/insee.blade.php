@@ -222,8 +222,8 @@
       .data(subgroups)
       .enter().append('g')
 
-    const legendCircle = legends.append('circle')
-        .attr('r', 5)
+    const legendCircle = legends.append('rect')
+        .attr('width', 10).attr('height', 10).attr('y', -5).attr('x', -5)
         .attr('fill', d => color(d))
 
     const legendText = legends.append('text')

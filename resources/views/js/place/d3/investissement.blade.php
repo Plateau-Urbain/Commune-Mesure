@@ -102,8 +102,8 @@
     .data(parea_data)
     .enter().append('g')
 
-  const legend_inv_cicle = legend_inv.append('circle')
-    .attr('r', 8)
+  const legend_inv_cicle = legend_inv.append('rect')
+    .attr('width', 10).attr('height', 10).attr('y', -5).attr('x', -5)
     .attr('fill', function(d) { return color(d.name)})
 
   const legend_inv_text = legend_inv.append("text")
