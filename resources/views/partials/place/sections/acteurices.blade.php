@@ -6,7 +6,7 @@
 
   <div class="columns">
     <div class="column is-8 is-offset-2">
-      <div class="columns">
+      <div class="columns is-variable is-6">
         <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
           <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Gouvernance</h5>
           <p>
