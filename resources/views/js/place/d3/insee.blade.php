@@ -32,7 +32,7 @@
 
   const national = {
     activites: {
-      zone: "Nationale",
+      zone: "National",
       subgroups: [
         {name: "Actif occupé", value: 63.70},
         {name: "Autre inactif", value: 8.70},
@@ -43,7 +43,7 @@
     },
 
     logement: {
-      zone: "Nationale",
+      zone: "National",
       subgroups: [
         {name: "Appart/Maison inoccupé", value: 0},
         {name: "Appartement", value: 43.71},
@@ -52,7 +52,7 @@
     },
 
     csp: {
-      zone: "Nationale",
+      zone: "National",
       subgroups: [
         {name: "Agriculteurs exploitants", value: 0},
         {name: "Artisans, Comm., Chefs entr.", value: 1.36},
@@ -90,7 +90,7 @@
   drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 30, bottom: 40, left: 100}
+    const margin = {top: 20, right: 30, bottom: 40, left: 50}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
@@ -216,6 +216,7 @@
             .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
     const legends = svg.append('g')
+      .attr('transform', 'translate(15,0)')
       .selectAll('g')
       .data(subgroups)
       .enter().append('g')

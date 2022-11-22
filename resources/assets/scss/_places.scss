@@ -48,7 +48,7 @@ li.tags{
   position: fixed;
   width: 100%;
   top: 63px;
-  z-index: 999;
+  z-index: 462;
   display: inline-flex;
   align-items: center;
 }
@@ -74,13 +74,18 @@ a[target="_blank"].social-link::after {
 
 .sticky {
     position: sticky;
-    top: 3.25rem;
-    z-index: 999;
+    top: 4rem;
+    z-index: 462;
     display: none;
     margin-bottom: 0;
     padding: 0.5em;
     width: 100%;
     background-color: $light-blue;
+    box-shadow: 0 -5px 3px $black;
+
+    @include until($desktop) {
+        top: 3.25rem;
+    }
 
     h1 {
         font-size: 1.25em;
