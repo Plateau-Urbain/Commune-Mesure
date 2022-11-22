@@ -31,7 +31,7 @@
 
     <div id="bloc-2-presentation" class="is-hidden-mobile column is-3 is-flex is-flex-direction-column is-justify-content-center">
       <h4 class="subtitle is-4">{{ $place->get('address->city') }}</h4>
-      <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
+      <h1 class="title has-text-primary has-text-weight-normal is-uppercase no-border mb-0">{{ $place->get('name') }}</h1>
 
       <p class="is-size-5">
         @if (isset($edit) && ! $place->get('blocs->presentation->donnees->punchline'))
@@ -56,13 +56,13 @@
       <div class="columns">
         <div class="column is-6">
           <div id="bloc-surface"class="mx-auto is-block">
-            <h4 class="title has-text-primary no-border is-uppercase">
+            <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">
               Surface
               <span class="icon-edit">
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->surfaces', 'id_section' => 'presentation', 'type' => 'number', 'titre' => "Modifier les surfaces", 'description' => "Modifiez les différentes surfaces de votre lieu"])
               </span>
             </h4>
-            <h6 class="subtitle"><span id="graph_superficie__superficie_totale">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}</span>m² au total</h6>
+            <h6 class="subtitle is-4"><span id="graph_superficie__superficie_totale">{{ $place->get('blocs->presentation->donnees->surfaces->totale') }}</span> m² au total</h6>
             <div class="chart-container">
               <svg id="graph_superficie" width="80%" style="max-width: 350px" aria-label="Graphique de la répartition de la superficie" role="img"></svg>
             </div>

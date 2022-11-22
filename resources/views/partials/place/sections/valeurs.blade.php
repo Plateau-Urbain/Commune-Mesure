@@ -6,7 +6,7 @@
       <h4 class="subtitle is-4 mb-0">Inauguration</h4>
       <p class="mb-5">{{ \Carbon\Carbon::create($place->get('blocs->presentation->donnees->date_ouverture'))->isoFormat('LL') }}</p>
 
-      <h4 class="title has-text-primary no-border is-uppercase">L'idée fondatrice</h4>
+      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">L'idée fondatrice</h4>
       <p class="mb-5">
         {{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}
         @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->idee_fondatrice', 'id_section' => 'valeurs', 'type' => 'text', 'titre' => "Modifier l'idée fondatrice", 'description'=>"L'idée fondatrice du lieu. Laisser vide pour ne pas l'afficher."])
@@ -14,7 +14,7 @@
 
       <div class="section"></div>
 
-      <h4 class="title has-text-primary no-border is-uppercase">
+      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">
         Les valeurs portées
         <span class="icon-edit">
           @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees", 'id_section'=>'valeurs','type' => 'checkbox','titre' => 'Modifier les 3 valeurs fondamentales de votre lieu','description'=>"Les valeurs fondamentales autour desquelles le projet du lieu s'est construit"])
@@ -42,7 +42,7 @@
 
       <div class="section"></div>
 
-      <h4 class="title has-text-primary no-border is-uppercase">
+      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">
         La programmation du lieu
       </h4>
 

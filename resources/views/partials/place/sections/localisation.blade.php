@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column is-4 is-flex">
           <div>
-            <h4 class="title has-text-primary no-border is-uppercase">Localisation</h4>
+            <h4 class="title has-text-primary no-border has-text-weight-normal has-text-weight-normal is-uppercase">Localisation</h4>
 
             <p class="has-text-left is-size-5">
               <a id="lien-adresse" href="geo:{{ $place->get('blocs->data_territoire->donnees->geo->lat') }},{{ $place->get('blocs->data_territoire->donnees->geo->lon') }}">
