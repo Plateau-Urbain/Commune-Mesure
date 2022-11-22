@@ -81,7 +81,7 @@ a[target="_blank"].social-link::after {
     padding: 0.5em;
     width: 100%;
     background-color: $light-blue;
-    box-shadow: 0 0px 10px $black;
+    box-shadow: 0 -5px 3px $black;
 
     @include until($desktop) {
         top: 3.25rem;
