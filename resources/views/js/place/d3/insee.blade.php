@@ -32,7 +32,7 @@
 
   const national = {
     activites: {
-      zone: "Nationales",
+      zone: "National",
       subgroups: [
         {name: "Actif occupé", value: 63.70},
         {name: "Autre inactif", value: 8.70},
@@ -43,7 +43,7 @@
     },
 
     logement: {
-      zone: "Nationales",
+      zone: "National",
       subgroups: [
         {name: "Appart/Maison inoccupé", value: 0},
         {name: "Appartement", value: 43.71},
@@ -52,7 +52,7 @@
     },
 
     csp: {
-      zone: "Nationales",
+      zone: "National",
       subgroups: [
         {name: "Agriculteurs exploitants", value: 0},
         {name: "Artisans, Comm., Chefs entr.", value: 1.36},
@@ -108,7 +108,7 @@
                 .range([0, w])
 
     const y = d3.scaleBand()
-                .range([0, 60])
+                .range([0, 70])
                 .domain(groups)
 
     // normalisation (cent pour centage)
@@ -162,11 +162,14 @@
         .classed('bars_param', true)
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
+        .style('cursor',  'pointer')
         .text('Configuration')
 
     // axe y
     svg.append("g")
       .call(d3.axisLeft(y).tickSize(0))
+      .attr('transform', "translate(0,6)")
+      .style('font-size', '12px')
       .select(".domain").remove()
 
     // bars
@@ -174,7 +177,7 @@
        .selectAll("g")
        .data(stacked)
        .enter().append("g")
-         .attr('transform', "translate(" + 10 + ",0)")
+         .attr('transform', "translate(10,10)")
          .attr("fill", function (d) { return color(d.key) });
 
     const carres = niveau.selectAll("rect")
@@ -183,13 +186,13 @@
            .attr("x", function (d) { return x(d[0]) })
            .attr("y", function (d) { return y(d.data.zone) })
            .attr("width", function (d) {
-              let rw = x(d[1]) - x(d[0]) - 3
-              if (rw < 0) rw += 3
+              let rw = x(d[1]) - x(d[0]) - 7
+              if (rw < 0) rw += 7
              return rw
            })
-           .attr("height", y.bandwidth() - 5)
-           .attr("stroke", "black")
-           .attr("stroke-width", 1)
+           .attr("height", y.bandwidth() - 10)
+           //.attr("stroke", "black")
+           //.attr("stroke-width", 1)
            .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
           .on("mouseover", function() { return tooltip.style("visibility", "visible") })
@@ -202,24 +205,14 @@
           })
           .on("mouseout", function(){ return tooltip.style("visibility", "hidden") });
 
-    const texts = niveau.selectAll("text")
-       .data(function (d) { return d })
-       .enter()
-       .append('text').classed('stack', true)
-          .attr("x", function (d) { return x(d[0]) + 5 } )
-          .attr("y", function (d) { return y(d.data.zone) + 20 })
-          .attr("text-anchor", "start") // text-align: right
-          .text(function (d) { const v = Math.round(d[1] - d[0]); return (v >= 10) ? v + "%" : '' })
-            .attr("fill", "#000")
-            .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
-
     const legends = svg.append('g')
+      .attr('transform', 'translate(15,0)')
       .selectAll('g')
       .data(subgroups)
       .enter().append('g')
 
-    const legendCircle = legends.append('circle')
-        .attr('r', 5)
+    const legendCircle = legends.append('rect')
+        .attr('width', 10).attr('height', 10).attr('y', -5).attr('x', -5)
         .attr('fill', d => color(d))
 
     const legendText = legends.append('text')

@@ -6,7 +6,7 @@
   @endif
 </p>
 
-<div class="container carousel-container m-0">
+<div class="container carousel-container">
     @php $array_photos = $place->getPhotos(); @endphp
     @unless(empty($array_photos))
     <div id="place-carousel" class="carousel" data-navigation=1>

@@ -2,6 +2,7 @@
 <script>
   const color = d3.scaleOrdinal()
                   .range(['#cb4f4a', '#df9f8d', '#f6e6de', '#c2c0c6', '#64616c', '#262631']);
+  const color2 = d3.scaleOrdinal().range(['#cb4f4a', '#df9f8d', '#f6e6de']);
 </script>
 
 @include('js.place.d3.waffle')

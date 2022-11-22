@@ -40,28 +40,6 @@
     </script>
   @endisset
 
-  <script>
-    let updatePavement = function() {
-      let presentation = document.querySelector('#presentation');
-      let pavementSVGTopRect = document.querySelector('#pavement-svg-top').getBoundingClientRect();
-      let pavementTop = document.querySelector('#pavement-top');
-      pavementTop.style.top = ((Math.round((pavementSVGTopRect.top - presentation.getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
-      //pavementTop.style.display = 'block';
-
-      let pavementSVGBottomRect = document.querySelector('#pavement-svg-bottom').getBoundingClientRect();
-      let pavementBottom = document.querySelector('#pavement-bottom');
-      pavementBottom.style.top = ((Math.round((pavementSVGBottomRect.top - presentation.getBoundingClientRect().top) * 10 ) / 10) - 19) + 'px';
-      pavementBottom.style.display = 'block';
-    }
-
-    @empty($edit)
-      updatePavement();
-
-      window.addEventListener('resize', function(e) {
-        updatePavement();
-      });
-    @endempty
-  </script>
 @endsection
 
 @section('content')

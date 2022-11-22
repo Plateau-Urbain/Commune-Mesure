@@ -36,8 +36,8 @@
     const a = Array(waffle_structure[k].data).fill(k, 0)
     waffle_data.push(...a)
   })
-
-  for(let i = total_structures ; i < carreau_num * carreau_num ; i++) {
+  
+  for(let i = 0 ; i < carreau_num - total_structures % carreau_num ; i++) {
     waffle_data.push('empty');
   }
 
@@ -89,18 +89,37 @@
         .style('opacity', 0);
     });
 
+    const title = svg_waffle.append('g')
+
+    waffle_rect = rects.node().getBoundingClientRect()
+    waffle_height = waffle_rect.height
+    waffle_width = waffle_rect.width
+
+    title.attr('transform', 'translate(0,' + (waffle_height + 10) + ')')
+
+    title_block = title.append('text')
+      .attr('transform', 'translate(0, 40)')
+      .attr('x', '50%')
+      .attr('text-anchor', 'middle')
+      .style('font-size', '1.35rem')
+      .style('font-family', 'BlinkMacBlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serifSystemFont')
+      .style('font-weight', 'bold')
+
+    title_block.text('Type de structures')
+    title_block.append('tspan').attr('x', '50%').attr('y', 25).attr('text-anchor', 'middle').text('participant au projet')
+
     const legends = svg_waffle.append('g')
 
-    legends.attr('transform', 'translate(15,' + (rects.node().getBoundingClientRect().height + 10) + ')')
+    legends.attr('transform', 'translate(50,' + (waffle_height + 75) + ')')
 
     legends
       .selectAll('legend')
       .data(Object.keys(waffle_structure))
       .enter()
-      .append('circle')
-      .attr('cx', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
-      .attr('cy', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) })
-      .attr('r', function(d) { return 10})
+      .append('rect')
+      .attr('width', 10).attr('height', 10)
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 - 5})
+      .attr('y', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) - 10 })
       .attr('fill', d => color(d)); //function(d) { return color(d.name)})
 
     legends
@@ -108,8 +127,8 @@
       .data(Object.keys(waffle_structure))
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 30})
-      .attr('y', function(d, i) { return 33 * (1 + Math.floor( i / 2 )) })
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
+      .attr('y', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .style('font-size', '12px')
       .text(function(d) { return waffle_structure[d].text; })
