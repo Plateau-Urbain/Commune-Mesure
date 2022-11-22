@@ -74,7 +74,7 @@ a[target="_blank"].social-link::after {
 
 .sticky {
     position: sticky;
-    top: 3.25rem;
+    top: 4rem;
     z-index: 462;
     display: none;
     margin-bottom: 0;
@@ -82,6 +82,10 @@ a[target="_blank"].social-link::after {
     width: 100%;
     background-color: $light-blue;
     box-shadow: 0 0px 10px $black;
+
+    @include until($desktop) {
+        top: 3.25rem;
+    }
 
     h1 {
         font-size: 1.25em;
