@@ -41,7 +41,8 @@
     .attr('width', fonctionnement_width)
     .attr('height', fonctionnement_height + 100)
     .append('g')
-    .attr("transform", "translate(" + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + "," + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + ")")
+    .attr('id', 'piechart_fonctionnement')
+    .attr("transform", "translate(" + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + "," + (10 + fonctionnement_margin + (fonctionnement_radius / 2)) + ")")
     .selectAll('path')
     .data(pieArcData)
     .enter()
@@ -84,7 +85,7 @@
         .style("font-size", '12px')
 
     const legends_pie_width_start = 0
-    const legends_pie_height_start = fonctionnement_height + 30
+    const legends_pie_height_start = d3.select('#piechart_fonctionnement').node().getBBox().height + 30
 
     legends_pie.each(function () {
       el = d3.select(this)
