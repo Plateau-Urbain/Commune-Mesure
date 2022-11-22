@@ -69,7 +69,7 @@
           @endif
 
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
-            <h5 class="mt-5 is-size-5">Nature des partenariats :</h5>
+            <h5 class="mt-2 is-size-5">Nature des partenariats :</h5>
               <p>
               @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
                 {{ $nature }}@if(! $loop->last), @endif
@@ -90,7 +90,7 @@
               </p>
             @endif
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
-              <h5 class="mt-5 is-size-5">Nature des partenariats :</h5>
+              <h5 class="mt-2 is-size-5">Nature des partenariats :</h5>
               <p>
                 @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)
                   {{ $nature }}@if(! $loop->last), @endif
