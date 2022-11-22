@@ -168,7 +168,8 @@
     // axe y
     svg.append("g")
       .call(d3.axisLeft(y).tickSize(0))
-      .attr('transform', "translate(0,5)")
+      .attr('transform', "translate(0,6)")
+      .style('font-size', '12px')
       .select(".domain").remove()
 
     // bars
