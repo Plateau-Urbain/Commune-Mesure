@@ -5,13 +5,10 @@
     <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-tablet">La composition</h4>
     <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
-    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+    <div class="column is-6 is-flex is-flex-direction-column is-justify-content-begin is-align-items-flex-end has-text-right">
       <div class="is-flex is-flex-direction-column is-align-items-center">
-        <svg id="waffle" width="100%" height="400" aria-label="Graphique répartition par structure" role="img"></svg>
-        <h6 class="subtitle is-5">
-          Type de structures participant au projet
-          @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
-        </h6>
+        <svg id="waffle" width="100%" height="420" aria-label="Graphique répartition par structure" role="img"></svg>
+        @include('components.modals.modalEdition',['chemin'=>'blocs->composition->donnees->type','id_section'=>'composition','type'=>'number','titre'=>"Modifier les types de structures",'description'=>"Quelle est la nature juridique des structures présentes au sein du lieu ? (par ex. entreprise, association, artistes etc.)"])
       </div>
     </div>
 
