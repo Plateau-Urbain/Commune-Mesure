@@ -20,7 +20,7 @@
           @include('components.modals.modalEdition',['chemin'=>"blocs->valeurs->donnees", 'id_section'=>'valeurs','type' => 'checkbox','titre' => 'Modifier les 3 valeurs fondamentales de votre lieu','description'=>"Les valeurs fondamentales autour desquelles le projet du lieu s'est construit"])
         </span>
       </h4>
-      <div class="columns is-multiline is-centered mb-5">
+      <div class="columns is-multiline mb-5">
         @foreach($place->get('blocs->valeurs->donnees') as $valeur => $active)
           @if($active)
           <div class="column is-half-tablet is-one-third-desktop">
