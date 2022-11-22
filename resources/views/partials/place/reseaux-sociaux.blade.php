@@ -1,5 +1,5 @@
 @isset ($place->get('reseaux_sociaux->donnees')->web)
-  <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link is-size-5">Site web</a>
+  <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link is-size-5 has-text-black is-underlined">Site web</a>
 @endif
 
 <ul class="list-undotted is-hidden-print is-size-5">
