@@ -71,9 +71,9 @@
       .data(pieArcData)
       .enter().append('g')
 
-    const legend_pie_Circle = legends_pie.append('circle')
-          .attr('r', 8)
-          .attr('fill', function(d) { return color(d.data.name)})
+    const legend_pie_Circle = legends_pie.append('rect')
+        .attr('width', 10).attr('height', 10).attr('y', -5).attr('x', -5)
+        .attr('fill', function(d) { return color(d.data.name)})
 
     const legend_pie_Text = legends_pie.append('text')
       .text(function(d) { return d.data.name })

@@ -110,16 +110,16 @@
 
     const legends = svg_waffle.append('g')
 
-    legends.attr('transform', 'translate(49,' + (waffle_height + 75) + ')')
+    legends.attr('transform', 'translate(50,' + (waffle_height + 75) + ')')
 
     legends
       .selectAll('legend')
       .data(Object.keys(waffle_structure))
       .enter()
-      .append('circle')
-      .attr('cx', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5})
-      .attr('cy', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) })
-      .attr('r', function(d) { return 10})
+      .append('rect')
+      .attr('width', 10).attr('height', 10)
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 - 5})
+      .attr('y', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) - 10 })
       .attr('fill', d => color(d)); //function(d) { return color(d.name)})
 
     legends
@@ -127,8 +127,8 @@
       .data(Object.keys(waffle_structure))
       .enter()
       .append('text')
-      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 20})
-      .attr('y', function(d, i) { return 33 * (1 + Math.floor( i / 2 )) })
+      .attr('x', function(d, i) { return center_x + (i % 2)* width_waffle / 2.5 + 10})
+      .attr('y', function(d, i) { return 30 * (1 + Math.floor( i / 2 )) })
       .attr('fill', 'black')
       .style('font-size', '12px')
       .text(function(d) { return waffle_structure[d].text; })
