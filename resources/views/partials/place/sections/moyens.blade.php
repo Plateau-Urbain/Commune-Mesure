@@ -6,7 +6,7 @@
 
         @if(! $place->isEmptyFonctionnement() || isset($edit))
           <div class="is-flex is-flex-direction-column">
-            <h6 class="subtitle is-5 is-uppercase has-text-weight-bold mb-0">
+            <h6 class="subtitle is-6 is-uppercase has-text-weight-bold mb-0">
               Fonctionnement
               @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
             </h6>
@@ -17,7 +17,7 @@
 
         @if(! $place->isEmptyInvestissement() || isset($edit))
           <div class="is-flex is-flex-direction-column">
-            <h6 class="subtitle is-5 is-uppercase has-text-weight-bold mb-0">
+            <h6 class="subtitle is-6 is-uppercase has-text-weight-bold mb-0">
               Investissement
               @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu (en %)"])
             </h6>
