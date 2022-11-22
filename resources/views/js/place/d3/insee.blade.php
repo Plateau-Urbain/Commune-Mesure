@@ -205,17 +205,6 @@
           })
           .on("mouseout", function(){ return tooltip.style("visibility", "hidden") });
 
-    const texts = niveau.selectAll("text")
-       .data(function (d) { return d })
-       .enter()
-       .append('text').classed('stack', true)
-          .attr("x", function (d) { return x(d[0]) + 5 } )
-          .attr("y", function (d) { return y(d.data.zone) + 20 })
-          .attr("text-anchor", "start") // text-align: right
-          .text(function (d) { const v = Math.round(d[1] - d[0]); return (v >= 10) ? v + "%" : '' })
-            .attr("fill", "#000")
-            .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
-
     const legends = svg.append('g')
       .attr('transform', 'translate(15,0)')
       .selectAll('g')
