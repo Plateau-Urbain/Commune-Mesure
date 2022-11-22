@@ -2,7 +2,7 @@
   <div class="columns">
       <div class="column is-8 is-offset-2">
         <div class="columns">
-    <h4 class="title has-text-primary no-border is-uppercase is-hidden-tablet">La composition</h4>
+    <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-tablet">La composition</h4>
     <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="title has-text-primary no-border is-uppercase is-hidden-mobile mb-0">La composition</h4>
+      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-mobile mb-0">La composition</h4>
       <p class="is-hidden-mobile">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
       <div class="columns my-2">
