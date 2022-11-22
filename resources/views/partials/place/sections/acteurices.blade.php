@@ -9,7 +9,7 @@
       <div class="columns is-variable is-6">
 
         {{-- Colonne haut-gauche --}}
-        <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
           <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Gouvernance</h5>
           <p>
             partagée avec {{ $place->get('blocs->presentation->donnees->noms_occupants') }}
@@ -26,7 +26,7 @@
         </div>
 
         {{-- Colonne haut-droite --}}
-        <div class="column is-6 is-flex is-justify-content-space-evenly is-align-items-center">
+        <div class="column is-4 is-flex is-justify-content-space-evenly is-align-items-center">
           @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
             <div>
               <span class="title is-1 has-text-primary font-renner-black">{{$place->get('blocs->moyens->donnees->benevoles')}}</span>
@@ -59,7 +59,7 @@
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-6 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
           @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
             <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>
             <p>
@@ -80,7 +80,7 @@
         </div>
 
         {{-- Colonne bas-droite --}}
-        <div class="column is-6 is-flex is-flex-direction-column is-justify-content-space-between">
+        <div class="column is-4 is-flex is-flex-direction-column is-justify-content-space-between">
           <div>
             @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
               <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs publics</h5>
