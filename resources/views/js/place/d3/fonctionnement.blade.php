@@ -35,7 +35,7 @@
     .innerRadius(fonctionnement_radius * 0.5)
     .outerRadius(fonctionnement_radius * 0.8)
     .padRadius(200)
-    .padAngle(5/300)
+    .padAngle(12/300)
 
   svg_fonctionnement
     .attr('width', fonctionnement_width)
