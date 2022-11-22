@@ -81,6 +81,7 @@ a[target="_blank"].social-link::after {
     padding: 0.5em;
     width: 100%;
     background-color: $light-blue;
+    box-shadow: 0 0px 10px $black;
 
     h1 {
         font-size: 1.25em;
