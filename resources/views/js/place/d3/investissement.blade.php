@@ -66,7 +66,7 @@
         .style('opacity', ! isNaN(d.value) * 1 )
         .text( function(a) {
           if (d.value)
-            return d.name+' : '+d.value+' €';
+            return d.name+' : '+Math.round(d.pc * 100)+' %';
         })
     } )
     .on('mousemove', function(d) {
