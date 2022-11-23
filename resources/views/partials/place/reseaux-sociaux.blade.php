@@ -1,6 +1,6 @@
 <div style="line-height: 2">
   @isset ($place->get('reseaux_sociaux->donnees')->web)
-    <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link is-size-5 has-text-black is-underlined">
+    <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link has-text-black is-underlined">
       {{ str_replace(['https://', 'http://'], '', $place->get('reseaux_sociaux->donnees')->web) }}
     </a>
   @endif

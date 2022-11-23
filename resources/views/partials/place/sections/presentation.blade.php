@@ -1,8 +1,8 @@
 <section class="section-place fond-bleu" id="presentation">
   <div class="columns is-relative">
     <div class="is-hidden-tablet column is-flex is-flex-direction-column is-justify-content-center p-5 has-text-centered">
-      <h4 class="subtitle is-6">{{ $place->get('address->city') }}</h4>
-      <h1 class="title has-text-primary is-2 no-border mb-0">{{ $place->get('name') }}</h1>
+      <h4 class="subtitle is-4 mb-2 pb-3">{{ $place->get('address->city') }}</h4>
+      <h1 class="title has-text-primary has-text-weight-normal is-uppercase no-border mb-0">{{ $place->get('name') }}</h1>
 
       <p class="is-size-5">
         @if (isset($edit) && ! $place->get('blocs->presentation->donnees->punchline'))
@@ -14,7 +14,7 @@
           @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->punchline', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier la punchline", 'description' => "Décrivez votre lieu en quelques mots"])
         </span>
       </p>
-      <p class="mt-6">
+      <p class="mt-5">
         @include('partials.place.reseaux-sociaux')
       </p>
     </div>
@@ -30,7 +30,7 @@
     </div>
 
     <div id="bloc-2-presentation" class="is-hidden-mobile column is-3 is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="subtitle is-4">{{ $place->get('address->city') }}</h4>
+      <h4 class="subtitle is-4 mb-2 pb-3">{{ $place->get('address->city') }}</h4>
       <h1 class="title has-text-primary has-text-weight-normal is-uppercase no-border mb-0">{{ $place->get('name') }}</h1>
 
       <p class="is-size-5">
@@ -43,7 +43,7 @@
           @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->punchline', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier la punchline", 'description' => "Décrivez votre lieu en quelques mots"])
         </span>
       </p>
-      <p class="mt-6">
+      <p class="mt-5">
         @include('partials.place.reseaux-sociaux')
       </p>
     </div>
