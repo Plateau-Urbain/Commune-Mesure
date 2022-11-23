@@ -59,7 +59,7 @@
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+        <div class="column is-4 is-offset-2 is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
           @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
             <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>
             <p>
