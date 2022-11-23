@@ -1,10 +1,14 @@
 @extends('layout')
 
+@section('title')
+  {{-- vide --}}
+@endsection
+
 @section('content')
     <div id="page-listing-lieux" class="container">
-        <div class="hero is-large is-light">
-            <section class="section">
-                <h1 class="title is-1 has-text-centered">L’ensemble des lieux recensés</h1>
+        <div class="hero is-large mt-4">
+            <section class="section pb-0">
+                <h1 class="title is-3 has-text-centered is-uppercase">L’ensemble des lieux recensés</h1>
             </section>
         </div>
         <div class="section">
@@ -16,7 +20,7 @@
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container" style="height: 250px;">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
-                          <figure class="image is-contained">
+                          <figure class="image is-covered">
                             <img src="{{ url('/') }}/images/lieux/{{ $photo }}">
                           </figure>
                         @endforeach
@@ -28,7 +32,7 @@
 
                   <div class="card-content p-4">
                     <p class="is-size-5 has-text-weight-normal" style="text">{{ str_replace('Arrondissement', '', $place->get('address->city')) }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
-                    <a class="title has-text-primary is-size-4"
+                    <a class="title has-text-primary is-uppercase is-size-4"
                       @if ($place->isPublish()) href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" @else style="cursor: not-allowed" @endif
                     >{{ $place->get('name') }}</a>
 
