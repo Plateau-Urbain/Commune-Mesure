@@ -9,7 +9,7 @@
       <div class="columns is-variable is-6">
 
         {{-- Colonne haut-gauche --}}
-        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+        <div class="column is-4 is-offset-2 is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
           <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Gouvernance</h5>
           <p>
             partagée avec {{ $place->get('blocs->presentation->donnees->noms_occupants') }}
