@@ -1,7 +1,7 @@
 <section id="composition" class="content-block">
   <div class="columns">
       <div class="column is-12-touch is-8-desktop is-offset-2-desktop">
-        <div class="columns">
+        <div class="columns is-variable is-6">
     <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-tablet">La composition</h4>
     <p class="is-hidden-tablet">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 

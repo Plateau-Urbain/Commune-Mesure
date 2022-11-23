@@ -55,21 +55,40 @@
       </div>
     </div>
 
-    <div class="column is-12-touch is-8-desktop is-offset-2-desktop">
+    <div class="column is-12-touch is-8-desktop is-offset-2-desktop pb-0">
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
+        <div class="column is-6 is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
           @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
-            <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>
+            <h5 class="mt-1 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>
             <p>
               {{ $place->get('blocs->presentation->donnees->acteurs_prives') }}
               @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_prives','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs privés",'description'=>"Les acteurs privés partenaires ou soutien du projet"])
             </p>
           @endif
+        </div>
 
+        {{-- Colonne bas-droite --}}
+        <div class="column is-6 is-4-desktop is-flex is-flex-direction-column is-justify-content-space-between">
+          @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
+            <h5 class="mt-1 is-size-5 has-text-primary no-border is-uppercase">Les acteurs publics</h5>
+            <p>
+              {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
+              @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs publics",'description'=>"Les acteurs publics partenaires ou soutien du projet"])
+            </p>
+          @endif
+        </div>
+
+      </div>
+    </div>
+    <div class="column is-12-touch is-8-desktop is-offset-2-desktop pt-0">
+      <div class="columns is-variable is-6">
+
+        {{-- Colonne bas-gauche --}}
+        <div class="column is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-align-items-flex-end has-text-right-tablet">
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
-            <h5 class="mt-2 is-size-5">Nature des partenariats&nbsp;:</h5>
+            <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
               @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
                 {{ $nature }}@if(! $loop->last), @endif
@@ -80,17 +99,9 @@
         </div>
 
         {{-- Colonne bas-droite --}}
-        <div class="column is-4-desktop is-flex is-flex-direction-column is-justify-content-space-between">
-          <div>
-            @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
-              <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Les acteurs publics</h5>
-              <p>
-                {{ $place->get('blocs->presentation->donnees->acteurs_publics') }}
-                @include('components.modals.modalEdition',['chemin'=>'blocs->presentation->donnees->acteurs_publics','id_section'=>'presentation','type' => 'text','titre'=>"Modifier les acteurs publics",'description'=>"Les acteurs publics partenaires ou soutien du projet"])
-              </p>
-            @endif
+        <div class="column is-4-desktop is-flex is-flex-direction-column">
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
-              <h5 class="mt-2 is-size-5">Nature des partenariats&nbsp;:</h5>
+              <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
                 @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)
                   {{ $nature }}@if(! $loop->last), @endif
@@ -98,10 +109,10 @@
               </p>
               @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->public','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Nature du soutien apporté par les acteurs publics partenaires du projet(économique, en nature ou autre)'])
             @endif
-          </div>
         </div>
 
       </div>
     </div>
+
   </div>
 </section>
