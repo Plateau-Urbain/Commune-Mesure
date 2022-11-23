@@ -10,15 +10,24 @@
   let immoChart
   let z = 'iris'
 
+  let populationChartTitle = "Population"
+  let socioChartTitle = "Catégories socioprofessionnelles"
+  let immoChartTitle = "Immobilier"
+
   function drawBars() {
     const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
     Array.from(bars_tooltips).forEach(function (tooltip) {
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: "Population"})
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: "Catégories socioprofessionnelles"})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: "Immobilier"})
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: populationChartTitle})
+
+    if (svgwidth < 640) {
+      socioChartTitle = "CSP"
+    }
+
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: socioChartTitle})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: immoChartTitle})
   }
 
   select.addEventListener('change', function (event) {

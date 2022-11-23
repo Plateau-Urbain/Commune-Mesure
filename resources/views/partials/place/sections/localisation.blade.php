@@ -1,6 +1,6 @@
 <section id="accessibilite" class="content-block">
   <div class="columns">
-    <div class="column is-8 is-offset-2">
+    <div class="column is-8-desktop is-offset-2-desktop">
       <div class="columns">
         <div class="column is-4 is-flex">
           <div>
