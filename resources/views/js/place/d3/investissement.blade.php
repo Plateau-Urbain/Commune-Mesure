@@ -90,7 +90,7 @@
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 20 })
     .attr('fill', 'black')
-    .text(function(d) { if (d.width > 30)  return d.value + ' €'})
+    .text(function(d) { if (d.width > 30)  return Math.round(d.pc * 100) + ' %'})
   texts.append('tspan')
     .attr('x', function(d) { return d.x + 10 })
     .attr('y', function(d) { return d.y + 40 })
