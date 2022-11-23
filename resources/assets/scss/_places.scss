@@ -74,12 +74,6 @@ ul.list-undotted {
     }
 }
 
-a[target="_blank"].social-link::after {
-    margin-left: 0.5em;
-    font-family: "Font Awesome 6 Free";
-    content: "\f35d";
-}
-
 .sticky {
     position: sticky;
     top: 4rem;
