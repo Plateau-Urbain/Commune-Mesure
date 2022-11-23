@@ -6,7 +6,7 @@
    height="150mm"
    viewBox="0 0 240 180"
    @endif
-   style="width: 100%; position: relative;"
+   style="width: 100%; height: 100%; position: relative;"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"

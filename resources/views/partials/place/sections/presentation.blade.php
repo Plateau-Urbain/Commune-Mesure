@@ -20,10 +20,10 @@
     </div>
     <div class="column is-10 is-offset-1">
       <div class="columns">
-        <div class="column is-hidden-mobile">
+        <div class="column is-hidden-mobile pt-5">
           @include('partials.place.sections.batiment', ['is_mobile' => 'false'])
         </div>
-        <div class="column is-hidden-desktop is-hidden-tablet column is-6 is-offset-1">
+        <div class="column is-hidden-desktop is-hidden-tablet column is-6 is-offset-1 pt-6">
           @include('partials.place.sections.batiment', ['is_mobile' => 'true'])
         </div>
       </div>
