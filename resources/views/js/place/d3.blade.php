@@ -1,8 +1,7 @@
 <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
 <script>
   const color = d3.scaleOrdinal()
-                  .range(['#cb4f4a', '#df9f8d', '#f6e6de', '#c2c0c6', '#64616c', '#262631']);
-  const color2 = d3.scaleOrdinal().range(['#cb4f4a', '#df9f8d', '#f6e6de']);
+                  .range(['#C7514D', '#EA7B6C', '#E9C3B7', '#DDEBEF', '#7E97A7', '#B5CAB5', '#6C9871', '#262531']);
 </script>
 
 @include('js.place.d3.waffle')
