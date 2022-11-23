@@ -191,9 +191,6 @@
              return rw
            })
            .attr("height", y.bandwidth() - 10)
-           //.attr("stroke", "black")
-           //.attr("stroke-width", 1)
-           .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
           .on("mouseover", function() { return tooltip.style("visibility", "visible") })
           .on("mousemove", function(d) {
