@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="mx-auto has-text-centered" style="padding-top:50px">
+      <div id="charts-insee" class="mx-auto has-text-centered" style="padding-top:50px">
         <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Population</h3>
         <svg id="population-chart" width="100%" height="250"></svg>
         <h3 class="title is-5 no-border is-uppercase mb-0 is-hidden">Catégories Socioprofessionelles</h3>

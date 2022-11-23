@@ -9,7 +9,7 @@
   <div id="sticky" class="sticky">
     <div class="container has-text-centered app-name">
       <h1 class="title header-title">
-        {{ $place->get('name') }} <span class="sticky-separator">></span> <span id="sticky-section"></span>
+        {{ $place->get('name') }} <span class="sticky-separator"><i class="fa fa-angle-right"></i></span> <span id="sticky-section"></span>
       </h1>
     </div>
   </div>

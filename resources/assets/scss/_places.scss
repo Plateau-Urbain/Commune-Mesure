@@ -122,6 +122,10 @@ ul.list-undotted {
 
 section.content-block {
     padding: 125px 1.5rem 75px 1.5rem;
+
+    @include mobile {
+        padding: 80px 1.5rem 75px 1.5rem;
+    }
 }
 
 .slider-container .slider-item .image.is-contained img {
