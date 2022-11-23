@@ -42,10 +42,11 @@
                       @endif
                     </div>
                     @if ($place->isPublish())
-                      <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth">Voir son datapanorama</a>
-                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets sociaux</a>
+                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth is-small">Voir ses effets sociaux</a>
+                      <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
                     @else
-                      <p class="is-italic">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
+                      <p class="is-italic has-text-grey-light">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
+                      <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir son datapanorama</button>
                     @endif
                   </div>
                 </div>
