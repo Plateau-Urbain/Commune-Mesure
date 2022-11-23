@@ -10,15 +10,24 @@
   let immoChart
   let z = 'iris'
 
+  let populationChartTitle = "Population"
+  let socioChartTitle = "Catégories socioprofessionnelles"
+  let immoChartTitle = "Immobilier"
+
   function drawBars() {
     const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
     Array.from(bars_tooltips).forEach(function (tooltip) {
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: "Population"})
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: "Catégories socioprofessionnelles"})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: "Immobilier"})
+    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: populationChartTitle})
+
+    if (svgwidth < 640) {
+      socioChartTitle = "CSP"
+    }
+
+    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: socioChartTitle})
+    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: immoChartTitle})
   }
 
   select.addEventListener('change', function (event) {
@@ -90,7 +99,7 @@
   drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 30, bottom: 40, left: 52}
+    const margin = {top: 20, right: 0, bottom: 40, left: 52}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
@@ -191,9 +200,6 @@
              return rw
            })
            .attr("height", y.bandwidth() - 10)
-           //.attr("stroke", "black")
-           //.attr("stroke-width", 1)
-           .attr("opacity", (d, i) => (i % 2) ? 1 : 0.5)
 
           .on("mouseover", function() { return tooltip.style("visibility", "visible") })
           .on("mousemove", function(d) {

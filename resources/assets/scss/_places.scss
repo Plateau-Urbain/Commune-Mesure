@@ -112,7 +112,7 @@ ul.list-undotted {
         position: absolute;
         content: '';
         background: url('../images/map-mask.png') center center;
-        background-size: cover;
+        background-size: 100% auto;
         background-repeat: no-repeat;
         width: 100%;
         height: 100%;
