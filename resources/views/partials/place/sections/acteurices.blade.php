@@ -70,7 +70,7 @@
         </div>
 
         {{-- Colonne bas-droite --}}
-        <div class="column is-6 is-4-desktop is-flex is-flex-direction-column is-justify-content-space-between">
+        <div class="column is-6 is-4-desktop is-flex is-flex-direction-column">
           @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
             <h5 class="mt-1 is-size-5 has-text-primary no-border is-uppercase">Les acteurs publics</h5>
             <p>
