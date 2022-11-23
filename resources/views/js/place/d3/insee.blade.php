@@ -2,8 +2,9 @@
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
   const select = document.getElementById("selectGeo");
-  const svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
-  const svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
+
+  let svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
+  let svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
 
   let populationChart
   let socioChart
@@ -35,6 +36,19 @@
     populationChart.remove()
     socioChart.remove()
     immoChart.remove()
+
+    drawBars()
+  })
+
+  window.addEventListener('resize', function () {
+    populationChart.remove()
+    socioChart.remove()
+    immoChart.remove()
+
+    const chartsContainer = document.querySelector('#charts-insee').getBoundingClientRect()
+
+    svgwidth = parseInt(chartsContainer.width, 10)
+    svgheight = parseInt(chartsContainer.height, 10)
 
     drawBars()
   })
@@ -99,7 +113,7 @@
   drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 0, bottom: 40, left: 52}
+    const margin = {top: 20, right: 0, bottom: 40, left: 100}
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
