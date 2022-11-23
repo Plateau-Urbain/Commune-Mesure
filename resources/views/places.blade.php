@@ -26,11 +26,11 @@
                     </div>
                   </div>
 
-                  <div class="card-content">
-                    <a class="title has-text-primary"
+                  <div class="card-content p-4">
+                    <p class="is-size-5 has-text-weight-normal" style="text">{{ str_replace('Arrondissement', '', $place->get('address->city')) }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
+                    <a class="title has-text-primary is-size-4"
                       @if ($place->isPublish()) href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" @else style="cursor: not-allowed" @endif
                     >{{ $place->get('name') }}</a>
-                    <p class="is-size-4 has-text-weight-normal">{{ $place->get('address->city') }} ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
 
                     <div class="content mt-4">
                       @if ($place->isPublish())
