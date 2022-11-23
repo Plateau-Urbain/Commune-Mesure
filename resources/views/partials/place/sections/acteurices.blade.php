@@ -5,11 +5,11 @@
   </h4>
 
   <div class="columns is-multiline">
-    <div class="column is-8 is-offset-2">
+    <div class="column is-12-touch is-8-desktop is-offset-2-desktop">
       <div class="columns is-variable is-6">
 
         {{-- Colonne haut-gauche --}}
-        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right">
+        <div class="column is-6 is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
           <h5 class="mt-5 is-size-5 has-text-primary no-border is-uppercase">Gouvernance</h5>
           <p>
             partagée avec {{ $place->get('blocs->presentation->donnees->noms_occupants') }}
@@ -26,7 +26,7 @@
         </div>
 
         {{-- Colonne haut-droite --}}
-        <div class="column is-4 is-flex is-justify-content-space-evenly is-align-items-center">
+        <div class="column is-6 is-4-desktop is-flex is-justify-content-space-evenly is-align-items-center">
           @if(!empty($place->get('blocs->moyens->donnees->benevoles')) && !isset($edit) || isset($edit))
             <div>
               <span class="title is-1 has-text-primary font-renner-black">{{$place->get('blocs->moyens->donnees->benevoles')}}</span>
@@ -55,11 +55,11 @@
       </div>
     </div>
 
-    <div class="column is-8 is-offset-2 pb-0">
+    <div class="column is-12-touch is-8-desktop is-offset-2-desktop pb-0">
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-align-items-flex-end has-text-right">
+        <div class="column is-6 is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-justify-content-center is-align-items-flex-end has-text-right-tablet">
           @if ($place->get('blocs->presentation->donnees->acteurs_prives') || isset($edit))
             <h5 class="mt-1 is-size-5 has-text-primary no-border is-uppercase">Les acteurs privés</h5>
             <p>
@@ -70,7 +70,7 @@
         </div>
 
         {{-- Colonne bas-droite --}}
-        <div class="column is-4 is-flex is-flex-direction-column is-justify-content-space-between">
+        <div class="column is-6 is-4-desktop is-flex is-flex-direction-column">
           @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
             <h5 class="mt-1 is-size-5 has-text-primary no-border is-uppercase">Les acteurs publics</h5>
             <p>
@@ -82,11 +82,11 @@
 
       </div>
     </div>
-    <div class="column is-8 is-offset-2 pt-0">
+    <div class="column is-12-touch is-8-desktop is-offset-2-desktop pt-0">
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-4 is-offset-2 is-flex is-flex-direction-column is-align-items-flex-end has-text-right">
+        <div class="column is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-align-items-flex-end has-text-right-tablet">
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
             <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
@@ -99,7 +99,7 @@
         </div>
 
         {{-- Colonne bas-droite --}}
-        <div class="column is-4 is-flex is-flex-direction-column">
+        <div class="column is-4-desktop is-flex is-flex-direction-column">
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
               <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
