@@ -13,7 +13,7 @@
     </div>
 
     <div class="column is-6-tablet is-4-desktop is-flex is-flex-direction-column is-justify-content-center">
-      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-mobile mb-0">La composition</h4>
+      <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase is-hidden-mobile mb-0" style="word-break: keep-all">La composition</h4>
       <p class="is-hidden-mobile">Nombre et nature des structures ayant leurs locaux ou exerçant leur activité au sein du lieu.</p>
 
       <div class="columns my-2">

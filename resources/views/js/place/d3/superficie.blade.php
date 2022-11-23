@@ -107,7 +107,15 @@ var function_superficie_text_1 = function(d) {
     if( function_get_superficie(d) < 31){
       return;
     }
-    if (d == 'superficie_exterieur') return 'Extérieurs : '+function_get_superficie(d) + ' m²';;
+
+    if (d == 'superficie_exterieur') {
+      if (function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') < 31) {
+        return '';
+      }
+
+      return 'Extérieurs : '+function_get_superficie(d) + ' m²'
+    }
+
     if (function_superficie_height(d) < 100) {
         if (d == 'superficie_autres') return 'Autres : '+ function_get_superficie(d) + ' m²';
         if (d == 'superficie_bureaux') return 'Bureaux : '+ function_get_superficie(d) + ' m²';
