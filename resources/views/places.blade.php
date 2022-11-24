@@ -21,7 +21,7 @@
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
                           <figure class="image is-covered">
-                            <img src="{{ url('/') }}/images/lieux/{{ $photo }}">
+                            <img src="{{ url('/') }}/images/lieux/thumbnail/{{ $photo }}">
                           </figure>
                         @endforeach
                       @endif
