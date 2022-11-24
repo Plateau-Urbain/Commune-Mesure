@@ -12,6 +12,7 @@
       {name: "Fonds propres", value: {{ $place->get('blocs->moyens->donnees->investissement->Fonds apportés') ?: 0 }}}
   ]
 
+  parea_data.sort((a,b) => b.value >= a.value);
 
   const graph_width = svg.node().getBoundingClientRect().width;
   const graph_height = svg.node().getBoundingClientRect().height - 100;
@@ -25,23 +26,16 @@
       element['id'] = index
       element['width'] = graph_height * element['pc'];
       element['height'] = graph_height * element['pc'];
+      element['y'] = graph_height - (graph_height * element['pc'])
+      if (index == 0) {
+        element['x'] = 0;
+        if(element['width'] == 0 && element['height'] == 0){
+          bloc_margin = 0
+        }
+      } else {
+        element['x'] = bloc_margin + parea_data[index -1]['x'] + parea_data[index -1]['width'];
+      }
   })
-
-  parea_data[0]['x'] = 0;
-  if(parea_data[0]['width'] == 0 && parea_data[0]['height'] == 0){
-    bloc_margin = 0
-  }
-  parea_data[1]['x'] = bloc_margin + parea_data[0]['x'] + parea_data[0]['width'];
-  parea_data[2]['x'] = parea_data[1]['x'];
-
-  parea_data[0]['y'] = graph_height - (graph_height * parea_data[0]['pc']);
-  parea_data[1]['y'] = graph_height - (graph_height * parea_data[1]['pc']);
-
-  if(parea_data[1]['width'] == 0 && parea_data[1]['height'] == 0){
-    bloc_margin = 0
-  }
-
-  parea_data[2]['y'] = parea_data[1]['y'] - parea_data[2]['height'] - bloc_margin
 
   const tooltip_invest_id = 'tooltip-invest';
 
