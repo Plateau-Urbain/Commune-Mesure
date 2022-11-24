@@ -14,7 +14,7 @@
     @foreach($place->getAccessibilite() as $accessibilite => $check)
       @if($check )
         <span class="cm-icons-container" title="{{ $accessibilite }}">
-          <i class="cm-icons small {{ $accessibilite_icons[$accessibilite] }}" style="cursor: help"></i>
+          <i class="cm-icons small {{ $accessibilite_icons[$accessibilite] }}"></i>
         </span>
       @endif
     @endforeach

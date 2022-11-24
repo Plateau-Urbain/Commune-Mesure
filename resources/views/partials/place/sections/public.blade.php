@@ -25,14 +25,14 @@
       @if ($public === 'Tout le monde') @continue @endif
 
       <span class="cm-icons-container" title="{{ $public }}">
-        <i class="cm-icons small {{ $icone }}" style="cursor: help"></i>
+        <i class="cm-icons small {{ $icone }}"></i>
       </span>
     @endforeach
   @else
     @foreach($publics as $public => $check)
       @if($check )
         <span class="cm-icons-container" title="{{ $public }}">
-          <i class="cm-icons small {{ $public_icons[$public] }}" style="cursor: help"></i>
+          <i class="cm-icons small {{ $public_icons[$public] }}"></i>
         </span>
       @endif
     @endforeach
