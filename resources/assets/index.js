@@ -49,26 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animateValue(v)
     })
 
-    // Cartes listing des lieux
-    document.querySelectorAll("div.map-place").forEach(nodeMap => {
-        var id = nodeMap.getAttribute("id");
-        var namePlace = id.replace("map_", '');
-        if (!geoDataPlace[namePlace]) {
-            console.log(namePlace+" not found ("+id+")");
-            return;
-        }
-        var latLon = [geoDataPlace[namePlace].geo.lat, geoDataPlace[namePlace].geo.lon];
-        var mapPlace = mapjs.create(id, {
-            gestureHandling: false,
-            minZoom: 9,
-            maxZoom: 9,
-            zoomControl: false
-        })
-        L.marker(latLon).addTo(mapPlace)
-        mapPlace.setView(latLon, 9)
-        mapPlace.dragging.disable()
-    })
-
     // Carte d'un lieu
     if (document.getElementById('section-map')) {
         var mapplace = mapjs.create('section-map', {
@@ -140,4 +120,24 @@ document.addEventListener('DOMContentLoaded', () => {
             menuMobile.firstElementChild.appendChild(link);
         }
     });
+
+    // Cartes listing des lieux
+    document.querySelectorAll("div.map-place").forEach(nodeMap => {
+        var id = nodeMap.getAttribute("id");
+        var namePlace = id.replace("map_", '');
+        if (!geoDataPlace[namePlace]) {
+            console.log(namePlace+" not found ("+id+")");
+            return;
+        }
+        var latLon = [geoDataPlace[namePlace].geo.lat, geoDataPlace[namePlace].geo.lon];
+        var mapPlace = mapjs.create(id, {
+            gestureHandling: false,
+            minZoom: 9,
+            maxZoom: 9,
+            zoomControl: false
+        })
+        L.marker(latLon).addTo(mapPlace)
+        mapPlace.setView(latLon, 9)
+        mapPlace.dragging.disable()
+    })
 });
