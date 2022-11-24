@@ -15,7 +15,7 @@
   parea_data.sort((a,b) => b.value >= a.value);
 
   const graph_width = svg.node().getBoundingClientRect().width;
-  const graph_height = svg.node().getBoundingClientRect().height - 100;
+  const graph_height = svg.node().getBoundingClientRect().height - 50;
   const total = parea_data.reduce((accum, item) => accum + item.value, 0);
   var bloc_margin = 10
 

@@ -10,6 +10,12 @@
   const fonctionnement_height = svg_fonctionnement.node().getBoundingClientRect().height
 
   const fonctionnement_margin = 50
+  
+  var translate_y_adjust = 0
+  // La légende est sur deux lignes => on met plus d'espace pour ça
+  if (fonctionnement_width < 430) {
+    translate_y_adjust = -5
+  }
 
   const fonctionnement_radius = Math.min(fonctionnement_width, fonctionnement_height) / 1.4 - fonctionnement_margin
 
@@ -39,10 +45,10 @@
 
   svg_fonctionnement
     .attr('width', fonctionnement_width)
-    .attr('height', fonctionnement_height + 100)
+    .attr('height', fonctionnement_height)
     .append('g')
     .attr('id', 'piechart_fonctionnement')
-    .attr("transform", "translate(" + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + "," + (10 + fonctionnement_margin + (fonctionnement_radius / 2)) + ")")
+    .attr("transform", "translate(" + (0 + fonctionnement_margin + (fonctionnement_radius / 2)) + "," + (fonctionnement_margin + translate_y_adjust + (fonctionnement_radius / 2)) + ")")
     .selectAll('path')
     .data(pieArcData)
     .enter()
