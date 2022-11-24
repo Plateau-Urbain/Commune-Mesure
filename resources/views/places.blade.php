@@ -26,7 +26,7 @@
                         @endforeach
                       @endif
 
-                      <div class="map-place" id="map_{{ $place->getSlug() }}"></div>
+                      <div style="z-index: -1;" class="map-place" id="map_{{ $place->getSlug() }}"></div>
                     </div>
                   </div>
 
@@ -65,5 +65,4 @@
 @section('script_js')
   @parent
   @include('partials.places.map-js')
-  @include('partials.places.sortPlaces-js')
 @endsection
