@@ -12,6 +12,7 @@
             </section>
         </div>
         <div class="section">
+          <p class="block has-text-grey">Trié par : les + récents</p>
           <div class="columns is-multiline">
             @foreach ($places as $place)
               <div class="column is-3">

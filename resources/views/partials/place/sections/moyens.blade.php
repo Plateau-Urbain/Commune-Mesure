@@ -11,7 +11,7 @@
               @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->fonctionnement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier le fonctionnement","description"=>"Le budget annuel de fonctionnement du projet"])
             </h6>
 
-            <svg id="financement-budget-doughnut" width="100%" height="300" aria-label="Répartition budget fonctionnement / investissement" role="img">
+            <svg id="financement-budget-doughnut" width="100%" height="300" aria-label="Répartition budget fonctionnement / investissement" role="img"></svg>
           </div>
         @endif
 
