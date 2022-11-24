@@ -22,7 +22,7 @@
               @include('components.modals.modalEdition',['chemin'=>'blocs->moyens->donnees->investissement','id_section'=>'moyens','type'=>'number','titre'=>"Modifier l'investissement",'description'=>"Le budget initial nécessaire au financement du projet et à l'ouverture du lieu (en %)"])
             </h6>
 
-            <svg id="investissement-graph" width="100%" height="470" aria-label="Répartition investissement" role="img"></svg>
+            <svg id="investissement-graph" width="100%" height="350" aria-label="Répartition investissement" role="img"></svg>
           </div>
         @endif
     </div>
