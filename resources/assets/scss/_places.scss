@@ -7,6 +7,10 @@
     }
 }
 
+#place-carousel {
+    max-height: 500px;
+}
+
 #place-carousel, #place-carousel > div, #place-carousel .slider-container, #place-carousel .slider-container div {
     height: 100% !important;
 }
