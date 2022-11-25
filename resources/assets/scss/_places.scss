@@ -148,6 +148,12 @@ section.content-block {
     }
 }
 
+div.alternate-bg {
+    &:nth-of-type(odd) {
+        background-color: $light-blue;
+    }
+}
+
 .slider-container .slider-item .image.is-contained img {
     object-fit: contain;
     object-position: center bottom;
