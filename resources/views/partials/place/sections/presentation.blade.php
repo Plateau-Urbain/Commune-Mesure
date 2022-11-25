@@ -52,9 +52,9 @@
 
 <section class="section-place fond-bleu content-block">
   <div class="columns">
-    <div class="column is-8 is-offset-2">
+    <div class="column is-9 is-offset-2">
       <div class="columns">
-        <div class="column is-6">
+        <div class="column is-6 is-5-widescreen ">
           <div id="bloc-surface"class="mx-auto is-block">
             <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">
               Surface
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="column is-6">
+        <div class="column is-6 is-7-widescreen">
           @include('partials.place.sections.carousel')
         </div>
       </div>
