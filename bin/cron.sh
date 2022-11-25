@@ -14,9 +14,7 @@ cd "$_TMP" || exit
 
 for url in "${_URLS[@]}"; do
     echo "wget: http://${_HOST}/external/${url}"
-    wget --quiet --page-requisites \
-         --convert-links \
-         "https://${_HOST}/external/${url}"
+    wget --quiet --page-requisites "https://${_HOST}/external/${url}"
 
     echo "rsync: \"${_TMP}${_HOST}/\" \"${_DEST}\""
     rsync -r "${_TMP}${_HOST}/" "${_DEST}"

@@ -30,6 +30,6 @@ class Manifest
 
     public function getSha()
     {
-        return '?'.$this->sha;
+        return trim('?'.$this->sha);
     }
 }

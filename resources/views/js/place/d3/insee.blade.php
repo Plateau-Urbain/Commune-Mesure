@@ -186,7 +186,7 @@
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
         .style('cursor',  'pointer')
-        .text('Configuration')
+        .text('Changer la comparaison')
 
     // axe y
     svg.append("g")

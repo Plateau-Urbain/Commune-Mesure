@@ -1,10 +1,10 @@
+@if(isset($edit))
 <p class='description-section has-text-centered'>
-  @if(isset($edit))
     <span class="icon-edit">
       @include('components.modals.modalEdition', ['action' => 'photo.add', 'chemin' => 'galerie->donnees', 'id_section' => 'galerie', 'type' => 'file', 'titre' => "Modifier la galerie", 'description' => "Ajoutez ou supprimez des photos du lieu. (Taille minimale recommandée de 1000x500)"])
     </span>
-  @endif
 </p>
+@endif
 
 <div class="container carousel-container">
     @php $array_photos = $place->getPhotos(); @endphp
