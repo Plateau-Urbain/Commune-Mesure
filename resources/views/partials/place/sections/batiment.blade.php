@@ -65,13 +65,13 @@
       @php
         $x = ($i % 2) ? 60 : 120;
         $y = intval($i / 2) ? 60 : 120;
-        $part = (strpos($t, 'THEME_') === false) ? 'THEME_VIERGE' : $t;
+        $path = $batiment->getThematiquePath($t);
       @endphp
        transform="translate({{ $x }},{{ $y }})"
       >
-      <x-svg :path="'assets/images/batiment/themes/'.$part.'.svg'" class="" transform="" width=60 height=60>
+      <x-svg :path="$path" class="" transform="" width=60 height=60>
 
-        @if (strpos($t, 'THEME_') === false)
+        @if (strpos($path, 'THEME_VIERGE') !== false)
           @if (mb_strlen($t) > 30)
             <text x="50%" dominant-baseline="middle" text-anchor="middle" style="font-size:3rem;font-weight:bold;fill:#c9514a;">
                 <tspan x="50%" dy="-1.2em">{{ strtok(mb_strtoupper($t), ' ') }} {{ strtok(' ') }} {{ strtok(' ') }}</tspan>

@@ -6,14 +6,6 @@ use App\Models\Place;
 
 class Batiment
 {
-    const THEME2KEY = [
-        'Accueil' => 'THEME_ACCUEIL',
-        'Artisanat' => 'THEME_ARTISANAT',
-        'Convivialité' => 'THEME_CONVIVIALITE',
-        'Coworking' => 'THEME_COWORKING',
-        'Recyclage' => 'THEME_RECYCLAGE',
-    ];
-
     private $decors_gauche = [];
     private $decors_droite = [];
     private $thematiques = [];
@@ -31,13 +23,7 @@ class Batiment
 
     public function init(Place $place)
     {
-        $themes = $place->get('blocs->presentation->donnees->thematiques');
-
-        if ($themes) {
-            foreach($themes as $t) {
-                $this->thematiques[] = (isset(self::THEME2KEY[$t])) ? self::THEME2KEY[$t] : $t;
-            }
-        }
+        $this->thematiques = $place->get('blocs->presentation->donnees->thematiques');
 
         for ($i = count($this->thematiques) ; $i < 3 ; $i++ ) {
             $this->thematiques[] = '';
@@ -61,6 +47,15 @@ class Batiment
     public function getThematique(int $index)
     {
         return $this->thematiques[$index];
+    }
+
+    public function getThematiquePath(string $theme)
+    {
+        if (is_file(resource_path('assets/images/batiment/themes/').$theme.'.svg') === false) {
+            return 'assets/images/batiment/themes/THEME_VIERGE.svg';
+        }
+
+        return 'assets/images/batiment/themes/'.$theme.'.svg';
     }
 
     public function getToit(string $side)
