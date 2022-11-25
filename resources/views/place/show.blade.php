@@ -48,43 +48,33 @@
   @endisset
 
 <div id="container" @isset($edit) style="padding-top:50px" @endisset>
-  <div data-spy="Le lieu">
-    <x-edit-section :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.presentation')
-    </x-edit-section>
+  <x-edit-section data-spy="Le lieu" class="alternate-bg" :edit="isset($edit)" section="presentation" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.presentation')
+  </x-edit-section>
 
-    <x-edit-section :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.localisation')
-    </x-edit-section>
-  </div>
+  <x-edit-section data-spy="Le lieu" class="alternate-bg" :edit="isset($edit)" section="accessibilite" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.localisation')
+  </x-edit-section>
 
-  <div data-spy="La programmation">
-    <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.valeurs')
-    </x-edit-section>
-  </div>
+  <x-edit-section data-spy="La programmation" class="alternate-bg" :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.valeurs')
+  </x-edit-section>
 
-  <div data-spy="Les acteur.ices">
-    <x-edit-section :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.composition')
-    </x-edit-section>
+  <x-edit-section data-spy="Les acteur.ices" class="alternate-bg" :edit="isset($edit)" section="composition" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.composition')
+  </x-edit-section>
 
-    <x-edit-section :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.acteurices')
-    </x-edit-section>
-  </div>
+  <x-edit-section data-spy="Les acteur.ices" class="alternate-bg" :edit="isset($edit)" section="acteurices" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.acteurices')
+  </x-edit-section>
 
-  <div data-spy="Les moyens">
-    <x-edit-section :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-      @include('partials.place.sections.moyens')
-    </x-edit-section>
-  </div>
+  <x-edit-section data-spy="Les moyens" class="alternate-bg" :edit="isset($edit)" section="moyens" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+    @include('partials.place.sections.moyens')
+  </x-edit-section>
 
-  <div data-spy="Les effets">
-    <x-edit-section :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
-        @include('partials.place.sections.impact-social')
-    </x-edit-section>
-  </div>
+  <x-edit-section data-spy="Les effets" class="alternate-bg" :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+      @include('partials.place.sections.impact-social')
+  </x-edit-section>
 </div>
 
   @isset($edit)

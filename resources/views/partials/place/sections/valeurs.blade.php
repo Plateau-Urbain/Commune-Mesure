@@ -1,4 +1,4 @@
-<section id="valeurs" class="is-clearfix fond-bleu content-block">
+<section id="valeurs" class="is-clearfix content-block">
   <div class="columns">
     <div class="column is-8 is-offset-2">
       <img class="is-pulled-right is-half" src="{{ url('/images/IDÉE_FONDATRICE.svg') }}">

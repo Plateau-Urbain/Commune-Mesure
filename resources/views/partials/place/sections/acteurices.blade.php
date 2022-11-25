@@ -1,4 +1,4 @@
-<section class="fond-bleu content-block">
+<section class="content-block">
   <img class="image mx-auto" width="455px" src="{{ url('/images/Les_valeurs.png') }}">
   <h4 class="title has-text-weight-normal is-uppercase no-border has-text-primary has-text-centered bg-fil">
     <span class="fond-bleu">Les acteur.ices</span>
