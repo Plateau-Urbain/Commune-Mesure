@@ -7,16 +7,22 @@
     }
 }
 
+#place-carousel {
+    max-height: 450px;
+    @include until ($widescreen){
+        max-height: 417px;
+    }
+    @include until ($fullhd){
+        max-height: 421px;
+    }
+
+}
+
 #place-carousel, #place-carousel > div, #place-carousel .slider-container, #place-carousel .slider-container div {
     height: 100% !important;
 }
 
-#place-carousel .slider-navigation-next {
-    top: inherit;
-    bottom: 10px;
-}
-
-#place-carousel .slider-navigation-previous {
+#place-carousel .slider-navigation-next, #place-carousel .slider-navigation-previous {
     top: inherit;
     bottom: 10px;
 }
