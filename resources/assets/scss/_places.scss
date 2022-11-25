@@ -8,7 +8,14 @@
 }
 
 #place-carousel {
-    max-height: 500px;
+    max-height: 450px;
+    @include until ($widescreen){
+        max-height: 417px;
+    }
+    @include until ($fullhd){
+        max-height: 421px;
+    }
+
 }
 
 #place-carousel, #place-carousel > div, #place-carousel .slider-container, #place-carousel .slider-container div {
