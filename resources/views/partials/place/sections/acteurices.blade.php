@@ -69,6 +69,18 @@
           @endif
         </div>
 
+        <div class="column has-text-right-tablet is-hidden-tablet">
+          @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
+            <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
+              <p>
+              @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
+                {{ $nature }}@if(! $loop->last), @endif
+              @endforeach
+              </p>
+            @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Nature du soutien apporté par les acteurs privés partenaires du projet(économique, en nature ou autre)'])
+          @endif
+        </div>
+
         {{-- Colonne bas-droite --}}
         <div class="column is-6 is-4-desktop is-flex is-flex-direction-column">
           @if ($place->get('blocs->presentation->donnees->acteurs_publics') || isset($edit))
@@ -86,7 +98,7 @@
       <div class="columns is-variable is-6">
 
         {{-- Colonne bas-gauche --}}
-        <div class="column is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-align-items-flex-end has-text-right-tablet">
+        <div class="column is-4-desktop is-offset-2-desktop is-flex-tablet is-flex-direction-column is-align-items-flex-end has-text-right-tablet is-hidden-mobile">
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
             <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
