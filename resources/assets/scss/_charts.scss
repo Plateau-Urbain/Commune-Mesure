@@ -11,7 +11,7 @@
     .word {
         font-size: $size-3;
         margin-right: $size-2;
-        word-break: keep-all;
+        word-break: break-word;
 
         &:nth-of-type(3n+1) { color: #C7514D; }
         &:nth-of-type(3n+2) { color: #EA7B6C; }

@@ -1,4 +1,4 @@
-<section class="section-place" id="presentation">
+<section class="section-place content-block" id="presentation">
   <div class="columns is-relative">
     <div class="is-hidden-tablet column is-flex is-flex-direction-column is-justify-content-center p-5 has-text-centered">
       <h4 class="subtitle is-4 mb-2 pb-3">{{ $place->get('address->city') }}</h4>
