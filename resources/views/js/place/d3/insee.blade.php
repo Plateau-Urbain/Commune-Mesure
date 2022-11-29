@@ -49,9 +49,7 @@
     } else {
       // On prend la première zone qui a des valeurs
       for (const [zone, total] of Object.entries(total_par_zone_par_serie[serie])) {
-        console.log(zone + " / " + total)
         if (total > 0) {
-          console.log(insee[serie][zone])
           serie_datas.push(insee[serie][zone])
           break
         }
@@ -279,7 +277,6 @@
     let trans_y_labs = 25 // translation y pour le text
     data.forEach((d) => {
       const zlabel = is_bulma_mobile ? zone_labels_mobile[d.zone] : zone_labels[d.zone]
-      console.log(zlabel)
       if (Array.isArray(zlabel)) {
         coucou = series_labels.append('g')
         .attr('transform', "translate(0,"+(trans_y_labs-3)+")").append('text')
