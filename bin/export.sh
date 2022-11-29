@@ -24,6 +24,7 @@ fi
 
 convert $(find "$SCREENSHOT_DIR" -name "$PLACE*.jpg" | sort) -append "$SCREENSHOT_DIR/$PLACE.jpg"
 
-echo "$SCREENSHOT_DIR/$PLACE.jpg"
+
+realpath "$SCREENSHOT_DIR/$PLACE.jpg"
 
 exit 0

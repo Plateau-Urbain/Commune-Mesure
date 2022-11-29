@@ -28,6 +28,6 @@ pdftk $(find "$SCREENSHOT_DIR" -name "$PLACE*.pdf" | sort) output "$SCREENSHOT_D
 
 find "$SCREENSHOT_DIR" ! -name "$PLACE.pdf" -type f -iname "*.pdf" -exec rm -f {} +
 
-echo "$SCREENSHOT_DIR/$PLACE.pdf"
+realpath "$SCREENSHOT_DIR/$PLACE.pdf"
 
 exit 0
