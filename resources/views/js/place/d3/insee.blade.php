@@ -2,14 +2,19 @@
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
   const zone_selector = document.getElementById("selectGeo");
+
+  // Taille considérée comme mobile par bulma pour 
+  let is_bulma_mobile = (window.innerWidth < 768)
   
-    
-  // Les différentes zones dans l'ordre
+  // Les différentes zones dans l'ordre (hors national)
   const zones = ['iris', 'commune', 'departement', 'region']
 
   // Zones avec des totaux de données à zéro par défaut
   // {iris: 0, commune: 0, departement: 0, region: 0}
   const init_total_par_zone = zones.reduce((acc,curr)=> (acc[curr]=0,acc),{})
+
+  const zone_labels = {National: 'National', iris: 'Iris', commune: 'Commune', departement: 'Département', region: 'Région'}
+  const zone_labels_mobile = {National: 'National', iris: 'Iris', commune: ['Com-', 'mune'], departement: ['Départe-', 'ment'], region: 'Région'}
 
   let svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
   let svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
@@ -148,6 +153,8 @@
     svgwidth = parseInt(chartsContainer.width, 10)
     svgheight = parseInt(chartsContainer.height, 10)
 
+    is_bulma_mobile = (window.innerWidth < 768)
+
     drawBars()
   })
 
@@ -188,7 +195,7 @@
   }
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 0, bottom: 40, left: 100}
+    const margin = {top: 20, right: 0, bottom: 40, left: is_bulma_mobile ? 45 : 85}
     const w = width - margin.left - margin.right
     const _title = title
     
@@ -206,9 +213,7 @@
 
     const y = d3.scaleBand()
                 .range([0, 70])
-                .domain(groups)
-
-    // normalisation (cent pour centage)
+                .domain(groups)    // normalisation (cent pour centage)
     data.forEach(function (d) {
       let total = 0
       subgroups.forEach((s) => { total += +d.subgroups[s].value })
@@ -246,9 +251,13 @@
       .style('text-transform', 'uppercase')
       .attr('fill', '#262631')
 
+      // L'engrenage cliquable (plus gros sur mobile parce que pas de texte)
+      const gear_font_size = is_bulma_mobile ? '1rem' : '0.6rem'
       svgTitle.append('tspan')
               .attr('dx', '10')
-              .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 0.6rem; cursor: pointer')
+              .style('font-family', '"Font Awesome 6 free"')
+              .style('font-size', gear_font_size)
+              .style('cursor', 'pointer')
               .attr('data-modal', 'modal-insee')
               .classed('bars_param', true)
               .text('\uf013') // gear
@@ -257,17 +266,34 @@
         .attr('dx', '1')
         .attr('data-modal', 'modal-insee')
         .classed('bars_param', true)
+        .classed('is-hidden-mobile', true)
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
         .style('cursor',  'pointer')
         .text('Changer la comparaison')
 
     // axe y
-    svg.append("g")
-      .call(d3.axisLeft(y).tickSize(0))
-      .attr('transform', "translate(0,6)")
-      .style('font-size', '12px')
-      .select(".domain").remove()
+    const series_labels = svg.append("g").style('font-size', '12px').attr('text-anchor', 'end')
+
+    // Les labels pour chaque série
+    let trans_y_labs = 25 // translation y pour le text
+    data.forEach((d) => {
+      const zlabel = is_bulma_mobile ? zone_labels_mobile[d.zone] : zone_labels[d.zone]
+      console.log(zlabel)
+      if (Array.isArray(zlabel)) {
+        coucou = series_labels.append('g')
+        .attr('transform', "translate(0,"+(trans_y_labs-3)+")").append('text')
+        coucou.append('tspan').attr('text-anchor', 'end').text(zlabel[0])
+        coucou.append('tspan').attr('text-anchor', 'end').attr('x', '0').attr('dy', '10').text(zlabel[1])
+      } else {
+        series_labels.append('g')
+        .attr('transform', "translate(0,"+trans_y_labs+")")
+        .append('text')
+        .text(zlabel)
+      }
+
+      trans_y_labs += trans_y_labs + 10
+    })
 
     // bars
     const niveau = svg.append("g").classed('bars_group', true)

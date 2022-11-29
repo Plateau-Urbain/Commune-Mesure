@@ -2,12 +2,12 @@
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <h2 class="modal-card-title">Découpage géographique</h2>
+      <h2 class="modal-card-title">Comparer avec</h2>
       <button class="delete modal-croix" aria-label="Close"></button>
     </header>
     <section class="modal-card-body">
       <div class="content">
-        <h3>Choisissez un découpage géographique</h3>
+        <h3>Découpage géographique</h3>
         <div class="mb-5 control has-icons-left has-text-centered">
           <div class="select">
             <span class="icon is-large is-left">
