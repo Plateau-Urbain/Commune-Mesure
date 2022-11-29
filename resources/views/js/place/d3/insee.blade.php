@@ -3,23 +3,31 @@
   const insee = {}
   const zone_selector = document.getElementById("selectGeo");
   
+    
+  // Les différentes zones dans l'ordre
+  const zones = ['iris', 'commune', 'departement', 'region']
+
+  // Zones avec des totaux de données à zéro par défaut
+  // {iris: 0, commune: 0, departement: 0, region: 0}
+  const init_total_par_zone = zones.reduce((acc,curr)=> (acc[curr]=0,acc),{})
+
   let svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
   let svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
   
   let populationChart
   let socioChart
   let immoChart
-  let z = 'iris'
+  let z = zones[0]
   
   let populationChartTitle = "Population"
   let socioChartTitle = "Catégories socioprofessionnelles"
   let immoChartTitle = "Immobilier"
-  
+
   // Initialise les totaux des données des zones à zéro pour chaque serie (dans l'idée d'identifier des zones sans données quand on aura chargé les données)
   let total_par_zone_par_serie = {
-    activites: {iris: 0, commune: 0, departement: 0, region: 0},
-    csp: {iris: 0, commune: 0, departement: 0, region: 0},
-    logement: {iris: 0, commune: 0, departement: 0, region: 0}
+    activites: init_total_par_zone,
+    csp: init_total_par_zone,
+    logement: init_total_par_zone
   }
 
   /**
@@ -54,6 +62,40 @@
       tooltip.remove()
     })
 
+    populationChart = BarChart('svg#population-chart', fillDatasForSerie('activites'), {width: svgwidth, height: svgheight, title: populationChartTitle})
+
+    if (svgwidth < 640) {
+      socioChartTitle = "CSP"
+    }
+
+    socioChart = BarChart('svg#csp-chart', fillDatasForSerie('csp'), {width: svgwidth, height: svgheight, title: socioChartTitle})
+    immoChart = BarChart('svg#immobilier-chart', fillDatasForSerie('logement'), {width: svgwidth, height: svgheight, title: immoChartTitle})
+  }
+
+  // Reformatage des données au load
+  window.addEventListener('load', (event) => {
+
+    Object.entries(_DATA).forEach(function (zones) {
+      const zone = zones[0]; // iris, commune, departement, region
+
+      Object.entries(zones[1]).forEach(function (series) {
+        const type = series[0] // activites, logement, csp
+
+        if (typeof insee[type] === "undefined") {
+          insee[type] = {}
+        }
+
+        insee[type][zone] = {
+          zone: zone,
+          subgroups: []
+        }
+
+        series[1].forEach(function (b) {
+          insee[type][zone].subgroups.push({name: b.title, value: b.nb})
+        })
+      })
+    })
+
     // On rempli le tableau des totaux par zone avec les bonnes valeurs
     // Et si pas de valeur on change le select de zone pour le dire
     for (const [serie, totaux] of Object.entries(total_par_zone_par_serie)) {
@@ -71,7 +113,11 @@
               } else {
                 opt.setAttribute('nodata', 1);
                 opt.disabled = true
-                opt.text = opt.text + ' (Pas de données)'
+                opt.text = opt.text + ' (Pas suffisamment de données)'
+                // On init les graphes sur une autre zone pour pas avoir des bars vides (anti covid19)
+                if (z == zone) {
+                  z = zones[zones.indexOf(zone) + 1]
+                }
               }
             }
           }
@@ -79,15 +125,9 @@
       }
     }
 
-    populationChart = BarChart('svg#population-chart', fillDatasForSerie('activites'), {width: svgwidth, height: svgheight, title: populationChartTitle})
+    drawBars()
 
-    if (svgwidth < 640) {
-      socioChartTitle = "CSP"
-    }
-
-    socioChart = BarChart('svg#csp-chart', fillDatasForSerie('csp'), {width: svgwidth, height: svgheight, title: socioChartTitle})
-    immoChart = BarChart('svg#immobilier-chart', fillDatasForSerie('logement'), {width: svgwidth, height: svgheight, title: immoChartTitle})
-  }
+  });
 
   zone_selector.addEventListener('change', function (event) {
     z = event.target.value;
@@ -146,29 +186,6 @@
       ]
     }
   }
-
-  Object.entries(_DATA).forEach(function (zones) {
-    const zone = zones[0]; // iris, commune, departement, region
-
-    Object.entries(zones[1]).forEach(function (series) {
-      const type = series[0] // activites, logement, csp
-
-      if (typeof insee[type] === "undefined") {
-        insee[type] = {}
-      }
-
-      insee[type][zone] = {
-        zone: zone,
-        subgroups: []
-      }
-
-      series[1].forEach(function (b) {
-        insee[type][zone].subgroups.push({name: b.title, value: b.nb})
-      })
-    })
-  })
-
-  drawBars()
 
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
     const margin = {top: 20, right: 0, bottom: 40, left: 100}
