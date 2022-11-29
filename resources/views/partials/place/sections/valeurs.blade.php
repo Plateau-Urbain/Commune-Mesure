@@ -50,7 +50,7 @@
 
       <div id="wordcloud">
         @foreach ($place->get('activites') as $activite)
-          <span class="word subtitle">{{ html_entity_decode(str_replace(' ', "&nbsp;", $activite)) }}</span> &nbsp;
+          <span class="word subtitle">{{ $activite }}</span>
         @endforeach
       </div>
 

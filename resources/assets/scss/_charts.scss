@@ -11,10 +11,14 @@
     .word {
         font-size: $size-3;
         margin-right: $size-2;
-        word-break: break-word;
+        white-space: nowrap;
 
         &:nth-of-type(3n+1) { color: #C7514D; }
         &:nth-of-type(3n+2) { color: #EA7B6C; }
         &:nth-of-type(3n+3) { color: #7E97A7; }
+
+        @media (max-width: 640px){
+            white-space: break-spaces;
+        }
     }
 }
