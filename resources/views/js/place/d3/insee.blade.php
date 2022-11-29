@@ -1,19 +1,52 @@
 <script>
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
-  const select = document.getElementById("selectGeo");
-
+  const zone_selector = document.getElementById("selectGeo");
+  
   let svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
   let svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
-
+  
   let populationChart
   let socioChart
   let immoChart
   let z = 'iris'
-
+  
   let populationChartTitle = "Population"
   let socioChartTitle = "Catégories socioprofessionnelles"
   let immoChartTitle = "Immobilier"
+  
+  // Initialise les totaux des données des zones à zéro pour chaque serie (dans l'idée d'identifier des zones sans données quand on aura chargé les données)
+  let total_par_zone_par_serie = {
+    activites: {iris: 0, commune: 0, departement: 0, region: 0},
+    csp: {iris: 0, commune: 0, departement: 0, region: 0},
+    logement: {iris: 0, commune: 0, departement: 0, region: 0}
+  }
+
+  /**
+   * Crée un tableau avec deux entrées : le national et le premier non vide (iris généralement)
+   */
+  function fillDatasForSerie(serie) {
+
+    // On intialise avec les données nationales qui sont toujours là
+    serie_datas = [national[serie]]
+
+    // S'il y a des données pour la zone
+    if (total_par_zone_par_serie[serie][z] > 0) {
+      serie_datas.push(insee[serie][z])
+    } else {
+      // On prend la première zone qui a des valeurs
+      for (const [zone, total] of Object.entries(total_par_zone_par_serie[serie])) {
+        console.log(zone + " / " + total)
+        if (total > 0) {
+          console.log(insee[serie][zone])
+          serie_datas.push(insee[serie][zone])
+          break
+        }
+      }
+    }
+
+    return serie_datas
+  }
 
   function drawBars() {
     const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
@@ -21,17 +54,42 @@
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: populationChartTitle})
+    // On rempli le tableau des totaux par zone avec les bonnes valeurs
+    // Et si pas de valeur on change le select de zone pour le dire
+    for (const [serie, totaux] of Object.entries(total_par_zone_par_serie)) {
+      for (const zone of Object.keys(totaux)) {
+        total_zone = insee[serie][zone].subgroups.reduce((accum, item) => accum +  parseInt(item.value, 0), 0)
+        // Met le total réellement calculé dans total_par_zone_par_serie
+        total_par_zone_par_serie[serie][zone] = total_zone
+        // Modifie le select de zone pour signifier qu'il n'y a pas de données
+        if (total_zone == 0) {
+          var opts = zone_selector.options
+          for (var opt, j = 0; opt = opts[j]; j++) {
+            if (opt.value == zone) {
+              if (opt.getAttribute('nodata')) {
+                opt.setAttribute('nodata', (parseInt(opt.getAttribute('nodata'), 0) + 1));
+              } else {
+                opt.setAttribute('nodata', 1);
+                opt.disabled = true
+                opt.text = opt.text + ' (Pas de données)'
+              }
+            }
+          }
+        }
+      }
+    }
+
+    populationChart = BarChart('svg#population-chart', fillDatasForSerie('activites'), {width: svgwidth, height: svgheight, title: populationChartTitle})
 
     if (svgwidth < 640) {
       socioChartTitle = "CSP"
     }
 
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: socioChartTitle})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: immoChartTitle})
+    socioChart = BarChart('svg#csp-chart', fillDatasForSerie('csp'), {width: svgwidth, height: svgheight, title: socioChartTitle})
+    immoChart = BarChart('svg#immobilier-chart', fillDatasForSerie('logement'), {width: svgwidth, height: svgheight, title: immoChartTitle})
   }
 
-  select.addEventListener('change', function (event) {
+  zone_selector.addEventListener('change', function (event) {
     z = event.target.value;
     populationChart.remove()
     socioChart.remove()
@@ -115,14 +173,13 @@
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
     const margin = {top: 20, right: 0, bottom: 40, left: 100}
     const w = width - margin.left - margin.right
-    const h = height - margin.top - margin.bottom
-
     const _title = title
-
+    
     // Les différents carrés de la barre
     const subgroups = Object.keys(data[0].subgroups)
+
     // Les différentes barres
-    const groups    = d3.map(data, function (d) { return d.zone }).keys()
+    const groups    = d3.map(data, function (d) { return d.zone; }).keys()
 
     color.domain(subgroups)
 
