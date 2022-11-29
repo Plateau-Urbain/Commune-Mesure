@@ -1,19 +1,63 @@
 <script>
   const _DATA = JSON.parse('@JSON($place->get("blocs->data_territoire->donnees->insee"))')
   const insee = {}
-  const select = document.getElementById("selectGeo");
+  const zone_selector = document.getElementById("selectGeo");
+
+  // Taille considérée comme mobile par bulma pour 
+  let is_bulma_mobile = (window.innerWidth < 768)
+  
+  // Les différentes zones dans l'ordre (hors national)
+  const zones = ['iris', 'commune', 'departement', 'region']
+
+  // Zones avec des totaux de données à zéro par défaut
+  // {iris: 0, commune: 0, departement: 0, region: 0}
+  const init_total_par_zone = zones.reduce((acc,curr)=> (acc[curr]=0,acc),{})
+
+  const zone_labels = {National: 'National', iris: 'Iris', commune: 'Commune', departement: 'Département', region: 'Région'}
+  const zone_labels_mobile = {National: 'National', iris: 'Iris', commune: ['Com-', 'mune'], departement: ['Départe-', 'ment'], region: 'Région'}
 
   let svgwidth = parseInt(d3.select('svg#population-chart').style('width'), 10)
   let svgheight = parseInt(d3.select('svg#population-chart').style('height'), 10)
-
+  
   let populationChart
   let socioChart
   let immoChart
-  let z = 'iris'
-
+  let z = zones[0]
+  
   let populationChartTitle = "Population"
   let socioChartTitle = "Catégories socioprofessionnelles"
   let immoChartTitle = "Immobilier"
+
+  // Initialise les totaux des données des zones à zéro pour chaque serie (dans l'idée d'identifier des zones sans données quand on aura chargé les données)
+  let total_par_zone_par_serie = {
+    activites: init_total_par_zone,
+    csp: init_total_par_zone,
+    logement: init_total_par_zone
+  }
+
+  /**
+   * Crée un tableau avec deux entrées : le national et le premier non vide (iris généralement)
+   */
+  function fillDatasForSerie(serie) {
+
+    // On intialise avec les données nationales qui sont toujours là
+    serie_datas = [national[serie]]
+
+    // S'il y a des données pour la zone
+    if (total_par_zone_par_serie[serie][z] > 0) {
+      serie_datas.push(insee[serie][z])
+    } else {
+      // On prend la première zone qui a des valeurs
+      for (const [zone, total] of Object.entries(total_par_zone_par_serie[serie])) {
+        if (total > 0) {
+          serie_datas.push(insee[serie][zone])
+          break
+        }
+      }
+    }
+
+    return serie_datas
+  }
 
   function drawBars() {
     const bars_tooltips = document.getElementsByClassName('d3_tooltip bar') || []
@@ -21,17 +65,74 @@
       tooltip.remove()
     })
 
-    populationChart = BarChart('svg#population-chart', [national.activites, insee.activites[z]], {width: svgwidth, height: svgheight, title: populationChartTitle})
+    populationChart = BarChart('svg#population-chart', fillDatasForSerie('activites'), {width: svgwidth, height: svgheight, title: populationChartTitle})
 
     if (svgwidth < 640) {
       socioChartTitle = "CSP"
     }
 
-    socioChart = BarChart('svg#csp-chart', [national.csp, insee.csp[z]], {width: svgwidth, height: svgheight, title: socioChartTitle})
-    immoChart = BarChart('svg#immobilier-chart', [national.logement, insee.logement[z]], {width: svgwidth, height: svgheight, title: immoChartTitle})
+    socioChart = BarChart('svg#csp-chart', fillDatasForSerie('csp'), {width: svgwidth, height: svgheight, title: socioChartTitle})
+    immoChart = BarChart('svg#immobilier-chart', fillDatasForSerie('logement'), {width: svgwidth, height: svgheight, title: immoChartTitle})
   }
 
-  select.addEventListener('change', function (event) {
+  // Reformatage des données au load
+  window.addEventListener('load', (event) => {
+
+    Object.entries(_DATA).forEach(function (zones) {
+      const zone = zones[0]; // iris, commune, departement, region
+
+      Object.entries(zones[1]).forEach(function (series) {
+        const type = series[0] // activites, logement, csp
+
+        if (typeof insee[type] === "undefined") {
+          insee[type] = {}
+        }
+
+        insee[type][zone] = {
+          zone: zone,
+          subgroups: []
+        }
+
+        series[1].forEach(function (b) {
+          insee[type][zone].subgroups.push({name: b.title, value: b.nb})
+        })
+      })
+    })
+
+    // On rempli le tableau des totaux par zone avec les bonnes valeurs
+    // Et si pas de valeur on change le select de zone pour le dire
+    for (const [serie, totaux] of Object.entries(total_par_zone_par_serie)) {
+      for (const zone of Object.keys(totaux)) {
+        total_zone = insee[serie][zone].subgroups.reduce((accum, item) => accum +  parseInt(item.value, 0), 0)
+        // Met le total réellement calculé dans total_par_zone_par_serie
+        total_par_zone_par_serie[serie][zone] = total_zone
+        // Modifie le select de zone pour signifier qu'il n'y a pas de données
+        if (total_zone == 0) {
+          var opts = zone_selector.options
+          for (var opt, j = 0; opt = opts[j]; j++) {
+            if (opt.value == zone) {
+              if (opt.getAttribute('nodata')) {
+                opt.setAttribute('nodata', (parseInt(opt.getAttribute('nodata'), 0) + 1));
+              } else {
+                opt.setAttribute('nodata', 1);
+                opt.disabled = true
+                opt.text = opt.text + ' (Pas suffisamment de données)'
+                // On init les graphes sur une autre zone pour pas avoir des bars vides (anti covid19)
+                if (z == zone) {
+                  z = zones[zones.indexOf(zone) + 1]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    drawBars()
+
+  });
+
+  zone_selector.addEventListener('change', function (event) {
     z = event.target.value;
     populationChart.remove()
     socioChart.remove()
@@ -49,6 +150,8 @@
 
     svgwidth = parseInt(chartsContainer.width, 10)
     svgheight = parseInt(chartsContainer.height, 10)
+
+    is_bulma_mobile = (window.innerWidth < 768)
 
     drawBars()
   })
@@ -89,40 +192,16 @@
     }
   }
 
-  Object.entries(_DATA).forEach(function (zones) {
-    const zone = zones[0]; // iris, commune, departement, region
-
-    Object.entries(zones[1]).forEach(function (series) {
-      const type = series[0] // activites, logement, csp
-
-      if (typeof insee[type] === "undefined") {
-        insee[type] = {}
-      }
-
-      insee[type][zone] = {
-        zone: zone,
-        subgroups: []
-      }
-
-      series[1].forEach(function (b) {
-        insee[type][zone].subgroups.push({name: b.title, value: b.nb})
-      })
-    })
-  })
-
-  drawBars()
-
   function BarChart(element, data, {width = 1200, height = 100, title = "Graph"} = {}) {
-    const margin = {top: 20, right: 0, bottom: 40, left: 100}
+    const margin = {top: 20, right: 0, bottom: 40, left: is_bulma_mobile ? 45 : 85}
     const w = width - margin.left - margin.right
-    const h = height - margin.top - margin.bottom
-
     const _title = title
-
+    
     // Les différents carrés de la barre
     const subgroups = Object.keys(data[0].subgroups)
+
     // Les différentes barres
-    const groups    = d3.map(data, function (d) { return d.zone }).keys()
+    const groups    = d3.map(data, function (d) { return d.zone; }).keys()
 
     color.domain(subgroups)
 
@@ -132,9 +211,7 @@
 
     const y = d3.scaleBand()
                 .range([0, 70])
-                .domain(groups)
-
-    // normalisation (cent pour centage)
+                .domain(groups)    // normalisation (cent pour centage)
     data.forEach(function (d) {
       let total = 0
       subgroups.forEach((s) => { total += +d.subgroups[s].value })
@@ -172,9 +249,13 @@
       .style('text-transform', 'uppercase')
       .attr('fill', '#262631')
 
+      // L'engrenage cliquable (plus gros sur mobile parce que pas de texte)
+      const gear_font_size = is_bulma_mobile ? '1rem' : '0.6rem'
       svgTitle.append('tspan')
               .attr('dx', '10')
-              .attr('style', 'font-family: "Font Awesome 6 free"; font-size: 0.6rem; cursor: pointer')
+              .style('font-family', '"Font Awesome 6 free"')
+              .style('font-size', gear_font_size)
+              .style('cursor', 'pointer')
               .attr('data-modal', 'modal-insee')
               .classed('bars_param', true)
               .text('\uf013') // gear
@@ -183,17 +264,33 @@
         .attr('dx', '1')
         .attr('data-modal', 'modal-insee')
         .classed('bars_param', true)
+        .classed('is-hidden-mobile', true)
         .style('font-size', '0.6rem')
         .style('text-transform', 'unset')
         .style('cursor',  'pointer')
         .text('Changer la comparaison')
 
     // axe y
-    svg.append("g")
-      .call(d3.axisLeft(y).tickSize(0))
-      .attr('transform', "translate(0,6)")
-      .style('font-size', '12px')
-      .select(".domain").remove()
+    const series_labels = svg.append("g").style('font-size', '12px').attr('text-anchor', 'end')
+
+    // Les labels pour chaque série
+    let trans_y_labs = 25 // translation y pour le text
+    data.forEach((d) => {
+      const zlabel = is_bulma_mobile ? zone_labels_mobile[d.zone] : zone_labels[d.zone]
+      if (Array.isArray(zlabel)) {
+        coucou = series_labels.append('g')
+        .attr('transform', "translate(0,"+(trans_y_labs-3)+")").append('text')
+        coucou.append('tspan').attr('text-anchor', 'end').text(zlabel[0])
+        coucou.append('tspan').attr('text-anchor', 'end').attr('x', '0').attr('dy', '10').text(zlabel[1])
+      } else {
+        series_labels.append('g')
+        .attr('transform', "translate(0,"+trans_y_labs+")")
+        .append('text')
+        .text(zlabel)
+      }
+
+      trans_y_labs += trans_y_labs + 10
+    })
 
     // bars
     const niveau = svg.append("g").classed('bars_group', true)
