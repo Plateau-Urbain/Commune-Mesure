@@ -12,7 +12,7 @@ fi
 
 PLACE=$1
 
-find "$SCREENSHOT_DIR/" -type f -iname "$PLACE*.pdf" -delete #supprime tous les pdfs du dossier
+rm -f "$SCREENSHOT_DIR/$PLACE.pdf"
 
 find "$SCREENSHOT_DIR" -name "$PLACE*" | while read FILE;
 do
@@ -26,6 +26,7 @@ rm "$SCREENSHOT_DIR/$PLACE.pdf"
 
 pdftk $(find "$SCREENSHOT_DIR" -name "$PLACE*.pdf" | sort) output "$SCREENSHOT_DIR/$PLACE.pdf"
 
+find "$SCREENSHOT_DIR" ! -name "$PLACE.pdf" -type f -iname "*.pdf" -exec rm -f {} +
 
 echo "$SCREENSHOT_DIR/$PLACE.pdf"
 

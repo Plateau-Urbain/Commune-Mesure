@@ -13,6 +13,8 @@ TOP=$2
 
 cd "$PUPPETEER_DIR" || exit
 
+find "$SCREENSHOT_DIR" -type f -iname "*$PLACE*" -exec rm -f {} +
+
 node screenshot.js "$PLACE" "$TOP"
 _NODE_SUCCESS=$?
 
