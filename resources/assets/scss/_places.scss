@@ -166,6 +166,15 @@ div.alternate-bg {
     width: auto;
 }
 
+#waffle rect:not(.waffle_empty),
+.bars_group rect,
+#piechart_fonctionnement path,
+#investissement-graph rect {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
 
 .slider-container .slider-item .image.is-covered img {
     object-fit: cover;
