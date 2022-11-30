@@ -134,5 +134,5 @@
       .text(function(d) { return waffle_structure[d].text; })
 
     waffle_global_svg_size = svg_waffle.node().attributes.getNamedItem('height');
-    waffle_global_svg_size.value = svg_waffle.node().getBoundingClientRect().height + 20
+    waffle_global_svg_size.value = svg_waffle.node().getBoundingClientRect().height + 30
 </script>
