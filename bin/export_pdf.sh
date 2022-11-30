@@ -12,6 +12,8 @@ fi
 
 PLACE=$1
 
+bash bin/export.sh $PLACE
+
 rm -f "$SCREENSHOT_DIR/$PLACE.pdf"
 
 find "$SCREENSHOT_DIR" -name "$PLACE*" | while read FILE;
@@ -27,6 +29,7 @@ rm "$SCREENSHOT_DIR/$PLACE.pdf"
 pdftk $(find "$SCREENSHOT_DIR" -name "$PLACE*.pdf" | sort) output "$SCREENSHOT_DIR/$PLACE.pdf"
 
 find "$SCREENSHOT_DIR" ! -name "$PLACE.pdf" -type f -iname "*.pdf" -exec rm -f {} +
+find "$SCREENSHOT_DIR" ! -name "$PLACE.jpg" -type f -iname "*.jpg*" -exec rm -f {} +
 
 realpath "$SCREENSHOT_DIR/$PLACE.pdf"
 
