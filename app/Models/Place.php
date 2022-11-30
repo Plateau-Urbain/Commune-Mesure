@@ -586,7 +586,7 @@ class Place extends Model
             return $path;
         }
 
-        $process = new Process(['bash', base_path().'/bin/export_pdf.sh', Storage::path($path)]);
+        $process = new Process(['bash', base_path().'/bin/export_pdf.sh', $this->getSlug()]);
         $process->run();
 
         if (! $process->isSuccessful()) {
