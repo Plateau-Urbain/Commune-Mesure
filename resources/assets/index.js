@@ -61,10 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
         mapplace.zoomControl.setPosition('topright')
     }
 
+
+    const carousels_listing = bulmaCarousel.attach('.carousel-listing', {
+        navigation: false,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+    });
+
     const carousels = bulmaCarousel.attach('.carousel', {
-      navigation: false,
-      slidesToScroll: 1,
-      slidesToShow: 1
+        navigation: false,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        effect: 'fade',
+        loop: true
     });
 
     // Get all "navbar-burger" elements

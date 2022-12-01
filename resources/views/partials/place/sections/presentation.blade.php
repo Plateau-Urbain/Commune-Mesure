@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="column is-6 is-7-widescreen">
+        <div id="div-carousel" class="column is-6 is-7-widescreen">
           @include('partials.place.sections.carousel')
         </div>
       </div>

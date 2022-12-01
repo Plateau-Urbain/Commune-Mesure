@@ -18,7 +18,7 @@
               <div class="column is-3">
                 <div class="card" style="height: 100%;">
                   <div class="card-image">
-                    <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container" style="height: 250px;">
+                    <div id="carousel-{{ $place->getSlug() }}" class="carousel-listing carousel-container" style="height: 250px;">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
                           <figure class="image is-covered">
