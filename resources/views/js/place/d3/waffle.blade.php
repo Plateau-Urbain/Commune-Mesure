@@ -2,8 +2,8 @@
   const tooltip_waffle_id = 'tooltip-waffle';
   const svg_waffle = d3.select('svg#waffle')
 
-  const width_waffle = svg_waffle.node().getBoundingClientRect().width;
   const height_waffle = svg_waffle.node().getBoundingClientRect().height - 100;
+  const width_waffle = height_waffle
 
   const waffle_structure = {
     'entreprises': {
@@ -29,7 +29,7 @@
 
   color.domain(Object.keys(waffle_structure))
   carreau_num = Math.floor(Math.sqrt(total_structures)) + 1;
-  if (height_waffle > width_waffle) { waffle_size = width_waffle } else { waffle_size = height_waffle }
+  waffle_size = height_waffle
   carreau_size = Math.floor(waffle_size / carreau_num);
 
   Object.keys(waffle_structure).forEach(function (k) {
@@ -135,4 +135,5 @@
 
     waffle_global_svg_size = svg_waffle.node().attributes.getNamedItem('height');
     waffle_global_svg_size.value = svg_waffle.node().getBoundingClientRect().height + 30
+    waffle_global_svg_maxwidth = svg_waffle.node().setAttribute('style', 'max-width: ' + width_waffle  + 'px')
 </script>
