@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesToScroll: 1,
         slidesToShow: 1,
         effect: 'fade',
-        loop: true
     });
 
     // Get all "navbar-burger" elements
