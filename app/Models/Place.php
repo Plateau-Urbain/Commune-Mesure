@@ -313,7 +313,7 @@ class Place extends Model
   }
 
   public function getVisibility(){
-    $tabSections = ["presentation","accessibilite","valeurs","moyens","composition","impact_social","data_territoire","galerie"];
+    $tabSections = ["presentation","accessibilite","valeurs","moyens","composition","impact_social","data_territoire","galerie","acteurices"];
     $tabVisibility=array();
     foreach($tabSections as $s){
       $tabVisibility[$s]= $this->get('blocs->'.$s.'->visible');
@@ -332,7 +332,7 @@ class Place extends Model
   }
 
   public function getIsEmpty(){
-    $tabSections = ["accessibilite","valeurs","moyens","composition","impact_social","galerie"];
+    $tabSections = ["accessibilite","valeurs","moyens","composition","impact_social","galerie","acteurices"];
     $tabIsEmpty=array();
     foreach($tabSections as $s){
       $tabIsEmpty[$s]= $this->isEmpty($s);
@@ -380,6 +380,10 @@ class Place extends Model
     return true;
   }
 
+  public function isEmptyActeurices(){
+      return false;
+  }
+
   public function isEmpty($section){
     if($section == "moyens"){
       if($this->isEmptyFonctionnement() && $this->isEmptyInvestissement()){
@@ -390,6 +394,10 @@ class Place extends Model
 
     if($section == "accessibilite"){  //cas particulier 0/1
       return $this->isEmptyAccessibility();
+    }
+
+    if($section == "acteurices"){
+      return $this->isEmptyActeurices();
     }
 
     $tab = $this->get('blocs->'.$section.'->donnees');
@@ -578,7 +586,7 @@ class Place extends Model
             return $path;
         }
 
-        $process = new Process(['bash', base_path().'/bin/export_pdf.sh', Storage::path($path)]);
+        $process = new Process(['bash', base_path().'/bin/export_pdf.sh', $this->getSlug()]);
         $process->run();
 
         if (! $process->isSuccessful()) {

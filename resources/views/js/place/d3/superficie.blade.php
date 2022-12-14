@@ -104,23 +104,25 @@ var function_superficie_text_1 = function(d) {
     if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
-    if( function_get_superficie(d) < 31){
-      return;
-    }
 
     if (d == 'superficie_exterieur') {
       if (function_superficie_height('superficie_exterieur') - function_superficie_height('superficie_interieure') < 31) {
         return '';
       }
 
-      return 'Extérieurs : '+function_get_superficie(d) + ' m²'
+      return 'Extérieurs : '+ function_get_superficie(d) + ' m²'
     }
 
+    // Si pas assez haut on essaie de mettre le texte sur une seule ligne...
     if (function_superficie_height(d) < 100) {
+      // Mais il faut qu'il y ait suffisamment de largeur
+      if (function_superficie_width(d) >= 200) {
         if (d == 'superficie_autres') return 'Autres : '+ function_get_superficie(d) + ' m²';
         if (d == 'superficie_bureaux') return 'Bureaux : '+ function_get_superficie(d) + ' m²';
         if (d == 'superficie_ateliers') return 'Ateliers : '+ function_get_superficie(d) + ' m²';
-    }else {
+      }
+    // Sinon on écrit sur deux lignees s'il y a l'espace pour
+    } else if (function_superficie_width(d) >= 70) {
         if (d == 'superficie_autres') return 'Autres :';
         if (d == 'superficie_bureaux') return 'Bureaux :';
         if (d == 'superficie_ateliers') return 'Ateliers :';
@@ -139,10 +141,7 @@ var function_superficie_text_2 = function(d) {
     if (! function_superficie_width(d) || !function_superficie_height(d) || !function_get_superficie(d)) {
         return ;
     }
-    if( function_get_superficie(d) < 31){
-      return;
-    }
-    if (function_superficie_height(d) >= 100) {
+    if (function_superficie_height(d) > 100 && function_superficie_width(d) >= 70) {
         if (d == 'superficie_autres') return function_get_superficie(d) + ' m²';
         if (d == 'superficie_bureaux') return function_get_superficie(d) + ' m²';
         if (d == 'superficie_ateliers') return function_get_superficie(d) + ' m²';

@@ -1,23 +1,36 @@
 #!/bin/bash
+PUPPETEER_DIR="../puppeteer_scripts"
+SCREENSHOT_DIR="$PUPPETEER_DIR/out/screenshot"
 
 if [ $# -eq 0 ]
-    then echo "Missing file" && exit 255
-fi
-
-FILE=$1
-
-if [ ! -f "$FILE" ]
-    then echo "Screenshot file $FILE does not exists" && exit 128
+    then echo "Missing place name" && exit 255
 fi
 
 if ! command -v convert &> /dev/null
     then echo "Missing convert utils" && exit 64
 fi
 
-PDF_FILE="$(dirname "${FILE}")/$(basename "${FILE}" .jpg).pdf"
+PLACE=$1
 
-if ! convert "$FILE" -quality 95 "$PDF_FILE"
-    then echo "Conversion to pdf failed" && exit 32
-fi
+bash bin/export.sh $PLACE
 
-echo "$PDF_FILE"
+rm -f "$SCREENSHOT_DIR/$PLACE.pdf"
+
+find "$SCREENSHOT_DIR" -name "$PLACE*" | while read FILE;
+do
+    PDF_FILE="$(dirname "${FILE}")/$(basename "${FILE}" .jpg).pdf"
+    if ! convert "$FILE" -quality 95 "$PDF_FILE"
+        then echo "Conversion to pdf failed" && exit 32
+    fi
+done
+
+rm "$SCREENSHOT_DIR/$PLACE.pdf"
+
+pdftk $(find "$SCREENSHOT_DIR" -name "$PLACE*.pdf" | sort) output "$SCREENSHOT_DIR/$PLACE.pdf"
+
+find "$SCREENSHOT_DIR" ! -name "$PLACE.pdf" -type f -iname "*.pdf" -exec rm -f {} +
+find "$SCREENSHOT_DIR" ! -name "$PLACE.jpg" -type f -iname "*.jpg*" -exec rm -f {} +
+
+realpath "$SCREENSHOT_DIR/$PLACE.pdf"
+
+exit 0

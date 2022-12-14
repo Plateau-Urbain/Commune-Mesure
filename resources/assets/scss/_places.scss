@@ -15,7 +15,12 @@
     @include until ($fullhd){
         max-height: 421px;
     }
+}
 
+#div-carousel{
+    @include mobile {
+        height: 350px;
+    }
 }
 
 #place-carousel, #place-carousel > div, #place-carousel .slider-container, #place-carousel .slider-container div {
@@ -164,6 +169,15 @@ div.alternate-bg {
 #page-listing-lieux .slider-container .slider-item .image.is-contained {
     height: 250px;
     width: auto;
+}
+
+#waffle rect:not(.waffle_empty),
+.bars_group rect,
+#piechart_fonctionnement path,
+#investissement-graph rect {
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 

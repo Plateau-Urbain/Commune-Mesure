@@ -12,13 +12,13 @@
             </section>
         </div>
         <div class="section">
-          <p class="block has-text-grey">Trié par : les + récents</p>
+          <p class="block has-text-grey mb-3">Trié par : les plus récents</p>
           <div class="columns is-multiline">
             @foreach ($places as $place)
               <div class="column is-3">
                 <div class="card" style="height: 100%;">
                   <div class="card-image">
-                    <div id="carousel-{{ $place->getSlug() }}" class="carousel carousel-container" style="height: 250px;">
+                    <div id="carousel-{{ $place->getSlug() }}" class="carousel-listing carousel-container" style="height: 250px;">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
                           <figure class="image is-covered">
@@ -48,9 +48,10 @@
                     </div>
                     <div style="justify-content: flex-end">
                     @if ($place->isPublish())
-                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth is-small">Voir ses effets sociaux</a>
+                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth">Voir ses effets sociaux</a>
                       <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
                     @else
+                      <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir son datapanorama</button>
                     @endif
                     </div>

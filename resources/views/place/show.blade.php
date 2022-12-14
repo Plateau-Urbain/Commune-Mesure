@@ -64,7 +64,7 @@
     @include('partials.place.sections.composition')
   </x-edit-section>
 
-  <x-edit-section data-spy="Les acteur.ices" class="alternate-bg" :edit="isset($edit)" section="valeurs" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
+  <x-edit-section data-spy="Les acteur.ices" class="alternate-bg" :edit="isset($edit)" section="acteurices" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
     @include('partials.place.sections.acteurices')
   </x-edit-section>
 
