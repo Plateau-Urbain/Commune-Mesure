@@ -37,10 +37,10 @@ do
 done
 
 # On exécute l'export des fichiers
-bash ./concat_files.sh
+bash ./bin/concat_files.sh
 
 # On exécute la fusion des fichiers typeform et base
-bash ./fusion_files.sh
+bash ./bin/fusion_files.sh
 
 # On met à jour la page d'accueil
 bash "$CRON_DIR"/cron.sh
