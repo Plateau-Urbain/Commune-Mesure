@@ -381,7 +381,25 @@ class Place extends Model
   }
 
   public function isEmptyActeurices(){
-      return false;
+      // Les différents accès aux données qui constituent la section acteurices
+      $tab = [
+        'gouvernance' => 'blocs->presentation->donnees->noms_occupants',
+        'reseaux' => 'blocs->presentation->donnees->reseaux',
+        'benevoles' => 'blocs->moyens->donnees->benevoles',
+        'emplois' => 'blocs->presentation->donnees->emplois directs',
+        'acteurs_prives' => 'blocs->presentation->donnees->acteurs_prives',
+        'natures_partenariats_prive' => 'blocs->presentation->donnees->natures_partenariats->prive',
+        'acteurs_publics' => 'blocs->presentation->donnees->acteurs_publics',
+        'natures_partenariats_public' => 'blocs->presentation->donnees->natures_partenariats->public',
+      ];
+      // Si une des données est pas vide ben la section est pas vide...
+      foreach($tab as $k => $v){
+        $data = $this->get($v);
+        if(!empty($data)){
+          return false;
+        }
+      }
+      return true;
   }
 
   public function isEmpty($section){
