@@ -316,9 +316,9 @@ class Place extends Model
     $tabSections = ["presentation","accessibilite","valeurs","moyens","composition","impact_social","data_territoire","galerie","acteurices"];
     $tabVisibility=array();
     foreach($tabSections as $s){
-      $tabVisibility[$s]= $this->get('blocs->'.$s.'->visible');
+      $tabVisibility[$s] = $this->get('blocs->'.$s.'->visible');
       if($s !='presentation'){
-        if($this->isEmpty($s)){
+        if($this->isEmpty($s) || $tabVisibility[$s] === null){
           $tabVisibility[$s]= !$this->isEmpty($s);
         }
       }
