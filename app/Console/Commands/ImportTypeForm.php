@@ -384,7 +384,7 @@ class ImportTypeForm extends Command
 
             $pathinfo = pathinfo($info_photo->file_name);
             $filename = Str::of($new_place->name.'-'.$pathinfo['filename'])->slug('-').'.'.($pathinfo['extension'] ?? str_replace('image/', '', mime_content_type($info_photo->filename)));
-            $dest_dir = base_path()."/public/images/lieux/originals/";
+            $dest_dir = base_path()."/public/images/lieux/";
 
             $file_path = implode(DIRECTORY_SEPARATOR, [
                 storage_path('import'),
