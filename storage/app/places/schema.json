@@ -145,7 +145,10 @@
         "cadre_de_vie": "pntLADdWQhm5|jbiRx3o3ZkNc|long_text|value",
         "entretien_des_espaces": "pntLADdWQhm5|0MZNpGvgHyry|long_text|value",
         "services_publics": "9ZTr98YUYiFf|85xd5SCZAp5U|long_text|value",
-        "innovation_publique": "pntLADdWQhm5|fTtTZSvbsVSh|long_text|value"
+        "innovation_publique": "pntLADdWQhm5|fTtTZSvbsVSh|long_text|value",
+        "intensite_effets_individuels": "GanryzVXYwN0|Jrq40244Bcta|rating|value",
+        "intensite_effets_collectifs": "GanryzVXYwN0|n63sOZTjTLb7|rating|value",
+        "intensite_effets_territoriaux": "GanryzVXYwN0|FBL4bHnYxJz2|rating|value"
       }
     },
     "galerie": {

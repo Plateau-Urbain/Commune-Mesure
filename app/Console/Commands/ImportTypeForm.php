@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
-
+use Storage;
 use \stdClass;
 use App\Exports\BDDJsonExport;
 use App\Exports\OriginalJsonExport;
@@ -20,6 +20,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class ImportTypeForm extends Command
 {
@@ -111,6 +112,7 @@ class ImportTypeForm extends Command
 
         $schema = json_decode(file_get_contents(storage_path().$this->schema));
         $import_file = json_decode(file_get_contents($f));
+
         $this->answers = $import_file->answers;
 
         $exist = DB::table('places')->where('id',$import_file->token)->get();
@@ -333,6 +335,9 @@ class ImportTypeForm extends Command
         $new_place->blocs->impact_social->donnees->entretien_des_espaces = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces);
         $new_place->blocs->impact_social->donnees->services_publics = $this->extract_val($schema->blocs->impact_social->donnees->services_publics);
         $new_place->blocs->impact_social->donnees->innovation_publique = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique);
+        $new_place->blocs->impact_social->donnees->intensite_effets_individuels = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_individuels);
+        $new_place->blocs->impact_social->donnees->intensite_effets_collectifs = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_collectifs);
+        $new_place->blocs->impact_social->donnees->intensite_effets_territoriaux = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_territoriaux);
 
         // galerie
         $new_place->blocs->galerie = new stdClass;
@@ -437,8 +442,9 @@ class ImportTypeForm extends Command
             Artisan::call('iris:load', [
                 'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
             ], $output);
-
+            //FacadesStorage::put('file.json', $output->fetch());
             $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());
+           // dd($new_place->blocs->data_territoire->donnees);
 
             // on récupere l'info de la ville dans les données geojson de l'insee
             $new_place->address->city = $new_place->blocs->data_territoire->donnees->geo->geo_json->commune->properties->nom;
@@ -490,7 +496,7 @@ class ImportTypeForm extends Command
 
             try {
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
-                Mail::send(new ImportSuccess($place));
+                //Mail::send(new ImportSuccess($place));
                 $this->logger->info('Sent');
 
                 $exportOriginal = new OriginalJsonExport($f);
@@ -538,6 +544,7 @@ class ImportTypeForm extends Command
             $this->logger->info('Group : '.$group_of_answers->title, ['key' => $key[0]]);
 
             foreach ($group_of_answers->group->answers as $question) {
+
                 if ($question->id !== $key[1]) {
                     continue;
                 }
@@ -551,6 +558,7 @@ class ImportTypeForm extends Command
                         $this->logger->info('Answer: '.$c);
                     }
                 } else {
+
                     $this->logger->info('Answers type : '.$key[2], ['key' => $key[0].'|'.$key[1]]);
                     $this->logger->info('Answer : '.$question->{$key[2]}->{$key[3]});
                 }

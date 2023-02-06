@@ -66,14 +66,33 @@ $title-gray: #3A3C49;
 
             img {
                 &.rounded {
-                    max-width: 130px;
                     border-radius: 50%;
                     align-self: center;
                     transition: all .2s ease-in-out;
 
                     &:hover {
-                        transform: scale(1.05);
+                        cursor: pointer;
                     }
+                }
+
+                &.size-5 {
+                    width: 200px;
+                }
+
+                &.size-4 {
+                    width: 175px;
+                }
+
+                &.size-3 {
+                    width: 150px;
+                }
+
+                &.size-2 {
+                    width: 125px;
+                }
+
+                &.size-1 {
+                    width: 100px;
                 }
             }
 
@@ -103,10 +122,6 @@ $title-gray: #3A3C49;
                     flex-grow: 1;
                     height: 120px;
                     width: 50%;
-
-                    img {
-                        width: 100px !important;
-                    }
                 }
 
                 &.reverse {
@@ -146,7 +161,6 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $orange;
-                        width: 130px;
                     }
 
                     span {
@@ -169,7 +183,6 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $blue;
-                        width: 130px;
                     }
 
                     span {
@@ -192,7 +205,6 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $darker-blue;
-                        width: 130px;
                     }
 
                     span {
@@ -406,5 +418,12 @@ $title-gray: #3A3C49;
         font-weight: normal;
         font-size: 18pt;
         line-height: 1.2em;
+    }
+
+    :target {
+        display: block;
+        position: relative;
+        top: -100px;
+        visibility: hidden;
     }
 }

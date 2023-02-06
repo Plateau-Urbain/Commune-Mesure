@@ -19,35 +19,35 @@
     <div class="column is-full">
       <section id="sommaire">
         <div class="container">
-          <div class="valeur individuel">
+          <a href="#effets_individuels" class="valeur individuel">
             <div class="text text--right">
               <h3>Effets<br> individuels</h3>
             </div>
             <div>
-              <img class="rounded" src="{{ url('/images/EFFETS-perso.png') }}">
+              <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_individuels") : 'size-1' }}" src="{{ url('/images/EFFETS-perso.png') }}">
             </div>
-          </div>
+          </a>
 
-          <div class="valeur collectif">
+          <a href="#effets_collectifs" class="valeur collectif">
             <div class="text text--right">
               <h3>Effets<br> collectifs</h3>
             </div>
-            <img class="rounded" src="{{ url('/images/EFFETS-collectifs.png') }}">
-          </div>
+            <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_collectifs") : 'size-1' }}"" src="{{ url('/images/EFFETS-collectifs.png') }}">
+          </a>
 
-          <div class="valeur territorial reverse">
+          <a href="#effets_territoriaux" class="valeur territorial reverse">
             <div class="text">
               <h3>Effets<br> territoriaux</h3>
             </div>
-            <img class="rounded" src="{{ url('/images/EFFETS-territoriaux.png') }}">
-          </div>
+            <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_territoriaux") : 'size-1' }}"" src="{{ url('/images/EFFETS-territoriaux.png') }}">
+          </a>
 
-          <div class="valeur urbain reverse">
+          <a href="#effets_urbains" class="valeur urbain reverse">
             <div class="text">
               <h3>Effets sur<br> le projet urbain</h3>
             </div>
-            <img class="rounded" src="{{ url('/images/EFFETS-urbain.png') }}">
-          </div>
+            <img class="rounded size-1" src="{{ url('/images/EFFETS-urbain.png') }}">
+          </a>
 
           <img src="{{ url('/images/illustration-sommaire.png') }}" alt="sommaire">
         </div>
@@ -55,6 +55,7 @@
 
       <section>
         <div class="custom-background">
+          <span id="effets_individuels"></span>
           <h2 class="margin-image">effets individuels</h2>
           <div>
             @if (!empty($place->get('blocs->impact_social->donnees->lien_social')) || isset($edit))
@@ -115,6 +116,7 @@
 
       <section class="gray-background topography-background">
         <div>
+          <span id="effets_collectifs"></span>
           <h2 class="orange center">effets collectifs</h2>
           <div class="row">
             @if (!empty($place->get('blocs->impact_social->donnees->solidarite')) || isset($edit))
@@ -180,6 +182,7 @@
               <img src="{{ url('/images/quartier-territoire-cadre-vie.png') }}" alt="cadre de vie">
             </div>
             <div>
+              <span id="effets_territoriaux"></span>
               <h2 class="quartier">effets sur le quartier et le territoire</h2>
               @if (!empty($place->get('blocs->impact_social->donnees->cadre_de_vie')) || isset($edit))
                 <h3>Cadre de vie et attractivité du quartier</h3>
@@ -233,6 +236,7 @@
         <div>
           <div class="half-image">
             <div>
+              <span id="effets_urbains"></span>
               <h2 class="urbain">Impact sur le projet urbain</h2>
               <h3>Gouvernance partagée transitoire/pérenne</h3>
               <p>
