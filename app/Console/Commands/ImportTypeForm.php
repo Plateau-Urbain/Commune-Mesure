@@ -338,6 +338,9 @@ class ImportTypeForm extends Command
         $new_place->blocs->impact_social->donnees->intensite_effets_individuels = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_individuels);
         $new_place->blocs->impact_social->donnees->intensite_effets_collectifs = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_collectifs);
         $new_place->blocs->impact_social->donnees->intensite_effets_territoriaux = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_territoriaux);
+        $new_place->blocs->impact_social->donnees->mots_cles_effets_individuels = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_individuels);
+        $new_place->blocs->impact_social->donnees->mots_cles_effets_collectifs = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_collectifs);
+        $new_place->blocs->impact_social->donnees->mots_cles_effets_territoriaux = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_territoriaux);
 
         // galerie
         $new_place->blocs->galerie = new stdClass;
@@ -517,7 +520,7 @@ class ImportTypeForm extends Command
         }
 
         // Import pour la partie Impact Social
-        $impact_social_data = $this->build_impact_social_data($schema);
+        /*$impact_social_data = $this->build_impact_social_data($schema);
 
         $place = Place::where('id', $import_file->token)->where('type_donnees', 'datapanorama')->firstOrFail();
         $impact = ImpactSocial::where('id', $import_file->token)->where('type_donnees', 'impact')->firstOrNew();
@@ -527,7 +530,7 @@ class ImportTypeForm extends Command
         $impact->type_donnees = 'impact';
         $impact->data = $impact_social_data;
 
-        $impact->save();
+        $impact->save();*/
     }
 
     public function extract_val($keys)

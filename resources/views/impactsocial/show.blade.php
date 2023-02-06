@@ -49,7 +49,28 @@
             <img class="rounded size-1" src="{{ url('/images/EFFETS-urbain.png') }}">
           </a>
 
+          <div class="cloud-layer">
+            <div class="cloud">
+              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_individuels")) as $key => $word)
+                @if (!empty(trim($word)))
+                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
+                @endif
+              @endforeach
+              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_collectifs")) as $key => $word)
+                @if (!empty(trim($word)))
+                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
+                @endif
+              @endforeach
+              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_territoriaux")) as $key => $word)
+                @if (!empty(trim($word)))
+                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
+                @endif
+              @endforeach
+            </div>
+          </div>
+
           <img src="{{ url('/images/illustration-sommaire.png') }}" alt="sommaire">
+
         </div>
       </section>
 

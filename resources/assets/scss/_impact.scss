@@ -65,6 +65,10 @@ $title-gray: #3A3C49;
             background-color: #F8F7F3;
 
             img {
+                @include until($desktop) {
+                    width: 100px !important;
+                }
+
                 &.rounded {
                     border-radius: 50%;
                     align-self: center;
@@ -96,7 +100,29 @@ $title-gray: #3A3C49;
                 }
             }
 
+            .word {
+                color: $blue;
+                font-weight: bold;
+                font-size: 25px;
+                font-style: italic;
+
+                &-0{
+                    color: $red;
+                    font-size: 35px;
+                }
+                &-1{
+                    color: $orange;
+                    font-size: 20px;
+                }
+            }
+
             .container {
+                > img {
+                    @include until($desktop) {
+                        display: none;
+                    }
+                }
+
                 @include until($desktop) {
                     display: flex;
                     flex-wrap: wrap;
@@ -104,6 +130,27 @@ $title-gray: #3A3C49;
                 }
                 margin: auto;
                 max-width: 1050px;
+
+                .cloud-layer {
+                    @include until($desktop) {
+                        position: relative;
+                    }
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+
+                    .cloud {
+                        max-width: 400px;
+                        position: relative;
+                        top: 50%;
+                        @include until($desktop) {
+                            transform: none;
+                        }
+                        transform: translateY(-50%);
+                        text-align: center;
+                        margin: auto;
+                    }
+                }
             }
 
             .valeur {

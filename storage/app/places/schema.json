@@ -148,7 +148,10 @@
         "innovation_publique": "pntLADdWQhm5|fTtTZSvbsVSh|long_text|value",
         "intensite_effets_individuels": "GanryzVXYwN0|Jrq40244Bcta|rating|value",
         "intensite_effets_collectifs": "GanryzVXYwN0|n63sOZTjTLb7|rating|value",
-        "intensite_effets_territoriaux": "GanryzVXYwN0|FBL4bHnYxJz2|rating|value"
+        "intensite_effets_territoriaux": "GanryzVXYwN0|FBL4bHnYxJz2|rating|value",
+        "mots_cles_effets_individuels": "pntLADdWQhm5|ETkELCH0XilP|short_text|value",
+        "mots_cles_effets_collectifs": "pntLADdWQhm5|7ZIbGpZKVe4N|short_text|value",
+        "mots_cles_effets_territoriaux": "pntLADdWQhm5|jq7U0CSk6Qmb|short_text|value"
       }
     },
     "galerie": {
