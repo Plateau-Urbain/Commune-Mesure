@@ -151,6 +151,24 @@ $title-gray: #3A3C49;
                         margin: auto;
                     }
                 }
+
+                .intensity {
+                    font-size: 30px;
+                    margin-top: -5px;
+                    font-weight: bold;
+
+                    .not-filled {
+                        &.individuel {
+                            color: lighten($red, 20%);
+                        }
+                        &.collectif {
+                            color: lighten($orange, 20%);
+                        }
+                        &.territorial {
+                            color: lighten($blue, 20%);
+                        }
+                    }
+                }
             }
 
             .valeur {
@@ -209,10 +227,6 @@ $title-gray: #3A3C49;
                     img {
                         border: 3px solid $orange;
                     }
-
-                    span {
-                        color: $light-orange;
-                    }
                 }
 
                 &.territorial {
@@ -231,10 +245,6 @@ $title-gray: #3A3C49;
                     img {
                         border: 3px solid $blue;
                     }
-
-                    span {
-                        color: $light-blue;
-                    }
                 }
 
                 &.urbain {
@@ -252,10 +262,6 @@ $title-gray: #3A3C49;
 
                     img {
                         border: 3px solid $darker-blue;
-                    }
-
-                    span {
-                        color: $light-darker-blue;
                     }
                 }
 

@@ -22,6 +22,11 @@
           <a href="#effets_individuels" class="valeur individuel">
             <div class="text text--right">
               <h3>Effets<br> individuels</h3>
+              <div class="intensity">
+                @foreach ([1,2,3,4,5] as $e)
+                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'not-filled individuel' : ''}}">+</span>
+                @endforeach
+              </div>
             </div>
             <div>
               <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_individuels") : 'size-1' }}" src="{{ url('/images/EFFETS-perso.png') }}">
@@ -31,6 +36,11 @@
           <a href="#effets_collectifs" class="valeur collectif">
             <div class="text text--right">
               <h3>Effets<br> collectifs</h3>
+              <div class="intensity">
+                @foreach ([1,2,3,4,5] as $e)
+                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'not-filled collectif' : ''}}">+</span>
+                @endforeach
+              </div>
             </div>
             <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_collectifs") : 'size-1' }}"" src="{{ url('/images/EFFETS-collectifs.png') }}">
           </a>
@@ -38,6 +48,11 @@
           <a href="#effets_territoriaux" class="valeur territorial reverse">
             <div class="text">
               <h3>Effets<br> territoriaux</h3>
+              <div class="intensity">
+                @foreach ([1,2,3,4,5] as $e)
+                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) ? 'not-filled territorial' : ''}}">+</span>
+                @endforeach
+              </div>
             </div>
             <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_territoriaux") : 'size-1' }}"" src="{{ url('/images/EFFETS-territoriaux.png') }}">
           </a>
@@ -48,26 +63,6 @@
             </div>
             <img class="rounded size-1" src="{{ url('/images/EFFETS-urbain.png') }}">
           </a>
-
-          <div class="cloud-layer">
-            <div class="cloud">
-              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_individuels")) as $key => $word)
-                @if (!empty(trim($word)))
-                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
-                @endif
-              @endforeach
-              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_collectifs")) as $key => $word)
-                @if (!empty(trim($word)))
-                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
-                @endif
-              @endforeach
-              @foreach (explode(',', $place->get("blocs->impact_social->donnees->mots_cles_effets_territoriaux")) as $key => $word)
-                @if (!empty(trim($word)))
-                  <span class="word word-{{$key}}">#{{trim($word)}}</span>
-                @endif
-              @endforeach
-            </div>
-          </div>
 
           <img src="{{ url('/images/illustration-sommaire.png') }}" alt="sommaire">
 
