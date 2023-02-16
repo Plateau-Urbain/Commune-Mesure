@@ -132,7 +132,7 @@ class ImportTypeForm extends Command
         $new_place = new stdClass;
         $new_place->name = $place_name;
         $new_place->status = $this->extract_val($schema->status);
-        $new_place->publish = false;
+        $new_place->publish = true;
         $new_place->tags = [];
         $new_place->address = new stdClass;
         $new_place->address->address = $this->extract_val($schema->address->address);
@@ -324,23 +324,51 @@ class ImportTypeForm extends Command
         $new_place->blocs->impact_social->visible = 1;
         $new_place->blocs->impact_social->donnees = new stdClass;
         $new_place->blocs->impact_social->donnees->insertion_professionnelle = $this->extract_val($schema->blocs->impact_social->donnees->insertion_professionnelle);
+        $new_place->blocs->impact_social->donnees->insertion_professionnelle_nb_personnes = $this->extract_val($schema->blocs->impact_social->donnees->insertion_professionnelle_nb_personnes);
+        $new_place->blocs->impact_social->donnees->insertion_professionnelle_effets = $this->extract_val($schema->blocs->impact_social->donnees->insertion_professionnelle_effets);
         $new_place->blocs->impact_social->donnees->appartenance_exclusion = $this->extract_val($schema->blocs->impact_social->donnees->appartenance_exclusion);
+        $new_place->blocs->impact_social->donnees->appartenance_exclusion_public = $this->extract_val($schema->blocs->impact_social->donnees->appartenance_exclusion_public);
+        $new_place->blocs->impact_social->donnees->appartenance_exclusion_type = $this->extract_val($schema->blocs->impact_social->donnees->appartenance_exclusion_type);
         $new_place->blocs->impact_social->donnees->reseaux = $this->extract_val($schema->blocs->impact_social->donnees->reseaux);
+        $new_place->blocs->impact_social->donnees->reseaux_type = $this->extract_val($schema->blocs->impact_social->donnees->reseaux_type);
+        $new_place->blocs->impact_social->donnees->reseaux_public = $this->extract_val($schema->blocs->impact_social->donnees->reseaux_public);
         $new_place->blocs->impact_social->donnees->capacite_agir = $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir);
+        $new_place->blocs->impact_social->donnees->capacite_agir_nombre = $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir_nombre);
+        $new_place->blocs->impact_social->donnees->capacite_agir_porte = $this->extract_val($schema->blocs->impact_social->donnees->capacite_agir_porte);
         $new_place->blocs->impact_social->donnees->sante_bien_être = $this->extract_val($schema->blocs->impact_social->donnees->sante_bien_être);
+        $new_place->blocs->impact_social->donnees->sante_effet = $this->extract_val($schema->blocs->impact_social->donnees->sante_effet);
         $new_place->blocs->impact_social->donnees->lien_social = $this->extract_val($schema->blocs->impact_social->donnees->lien_social);
         $new_place->blocs->impact_social->donnees->solidarite = $this->extract_val($schema->blocs->impact_social->donnees->solidarite);
+        $new_place->blocs->impact_social->donnees->solidarite_type = $this->extract_val($schema->blocs->impact_social->donnees->solidarite_type);
+        $new_place->blocs->impact_social->donnees->solidarite_public = $this->extract_val($schema->blocs->impact_social->donnees->solidarite_public);
         $new_place->blocs->impact_social->donnees->egalite_homme_femme = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme);
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme_public = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme_public);
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme_dirigeants = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme_dirigeants);
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme_occupants = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme_occupants);
+        $new_place->blocs->impact_social->donnees->egalite_homme_femme_gestion = $this->extract_val($schema->blocs->impact_social->donnees->egalite_homme_femme_gestion);
         $new_place->blocs->impact_social->donnees->cadre_de_vie = $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie);
-        $new_place->blocs->impact_social->donnees->entretien_des_espaces = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces);
+        $new_place->blocs->impact_social->donnees->cadre_de_vie_type = $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie_type);
+        $new_place->blocs->impact_social->donnees->cadre_de_vie_image = $this->extract_val($schema->blocs->impact_social->donnees->cadre_de_vie_image);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces_effets = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces_effets);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type);
+        $new_place->blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example = $this->extract_val($schema->blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example);
         $new_place->blocs->impact_social->donnees->services_publics = $this->extract_val($schema->blocs->impact_social->donnees->services_publics);
+        $new_place->blocs->impact_social->donnees->services_publics_gestion = $this->extract_val($schema->blocs->impact_social->donnees->services_publics_gestion);
+        $new_place->blocs->impact_social->donnees->services_publics_besoin_urgent = $this->extract_val($schema->blocs->impact_social->donnees->services_publics_besoin_urgent);
         $new_place->blocs->impact_social->donnees->innovation_publique = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique);
+        $new_place->blocs->impact_social->donnees->innovation_publique_effet = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique_effet);
+        $new_place->blocs->impact_social->donnees->innovation_publique_type = $this->extract_val($schema->blocs->impact_social->donnees->innovation_publique_type);
         $new_place->blocs->impact_social->donnees->intensite_effets_individuels = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_individuels);
         $new_place->blocs->impact_social->donnees->intensite_effets_collectifs = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_collectifs);
         $new_place->blocs->impact_social->donnees->intensite_effets_territoriaux = $this->extract_val($schema->blocs->impact_social->donnees->intensite_effets_territoriaux);
         $new_place->blocs->impact_social->donnees->mots_cles_effets_individuels = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_individuels);
         $new_place->blocs->impact_social->donnees->mots_cles_effets_collectifs = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_collectifs);
         $new_place->blocs->impact_social->donnees->mots_cles_effets_territoriaux = $this->extract_val($schema->blocs->impact_social->donnees->mots_cles_effets_territoriaux);
+        $new_place->blocs->impact_social->donnees->impact_social_public = $this->extract_val($schema->blocs->impact_social->donnees->impact_social_public);
+        $new_place->blocs->impact_social->donnees->impact_social_occasion = $this->extract_val($schema->blocs->impact_social->donnees->impact_social_occasion);
+        $new_place->blocs->impact_social->donnees->impact_social_frequence = $this->extract_val($schema->blocs->impact_social->donnees->impact_social_frequence);
 
         // galerie
         $new_place->blocs->galerie = new stdClass;
@@ -441,7 +469,7 @@ class ImportTypeForm extends Command
         // insee
         $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode]);
         $output = new BufferedOutput();
-        try {
+        /*try {
             Artisan::call('iris:load', [
                 'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
             ], $output);
@@ -465,7 +493,7 @@ class ImportTypeForm extends Command
                 'lon' => $geogouv->features[0]->geometry->coordinates[0]
             ];
             $new_place->address->city = $geogouv->features[0]->properties->city;
-        }
+        }*/
 
         if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");
