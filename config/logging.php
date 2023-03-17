@@ -41,10 +41,11 @@ return [
         ],
 
         'import' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/import.log'),
-            'level' => 'debug',
-            'days' => 60
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'with' => [
+                'stream' => 'php://stderr',
+            ],
         ],
 
         'update' => [
