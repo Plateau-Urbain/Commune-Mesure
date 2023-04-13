@@ -52,8 +52,8 @@
           @endforeach
         </div>
       </div>
-      <img class="image left" src="{{ url('/images/urbain.png') }}"/>
-      <img class="image right" src="{{ url('/images/collectif-reseau-1.png') }}"/>
+      <img class="image left" src="{{ url('/images/illusration-RECAP_18.png') }}"/>
+      <img class="image right" src="{{ url('/images/illusration-RECAP_16.png') }}"/>
 
       <div class="collectif">
         <h3>Effets collectifs</h3>
