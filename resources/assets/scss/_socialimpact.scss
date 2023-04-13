@@ -48,17 +48,17 @@
 }
 
 .word {
-    color: $blue;
+    color: #3b97a6;
     font-weight: bold;
     font-size: 25px;
     font-style: italic;
 
     &-0{
-        color: $red;
+        color: #ee5a52;
         font-size: 35px;
     }
     &-1{
-        color: $orange;
+        color: #f58352;
         font-size: 20px;
     }
 }
@@ -71,6 +71,7 @@
             height: auto;
         }
         margin-bottom: 50px;
+        max-width: 900px;
 
         h3 {
             text-transform: uppercase;
@@ -92,15 +93,15 @@
         }
 
         .individuel {
-            color: $red;
+            color: #EE5A52;
 
             .not-filled {
-                color: lighten($red, 20%);
+                color: lighten(#EE5A52, 20%);
             }
         }
 
         .collectif {
-            color: $orange;
+            color: #f58352;
             bottom: 0;
             @include until($desktop) {
                 text-align: center;
@@ -108,12 +109,12 @@
             }
 
             .not-filled {
-                color: lighten($orange, 20%);
+                color: lighten(#f58352, 20%);
             }
         }
 
         .territorial {
-            color: $blue;
+            color: #3b97a6;
             right: 0;
 
             @include until($desktop) {
@@ -122,7 +123,7 @@
             }
 
             .not-filled {
-                color: lighten($blue, 20%);
+                color: lighten(#3b97a6, 20%);
             }
         }
 
@@ -138,14 +139,14 @@
             }
 
             &.left {
-                width: 380px;
+                width: 300px;
                 margin-top: 50px;
                 float: left;
             }
 
             &.right {
                 padding-top: 100px;
-                width: 380px;
+                width: 300px;
                 float: right;
             }
         }
@@ -155,8 +156,6 @@
             flex-wrap: wrap;
             margin-top: 50px;
         }
-
-        max-width: 1050px;
 
         .cloud-layer {
             @include until($desktop) {

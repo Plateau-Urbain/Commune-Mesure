@@ -1,7 +1,7 @@
 <?php
 
 function formatArray($arr, $separator) {
-    return formatString(implode($separator, $arr));
+    return formatString(implode('</strong>'.$separator.'<strong>', $arr));
 }
 
 function formatString($string) {
