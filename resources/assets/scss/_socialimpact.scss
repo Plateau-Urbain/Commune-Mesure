@@ -65,13 +65,12 @@
 
 #impact_social {
     .container {
-        width: 100%;
         position: relative;
         @include until($desktop) {
             height: auto;
         }
+        margin-top: 50px;
         margin-bottom: 50px;
-        max-width: 900px;
 
         h3 {
             text-transform: uppercase;
