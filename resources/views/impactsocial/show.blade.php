@@ -172,7 +172,7 @@
               <div>
                 <h3>Réseau de personnes</h3>
                 <p>
-                  La création de réseaux de personnes entre <strong>{{ formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), ' et de ') }}</strong>,
+                  La création de réseaux de personnes entre <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), ' et de ') !!}</strong>,
                   <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_type'), ', ')!!}</strong> a été observée.
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du réseaux", 'description' => "Décrivez le réseaux en quelques mots"])
                 </p>
@@ -286,7 +286,7 @@
                   @endif
                   <br>
                   @if(!empty($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent')))
-                    Le projet a permis de répondre à des besoins sociaux urgents du territoire : <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '<li></li>')) !!}</li></ul></strong>.
+                    Le projet a permis de répondre à des besoins sociaux urgents du territoire : <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '</li><li>') !!}</li></ul></strong>.
                   @endif
 
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des services publics", 'description' => "Décrivez les services publics en quelques mots"])
