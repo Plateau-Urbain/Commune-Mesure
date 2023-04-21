@@ -158,8 +158,8 @@
               <div>
                 <h3>Solidarité</h3>
                 <p>
-                  Des échanges, dons ou mutualisations de <strong>{!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->solidarite_type'), ' et de ')) !!}</strong>
-                  entre <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->solidarite_public'), '</li><li>') !!}</li></ul></strong> ont été observés.
+                  Des échanges, dons ou mutualisations de <strong>{!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->solidarite_type'), ' et de ')) !!}</strong> ont été observés entre :
+                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->solidarite_public'), '</li><li>') !!}</li></ul></strong>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->solidarite', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la solidarité", 'description' => "Décrivez la solidarité en quelques mots"])
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->solidarite')])
@@ -286,7 +286,7 @@
                   @endif
                   <br>
                   @if(!empty($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent')))
-                    Le projet a permis de répondre à des besoins sociaux urgents du territoire : <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '</li><li>') !!}</li></ul></strong>.
+                    Le projet a permis de répondre à des besoins sociaux urgents du territoire : <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '</li><li>') !!}</li></ul></strong>
                   @endif
 
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des services publics", 'description' => "Décrivez les services publics en quelques mots"])
@@ -302,12 +302,11 @@
                 <p>La collaboration avec les partenaires publics et privés n'a pas fait évoluer leurs pratiques professionnelles.</p>
               @elseif (formatArray($place->get('blocs->impact_social->donnees->innovation_publique_effet'), '') === "cela a permis d'améliorer ou expérimenter de nouveaux modes de faire")
                 <p>
-                  La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire
                   @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique_type')))
-                  :
+                    La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire:
                     <strong>{!! formatArray($place->get('blocs->impact_social->donnees->innovation_publique_type'), '') !!}</strong>.
                   @else
-                  .
+                    La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire.
                   @endif
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])

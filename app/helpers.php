@@ -16,6 +16,7 @@ function formatString($string) {
     $stripString = preg_replace('/oui, /',"", $stripString);
     $stripString = preg_replace('/pas vraiment mais les gens/',"certains personnes se", $stripString);
     $stripString = preg_replace('/groupe autour du ou d\'un projet/',"groupe autour du projet", $stripString);
+    $stripString = preg_replace('/acteurs et actrices du quartier, associations ou entreprises locales/',"acteurs et actrices du quartier", $stripString);
 
     // Inclusive writing
     $stripString = preg_replace('/visiteurs et visiteuses/',"visiteur·euse·s", $stripString);
