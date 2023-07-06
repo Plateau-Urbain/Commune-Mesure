@@ -39,3 +39,27 @@ Pour lancer le projet:
 ## Mise à jour
 
 Voir le fichier [UPDATING.md](UPDATING.md)
+
+## Commandes
+
+```
+Commandes utiles :
+ admin
+  admin:generate-hash        Génère un nouveau secret pour éditer un espace de lieu
+  admin:set-value            Met à jour une valeur dans les données (champs libre)
+  admin:set-value-for-all    Édite un champs pour tous les lieux (champs libre)
+ export
+  export:fusion              Fusionne un CSV d'export du json original et un csv de la base
+  export:original-to-csv     Exporte le fichier json original au format csv
+  export:place-to-csv        Exporte les données d'un lieu au format csv
+ import
+  import:one-value-typeform  Importe une valeur du json type form dans un lieu existant
+  import:typeform            Importer les données reponses du typeform
+  import:value-for-all       Importe une valeur pour tous les lieux
+ iris
+  iris:load                  Récupère les données IRIS et INSEE d'un lieu
+ mail
+  mail:send-import-success   Envoi le mail d'import réussi au créateur du lieu
+ places
+  places:list                Liste les lieux en base
+```
