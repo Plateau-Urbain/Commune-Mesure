@@ -469,7 +469,7 @@ class ImportTypeForm extends Command
         // insee
         $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode]);
         $output = new BufferedOutput();
-        /*try {
+        try {
             Artisan::call('iris:load', [
                 'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
             ], $output);
@@ -493,7 +493,7 @@ class ImportTypeForm extends Command
                 'lon' => $geogouv->features[0]->geometry->coordinates[0]
             ];
             $new_place->address->city = $geogouv->features[0]->properties->city;
-        }*/
+        }
 
         if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");
