@@ -171,7 +171,7 @@ class Place extends Model
 
       foreach($places as $place){
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
-        $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
+        $this->stats[self::STAT_SURFACE] += intval($place->get('blocs->presentation->donnees->surface'));
         $this->stats[self::STAT_EVENTS] +=  (intval($place->get('evenements->prives->nombre')) + intval($place->get('evenements->publics->nombre')));
         $this->stats[self::STAT_EMPLOIS_DIRECTS] += ($place->get('blocs->presentation->donnees->emplois directs')) ? $place->get('blocs->presentation->donnees->emplois directs') : 0 ;
         $this->stats[self::STAT_PERSONNES_ACCUEILLIES] += ($place->get('evenements->prives->personnes accueillies') + $place->get('evenements->publics->personnes accueillies'));
