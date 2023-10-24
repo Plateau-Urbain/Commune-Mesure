@@ -25,13 +25,16 @@ class Batiment
     {
         $this->thematiques = $place->get('blocs->presentation->donnees->thematiques');
 
-        for ($i = count($this->thematiques) ; $i < 3 ; $i++ ) {
-            $this->thematiques[] = '';
+        if($this->thematiques !== null) {
+            for ($i = count($this->thematiques) ; $i < 3 ; $i++ ) {
+                $this->thematiques[] = '';
+            }
+            shuffle($this->thematiques);
+
         }
 
         mt_srand(crc32($place->get('name')) + 1);
 
-        shuffle($this->thematiques);
         shuffle($this->decors_gauche);
         shuffle($this->decors_droite);
         shuffle($this->toits_gauches);
@@ -46,7 +49,11 @@ class Batiment
 
     public function getThematique(int $index)
     {
-        return $this->thematiques[$index];
+        if ($this->thematiques !== null && array_key_exists($index, $this->thematiques)) {
+            return $this->thematiques[$index];
+        }
+
+        return '';
     }
 
     public function getThematiquePath(string $theme)

@@ -172,7 +172,7 @@ class Place extends Model
       foreach($places as $place){
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
         $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
-        $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
+        $this->stats[self::STAT_EVENTS] +=  (intval($place->get('evenements->prives->nombre')) + intval($place->get('evenements->publics->nombre')));
         $this->stats[self::STAT_EMPLOIS_DIRECTS] += ($place->get('blocs->presentation->donnees->emplois directs')) ? $place->get('blocs->presentation->donnees->emplois directs') : 0 ;
         $this->stats[self::STAT_PERSONNES_ACCUEILLIES] += ($place->get('evenements->prives->personnes accueillies') + $place->get('evenements->publics->personnes accueillies'));
         $this->stats[self::STAT_CITIES] = count($this->cities);
@@ -342,31 +342,38 @@ class Place extends Model
 
   public function isEmptyAccessibilityBySection($s){
     $tab = $this->get('blocs->accessibilite->donnees->'.$s);
-    foreach($tab as $v){
-      if($v != 0){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $v){
+            if($v != 0){
+                return false;
+            }
+        }
     }
     return true;
   }
 
   public function isEmptyAccessibility(){
     $tab = json_decode(json_encode($this->get('blocs->accessibilite->donnees')),true);
-    foreach($tab as $k=>$v){
-      if(!$this->isEmptyAccessibilityBySection($k)){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $k=>$v){
+            if(!$this->isEmptyAccessibilityBySection($k)){
+                return false;
+            }
+        }
     }
     return true;
   }
 
   public function isEmptyInvestissement(){
     $tab = json_decode(json_encode($this->get('blocs->moyens->donnees->investissement')),true);
-    foreach($tab as $k => $v){
-      if(!empty($v)){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $k => $v){
+            if(!empty($v)){
+                return false;
+            }
+        }
     }
+
     return true;
   }
 

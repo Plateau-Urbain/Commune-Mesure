@@ -49,11 +49,13 @@
       <br>
 
       <div id="wordcloud">
-        @foreach ($place->get('activites') as $activite)
+        @if (is_array($place->get('activites')))
+          @foreach ($place->get('activites') as $activite)
           <span class="word subtitle">{{ $activite }}</span>
-        @endforeach
-      </div>
+          @endforeach
+        @endif
 
+      </div>
     </div>
   </div>
 </section>
