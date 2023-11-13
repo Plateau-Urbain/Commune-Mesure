@@ -22,7 +22,7 @@ class Batiment
         "Incubation / Accélérateurs d'entreprises innovantes" => "Travail",
         "Insertion professionnelle / formation" => "Formation",
         "Médiation Numérique" => "Inclusion numérique",
-        "Lien social, proximité et voisinage" => "Lien social et voisinage",
+        "Lien social proximité et voisinage" => "Lien social et voisinage",
         "Santé / Soin de l'esprit" => "Soin de l'esprit",
         "Travail / Coworking" => "Coworking"
     ];
