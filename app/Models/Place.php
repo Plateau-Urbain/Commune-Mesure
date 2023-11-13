@@ -211,7 +211,7 @@ class Place extends Model
     }
 
     public function getPhotos(){
-      if($this->getData()->blocs->galerie->donnees){
+      if($this->getData() && $this->getData()->blocs->galerie->donnees){
         return $this->getData()->blocs->galerie->donnees;
       }
       return array();
@@ -241,6 +241,7 @@ class Place extends Model
 
     public function isPublish()
     {
+        if (!$this->data) return false;
         return $this->data->publish;
     }
 
