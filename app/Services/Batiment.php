@@ -17,7 +17,7 @@ class Batiment
         "Agriculture" => "Production agricole",
         "Culture / Arts" => "Culture",
         "Écologie / Économie circulaire et Réemploi de matériaux" => "Écologie",
-        "Éducation / Formation" => "Éducation et enseignement",
+        "Éducation / Formation" => "Éducation et Enseignement",
         "Évènement / Fête" => "Évènementiel",
         "Incubation / Accélérateurs d'entreprises innovantes" => "Travail",
         "Insertion professionnelle / formation" => "Formation",
