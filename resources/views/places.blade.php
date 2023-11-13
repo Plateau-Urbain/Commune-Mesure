@@ -21,7 +21,7 @@
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel-listing carousel-container" style="height: 250px;">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
-                          <figure class="image is-covered">
+                          <figure class="image contained">
                             <img src="{{ url('/') }}/images/lieux/thumbnail/{{ $photo }}">
                           </figure>
                         @endforeach
