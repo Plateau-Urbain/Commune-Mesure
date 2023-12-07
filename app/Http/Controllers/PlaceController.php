@@ -48,13 +48,17 @@ class PlaceController extends Controller
 
     public function list(Place $place)
     {
-        $places = Place::retrievePlaces('latest');
+        $paginatedPlaces = Place::retrievePlaces('latest');
+
+        $places = $paginatedPlaces->map(function ($place, $key) {
+            return Place::find($place->slug, false);
+        });
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {
             return $place->getCoordinates($item);
         });
 
-        return view('places', compact('places', 'coordinates'));
+        return view('places', compact('places', 'paginatedPlaces', 'coordinates'));
     }
 
     public function edit($slug, $auth)

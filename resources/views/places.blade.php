@@ -60,6 +60,7 @@
               </div>
             @endforeach
           </div>
+          {!! $paginatedPlaces->links() !!}
         </div>
     </div>
 

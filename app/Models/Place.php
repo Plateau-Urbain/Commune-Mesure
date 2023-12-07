@@ -97,13 +97,9 @@ class Place extends Model
             $places->$sort();
         }
 
-        $places = $places->get();
+        $places = $places->paginate(80);
 
-        self::$places = $places->map(function ($place, $key) {
-            return self::find($place->slug, false);
-        });
-
-        return self::$places;
+        return $places;
     }
 
     /**
