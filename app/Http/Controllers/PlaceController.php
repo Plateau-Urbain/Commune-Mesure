@@ -48,7 +48,7 @@ class PlaceController extends Controller
 
     public function list(Place $place)
     {
-        $paginatedPlaces = Place::retrievePlaces('latest');
+        $paginatedPlaces = Place::retrievePlacesPaginated('latest');
 
         $places = $paginatedPlaces->map(function ($place, $key) {
             return Place::find($place->slug, false);

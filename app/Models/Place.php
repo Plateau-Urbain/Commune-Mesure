@@ -97,6 +97,29 @@ class Place extends Model
             $places->$sort();
         }
 
+        $places = $places->get();
+
+        self::$places = $places->map(function ($place, $key) {
+            return self::find($place->slug, false);
+        });
+
+        return self::$places;
+    }
+
+    public static function retrievePlacesPaginated($sort = null, $paginate = null){
+        if (! empty(self::$places)) {
+            return self::$places;
+        }
+
+        $places = DB::table('places')
+            ->select('place as slug')
+            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
+            ->where('deleted_at', null);
+
+        if (in_array($sort, ['latest', 'oldest'], true)) {
+            $places->$sort();
+        }
+
         $places = $places->paginate(80);
 
         return $places;
