@@ -14,6 +14,7 @@ class Batiment
 
     private $ftlMatchingTheme = [
         "Action sociale / Insertion sociale / Hébergement d'urgence" => "Solidarité",
+        "Action sociale / Insertion sociale / Hébergement durgence" => "Solidarité",
         "Agriculture" => "Production agricole",
         "Culture / Arts" => "Culture",
         "Écologie / Économie circulaire et Réemploi de matériaux" => "Écologie",
