@@ -48,7 +48,11 @@
                     </div>
                     <div style="justify-content: flex-end">
                     @if ($place->isPublish())
-                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth">Voir ses effets sociaux</a>
+                      @if (!empty($place->get('blocs->impact_social')))
+                        <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth">Voir ses effets sociaux</a>
+                      @else
+                        <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
+                      @endif
                       <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
                     @else
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
