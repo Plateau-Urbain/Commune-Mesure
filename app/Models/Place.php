@@ -106,6 +106,25 @@ class Place extends Model
         return self::$places;
     }
 
+    public static function retrievePlacesPaginated($sort = null, $paginate = null){
+        if (! empty(self::$places)) {
+            return self::$places;
+        }
+
+        $places = DB::table('places')
+            ->select('place as slug')
+            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
+            ->where('deleted_at', null);
+
+        if (in_array($sort, ['latest', 'oldest'], true)) {
+            $places->$sort();
+        }
+
+        $places = $places->paginate(80);
+
+        return $places;
+    }
+
     /**
      * Search place into into the db
      *
@@ -171,8 +190,8 @@ class Place extends Model
 
       foreach($places as $place){
         $this->cities[$place->get('address->city')][]= [ "title" => $place->getSlug(),];
-        $this->stats[self::STAT_SURFACE] += $place->get('blocs->presentation->donnees->surface');
-        $this->stats[self::STAT_EVENTS] +=  ($place->get('evenements->prives->nombre') + $place->get('evenements->publics->nombre'));
+        $this->stats[self::STAT_SURFACE] += intval($place->get('blocs->presentation->donnees->surface'));
+        $this->stats[self::STAT_EVENTS] +=  (intval($place->get('evenements->prives->nombre')) + intval($place->get('evenements->publics->nombre')));
         $this->stats[self::STAT_EMPLOIS_DIRECTS] += ($place->get('blocs->presentation->donnees->emplois directs')) ? $place->get('blocs->presentation->donnees->emplois directs') : 0 ;
         $this->stats[self::STAT_PERSONNES_ACCUEILLIES] += ($place->get('evenements->prives->personnes accueillies') + $place->get('evenements->publics->personnes accueillies'));
         $this->stats[self::STAT_CITIES] = count($this->cities);
@@ -211,7 +230,7 @@ class Place extends Model
     }
 
     public function getPhotos(){
-      if($this->getData()->blocs->galerie->donnees){
+      if($this->getData() && $this->getData()->blocs->galerie->donnees){
         return $this->getData()->blocs->galerie->donnees;
       }
       return array();
@@ -241,6 +260,7 @@ class Place extends Model
 
     public function isPublish()
     {
+        if (!$this->data) return false;
         return $this->data->publish;
     }
 
@@ -342,31 +362,38 @@ class Place extends Model
 
   public function isEmptyAccessibilityBySection($s){
     $tab = $this->get('blocs->accessibilite->donnees->'.$s);
-    foreach($tab as $v){
-      if($v != 0){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $v){
+            if($v != 0){
+                return false;
+            }
+        }
     }
     return true;
   }
 
   public function isEmptyAccessibility(){
     $tab = json_decode(json_encode($this->get('blocs->accessibilite->donnees')),true);
-    foreach($tab as $k=>$v){
-      if(!$this->isEmptyAccessibilityBySection($k)){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $k=>$v){
+            if(!$this->isEmptyAccessibilityBySection($k)){
+                return false;
+            }
+        }
     }
     return true;
   }
 
   public function isEmptyInvestissement(){
     $tab = json_decode(json_encode($this->get('blocs->moyens->donnees->investissement')),true);
-    foreach($tab as $k => $v){
-      if(!empty($v)){
-        return false;
-      }
+    if ($tab !== null) {
+        foreach($tab as $k => $v){
+            if(!empty($v)){
+                return false;
+            }
+        }
     }
+
     return true;
   }
 

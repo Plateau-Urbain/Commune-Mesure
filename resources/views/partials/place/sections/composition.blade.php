@@ -20,7 +20,12 @@
             @if (isset($edit) || $place->get('blocs->presentation->donnees->nombre_occupants') > 0)
               <div class="is-inline-block">
                 <span class="is-size-1 has-text-primary has-text-weight-bold font-renner-black">
-                  {{ $place->get('blocs->presentation->donnees->nombre_occupants') }}
+                  {{
+                    abs((int) filter_var($place->get('blocs->composition->donnees->type->Entreprises'), FILTER_SANITIZE_NUMBER_INT)) +
+                    abs((int) filter_var($place->get('blocs->composition->donnees->type->Associations'), FILTER_SANITIZE_NUMBER_INT)) +
+                    abs((int) filter_var($place->get('blocs->composition->donnees->type->Artistes'), FILTER_SANITIZE_NUMBER_INT)) +
+                    abs((int) filter_var($place->get('blocs->composition->donnees->type->Autres structures'), FILTER_SANITIZE_NUMBER_INT))
+                  }}
                 </span>
                 <br/>
                 <p style="line-height: 1">

@@ -21,7 +21,7 @@
                     <div id="carousel-{{ $place->getSlug() }}" class="carousel-listing carousel-container" style="height: 250px;">
                       @if (count($place->getPhotos()) > 0)
                         @foreach ($place->getPhotos() as $photo)
-                          <figure class="image is-covered">
+                          <figure class="image contained">
                             <img src="{{ url('/') }}/images/lieux/thumbnail/{{ $photo }}">
                           </figure>
                         @endforeach
@@ -40,7 +40,7 @@
 
                       <div class="content mt-1">
                         @if ($place->isPublish())
-                          <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}</p>
+                          <p style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;">{!! str_replace( "\\n", '<br />', $place->get('blocs->presentation->donnees->idee_fondatrice')) !!}</p>
                         @else
                           <p class="has-text-grey-light">Plus d'infos à venir&hellip; Dès la publication du datapanorama par les responsables du tiers lieux.</p>
                         @endif
@@ -48,7 +48,11 @@
                     </div>
                     <div style="justify-content: flex-end">
                     @if ($place->isPublish())
-                      <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth">Voir ses effets sociaux</a>
+                      @if (!empty($place->get('blocs->impact_social')))
+                        <a href="{{ route('impacts.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth">Voir ses effets sociaux</a>
+                      @else
+                        <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
+                      @endif
                       <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
                     @else
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
@@ -60,6 +64,7 @@
               </div>
             @endforeach
           </div>
+          {!! $paginatedPlaces->links() !!}
         </div>
     </div>
 

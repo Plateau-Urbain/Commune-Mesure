@@ -180,6 +180,14 @@ div.alternate-bg {
     }
 }
 
+.slider-container .slider-item .image.contained {
+    display: flex;
+    height: 100%;
+}
+
+.slider-container .slider-item .image.contained img {
+    object-fit: contain;
+}
 
 .slider-container .slider-item .image.is-covered img {
     object-fit: cover;

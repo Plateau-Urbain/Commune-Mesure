@@ -8,7 +8,7 @@
 
       <h4 class="title has-text-primary no-border has-text-weight-normal is-uppercase">L'idée fondatrice</h4>
       <p class="mb-5">
-        {{ $place->get('blocs->presentation->donnees->idee_fondatrice') }}
+        {!! str_replace( "\\n", '<br />', $place->get('blocs->presentation->donnees->idee_fondatrice')) !!}
         @include('components.modals.modalEdition', ['chemin' => 'blocs->presentation->donnees->idee_fondatrice', 'id_section' => 'valeurs', 'type' => 'text', 'titre' => "Modifier l'idée fondatrice", 'description'=>"L'idée fondatrice du lieu. Laisser vide pour ne pas l'afficher."])
       </p>
 
@@ -49,11 +49,13 @@
       <br>
 
       <div id="wordcloud">
-        @foreach ($place->get('activites') as $activite)
+        @if (is_array($place->get('activites')))
+          @foreach ($place->get('activites') as $activite)
           <span class="word subtitle">{{ $activite }}</span>
-        @endforeach
-      </div>
+          @endforeach
+        @endif
 
+      </div>
     </div>
   </div>
 </section>
