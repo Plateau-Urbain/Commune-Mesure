@@ -20,7 +20,7 @@
       <h3>Effets<br> individuels</h3>
       <div class="intensity">
         @foreach ([1,2,3,4,5] as $e)
-          <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'not-filled' : ''}}">+</span>
+          <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'hidden' : ''}}">+</span>
         @endforeach
       </div>
     </div>
@@ -29,7 +29,7 @@
       <h3>Effets<br> territoriaux</h3>
       <div class="intensity">
         @foreach ([1,2,3,4,5] as $e)
-          <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) ? 'not-filled' : ''}}">+</span>
+          <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_territoriaux')) ? 'hidden' : ''}}">+</span>
         @endforeach
       </div>
     </div>

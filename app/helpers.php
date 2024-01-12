@@ -1,11 +1,20 @@
 <?php
 
-function formatArray($arr, $separator) {
+function formatArray($arr, $separator, $lastSeparator = null) {
     if (is_array($arr) || !empty($arr)) {
         if (is_array($arr) && count($arr) === 2 && trim($separator) === ',') {
             $separator = ' et ';
         }
-        return formatString(implode('</strong>'.$separator.'<strong>', $arr));
+
+        $count = count($arr);
+        if ($count > 1 && $lastSeparator !== null) {
+            $lastItem = array_pop($arr);
+            $formattedString = implode('</strong>' . $separator . '<strong>', $arr);
+            $formattedString .= '</strong>' . $lastSeparator . '<strong>' . $lastItem;
+            return formatString($formattedString);
+        } else {
+            return formatString(implode('</strong>'.$separator.'<strong>', $arr));
+        }
     }
 }
 
@@ -23,6 +32,18 @@ function formatString($string) {
     $stripString = preg_replace('/voisins et voisines/',"voisin·e·s", $stripString);
     $stripString = preg_replace('/acteurs et actrices/',"acteur·rice·s", $stripString);
     $stripString = preg_replace('/occupants et occupantes/',"occupant·e·s", $stripString);
+
+    // Effets sociaux "santé"
+    $stripString = preg_replace('/certaines personnes ont fait part ou ont paru/',"", $stripString);
+    $stripString = preg_replace('/certaines personnes ont fait preuve/',"", $stripString);
+    $stripString = preg_replace('/certaines personnes ont fait part/',"certains personnes se", $stripString);
+
+    // Effets sociaux insertion professionnelle
+    $stripString = preg_replace('/des emplois ont été créés au sein du lieu/',"d'obtenir des emplois au sein du lieu ", $stripString);
+    $stripString = preg_replace('/des emplois ont été créés à l\'extérieur/',"d'obtenir des emplois à l'extérieur du lieu", $stripString);
+
+
+
 
     // Remove everything between parantheses
     $pattern = '/\([^)]*\)/';
