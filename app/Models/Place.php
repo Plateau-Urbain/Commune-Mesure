@@ -514,23 +514,21 @@ class Place extends Model
 
     foreach ($places as $place) {
         $data = [
-            // Le « + » est voulu : https://www.php.net/manual/en/language.operators.arithmetic.php
-            // pour caster les strings en int ou float automagiquement
             'moyens' => [
                 'emplois directs' => [
-                    'nombre' => +($place->get('blocs->presentation->donnees->emplois directs')) ?: 0,
+                    'nombre' => intval($place->get('blocs->presentation->donnees->emplois directs')) ?: 0,
                     'title' => 'Nombre d\'emplois directs'
                 ],
                 'benevole' => [
-                    'nombre' => +($place->get('blocs->moyens->donnees->benevoles')) ?: 0,
+                    'nombre' => intval($place->get('blocs->moyens->donnees->benevoles')) ?: 0,
                     'title' => 'Nombre de bénévoles'
                 ],
                 'partenaire' => [
-                    'nombre' => +($place->get('blocs->moyens->donnees->partenaires')) ?: 0,
+                    'nombre' => intval($place->get('blocs->moyens->donnees->partenaires')) ?: 0,
                     'title' => 'Nombre de partenaires publics / privés'
                 ],
                 'superficie' => [
-                    'nombre' => +($place->get('blocs->presentation->donnees->surface')) ?: 0,
+                    'nombre' => intval($place->get('blocs->presentation->donnees->surface')) ?: 0,
                     'title' => 'Superficie du lieu (m²)'
                 ]
             ],
@@ -548,7 +546,7 @@ class Place extends Model
                 //    'title' => 'Nombre de structures hébergées'
                 //],
                 'personnes accueillies' => [
-                    'nombre' => +(($place->get('evenements->publics->personnes accueillies')) ?: 0) + (($place->get('evenements->prives->personnes accueillies')) ?: 0),
+                    'nombre' => intval(($place->get('evenements->publics->personnes accueillies')) ?: 0) + (($place->get('evenements->prives->personnes accueillies')) ?: 0),
                     'title' => 'Nombre de personnes accueillies par an'
                 ],
             ]
