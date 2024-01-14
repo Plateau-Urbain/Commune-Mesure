@@ -24,7 +24,7 @@
               <h3>Effets<br> individuels</h3>
               <div class="intensity">
                 @foreach ([1,2,3,4,5] as $e)
-                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'not-filled individuel' : ''}}">+</span>
+                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_individuels')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_individuels')) ? 'hidden' : ''}}">+</span>
                 @endforeach
               </div>
             </div>
@@ -38,11 +38,11 @@
               <h3>Effets<br> collectifs</h3>
               <div class="intensity">
                 @foreach ([1,2,3,4,5] as $e)
-                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'not-filled collectif' : ''}}">+</span>
+                  <span class="{{(!empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) && $e > $place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'hidden' : ''}}">+</span>
                 @endforeach
               </div>
             </div>
-            <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_collectifs") : 'size-1' }}"" src="{{ url('/images/EFFETS-collectifs.png') }}">
+            <img class="rounded {{ !empty($place->get('blocs->impact_social->donnees->intensite_effets_collectifs')) ? 'size-'.$place->get("blocs->impact_social->donnees->intensite_effets_collectifs") : 'size-1' }}" src="{{ url('/images/EFFETS-collectifs.png') }}">
           </a>
 
           <a href="#effets_territoriaux" class="valeur territorial reverse">
@@ -81,8 +81,10 @@
               <div>
                 <h3>Lien social</h3>
                 <p>
-                  Des interactions sociales ont été observées entre les <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_public'), ", ") !!}</strong>.
-                  Ces interactions sociales ont été observées <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_occasion'), ' ') !!}</strong> qui ont lieu <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_frequence'), ' ') !!}</strong>.
+                  Des interactions sociales ont été observées entre différents publics :<br>
+                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_public'), '</li><li>') !!}</li></ul></strong>
+                  Ces échanges ont été constatés <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_occasion'), ', ', ' et ') !!}</strong>.<br>
+                  Ces rencontres ont lieu <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_frequence'), ', ', ' ou ') !!}</strong>.
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->lien_social', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du lien social", 'description' => "Décrivez le lien social en quelques mots"])
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->lien_social')])
@@ -95,7 +97,8 @@
               <div>
                 <h3>Santé</h3>
                 <p>
-                  <strong>{!! ucfirst(formatArray($place->get('blocs->impact_social->donnees->sante_effet'), ', ')) !!}</strong>.
+                  Des changements significatifs dans les conditions physiques, sociales et psychiques des bénéficiaires du projet ont été observées. Certaines personnes ont fait part/ont paru : <br>
+                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->sante_effet'), '</li><li>') !!}</li></ul></strong>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->sante_bien_être', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la santé et du bien être", 'description' => "Décrivez la santé et le bien être en quelques mots"])
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->sante_bien_être')])
@@ -109,12 +112,12 @@
                 <h3>Insertion professionnelle</h3>
                 <p>
                   @if (!empty($place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes')))
+                    @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle_nb_personnes', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
                     Les actions de formation, d'accompagnement à la création d'activité ou à l'emploi ont bénéficiées à
-                    {{ $place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes') }} personnes.
+                    {{ $place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes') }} personnes et ont permis à certaines personnes :
                   @endif
-
-                  <strong>{!! ucfirst(formatArray($place->get('blocs->impact_social->donnees->insertion_professionnelle_effets'), ', ')) !!}</strong>.
-                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
+                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->insertion_professionnelle_effets'), '</li><li>') !!}</li></ul></strong>
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle_effets', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->insertion_professionnelle')])
               </div>
@@ -172,8 +175,8 @@
               <div>
                 <h3>Réseau de personnes</h3>
                 <p>
-                  La création de réseaux de personnes entre <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), ' et de ') !!}</strong>,
-                  <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_type'), ', ')!!}</strong> a été observée.
+                  La création de réseaux de personnes <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_type'), ', ')!!}</strong> a été observée entre :
+                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), '</li><li>') !!}</li></ul></strong>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du réseaux", 'description' => "Décrivez le réseaux en quelques mots"])
                 </p>
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->reseaux')])

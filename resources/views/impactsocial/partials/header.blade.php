@@ -3,7 +3,7 @@
 <div class="impact-title">
     @section('title')
     <h1>
-        Les effets sociaux et urbains<br>de {{ $place->get('name') }}
+        <span style="color:#262631">effets sociaux et urbains</span><br>de {{ $place->get('name') }}
     </h1>
     <div>
         <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button mt-6">Voir son datapanorama</a>
