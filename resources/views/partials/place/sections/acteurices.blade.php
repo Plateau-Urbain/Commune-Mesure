@@ -73,9 +73,12 @@
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
             <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
-              @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
-                {{ $nature }}@if(! $loop->last), @endif
-              @endforeach
+              @if ($place->get('blocs->presentation->donnees->natures_partenariats->prive') !== null)
+                @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
+                  {{ $nature }}@if(! $loop->last), @endif
+                @endforeach
+              @endif
+
               </p>
             @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Nature du soutien apporté par les acteurs privés partenaires du projet(économique, en nature ou autre)'])
           @endif
@@ -102,9 +105,11 @@
           @if($place->get('blocs->presentation->donnees->natures_partenariats->prive') || isset($edit))
             <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
-              @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
-                {{ $nature }}@if(! $loop->last), @endif
-              @endforeach
+              @if ($place->get('blocs->presentation->donnees->natures_partenariats->prive') !== null)
+                @foreach($place->get('blocs->presentation->donnees->natures_partenariats->prive') as $nature)
+                  {{ $nature }}@if(! $loop->last), @endif
+                @endforeach
+              @endif
               </p>
             @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->prive','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Nature du soutien apporté par les acteurs privés partenaires du projet(économique, en nature ou autre)'])
           @endif
@@ -115,9 +120,11 @@
             @if($place->get('blocs->presentation->donnees->natures_partenariats->public') || isset($edit))
               <h5 class="mt-0 is-size-5">Nature des partenariats&nbsp;:</h5>
               <p>
-                @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)
-                  {{ $nature }}@if(! $loop->last), @endif
-                @endforeach
+                @if ($place->get('blocs->presentation->donnees->natures_partenariats->public') !== null)
+                  @foreach($place->get('blocs->presentation->donnees->natures_partenariats->public') as $nature)
+                    {{ $nature }}@if(! $loop->last), @endif
+                  @endforeach
+                @endif
               </p>
               @include('components.modals.modalEdition',['chemin'=> 'blocs->presentation->donnees->natures_partenariats->public','id_section'=>'presentation','type' => 'text','titre'=>"Modifier la nature des partenariats",'description'=>'Nature du soutien apporté par les acteurs publics partenaires du projet(économique, en nature ou autre)'])
             @endif
