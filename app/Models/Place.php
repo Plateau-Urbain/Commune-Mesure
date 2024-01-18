@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Place extends Model
 {
@@ -150,6 +149,28 @@ class Place extends Model
             ->get();
 
         return $places;
+    }
+
+    public static function searchBySlugAndZipcode(string $slug, string $zipcode)
+    {
+        $foundPlace = DB::table('places')
+            ->select(['place as slug', 'data'])
+            ->where('deleted_at', null)
+            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
+            ->where(function ($q) use ($slug, $zipcode) {
+                $q->where('place', 'like', '%'.$slug.'%')
+                  ->where('data->address->postalcode', 'like', '%'.$zipcode.'%');
+            })
+            ->first();
+
+        if ($foundPlace === null)
+            throw new \Exception("Place not found");
+
+        $place = new Place();
+        $place->setSlug($foundPlace->slug);
+        $place->setData($foundPlace->data, true);
+
+        return $place;
     }
 
     public function setData($data, bool $withGeoJson = true){
