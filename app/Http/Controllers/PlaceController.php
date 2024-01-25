@@ -51,7 +51,11 @@ class PlaceController extends Controller
         $paginatedPlaces = Place::retrievePlacesPaginated('latest');
 
         $places = $paginatedPlaces->map(function ($place, $key) {
-            return Place::find($place->slug, false);
+            $hasEnvironmentalPart = $place->place_id !== null;
+            $place = Place::find($place->slug, false);
+            $place["hasEnvironmentalPart"] = $hasEnvironmentalPart;
+
+            return $place;
         });
 
         $coordinates = $places->mapWithKeys(function ($item, $key) use ($place) {

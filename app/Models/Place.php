@@ -111,12 +111,15 @@ class Place extends Model
         }
 
         $places = DB::table('places')
-            ->select('place as slug')
-            ->where('type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
-            ->where('deleted_at', null);
+        ->select('places.place as slug', 'place_environment.place_id')
+        ->leftJoin('place_environment', function ($join) {
+            $join->on('places.id', '=', 'place_environment.place_id');
+        })
+        ->where('places.type_donnees', self::TYPE_DONNEES_DATAPANORAMA)
+        ->where('places.deleted_at', null);
 
         if (in_array($sort, ['latest', 'oldest'], true)) {
-            $places->$sort();
+            $places->$sort("places.created_at");
         }
 
         $places = $places->paginate(80);
@@ -853,5 +856,10 @@ class Place extends Model
             'deleted_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]) > 0;
+    }
+
+    public function placeEnvironment()
+    {
+        return $this->hasOne(PlaceEnvironment::class, 'place_id');
     }
 }
