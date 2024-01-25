@@ -31,7 +31,7 @@
                     </div>
                   </div>
 
-                  <div class="card-content p-4" style="display: flex; justify-content: space-between; flex-direction: column; height: 290px;">
+                  <div class="card-content p-4" style="display: flex; justify-content: space-between; flex-direction: column; height: 305px;">
                     <div style="justify-content: normal;">
                       <p title="{{ $place->get('address->city') }}" style="white-space: nowrap; text-overflow: '... ({{ substr($place->get('address->postalcode'), 0, 2) }})'; overflow: hidden;" class="is-size-5 has-text-weight-normal">{{ str_replace('Arrondissement', '', $place->get('address->city')) }}</span> ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
                       <a title="{{ $place->get('name') }}" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 1.4rem !important;" class="title has-text-primary is-uppercase is-size-5 mb-0"
@@ -54,6 +54,11 @@
                         <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
                       @endif
                       <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
+                      @if (true === $place['hasEnvironmentalPart'])
+                        <a href="{{ route('environment.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir sa partie env</a>
+                      @else
+                        <button type="button" disabled href="{{ route('environment.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir sa partie env</button>
+                      @endif
                     @else
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir son datapanorama</button>
