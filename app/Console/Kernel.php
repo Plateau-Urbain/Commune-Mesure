@@ -8,8 +8,10 @@ use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\ImportTypeForm;
 use App\Console\Commands\ImportTypeFormSocialImpact;
 use App\Console\Commands\ImportTypeFormGeneralInformation;
+use App\Console\Commands\ImportTypeFormEnvironmental;
 use App\Console\Commands\ImportOneValueTypeForm;
 use App\Console\Commands\ImportForAll;
+use App\Console\Commands\FTLImport;
 use App\Console\Commands\PlacesList;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\SetValueForAll;
@@ -36,6 +38,7 @@ class Kernel extends ConsoleKernel
 
         ImportTypeForm::class,
         ImportTypeFormSocialImpact::class,
+        ImportTypeFormEnvironmental::class,
         ImportTypeFormGeneralInformation::class,
         ImportOneValueTypeForm::class,
         ImportForAll::class,
@@ -47,7 +50,9 @@ class Kernel extends ConsoleKernel
 
         OriginalToCsv::class,
         PlaceToCsv::class,
-        FusionOriginalEtBase::class
+        FusionOriginalEtBase::class,
+
+        FTLImport::class
     ];
 
     /**

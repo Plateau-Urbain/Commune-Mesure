@@ -165,6 +165,7 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->circularite_sobriete->donnees->limitation_dechet = $this->extract_val($schema->blocs->circularite_sobriete->donnees->limitation_dechet);
         $new_place->blocs->circularite_sobriete->donnees->equipement_reutilisable = $this->extract_val($schema->blocs->circularite_sobriete->donnees->equipement_reutilisable);
         $new_place->blocs->circularite_sobriete->donnees->equipement_reconditionne = $this->extract_val($schema->blocs->circularite_sobriete->donnees->equipement_reconditionne);
+        $new_place->blocs->circularite_sobriete->donnees->distributeur_local = $this->extract_val($schema->blocs->circularite_sobriete->donnees->distributeur_local);
         $new_place->blocs->circularite_sobriete->donnees->charte_selection_fournisseur = $this->extract_val($schema->blocs->circularite_sobriete->donnees->charte_selection_fournisseur);
         $new_place->blocs->circularite_sobriete->donnees->optimisation_achat = $this->extract_val($schema->blocs->circularite_sobriete->donnees->optimisation_achat);
         $new_place->blocs->circularite_sobriete->donnees->alimentation_locale = $this->extract_val($schema->blocs->circularite_sobriete->donnees->alimentation_locale);

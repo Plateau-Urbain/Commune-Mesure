@@ -64,4 +64,21 @@ function formatString($string) {
     }
 }
 
+function extractPercentageAndText($input) {
+    $pattern = '/(\d+(?:\.\d+)?\s*%?|%\s*\d+(?:\.\d+)?)\s*(.*)/';
+
+
+    if (preg_match($pattern, $input, $matches)) {
+        $percentageOrNumber = $matches[1];
+        $restOfSentence = $matches[2];
+
+        $wrappedPercentageOrNumber = $percentageOrNumber ? '<div class="number">' . $percentageOrNumber . '</div>' : '';
+        $wrappedRestOfSentence = $restOfSentence ? '<div class="bold">' . $restOfSentence . '</div>' : '';
+
+        return [$wrappedPercentageOrNumber, $wrappedRestOfSentence];
+    } else {
+        return ['<div class="bold">' . $input . '</div>', ''];
+    }
+}
+
 ?>
