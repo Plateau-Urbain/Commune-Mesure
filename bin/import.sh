@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Config
-PUPPETEER_DIR="../puppeteer_scripts"
+PUPPETEER_DIR="/home/olicatssh/puppeteer_scripts"
 IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
+OUTPUT_DIR_GENERAL_INFO="general_information"
+OUTPUT_DIR_SOCIAL_IMPACT="social_impact"
 CRON_DIR='bin'
 
 FORCE=
@@ -11,12 +13,24 @@ FORCE=
 
 cd "$PUPPETEER_DIR" || exit
 node "$PUPPETEER_DIR/typeform.js"
+node "$PUPPETEER_DIR/typeform.js" general_information
+node "$PUPPETEER_DIR/typeform.js" social_impact
 cd - || exit
 
 #appel script split
 unset -v FICHIER_TYPE_FORM
 for file in "$PUPPETEER_DIR"/out/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
 bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM"
+
+#appel script split general_information
+unset -v FICHIER_TYPE_FORM
+for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_GENERAL_INFO"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
+bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_GENERAL_INFO"
+
+#appel script split social_impact
+unset -v FICHIER_TYPE_FORM
+for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_SOCIAL_IMPACT"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
+bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_SOCIAL_IMPACT"
 
 #fichier pour iris ...
 if [ ! -f "$IRIS_CSV_DIR"/base-ic-evol-struct-pop-2016.csv ];
@@ -34,6 +48,20 @@ for i in "$OUTPUT_DIR"/*.json
 do
     echo "$i"
     yes | php artisan import:typeform "$i" $FORCE
+done
+
+# tache d'import general_information
+for i in "$OUTPUT_DIR"/"$OUTPUT_DIR_GENERAL_INFO"/*.json
+do
+    echo "$i"
+    yes | php artisan import:typeform_generalinformation "$i" $FORCE
+done
+
+# tache d'import social_impact
+for i in "$OUTPUT_DIR"/"$OUTPUT_DIR_SOCIAL_IMPACT"/*.json
+do
+    echo "$i"
+    yes | php artisan import:typeform_socialimpact "$i" $FORCE
 done
 
 # On exécute l'export des fichiers
