@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Console\Commands;
-use Storage;
 use \stdClass;
 use App\Exports\BDDJsonExport;
 use App\Exports\OriginalJsonExport;
 use App\Models\Place;
-use App\Models\ImpactSocial;
-use App\Mail\ImportSuccess;
+use App\Mail\ImportGeneralInformationSuccess;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +18,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use \Carbon\Carbon;
-use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class ImportTypeFormGeneralInformation extends Command
 {
@@ -476,7 +473,7 @@ class ImportTypeFormGeneralInformation extends Command
 
             try {
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
-                //Mail::send(new ImportSuccess($place));
+                Mail::send(new ImportGeneralInformationSuccess($place));
                 $this->logger->info('Sent');
 
                 $exportOriginal = new OriginalJsonExport($f);

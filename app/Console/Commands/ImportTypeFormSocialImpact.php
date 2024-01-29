@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
+use App\Mail\ImportSocialImpactSuccess;
+use Illuminate\Support\Facades\Mail;
 
 class ImportTypeFormSocialImpact extends Command
 {
@@ -184,6 +186,15 @@ class ImportTypeFormSocialImpact extends Command
         $this->logger->info("Saving model");
         $place->data = $place_data;
         $place->save();
+
+        try {
+            $this->logger->info('Sending mail to '.$place->creator->name);
+            Mail::send(new ImportSocialImpactSuccess($place));
+            $this->logger->info('Sent');
+        } catch (\ErrorException $e) {
+            $this->logger->emergency('Failed to send mail : '.$e->getMessage());
+            die("Can't send email to : ".$place->name.". Check file ".realpath($f)." for email address");
+        }
 
         $this->logger->info($place_data->name . ' updated');
 
