@@ -398,7 +398,7 @@ class ImportTypeFormGeneralInformation extends Command
                 rename($file_path, $dest_dir.$filename);
 
                 $this->logger->info("Resizing it...");
-                $process = new Process(['bash', base_path().'/bin/resize_place_img.sh', $filename]);
+                $process = new Process(['bash', base_path().'/bin/resize_one_place_img.sh', $filename]);
                 $process->run();
 
                 // executes after the command finishes
