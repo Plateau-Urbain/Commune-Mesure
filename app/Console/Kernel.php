@@ -11,7 +11,6 @@ use App\Console\Commands\ImportTypeFormGeneralInformation;
 use App\Console\Commands\ImportTypeFormEnvironmental;
 use App\Console\Commands\ImportOneValueTypeForm;
 use App\Console\Commands\ImportForAll;
-use App\Console\Commands\FTLImport;
 use App\Console\Commands\PlacesList;
 use App\Console\Commands\SetValue;
 use App\Console\Commands\SetValueForAll;
@@ -51,8 +50,6 @@ class Kernel extends ConsoleKernel
         OriginalToCsv::class,
         PlaceToCsv::class,
         FusionOriginalEtBase::class,
-
-        FTLImport::class
     ];
 
     /**

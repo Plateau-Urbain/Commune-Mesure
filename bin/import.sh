@@ -6,6 +6,7 @@ IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
 OUTPUT_DIR_GENERAL_INFO="general_information"
 OUTPUT_DIR_SOCIAL_IMPACT="social_impact"
+OUTPUT_DIR_ENVIRONMENTAL="environmental"
 CRON_DIR='bin'
 
 FORCE=
@@ -15,6 +16,7 @@ cd "$PUPPETEER_DIR" || exit
 node "$PUPPETEER_DIR/typeform.js"
 node "$PUPPETEER_DIR/typeform.js" general_information
 node "$PUPPETEER_DIR/typeform.js" social_impact
+node "$PUPPETEER_DIR/typeform.js" environmental
 cd - || exit
 
 #appel script split
@@ -31,6 +33,11 @@ bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_GENERAL_I
 unset -v FICHIER_TYPE_FORM
 for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_SOCIAL_IMPACT"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
 bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_SOCIAL_IMPACT"
+
+#appel script split environmental
+unset -v FICHIER_TYPE_FORM
+for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_ENVIRONMENTAL"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
+bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_ENVIRONMENTAL"
 
 #fichier pour iris ...
 if [ ! -f "$IRIS_CSV_DIR"/base-ic-evol-struct-pop-2016.csv ];
@@ -62,6 +69,13 @@ for i in "$OUTPUT_DIR"/"$OUTPUT_DIR_SOCIAL_IMPACT"/*.json
 do
     echo "$i"
     yes | php artisan import:typeform_socialimpact "$i" $FORCE
+done
+
+# tache d'import environmental
+for i in "$OUTPUT_DIR"/"$OUTPUT_DIR_ENVIRONMENTAL"/*.json
+do
+    echo "$i"
+    yes | php artisan import:typeform_environmental "$i" $FORCE
 done
 
 # On exécute l'export des fichiers
