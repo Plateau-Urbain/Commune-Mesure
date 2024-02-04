@@ -213,6 +213,19 @@ class EnvironmentalService
         ]
     ];
 
+    public static $customAnswerScore = [
+        "emission_gaz_effet_serre" => [
+            "dpe" => [
+                'A' => 1,
+                'B' => 1,
+                'C' => 0.75,
+                'D' => 0.25,
+                'E' => 0.25,
+                'F' => 0,
+            ]
+        ]
+    ];
+
     public function calculateAnswerScore(PlaceEnvironment $placeEnvironment) {
         $score = [];
 
@@ -256,15 +269,31 @@ class EnvironmentalService
                                     if (!isset($answer[0]) && $this->filter[$axe]["filtered"] === true && in_array($question_key, $this->filter[$axe]["removeFromScore"])) {
                                         $score[$axe][$question_key] = 0;
                                     } else {
-                                        $typeform_question = $this->findElementById($typeform['fields'], $question_id);
-                                        foreach ($typeform_question['properties']['choices'] as $index => $item) {
-                                            if (stripos($answer[0], $item['label']) !== false) {
-                                                $pt = [1, 0.75, 0.25, 0][$index];
-                                                break;
+                                        // ISSUE : some questions break the rule that had been given : more than 4 elements
+                                        if (count($typeform_question['properties']['choices']) > 4) {
+                                            // If the question as a custom answer score
+                                            if (isset(self::$customAnswerScore[$axe][$question_key])) {
+                                                // If we don't have a matching point, unset the question (by unsetting the ponderation)
+                                                if (isset(self::$customAnswerScore[$axe][$question_key][$answer[0]])) {
+                                                    $score[$axe][$question_key] = self::$customAnswerScore[$axe][$question_key][$answer[0]];
+                                                } else {
+                                                    $score[$axe][$question_key] = 0;
+                                                    unset($this->ponderation[$axe][$question_key]);
+                                                }
+                                            } else {
+                                                throw new \Exception("Question " . $question_key . " does not have custom answer point");
                                             }
-                                        }
+                                        } else {
+                                            $typeform_question = $this->findElementById($typeform['fields'], $question_id);
+                                            foreach ($typeform_question['properties']['choices'] as $index => $item) {
+                                                if (stripos($answer[0], $item['label']) !== false) {
+                                                    $pt = [1, 0.75, 0.25, 0][$index];
+                                                    break;
+                                                }
+                                            }
 
-                                        $score[$axe][$question_key] = $pt;
+                                            $score[$axe][$question_key] = $pt;
+                                        }
                                     }
                                 }
                             }
