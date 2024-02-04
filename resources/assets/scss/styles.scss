@@ -31,4 +31,6 @@ $fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts/";
 @import "_impact"; // page d'Impact social
 
 // CSS pour le header et footer
-@import "blog"
+@import "blog";
+
+@import "_environment";
