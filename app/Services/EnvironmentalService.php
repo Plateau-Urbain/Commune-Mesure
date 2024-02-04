@@ -366,8 +366,10 @@ class EnvironmentalService
         // Extract the selected elements from the original array
         $selected_words = array_intersect_key($words_total, array_flip($random_elements));
 
+        $schema = json_decode(file_get_contents(storage_path().$this->schema), true);
+
         foreach($selected_words as $key => $score) {
-            $parent_key = $this->getParentKey(self::$words[$key][0], $this->ponderation);
+            $parent_key = $this->getParentKey(self::$words[$key][0], $schema['blocs']);
             $size = 25 * $score;
             $selected_words[$key] = "<span class=\"$parent_key\" style=\"font-size: {$size}px; margin:0px 5px;\">{$key}</span>";
         }
@@ -381,7 +383,7 @@ class EnvironmentalService
 
     private function getParentKey($keyToFind, $array) {
         foreach ($array as $parentKey => $subArray) {
-            if (array_key_exists($keyToFind, $subArray)) {
+            if (array_key_exists($keyToFind, $subArray['donnees'])) {
                 return $parentKey;
             }
         }
