@@ -127,10 +127,6 @@ class ImportTypeFormEnvironmental extends Command
         $slug = Str::of($place_name)->slug('-');
         $zipcode = $this->extract_val($schema->blocs->presentation->donnees->code_postal);
 
-        $this->logger->info("Search for " . $slug);
-        $place = Place::searchBySlugAndZipcode($slug, $zipcode);
-        dd($place->placeEnvironment);
-
         try {
             $this->logger->info("Search for " . $slug);
             $place = Place::searchBySlugAndZipcode($slug, $zipcode);
@@ -147,6 +143,8 @@ class ImportTypeFormEnvironmental extends Command
 
         $new_place = new stdClass;
         $new_place->name = $this->extract_val($schema->nom);
+        $new_place->share_data = $this->extract_val($schema->share_data);
+        $new_place->share_email = $this->extract_val($schema->share_email);
 
         $new_place->blocs = new stdClass;
         $new_place->blocs->presentation = new stdClass;
@@ -306,6 +304,15 @@ class ImportTypeFormEnvironmental extends Command
         foreach ($file as $group_of_answers) {
             if ($group_of_answers->id !== $key[0]) {
                 continue;
+            }
+
+            // Answer a root level (not in a group)
+            if (count($key) === 3) {
+                if ($key[1] === "number" and $group_of_answers->{$key[1]}->{$key[2]} === "") {
+                    return 0;
+                } else {
+                    return $group_of_answers->{$key[1]}->{$key[2]};
+                }
             }
 
             $this->logger->info('Group : '.$group_of_answers->title, ['key' => $key[0]]);

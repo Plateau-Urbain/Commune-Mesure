@@ -129,7 +129,7 @@
                 @show
                 <p title="{{ $place->get('address->city') }}" style="white-space: nowrap; text-overflow: '... ({{ substr($place->get('address->postalcode'), 0, 2) }})'; overflow: hidden;" class="title-info">{{ str_replace('Arrondissement', '', $place->get('address->city')) }}</span> ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
                 <!--<p class="link">Télécharger la fiche en format pdf</p>-->
-                @if ($place->get('creator->email') !== null)
+                @if ($place->get('creator->email') !== null && $placeEnvironment->get('share_email') === 'Yes')
                   <a href="mailto:{{$place->get('creator->email')}}" class="contact mt-2">contactez-nous</a>
                 @endif
 

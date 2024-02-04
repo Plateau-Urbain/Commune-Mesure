@@ -94,7 +94,7 @@ class EnvironmentalService
         "ecosystème" => ["connait_acteur_territoire", "partenariat_acteur_transition"]
     ];
 
-    public static $ponderation = [
+    public $ponderation = [
         "circularite_sobriete" => [
             "equipement_partage" => 1,
             "reutilisation_objet" => 1.5,
@@ -127,7 +127,6 @@ class EnvironmentalService
             "mobilite_douce" => 1,
             "mobilite_douce_usager_occasionnel" => 0.5,
             "mobilite_douce_fournisseur" => 1,
-            "restauration" => 1,
             "type_alimentation" => 1,
             "soutien_vegetarien" => 1.5,
             "alimentation_saison" => 1.5,
@@ -196,6 +195,24 @@ class EnvironmentalService
         ]
     ];
 
+    public $filter = [
+        "emission_gaz_effet_serre" => [
+            "filtered" => false,
+            "questionFilter" => "restauration",
+            "removeFromScore" => ["type_alimentation", "soutien_vegetarien", "alimentation_saison"],
+        ],
+        "biodiversité" => [
+            "filtered" => false,
+            "questionFilter" => "espace_exterieur",
+            "removeFromScore" => ["suivi_biodiversite", "pratique_biodiversite", "colonisation_faune", "corridor_ecologique", "arbre_pleine_terre"],
+        ],
+        "environnement_physique" => [
+            "filtered" => false,
+            "questionFilter" => "activite_agricole",
+            "removeFromScore" => ["fertilisation_chimique_bannie", "pesticide_chimique_banni", "culture_respectueuse", "irrigation_limitee"],
+        ]
+    ];
+
     public function calculateAnswerScore(PlaceEnvironment $placeEnvironment) {
         $score = [];
 
@@ -210,6 +227,13 @@ class EnvironmentalService
                 $answer = $placeEnvironment->get("blocs->{$axe}->donnees->{$question_key}");
 
                 if ($answer !== null) {
+                    if (isset($this->filter[$axe]["questionFilter"]) && $this->filter[$axe]["questionFilter"] == $question_key && $answer === 'No') {
+                        $this->filter[$axe]["filtered"] = true;
+                        foreach($this->filter[$axe]["removeFromScore"] as $questionToRemove) {
+                            unset($this->ponderation[$axe][$questionToRemove]);
+                        }
+                    }
+
                     switch ($question_type) {
                         // If yes 1 pts, 0 otherwise
                         case 'yes_no':
@@ -254,13 +278,13 @@ class EnvironmentalService
             // Calc each dimension score with the ponderation
             $sum = 0;
             foreach ($score[$axe] as $key => $answer_point) {
-                $ponderated_answer_point = $answer_point * (isset(self::$ponderation[$axe][$key]) ? self::$ponderation[$axe][$key] : 0);
+                $ponderated_answer_point = $answer_point * (isset($this->ponderation[$axe][$key]) ? $this->ponderation[$axe][$key] : 0);
 
                 $score[$axe][$key] = $ponderated_answer_point;
                 $sum += $ponderated_answer_point;
             }
 
-            $axes_totals[$axe] = round(($sum / array_sum(self::$ponderation[$axe])), 2);
+            $axes_totals[$axe] = round(($sum / array_sum($this->ponderation[$axe])), 2);
         }
         return $axes_totals;
     }
@@ -272,7 +296,7 @@ class EnvironmentalService
             foreach(self::$sub_axes[$axe] as $key => $sub_axe) {
 
                 $ponderated_point_for_subaxe = array_sum(array_intersect_key($score[$axe], array_flip(self::$sub_axes[$axe][$key])));
-                $ponderation_for_subaxe = array_sum(array_intersect_key(self::$ponderation[$axe], array_flip(self::$sub_axes[$axe][$key])));
+                $ponderation_for_subaxe = array_sum(array_intersect_key($this->ponderation[$axe], array_flip(self::$sub_axes[$axe][$key])));
 
                 $sub_axes_totals[$axe][$key] = round(($ponderated_point_for_subaxe / $ponderation_for_subaxe), 2);
             }
@@ -286,7 +310,7 @@ class EnvironmentalService
         foreach (self::$words as $key => $word) {
 
             $ponderated_point_for_word = array_sum(array_intersect_key(array_merge(...array_values($score)), array_flip(self::$words[$key])));
-            $ponderation_for_word = array_sum(array_intersect_key(array_merge(...array_values(self::$ponderation)), array_flip(self::$words[$key])));
+            $ponderation_for_word = array_sum(array_intersect_key(array_merge(...array_values($this->ponderation)), array_flip(self::$words[$key])));
 
             $words_total[$key] = round(($ponderated_point_for_word / $ponderation_for_word), 2);
         }
@@ -305,7 +329,7 @@ class EnvironmentalService
         $selected_words = array_intersect_key($words_total, array_flip($random_elements));
 
         foreach($selected_words as $key => $score) {
-            $parent_key = $this->getParentKey(self::$words[$key][0], self::$ponderation);
+            $parent_key = $this->getParentKey(self::$words[$key][0], $this->ponderation);
             $size = 25 * $score;
             $selected_words[$key] = "<span class=\"$parent_key\" style=\"font-size: {$size}px; margin:0px 5px;\">{$key}</span>";
         }
