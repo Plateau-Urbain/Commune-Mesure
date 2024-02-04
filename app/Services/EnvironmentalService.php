@@ -201,7 +201,7 @@ class EnvironmentalService
             "questionFilter" => "restauration",
             "removeFromScore" => ["type_alimentation", "soutien_vegetarien", "alimentation_saison"],
         ],
-        "biodiversité" => [
+        "biodiversite" => [
             "filtered" => false,
             "questionFilter" => "espace_exterieur",
             "removeFromScore" => ["suivi_biodiversite", "pratique_biodiversite", "colonisation_faune", "corridor_ecologique", "arbre_pleine_terre"],
@@ -303,7 +303,11 @@ class EnvironmentalService
                 $ponderated_point_for_subaxe = array_sum(array_intersect_key($score[$axe], array_flip(self::$sub_axes[$axe][$key])));
                 $ponderation_for_subaxe = array_sum(array_intersect_key($this->ponderation[$axe], array_flip(self::$sub_axes[$axe][$key])));
 
-                $sub_axes_totals[$axe][$key] = round(($ponderated_point_for_subaxe / $ponderation_for_subaxe), 2);
+                if ($ponderated_point_for_subaxe === 0) {
+                    $sub_axes_totals[$axe][$key] = 0;
+                } else {
+                    $sub_axes_totals[$axe][$key] = round(($ponderated_point_for_subaxe / $ponderation_for_subaxe), 2);
+                }
             }
         }
 
