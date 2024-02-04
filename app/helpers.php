@@ -65,8 +65,7 @@ function formatString($string) {
 }
 
 function extractPercentageAndText($input) {
-    $pattern = '/(\d+(?:\.\d+)?\s*%?|%\s*\d+(?:\.\d+)?)\s*(.*)/';
-
+    $pattern = '/^(\d+(?:[,.]\d+)?)\s*%?\s*(.*)/';
 
     if (preg_match($pattern, $input, $matches)) {
         $percentageOrNumber = $matches[1];
