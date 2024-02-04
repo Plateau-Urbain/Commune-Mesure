@@ -1,0 +1,187 @@
+#environment {
+    color: $environmental-gray;
+    font-family: 'Roboto';
+    font-size: 16px;
+    background-color: #fff;
+
+    .circularite_sobriete {
+        color: $environmental-yellow;
+    }
+
+    .environnement_physique {
+        color: $environmental-light-blue;
+    }
+
+    .emission_gaz_effet_serre {
+        color: $environmental-dark-blue;
+    }
+
+    .sensibilisation_engagement {
+        color: $environmental-orange;
+    }
+
+    .biodiversite {
+        color: $environmental-dark-green;
+    }
+
+    .title-info {
+        font-size: 20px;
+    }
+
+    h1, h2, h3, .number {
+        color: $environmental-red;
+        font-family: "Renner Black";
+        text-transform: uppercase;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .number {
+        font-size: 60px;
+    }
+
+    .link {
+        font-size: 12px;
+        text-decoration: underline;
+    }
+
+    .contact {
+        color: $environmental-green;
+        font-size: 16px;
+        border: 2px solid;
+        padding: 5px;
+        display: inline-block;
+        border-radius: 5px;
+        font-weight: bold;
+
+        &:hover {
+            background-color: $environmental-green;
+            color: #fff;
+        }
+    }
+
+    .diagram-container {
+        background-color: $white;
+    }
+
+    .img-container {
+        flex: 0 0 23em;
+        text-align: center;
+    }
+
+    .tabs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: $environmental-gray;
+
+        .tabs {
+            display: flex;
+            margin-bottom: 0px;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            margin-right: 5px;
+            background-color: #E1EBF2;
+            text-transform: uppercase;
+            font-family: "Renner Black";
+            font-size: 14px;
+            width: 185px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #707070;
+            text-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: space-between;
+
+            &:hover {
+                background-color: $white;
+            }
+
+            &.active {
+                background-color: $white;
+            }
+
+        }
+
+        .tab-content {
+            display: none;
+            padding: 15px;
+            background-color: $white;
+            width: 100%;
+
+            &.show {
+                display: block;
+            }
+
+            img {
+                max-width: 375px;
+                max-height: 310px;
+            }
+        }
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .progress-bar {
+        width: 105px;
+        height: 15px;
+        padding: 1px;
+        background-color: $environmental-gray;
+        border-radius: 10px;
+
+        .progress {
+            height: 13px;
+        }
+
+        .circularite_sobriete {
+            background-color: $environmental-yellow;
+        }
+
+        .environnement_physique {
+            background-color: $environmental-light-blue;
+        }
+
+        .emission_gaz_effet_serre {
+            background-color: $environmental-dark-blue;
+        }
+
+        .sensibilisation_engagement {
+            background-color: $environmental-orange;
+        }
+
+        .biodiversite {
+            background-color: $environmental-dark-green;
+        }
+    }
+
+    .bars {
+        >div {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 8px;
+        }
+    }
+}

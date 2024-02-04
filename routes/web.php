@@ -62,6 +62,8 @@ $router->get('/impacts/{slug}', ['uses' => 'ImpactSocialController@show', 'as' =
 $router->get('/impacts/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'ImpactSocialController@edit', 'as' => 'impacts.edit']);
 $router->post('/impacts/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'ImpactSocialController@update', 'as' => 'impacts.update']);
 
+$router->get('/environnement/{slug}', ['uses' => 'EnvironmentalController@show', 'as' => 'environment.show']);
+
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'LabController@show', 'as' => 'lab.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {
     return view('partenaires');
