@@ -252,15 +252,20 @@ class EnvironmentalService
                                     $score[$axe][$question_key] = (count($answer) >= 0.5 * $choicesCount) ? 1 : 0;
                                 } else {
                                     $pt = 0;
-                                    $typeform_question = $this->findElementById($typeform['fields'], $question_id);
-                                    foreach ($typeform_question['properties']['choices'] as $index => $item) {
-                                        if (stripos($answer[0], $item['label']) !== false) {
-                                            $pt = [1, 0.75, 0.25, 0][$index];
-                                            break;
+                                    // If the answer does not exists and is present in the filtered array, we skip it (=0)
+                                    if (!isset($answer[0]) && $this->filter[$axe]["filtered"] === true && in_array($question_key, $this->filter[$axe]["removeFromScore"])) {
+                                        $score[$axe][$question_key] = 0;
+                                    } else {
+                                        $typeform_question = $this->findElementById($typeform['fields'], $question_id);
+                                        foreach ($typeform_question['properties']['choices'] as $index => $item) {
+                                            if (stripos($answer[0], $item['label']) !== false) {
+                                                $pt = [1, 0.75, 0.25, 0][$index];
+                                                break;
+                                            }
                                         }
-                                    }
 
-                                    $score[$axe][$question_key] = $pt;
+                                        $score[$axe][$question_key] = $pt;
+                                    }
                                 }
                             }
                             break;
