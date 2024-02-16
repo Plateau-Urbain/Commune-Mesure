@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class PlaceEnvironment extends Model
 {
@@ -33,21 +32,6 @@ class PlaceEnvironment extends Model
 
     public function getData(){
       return $this->data;
-    }
-
-    public static function findByPlaceId($placeId)
-    {
-        $db = DB::table('place_environment')
-                    ->where('place_id', $placeId)
-                    ->first();
-
-        if ($db === null) {
-            return false;
-        }
-
-        $placeEnvironment = new PlaceEnvironment();
-        $placeEnvironment->setData($db->data);
-        return $placeEnvironment;
     }
 
     public function get($chemin)
