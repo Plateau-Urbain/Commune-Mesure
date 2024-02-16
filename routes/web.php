@@ -65,6 +65,7 @@ $router->post('/impacts/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', [
 $router->get('/environnement/{slug}', ['uses' => 'EnvironmentalController@show', 'as' => 'environment.show']);
 $router->get('/environnement/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'EnvironmentalController@edit', 'as' => 'environment.edit']);
 $router->post('/environnement/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'EnvironmentalController@update', 'as' => 'environment.update']);
+$router->get('/environnement/{slug}/export', ['uses' => 'EnvironmentalController@export', 'as' => 'environment.export']);
 
 $router->get('/les-statistiques-et-donnees-des-lieux',  ['uses' => 'LabController@show', 'as' => 'lab.show']);
 $router->get('/les-partenaires', ['as' => 'partners', function () {

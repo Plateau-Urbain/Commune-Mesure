@@ -621,9 +621,14 @@ class Place extends Model
             ->generate($text);
     }
 
-    public function export($type, $croped = false)
+    public function export($type, $croped = false, $args = null)
     {
-        $processArgs = ['bash', base_path().'/bin/export.sh', $this->getSlug()];
+        if ($args !== null) {
+            $processArgs = $args;
+        } else {
+            $processArgs = ['bash', base_path().'/bin/export.sh', '', $this->getSlug()];
+        }
+
         if ($croped) {
             $processArgs[] = true;
         }

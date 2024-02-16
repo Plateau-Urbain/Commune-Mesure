@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\PlaceEnvironment;
 use App\Services\EnvironmentalService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EnvironmentalController extends Controller
 {
@@ -153,6 +154,24 @@ class EnvironmentalController extends Controller
         }
 
         return redirect(route('environment.edit', compact('slug', 'auth')).'#'.$id_section);
+    }
 
+    public function export(Request $request, $slug)
+    {
+        $place = Place::find($slug);
+        if ($place === false) {
+            abort(404);
+        }
+
+        $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
+        if ($placeEnvironment === false) {
+            abort(404);
+        }
+
+        $processArgs = ['bash', base_path().'/bin/export.sh', 'environmental', $place->getSlug()];
+
+        $file = $place->export("pdf", false, $processArgs);
+
+        return Storage::download($file);
     }
 }

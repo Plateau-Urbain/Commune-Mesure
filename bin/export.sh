@@ -8,14 +8,20 @@ if [ $# -eq 0 ]
     then echo "Missing place name" && exit 255
 fi
 
-PLACE=$1
-TOP=$2
+TYPE=$1
+PLACE=$2
+TOP=$3
 
 cd "$PUPPETEER_DIR" || exit
 
 find "$SCREENSHOT_DIR" -type f -iname "*$PLACE*" -exec rm -f {} +
 
-node screenshot.js "$PLACE" "$TOP"
+if [ "$TYPE" = "environmental" ]; then
+    node screenshot_environmental.js "$PLACE"
+else
+    node screenshot.js "$PLACE" "$TOP"
+fi
+
 _NODE_SUCCESS=$?
 
 if [ $_NODE_SUCCESS -eq 1 ] # Si 404 / 500

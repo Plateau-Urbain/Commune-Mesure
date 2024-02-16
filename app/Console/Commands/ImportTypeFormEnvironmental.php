@@ -1,26 +1,16 @@
 <?php
 
 namespace App\Console\Commands;
-use Storage;
 use \stdClass;
-use App\Exports\BDDJsonExport;
-use App\Exports\OriginalJsonExport;
+use App\Mail\ImportEnvironmentSuccess;
 use App\Models\Place;
-use App\Models\ImpactSocial;
-use App\Mail\ImportSuccess;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use \Carbon\Carbon;
-use Illuminate\Support\Facades\Storage as FacadesStorage;
+
 
 class ImportTypeFormEnvironmental extends Command
 {
@@ -292,6 +282,15 @@ class ImportTypeFormEnvironmental extends Command
                 'updated_at' => \Carbon\Carbon::now()
             ]);
             $this->logger->info('Created');
+
+            try {
+                $this->logger->info('Sending mail to '.$new_place->creator->name);
+                Mail::send(new ImportEnvironmentSuccess($place));
+                $this->logger->info('Sent');
+            } catch (\ErrorException $e) {
+                $this->logger->emergency('Failed to send mail : '.$e->getMessage());
+                die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
+            }
         }
     }
 
