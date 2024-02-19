@@ -99,7 +99,10 @@ class PlaceController extends Controller
         $batiment = $this->batiment;
         $batiment->init($place);
 
-        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment'));
+        $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
+        $hasEnvironmentalPart = $placeEnvironment !== null;
+
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart'));
     }
 
     /**
