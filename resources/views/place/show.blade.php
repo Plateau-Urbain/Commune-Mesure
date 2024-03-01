@@ -75,6 +75,11 @@
   <x-edit-section data-spy="Les effets" class="alternate-bg" :edit="isset($edit)" section="impact_social" :sections="$sections" :isEmpty="$isEmpty" :slug="$slug ?? false" :auth="$auth ?? false">
       @include('partials.place.sections.impact-social')
   </x-edit-section>
+
+  @if($hasEnvironmentalPart)
+    @include('partials.place.sections.environmental')
+  @endif
+
 </div>
 
   @isset($edit)

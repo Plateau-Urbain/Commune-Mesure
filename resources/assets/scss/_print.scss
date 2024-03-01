@@ -23,4 +23,18 @@
         height: 150px;
         background: white;
     }
+
+    #environment {
+        .tabs-container {
+            .tab-content {
+                display: block !important;
+            }
+        }
+
+        .tabs-container {
+            .tabs {
+                display: none !important;
+            }
+        }
+    }
 }

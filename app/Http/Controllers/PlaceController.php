@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\PlaceUpdate;
 use App\Models\Place;
+use App\Models\PlaceEnvironment;
 use App\Models\Section;
 use App\Services\Batiment;
 use Barryvdh\Debugbar\Facade as Debugbar;
@@ -40,10 +41,13 @@ class PlaceController extends Controller
         $isEmpty = $place->getIsEmpty();
         $this->sortDataInsee($place->getData());
 
+        $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
+        $hasEnvironmentalPart = $placeEnvironment !== null;
+
         $batiment = $this->batiment;
         $batiment->init($place);
 
-        return view('place.show', compact('place', 'sections', 'isEmpty', 'batiment'));
+        return view('place.show', compact('place', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart'));
     }
 
     public function list(Place $place)
@@ -95,7 +99,10 @@ class PlaceController extends Controller
         $batiment = $this->batiment;
         $batiment->init($place);
 
-        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment'));
+        $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
+        $hasEnvironmentalPart = $placeEnvironment !== null;
+
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart'));
     }
 
     /**
