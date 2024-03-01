@@ -109,10 +109,10 @@ class ImportTypeFormEnvironmental extends Command
         $exist = DB::table('place_environment')->where('id', $import_file->token)->get();
 
         $place_name = $this->extract_val($schema->nom);
-       /* if ($exist->count() && $this->option('force') === false){
+        if ($exist->count() && $this->option('force') === false){
             $this->logger->notice($place_name." already imported. Use --force to overwrite.");
             die($place_name." already imported. Use --force to overwrite\n");
-        }*/
+        }
 
         $slug = Str::of($place_name)->slug('-');
         $zipcode = $this->extract_val($schema->blocs->presentation->donnees->code_postal);
