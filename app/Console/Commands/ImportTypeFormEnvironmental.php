@@ -284,9 +284,15 @@ class ImportTypeFormEnvironmental extends Command
             $this->logger->info('Created');
 
             try {
-                $this->logger->info('Sending mail to '.$new_place->creator->name);
-                Mail::send(new ImportEnvironmentSuccess($place));
-                $this->logger->info('Sent');
+                $creatorEmail = $place->get('creator->email');
+                if ($creatorEmail !== null) {
+                    $this->logger->info('Sending mail to '.$creatorEmail);
+                    Mail::send(new ImportEnvironmentSuccess($place));
+                    $this->logger->info('Sent');
+                } else {
+                    $this->logger->info('No email address associated to '. $new_place->name);
+                }
+
             } catch (\ErrorException $e) {
                 $this->logger->emergency('Failed to send mail : '.$e->getMessage());
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
