@@ -1,9 +1,7 @@
 @if ($edit || ($sectionVisibility))
     <div
-      @if ($edit && $sectionVisibility)
+      @if ($edit)
         {{ $attributes->merge(['class' => 'edit']) }}
-      @elseif ($edit)
-        {{ $attributes->merge(['class' => 'edit hidden']) }}
       @else
         {{ $attributes }}
       @endif
@@ -21,12 +19,15 @@
               <i class="fa fa-eye-slash" title="Afficher la section"></i>
             @endif
           </a>
+          <h2>{{$section}}</h2>
           @if ($isEmpty)
             <i class="fa fa-exclamation-triangle has-text-warning-dark" title="Les données sont vides"></i> Les données sont vides
           @endif
         </div>
         @endif
 
-        {{ $slot }}
+        <div class="{{!$sectionVisibility ? "hidden" : ""}}">
+          {{ $slot }}
+        </div>
       </div>
 <?php endif; ?>
