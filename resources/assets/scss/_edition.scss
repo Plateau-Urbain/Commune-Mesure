@@ -1,5 +1,6 @@
 .edit {
     border: 1px dotted #e85048;
+    min-height:55px;
 
     &.hidden {
         opacity: 0.5;
@@ -8,12 +9,8 @@
     .icon-edit {
         margin: 5px;
         text-align: left;
-        display: inline-block;
-
-        &.toggle {
-            position: absolute;
-            z-index: 463;
-        }
+        display: flex;
+        gap:20px;
 
         i {
             cursor: pointer;

@@ -3,6 +3,9 @@
     <a href="{{ $place->get('reseaux_sociaux->donnees')->web }}" target="_blank" class="social-link has-text-black is-underlined">
       {{ str_replace(['https://', 'http://'], '', $place->get('reseaux_sociaux->donnees')->web) }}
     </a>
+    @if(isset($edit))
+          @include('components.modals.modalEdition', ['chemin' => 'reseaux_sociaux->donnees->web', 'id_section' => 'presentation', 'type' => 'text', 'titre' => "Modifier l'adresse de votre site web", "description" => "Modifier l'URL de votre site web "])
+    @endif
   @endif
 
   <ul class="list-undotted is-hidden-print is-size-5 mb-1">
