@@ -10,9 +10,11 @@ use App\Services\Batiment;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Lumen\Http\Redirector;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class PlaceController extends Controller
 {
@@ -162,6 +164,55 @@ class PlaceController extends Controller
         $place->save();
 
         Event::dispatch(new PlaceUpdate($place, urldecode($hash), $old, $new));
+
+        return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
+    }
+
+    public function updateAddress(Request $request, $slug, $auth, $id_section)
+    {
+        $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
+
+        if ($place->check($auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+
+        $this->validate($request, [
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'postalcode' => 'required|string',
+        ]);
+
+        $requestData = $request->all();
+        foreach ($requestData as $key => $value) {
+            $path = 'address->'.$key;
+            $old = $place->get($path);
+            $new = $place->updateData($path, [$value]);
+
+            Event::dispatch(new PlaceUpdate($place, urldecode($path), $old, $new));
+        }
+
+        $output = new BufferedOutput();
+        try {
+            Artisan::call('iris:load', [
+                'adresse' => $requestData['address']." ".$requestData['city'],
+                'code_postal' => $requestData['postalcode']
+            ], $output);
+
+            $placeData = $place->getData();
+            $placeData->blocs->data_territoire->donnees = json_decode($output->fetch());
+            $place->setData(json_encode($placeData), true);
+            $place->save();
+        } catch (\Exception $e) {
+            throw new \Exception('Error during address update : ' . $e->getMessage());
+        }
 
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
     }

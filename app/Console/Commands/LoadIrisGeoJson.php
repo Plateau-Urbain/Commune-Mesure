@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class LoadIrisGeoJson extends Command
 {
-    protected $signature = 'iris:load {adresse}';
+    protected $signature = 'iris:load {adresse} {code_postal}';
     protected $description = "Load iris";
 
     protected $data = [];
@@ -23,9 +23,9 @@ class LoadIrisGeoJson extends Command
 
     public function handle_geo_adresse()
     {
-        $data = [];
         $adresse = $this->argument('adresse');
-        $this->iris_json = json_decode(file_get_contents("https://pyris.datajazz.io/api/search/?geojson=true&q=".urlencode($adresse)));
+        $code_postal = $this->argument('code_postal');
+        $this->iris_json = json_decode(file_get_contents("https://pyris.datajazz.io/api/search/?geojson=true&q=".urlencode($adresse)."&postcode=".$code_postal));
         $this->data['geo'] = [];
         $this->data['geo']['lat'] = $this->iris_json->lat;
         $this->data['geo']['lon'] = $this->iris_json->lon;
