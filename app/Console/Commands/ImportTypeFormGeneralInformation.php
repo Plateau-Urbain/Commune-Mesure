@@ -413,11 +413,12 @@ class ImportTypeFormGeneralInformation extends Command
         } else { $this->logger->info('No'); }
 
         // insee
-        $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address.", ".$new_place->address->postalcode]);
+        $this->logger->info('Downloading insee information...', ['adresse' => $new_place->address->address, 'code_postal' => $new_place->address->postalcode]);
         $output = new BufferedOutput();
         try {
             Artisan::call('iris:load', [
-                'adresse' => $new_place->address->address.", ".$new_place->address->postalcode
+                'adresse' => $new_place->address->address,
+                'code_postal' => $new_place->address->postalcode
             ], $output);
             //FacadesStorage::put('file.json', $output->fetch());
             $new_place->blocs->data_territoire->donnees = json_decode($output->fetch());

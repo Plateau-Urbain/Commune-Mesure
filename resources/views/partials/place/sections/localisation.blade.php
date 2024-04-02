@@ -12,6 +12,9 @@
                 {{ $place->get('address->postalcode') }} </br>
                 {{ $place->get('address->city') }}<br>
               </a>
+              @if(isset($edit))
+                @include('components.modals.modalAddressEdition', ['id_section' => 'accessibilite', 'titre' => "Modifier l'adresse du lieu", "description" => "Modifier l'adresse du lieu"])
+              @endif
             </p>
             <div class="mt-5">
               @if(!$place->isEmptyAccessibilityBySection('transports') && !isset($edit) || isset($edit))
