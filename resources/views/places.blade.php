@@ -55,9 +55,9 @@
                       @endif
                       <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2">Voir son datapanorama</a>
                       @if (true === $place['hasEnvironmentalPart'])
-                        <a href="{{ route('environment.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir sa partie environnementale</a>
+                        <a href="{{ route('environment.show',['slug' => $place->getSlug() ]) }}" class="button is-fullwidth mt-2">Voir ses effets environnementaux</a>
                       @else
-                        <button type="button" disabled href="{{ route('environment.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir sa partie environnementale</button>
+                        <button type="button" disabled href="{{ route('environment.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets environnementaux</button>
                       @endif
                     @else
                       <button type="button" disabled href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button is-fullwidth mt-2 is-transparent">Voir ses effets sociaux</button>
