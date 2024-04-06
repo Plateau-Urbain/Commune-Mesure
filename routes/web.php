@@ -52,6 +52,8 @@ $router->get('/place/{slug}/export[/{to}]', ['uses' => 'PlaceController@export',
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@edit', 'as' => 'place.edit']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/updateAddress[/{id_section}]', ['uses' => 'PlaceController@updateAddress', 'as' => 'place.address.update']);
+$router->post('/place/{slug}/{auth:[a-z0-9]+}/updateLatlon[/{id_section}]', ['uses' => 'PlaceController@updateLatLon', 'as' => 'place.latlon.update']);
+
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'PlaceController@publish', 'as' => 'place.publish']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/csv', ['uses' => 'PlaceController@jsonToCsv', 'as' => 'place.csv']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/toggle/{section}', ['uses' => 'PlaceController@toggle', 'as' => 'place.toggle']);

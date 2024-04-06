@@ -168,6 +168,40 @@ class PlaceController extends Controller
         return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
     }
 
+    public function updateLatLon(Request $request, $slug, $auth, $id_section)
+    {
+        $place = Place::find($slug);
+
+        if ($place === false) {
+            abort(404);
+        }
+
+        if ($place->check($auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+
+        $this->validate($request, [
+            'lat' => 'required|string',
+            'lon' => 'required|string',
+        ]);
+
+        $requestData = $request->all();
+        foreach ($requestData as $key => $value) {
+            $path = 'blocs->data_territoire->donnees->geo->'.$key;
+            $old = $place->get($path);
+            $new = $place->updateData($path, [$value]);
+
+            Event::dispatch(new PlaceUpdate($place, urldecode($path), $old, $new));
+        }
+        $place->save();
+
+        return redirect(route('place.edit', compact('slug', 'auth')).'#'.$id_section);
+    }
+
     public function updateAddress(Request $request, $slug, $auth, $id_section)
     {
         $place = Place::find($slug);
