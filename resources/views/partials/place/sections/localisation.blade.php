@@ -26,6 +26,9 @@
 
         <div class="column is-8">
           <div id="section-map" class="map-fullwidth mask"></div>
+          @if(isset($edit))
+          @include('components.modals.modalLatLonEdition', ['id_section' => 'accessibilite', 'titre' => "Modifier les coordonnées du lieu", "description" => "Modifier les coordonnées du lieu"])
+        @endif
         </div>
       </div>
 
