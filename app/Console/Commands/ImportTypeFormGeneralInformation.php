@@ -238,10 +238,11 @@ class ImportTypeFormGeneralInformation extends Command
         $new_place->blocs->accessibilite->donnees->transports = $schema->blocs->accessibilite->donnees->transports;
         $new_place->blocs->accessibilite->donnees->transports->Bus = 0;
 
-        foreach ($transport_choices as $tc) {
-            $new_place->blocs->accessibilite->donnees->transports->{$tc} = 1;
+        if ($transport_choices){
+            foreach ($transport_choices as $tc) {
+                $new_place->blocs->accessibilite->donnees->transports->{$tc} = 1;
+            }
         }
-
 
         // valeurs
         $valeurs_choices = [];
@@ -254,14 +255,16 @@ class ImportTypeFormGeneralInformation extends Command
         $new_place->blocs->valeurs->donnees->Accueil = 0;
 
         $count = 0;
-        foreach ($valeurs_choices as $vc) {
-          if($count > 3){
-            continue;
-          }
-          if(array_key_exists($vc,json_decode(json_encode($new_place->blocs->valeurs->donnees), true))){
-            $new_place->blocs->valeurs->donnees->{$vc} = 1;
-            $count++;
-          }
+        if ($valeurs_choices) {
+            foreach ($valeurs_choices as $vc) {
+                if($count > 3){
+                    continue;
+                }
+                if(array_key_exists($vc,json_decode(json_encode($new_place->blocs->valeurs->donnees), true))){
+                    $new_place->blocs->valeurs->donnees->{$vc} = 1;
+                    $count++;
+                }
+            }
         }
 
         // texte des valeurs
