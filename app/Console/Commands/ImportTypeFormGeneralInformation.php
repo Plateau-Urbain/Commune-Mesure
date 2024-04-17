@@ -20,6 +20,8 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class ImportTypeFormGeneralInformation extends Command
 {
@@ -413,7 +415,7 @@ class ImportTypeFormGeneralInformation extends Command
                 $this->logger->info("Moving it to : ".$dest_dir.$filename);
                 rename($file_path, $dest_dir.$filename);
 
-                /*$this->logger->info("Resizing it...");
+                $this->logger->info("Resizing it...");
                 $process = new Process(['bash', base_path().'/bin/resize_one_place_img.sh', $filename]);
                 $process->run();
 
@@ -423,7 +425,7 @@ class ImportTypeFormGeneralInformation extends Command
                     $this->logger->emergency("Import aborted");
                     throw new ProcessFailedException($process);
                 }
-                $this->logger->info("Done resizing it.");*/
+                $this->logger->info("Done resizing it.");
 
             } else { $this->logger->notice('Wrong file format !'); }
         } else { $this->logger->info('No'); }
