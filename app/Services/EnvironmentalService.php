@@ -239,6 +239,7 @@ class EnvironmentalService
 
                 $questionsAnswer[$axe][$question_key]["title"] = $typeform_question["title"];
                 $questionsAnswer[$axe][$question_key]["id"] = $typeform_question["id"];
+
                 $answer = $placeEnvironment->get("blocs->{$axe}->donnees->{$question_key}");
                 $questionsAnswer[$axe][$question_key]["answer"] = $answer;
                 $questionsAnswer[$axe][$question_key]["choices"] = null;
@@ -256,10 +257,12 @@ class EnvironmentalService
                         $questionsAnswer[$axe][$question_key]["type"] = $type;
                         $possibleAnswers = array_fill_keys(array_column($typeform_question["properties"]["choices"], "label"), 0);
 
-                        foreach ($answer as $a) {
-                            foreach ($possibleAnswers as $key => $value) {
-                                if ($key === $a) {
-                                    $possibleAnswers[$key] = 1;
+                        if ($answer) {
+                            foreach ($answer as $a) {
+                                foreach ($possibleAnswers as $key => $value) {
+                                    if ($key === $a) {
+                                        $possibleAnswers[$key] = 1;
+                                    }
                                 }
                             }
                         }
@@ -429,18 +432,24 @@ class EnvironmentalService
             $words_total[$key] = round(($ponderated_point_for_word / $ponderation_for_word), 2);
         }
 
-        $words_total = array_filter($words_total, function ($value) {
+        $highestScoredWords = array_filter($words_total, function ($value) {
             return $value >= 0.75;
         });
 
+        if (count($highestScoredWords) === 0) {
+            $highestScoredWords = array_filter($words_total, function ($value) {
+                return $value > 0;
+            });
+        }
+
         // Randomly select up to 8 elements
-        $random_elements = array_rand($words_total, min(8, count($words_total)));
+        $random_elements = array_rand($highestScoredWords, min(8, count($highestScoredWords)));
 
         // If only one element is selected, convert it to an array
         $random_elements = is_array($random_elements) ? $random_elements : [$random_elements];
 
         // Extract the selected elements from the original array
-        $selected_words = array_intersect_key($words_total, array_flip($random_elements));
+        $selected_words = array_intersect_key($highestScoredWords, array_flip($random_elements));
 
         $schema = json_decode(file_get_contents(storage_path().$this->schema), true);
 

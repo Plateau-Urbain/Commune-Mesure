@@ -54,6 +54,24 @@ return [
             'level' => 'info'
         ],
 
+        'import_social_impact' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/import_social-impact.log'),
+            'level' => 'info'
+        ],
+
+        'import_environmental' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/import_environmental.log'),
+            'level' => 'info'
+        ],
+
+        'import_general_information' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/import_general-information.log'),
+            'level' => 'info'
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/lumen.log'),

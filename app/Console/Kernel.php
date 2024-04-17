@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\LoadIrisGeoJson;
 use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
+use App\Console\Commands\FetchTypeformResponses;
 use App\Console\Commands\ImportTypeForm;
 use App\Console\Commands\ImportTypeFormSocialImpact;
 use App\Console\Commands\ImportTypeFormGeneralInformation;
@@ -50,6 +51,8 @@ class Kernel extends ConsoleKernel
         OriginalToCsv::class,
         PlaceToCsv::class,
         FusionOriginalEtBase::class,
+
+        FetchTypeformResponses::class,
     ];
 
     /**

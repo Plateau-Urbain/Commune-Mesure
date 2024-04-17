@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Config
-PUPPETEER_DIR="/home/olicatssh/puppeteer_scripts"
 IRIS_CSV_DIR="storage/framework/cache/data"
 OUTPUT_DIR='storage/import'
 OUTPUT_DIR_GENERAL_INFO="general_information"
@@ -11,33 +10,6 @@ CRON_DIR='bin'
 
 FORCE=
 [ $# -eq 1 ] && FORCE="--force"
-
-cd "$PUPPETEER_DIR" || exit
-node "$PUPPETEER_DIR/typeform.js"
-node "$PUPPETEER_DIR/typeform.js" general_information
-node "$PUPPETEER_DIR/typeform.js" social_impact
-node "$PUPPETEER_DIR/typeform.js" environmental
-cd - || exit
-
-#appel script split
-unset -v FICHIER_TYPE_FORM
-for file in "$PUPPETEER_DIR"/out/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
-bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM"
-
-#appel script split general_information
-unset -v FICHIER_TYPE_FORM
-for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_GENERAL_INFO"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
-bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_GENERAL_INFO"
-
-#appel script split social_impact
-unset -v FICHIER_TYPE_FORM
-for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_SOCIAL_IMPACT"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
-bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_SOCIAL_IMPACT"
-
-#appel script split environmental
-unset -v FICHIER_TYPE_FORM
-for file in "$PUPPETEER_DIR"/out/"$OUTPUT_DIR_ENVIRONMENTAL"/*.json; do [[ $file -nt $FICHIER_TYPE_FORM ]] && FICHIER_TYPE_FORM=$file; done
-bash bin/split_type_form_by_place.sh "$FICHIER_TYPE_FORM" "$OUTPUT_DIR_ENVIRONMENTAL"
 
 #fichier pour iris ...
 if [ ! -f "$IRIS_CSV_DIR"/base-ic-evol-struct-pop-2016.csv ];
@@ -50,12 +22,11 @@ then
     exit 1;
 fi
 
-# tache d'import
-for i in "$OUTPUT_DIR"/*.json
-do
-    echo "$i"
-    yes | php artisan import:typeform "$i" $FORCE
-done
+# Get responses from typeform (since the day before)
+
+php artisan import:typeformresponses general_information
+php artisan import:typeformresponses social_impact
+php artisan import:typeformresponses environmental
 
 # tache d'import general_information
 for i in "$OUTPUT_DIR"/"$OUTPUT_DIR_GENERAL_INFO"/*.json
