@@ -32,9 +32,14 @@ trait ExtractTypeformValue {
                     }
 
                     return $question->choices->labels;
-                } elseif(isset($question->choice->label)) {
-                    $logger->info('Answer : '.$question->choice->label);
-                    return [$question->choice->label];
+                } elseif(isset($question->choice)) {
+                    if (isset ($question->choice->label)) {
+                        $logger->info('Answer : '.$question->choice->label);
+                        return [$question->choice->label];
+                    } else {
+                        $logger->info('Answer : '.$question->choice->other);
+                        return [$question->choice->other];
+                    }
                 } else {
                     $logger->info('Answer : '.$question->choices->other);
                     return [$question->choices->other];
