@@ -7,6 +7,8 @@ use App\Models\PlaceEnvironment;
 use App\Services\EnvironmentalService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Process;
+use Illuminate\Http\File;
 
 class EnvironmentalController extends Controller
 {
@@ -170,8 +172,26 @@ class EnvironmentalController extends Controller
 
         $processArgs = ['bash', base_path().'/bin/export.sh', 'environmental', $place->getSlug()];
 
-        $file = $place->export("pdf", false, $processArgs);
+        $process = new Process($processArgs);
+        $process->run();
 
-        return Storage::download($file);
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            abort(500, $process->getExitCode().": ".$process->getOutput());
+        }
+
+        $lastoutput = array_filter(explode("\n", $process->getOutput()));
+        $lastoutput = end($lastoutput);
+
+        $path = Storage::putFile(
+            'screenshots',
+            new File($lastoutput)
+        );
+
+        if ($path === false) {
+            abort(500, 'Error writing pdf file on disk');
+        }
+
+        return Storage::download($path);
     }
 }
