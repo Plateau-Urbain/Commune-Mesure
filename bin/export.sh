@@ -18,8 +18,11 @@ find "$SCREENSHOT_DIR" -type f -iname "*$PLACE*" -exec rm -f {} +
 
 if [ "$TYPE" = "environmental" ]; then
     node screenshot_environmental.js "$PLACE"
+    realpath "$SCREENSHOT_DIR/$PLACE.pdf"
 else
     node screenshot.js "$PLACE" "$TOP"
+    convert $(find "$SCREENSHOT_DIR" -name "$PLACE*.jpg" | sort) -append "$SCREENSHOT_DIR/$PLACE.jpg"
+    realpath "$SCREENSHOT_DIR/$PLACE.jpg"
 fi
 
 _NODE_SUCCESS=$?
@@ -27,10 +30,5 @@ _NODE_SUCCESS=$?
 if [ $_NODE_SUCCESS -eq 1 ] # Si 404 / 500
     then echo "Place $PLACE not found" && exit 1
 fi
-
-convert $(find "$SCREENSHOT_DIR" -name "$PLACE*.jpg" | sort) -append "$SCREENSHOT_DIR/$PLACE.jpg"
-
-
-realpath "$SCREENSHOT_DIR/$PLACE.jpg"
 
 exit 0
