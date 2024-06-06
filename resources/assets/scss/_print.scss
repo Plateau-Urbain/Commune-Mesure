@@ -25,6 +25,14 @@
     }
 
     #environment {
+        .print-block {
+           width: 300px;
+        }
+
+        img {
+            max-height: 200px !important;
+        }
+
         .tabs-container {
             .tab-content {
                 display: block !important;

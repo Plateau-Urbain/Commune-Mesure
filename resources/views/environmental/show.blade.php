@@ -141,7 +141,7 @@
 @section('content')
     <div class="container mx-auto mt-6">
         <div style="display: flex; gap: 25px;" id="top">
-            <div style="flex:2">
+            <div style="flex:2" class="print-halfpage">
                 <div style="display: flex">
                     <div style="flex: 1">
                         <p class="title-info">Engagement environnemental de</p>
@@ -152,16 +152,17 @@
                         @show
                     </div>
                     <div>
-                        <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button mt-2">Voir son datapanorama</a>
+                        <a href="{{ route('place.show', ['slug' => $place->getSlug()]) }}" class="button mt-2 is-hidden-print">Voir son datapanorama</a>
+                        <div class="print-block"></div>
                     </div>
                 </div>
                 <p title="{{ $place->get('address->city') }}"
                     style="white-space: nowrap; text-overflow: '... ({{ substr($place->get('address->postalcode'), 0, 2) }})'; overflow: hidden;"
                     class="title-info">{{ str_replace('Arrondissement', '', $place->get('address->city')) }}</span>
                     ({{ substr($place->get('address->postalcode'), 0, 2) }})</p>
-                <p class="link"><a href="{{ route('environment.export', ['slug' => $place->getSlug()]) }}">Télécharger la fiche en format pdf</a></p>
+                <p class="link is-hidden-print"><a href="{{ route('environment.export', ['slug' => $place->getSlug()]) }}">Télécharger la fiche en format pdf</a></p>
                 @if ($place->get('creator->email') !== null && $placeEnvironment->get('share_email') === 'Yes')
-                    <a href="mailto:{{ $place->get('creator->email') }}" class="contact mt-2">contactez-nous</a>
+                    <a href="mailto:{{ $place->get('creator->email') }}" class="contact mt-2 is-hidden-print">contactez-nous</a>
                 @endif
 
                 <h3 class="mt-6">raison d'être</h3>
