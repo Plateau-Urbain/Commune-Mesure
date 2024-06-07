@@ -19,6 +19,9 @@ find "$SCREENSHOT_DIR" -type f -iname "*$PLACE*" -exec rm -f {} +
 if [ "$TYPE" = "environmental" ]; then
     node screenshot_environmental.js "$PLACE"
     realpath "$SCREENSHOT_DIR/$PLACE.pdf"
+elif [ "$TYPE" = "social" ]; then
+    node screenshot_social.js "$PLACE"
+    realpath "$SCREENSHOT_DIR/$PLACE.pdf"
 else
     node screenshot.js "$PLACE" "$TOP"
     convert $(find "$SCREENSHOT_DIR" -name "$PLACE*.jpg" | sort) -append "$SCREENSHOT_DIR/$PLACE.jpg"

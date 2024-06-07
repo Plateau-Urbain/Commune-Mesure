@@ -64,6 +64,7 @@ $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit/galerie/{index}/delete', ['use
 $router->get('/impacts/{slug}', ['uses' => 'ImpactSocialController@show', 'as' => 'impacts.show']);
 $router->get('/impacts/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'ImpactSocialController@edit', 'as' => 'impacts.edit']);
 $router->post('/impacts/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'ImpactSocialController@update', 'as' => 'impacts.update']);
+$router->get('/impacts/{slug}/export', ['uses' => 'ImpactSocialController@export', 'as' => 'impacts.export']);
 
 $router->get('/environnement/{slug}', ['uses' => 'EnvironmentalController@show', 'as' => 'environment.show']);
 $router->get('/environnement/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'EnvironmentalController@edit', 'as' => 'environment.edit']);

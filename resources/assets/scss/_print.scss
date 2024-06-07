@@ -45,4 +45,57 @@
             }
         }
     }
+
+    .impact-title {
+        h1 {
+            font-size: 25pt !important;
+        }
+    }
+
+    #impact-page {
+        h3 {
+            font-size: 15pt !important;
+        }
+
+        h2 {
+            font-size: 22pt !important;
+        }
+
+        .intensity {
+            font-size: 25px !important;
+        }
+
+        #sommaire {
+            .territorial {
+                right: 50px !important;
+            }
+            .collectif {
+                left: 20px !important;
+            }
+            .individuel {
+                left: 20px !important;
+            }
+
+            .size-5 {
+                width: 150px!important;
+            }
+
+            .size-4 {
+                width: 125px !important;
+            }
+
+            .size-3 {
+                width: 100px !important;
+            }
+
+            .size-2 {
+                width: 75px !important;
+            }
+
+            .size-1 {
+                width: 50px !important;
+            }
+        }
+
+    }
 }
