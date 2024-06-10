@@ -2,7 +2,7 @@
   @php return @endphp
 @endif
 <span class="icon-edit">
-    <a class='crayons' href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{ str_replace('->', '__', $chemin) }}" title="Éditer"></i></a>
+    <a class='crayons' href="#{{$id_section}}"><i class="fa fa-pen modal-crayon" data-modal="{{ str_replace('->', '__', $chemin) }}" title="Éditer"></i> @isset($link_text) {{$link_text}} @endisset</a>
 </span>
 
 @push('modals')
