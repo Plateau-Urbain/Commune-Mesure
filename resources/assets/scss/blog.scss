@@ -39,6 +39,10 @@
     src: url('../../../public/fonts/modules.woff') format('woff');
 }
 
+html.has-navbar-fixed-top {
+    padding-top: 107px;
+}
+
 #nav-mobile {
     border-top: $primary 3px solid;
     padding-left: 10%;
@@ -72,25 +76,30 @@
 }
 
 header#main-header {
-    font-family: 'Source Sans Pro';
-    line-height : 23px;
+    line-height: 23px;
     font-weight: 500;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    position: fixed;
+    z-index: 99999;
+
+    height: 107px;
 
     .container {
-        width: 80%;
-        max-width: 1080px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 32px;
+        padding-left: 33px;
 
         .logo_container {
             position: absolute;
             width: 100%;
             height: 100%;
 
-            img {
-                width: 110px;
-                height: 35px;
-            }
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
 
             span.logo_helper {
                 display: inline-block;
@@ -134,22 +143,37 @@ header#main-header {
 }
 
 #logo {
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+    width: auto;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     margin-bottom: 0;
     max-height: 54%;
     display: inline-block;
     float: none;
     vertical-align: middle;
-    -webkit-transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
 }
 
 #et-top-navigation {
-    padding-left: 165px;
-    padding-top: 20px;
-
+    padding-left: 214px;
+    padding-top: 33px;
     float: right;
     font-weight: 600;
+
+    .ld-menu-search {
+        margin-left: 10px;
+    }
+
+    .ld-menu-search>a:before {
+        font-family: 'ETMODULES';
+        content: '\55';
+        text-align: center;
+        margin-right: 10px;
+        margin-left: -10px;
+        color: #282833;
+        font-size: 1em;
+        transition: all .3s ease;
+    }
 
     #et_top_search {
         float: right;
@@ -184,15 +208,44 @@ header#main-header {
     #top-menu-nav {
         float: left;
         display: block;
+        font-family: "Source Sans Pro", Helvetica, Arial, Lucida, sans-serif;
 
         ul {
             list-style: none;
 
+            .red .et_pb_button:after {
+                font-size: 16px;
+                color: white;
+                line-height: 1em;
+                content: "3";
+                opacity: 1;
+                position: absolute;
+                margin-left: -1em;
+                top: 9px;
+                right: 8px;
+                font-weight: 800;
+                font-family: 'ETmodules';
+            }
+
+            .red.menu-item-has-children > a:first-child::after {
+                opacity: 0 !important;
+            }
+
+            .menu-item-has-children>a:first-child:after, #et-secondary-nav .menu-item-has-children>a:first-child:after {
+                font-family: 'ETmodules';
+                content: "3";
+                font-size: 16px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-weight: 800;
+            }
+
             li {
-                display: inline-block;
-                font-size: 14px;
-                padding-right: 22px;
-                word-wrap: break-word;
+                display: inline-block !important;
+                font-size: 16px !important;
+                padding-right: 10px !important;
+                line-height: 2.5em;
 
                 a {
                     color: #413f4b;
@@ -242,6 +295,25 @@ header#main-header {
             }
         }
     }
+}
+
+#et-top-navigation .et_pb_button {
+    margin-top: 0px;
+    padding-right: 30px !important;
+    padding-left: 15px !important;
+    font-size: inherit;
+    font-weight: inherit;
+    background-color: #e85048;
+    color: white;
+    border-radius: 9px;
+    border: none;
+    font-family: source sans pro, sans-serif;
+    padding: 0.5em 1em;
+    line-height: 1.7em !important;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
 #et_mobile_nav_menu {
