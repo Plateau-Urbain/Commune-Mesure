@@ -1,7 +1,7 @@
 <?php
 
 function formatArray($arr, $separator, $lastSeparator = null) {
-    if (is_array($arr) || !empty($arr)) {
+    if (is_array($arr) && !empty($arr) && is_countable($arr)) {
         if (is_array($arr) && count($arr) === 2 && trim($separator) === ',') {
             $separator = ' et ';
         }
@@ -16,6 +16,7 @@ function formatArray($arr, $separator, $lastSeparator = null) {
             return formatString(implode('</strong>'.$separator.'<strong>', $arr));
         }
     }
+    return $arr;
 }
 
 function formatString($string) {
