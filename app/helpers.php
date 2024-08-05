@@ -16,6 +16,11 @@ function formatArray($arr, $separator, $lastSeparator = null) {
             return formatString(implode('</strong>'.$separator.'<strong>', $arr));
         }
     }
+
+    if (empty($arr)) {
+        return "";
+    }
+
     return $arr;
 }
 
