@@ -9,8 +9,8 @@
 <div class="modal" id="{{ str_replace('->', '__', $chemin) }}" style="z-index: 1000000000">
   <div class="modal-background" ></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-      <div class="modal-card-title">
+    <header class="modal-card-head" style="flex-shrink: inherit !important;">
+      <div class="modal-card-title" style="flex-shrink: inherit !important;">
         <h2 >
            @if(isset($titre))
               {{$titre}}
@@ -26,7 +26,7 @@
     <form method="POST" action="{{ route($action ?? 'place.update', ['slug' => $slug, 'auth' => $auth, 'hash' => $chemin, 'id_section' => $id_section]) }}"@if($type === 'file') enctype="multipart/form-data" @endif>
       <section>
         @isset($description)
-          <small>{{ $description }}</small>
+          <small>{!! $description !!}</small>
           <hr class="is-primary-light"/>
         @endisset
 
