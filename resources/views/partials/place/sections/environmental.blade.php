@@ -7,9 +7,9 @@
       </p>
 
       <p class="mt-5">
-        <a href="{{ route('environment.show',['slug' => $place->getSlug() ]) }}" class="button mt-2">Voir l'impact environnemental</a>
+        <a href="{{ route('environment.show',['slug' => $place->getSlug() ]) }}" class="button mt-2">Voir l'impact environnementale</a>
         @isset($edit)
-          <a href="{{ route('environment.edit',['slug' => $place->getSlug(), 'auth' => $auth ]) }}" class="button mt-2">Éditer l'impact environnemental</a>
+          <a href="{{ route('environment.edit',['slug' => $place->getSlug(), 'auth' => $auth ]) }}" class="button mt-2">Éditer l'impact environnementale</a>
         @endisset
       </p>
     </div>
