@@ -19,6 +19,7 @@ use App\Console\Commands\MailSendImportSuccess;
 use App\Console\Commands\Export\OriginalToCsv;
 use App\Console\Commands\Export\PlaceToCsv;
 use App\Console\Commands\Export\FusionOriginalEtBase;
+use App\Console\Commands\UpdatePlaceZipcodes;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -53,6 +54,8 @@ class Kernel extends ConsoleKernel
         FusionOriginalEtBase::class,
 
         FetchTypeformResponses::class,
+
+        UpdatePlaceZipcodes::class,
     ];
 
     /**
