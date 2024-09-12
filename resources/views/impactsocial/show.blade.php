@@ -15,7 +15,6 @@
 
 <div id="impact-page">
   <div class="columns is-gapless is-mobile" id="container">
-
     <div class="column is-full">
       <section id="sommaire">
         <div class="container">
@@ -65,6 +64,8 @@
               <img class="rounded size-1" src="{{ url('/images/EFFETS-urbain.png') }}">
             </a>
           @endif
+
+          @include('partials.place.sections.cloud-words')
 
           <img src="{{ url('/images/illustration-sommaire.png') }}" alt="sommaire">
         </div>
