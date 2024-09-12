@@ -476,6 +476,7 @@ class ImportTypeFormGeneralInformation extends Command
             DB::table('places')->insert([
                 'id' => $import_file->token,
                 'place' => Str::of($new_place->name)->slug('-'),
+                'zipcode' => $new_place->address->postalcode,
                 'data' => json_encode($new_place),
                 'type_donnees' => 'datapanorama',
                 'created_at' => \Carbon\Carbon::now(),

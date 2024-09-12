@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departement;
 use App\Events\PlaceUpdate;
 use App\Models\Place;
 use App\Models\PlaceEnvironment;
+use App\Models\Region;
 use App\Models\Section;
 use App\Services\Batiment;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Laravel\Lumen\Http\Redirector;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -52,11 +56,51 @@ class PlaceController extends Controller
         return view('place.show', compact('place', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart'));
     }
 
-    public function list(Place $place)
+    public function list(Place $place, Request $request)
     {
-        $paginatedPlaces = Place::retrievePlacesPaginated('latest');
+        $query = DB::table('places')
+        ->select('places.place as slug', 'place_environment.place_id')
+        ->leftJoin('place_environment', function ($join) {
+            $join->on('places.id', '=', 'place_environment.place_id');
+        })
+        ->where('places.deleted_at', null);
 
-        $places = $paginatedPlaces->map(function ($place, $key) {
+        if ($request->has('location') && $request->location != '') {
+            $location = $request->location;
+            if (strpos($location, 'region_') === 0) {
+                // Filtrer par région
+                $regionId = str_replace('region_', '', $location);
+                $departements = Departement::where('region_id', $regionId)->get();
+                $query->where(function($query) use ($departements) {
+                    foreach ($departements as $departement) {
+                        $query->orWhereBetween('zipcode', [$departement->zipcode_start, $departement->zipcode_end]);
+                    }
+                });
+            } elseif (strpos($location, 'departement_') === 0) {
+                // Filtrer par département
+                $departementId = str_replace('departement_', '', $location);
+                $departement = Departement::find($departementId);
+                if ($departement) {
+                    $query->whereBetween('zipcode', [$departement->zipcode_start, $departement->zipcode_end]);
+                }
+            }
+        }
+
+        // Filtre sur lieux qui ont une partie environnementale
+        if ($request->has('environmental') && $request->environmental !== null) {
+            $query->whereNotNull('place_id');
+        }
+
+        // Filtre sur lieux qui ont une partie impact social
+        if ($request->has('social_effect') && $request->social_effect !== null) {
+            $query->where('places.data', 'LIKE', '%"impact_social"%');
+        }
+
+        $query->orderBy("places.created_at", 'desc');
+
+        $paginatedPlaces = $query->paginate(80)->appends($request->all());
+
+        $places = $paginatedPlaces->map(function ($place, $key) use ($request) {
             $hasEnvironmentalPart = $place->place_id !== null;
             $place = Place::find($place->slug, false);
             $place["hasEnvironmentalPart"] = $hasEnvironmentalPart;
@@ -68,7 +112,11 @@ class PlaceController extends Controller
             return $place->getCoordinates($item);
         });
 
-        return view('places', compact('places', 'paginatedPlaces', 'coordinates'));
+        // Récupérer toutes les régions et départements pour les filtres
+        $regions = Region::all();
+        $departements = Departement::all();
+
+        return view('places', compact('places', 'paginatedPlaces', 'coordinates', 'regions', 'departements'));
     }
 
     public function edit($slug, $auth)
@@ -243,6 +291,7 @@ class PlaceController extends Controller
             $placeData = $place->getData();
             $placeData->blocs->data_territoire->donnees = json_decode($output->fetch());
             $place->setData(json_encode($placeData), true);
+            $place->zipcode = $requestData['postalcode'];
             $place->save();
         } catch (\Exception $e) {
             throw new \Exception('Error during address update : ' . $e->getMessage());

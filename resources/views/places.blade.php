@@ -11,6 +11,40 @@
                 <h1 style="color: #413f4b;" class="title is-3 has-text-centered is-uppercase">L’ensemble des lieux recensés</h1>
             </section>
         </div>
+        <div class="mt-5 mx-6 p-2" style="background-color: #e1ebf2">
+          <!-- Filtre des Régions et Départements -->
+          <form method="GET" action="{{ route('places') }}" style="display: flex; flex-direction: row; gap: 50px; align-items: center; justify-content: center;">
+            <div class="form-group">
+                <select name="location" id="location" class="select is-rounded">
+                    <option value="">-- Toutes les Régions et Départements --</option>
+                    @foreach($regions as $region)
+                        <optgroup label="{{ $region->name }}">
+                            <option value="region_{{ $region->id }}" {{ request('location') == 'region_'.$region->id ? 'selected' : '' }}>
+                                Toute la région {{ $region->name }}
+                            </option>
+                            @foreach($region->departements as $departement)
+                                <option value="departement_{{ $departement->id }}" {{ request('location') == 'departement_'.$departement->id ? 'selected' : '' }}>
+                                    - {{ $departement->name }}
+                                </option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+              <input type="checkbox" id="social_effect" name="social_effect"  {{ request('social_effect') ? 'checked' : '' }} />
+              <label for="social_effect">Effets sociaux</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="environmental" name="environmental"  {{ request('environmental') ? 'checked' : '' }} />
+              <label for="environmental">Effets environnementaux</label>
+            </div>
+
+            <button type="submit" class="button is-transparent is-primary">Filtrer</button>
+          </form>
+        </div>
         <div class="section">
           <p class="block has-text-grey mb-3">Trié par : les plus récents</p>
           <div class="columns is-multiline">
