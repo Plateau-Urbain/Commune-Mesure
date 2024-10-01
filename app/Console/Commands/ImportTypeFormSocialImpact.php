@@ -139,6 +139,11 @@ class ImportTypeFormSocialImpact extends Command
 
         $place_data = $place->getData();
 
+        if (isset($place_data->blocs->impact_social) && $this->option('force') === false) {
+            $this->logger->notice($place_name." already imported. Use --force to overwrite.");
+            die($place_name." already imported. Use --force to overwrite\n");
+        }
+
         // impact social
         $place_data->blocs->impact_social = new stdClass;
         $place_data->blocs->impact_social->visible = 1;
