@@ -25,6 +25,9 @@
       element['pc'] = element.value / total
       // Proportion par rapport au plus gros
       element['pc2'] = element['pc'] / parea_data[0]['pc']
+      if (!isFinite(element['pc2'])) {
+        element['pc2'] = element['pc']
+      }
       element['id'] = index
       if (index == 0) {
         element['x'] = 0;
