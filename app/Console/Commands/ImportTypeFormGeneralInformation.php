@@ -124,6 +124,7 @@ class ImportTypeFormGeneralInformation extends Command
         $this->answers = $import_file->answers;
 
         $exist = DB::table('places')->where('id',$import_file->token)->get();
+        $this->logger->notice("searching for ID:" . $import_file->token);
 
         $place_name = $this->extract_val($schema->name, $this->answers, $this->logger);
         if ($exist->count() && $this->option('force') === false){
