@@ -498,7 +498,7 @@ class ImportTypeFormGeneralInformation extends Command
                 'place' => Str::of($new_place->name)->slug('-')
             ]);
 
-            $place = Place::find(Str::of($new_place->name)->slug('-'));
+            $place = Place::searchBySlugAndZipcode($slug, $zipcode);
 
             try {
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
