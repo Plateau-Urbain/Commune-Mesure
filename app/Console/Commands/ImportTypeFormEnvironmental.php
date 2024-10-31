@@ -122,7 +122,7 @@ class ImportTypeFormEnvironmental extends Command
         }
 
         $slug = Str::of($place_name)->slug('-');
-        $zipcode = $this->extract_val($schema->blocs->presentation->donnees->code_postal, $this->answers, $this->logger);
+        $zipcode = $this->extract_val($schema->blocs->presentation->donnees->code_postal, $this->answers, $this->logger, $this->answers, $this->logger);
 
         try {
             $this->logger->info("Search for " . $slug);
