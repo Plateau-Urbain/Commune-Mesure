@@ -364,7 +364,7 @@ class ImportTypeFormGeneralInformation extends Command
         foreach ($schema->activites as $activite => $val) {
             $present = $this->extract_val($val, $this->answers, $this->logger);
 
-            if ($present === true) {
+            if ($present === 'Yes') {
                 $new_place->activites[] = $activite;
             }
         }
