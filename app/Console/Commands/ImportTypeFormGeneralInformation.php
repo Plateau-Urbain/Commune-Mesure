@@ -123,20 +123,13 @@ class ImportTypeFormGeneralInformation extends Command
 
         $this->answers = $import_file->answers;
 
+        $exist = DB::table('places')->where('id',$import_file->token)->get();
+        $this->logger->notice("searching for ID:" . $import_file->token);
+
         $place_name = $this->extract_val($schema->name, $this->answers, $this->logger);
-
-        $slug = Str::of($place_name)->slug('-');
-        $zipcode = $this->extract_val($schema->address->postalcode, $this->answers, $this->logger);
-
-        $place = null;
-        try {
-            $place = Place::searchBySlugAndZipcode($slug, $zipcode);
-            if ($place != null && $this->option('force') === false) {
-                $this->logger->notice($place_name." already imported. Use --force to overwrite.");
-                die($place_name." already imported. Use --force to overwrite\n");
-            }
-        } catch (\Exception $e) {
-            $this->logger->alert("Place not found");
+        if ($exist->count() && $this->option('force') === false){
+            $this->logger->notice($place_name." already imported. Use --force to overwrite.");
+            die($place_name." already imported. Use --force to overwrite\n");
         }
 
         $this->logger->withContext(['place' => $place_name]);
@@ -468,10 +461,9 @@ class ImportTypeFormGeneralInformation extends Command
             $new_place->address->city = $geogouv->features[0]->properties->city;
         }
 
-        if ($place != null && $this->option('force') === true) {
+        if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");
             DB::table('places')->where('id', $import_file->token)
-                               ->where('zipcode', $new_place->address->postalcode)
                                ->where('type_donnees', 'datapanorama')
                                ->update([
                                    'place' => Str::of($new_place->name)->slug('-'),
@@ -498,7 +490,7 @@ class ImportTypeFormGeneralInformation extends Command
                 'place' => Str::of($new_place->name)->slug('-')
             ]);
 
-            $place = Place::searchBySlugAndZipcode($slug, $zipcode);
+            $place = Place::find(Str::of($new_place->name)->slug('-'));
 
             try {
                 $this->logger->info('Sending mail to '.$new_place->creator->name);
