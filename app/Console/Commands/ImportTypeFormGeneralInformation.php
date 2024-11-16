@@ -227,7 +227,7 @@ class ImportTypeFormGeneralInformation extends Command
 
         $new_place->blocs->accessibilite->donnees->accessibilite = new stdClass;
         $new_place->blocs->accessibilite->donnees->accessibilite = $schema->blocs->accessibilite->donnees->accessibilite;
-        $new_place->blocs->accessibilite->donnees->accessibilite->{"Handicapés"} = ($this->extract_val($schema->blocs->accessibilite->donnees->accessibilite->{"Handicapés"}, $this->answers, $this->logger) === "Yes")
+        $new_place->blocs->accessibilite->donnees->accessibilite->{"Handicapés"} = ($this->extract_val($schema->blocs->accessibilite->donnees->accessibilite->{"Handicapés"}, $this->answers, $this->logger) === true)
             ? 1
             : 0;
 
@@ -290,7 +290,7 @@ class ImportTypeFormGeneralInformation extends Command
 
         $partenaires = 0;
         $pubpriv = $schema->blocs->moyens->donnees->partenaires;
-        if ($this->extract_val("fzsbr9WEujZQ|96UejUyeCROl|yes_no|value", $this->answers, $this->logger) === "Yes") {
+        if ($this->extract_val("8BDeorlGf8SM|6eslnkv5GXhK|yes_no|value", $this->answers, $this->logger) === true) {
             $pub = $this->extract_val($pubpriv[0], $this->answers, $this->logger); // public
 
             if (strlen($pub) == 0) {
@@ -306,7 +306,7 @@ class ImportTypeFormGeneralInformation extends Command
             }
         }
 
-        if ($this->extract_val("fzsbr9WEujZQ|KY0NcflXUycv|yes_no|value", $this->answers, $this->logger) === "Yes") {
+        if ($this->extract_val("8BDeorlGf8SM|YtXavvMRqpQi|yes_no|value", $this->answers, $this->logger) === true) {
             $priv = $this->extract_val($pubpriv[1], $this->answers, $this->logger); // prive
 
             if (strlen($priv) == 0) {
