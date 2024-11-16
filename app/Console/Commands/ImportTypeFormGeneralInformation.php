@@ -358,7 +358,7 @@ class ImportTypeFormGeneralInformation extends Command
         $new_place->evenements->prives->nombre = $this->extract_val($schema->evenements->prives->nombre, $this->answers, $this->logger);
         $new_place->evenements->prives->{"personnes accueillies"} = $this->extract_val($schema->evenements->prives->{"personnes accueillies"}, $this->answers, $this->logger);
 
-        // activites
+        // activities
         $new_place->activites = [];
 
         foreach ($schema->activites as $activite => $val) {
