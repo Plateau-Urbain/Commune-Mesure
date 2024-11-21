@@ -82,13 +82,13 @@
               <div>
                 <h3>Lien social</h3>
                 <p>
-                  Des interactions sociales ont été observées entre différents publics :
+                  Des interactions sociales ont été observées entre différents publics
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->impact_social_public', 'id_section' => 'impact_social', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du publique de l'impact sociale", 'description' => "Décrivez le public de l'impact sociale"])
-                  <br><strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_public'), '</li><li>') !!}</li></ul></strong>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->impact_social_public'), '</li><li>') !!}
                   Ces échanges ont été constatés @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->impact_social_occasion', 'id_section' => 'impact_social', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'échange du lien social", 'description' => "Décrivez à quels moments ces échanges ont été observés"])
-                  <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_occasion'), ', ', ' et ') !!}</strong>.<br>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->impact_social_occasion'), ', ', ' et ') !!}<br>
                   Ces rencontres ont lieu @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->impact_social_frequence', 'id_section' => 'impact_social', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier la fréquence de l'impact sociale", 'description' => "Décrivez la fréquence de ces intéractions"])
-                  <strong>{!! formatArray($place->get('blocs->impact_social->donnees->impact_social_frequence'), ', ', ' ou ') !!}</strong>.
+                  {!! formatArray($place->get('blocs->impact_social->donnees->impact_social_frequence'), ', ', ' ou ') !!}.
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->lien_social', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du lien social", 'description' => "Décrivez le lien social en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->lien_social')])
@@ -101,9 +101,9 @@
               <div>
                 <h3>Santé</h3>
                 <p>
-                  Des changements significatifs dans les conditions physiques, sociales et psychiques des bénéficiaires du projet ont été observées. Certaines personnes ont fait part/ont paru : <br>
+                  Des changements significatifs dans les conditions physiques, sociales et psychiques des bénéficiaires du projet ont été observées. Certaines personnes ont fait part/ont paru
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->sante_effet', 'id_section' => 'impact_social', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets observés sur la santé", 'description' => "Décrivez les effets sur la santé et le bien être en quelques mots"])
-                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->sante_effet'), '</li><li>') !!}</li></ul></strong>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->sante_effet'), '</li><li>') !!}
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->sante_bien_être', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la santé et du bien être", 'description' => "Décrivez la santé et le bien être en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->sante_bien_être')])
@@ -119,10 +119,10 @@
                   @if (!empty($place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes')))
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle_nb_personnes', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
                     Les actions de formation, d'accompagnement à la création d'activité ou à l'emploi ont bénéficiées à
-                    {{ $place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes') }} personnes et ont permis à certaines personnes :
+                    {{ $place->get('blocs->impact_social->donnees->insertion_professionnelle_nb_personnes') }} personnes et ont permis à certaines personnes
                   @endif
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle_effets', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets l'insertion professionnelle", 'description' => "Décrivez les effets de l'insertion professionnelle en quelques mots"])
-                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->insertion_professionnelle_effets'), '</li><li>') !!}</li></ul></strong>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->insertion_professionnelle_effets'), '</li><li>') !!}
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->insertion_professionnelle', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'insertion professionnelle", 'description' => "Décrivez l'insertion professionnelle en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->insertion_professionnelle')])
@@ -148,7 +148,7 @@
                   @endif
                   (atelier, évènement, marché, ...) imprévus
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->capacite_agir_porte', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier les personnes ayant portées les projets", 'description' => "Indiquez qui a portés les projets"])
-                  <strong>{!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->capacite_agir_porte'), ', ')) !!}</strong> ont émergés.
+                  {!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->capacite_agir_porte'), ', ')) !!} ont émergés.
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->capacite_agir', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la capacité à agir", 'description' => "Décrivez la capacité à agir en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->capacite_agir')])
@@ -172,9 +172,9 @@
                 <p>
                   Des échanges, dons ou mutualisations de
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->solidarite_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du type solidarité", 'description' => "Décrivez le type de solidarité en quelques mots"])
-                  <strong>{!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->solidarite_type'), ' et de ')) !!}</strong> ont été observés entre :
+                  {!! preg_replace("/\([^)]+\)/","", formatArray($place->get('blocs->impact_social->donnees->solidarite_type'), ' et de ')) !!} ont été observés entre
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->solidarite_public', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le public qui a bénéficié de la solidarite", 'description' => "Décrivez le public qui a bénéficié de la solidarite"])
-                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->solidarite_public'), '</li><li>') !!}</li></ul></strong>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->solidarite_public'), '</li><li>') !!}
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->solidarite', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de la solidarité", 'description' => "Décrivez la solidarité en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->solidarite')])
@@ -189,9 +189,9 @@
                 <p>
                   La création de réseaux de personnes
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du type de réseaux", 'description' => "Décrivez la raison de la création du réseau en quelques mots"])
-                  <strong>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_type'), ', ')!!}</strong> a été observée entre :
+                  {!! formatArray($place->get('blocs->impact_social->donnees->reseaux_type'), ', ')!!} a été observée entre
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux_public', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du publique du réseaux", 'description' => "Décrivez quels types de personnes interviennent dans ce réseau"])
-                  <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), '</li><li>') !!}</li></ul></strong>
+                  {!! formatArray($place->get('blocs->impact_social->donnees->reseaux_public'), '</li><li>') !!}
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->reseaux', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du réseaux", 'description' => "Décrivez le réseaux en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->reseaux')])
@@ -208,7 +208,7 @@
                   @if (formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') === 'non')
                     Aucun sentiment d'appartenance à un groupe ou d'exclusion n'a été observé.
                   @else
-                    Il a été observé que <strong>{!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}</strong>
+                    Il a été observé que {!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}
                   @endif
                 </p>
                 @if (!empty($place->get('blocs->impact_social->donnees->appartenance_exclusion')))
@@ -238,9 +238,9 @@
                   }
                 @endphp
                 <h3>égalité femmes/hommes</h3>
-                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_gestion', 'link_text' => 'égalité équipe de gestion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein de l'équipe de gestion", 'description' => "Indiquez si dans l'équipe de gestion il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])<br>
-                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_dirigeants', 'link_text' => 'égalité équipe dirigeantes', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein de l'équipe dirigeantes", 'description' => "Indiquez si dans l'équipe dirigeantes il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])<br>
-                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_occupants', 'link_text' => 'égalité équipe occupants/résidents', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein des résidents/occupants", 'description' => "Indiquez si dans les résidents/occupants il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])<br>
+                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_gestion', 'link_text' => 'égalité équipe de gestion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein de l'équipe de gestion", 'description' => "Indiquez si dans l'équipe de gestion il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])
+                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_dirigeants', 'link_text' => 'égalité équipe dirigeantes', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein de l'équipe dirigeantes", 'description' => "Indiquez si dans l'équipe dirigeantes il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])
+                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_occupants', 'link_text' => 'égalité équipe occupants/résidents', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein des résidents/occupants", 'description' => "Indiquez si dans les résidents/occupants il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->egalite_homme_femme_public', 'link_text' => 'égalité public', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'égalité homme femme au sein du public", 'description' => "Indiquez si dans le public il y a : plus d'hommes que de femmes, autant d'hommes que de femmes, plus de femmes que d'hommes"])
 
                 <p>
@@ -274,7 +274,7 @@
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_image', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'image du cadre de vie", 'description' => "Décrivez si le cadre de vie a évolué de manière positive"])
                     {{formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '')}},
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du type de changement du cadre de vie", 'description' => "Décrivez le type de changement en quelques mots"])
-                    <strong>{!! formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_type'), '') !!}</strong>.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_type'), '') !!}.
                   @endif
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du cadre de vie", 'description' => "Décrivez le cadre de vie en quelques mots"])
@@ -287,13 +287,13 @@
                   @if (formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets'), '') === "des effets positifs")
                     Le projet a permis d'améliorer
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets positifs de l'entretien des espaces", 'description' => "Décrivez le type d'effets positifs, liés à l'entretien des espaces en quelques mots"])
-                    <strong>{!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type'), ' et ') !!} </strong>.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type'), ' et ') !!}.
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'entretien des espaces", 'description' => "Décrivez l'entretien des espaces en quelques mots"])
                     @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example')])
                   @else
                     Le projet a engendré
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets négatifs de l'entretien des espaces", 'description' => "Décrivez le type d'effets négatifs, liés à l'entretien des espaces en quelques mots"])
-                    <strong>{!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type'), ' et ') !!} </strong>.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type'), ' et ') !!}.
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'entretien des espaces", 'description' => "Décrivez l'entretien des espaces en quelques mots"])
                     @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example')])
                   @endif
@@ -318,9 +318,9 @@
                   @endif
                   <br>
                   @if(!empty($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent')))
-                    Le projet a permis de répondre à des besoins sociaux urgents du territoire :
+                    Le projet a permis de répondre à des besoins sociaux urgents du territoire
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics_besoin_urgent', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des besoins urgents", 'description' => "Décrivez la liste des besoins urgents auxquels à répondu le projet"])
-                    <strong><ul class="dashed"><li>{!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '</li><li>') !!}</li></ul></strong>
+                    {!! formatArray($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent'), '</li><li>') !!}
                   @endif
 
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des services publics", 'description' => "Décrivez les services publics en quelques mots"])
@@ -340,7 +340,7 @@
                   @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique_type')))
                     La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire:
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
-                    <strong>{!! formatArray($place->get('blocs->impact_social->donnees->innovation_publique_type'), '') !!}</strong>.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->innovation_publique_type'), '') !!}.
                   @else
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
                     La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire.

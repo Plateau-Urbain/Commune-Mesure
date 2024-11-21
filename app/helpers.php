@@ -2,18 +2,24 @@
 
 function formatArray($arr, $separator, $lastSeparator = null) {
     if (is_array($arr) && !empty($arr) && is_countable($arr)) {
-        if (is_array($arr) && count($arr) === 2 && trim($separator) === ',') {
+
+        if (is_array($arr) && count($arr) === 1) {
+            return '<strong>'.formatString($arr[0]).'</strong>';
+        }
+
+        if (is_array($arr) && count($arr) === 2) {
             $separator = ' et ';
+            return '<strong>'.formatString(implode($separator, $arr)).'</strong>';
         }
 
         $count = count($arr);
         if ($count > 1 && $lastSeparator !== null) {
             $lastItem = array_pop($arr);
-            $formattedString = implode('</strong>' . $separator . '<strong>', $arr);
+            $formattedString = implode('</strong>'. $separator . '<strong>', $arr);
             $formattedString .= '</strong>' . $lastSeparator . '<strong>' . $lastItem;
-            return formatString($formattedString);
+            return ': <br><strong><ul class="dashed"><li>'.formatString($formattedString).'</li></ul></strong>';
         } else {
-            return formatString(implode('</strong>'.$separator.'<strong>', $arr));
+            return ': <br><strong><ul class="dashed"><li>'.formatString(implode('</strong>'.$separator.'<strong>', $arr)).'</li></ul></strong>';
         }
     }
 
@@ -47,9 +53,6 @@ function formatString($string) {
     // Effets sociaux insertion professionnelle
     $stripString = preg_replace('/des emplois ont été créés au sein du lieu/',"d'obtenir des emplois au sein du lieu ", $stripString);
     $stripString = preg_replace('/des emplois ont été créés à l\'extérieur/',"d'obtenir des emplois à l'extérieur du lieu", $stripString);
-
-
-
 
     // Remove everything between parantheses
     $pattern = '/\([^)]*\)/';

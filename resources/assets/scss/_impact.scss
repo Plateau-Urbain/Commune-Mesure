@@ -446,7 +446,7 @@ $title-gray: #3A3C49;
             padding-left: 0;
         }
 
-        ul.dashed > li strong {
+        ul.dashed > li strong:first-of-type {
             margin-left: 15px;
         }
 
