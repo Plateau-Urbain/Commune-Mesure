@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
-
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class ImportTypeFormEnvironmental extends Command
 {
@@ -175,6 +176,14 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->circularite_sobriete->donnees->point_collecte_dechet = $this->extract_val($schema->blocs->circularite_sobriete->donnees->point_collecte_dechet, $this->answers, $this->logger);
         $new_place->blocs->circularite_sobriete->donnees->circularite_sobriete_action = $this->extract_val($schema->blocs->circularite_sobriete->donnees->circularite_sobriete_action, $this->answers, $this->logger);
         $new_place->blocs->circularite_sobriete->donnees->circularite_sobriete_chiffre = $this->extract_val($schema->blocs->circularite_sobriete->donnees->circularite_sobriete_chiffre, $this->answers, $this->logger);
+        $url = $this->extract_val($schema->blocs->circularite_sobriete->donnees->circularite_sobriete_chiffre_fichier, $this->answers, $this->logger);
+        if ($url !== null) {
+            $pathinfo = pathinfo($url);
+            $success = $this->downloadFile($url, $place_name, $pathinfo);
+            if ($success === true) {
+                $new_place->blocs->circularite_sobriete->donnees->circularite_sobriete_fichier = "documents/lieux/" . Str::of($place_name)->slug('-') . '/' . $pathinfo["basename"];
+            }
+        }
 
         $new_place->blocs->emission_gaz_effet_serre = new stdClass;
         $new_place->blocs->emission_gaz_effet_serre->donnees = new stdClass;
@@ -203,6 +212,14 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->emission_gaz_effet_serre->donnees->appareil_econome = $this->extract_val($schema->blocs->emission_gaz_effet_serre->donnees->appareil_econome, $this->answers, $this->logger);
         $new_place->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_action = $this->extract_val($schema->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_action, $this->answers, $this->logger);
         $new_place->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_chiffre = $this->extract_val($schema->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_chiffre, $this->answers, $this->logger);
+        $url = $this->extract_val($schema->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_fichier, $this->answers, $this->logger);
+        if ($url !== null) {
+            $pathinfo = pathinfo($url);
+            $success = $this->downloadFile($url, $place_name, $pathinfo);
+            if ($success === true) {
+                $new_place->blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_fichier = "documents/lieux/" . Str::of($place_name)->slug('-') . '/' . $pathinfo["basename"];
+            }
+        }
 
         $new_place->blocs->biodiversite = new stdClass;
         $new_place->blocs->biodiversite->donnees = new stdClass;
@@ -219,6 +236,14 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->biodiversite->donnees->espace_vegetalise = $this->extract_val($schema->blocs->biodiversite->donnees->espace_vegetalise, $this->answers, $this->logger);
         $new_place->blocs->biodiversite->donnees->biodiversite_action = $this->extract_val($schema->blocs->biodiversite->donnees->biodiversite_action, $this->answers, $this->logger);
         $new_place->blocs->biodiversite->donnees->biodiversite_chiffre = $this->extract_val($schema->blocs->biodiversite->donnees->biodiversite_chiffre, $this->answers, $this->logger);
+        $url = $this->extract_val($schema->blocs->biodiversite->donnees->biodiversite_fichier, $this->answers, $this->logger);
+        if ($url !== null) {
+            $pathinfo = pathinfo($url);
+            $success = $this->downloadFile($url, $place_name, $pathinfo);
+            if ($success === true) {
+                $new_place->blocs->biodiversite->donnees->biodiversite_fichier = "documents/lieux/" . Str::of($place_name)->slug('-') . '/' . $pathinfo["basename"];
+            }
+        }
 
         $new_place->blocs->environnement_physique = new stdClass;
         $new_place->blocs->environnement_physique->donnees = new stdClass;
@@ -248,6 +273,14 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->environnement_physique->donnees->produit_entretien = $this->extract_val($schema->blocs->environnement_physique->donnees->produit_entretien, $this->answers, $this->logger);
         $new_place->blocs->environnement_physique->donnees->environnement_physique_action = $this->extract_val($schema->blocs->environnement_physique->donnees->environnement_physique_action, $this->answers, $this->logger);
         $new_place->blocs->environnement_physique->donnees->environnement_physique_chiffre = $this->extract_val($schema->blocs->environnement_physique->donnees->environnement_physique_chiffre, $this->answers, $this->logger);
+        $url = $this->extract_val($schema->blocs->environnement_physique->donnees->environnement_physique_fichier, $this->answers, $this->logger);
+        if ($url !== null) {
+            $pathinfo = pathinfo($url);
+            $success = $this->downloadFile($url, $place_name, $pathinfo);
+            if ($success === true) {
+                $new_place->blocs->environnement_physique->donnees->environnement_physique_fichier = "documents/lieux/" . Str::of($place_name)->slug('-') . '/' . $pathinfo["basename"];
+            }
+        }
 
         $new_place->blocs->sensibilisation_engagement = new stdClass;
         $new_place->blocs->sensibilisation_engagement->donnees = new stdClass;
@@ -269,6 +302,14 @@ class ImportTypeFormEnvironmental extends Command
         $new_place->blocs->sensibilisation_engagement->donnees->aligne_engagement_territoire = $this->extract_val($schema->blocs->sensibilisation_engagement->donnees->aligne_engagement_territoire, $this->answers, $this->logger);
         $new_place->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_action = $this->extract_val($schema->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_action, $this->answers, $this->logger);
         $new_place->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_chiffre = $this->extract_val($schema->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_chiffre, $this->answers, $this->logger);
+        $url = $this->extract_val($schema->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_fichier, $this->answers, $this->logger);
+        if ($url !== null) {
+            $pathinfo = pathinfo($url);
+            $success = $this->downloadFile($url, $place_name, $pathinfo);
+            if ($success === true) {
+                $new_place->blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_fichier = "documents/lieux/" . Str::of($place_name)->slug('-') . '/' . $pathinfo["basename"];
+            }
+        }
 
         if ($exist->count() && $this->option('force') === true) {
             $this->logger->info("Updating in database...");
@@ -306,5 +347,54 @@ class ImportTypeFormEnvironmental extends Command
                 die("Can't send email to : ".$new_place->name.". Check file ".realpath($f)." for email address");
             }
         }
+    }
+
+    public function downloadFile($url, $placeName, $pathinfo)
+    {
+        $file_path = implode(DIRECTORY_SEPARATOR, [
+            base_path()."/public/documents/lieux/",
+            Str::of($placeName)->slug('-'),
+            $pathinfo["basename"]
+        ]);
+
+        $this->logger->info("File will be saved to : ".$file_path);
+
+        if (! is_dir(dirname($file_path))) {
+            mkdir(dirname($file_path), 0755, true);
+        }
+
+        $this->logger->info("Downloading file... ".$pathinfo["basename"]);
+        $f = fopen($file_path, "w");
+
+        $client = new Client(['verify' => false]);
+
+        $options = [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->typeformToken,
+            ],
+        ];
+
+        if ($f) {
+            $options['sink'] = $f;
+        }
+
+        try {
+            $response = $client->get($url, $options);
+
+            // Check HTTP status code
+            $statusCode = $response->getStatusCode();
+            if ($statusCode == 200) {
+                echo "File downloaded successfully";
+            } else {
+                echo "HTTP Error: $statusCode";
+                return false;
+            }
+        } catch (RequestException $e) {
+            echo "Request Exception: " . $e->getMessage();
+            return false;
+        }
+
+        return true;
+        $this->logger->info("Done!");
     }
 }
