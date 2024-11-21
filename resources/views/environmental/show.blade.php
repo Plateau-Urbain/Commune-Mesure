@@ -275,6 +275,11 @@
                     @endphp
                     {!! $wrappedPercentageOrNumber . $wrappedRestOfSentence !!}
                 </div>
+                <div>
+                  @if ($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier') != "")
+                    <a href="{{ url($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier')) }}" target="_blank">Afficher le document lié à la circularité et la sobriété</a>
+                  @endif
+                </div>
             </div>
             <div id="tab2" class="tab-content">
                 <div class="flex" style="gap:70px">
@@ -340,6 +345,11 @@
                     @endphp
                     {!! $wrappedPercentageOrNumber . $wrappedRestOfSentence !!}
                 </div>
+                <div>
+                  @if ($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier') != "")
+                    <a href="{{ url($placeEnvironment->get('blocs->emission_gaz_effet_serre->donnees->emission_gaz_effet_serre_fichier')) }}" target="_blank">Afficher le document lié aux émissions de gaz à effets de serre</a>
+                  @endif
+                </div>
             </div>
             <div id="tab3" class="tab-content">
                 <div class="flex" style="gap:70px">
@@ -397,6 +407,11 @@
                         [$wrappedPercentageOrNumber, $wrappedRestOfSentence] = extractPercentageAndText($placeEnvironment->get('blocs->biodiversite->donnees->biodiversite_chiffre'));
                     @endphp
                     {!! $wrappedPercentageOrNumber . $wrappedRestOfSentence !!}
+                </div>
+                <div>
+                  @if ($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier') != "")
+                    <a href="{{ url($placeEnvironment->get('blocs->biodiversite->donnees->biodiversite_fichier')) }}" target="_blank">Afficher le document lié à la biodiversité</a>
+                  @endif
                 </div>
             </div>
             <div id="tab4" class="tab-content">
@@ -466,6 +481,11 @@
                     @endphp
                     {!! $wrappedPercentageOrNumber . $wrappedRestOfSentence !!}
                 </div>
+                <div>
+                  @if ($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier') != "")
+                    <a href="{{ url($placeEnvironment->get('blocs->environnement_physique->donnees->environnement_physique_fichier')) }}" target="_blank">Afficher le document lié à l'engagement sur l'environnement physique</a>
+                  @endif
+                </div>
             </div>
             <div id="tab5" class="tab-content">
                 <div class="flex" style="gap:70px">
@@ -524,6 +544,11 @@
                         [$wrappedPercentageOrNumber, $wrappedRestOfSentence] = extractPercentageAndText($placeEnvironment->get('blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_chiffre'));
                     @endphp
                     {!! $wrappedPercentageOrNumber . $wrappedRestOfSentence !!}
+                </div>
+                <div>
+                  @if ($placeEnvironment->get('blocs->circularite_sobriete->donnees->circularite_sobriete_fichier') != "")
+                    <a href="{{ url($placeEnvironment->get('blocs->sensibilisation_engagement->donnees->sensibilisation_engagement_fichier')) }}" target="_blank">Afficher le document lié à la sensibilisation et l'engagement</a>
+                  @endif
                 </div>
             </div>
         </div>
