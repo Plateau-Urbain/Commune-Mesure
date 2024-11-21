@@ -205,7 +205,7 @@
                 <h3>Sentiment d'inclusion ou d'exclusion</h3>
                 <p>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->appartenance_exclusion_public', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du public de l'appartenance et l'exclusion", 'description' => "Décrivez quels types de personnes on eu le sentiment d'appartenance ou d'exclusion en quelques mots"])
-                  @if (formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') === 'non')
+                  @if (formatString($place->get('blocs->impact_social->donnees->appartenance_exclusion_public')[0], '') === 'non')
                     Aucun sentiment d'appartenance à un groupe ou d'exclusion n'a été observé.
                   @else
                     Il a été observé que {!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}
@@ -274,26 +274,26 @@
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_image', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'image du cadre de vie", 'description' => "Décrivez si le cadre de vie a évolué de manière positive"])
                     {{formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '')}},
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du type de changement du cadre de vie", 'description' => "Décrivez le type de changement en quelques mots"])
-                    {!! formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_type'), '') !!}.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_type'), '') !!}
                   @endif
                 </p>
                 @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du cadre de vie", 'description' => "Décrivez le cadre de vie en quelques mots"])
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->cadre_de_vie')])
                 <br>
               @endif
-              @if (formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets'), '') !== "non, aucun effet" || isset($edit))
+              @if (formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') !== "non, aucun effet" || isset($edit))
                 <h3>Entretien des espaces</h3>
                 <p>
-                  @if (formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets'), '') === "des effets positifs")
+                  @if (formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') === "des effets positifs")
                     Le projet a permis d'améliorer
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets positifs de l'entretien des espaces", 'description' => "Décrivez le type d'effets positifs, liés à l'entretien des espaces en quelques mots"])
-                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type'), ' et ') !!}.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type'), ' et ') !!}
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'entretien des espaces", 'description' => "Décrivez l'entretien des espaces en quelques mots"])
                     @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_example')])
                   @else
                     Le projet a engendré
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets négatifs de l'entretien des espaces", 'description' => "Décrivez le type d'effets négatifs, liés à l'entretien des espaces en quelques mots"])
-                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type'), ' et ') !!}.
+                    {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_type'), ' et ') !!}
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'entretien des espaces", 'description' => "Décrivez l'entretien des espaces en quelques mots"])
                     @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_negatif_example')])
                   @endif
@@ -307,11 +307,11 @@
               <h3>Services publics et de proximité</h3>
               <p>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics_gestion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets sur les espaces", 'description' => "Décrivez les effets sur les espaces parmis : <ul><li>non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés</li><li>non, rien n'a changé pour les espaces existants</li><li>cela a permis d'améliorer la gestion urbaine par les services</li><li>surcharge de travail</li></ul>"])
-                  @if(formatArray($place->get('blocs->impact_social->donnees->services_publics_gestion'), '') === "non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés")
+                  @if(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés")
                     Le projet n'a pas modifié la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...), les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés.
-                  @elseif(formatArray($place->get('blocs->impact_social->donnees->services_publics_gestion'), '') === "non, rien n'a changé pour les espaces existants")
+                  @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, rien n'a changé pour les espaces existants")
                     Le projet n'a rien changé dans la gestion urbaine des espaces existants par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
-                  @elseif(formatArray($place->get('blocs->impact_social->donnees->services_publics_gestion'), '') === "cela a permis d'améliorer la gestion urbaine par les services")
+                  @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "cela a permis d'améliorer la gestion urbaine par les services")
                     Le projet a permis d'améliorer la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
                   @else
                     Le projet a créé une surcharge de travail et/ou n'avait pas été anticipé par les services des collectivités ou de leurs partenaires  (ramassage des ordures, propreté, entretien, sécurité...) mais ils se sont réorganisés.
@@ -333,9 +333,9 @@
             <div>
               <h3>Innovation publique</h3>
               @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_effet','link_text' => 'modification des pratiques', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'amélioration des façons de faire", 'description' => "Décrivez si le projet à modifié les façons de faire entre : <ul><li>non</li><li>cela a permis d'améliorer ou expérimenter de nouveaux modes de faire</li></ul>"])
-              @if(formatArray($place->get('blocs->impact_social->donnees->innovation_publique_effet'), '') === "non")
+              @if(formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "non")
                 <p>La collaboration avec les partenaires publics et privés n'a pas fait évoluer leurs pratiques professionnelles.</p>
-              @elseif (formatArray($place->get('blocs->impact_social->donnees->innovation_publique_effet'), '') === "cela a permis d'améliorer ou expérimenter de nouveaux modes de faire")
+              @elseif (formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "cela a permis d'améliorer ou expérimenter de nouveaux modes de faire")
                 <p>
                   @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique_type')))
                     La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire:
