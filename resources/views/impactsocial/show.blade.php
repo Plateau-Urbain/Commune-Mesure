@@ -269,7 +269,7 @@
               @if (!empty($place->get('blocs->impact_social->donnees->cadre_de_vie')) || isset($edit))
                 <h3>Cadre de vie et attractivité du quartier</h3>
                 <p>
-                  @if (formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '') !== 'non')
+                  @if ($place->get('blocs->impact_social->donnees->cadre_de_vie_image') && formatString($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '') !== 'non')
                     Le projet a fait évoluer l'image du quartier / territoire
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_image', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'image du cadre de vie", 'description' => "Décrivez si le cadre de vie a évolué de manière positive"])
                     {{formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '')}},
@@ -281,7 +281,7 @@
                 @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->cadre_de_vie')])
                 <br>
               @endif
-              @if (formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') !== "non, aucun effet" || isset($edit))
+              @if (($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets') && formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') !== "non, aucun effet") || isset($edit))
                 <h3>Entretien des espaces</h3>
                 <p>
                   @if (formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') === "des effets positifs")
@@ -307,14 +307,16 @@
               <h3>Services publics et de proximité</h3>
               <p>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->services_publics_gestion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets sur les espaces", 'description' => "Décrivez les effets sur les espaces parmis : <ul><li>non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés</li><li>non, rien n'a changé pour les espaces existants</li><li>cela a permis d'améliorer la gestion urbaine par les services</li><li>surcharge de travail</li></ul>"])
-                  @if(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés")
-                    Le projet n'a pas modifié la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...), les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés.
-                  @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, rien n'a changé pour les espaces existants")
-                    Le projet n'a rien changé dans la gestion urbaine des espaces existants par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
-                  @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "cela a permis d'améliorer la gestion urbaine par les services")
-                    Le projet a permis d'améliorer la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
-                  @else
-                    Le projet a créé une surcharge de travail et/ou n'avait pas été anticipé par les services des collectivités ou de leurs partenaires  (ramassage des ordures, propreté, entretien, sécurité...) mais ils se sont réorganisés.
+                  @if($place->get('blocs->impact_social->donnees->services_publics_gestion'))
+                    @if(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés")
+                      Le projet n'a pas modifié la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...), les nouveaux espaces ne sont pas nettoyés, entretenus, sécurisés.
+                    @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "non, rien n'a changé pour les espaces existants")
+                      Le projet n'a rien changé dans la gestion urbaine des espaces existants par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
+                    @elseif(formatString($place->get('blocs->impact_social->donnees->services_publics_gestion')[0], '') === "cela a permis d'améliorer la gestion urbaine par les services")
+                      Le projet a permis d'améliorer la gestion urbaine par les services des collectivités ou de leurs partenaires (ramassage des ordures, propreté, entretien, sécurité...).
+                    @else
+                      Le projet a créé une surcharge de travail et/ou n'avait pas été anticipé par les services des collectivités ou de leurs partenaires  (ramassage des ordures, propreté, entretien, sécurité...) mais ils se sont réorganisés.
+                    @endif
                   @endif
                   <br>
                   @if(!empty($place->get('blocs->impact_social->donnees->services_publics_besoin_urgent')))
@@ -333,25 +335,27 @@
             <div>
               <h3>Innovation publique</h3>
               @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_effet','link_text' => 'modification des pratiques', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'amélioration des façons de faire", 'description' => "Décrivez si le projet à modifié les façons de faire entre : <ul><li>non</li><li>cela a permis d'améliorer ou expérimenter de nouveaux modes de faire</li></ul>"])
-              @if(formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "non")
-                <p>La collaboration avec les partenaires publics et privés n'a pas fait évoluer leurs pratiques professionnelles.</p>
-              @elseif (formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "cela a permis d'améliorer ou expérimenter de nouveaux modes de faire")
-                <p>
-                  @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique_type')))
-                    La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire:
-                    @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
-                    {!! formatArray($place->get('blocs->impact_social->donnees->innovation_publique_type'), '') !!}.
-                  @else
-                    @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
-                    La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire.
-                  @endif
-                </p>
-                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'innovation_publique", 'description' => "Décrivez l'innovation publique en quelques mots"])
-                @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])
-              @else
-                <p>La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire mais cela a été difficile à mettre en oeuvre (surcharge de travail, réorganisation).</p>
-                @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'innovation_publique", 'description' => "Décrivez l'innovation publique en quelques mots"])
-                @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])
+              @if($place->get('blocs->impact_social->donnees->innovation_publique_effet'))
+                @if(formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "non")
+                  <p>La collaboration avec les partenaires publics et privés n'a pas fait évoluer leurs pratiques professionnelles.</p>
+                @elseif (formatString($place->get('blocs->impact_social->donnees->innovation_publique_effet')[0], '') === "cela a permis d'améliorer ou expérimenter de nouveaux modes de faire")
+                  <p>
+                    @if (!empty($place->get('blocs->impact_social->donnees->innovation_publique_type')))
+                      La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire:
+                      @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
+                      {!! formatArray($place->get('blocs->impact_social->donnees->innovation_publique_type'), '') !!}.
+                    @else
+                      @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique_type','link_text' => 'nouveaux modes de faire', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des nouveaux modes de faire", 'description' => "Listez les nouvelles façons de faire"])
+                      La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire.
+                    @endif
+                  </p>
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'innovation_publique", 'description' => "Décrivez l'innovation publique en quelques mots"])
+                  @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])
+                @else
+                  <p>La collaboration avec les partenaires publics et privés a permis d'améliorer ou expérimenter de nouveaux modes de faire mais cela a été difficile à mettre en oeuvre (surcharge de travail, réorganisation).</p>
+                  @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->innovation_publique', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'innovation_publique", 'description' => "Décrivez l'innovation publique en quelques mots"])
+                  @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->innovation_publique')])
+                @endif
               @endif
             </div>
           </div>
