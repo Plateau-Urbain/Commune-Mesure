@@ -727,6 +727,7 @@ class Place extends Model
         $dirty = [];
 
         foreach ($inputs as $chemin => $value) {
+
             if ($chemin === 'type') {
                 continue;
             }
@@ -751,7 +752,11 @@ class Place extends Model
                 $dirty[$value] = 1;
                 $dirty = (object) $dirty;
             } elseif (is_array($to_edit)) {
-                $dirty = array_values(array_filter(array_unique($value), 'strlen'));
+                if ($hash === 'activites') {
+                    $dirty = array_keys($value);
+                } else {
+                    $dirty = array_values(array_filter(array_unique($value), 'strlen'));
+                }
             } elseif (is_object($to_edit)) {
                 $dirty = array_merge((array) $to_edit, array_filter($value, 'strlen'));
 

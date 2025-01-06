@@ -211,10 +211,11 @@
                     Il a été observé que {!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}
                   @endif
                 </p>
+                @dump($place->get('blocs->impact_social->donnees->appartenance_exclusion'))
                 @if (!empty($place->get('blocs->impact_social->donnees->appartenance_exclusion')))
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->appartenance_exclusion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'appartenance et l'exclusion", 'description' => "Décrivez l'appartenance et l'exclusion en quelques mots"])
+                    @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->appartenance_exclusion')])
                 @endif
-                @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->appartenance_exclusion')])
               </div>
             </div>
             @endif
@@ -269,7 +270,16 @@
               @if (!empty($place->get('blocs->impact_social->donnees->cadre_de_vie')) || isset($edit))
                 <h3>Cadre de vie et attractivité du quartier</h3>
                 <p>
-                  @if ($place->get('blocs->impact_social->donnees->cadre_de_vie_image') && formatString($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '') !== 'non')
+                  @if ($place->get('blocs->impact_social->donnees->cadre_de_vie_image') &&
+                   (
+                    (
+                      !is_array($place->get('blocs->impact_social->donnees->cadre_de_vie_image')) &&
+                      formatString($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '') !== 'non'
+                    ) || (
+                      is_array($place->get('blocs->impact_social->donnees->cadre_de_vie_image')) &&
+                      formatString($place->get('blocs->impact_social->donnees->cadre_de_vie_image')[0], '') !== 'non'
+                    )
+                   ))
                     Le projet a fait évoluer l'image du quartier / territoire
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->cadre_de_vie_image', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'image du cadre de vie", 'description' => "Décrivez si le cadre de vie a évolué de manière positive"])
                     {{formatArray($place->get('blocs->impact_social->donnees->cadre_de_vie_image'), '')}},
