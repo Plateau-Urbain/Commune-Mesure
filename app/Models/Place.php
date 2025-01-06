@@ -167,7 +167,7 @@ class Place extends Model
             ->first();
 
         if ($foundPlace === null)
-            throw new \Exception("Place not found");
+            throw new \Exception("Place not found " . $slug . " - " . $zipcode);
 
         $place = new Place();
         $place->setSlug($foundPlace->slug);
