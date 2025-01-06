@@ -49,6 +49,8 @@
       <br>
 
       <div id="wordcloud">
+        @include('components.modals.modalEdition', ['chemin' => 'activites', 'id_section' => 'valeurs', 'type' => 'checkbox', 'titre' => 'Activités', 'description' => 'Veuillez sélectionner les différentes activités du lieux.', 'possible_values' => ["Hébergement" => "Hébergement","Évènement public" => "Évènement public","Évènement privé" => "Évènement privé","Bureau" => "Bureau","Atelier" => "Atelier","Agriculture" => "Agriculture","Activité loisir" => "Activité loisir","Activité artistique" => "Activité artistique","Activité sportive" => "Activité sportive","Fablab" => "Fablab","Ressourcerie" => "Ressourcerie","Circuit court" => "Circuit court","Médiateur" => "Médiateur","Conciergerie" => "Conciergerie","Activité gratuite" => "Activité gratuite","Activité au tarif adapté" => "Activité au tarif adapté","Structures sociales" => "Structures sociales","Service de proximité" => "Service de proximité","Accueil personnes précaires" => "Accueil personnes précaires"]])
+
         @if (is_array($place->get('activites')))
           @foreach ($place->get('activites') as $activite)
           <span class="word subtitle">{{ $activite }}</span>

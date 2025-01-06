@@ -31,6 +31,7 @@
         @endisset
 
         @include('components.modals.forms.'.$type ?? 'text', [
+          'possible_values' => isset($possible_values) ? $possible_values : null,
           'value' => $place->get($chemin),
           'path' => $chemin,
           'name' => str_replace('->', '__', $chemin)

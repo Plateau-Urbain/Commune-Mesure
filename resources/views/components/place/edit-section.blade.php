@@ -26,7 +26,7 @@
         </div>
         @endif
 
-        <div class="{{!$sectionVisibility ? "hidden" : ""}}">
+        <div>
           {{ $slot }}
         </div>
       </div>
