@@ -4,6 +4,20 @@
     font-size: 16px;
     background-color: #fff;
 
+    .show-document {
+        margin-top: 19px;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        font-size: inherit;
+        font-weight: inherit;
+        background-color: #e85048;
+        color: #fff;
+        border-radius: 9px;
+        font-family: source sans pro, sans-serif;
+        padding: .5em 1em;
+        display: inline-block;
+    }
+
     .circularite_sobriete {
         color: $environmental-yellow;
     }
