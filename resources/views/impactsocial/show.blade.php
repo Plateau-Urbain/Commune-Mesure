@@ -211,7 +211,6 @@
                     Il a été observé que {!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}
                   @endif
                 </p>
-                @dump($place->get('blocs->impact_social->donnees->appartenance_exclusion'))
                 @if (!empty($place->get('blocs->impact_social->donnees->appartenance_exclusion')))
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->appartenance_exclusion', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte de l'appartenance et l'exclusion", 'description' => "Décrivez l'appartenance et l'exclusion en quelques mots"])
                     @include('impactsocial.partials.quote', ['text' => $place->get('blocs->impact_social->donnees->appartenance_exclusion')])
