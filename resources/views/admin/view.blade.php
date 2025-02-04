@@ -26,6 +26,18 @@
             </section>
         </div>
         <div class="section">
+            <a href="{{ route('admin.editimportfile', ['type' => 'general']) }}" style="margin-right: 20px">
+              <i class="fa fa-file-code"></i> Editer un import général
+            </a>
+
+            <a href="{{ route('admin.editimportfile', ['type' => 'social']) }}" style="margin-right: 20px">
+              <i class="fa fa-file-code"></i> Editer un import social
+            </a>
+
+            <a href="{{ route('admin.editimportfile', ['type' => 'environmental']) }}">
+              <i class="fa fa-file-code"></i> Editer un import environmental
+            </a>
+
             <div id="download-csv" class="has-text-right clearfix has-text-white">
 
               <a href="{{ Storage::disk('exports')->url('') }}">
