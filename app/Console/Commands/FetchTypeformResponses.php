@@ -13,6 +13,12 @@ use Illuminate\Support\Str;
 
 class FetchTypeformResponses extends Command
 {
+    private $basePathGeneralInformation = 'import/general_information';
+    private $basePathSocialImpact = 'import/social_impact';
+    private $basePathEnvironmental = 'import/environmental';
+
+    private $basePath;
+
     /**
      * The name and signature of the console command.
      *
@@ -97,14 +103,17 @@ class FetchTypeformResponses extends Command
         switch ($formType) {
             case 'general_information':
                 $typeformID = getenv('TYPEFORM_GENERAL_INFORMATION');
+                $this->basePath = $this->basePathGeneralInformation;
                 break;
 
             case 'environmental':
                 $typeformID = getenv('TYPEFORM_ENVIRONMENTAL');
+                $this->basePath = $this->basePathEnvironmental;
                 break;
 
             default:
                 $typeformID = getenv('TYPEFORM_SOCIAL_IMPACT');
+                $this->basePath = $this->basePathSocialImpact;
                 break;
         }
 
@@ -155,6 +164,10 @@ class FetchTypeformResponses extends Command
                                 $this->logger->info("Fetching $placeName");
                                 $itemJson = json_encode($item, JSON_PRETTY_PRINT);
                                 Storage::disk('import')->put("{$formType}/{$placeName}.json", $itemJson);
+
+                                $path = $this->basePath . '/' . $placeName . '.json';
+                                $fullPath = storage_path($path);
+                                chmod($fullPath, 0666);
                                 break;
                             }
                         }
