@@ -20,8 +20,6 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class ImportTypeFormGeneralInformation extends Command
 {
@@ -535,12 +533,12 @@ class ImportTypeFormGeneralInformation extends Command
             // Check HTTP status code
             $statusCode = $response->getStatusCode();
             if ($statusCode == 200) {
-                echo "File downloaded successfully";
+                $this->logger->info('File downloaded successfully');
             } else {
-                echo "HTTP Error: $statusCode";
+                $this->logger->info("HTTP Error: $statusCode");
             }
         } catch (RequestException $e) {
-            echo "Request Exception: " . $e->getMessage();
+            $this->logger->emergency("Request Exception: " . $e->getMessage());
         }
     }
 }

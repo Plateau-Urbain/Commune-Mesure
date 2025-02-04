@@ -55,28 +55,27 @@ class GenerateHashAdmin extends Command
 
         $slug = $this->argument('place');
 
-        if ($this->confirm('This will erase existing hash. Continue ?')) {
-            $total = 0;
+        $total = 0;
 
-            if ($slug === null) {
-                $places = DB::table('places')->select($this->field)->pluck($this->field);
+        if ($slug === null) {
+            $places = DB::table('places')->select($this->field)->pluck($this->field);
 
-                foreach ($places as $place) {
-                    $this->updateHash($place);
-                    $total++;
-                }
-            } else {
-                if (DB::table('places')->select($this->field)->where($this->field, $slug)->doesntExist()) {
-                    $this->error('Place doesn\'t exists');
-                    exit;
-                }
-
-                $this->updateHash($slug);
+            foreach ($places as $place) {
+                $this->updateHash($place);
                 $total++;
             }
+        } else {
+            if (DB::table('places')->select($this->field)->where($this->field, $slug)->doesntExist()) {
+                $this->error('Place doesn\'t exists');
+                exit;
+            }
 
-            $this->info($total.' hash updated');
+            $this->updateHash($slug);
+            $total++;
         }
+
+        $this->info($total.' hash updated');
+
     }
 
     protected function updateHash($id)
