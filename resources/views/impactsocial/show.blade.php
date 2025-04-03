@@ -205,7 +205,7 @@
                 <h3>Sentiment d'inclusion ou d'exclusion</h3>
                 <p>
                   @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->appartenance_exclusion_public', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte du public de l'appartenance et l'exclusion", 'description' => "Décrivez quels types de personnes on eu le sentiment d'appartenance ou d'exclusion en quelques mots"])
-                  @if (formatString($place->get('blocs->impact_social->donnees->appartenance_exclusion_public')[0], '') === 'non')
+                  @if ($place->get('blocs->impact_social->donnees->appartenance_exclusion_public') !== null && formatString($place->get('blocs->impact_social->donnees->appartenance_exclusion_public')[0], '') === 'non')
                     Aucun sentiment d'appartenance à un groupe ou d'exclusion n'a été observé.
                   @else
                     Il a été observé que {!! formatArray($place->get('blocs->impact_social->donnees->appartenance_exclusion_public'), '') !!}
@@ -293,7 +293,7 @@
               @if (($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets') && formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') !== "non, aucun effet") || isset($edit))
                 <h3>Entretien des espaces</h3>
                 <p>
-                  @if (formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') === "des effets positifs")
+                  @if ($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets') && formatString($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets')[0], '') === "des effets positifs")
                     Le projet a permis d'améliorer
                     @include('components.modals.modalEdition', ['chemin' => 'blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type', 'id_section' => '', 'action' => 'impacts.update', 'type' => 'text', 'titre' => "Modifier le texte des effets positifs de l'entretien des espaces", 'description' => "Décrivez le type d'effets positifs, liés à l'entretien des espaces en quelques mots"])
                     {!! formatArray($place->get('blocs->impact_social->donnees->entretien_des_espaces_effets_positif_type'), ' et ') !!}
