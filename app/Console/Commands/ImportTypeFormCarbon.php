@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 ini_set('memory_limit', '256M');
 
+use App\Services\ChartGenerator;
 use App\Mail\ImportCarbonSuccess;
 use \stdClass;
 use App\Services\CarbonFormDataExtractor;
@@ -13,6 +14,7 @@ use Psr\Log\LoggerInterface;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class ImportTypeFormCarbon extends Command
 {
@@ -50,6 +52,13 @@ class ImportTypeFormCarbon extends Command
     protected $logger;
 
     /**
+     * Chart generator service
+     *
+     * @var ChartGenerator
+     */
+    protected $chartGenerator;
+
+    /**
      * answers file
      *
      * @var object
@@ -68,9 +77,10 @@ class ImportTypeFormCarbon extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ChartGenerator $chartGenerator)
     {
         $this->logger = Log::channel('import_carbon');
+        $this->chartGenerator = $chartGenerator;
 
         $token = getenv('TYPEFORM_TOKEN');
         if ($token === false) {
@@ -115,8 +125,7 @@ class ImportTypeFormCarbon extends Command
         $this->answers = $import_file->answers;
 
         $place_name = $this->extract_val($schema->name, $this->answers, $this->logger);
-
-        $pdfPath = 'reports/report_' .$place_name. '.pdf';
+        $pdfPath = 'reports/report_' .Str::of($place_name)->slug('-'). '.pdf';
 
         if (Storage::disk('local')->exists($pdfPath) && $this->option('force') === false){
             $this->logger->notice($place_name." already imported. Use --force to overwrite.");
@@ -138,7 +147,7 @@ class ImportTypeFormCarbon extends Command
         $carbonEmission->energie->consommation_gaz = $carbonData->blocs->energie_consommation_fluide->consommation_gaz * 0.205;
         $carbonEmission->energie->consommation_fioul = $carbonData->blocs->energie_consommation_fluide->consommation_fioul * 0.324;
         $carbonEmission->energie->consommation_bois_granule = $carbonData->blocs->energie_consommation_fluide->consommation_bois_granule * 0.0469;
-        $carbonEmission->energie->consommation_bois_buche = $carbonData->blocs->energie_consommation_fluide->consommation_bois_buche * 284.97;
+        $carbonEmission->energie->consommation_bois_buche = $carbonData->blocs->energie_consommation_fluide->consommation_bois_buche * 80.5;
 
         if ($carbonData->blocs->energie_consommation_fluide->electricite_on_site === true) {
             $coeffTypeElectriciteMapping = [
@@ -156,7 +165,7 @@ class ImportTypeFormCarbon extends Command
 
         $carbonEmission->energie->total = $this->getTotal($carbonEmission->energie);
 
-        $energieChartData = $this->generateChartData($carbonEmission->energie, ["Consommation en électricité", "Consommation en gaz", "Consommation en fioul", "Consommation en bois (granulés)", "Consommation en bois (bûches)"], ["production_electricite"], "kgCO2e");
+        $energieChartData = $this->generateChartData($carbonEmission->energie, ["Consommation en électricité", "Consommation en gaz", "Consommation en fioul", "Consommation en bois (granulés)", "Consommation en bois (bûches)"], ["production_electricite"]);
 
         /**
          *  ALIMENTATION
@@ -185,6 +194,8 @@ class ImportTypeFormCarbon extends Command
 
             $coeffSeasonalProduct = isset($seasonalProduct[$carbonData->blocs->alimentation->part_produit_saison[0]]) ? $seasonalProduct[$carbonData->blocs->alimentation->part_produit_saison[0]] : 1;
             $carbonEmission->alimentation->nourriture->total *= $coeffSeasonalProduct;
+
+            $foodChartData = $this->generateChartData($carbonEmission->alimentation->nourriture, ["Repas végétalien", "Repas végétarien", "Repas carné (viande blanche)", "Repas carné (viande rouge)", "Repas avec du poisson (gras)", "Repas avec du poisson (blanc)"]);
         }
 
         // Boissons
@@ -198,16 +209,15 @@ class ImportTypeFormCarbon extends Command
             $carbonEmission->alimentation->boisson->alcool_fort = $carbonData->blocs->alimentation->alcool_fort * 1.16;
 
             $carbonEmission->alimentation->boisson->total = $this->getTotal($carbonEmission->alimentation->boisson);
+            $beverageChartData = $this->generateChartData($carbonEmission->alimentation->boisson, ["café", "jus", "soda", "biere", "vin", "alcool fort"]);
         }
 
         $carbonEmission->alimentation->total =
             (isset($carbonEmission->alimentation->nourriture->total) ? $carbonEmission->alimentation->nourriture->total : 0) +
             (isset($carbonEmission->alimentation->boisson->total) ? $carbonEmission->alimentation->boisson->total : 0);
 
-        $foodChartData = $this->generateChartData($carbonEmission->alimentation->nourriture, ["Repas végétalien", "Repas végétarien", "Repas carné (viande blanche)", "Repas carné (viande rouge)", "Repas avec du poisson (gras)", "Repas avec du poisson (blanc)"]);
-        $beverageChartData = $this->generateChartData($carbonEmission->alimentation->boisson, ["café", "jus", "soda", "biere", "vin", "alcool fort"]);
-        $foodAndBeverageTotal = round($carbonEmission->alimentation->total, 2);
 
+        $foodAndBeverageTotal = round($carbonEmission->alimentation->total, 2);
 
         /**
          *  TRANSPORT
@@ -227,19 +237,19 @@ class ImportTypeFormCarbon extends Command
 
         $simplifiedTransportationCoeff = [
             "Centre-ville" => [
-                "salarie_15km" => 0.09,
-                "salarie_50km" => 0.12,
-                "salarie_plus_50km" => 0.155
+                "salarie_15km" => 0.09 * 5,
+                "salarie_50km" => 0.12 * 25,
+                "salarie_plus_50km" => 0.155 * 70
             ],
             "Zone périurbaine" => [
-                "salarie_15km" => 0.1,
-                "salarie_50km" => 0.13,
-                "salarie_plus_50km" => 0.155
+                "salarie_15km" => 0.1 * 5,
+                "salarie_50km" => 0.13 * 25,
+                "salarie_plus_50km" => 0.155 * 70
             ],
             "Zone rurale" => [
-                "salarie_15km" => 0.1026,
-                "salarie_50km" => 0.1026,
-                "salarie_plus_50km" => 0.11
+                "salarie_15km" => 0.1026 * 5,
+                "salarie_50km" => 0.1026 * 25,
+                "salarie_plus_50km" => 0.11 * 70
             ]
         ];
 
@@ -282,7 +292,7 @@ class ImportTypeFormCarbon extends Command
         $carbonEmission->deplacement_professionnel->km_voiture_thermique = $carbonData->blocs->deplacement_professionnel->km_voiture_thermique * $detailedTransportationCoeff['km_voiture_thermique'];
         $carbonEmission->deplacement_professionnel->km_voiture_electrique = $carbonData->blocs->deplacement_professionnel->km_voiture_electrique * $detailedTransportationCoeff['km_voiture_electrique'];
         $carbonEmission->deplacement_professionnel->km_deux_roues_motorise = $carbonData->blocs->deplacement_professionnel->km_deux_roues_motorise * $detailedTransportationCoeff['km_deux_roues_motorise'];
-        $carbonEmission->deplacement_professionnel->avion = $carbonData->blocs->deplacement_professionnel->avion * $detailedTransportationCoeff['metro_tram_rer'];
+        $carbonEmission->deplacement_professionnel->avion = $carbonData->blocs->deplacement_professionnel->avion * $detailedTransportationCoeff['avion'];
         $carbonEmission->deplacement_professionnel->ter = $carbonData->blocs->deplacement_professionnel->ter * $detailedTransportationCoeff['ter'];
         $carbonEmission->deplacement_professionnel->tgv = $carbonData->blocs->deplacement_professionnel->tgv * $detailedTransportationCoeff['tgv'];
         $carbonEmission->deplacement_professionnel->metro_tram_rer = $carbonData->blocs->deplacement_professionnel->metro_tram_rer * $detailedTransportationCoeff['metro_tram_rer'];
@@ -291,7 +301,7 @@ class ImportTypeFormCarbon extends Command
 
         $carbonEmission->deplacement_professionnel->total = $this->getTotal($carbonEmission->deplacement_professionnel);
 
-        $businessTrip = $this->generateChartData($carbonEmission->deplacement_professionnel, ["Voiture thermique", "Voiture électrique", "Deux roues motorisés", "TER", "TGV", "Métro / Tram / RER", "Bus", "Vélo électrique"]);
+        $businessTrip = $this->generateChartData($carbonEmission->deplacement_professionnel, ["Voiture thermique", "Voiture électrique", "Deux roues motorisés", "Avion", "TER", "TGV", "Métro / Tram / RER", "Bus", "Vélo électrique"]);
 
         /**
          *  DEPLACEMENT USAGERS REGULIERS
@@ -312,13 +322,13 @@ class ImportTypeFormCarbon extends Command
 
             $visitorCommute = $this->generateChartData($carbonEmission->deplacement_usager_regulier, ["Voiture thermique", "Voiture électrique", "Deux roues motorisés", "TER", "TGV", "Métro / Tram / RER", "Bus", "Vélo électrique"]);
         } else {
-            $nombrePersonne = $carbonData->blocs->deplacement_usager_regulier->nb_salaries;
+            $nombrePersonne = $carbonData->blocs->deplacement_usager_regulier->nb_usagers;
             $nbRdv = $carbonData->blocs->deplacement_usager_regulier->rdv_site;
             $situationLieu = $carbonData->blocs->deplacement_usager_regulier->situation_lieu[0];
 
-            $carbonEmission->deplacement_usager_regulier->salarie_15km = ($carbonData->blocs->deplacement_usager_regulier->salarie_15km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_15km"] * $nombrePersonne * $nbRdv * 45;
-            $carbonEmission->deplacement_usager_regulier->salarie_50km = ($carbonData->blocs->deplacement_usager_regulier->salarie_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_50km"] * $nombrePersonne * $nbRdv * 45;
-            $carbonEmission->deplacement_usager_regulier->salarie_plus_50km = ($carbonData->blocs->deplacement_usager_regulier->salarie_plus_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_plus_50km"] * $nombrePersonne * $nbRdv * 45;
+            $carbonEmission->deplacement_usager_regulier->usager_15km = ($carbonData->blocs->deplacement_usager_regulier->usager_15km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_15km"] * $nombrePersonne * $nbRdv * 45;
+            $carbonEmission->deplacement_usager_regulier->usager_50km = ($carbonData->blocs->deplacement_usager_regulier->usager_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_50km"] * $nombrePersonne * $nbRdv * 45;
+            $carbonEmission->deplacement_usager_regulier->usager_plus_50km = ($carbonData->blocs->deplacement_usager_regulier->usager_plus_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_plus_50km"] * $nombrePersonne * $nbRdv * 45;
             $carbonEmission->deplacement_usager_regulier->total = $this->getTotal($carbonEmission->deplacement_usager_regulier);
 
             $visitorCommute = $this->generateChartData($carbonEmission->deplacement_usager_regulier, ["Usagers à moins de 15km", "Usagers entre 15km et 50km", "Usagers à plus de 50km"]);
@@ -332,9 +342,9 @@ class ImportTypeFormCarbon extends Command
         $nombrePersonne = $carbonData->blocs->deplacement_visiteurs->nombre;
         $situationLieu = $carbonData->blocs->deplacement_visiteurs->situation_lieu[0];
 
-        $carbonEmission->deplacement_visiteurs->visiteur_15km = ($carbonData->blocs->deplacement_visiteurs->visiteur_15km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_15km"] * $nombrePersonne * 45;
-        $carbonEmission->deplacement_visiteurs->visiteur_50km = ($carbonData->blocs->deplacement_visiteurs->visiteur_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_50km"] * $nombrePersonne * 45;
-        $carbonEmission->deplacement_visiteurs->visiteur_plus_50km = ($carbonData->blocs->deplacement_visiteurs->visiteur_plus_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_plus_50km"] * $nombrePersonne * 45;
+        $carbonEmission->deplacement_visiteurs->visiteur_15km = ($carbonData->blocs->deplacement_visiteurs->visiteur_15km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_15km"] * $nombrePersonne;
+        $carbonEmission->deplacement_visiteurs->visiteur_50km = ($carbonData->blocs->deplacement_visiteurs->visiteur_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_50km"] * $nombrePersonne;
+        $carbonEmission->deplacement_visiteurs->visiteur_plus_50km = ($carbonData->blocs->deplacement_visiteurs->visiteur_plus_50km / 100) * $simplifiedTransportationCoeff[$situationLieu]["salarie_plus_50km"] * $nombrePersonne;
         $carbonEmission->deplacement_visiteurs->total = $this->getTotal($carbonEmission->deplacement_visiteurs);
 
         $visitorTrip = $this->generateChartData($carbonEmission->deplacement_visiteurs, ["Visiteurs à moins de 15km", "Visiteurs entre 15km et 50km", "Visiteurs à plus de 50km"]);
@@ -354,7 +364,7 @@ class ImportTypeFormCarbon extends Command
         $carbonEmission->achats->divers->textile = $carbonData->blocs->achat->textile * 0.6;
         $carbonEmission->achats->divers->total = $this->getTotal($carbonEmission->achats->divers);
 
-        $purchase = $this->generateChartData($carbonEmission->achats->divers, ["Meuble", "Petites fournitures", "Produits d'édition", "Produits chimiques", "Produits informatiques", "Textile"]);
+        $purchase = $this->generateChartData($carbonEmission->achats->divers, ["Meuble", "Petites fournitures", "Produits d\'édition", "Produits chimiques", "Produits informatiques", "Produits métalliques", "Textile"]);
 
         if ($carbonData->blocs->achat->materiaux === true) {
             $carbonEmission->achats->materiaux = new stdClass;
@@ -395,7 +405,7 @@ class ImportTypeFormCarbon extends Command
             $carbonEmission->fret->vehicule->km_velo_cargo = $carbonData->blocs->fret->km_velo_cargo * 0.04;
             $carbonEmission->fret->vehicule->total = $this->getTotal($carbonEmission->fret->vehicule);
 
-            $fretVehicule = $this->generateChartData($carbonEmission->fret->vehicule, ["Poids lourds", "Utilitaires thermiques", "Utilitaires electriques"]);
+            $fretVehicule = $this->generateChartData($carbonEmission->fret->vehicule, ["Poids lourds", "Utilitaires thermiques", "Utilitaires electriques", "Vélo cargo"]);
         }
 
         $carbonEmission->fret->import = 0;
@@ -413,34 +423,24 @@ class ImportTypeFormCarbon extends Command
             (isset($carbonEmission->fret->import) ? $carbonEmission->fret->import : 0) +
             (isset($carbonEmission->fret->export) ? $carbonEmission->fret->export : 0);
 
-        $fret = [
-            "type" => "doughnut",
-            "data" => [
-                "labels" => ["Véhicules", "Import", 'Export'],
-                "datasets" => [["data" => [$carbonEmission->fret->vehicule->total, $carbonEmission->fret->import, $carbonEmission->fret->export]]]
-            ],
-            "options" => [
-                "plugins" => [
-                    "doughnutlabel" => [
-                        "labels" => [
-                            ["text" => $this->roundNum($carbonEmission->fret->total), "font" => ["size" => 20]],
-                            ["text" => "total"]
-                        ]
-                    ]
-                ]
-            ]
+        $fretData = (object) [
+            "vehicules" => isset($carbonEmission->fret->vehicule->total) ? $carbonEmission->fret->vehicule->total : 0,
+            "import" => $carbonEmission->fret->import,
+            "export" => $carbonEmission->fret->export
         ];
+
+        $fret = $this->generateChartData($fretData, ["Flotte de véhicules de la structure", "Import", "Export"]);
 
         /**
          *  DECHETS
          */
         $carbonEmission->dechets = new stdClass;
-        $carbonEmission->dechets->qte_ordure_menagere = $carbonData->blocs->dechets->qte_ordure_menagere * 374;
-        $carbonEmission->dechets->qte_ordure_tri = $carbonData->blocs->dechets->qte_ordure_tri * 1923;
-        $carbonEmission->dechets->qte_verre = $carbonData->blocs->dechets->qte_verre * 496;
-        $carbonEmission->dechets->qte_dechet_organique = $carbonData->blocs->dechets->qte_dechet_organique * 140;
-        $carbonEmission->dechets->qte_bois = $carbonData->blocs->dechets->qte_bois * 269;
-        $carbonEmission->dechets->qte_metaux = $carbonData->blocs->dechets->qte_metaux * 938;
+        $carbonEmission->dechets->qte_ordure_menagere = $carbonData->blocs->dechets->qte_ordure_menagere * 0.374;
+        $carbonEmission->dechets->qte_ordure_tri = $carbonData->blocs->dechets->qte_ordure_tri * 1.923;
+        $carbonEmission->dechets->qte_verre = $carbonData->blocs->dechets->qte_verre * 0.496;
+        $carbonEmission->dechets->qte_dechet_organique = $carbonData->blocs->dechets->qte_dechet_organique * 0.140;
+        $carbonEmission->dechets->qte_bois = $carbonData->blocs->dechets->qte_bois * 0.269;
+        $carbonEmission->dechets->qte_metaux = $carbonData->blocs->dechets->qte_metaux * 0.938;
         $carbonEmission->dechets->total = $this->getTotal($carbonEmission->dechets);
 
         $dechets = $this->generateChartData($carbonEmission->dechets, ["Ordures ménagères", "Ordures tri", "Verres", "Déchets organiques", "Bois", "Métaux"]);
@@ -451,19 +451,12 @@ class ImportTypeFormCarbon extends Command
         $carbonEmission->immobilisations = new stdClass;
 
         // Vehicules
-        $carbonEmission->immobilisations->vehicules = ($carbonData->blocs->immobilisations->nombre_voiture * 1233 / 1000) * (5500 / $carbonData->blocs->immobilisations->age_vehicules);
+        $carbonEmission->immobilisations->vehicules = 0;
+        if ($carbonData->blocs->immobilisations->nombre_voiture) {
+            $carbonEmission->immobilisations->vehicules = ($carbonData->blocs->immobilisations->nombre_voiture * 1233 / 1000) * (5500 / $carbonData->blocs->immobilisations->age_vehicules);
+        }
 
         // Numérique
-        $carbonEmission->immobilisations->numerique = new stdClass;
-        $carbonEmission->immobilisations->numerique->nombre_ordinateur_fixe = $carbonData->blocs->immobilisations->nombre_ordinateur_fixe * 169;
-        $carbonEmission->immobilisations->numerique->nombre_ordinateur_portable = $carbonData->blocs->immobilisations->nombre_ordinateur_portable * 156.24;
-        $carbonEmission->immobilisations->numerique->nombre_ecran = $carbonData->blocs->immobilisations->nombre_ecran * 340.04;
-        $carbonEmission->immobilisations->numerique->nombre_telephone = $carbonData->blocs->immobilisations->nombre_telephone * 27.5934;
-        $carbonEmission->immobilisations->numerique->nombre_imprimante = $carbonData->blocs->immobilisations->nombre_imprimante * 600;
-        $carbonEmission->immobilisations->numerique->nombre_serveur_informatique = $carbonData->blocs->immobilisations->nombre_serveur_informatique * 87.84;
-
-        $subTotal = $this->getTotal($carbonEmission->immobilisations->numerique);
-
         $coeffReconditionne = [
             "Non, pas du tout" => 1,
             "Oui, mais dans une moindre mesure" => 0.8,
@@ -471,8 +464,23 @@ class ImportTypeFormCarbon extends Command
             "Oui, totalement" => 0.3
         ];
 
-        $carbonEmission->immobilisations->numerique->total = ($subTotal / $carbonData->blocs->immobilisations->temps_conservation_peripheriques) * $coeffReconditionne[$carbonData->blocs->immobilisations->peripheriques_reconditionne[0]];
-        $immobilisationNumerique = $this->generateChartData($carbonEmission->immobilisations->numerique, ["Ordinateurs fixes", "Ordinateurs portables", "Verres", "Déchets organiques", "Bois", "Métaux"]);
+        if (!$carbonData->blocs->immobilisations->peripheriques_reconditionne) {
+            $carbonData->blocs->immobilisations->peripheriques_reconditionne = ['Non, pas du tout'];
+        }
+
+        $conservationDuration = $carbonData->blocs->immobilisations->temps_conservation_peripheriques;
+        $actualCoeff = $coeffReconditionne[$carbonData->blocs->immobilisations->peripheriques_reconditionne[0]];
+        $carbonEmission->immobilisations->numerique = new stdClass;
+        $carbonEmission->immobilisations->numerique->nombre_ordinateur_fixe = $carbonData->blocs->immobilisations->nombre_ordinateur_fixe * 169 / $conservationDuration * $actualCoeff;
+        $carbonEmission->immobilisations->numerique->nombre_ordinateur_portable = $carbonData->blocs->immobilisations->nombre_ordinateur_portable * 156.24 / $conservationDuration * $actualCoeff;
+        $carbonEmission->immobilisations->numerique->nombre_ecran = $carbonData->blocs->immobilisations->nombre_ecran * 222 / $conservationDuration * $actualCoeff;
+        $carbonEmission->immobilisations->numerique->nombre_telephone = $carbonData->blocs->immobilisations->nombre_telephone * 27.5934 / $conservationDuration * $actualCoeff;
+        $carbonEmission->immobilisations->numerique->nombre_imprimante = $carbonData->blocs->immobilisations->nombre_imprimante * 197 / $conservationDuration * $actualCoeff;
+        $carbonEmission->immobilisations->numerique->nombre_serveur_informatique = $carbonData->blocs->immobilisations->nombre_serveur_informatique * 87.84 / $conservationDuration * $actualCoeff;
+
+        $carbonEmission->immobilisations->numerique->total = $this->getTotal($carbonEmission->immobilisations->numerique);
+
+        $immobilisationNumerique = $this->generateChartData($carbonEmission->immobilisations->numerique, ["Ordinateurs fixes", "Ordinateurs portables", "Écrans", "Téléphones", "Imprimantes", "Serveurs informatique"]);
 
         // Electromenager
         $carbonEmission->immobilisations->electromenager = new stdClass;
@@ -480,10 +488,20 @@ class ImportTypeFormCarbon extends Command
         $carbonEmission->immobilisations->electromenager->nombre_electromenager = $carbonData->blocs->immobilisations->nombre_electromenager * 300;
         $carbonEmission->immobilisations->electromenager->nombre_electromenager_pro = $carbonData->blocs->immobilisations->nombre_electromenager_pro * 900;
         $subTotal = $this->getTotal($carbonEmission->immobilisations->electromenager);
-
+        if (!$carbonData->blocs->immobilisations->electromenager_reconditionne) {
+            $carbonData->blocs->immobilisations->electromenager_reconditionne = ['Non, pas du tout'];
+        }
         $carbonEmission->immobilisations->electromenager->total = ($subTotal / $carbonData->blocs->immobilisations->temps_conservation_electromenager) * $coeffReconditionne[$carbonData->blocs->immobilisations->electromenager_reconditionne[0]];
 
         $carbonEmission->immobilisations->total = $carbonEmission->immobilisations->electromenager->total + $carbonEmission->immobilisations->numerique->total + $carbonEmission->immobilisations->vehicules;
+
+        $immobilisationData = (object) [
+            "vehicules" => $carbonEmission->immobilisations->vehicules,
+            "numerique" => $carbonEmission->immobilisations->numerique->total,
+            "electromenager" => $carbonEmission->immobilisations->electromenager->total
+        ];
+
+        $immobilisation = $this->generateChartData($immobilisationData, ["Véhicules", "Numérique", "Électroménager"]);
 
         /**
          *  AUTRES EMISSIONS
@@ -502,7 +520,7 @@ class ImportTypeFormCarbon extends Command
             $autres = $this->generateChartData($carbonEmission->autres_emissions, ["Services assurances", "Services télécommunication", "Services courriers"], ["prestation_externe"]);
         }
 
-        $generalEmission = $carbonEmission->energie->total +
+        $generalEmission = $this->roundNum(($carbonEmission->energie->total +
                            $foodAndBeverageTotal+$carbonEmission->deplacement_domicile_travail->total +
                            $carbonEmission->deplacement_professionnel->total +
                            $carbonEmission->deplacement_usager_regulier->total +
@@ -510,43 +528,45 @@ class ImportTypeFormCarbon extends Command
                            $carbonEmission->fret->total +
                            $carbonEmission->dechets->total +
                            $carbonEmission->immobilisations->total +
-                           $carbonEmission->autres_emissions->total;
-        $generalData = [
-            "type" => "doughnut",
-            "data" => [
-                "labels" => ["Énergie", "Alimentation", "Transports", "Achats", "Fret", "Déchets", "Immobilisations", "Autres"],
-                "datasets" => [["data" => [
-                    $this->roundNum($carbonEmission->energie->total),
-                    $this->roundNum($foodAndBeverageTotal),
-                    $this->roundNum(($carbonEmission->deplacement_domicile_travail->total+$carbonEmission->deplacement_professionnel->total+$carbonEmission->deplacement_usager_regulier->total)),
-                    $this->roundNum($carbonEmission->achats->total),
-                    $this->roundNum($carbonEmission->fret->total),
-                    $this->roundNum($carbonEmission->dechets->total),
-                    $this->roundNum($carbonEmission->immobilisations->total),
-                    $this->roundNum($carbonEmission->autres_emissions->total)
-                ]]]
-            ],
+                           $carbonEmission->autres_emissions->total) / 1000);
+
+        $providedGeneralEmissionData = (object) [
+            'energie' => $carbonEmission->energie->total ?? 0,
+            'alimentation' => $foodAndBeverageTotal ?? 0,
+            'transports' => ($carbonEmission->deplacement_domicile_travail->total ?? 0)
+                            + ($carbonEmission->deplacement_professionnel->total ?? 0)
+                            + ($carbonEmission->deplacement_usager_regulier->total ?? 0),
+            'achats' => $carbonEmission->achats->total ?? 0,
+            'fret' => $carbonEmission->fret->total ?? 0,
+            'dechets' => $carbonEmission->dechets->total ?? 0,
+            'immobilisations' => $carbonEmission->immobilisations->total ?? 0,
+            'autres' => $carbonEmission->autres_emissions->total ?? 0,
+
         ];
+        $generalData = $this->generateChartData($providedGeneralEmissionData, ["Énergie", "Alimentation", "Transports", "Achats", "Fret", "Déchets", "Immobilisations", "Autres"]);
 
         $data = [
-            'generalChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($generalData)),
+            'placeName' => $place_name,
+            'generalChart' => $this->generateChart($generalData),
             'generalEmission' => $this->roundNum($generalEmission),
-            'energyChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($energieChartData)),
-            'foodChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($foodChartData)),
-            'beverageChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($beverageChartData)),
+            'energyChart' => $this->generateChart($energieChartData),
+            'foodChart' => isset($foodChartData) ? $this->generateChart($foodChartData) : "",
+            'beverageChart' =>  isset($beverageChartData) ? $this->generateChart($beverageChartData) : "",
             'foodAndBeverageTotal' => $foodAndBeverageTotal,
-            'businessCommuteChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($businessCommute)),
-            'businessTripChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($businessTrip)),
-            'visitorCommuteChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($visitorCommute)),
-            'visitorTripChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($visitorTrip)),
-            'purchaseMaterialChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($purchaseMaterial)),
-            'purchaseChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($purchase)),
-            'fretVehiculeChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($fretVehicule)),
-            'fretChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($fret)),
-            'dechetsChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($dechets)),
-            'immobilisationNumeriqueChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($immobilisationNumerique)),
+            'businessCommuteChart' => ($carbonEmission->deplacement_domicile_travail->total > 0) ? $this->generateChart($businessCommute) : "",
+            'businessTripChart' =>  $this->generateChart($businessTrip),
+            'visitorCommuteChart' =>  $this->generateChart($visitorCommute),
+            'visitorTripChart' =>  $this->generateChart($visitorTrip),
+            'purchaseMaterialChart' => isset($purchaseMaterial) ? $this->generateChart($purchaseMaterial) : "",
+            'purchaseChart' =>  isset($purchase) ? $this->generateChart($purchase) : "",
+            'purchaseTotal' => $carbonEmission->achats->total,
+            'fretVehiculeChart' => isset($fretVehicule) ? $this->generateChart($fretVehicule) : "",
+            'fretChart' =>  ($carbonEmission->fret->total > 0) ? $this->generateChart($fret) : "",
+            'dechetsChart' =>  ($carbonEmission->dechets->total > 0) ? $this->generateChart($dechets) : "",
+            'immobilisationChart' =>  $this->generateChart($immobilisation),
+            'immobilisationNumeriqueChart' =>  $this->generateChart($immobilisationNumerique),
             'immobilisationTotal' =>  $carbonEmission->immobilisations->total,
-            'autresChart' => "https://quickchart.io/chart?c=" . urlencode(json_encode($autres)),
+            'autresChart' => isset($autres) ?  $this->generateChart($autres) : "",
         ];
 
         // Render PDF
@@ -586,31 +606,11 @@ class ImportTypeFormCarbon extends Command
         return round($number, 2);
     }
 
-    private function generateChartData(object $providedData, array $labels, array $keysToIgnore = []) {
-        $data = [];
+    private function generateChart($data) {
+        return $this->chartGenerator->generateChart($data);
+    }
 
-        foreach (get_object_vars($providedData) as $key => $value) {
-            if ($key !== 'total' && !in_array($key, $keysToIgnore)) {
-                $data[] = $this->roundNum($value);
-            }
-        }
-
-        return [
-            "type" => "doughnut",
-            "data" => [
-                "labels" => $labels,
-                "datasets" => [["data" => $data]]
-            ],
-            "options" => [
-                "plugins" => [
-                    "doughnutlabel" => [
-                        "labels" => [
-                            ["text" => $this->roundNum($providedData->total), "font" => ["size" => 20]],
-                            ["text" => "kgCO2e"]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+    private function generateChartData(object $providedData, array $labels, array $keysToIgnore = [], int $totalToCalculatePercentage = 0) {
+        return $this->chartGenerator->generateChartData($providedData, $labels, $keysToIgnore, $totalToCalculatePercentage);
     }
 }

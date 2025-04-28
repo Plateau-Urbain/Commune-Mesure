@@ -11,20 +11,26 @@
         .page-break {
             page-break-after: always;
         }
-        h2 {margin-top: 100px}
+        h2 {margin-top: 50px}
         h3 { margin-top:50px;}
+        p {margin-top: 20px;}
+        img {max-width: 600px;}
     </style>
 </head>
 <body>
+    <div style="text-align: right">
+      <img src="{{ base_path() . '/public/images/logos/commune-mesure.png' }}" width="150" />
+    </div>
+    <p>{{$placeName}}<p>
     <h1>Bilan carbone</h1>
     <p>Retrouvez ci-dessous les différents graphiques faisant état des émissions carbone, classés par thématique.</p>
 
     <div>
       <h2>Répartition des émissions par thématique</h2>
       <div class="chart">
-        <img src="{{ $generalChart }}" alt="Chart" style="max-width:600px;">
+        <img src="{{ $generalChart }}">
       </div>
-      <p>Les émissions carbone du tiers lieux ont été de {{$generalEmission}} kgCO2e</p>
+      <p>Les émissions carbone du tiers lieux ont été de {{$generalEmission}} tCO2e</p>
     </div>
 
     <div class="page-break"></div>
@@ -32,96 +38,124 @@
     <div>
       <h2>Energie</h2>
       <div class="chart">
-          <img src="{{ $energyChart }}" alt="Chart" style="max-width:500px;">
+          <img src="{{ $energyChart }}">
       </div>
     </div>
 
     <div class="page-break"></div>
 
-    <div>
-      <h2>Alimentation</h2>
+    @if ($foodChart !== "" || $beverageChart !== "")
       <div>
+        <h2 style="margin-top:0 !important;">Alimentation</h2>
+        <p>Le total des émissions carbone lié à l'alimentation est de {{ $foodAndBeverageTotal }} kgCO2e</p>
         <div>
-          <h3>Nourriture</h3>
-          <div class="chart">
-            <img src="{{ $foodChart }}" alt="Chart" style="max-width:500px;">
-          </div>
-        </div>
-
-        <div>
-          <h3>Boisson</h3>
-          <div class="chart">
-            <img src="{{ $beverageChart }}" alt="Chart" style="max-width:500px;">
-          </div>
+          @if ($foodChart !== '')
+            <div>
+              <h3 style="margin-top:20px !important;">Nourriture</h3>
+              <div class="chart">
+                <img src="{{ $foodChart }}">
+              </div>
+            </div>
+          @endif
+          @if ($beverageChart !== '')
+            <div>
+              <h3 style="margin-top:20px !important;">Boisson</h3>
+              <div class="chart">
+                <img src="{{ $beverageChart }}">
+              </div>
+            </div>
+          @endif
         </div>
       </div>
-      <p>Le total des émissions carbone lié à l'alimentation est de {{ $foodAndBeverageTotal }} kgCO2e</p>
-    </div>
+      <div class="page-break"></div>
+    @endif
 
-    <div class="page-break"></div>
-
-    <h2>Déplacement des salariés entre leur domicile et leur lieu de travail</h2>
-    <div class="chart">
-      <img src="{{ $businessCommuteChart }}" alt="Chart" style="max-width:500px;">
-    </div>
+    @if ($businessCommuteChart !== "")
+      <h2>Déplacement des salariés entre leur domicile et leur lieu de travail</h2>
+      <div class="chart">
+        <img src="{{ $businessCommuteChart }}">
+      </div>
+    @endif
 
     <h2>Déplacement professionnel des salariés</h2>
     <div class="chart">
-      <img src="{{ $businessTripChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $businessTripChart }}">
     </div>
 
     <div class="page-break"></div>
 
-    <h2>DEPLACEMENT USAGERS REGULIERS</h2>
+    <h2>Déplacement des usagers réguliers</h2>
     <div class="chart">
-      <img src="{{ $visitorCommuteChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $visitorCommuteChart }}">
     </div>
 
-    <h2>DEPLACEMENT VISITEURS</h2>
+    <h2>Déplacement des visiteurs</h2>
     <div class="chart">
-      <img src="{{ $visitorTripChart }}" alt="Chart" style="max-width:500px;">
-    </div>
-
-    <div class="page-break"></div>
-
-    <h2>ACHAT DE MATERIEL</h2>
-    <div class="chart">
-      <img src="{{ $purchaseMaterialChart }}" alt="Chart" style="max-width:500px;">
-    </div>
-
-    <h2>ACHATS GLOBAUX</h2>
-    <div class="chart">
-      <img src="{{ $purchaseChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $visitorTripChart }}">
     </div>
 
     <div class="page-break"></div>
 
-    <h2>FRET VEHICULE</h2>
-    <div class="chart">
-      <img src="{{ $fretVehiculeChart }}" alt="Chart" style="max-width:500px;">
-    </div>
+    <p>Le total des émissions carbone lié aux achats est de {{ $purchaseTotal }} kgCO2e</p>
 
-    <h2>FRET</h2>
+    @if ($purchaseMaterialChart !== "")
+      <h2>Achat de matériel</h2>
+      <div class="chart">
+        <img src="{{ $purchaseMaterialChart }}">
+      </div>
+    @endif
+
+    <h2>Achat globaux</h2>
     <div class="chart">
-      <img src="{{ $fretChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $purchaseChart }}">
     </div>
 
     <div class="page-break"></div>
 
-    <h2>DECHETS</h2>
+    @if($fretChart !== "" || $fretVehiculeChart !== "")
+      @if($fretChart !== "")
+        <h2>Fret global</h2>
+        <div class="chart">
+          <img src="{{ $fretChart }}">
+        </div>
+      @endif
+
+      @if ($fretVehiculeChart !== "")
+        <h2>Véhicules de la structure</h2>
+        <div class="chart">
+          <img src="{{ $fretVehiculeChart }}">
+        </div>
+      @endif
+
+      <div class="page-break"></div>
+    @endif
+
+    @if ($dechetsChart !== "")
+      <h2>Déchets</h2>
+      <div class="chart">
+        <img src="{{ $dechetsChart }}">
+      </div>
+
+      <div class="page-break"></div>
+    @endif
+
+    <h2>Immobilisations</h2>
     <div class="chart">
-      <img src="{{ $dechetsChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $immobilisationChart }}">
     </div>
 
-    <h2>IMMOBILISATION NUMERIQUE</h2>
+    <h2>Immobilisations numérique</h2>
     <div class="chart">
-      <img src="{{ $immobilisationNumeriqueChart }}" alt="Chart" style="max-width:500px;">
+      <img src="{{ $immobilisationNumeriqueChart }}">
     </div>
-    Total immobilisation : {{ $immobilisationTotal }}
 
-    <h2>AUTRES EMISSIONS</h2>
-    <div class="chart">
-      <img src="{{ $autresChart }}" alt="Chart" style="max-width:500px;">
-    </div>
+    @if ($autresChart !== "")
+      <div class="page-break"></div>
+
+      <h2>Autres émissions</h2>
+      <div class="chart">
+        <img src="{{ $autresChart }}">
+      </div>
+    @endif
 </body>
 </html>
