@@ -7,6 +7,7 @@ use App\Console\Commands\GenerateHashAdmin;
 use App\Console\Commands\KeyGenerateCommand;
 use App\Console\Commands\FetchTypeformResponses;
 use App\Console\Commands\ImportTypeForm;
+use App\Console\Commands\ImportTypeFormCarbon;
 use App\Console\Commands\ImportTypeFormSocialImpact;
 use App\Console\Commands\ImportTypeFormGeneralInformation;
 use App\Console\Commands\ImportTypeFormEnvironmental;
@@ -41,6 +42,7 @@ class Kernel extends ConsoleKernel
         SetPublicsProperty::class,
 
         ImportTypeForm::class,
+        ImportTypeFormCarbon::class,
         ImportTypeFormSocialImpact::class,
         ImportTypeFormEnvironmental::class,
         ImportTypeFormActivities::class,
