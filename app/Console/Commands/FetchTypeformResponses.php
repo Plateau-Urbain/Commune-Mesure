@@ -16,6 +16,7 @@ class FetchTypeformResponses extends Command
     private $basePathGeneralInformation = 'import/general_information';
     private $basePathSocialImpact = 'import/social_impact';
     private $basePathEnvironmental = 'import/environmental';
+    private $basePathCarbon = 'import/carbon';
 
     private $basePath;
 
@@ -70,7 +71,8 @@ class FetchTypeformResponses extends Command
     protected $questionNameID = [
         'general_information' => '2fr8a983Wpaq',
         'environmental' => 'pEuQLVD5J2q7',
-        'social_impact' => '7HmN9RJkBcMe'
+        'social_impact' => '7HmN9RJkBcMe',
+        'carbon' => 'rC3GXV86KTVt'
     ];
 
     /**
@@ -109,6 +111,11 @@ class FetchTypeformResponses extends Command
             case 'environmental':
                 $typeformID = getenv('TYPEFORM_ENVIRONMENTAL');
                 $this->basePath = $this->basePathEnvironmental;
+                break;
+
+            case 'carbon':
+                $typeformID = getenv('TYPEFORM_CARBON');
+                $this->basePath = $this->basePathCarbon;
                 break;
 
             default:
