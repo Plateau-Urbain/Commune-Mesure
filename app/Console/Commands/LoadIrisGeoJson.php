@@ -174,24 +174,82 @@ class LoadIrisGeoJson extends Command
         return $s;
     }
 
+    private function safeGet($array, $keys, $default = 0) {
+        foreach ($keys as $key) {
+            if (!isset($array[$key])) {
+                return $default;
+            }
+            $array = $array[$key];
+        }
+        return $array;
+    }
+
     public function handle_insee($geocode, $insee_geotype) {
         $data = $this->parse_insee("https://www.insee.fr/fr/statistiques/2011101?geo=".$geocode);
-        $this->data['insee'][$insee_geotype]['csp']['agriculteur'] = array('title' => 'Agriculteurs exploitants', 'nb' => (isset($data['population']))? $data['population']['Agriculteurs exploitants'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['artisant'] = array('title' => 'Artisans, Comm., Chefs entr.', 'nb' => (isset($data['population']))? $data['population']["Artisans, commerçants, chefs d'entreprise"][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['cadre'] = array('title' => 'Cadres, Prof. intel. sup.', 'nb' => (isset($data['population']))? $data['population']['Cadres et professions intellectuelles supérieures'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['prof_int'] = array('title' => 'Prof. intermédiaires', 'nb' => (isset($data['population']))? $data['population']['Professions intermédiaires'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['employe'] = array('title' => 'Employés', 'nb' => (isset($data['population']))? $data['population']['Employés'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['ouvrier'] = array('title' => 'Ouvriers', 'nb' => (isset($data['population']))? $data['population']['Ouvriers'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['retraite'] = array('title' => 'Retraités', 'nb' => (isset($data['population']))? $data['population']['Retraités'][4] : 0);
-        $this->data['insee'][$insee_geotype]['csp']['autre'] = array('title' => 'Autres', 'nb' => (isset($data['population']))? $data['population']['Autres personnes sans activité professionnelle'][4] : 0);
-        $this->data['insee'][$insee_geotype]['logement']['house'] = array('title' => 'Maison', 'nb' => $data['logements']['Maisons'][4]);
-        $this->data['insee'][$insee_geotype]['logement']['appartment'] = array('title' => 'Appartement', 'nb' => $data['logements']['Appartements'][4]);
-        $this->data['insee'][$insee_geotype]['logement']['unoccupied'] = array("title" => "Appart/Maison inoccupé", "nb" => $data['logements']['Logements vacants'][4]);
-        $this->data['insee'][$insee_geotype]['activites']['chomeur'] = array('title' => 'Chômeur (Actif inoccupé)', 'nb' => $data['activites']['Chômeurs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
-        $this->data['insee'][$insee_geotype]['activites']['actif'] = array('title' => 'Actif occupé', 'nb' => $data['activites']['Actifs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
-        $this->data['insee'][$insee_geotype]['activites']['etudiant'] = array("title" => "Élèves, étudiants et stagiaires non rémunérés", "nb" => $data['activites']['Élèves, étudiants et stagiaires non rémunérés en %'][2] / 100 * $data['activites']['Ensemble'][4]);
-        $this->data['insee'][$insee_geotype]['activites']['retraite'] = array("title" => "Retraités ou préretraités", "nb" => $data['activites']['Retraités ou préretraités en %'][2] / 100 * $data['activites']['Ensemble'][4]);
-        $this->data['insee'][$insee_geotype]['activites']['autre'] = array("title" => "Autre inactif", "nb" => $data['activites']['Autres inactifs en %'][2] / 100 * $data['activites']['Ensemble'][4]);
+        $this->data['insee'][$insee_geotype]['csp']['agriculteur'] = array(
+            'title' => 'Agriculteurs exploitants',
+            'nb' => $this->safeGet($data, ['population', 'Agriculteurs exploitants', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['artisant'] = array(
+            'title' => 'Artisans, Comm., Chefs entr.',
+            'nb' => $this->safeGet($data, ["Artisans, commerçants, chefs d'entreprise", 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['cadre'] = array(
+            'title' => 'Cadres, Prof. intel. sup.',
+            'nb' => $this->safeGet($data, ['population', 'Cadres et professions intellectuelles supérieures', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['prof_int'] = array(
+            'title' => 'Prof. intermédiaires',
+            'nb' => $this->safeGet($data, ['population', 'Professions intermédiaires', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['employe'] = array(
+            'title' => 'Employés',
+            'nb' => $this->safeGet($data, ['population', 'Employés', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['ouvrier'] = array(
+            'title' => 'Ouvriers',
+            'nb' => $this->safeGet($data, ['population', 'Ouvriers', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['retraite'] = array(
+            'title' => 'Retraités',
+            'nb' => $this->safeGet($data, ['population', 'Retraités', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['csp']['autre'] = array(
+            'title' => 'Autres',
+            'nb' => $this->safeGet($data, ['population', 'Autres personnes sans activité professionnelle', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['logement']['house'] = array(
+            'title' => 'Maison',
+            'nb' => $this->safeGet($data, ['logements', 'Maisons', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['logement']['appartment'] = array(
+            'title' => 'Appartement',
+            'nb' => $this->safeGet($data, ['logements', 'Appartements', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['logement']['unoccupied'] = array(
+            "title" => "Appart/Maison inoccupé",
+            "nb" => $this->safeGet($data, ['logements', 'Logements vacants', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['activites']['chomeur'] = array(
+            'title' => 'Chômeur (Actif inoccupé)',
+            'nb' => $this->safeGet($data, ['activites', 'Chômeurs en %', 2], 0) / 100 * $this->safeGet($data, ['activites', 'Ensemble', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['activites']['actif'] = array(
+            'title' => 'Actif occupé',
+            'nb' => $this->safeGet($data, ['activites', 'Actifs en %', 2], 0) / 100 * $this->safeGet($data, ['activites', 'Ensemble', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['activites']['etudiant'] = array(
+            "title" => "Élèves, étudiants et stagiaires non rémunérés",
+            "nb" => $this->safeGet($data, ['activites', 'Élèves, étudiants et stagiaires non rémunérés en %', 2], 0) / 100 * $this->safeGet($data, ['activites', 'Ensemble', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['activites']['retraite'] = array(
+            "title" => "Retraités ou préretraités",
+            "nb" => $this->safeGet($data, ['activites', 'Retraités ou préretraités en %', 2], 0) / 100 * $this->safeGet($data, ['activites', 'Ensemble', 4], 0)
+        );
+        $this->data['insee'][$insee_geotype]['activites']['autre'] = array(
+            "title" => "Autre inactif",
+            "nb" => $this->safeGet($data, ['activites', 'Autres inactifs en %', 2], 0) / 100 * $this->safeGet($data, ['activites', 'Ensemble', 4], 0)
+        );
     }
 
     public function handle()
