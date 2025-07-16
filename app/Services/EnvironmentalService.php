@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Place;
 use App\Models\PlaceEnvironment;
 
-class EnvironmentalService
+class EnvironmentalService extends AbstractTypeformService
 {
     protected $schema = '/app/places/schema_environmental.json';
     protected $questionnaire = '/app/places/environmental_questions.json';
@@ -226,84 +226,14 @@ class EnvironmentalService
         ]
     ];
 
-    public function getCleanedTypeformQuestion(PlaceEnvironment $placeEnvironment, $searchId = null) {
-        $typeform = json_decode(file_get_contents(storage_path().$this->questionnaire), true);
-        $schema = json_decode(file_get_contents(storage_path().$this->schema), true);
-
-        $questionsAnswer = [];
-        foreach (self::$axes as $axe) {
-            foreach ($schema["blocs"][$axe]["donnees"] as $question_key => $question_type) {
-                $parts = explode('|', $question_type);
-                list(, $question_id, $question_type) = $parts;
-                $typeform_question = $this->findElementById($typeform['fields'], $question_id);
-                if ($typeform_question !== null) {
-                    $questionsAnswer[$axe][$question_key]["title"] = $typeform_question["title"];
-                    $questionsAnswer[$axe][$question_key]["id"] = $typeform_question["id"];
-
-                    $answer = $placeEnvironment->get("blocs->{$axe}->donnees->{$question_key}");
-                    $questionsAnswer[$axe][$question_key]["answer"] = $answer;
-                    $questionsAnswer[$axe][$question_key]["choices"] = null;
-
-                    switch ($question_type) {
-                        case "short_text":
-                        case "long_text":
-                            $questionsAnswer[$axe][$question_key]["type"] = "text";
-                            break;
-                        case "yes_no":
-                            $questionsAnswer[$axe][$question_key]["type"] = "toggle";
-                            break;
-                        case "multiple_choice":
-                            $type = $typeform_question['properties']['allow_multiple_selection'] === true ? "checkbox" : "select";
-                            $questionsAnswer[$axe][$question_key]["type"] = $type;
-                            $possibleAnswers = array_fill_keys(array_column($typeform_question["properties"]["choices"], "label"), 0);
-
-                            if ($answer) {
-                                foreach ($answer as $a) {
-                                    foreach ($possibleAnswers as $key => $value) {
-                                        if ($key === $a) {
-                                            $possibleAnswers[$key] = 1;
-                                        }
-                                    }
-                                }
-                            }
-
-                            $questionsAnswer[$axe][$question_key]["choices"] = $possibleAnswers;
-                            break;
-                        default:
-                        $questionsAnswer[$axe][$question_key]["type"] = $question_type;
-                            break;
-                    }
-
-                    if ($searchId === $typeform_question["id"]) {
-                        return $questionsAnswer[$axe][$question_key];
-                    }
-                }
-            }
-        }
-        return $questionsAnswer;
-    }
-
-    public function authorizedAnswer(array $question, $answer): bool {
-
-        if ($question['type'] === "checkbox") {
-            foreach($answer as $a) {
-                if (!in_array($a, array_keys($question['choices']))) {
-                    return false;
-                }
-            }
-        }
-
-        if($question['type'] === "toogle" && $answer !== "No" && $answer !== "Yes") {
-            return false;
-        }
-
-        if ($question['type'] === "select") {
-            if (!in_array($answer, array_keys($question['choices']))) {
-                return false;
-            }
-        }
-
-        return true;
+    public function getCleanedTypeformQuestionForEnvironmental(PlaceEnvironment $placeEnvironment, $searchId = null) {
+        return parent::getCleanedTypeformQuestion(
+            $placeEnvironment,
+            storage_path() . $this->schema,
+            storage_path() . $this->questionnaire,
+            self::$axes,
+            $searchId
+        );
     }
 
     public function calculateAnswerScore(PlaceEnvironment $placeEnvironment) {
@@ -473,24 +403,6 @@ class EnvironmentalService
                 return $parentKey;
             }
         }
-        return null;
-    }
-
-    private function findElementById($array, $id) {
-        foreach ($array as $element) {
-            if (isset($element['properties']) && is_array($element['properties']) && isset($element['properties']['fields']) && is_array($element['properties']['fields'])) {
-                $result = $this->findElementById($element['properties']['fields'], $id);
-
-                if ($result !== null) {
-                    return $result;
-                }
-            }
-
-            if (isset($element['id']) && $element['id'] == $id) {
-                return $element;
-            }
-        }
-
         return null;
     }
 }

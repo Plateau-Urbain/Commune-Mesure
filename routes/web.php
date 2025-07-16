@@ -61,6 +61,8 @@ $router->get('/place/{slug}/{auth:[a-z0-9]+}/edit', ['uses' => 'PlaceController@
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/update/{hash}[/{id_section}]', ['uses' => 'PlaceController@update', 'as' => 'place.update']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/updateAddress[/{id_section}]', ['uses' => 'PlaceController@updateAddress', 'as' => 'place.address.update']);
 $router->post('/place/{slug}/{auth:[a-z0-9]+}/updateLatlon[/{id_section}]', ['uses' => 'PlaceController@updateLatLon', 'as' => 'place.latlon.update']);
+$router->get('/place/{slug}/{auth:[a-z0-9]+}/edit-general', ['uses' => 'PlaceController@editGeneral', 'as' => 'place.edit_general']);
+$router->post('/place/{slug}/{auth:[a-z0-9]+}/update-general/{hash}[/{id_section}]', ['uses' => 'PlaceController@updateGeneral', 'as' => 'place.update_general']);
 
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/publish', ['uses' => 'PlaceController@publish', 'as' => 'place.publish']);
 $router->get('/place/{slug}/{auth:[a-z0-9]+}/csv', ['uses' => 'PlaceController@jsonToCsv', 'as' => 'place.csv']);

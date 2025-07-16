@@ -22,11 +22,30 @@
 @endsection
 
 @section('script_js')
-  @parent
-  @include('js.place.insee-graph')
-  @include('js.place.modals')
-  @include('js.place.d3')
-  @include('js.place.scrollspy')
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+
+</script>
+@parent
+@include('js.place.insee-graph')
+@include('js.place.modals')
+@include('js.place.d3')
+@include('js.place.scrollspy')
 
   @isset($edit)
     <script>
@@ -35,7 +54,7 @@
       const storage = window.localStorage
       if (! storage.getItem('_admin_help_popup_opened')) {
         popupHelp.classList.add('is-active')
-        storage.setItem('_admin_help_popup_opened', Date())
+          storage.setItem('_admin_help_popup_opened', Date())
       }
     </script>
   @endisset
@@ -45,6 +64,9 @@
 @section('content')
   @isset($edit)
     @include('partials.place.sticky-edit')
+    @if(str_contains(request()->fullUrl(), 'bureau-commun'))
+      @include('place.edit_general', ['questionAnswer' => $questionAnswer, 'slug' => $slug, 'auth' => $auth, 'edit' => $edit])
+    @endif
   @endisset
 
 <div id="container" @isset($edit) style="padding-top:50px" @endisset>

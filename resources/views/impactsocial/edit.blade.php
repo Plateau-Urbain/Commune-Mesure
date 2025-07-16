@@ -1,0 +1,41 @@
+@php
+$axesLabels = [
+    "impact_social" => "Impact social",
+    "projet_urbain" => "Projet urbain",
+];
+@endphp
+
+@foreach ($questionAnswer as $axe => $questionsAnswers)
+    <button class="accordion">{{$axesLabels[$axe]}}</button>
+    <div class="panel-accordion">
+        <div class="line header">
+            <div class="question">Question</div>
+            <div class="answer-container"><div class="answer">Votre réponse</div></div>
+        </div>
+        @foreach ($questionsAnswers as $question => $questionData)
+            <div class="line">
+                <div class="question">{{$questionData['title']}}</div>
+                <div class="answer-container">
+                    <div class="answer">
+                        @if(is_array($questionData['answer']))
+                            {{ implode(', ', $questionData['answer']) }}
+                        @else
+                            {{ formatAnswer($questionData['answer']) }}
+                        @endif
+                        @include('components.modals.modalTypeformGeneric', [
+                            'chemin' => "blocs->".$axe."->donnees->".$question,
+                            'id_section' => $axe,
+                            'id' => $questionData['id'],
+                            'type' => $questionData["type"],
+                            'titre' => "Modifier votre réponse",
+                            'description' => $questionData["title"],
+                            'answer' => $questionData["answer"],
+                            'choices' => $questionData["choices"],
+                            'route' => route('impacts.update', ['slug' => $slug, 'auth' => $auth, 'hash' => "blocs->".$axe."->donnees->".$question, 'id_section' => $axe])
+                        ])
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endforeach

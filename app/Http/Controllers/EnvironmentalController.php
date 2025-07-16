@@ -9,14 +9,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 use Illuminate\Http\File;
+use App\Services\TypeformUpdateService;
 
 class EnvironmentalController extends Controller
 {
     private $environmentalService;
+    private $typeformUpdateService;
 
-    public function __construct(EnvironmentalService $environmentalService)
+    public function __construct(EnvironmentalService $environmentalService, TypeformUpdateService $typeformUpdateService)
     {
         $this->environmentalService = $environmentalService;
+        $this->typeformUpdateService = $typeformUpdateService;
     }
 
     public function show($slug)
@@ -38,7 +41,7 @@ class EnvironmentalController extends Controller
         $sub_axes_totals = $this->environmentalService->calculateSubDimensionScore($score);
         $selected_words = $this->environmentalService->getWordsCloud($score);
 
-        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestion($placeEnvironment);
+        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestionForEnvironmental($placeEnvironment);
 
         return view('environmental.show', compact('place', 'placeEnvironment', 'axes_totals', 'sub_axes_totals', 'selected_words', 'questionAnswer'));
     }
@@ -65,30 +68,13 @@ class EnvironmentalController extends Controller
         $sub_axes_totals = $this->environmentalService->calculateSubDimensionScore($score);
         $selected_words = $this->environmentalService->getWordsCloud($score);
 
-        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestion($placeEnvironment);
+        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestionForEnvironmental($placeEnvironment);
 
         $edit = true;
 
         return view('environmental.show', compact('place', 'placeEnvironment', 'axes_totals', 'sub_axes_totals', 'selected_words', 'questionAnswer', 'auth', 'slug', 'edit'));
     }
 
-    private function updateArrayValueWithKeys(&$array, $keysString, $newValue) {
-        $keys = explode("__", $keysString);
-        $tempArray = &$array;
-        foreach ($keys as $key) {
-            if (!isset($tempArray[$key])) {
-                return false;
-            }
-            $tempArray = &$tempArray[$key];
-        }
-        $tempArray = $newValue;
-        return true;
-    }
-
-    private function getFirstKey($array) {
-        $keys = array_keys($array);
-        return isset($keys[0]) ? $keys[0] : null;
-    }
 
     public function update(Request $request, $slug, $auth, $hash, $id_section)
     {
@@ -112,41 +98,16 @@ class EnvironmentalController extends Controller
         }
 
         $requestData = $request->all();
-        $dataKey = $this->getFirstKey($requestData);
+        $dataKey = $this->typeformUpdateService->getFirstKey($requestData);
         $data = $placeEnvironment->getData();
 
         // Get all the questions to check the type and the user answer against the authorized values
-        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestion($placeEnvironment, $requestData["id"]);
+        $questionAnswer = $this->environmentalService->getCleanedTypeformQuestionForEnvironmental($placeEnvironment, $requestData["id"]);
         if (!isset($questionAnswer["title"])) {
             throw new \Exception('Question not found');
         }
 
-        switch ($questionAnswer['type']) {
-            case 'checkbox':
-                if (!$this->environmentalService->authorizedAnswer($questionAnswer, array_keys($requestData[$dataKey]))) {
-                    throw new \Exception('Answer not authorized');
-                }
-                $result = $this->updateArrayValueWithKeys($data, $dataKey, array_keys($requestData[$dataKey]));
-                break;
-            case 'toggle':
-                if (!$this->environmentalService->authorizedAnswer($questionAnswer, $requestData[$dataKey])) {
-                    throw new \Exception('Answer not authorized');
-                }
-                $result = $this->updateArrayValueWithKeys($data, $dataKey, $requestData[$dataKey]);
-                break;
-            case 'select':
-                if (!$this->environmentalService->authorizedAnswer($questionAnswer, $requestData[$dataKey])) {
-                    throw new \Exception('Answer not authorized');
-                }
-                $result = $this->updateArrayValueWithKeys($data, $dataKey, [$requestData[$dataKey]]);
-                break;
-            case 'text':
-                $result = $this->updateArrayValueWithKeys($data, $dataKey, htmlspecialchars($requestData[$dataKey]));
-                break;
-            default:
-                throw new \Exception('Unsupported question type' . $questionAnswer['type']);
-                break;
-        }
+        $result = $this->typeformUpdateService->handleUpdate($requestData, $data, $questionAnswer, $dataKey, $this->environmentalService);
 
         if ($result) {
             $placeEnvironment->data = $data;

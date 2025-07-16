@@ -123,10 +123,19 @@ class ImportTypeFormGeneralInformation extends Command
 
         $this->answers = $import_file->answers;
 
-        $exist = DB::table('places')->where('id',$import_file->token)->get();
-        $this->logger->notice("searching for ID:" . $import_file->token);
-
         $place_name = $this->extract_val($schema->name, $this->answers, $this->logger);
+        $slug = Str::of($place_name)->slug('-');
+        $zipcode = $this->extract_val($schema->address->postalcode, $this->answers, $this->logger);
+
+        $exist = false;
+        try {
+            $this->logger->info("Search for " . $slug);
+            $place = Place::searchBySlugAndZipcode($slug, $zipcode);
+            $exist = true;
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
+
         if ($exist->count() && $this->option('force') === false){
             $this->logger->notice($place_name." already imported. Use --force to overwrite.");
             die($place_name." already imported. Use --force to overwrite\n");
@@ -145,7 +154,7 @@ class ImportTypeFormGeneralInformation extends Command
         $new_place->tags = [];
         $new_place->address = new stdClass;
         $new_place->address->address = $this->extract_val($schema->address->address, $this->answers, $this->logger);
-        $new_place->address->postalcode = $this->extract_val($schema->address->postalcode, $this->answers, $this->logger);
+        $new_place->address->postalcode = $zipcode;
 
         // Createur
         $new_place->creator = new stdClass;
@@ -400,35 +409,40 @@ class ImportTypeFormGeneralInformation extends Command
             }
 
             $this->logger->info("Downloading file... ".$info_photo);
-            $photo = fopen($file_path, "w");
-            $this->downloadPicture($info_photo, $photo);
-            //fclose($photo);
-            $this->logger->info("Done!");
+            try {
+                $photo = fopen($file_path, "w");
+                $this->downloadPicture($info_photo, $photo);
+                //fclose($photo);
+                $this->logger->info("Done!");
 
-            if (filesize($file_path) > 11 && exif_imagetype($file_path) !== false) {
-                $new_place->blocs->galerie->donnees[] = $filename;
-                $this->logger->info("Saving it into the json");
+                if (filesize($file_path) > 11 && exif_imagetype($file_path) !== false) {
+                    $new_place->blocs->galerie->donnees[] = $filename;
+                    $this->logger->info("Saving it into the json");
 
-                if (! is_dir($dest_dir)) {
-                    mkdir($dest_dir, 0755, true);
-                }
+                    if (! is_dir($dest_dir)) {
+                        mkdir($dest_dir, 0755, true);
+                    }
 
-                $this->logger->info("Moving it to : ".$dest_dir.$filename);
-                rename($file_path, $dest_dir.$filename);
+                    $this->logger->info("Moving it to : ".$dest_dir.$filename);
+                    rename($file_path, $dest_dir.$filename);
 
-                $this->logger->info("Resizing it...");
-                $process = new Process(['bash', base_path().'/bin/resize_one_place_img.sh', $filename]);
-                $process->run();
+                    $this->logger->info("Resizing it...");
+                    $process = new Process(['bash', base_path().'/bin/resize_one_place_img.sh', $filename]);
+                    $process->run();
 
-                // executes after the command finishes
-                if (! $process->isSuccessful()) {
-                    $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode() ?? 999, $process->getExitCodeText() ?? 'Unknown exit code')]);
-                    $this->logger->emergency("Import aborted");
-                    throw new ProcessFailedException($process);
-                }
-                $this->logger->info("Done resizing it.");
+                    // executes after the command finishes
+                    if (! $process->isSuccessful()) {
+                        $this->logger->alert("Error while resizing !!!", ['output' => sprintf('Command: "%s" failed. Exit code: %s(%s)', $process->getCommandLine(), $process->getExitCode() ?? 999, $process->getExitCodeText() ?? 'Unknown exit code')]);
+                        $this->logger->emergency("Import aborted");
+                        throw new ProcessFailedException($process);
+                    }
+                    $this->logger->info("Done resizing it.");
 
-            } else { $this->logger->notice('Wrong file format !'); }
+                } else { $this->logger->notice('Wrong file format !'); }
+            } catch(\Exception $e) {
+                $this->logger->alert('Could not open photo : '.$e->getMessage());
+            }
+
         } else { $this->logger->info('No'); }
 
         // insee

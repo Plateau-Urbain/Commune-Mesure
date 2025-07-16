@@ -25,7 +25,7 @@ $axesLabels = [
                         @else
                             {{ $questionData['answer'] }}
                         @endif
-                        @include('components.modals.modalEnvironmental', [
+                        @include('components.modals.modalTypeformGeneric', [
                             'chemin' => "blocs->".$axe."->donnees->".$question,
                             'id_section' => $axe,
                             'id' => $questionData['id'],
@@ -33,7 +33,8 @@ $axesLabels = [
                             'titre' => "Modifier votre réponse",
                             'description' => $questionData["title"],
                             'answer' => $questionData["answer"],
-                            'choices' => $questionData["choices"]
+                            'choices' => $questionData["choices"],
+                            'route' => route('environment.update', ['slug' => $slug, 'auth' => $auth, 'hash' => "blocs->".$axe."->donnees->".$question, 'id_section' => $axe])
                         ])
                     </div>
                 </div>

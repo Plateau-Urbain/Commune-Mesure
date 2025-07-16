@@ -6,6 +6,24 @@
 @endsection
 
 @section('script_js')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    });
+  </script>
 @parent
 <script src="{{ url('/js/readmore.js') }}@manifest"></script>
   @include('js.place.modals')
@@ -401,4 +419,11 @@
     </div>
   </div>
 </div>
+@isset($edit)
+  <div class="container mx-auto mt-6 mb-6">
+    @if(str_contains(request()->fullUrl(), 'bureau-commun'))
+      @include('impactsocial.edit', ['questionAnswer' => $questionAnswer])
+    @endif
+  </div>
+@endisset
 @endsection

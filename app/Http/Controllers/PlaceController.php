@@ -9,6 +9,8 @@ use App\Models\PlaceEnvironment;
 use App\Models\Region;
 use App\Models\Section;
 use App\Services\Batiment;
+use App\Services\PlaceService;
+use App\Services\TypeformUpdateService;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -25,10 +27,14 @@ class PlaceController extends Controller
     const export = ['image', 'pdf'];
 
     private $batiment;
+    private $placeService;
+    private $typeformUpdateService;
 
-    public function __construct(Batiment $batiment)
+    public function __construct(Batiment $batiment, PlaceService $placeService, TypeformUpdateService $typeformUpdateService)
     {
         $this->batiment = $batiment;
+        $this->placeService = $placeService;
+        $this->typeformUpdateService = $typeformUpdateService;
     }
 
     public function show($slug)
@@ -143,7 +149,6 @@ class PlaceController extends Controller
             Debugbar::debug($place->getData());
         }
 
-        // Pour indiquer à la vue que c'est en mode édition
         $edit = true;
 
         $batiment = $this->batiment;
@@ -152,7 +157,168 @@ class PlaceController extends Controller
         $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
         $hasEnvironmentalPart = $placeEnvironment !== null;
 
-        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart'));
+        $questionAnswer = $this->placeService->getCleanedTypeformQuestionForPlace($place);
+        $placeData = $place->getData();
+        if (isset($placeData->activites) && is_array($placeData->activites)) {
+            $activitesArray = [];
+            foreach ($questionAnswer["activites"] as $key => $activite) {
+                $questionAnswer["activites"][$key]["answer"] = 'Non';
+
+                if (in_array($key, $placeData->activites)) {
+                    $questionAnswer["activites"][$key]["answer"] = 'Oui';
+                }
+            }
+        }
+
+        if (isset($placeData->blocs->valeurs->donnees)) {
+            $donnees = (array)$placeData->blocs->valeurs->donnees;
+
+            $enabledValues = array_keys(
+                array_filter($donnees, function($v) {
+                    return $v == 1;
+                })
+            );
+
+            $questionAnswer['valeurs']['Accueil']['answer'] = implode(', ', $enabledValues);
+            $questionAnswer['valeurs']['Accueil']['choices'] = (array)$placeData->blocs->valeurs->donnees;
+        }
+
+        if (isset($placeData->blocs->accessibilite->donnees->transports)) {
+            $donnees = (array)$placeData->blocs->accessibilite->donnees->transports;
+
+            $enabledValues = array_keys(
+                array_filter($donnees, function($v) {
+                    return $v == 1;
+                })
+            );
+
+            $questionAnswer['accessibilite']['transports->Bus']['answer'] = implode(', ', $enabledValues);
+            $questionAnswer['accessibilite']['transports->Bus']['choices'] = (array)$placeData->blocs->accessibilite->donnees->transports;
+        }
+
+        if (isset($placeData->blocs->accessibilite->donnees->publics)) {
+            $donnees = (array)$placeData->blocs->accessibilite->donnees->publics;
+
+            $enabledValues = array_keys(
+                array_filter($donnees, function($v) {
+                    return $v == 1;
+                })
+            );
+
+            $questionAnswer['accessibilite']['publics->Chercheurs d\'emplois']['answer'] = implode(', ', $enabledValues);
+            $questionAnswer['accessibilite']['publics->Chercheurs d\'emplois']['choices'] = (array)$placeData->blocs->accessibilite->donnees->publics;
+        }
+
+
+        return view('place.show', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart', 'questionAnswer'));
+    }
+
+
+    public function updateGeneral(Request $request, $slug, $auth, $hash, $id_section = null)
+    {
+        $place = Place::find($slug);
+        if ($place === false) {
+            abort(404);
+        }
+        if ($place->check($auth) === false) {
+            abort(403, 'Wrong authentication string');
+        }
+        if ($auth === str_repeat('a', 64)) {
+            throw new \LogicException('Exiting, default admin hash');
+        }
+        $this->validate($request, [
+            'id' => 'required|filled|string|min:1|max:255'
+        ]);
+        $requestData = $request->all();
+        $dataKey = $this->typeformUpdateService->getFirstKey($requestData);
+        $data = json_decode(json_encode($place->getData()), true);
+        $questionAnswer = $this->placeService->getCleanedTypeformQuestionForPlace($place, $requestData["id"]);
+
+        if (!isset($questionAnswer["title"])) {
+            throw new \Exception('Question not found');
+        }
+
+        // Activités
+        if (strpos($dataKey, 'blocs__activites__donnees') === 0) {
+            $label = substr($dataKey, strrpos($dataKey, '__') + 2);
+
+            if (!isset($data['activites'])) {
+                $data['activites'] = [];
+            }
+
+            if ($requestData[$dataKey] === 'Yes' || $requestData[$dataKey] === true || $requestData[$dataKey] === 1) {
+                if (!in_array($label, $data['activites'])) {
+                    $data['activites'][] = $label;
+                }
+            } else {
+                $key = array_search($label, $data['activites']);
+                if ($key !== false) {
+                    unset($data['activites'][$key]);
+                    $data['activites'] = array_values($data['activites']);
+                }
+            }
+            $result = true;
+        }
+        elseif (strpos($dataKey, 'blocs__valeurs__donnees') === 0) {
+            $values = array_keys($requestData[$dataKey]);
+            foreach($data['blocs']['valeurs']['donnees'] as $valeur => $val) {
+                $data['blocs']['valeurs']['donnees'][$valeur] = 0;
+                if (in_array($valeur, $values)) {
+                    $data['blocs']['valeurs']['donnees'][$valeur] = 1;
+                }
+            }
+            $result = true;
+        }
+        elseif (strpos($dataKey, 'blocs__accessibilite__donnees__publics') === 0) {
+            $values = array_keys($requestData[$dataKey]);
+            foreach($data['blocs']['accessibilite']['donnees']['publics'] as $public => $val) {
+                $data['blocs']['accessibilite']['donnees']['publics'][$public] = 0;
+                if (in_array($public, $values)) {
+                    $data['blocs']['accessibilite']['donnees']['publics'][$public] = 1;
+                }
+            }
+            $result = true;
+        }
+        elseif (strpos($dataKey, 'blocs__accessibilite__donnees__transports') === 0) {
+            $values = array_keys($requestData[$dataKey]);
+            foreach($data['blocs']['accessibilite']['donnees']['transports'] as $transport => $val) {
+                $data['blocs']['accessibilite']['donnees']['transports'][$transport] = 0;
+                if (in_array($transport, $values)) {
+                    $data['blocs']['accessibilite']['donnees']['transports'][$transport] = 1;
+                }
+            }
+            $result = true;
+        }
+        elseif(strpos($dataKey, 'blocs__evenements__donnees') === 0) {
+            $value = $requestData[$dataKey];
+            $dbKey = str_replace('donnees__', '', $dataKey);
+            $dbKey = str_replace('blocs__', '', $dbKey);
+            $dbKey = str_replace('personnes_accueillies', 'personnes accueillies', $dbKey);
+            $this->typeformUpdateService->updateArrayValueWithKeys($data, $dbKey, $value);
+            $result = true;
+        } else {
+            $result = $this->typeformUpdateService->handleUpdate($requestData, $data, $questionAnswer, $dataKey, $this->placeService);
+        }
+
+        if ($result) {
+            $place->setData(json_encode($data));
+            $place->save();
+        } else {
+            throw new \Exception('Question key does not exists');
+        }
+        $sections = $place->getVisibility();
+        $isEmpty = $place->getIsEmpty();
+        $this->sortDataInsee($place->getData());
+
+        $batiment = $this->batiment;
+        $batiment->init($place);
+
+        $edit = true;
+
+        $placeEnvironment = PlaceEnvironment::where('place_id', $place->getId())->first();
+        $hasEnvironmentalPart = $placeEnvironment !== null;
+
+        return redirect(route('place.edit', compact('place', 'auth', 'slug', 'edit', 'sections', 'isEmpty', 'batiment', 'hasEnvironmentalPart', 'questionAnswer')) . ($id_section ? ('#' . $id_section) : ''));
     }
 
     /**

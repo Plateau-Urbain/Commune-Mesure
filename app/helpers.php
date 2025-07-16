@@ -89,4 +89,18 @@ function extractPercentageAndText($input) {
     }
 }
 
+function formatAnswer($answer, $type) {
+    if ($type === 'number') {
+        return $answer;
+    }
+
+    if ($answer === "Yes" || $answer === 1 || $answer === "1") {
+        return 'Oui';
+    }
+    if ($answer === "No" || $answer === 0 || $answer === "0") {
+        return 'Non';
+    }
+    return $answer;
+}
+
 ?>
