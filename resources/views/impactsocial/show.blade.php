@@ -31,6 +31,14 @@
 
 @section('content')
 
+@isset($edit)
+  @if(str_contains(request()->fullUrl(), 'bureau-commun'))
+    <div class="container mx-auto mt-6 mb-6">
+        @include('impactsocial.edit', ['questionAnswer' => $questionAnswer])
+    </div>
+  @endif
+@endisset
+
 <div id="impact-page">
   <div class="columns is-gapless is-mobile" id="container">
     <div class="column is-full">
@@ -419,11 +427,4 @@
     </div>
   </div>
 </div>
-@isset($edit)
-  <div class="container mx-auto mt-6 mb-6">
-    @if(str_contains(request()->fullUrl(), 'bureau-commun'))
-      @include('impactsocial.edit', ['questionAnswer' => $questionAnswer])
-    @endif
-  </div>
-@endisset
 @endsection

@@ -12,7 +12,7 @@
     </div>
   @endforeach
 @else
-  <input class='input-number' min=0 max=5 name="{{ $name }}" type='number' value="{{ $value }}"/>
+  <input class='input-number' min=0 max=5 name="{{ $name }}" type='number' value="{{ $answer }}"/>
 @endif
 <input type="hidden" value="number" name="type">
 sur 5

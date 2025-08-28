@@ -84,6 +84,9 @@ class TypeformUpdateService
             case 'number':
                 $result = $this->updateArrayValueWithKeys($data, $dataKey, intval($requestData[$dataKey]));
                 break;
+            case 'rating':
+                $result = $this->updateArrayValueWithKeys($data, $dataKey, intval($requestData[$dataKey]));
+                break;
             case 'date':
                 $result = $this->updateArrayValueWithKeys($data, $dataKey, htmlspecialchars($requestData[$dataKey]));
                 break;

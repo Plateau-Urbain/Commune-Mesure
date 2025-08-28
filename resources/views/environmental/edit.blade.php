@@ -23,7 +23,7 @@ $axesLabels = [
                         @if(is_array($questionData['answer']))
                             {{ implode(', ', $questionData['answer']) }}
                         @else
-                            {{ $questionData['answer'] }}
+                            {{ formatAnswer($questionData['answer'], $questionData["type"]) }}
                         @endif
                         @include('components.modals.modalTypeformGeneric', [
                             'chemin' => "blocs->".$axe."->donnees->".$question,

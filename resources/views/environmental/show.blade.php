@@ -137,7 +137,13 @@
         });
     </script>
 @endsection
-
+@isset($edit)
+  @if(str_contains(request()->fullUrl(), 'bureau-commun'))
+    <div class="container mx-auto mt-6 mb-6">
+        @include('environmental.edit', ['questionAnswer' => $questionAnswer])
+    </div>
+  @endif
+@endisset
 @section('content')
     <div class="container mx-auto mt-6">
         <div style="display: flex; gap: 25px;" id="top">
@@ -553,9 +559,4 @@
             </div>
         </div>
     </div>
-@isset($edit)
-  <div class="container mx-auto mt-6 mb-6">
-      @include('environmental.edit', ['questionAnswer' => $questionAnswer])
-  </div>
-@endisset
 @endsection

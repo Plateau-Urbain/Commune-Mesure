@@ -248,7 +248,7 @@ class PlaceController extends Controller
 
             if ($requestData[$dataKey] === 'Yes' || $requestData[$dataKey] === true || $requestData[$dataKey] === 1) {
                 if (!in_array($label, $data['activites'])) {
-                    $data['activites'][] = $label;
+                    $data['activites'][] = str_replace('_', ' ', $label);
                 }
             } else {
                 $key = array_search($label, $data['activites']);

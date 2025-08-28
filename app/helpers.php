@@ -90,7 +90,7 @@ function extractPercentageAndText($input) {
 }
 
 function formatAnswer($answer, $type) {
-    if ($type === 'number') {
+    if ($type === 'number' || $type === 'rating') {
         return $answer;
     }
 

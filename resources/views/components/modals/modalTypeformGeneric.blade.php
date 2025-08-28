@@ -30,14 +30,23 @@
           <small>{{ $description }}</small>
           <hr class="is-primary-light"/>
         @endisset
-
-        @include('components.modals.forms.'.$type ?? 'text', [
-          'value' => $choices,
-          'path' => $chemin,
-          'name' => str_replace('->', '__', $chemin),
-          'answer' => $answer
-        ])
-
+        @switch($type)
+          @case('text')
+            @include('components.modals.forms.text_answer', [
+              'value' => $choices,
+              'path' => $chemin,
+              'name' => str_replace('->', '__', $chemin),
+              'answer' => $answer
+            ])
+            @break
+          @default
+            @include('components.modals.forms.' . ($type ?? 'text'), [
+              'value' => $choices,
+              'path' => $chemin,
+              'name' => str_replace('->', '__', $chemin),
+              'answer' => $answer
+            ])
+        @endswitch
         <br>
         <code style="opacity: 0.2;">$place->{{ $chemin }}</code>
       </section>
